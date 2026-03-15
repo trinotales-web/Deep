@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "AXUNE",
+    "slug": "axune",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "backgroundColor": "#F6F3EE"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.axune.sanctuary"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#F6F3EE"
+      },
+      "package": "app.axune.sanctuary"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-notifications",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow AXUNE to access your photos to set a profile picture."
+        }
+      ]
+    ],
+    "extra": {
+      "supabaseUrl": "",
+      "supabaseAnonKey": ""
+    }
+  }
+}

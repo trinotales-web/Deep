@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Existing dashboard colors
         "bg-primary": "#f6f3ee",
         "bg-secondary": "#faf8f5",
         "bg-card": "#ffffff",
@@ -28,10 +29,29 @@ const config: Config = {
         "accent-sage": "#a4be7b",
         "border-light": "#ede9e2",
         "border-medium": "#e0dbd3",
+        // Website design system colors
+        "site-bg": "#FAFAF7",
+        "site-bg-alt": "#F5F3EE",
+        "site-dark": "#1C1A17",
+        "site-surface": "#FFFFFF",
+        "site-heading": "#1A1814",
+        "site-body": "#3D3930",
+        "site-secondary": "#6B6560",
+        "site-muted": "#A09A90",
+        "site-inverse": "#F0EDE6",
+        "site-accent": "#2D5A3D",
+        "site-accent-hover": "#1E4430",
+        "site-amber": "#C4956B",
+        "site-brown": "#8B7355",
+        "site-border": "#E8E4DC",
+        "site-divider": "#F0ECE5",
       },
       fontFamily: {
         serif: ["var(--font-cormorant)", "Georgia", "serif"],
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        heading: ["'Playfair Display'", "Georgia", "serif"],
+        body: ["'Source Sans 3'", "system-ui", "sans-serif"],
+        jp: ["'Noto Serif JP'", "serif"],
       },
       borderRadius: {
         sm: "8px",
@@ -44,6 +64,10 @@ const config: Config = {
         card: "0 1px 8px rgba(0,0,0,0.04)",
         "card-hover": "0 4px 20px rgba(0,0,0,0.08)",
         modal: "0 20px 60px rgba(0,0,0,0.15)",
+        "site-card": "0 2px 20px rgba(0,0,0,0.04)",
+        "site-card-hover": "0 8px 32px rgba(0,0,0,0.08)",
+        "site-image": "0 4px 24px rgba(0,0,0,0.06)",
+        "site-nav": "0 1px 12px rgba(0,0,0,0.05)",
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
@@ -52,6 +76,8 @@ const config: Config = {
         breathe: "breathe 4s ease-in-out infinite",
         "fill-up": "fillUp 0.5s ease-out forwards",
         shimmer: "shimmer 1.5s ease-in-out infinite",
+        "bounce-arrow": "bounceArrow 2s ease-in-out infinite",
+        "scroll-reveal": "scrollReveal 0.6s ease-out forwards",
       },
       keyframes: {
         fadeIn: {
@@ -79,9 +105,23 @@ const config: Config = {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        bounceArrow: {
+          "0%, 100%": { transform: "translateY(0)", opacity: "0.6" },
+          "50%": { transform: "translateY(8px)", opacity: "1" },
+        },
+        scrollReveal: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       maxWidth: {
         mobile: "480px",
+        site: "1200px",
+        article: "720px",
+      },
+      screens: {
+        tablet: "768px",
+        desktop: "1024px",
       },
     },
   },

@@ -2,6 +2,8 @@ import { Composition } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { RyokanStory } from "./ryokan/Ryokan";
 import timeline from "./ryokan/timeline.json";
+import { KimonoStory } from "./kimono/Kimono";
+import kimonoTimeline from "./kimono/timeline.json";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -20,6 +22,14 @@ export const RemotionRoot: React.FC = () => {
         component={RyokanStory}
         durationInFrames={timeline.duration * timeline.fps}
         fps={timeline.fps}
+        width={1080}
+        height={1080}
+      />
+      <Composition
+        id="Kimono"
+        component={KimonoStory}
+        durationInFrames={Math.round(kimonoTimeline.duration * kimonoTimeline.fps)}
+        fps={kimonoTimeline.fps}
         width={1080}
         height={1080}
       />

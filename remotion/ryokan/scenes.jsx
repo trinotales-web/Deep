@@ -1,32 +1,15 @@
 import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { interpolate } from "remotion";
 import tl from "./timeline.json";
-import { C, Layer, circle, ellipse, cloudPad, clamp, prog, pop, onTwos, easeOut } from "./style";
+import { C, Layer, circle, ellipse, cloudPad, clamp, prog, pop, onTwos, easeOut } from "../storybook/style";
+import { Frame, useStoryTime, zoomTo } from "../storybook/Story";
 import {
   MonkSeiza, MonkStand, MonkBack, RobeCloth, Thief, Hut, Pine, Sun, Moon, Ground, Birds, Sparkle,
   Bowl, Mat, Temari, Butterfly, Susuki, Spider, Desk, MotionLines, Puff, InkText,
-} from "./characters";
+} from "../storybook/characters";
 
 const Q = tl.cues;
 const BEAT = 60 / tl.bpm;
-
-// Absolute story time (seconds) inside a <Sequence>.
-export const useStoryTime = (start) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  return start + frame / fps;
-};
-
-const Frame = ({ children, camera = "" }) => (
-  <AbsoluteFill>
-    <svg viewBox="0 0 1080 1080" width="100%" height="100%">
-      <rect width="1080" height="1080" fill={C.paper} />
-      <g transform={camera}>{children}</g>
-    </svg>
-  </AbsoluteFill>
-);
-
-const zoomTo = (s, cx, cy) => `translate(540 540) scale(${s}) translate(${-cx} ${-cy})`;
 
 const FarRange = ({ y = 0, snow = true }) => (
   <g transform={`translate(0 ${y})`}>

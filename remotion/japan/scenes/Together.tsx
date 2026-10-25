@@ -267,13 +267,14 @@ const JapanChar: React.FC<{ f: number; x: number; y: number; s: number; expr: "s
   const fy = (face[1] - JAPAN_C[1]) * s;
   return (
     <g transform={`translate(${x},${y + Math.sin(f / 9) * 6})`}>
-      <GreenArm x={fx - 64} y={fy + 30} a={armL} side={-1} />
-      <GreenArm x={fx + 62} y={fy - 20} a={armR} side={1} />
       <g transform={`scale(${s}) translate(${-JAPAN_C[0]},${-JAPAN_C[1]})`}>
         {japanD.map((d, i) => (
           <Pencil key={i} d={d} fill={C.green} sw={4.5 / s} off={[3 / s, 2 / s]} />
         ))}
       </g>
+      {/* arms sit on top of the islands so they read clearly */}
+      <GreenArm x={fx - 58} y={fy + 34} a={armL} side={-1} />
+      <GreenArm x={fx + 58} y={fy + 10} a={armR} side={1} />
       {/* face */}
       <g transform={`translate(${fx},${fy})`}>
         {expr === "wink" ? (
@@ -404,12 +405,20 @@ export const Finale: React.FC<{ f: number; from: number; to: number }> = ({ f, f
                 ) : null}
                 <Sparkle x={land[0] + 30 - i * 20} y={land[1] - 60 - i * 30} s={pop(f, a.at + 26) * ip(f, [a.at + 40, a.at + 50], [1, 0])} />
                 {a.label ? (
-                  <Label x={330 + i * 40} y={a.from[1] - 120 + i * 20} text={a.label} size={76} font={FONT_HAND} p={ip(f, [a.at + 8, a.at + 22], [0, 1], (x) => x)} rot={-6} />
+                  <Label
+                    x={330 + i * 40}
+                    y={a.from[1] - 120 + i * 20}
+                    text={a.label}
+                    size={76}
+                    font={FONT_HAND}
+                    p={ip(f, [a.at + 8, a.at + 22], [0, 1], (x) => x) * ip(f, [outro + 8, outro + 22], [1, 0], (x) => x)}
+                    rot={-6}
+                  />
                 ) : null}
               </g>
             );
           })}
-          <Label x={1180} y={740} text="to be continued..." size={80} font={FONT_HAND} p={ip(f, [outro + 26, outro + 56], [0, 1], (x) => x)} rot={-2} />
+          <Label x={480} y={560} text="to be continued..." size={88} font={FONT_HAND} p={ip(f, [outro + 26, outro + 56], [0, 1], (x) => x)} rot={-4} />
         </Camera>
       </g>
     </SceneSvg>

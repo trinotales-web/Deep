@@ -21,7 +21,10 @@ export type Tribe =
   | "mongol"
   | "khan"
   | "portuguese"
-  | "smith";
+  | "smith"
+  | "fool"
+  | "nobunaga"
+  | "general";
 export type Hold =
   | "spear"
   | "rice"
@@ -489,7 +492,18 @@ const Hair: React.FC<{ tribe: Tribe; long?: boolean; back?: boolean }> = ({ trib
   if (tribe === "emperor" || tribe === "noble" || tribe === "priest" || tribe === "modern" || tribe === "mongol" || tribe === "khan") {
     return neat;
   }
-  if (tribe === "guard" || tribe === "daimyo" || tribe === "samurai" || tribe === "shogun") {
+  if (tribe === "fool") {
+    // chasen-mage: a messy tea-whisk topknot tied with a red cord
+    return (
+      <g>
+        {neat}
+        <Pencil d={`M-8,${hy - 46} L-26,${hy - 104} L-10,${hy - 88} L-6,${hy - 118} L4,${hy - 92} L16,${hy - 116} L14,${hy - 86} L30,${hy - 98} L10,${hy - 46} Z`} fill={C.hair} sw={3} />
+        <Pencil d={`M-11,${hy - 50} L11,${hy - 50} L12,${hy - 62} L-12,${hy - 62} Z`} fill={C.red} sw={2.5} />
+        <Ink d={`M10,${hy - 56} q16,4 20,20 M12,${hy - 54} q10,12 6,26`} sw={3} color={C.red} />
+      </g>
+    );
+  }
+  if (tribe === "guard" || tribe === "daimyo" || tribe === "samurai" || tribe === "shogun" || tribe === "nobunaga" || tribe === "general") {
     // chonmage: shaved pate with a top-knot
     return (
       <g>
@@ -586,6 +600,21 @@ const Hat: React.FC<{ tribe: Tribe }> = ({ tribe }) => {
         </g>
       );
     }
+    case "general":
+      return (
+        <g>
+          {[-1, 1].map((sd) => (
+            <Pencil key={sd} d={`M${sd * 50},${hy - 14} L${sd * 80},${hy + 28} L${sd * 60},${hy + 40} L${sd * 44},${hy + 4} Z`} fill="#3f7f86" sw={3.5} />
+          ))}
+          <Pencil d={`M-54,${hy - 10} C-56,${hy - 70} -26,${hy - 86} 0,${hy - 86} C26,${hy - 86} 56,${hy - 70} 54,${hy - 10} Q0,${hy - 30} -54,${hy - 10} Z`} fill="#2f4a55" sw={4} />
+          {[0, 1, 2, 3, 4].map((k) => {
+            const a = (k / 5) * Math.PI * 2 - Math.PI / 2;
+            return <Pencil key={k} d={ellipseD(Math.cos(a) * 13, hy - 100 + Math.sin(a) * 13, 10, 10)} fill="#8fb4e0" sw={2.5} />;
+          })}
+          <Pencil d={ellipseD(0, hy - 100, 7)} fill={C.white} sw={2} />
+          <Ink d={`M0,${hy - 86} L0,${hy - 76}`} sw={3} />
+        </g>
+      );
     case "samurai":
     case "shogun": {
       const big = tribe === "shogun";
@@ -639,6 +668,9 @@ const OUTFIT: Partial<Record<Tribe, string>> = {
   khan: "#c9902f",
   portuguese: "#7a2a3a",
   smith: C.white,
+  fool: "#e9a23b",
+  nobunaga: "#2b2b35",
+  general: "#3f6f7f",
 };
 
 const LEGS: Partial<Record<Tribe, string>> = {
@@ -656,6 +688,8 @@ const LEGS: Partial<Record<Tribe, string>> = {
   khan: "#7a3a2a",
   portuguese: "#3a3a4a",
   smith: "#5a4636",
+  nobunaga: "#3a3d4f",
+  general: "#3a3d4f",
 };
 
 /** Body details drawn over the tunic for the Part 2 cast. */
@@ -687,6 +721,44 @@ const Outfit: React.FC<{ tribe: Tribe }> = ({ tribe }) => {
       );
     case "smith":
       return <Pencil d="M-26,-122 L26,-122 L38,-50 Q0,-44 -38,-50 Z" fill={C.brown} sw={3.5} />;
+    case "fool":
+      // loose robe hanging off one shoulder, a rope belt with a gourd
+      return (
+        <g>
+          <Pencil d="M-30,-136 Q-10,-140 2,-134 L-18,-96 L-34,-100 Z" fill={C.skin} sw={3} />
+          {[[-14, -112], [16, -118], [22, -70], [-24, -66]].map(([dx, dy], i) => (
+            <Ink key={i} d={`M${dx - 7},${dy} l7,-7 l7,7 l-7,7 Z`} sw={2} opacity={0.6} />
+          ))}
+          <Ink d="M-40,-80 Q0,-70 40,-80" sw={6} color={C.straw} />
+          <Ink d="M24,-77 L30,-62" sw={2.5} color={C.straw} />
+          <Pencil d="M30,-62 C20,-60 20,-46 30,-44 C18,-40 18,-20 32,-18 C46,-20 46,-40 34,-44 C44,-46 42,-60 30,-62 Z" fill={C.tan} sw={2.5} />
+          <Pencil d="M-20,-62 h14 v12 h-14 Z" fill={C.indigo} sw={2.5} />
+        </g>
+      );
+    case "nobunaga":
+    case "general": {
+      const nob = tribe === "nobunaga";
+      const rows = [-120, -106, -92, -78, -64];
+      return (
+        <g>
+          {rows.map((ry) => (
+            <Ink key={ry} d={`M${-30 - (ry + 136) * 0.16},${ry} Q0,${ry + 4} ${30 + (ry + 136) * 0.16},${ry}`} sw={2.2} color={nob ? C.yellow : C.white} opacity={0.8} />
+          ))}
+          {[-1, 1].map((sd) => (
+            <Pencil key={sd} d={`M${sd * 24},-140 L${sd * 58},-132 L${sd * 60},-92 L${sd * 30},-98 Z`} fill={nob ? "#8a2a2e" : "#3f7f86"} sw={3.5} />
+          ))}
+          {nob ? (
+            <g>
+              {[0, 1, 2, 3, 4].map((k) => {
+                const a = (k / 5) * Math.PI * 2 - Math.PI / 2;
+                return <Pencil key={k} d={ellipseD(Math.cos(a) * 9, -106 + Math.sin(a) * 9, 7, 7)} fill={C.yellow} sw={2} />;
+              })}
+              <path d={ellipseD(0, -106, 4)} fill={INK} />
+            </g>
+          ) : null}
+        </g>
+      );
+    }
     case "ninja":
       return <Pencil d="M-38,-84 Q0,-76 38,-84 L39,-74 Q0,-66 -39,-74 Z" fill="#555a70" sw={3} />;
     case "mongol":
@@ -794,6 +866,13 @@ export const Person: React.FC<PersonProps> = ({
   return (
     <g transform={`translate(${x},${y - lift - bob}) scale(${flip ? -s : s},${s})`}>
       <g transform={`rotate(${lean})`}>
+        {/* Nobunaga's European-style cape hangs behind everything */}
+        {tribe === "nobunaga" ? (
+          <g transform={`translate(0,${legY})`}>
+            <Pencil d="M-30,-140 Q0,-148 30,-140 L62,-30 Q0,-14 -62,-30 Z" fill={C.red} sw={4} />
+            <Ink d="M-20,-120 L-42,-40 M20,-120 L42,-40" sw={2} opacity={0.5} />
+          </g>
+        ) : null}
         {/* legs */}
         {sit ? (
           <g>
@@ -804,12 +883,13 @@ export const Person: React.FC<PersonProps> = ({
           [-1, 1].map((sd) => (
             <g key={sd} transform={`translate(${sd * 13},-50) rotate(${sd * swing})`}>
               <Pencil d="M-8,0 L8,0 L7,48 L-7,48 Z" fill={legs} sw={3.5} />
-              <Pencil d={ellipseD(5, 50, 13, 7)} fill={C.darkBrown} sw={3} />
+              <Pencil d={ellipseD(5, 50, 13, 7)} fill={tribe === "fool" ? skin : C.darkBrown} sw={3} />
             </g>
           ))
         )}
         <g transform={`translate(0,${legY})`}>
           <Hair tribe={tribe} long={long} back />
+
           {/* back arm */}
           <Arm sx={-27} sy={-124} a={walking ? 8 - swing : aL} skin={skin} cloth={outfit} side={-1} />
           {/* body / tunic */}
@@ -825,7 +905,7 @@ export const Person: React.FC<PersonProps> = ({
             </g>
           ) : null}
           <Outfit tribe={tribe} />
-          {tribe === "samurai" || tribe === "shogun" || tribe === "daimyo" ? <HipSwords /> : null}
+          {tribe === "samurai" || tribe === "shogun" || tribe === "daimyo" || tribe === "nobunaga" || tribe === "general" ? <HipSwords /> : null}
           {tribe === "nomad" || tribe === "bandit" ? (
             <g>
               {[[-14, -110], [12, -96], [-20, -76], [18, -66], [0, -84]].map(([dx, dy], i) => (
@@ -847,6 +927,9 @@ export const Person: React.FC<PersonProps> = ({
           <Brows expr={expr} />
           <Mouth expr={expr} f={f} />
           <Hat tribe={tribe} />
+          {tribe === "nobunaga" ? (
+            <Ink d={`M-2,${HEAD_Y + 14} Q-14,${HEAD_Y + 8} -28,${HEAD_Y + 18} M2,${HEAD_Y + 14} Q14,${HEAD_Y + 8} 28,${HEAD_Y + 18}`} sw={4} color={C.hair} />
+          ) : null}
           {beard ? (
             <g>
               <Pencil d={`M-30,${HEAD_Y + 34} Q-36,${HEAD_Y + 80} 0,${HEAD_Y + 96} Q36,${HEAD_Y + 80} 30,${HEAD_Y + 34} Q0,${HEAD_Y + 46} -30,${HEAD_Y + 34} Z`} fill={C.hair} sw={3} />

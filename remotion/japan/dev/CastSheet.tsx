@@ -12,6 +12,7 @@ const CAST: [Tribe, Hold][] = [
   ["jomon", "spear"], ["yayoi", "rice"], ["monk", "beads"], ["emperor", "shaku"], ["noble", "coins"],
   ["priest", "gohei"], ["guard", "bow"], ["samurai", "katana"], ["shogun", "fan"], ["daimyo", "none"],
   ["modern", "lantern"], ["bandit", "naginata"], ["ninja", "spyglass"], ["mongol", "bomb"], ["khan", "letter"],
+  ["portuguese", "gun"], ["smith", "hammer"], ["fool", "onigiri"], ["nobunaga", "fan"], ["general", "katana"],
 ];
 
 export const CastSheet: React.FC = () => {
@@ -36,11 +37,11 @@ export const CastSheet: React.FC = () => {
       <SceneSvg f={f}>
         {(f >= 15 ? [] : CAST).map(([t, h], i) => {
           const x = 120 + (i % 8) * 240;
-          const y = i < 8 ? 470 : 960;
+          const y = 330 + Math.floor(i / 8) * 340;
           return (
             <g key={t}>
-              <Person x={x} y={y} s={0.85} tribe={t} f={f} hold={h} aR={h === "none" ? 10 : 30} expr={i % 3 === 0 ? "grin" : "smile"} beard={t === "khan"} />
-              <Label x={x} y={y + 50} text={t} size={36} font={FONT_HAND} />
+              <Person x={x} y={y} s={0.75} tribe={t} f={f} hold={h} aR={h === "none" ? 10 : 30} expr={i % 3 === 0 ? "grin" : "smile"} beard={t === "khan"} />
+              <Label x={x} y={y + 44} text={t} size={36} font={FONT_HAND} />
             </g>
           );
         })}

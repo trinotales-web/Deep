@@ -106,12 +106,32 @@ A hybrid of two reference styles:
 | 18.55 | a whole life with a sword vs. a few days with a gun | `Duel` |
 | 24.85 | with this new weapon … unite Japan, then a quiet ending | `Unite` |
 
+## Part 6: the fool of Owari (63.5 s)
+
+| Video time | Narration | Scene |
+| --- | --- | --- |
+| 0.0 | (title) | `Title6` |
+| 3.0 | The first man to try it was Oda Nobunaga | `FirstMan` |
+| 6.3 | barefoot, ate wherever he liked … the Fool of Owari | `Fool` |
+| 13.45 | after the province where he lived | `Owari` |
+| 15.55 | smarter than anyone knew | `Smarter` |
+| 18.0 | a powerful warlord marched into Owari with 25,000 soldiers | `March` |
+| 23.5 | Nobunaga's army was much smaller … crushed | `Odds` |
+| 28.0 | a surprise attack, and he won | `Surprise` |
+| 30.85 | one of the most powerful men in Japan | `Powerful` |
+| 34.8 | by 1582, all of central Japan | `Central` |
+| 38.4 | June 1582, staying at a temple in Kyoto | `Temple` |
+| 42.9 | his most trusted general … 13,000 soldiers … fire | `Betrayal` |
+| 49.3 | no way out … seppuku (the doors close; nothing graphic) | `NoWayOut` |
+| 53.05 | What is seppuku? Search it, but at your own risk | `SearchIt` |
+| 56.6 | why did his general turn against him? nobody knows, then a quiet ending | `Mystery` |
+
 The parts end without a "to be continued" card.
 
-Scene cues come from word timings (`words-part1.ts` … `words-part5.ts`). These
+Scene cues come from word timings (`words-part1.ts` … `words-part6.ts`). These
 were made by force-aligning each script against the voiceover. `wf(i, "word")`
-(Part 1) and `w2` … `w5` (Parts 2–5) return the frame where word *i* starts,
-and they throw if the index doesn't match the expected word. The Part 2–5
+(Part 1) and `w2` … `w6` (Parts 2–6) return the frame where word *i* starts,
+and they throw if the index doesn't match the expected word. The Part 2–6
 scores read the same timing files, so the music hits the same words as
 the picture.
 
@@ -129,12 +149,15 @@ python3 remotion/japan/music/compose_part4.py \
   --narration narration_p4.wav --out music_p4.wav
 python3 remotion/japan/music/compose_part5.py \
   --narration narration_p5.wav --out music_p5.wav
+python3 remotion/japan/music/compose_part6.py \
+  --narration narration_p6.wav --out music_p6.wav
 ffmpeg -i music_p1.wav -c:a aac -b:a 192k public/japan/music_p1.m4a
 npx remotion render JapanPart1 out/japan_part1.mp4      # final videos
 npx remotion render JapanPart2 out/japan_part2.mp4
 npx remotion render JapanPart3 out/japan_part3.mp4
 npx remotion render JapanPart4 out/japan_part4.mp4
 npx remotion render JapanPart5 out/japan_part5.mp4
+npx remotion render JapanPart6 out/japan_part6.mp4
 # long parts render more reliably in chunks (retries, then joins video + audio):
 remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
 ```

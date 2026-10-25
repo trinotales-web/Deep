@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { AbsoluteFill, Audio, cancelRender, continueRender, delayRender, Sequence, staticFile, useCurrentFrame } from "remotion";
-import { FONT_HAND, FONT_LABEL, FONT_TITLE, ip, NARRATION_OFFSET, sec } from "./theme";
+import React from "react";
+import { useJapanAssets } from "./assets";
+import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { ip, NARRATION_OFFSET, sec } from "./theme";
 import { CaptionStrip, Captions, GrainOverlay, PaperBg, Shot } from "./Stage";
 import { MapIntro, TitleScene } from "./scenes/Opening";
 import { LandScene } from "./scenes/Land";
@@ -26,34 +27,8 @@ export const T = {
   out: 60,
 };
 
-const useAssets = () => {
-  const [handle] = useState(() => delayRender("Loading fonts and textures"));
-  useEffect(() => {
-    const fonts = [
-      new FontFace(FONT_HAND, `url(${staticFile("japan/fonts/PatrickHand.woff2")})`),
-      new FontFace(FONT_LABEL, `url(${staticFile("japan/fonts/GochiHand.woff2")})`),
-      new FontFace(FONT_TITLE, `url(${staticFile("japan/fonts/KalamBold.woff2")})`),
-    ];
-    const images = ["japan/pencil.png", "japan/paper.jpg", "japan/grain.jpg"].map((src) => {
-      const img = new Image();
-      img.src = staticFile(src);
-      return img.decode();
-    });
-    Promise.all([
-      ...fonts.map((ff) =>
-        ff.load().then((loaded) => {
-          document.fonts.add(loaded);
-        }),
-      ),
-      ...images,
-    ])
-      .then(() => continueRender(handle))
-      .catch((err) => cancelRender(err));
-  }, [handle]);
-};
-
 export const JapanPart1: React.FC = () => {
-  useAssets();
+  useJapanAssets();
   const f = useCurrentFrame();
   const s = (x: number) => sec(x);
   return (

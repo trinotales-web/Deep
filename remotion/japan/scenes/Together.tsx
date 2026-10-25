@@ -253,7 +253,7 @@ const GreenArm: React.FC<{ x: number; y: number; a: number; side: 1 | -1 }> = ({
 );
 
 /** Japan itself as a character, like the personified maps of the explainer reference. */
-const JapanChar: React.FC<{ f: number; x: number; y: number; s: number; expr: "smile" | "wink" | "grin"; armR: number; armL: number }> = ({
+export const JapanChar: React.FC<{ f: number; x: number; y: number; s: number; expr: "smile" | "wink" | "grin"; armR: number; armL: number }> = ({
   f,
   x,
   y,
@@ -418,7 +418,6 @@ export const Finale: React.FC<{ f: number; from: number; to: number }> = ({ f, f
               </g>
             );
           })}
-          <Label x={480} y={560} text="to be continued..." size={88} font={FONT_HAND} p={ip(f, [outro + 26, outro + 56], [0, 1], (x) => x)} rot={-4} />
         </Camera>
       </g>
     </SceneSvg>

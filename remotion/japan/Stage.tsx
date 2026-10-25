@@ -45,7 +45,7 @@ export const GrainOverlay: React.FC = () => (
 );
 
 // Caption phrases as [firstWord, lastWord] indices into WORDS_P1.
-const PHRASES: [number, number][] = [
+const P1_PHRASES: [number, number][] = [
   [0, 6], [7, 13], [14, 22], [23, 26], [27, 31], [32, 37], [38, 42], [43, 47], [48, 55], [56, 64], [65, 71],
   [72, 80], [81, 90], [91, 95], [96, 102], [103, 109], [110, 118], [119, 124], [125, 130], [131, 135],
   [136, 140], [141, 142], [143, 152],
@@ -70,21 +70,27 @@ const KEY_COLORS: Record<string, string> = {
 const strip = (w: string) => w.toLowerCase().replace(/[^a-z]/g, "");
 
 /** Storybook caption typed on in time with the narration. */
-export const Captions: React.FC<{ f: number }> = ({ f }) => {
-  const t = f / 30 - NARRATION_OFFSET;
+export const Captions: React.FC<{
+  f: number;
+  words?: [string, number, number][];
+  phrases?: [number, number][];
+  keyColors?: Record<string, string>;
+  offset?: number;
+}> = ({ f, words: W = WORDS_P1, phrases: PH = P1_PHRASES, keyColors = KEY_COLORS, offset = NARRATION_OFFSET }) => {
+  const t = f / 30 - offset;
   let active = -1;
-  for (let i = 0; i < PHRASES.length; i++) {
-    const start = WORDS_P1[PHRASES[i][0]][1] - 0.12;
-    const nextStart = i + 1 < PHRASES.length ? WORDS_P1[PHRASES[i + 1][0]][1] - 0.12 : Infinity;
-    const end = Math.min(nextStart, WORDS_P1[PHRASES[i][1]][2] + 1.4);
+  for (let i = 0; i < PH.length; i++) {
+    const start = W[PH[i][0]][1] - 0.12;
+    const nextStart = i + 1 < PH.length ? W[PH[i + 1][0]][1] - 0.12 : Infinity;
+    const end = Math.min(nextStart, W[PH[i][1]][2] + 1.4);
     if (t >= start && t < end) active = i;
   }
   if (active < 0) return null;
-  const [a, b] = PHRASES[active];
-  const phraseEnd = WORDS_P1[b][2] + 1.4;
-  const nextStart = active + 1 < PHRASES.length ? WORDS_P1[PHRASES[active + 1][0]][1] - 0.12 : Infinity;
+  const [a, b] = PH[active];
+  const phraseEnd = W[b][2] + 1.4;
+  const nextStart = active + 1 < PH.length ? W[PH[active + 1][0]][1] - 0.12 : Infinity;
   const fadeOut = nextStart < phraseEnd ? 1 : ip(t, [phraseEnd - 0.35, phraseEnd], [1, 0]);
-  const words = WORDS_P1.slice(a, b + 1);
+  const words = W.slice(a, b + 1).filter(([w]) => w.length > 0);
   return (
     <div
       style={{
@@ -103,7 +109,7 @@ export const Captions: React.FC<{ f: number }> = ({ f }) => {
       {words.map(([word, s, e], i) => {
         const p = ip(t, [s, Math.max(s + 0.08, s + (e - s) * 0.8)], [0, 1], (x) => x);
         const n = Math.ceil(word.length * p);
-        const key = KEY_COLORS[strip(word)];
+        const key = keyColors[strip(word)];
         return (
           <span key={i} style={{ color: key ?? INK }}>
             {word.split("").map((ch, j) => (

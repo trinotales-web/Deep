@@ -92,3 +92,18 @@ export const rand = (seed: number) => {
   const x = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
   return x - Math.floor(x);
 };
+
+type Words = [string, number, number][];
+
+/** Cue helpers for a part's narration: `wf(i, "word")` is the frame word i starts. */
+export const makeCues = (words: Words, spoken?: string[], offset = NARRATION_OFFSET) => ({
+  wf: (i: number, word?: string) => {
+    const said = spoken ? spoken[i] : words[i][0].toLowerCase().replace(/[^a-z]/g, "");
+    if (word && said !== word) {
+      throw new Error(`Cue ${i} is "${said}", expected "${word}"`);
+    }
+    return sec(offset + words[i][1]);
+  },
+  start: (i: number) => offset + words[i][1],
+  end: (i: number) => offset + words[i][2],
+});

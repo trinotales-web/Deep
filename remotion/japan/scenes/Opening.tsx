@@ -6,7 +6,11 @@ import { MapArt, ISLAND_CENTERS, proj } from "../MapArt";
 
 const TITLE = "Japan";
 
-export const TitleScene: React.FC<{ f: number }> = ({ f }) => {
+export const TitleScene: React.FC<{ f: number; subtitle?: string; doodles?: React.ReactNode }> = ({
+  f,
+  subtitle = "part 1 · where it all began",
+  doodles,
+}) => {
   const zoom = ip(f, [0, sec(3.3)], [1, 1.08]);
   return (
     <SceneSvg f={f}>
@@ -25,8 +29,19 @@ export const TitleScene: React.FC<{ f: number }> = ({ f }) => {
             </Pop>
           );
         })}
-        <Label x={960} y={650} text="part 1 · where it all began" size={70} font={FONT_HAND} p={ip(f, [34, 62], [0, 1], (x) => x)} />
-        {/* doodled sea + volcano */}
+        <Label x={960} y={650} text={subtitle} size={70} font={FONT_HAND} p={ip(f, [34, 62], [0, 1], (x) => x)} />
+        {doodles ?? (
+          <DefaultDoodles f={f} />
+        )}
+      </Camera>
+    </SceneSvg>
+  );
+};
+
+/** Part 1 title doodles: sea, a little sailboat and a smoking volcano. */
+const DefaultDoodles: React.FC<{ f: number }> = ({ f }) => {
+  return (
+    <g>
         <DrawOn d="M470,760 q30,-22 60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0 t60,0" p={ip(f, [18, 58], [0, 1])} sw={4} />
         <Pop s={pop(f, 40)} x={1400} y={752}>
           <Pencil d="M1330,752 C1360,740 1374,700 1380,680 L1420,680 C1426,700 1440,740 1470,752 Z" fill={C.brown} />
@@ -39,8 +54,7 @@ export const TitleScene: React.FC<{ f: number }> = ({ f }) => {
           <Ink d="M600,712 L600,660" sw={3.5} />
           <Pencil d="M603,662 L636,700 L603,700 Z" fill={C.white} sw={3} />
         </Pop>
-      </Camera>
-    </SceneSvg>
+    </g>
   );
 };
 

@@ -19,7 +19,9 @@ export type Tribe =
   | "bandit"
   | "ninja"
   | "mongol"
-  | "khan";
+  | "khan"
+  | "portuguese"
+  | "smith";
 export type Hold =
   | "spear"
   | "rice"
@@ -47,6 +49,8 @@ export type Hold =
   | "brush"
   | "spyglass"
   | "stone"
+  | "gun"
+  | "hammer"
   | "none";
 
 export type PersonProps = {
@@ -299,6 +303,23 @@ export const Item: React.FC<{ kind: Hold; x: number; y: number; side?: 1 | -1 }>
           <Ink d="M-20,-6 l14,6 M8,10 l14,-4" sw={2} opacity={0.6} />
         </g>
       );
+    case "gun":
+      return (
+        <g transform={`translate(${x},${y})`}>
+          <Pencil d="M-9,-58 L9,-58 L12,-10 Q14,10 4,18 L-4,18 Q-14,10 -12,-10 Z" fill={C.brown} sw={3} />
+          <Pencil d="M-5,10 L5,10 L5,170 L-5,170 Z" fill="#3d3d44" sw={3} />
+          <Pencil d="M-8,166 L8,166 L8,176 L-8,176 Z" fill={C.bronze} sw={2.5} />
+          <Ink d="M10,-12 q14,-6 12,-26" sw={2.5} color={C.darkBrown} />
+          <path d={ellipseD(22, -40, 3.5)} fill={C.lava} />
+        </g>
+      );
+    case "hammer":
+      return (
+        <g transform={`translate(${x},${y})`}>
+          <Pencil d="M-4,-10 L4,-10 L4,70 L-4,70 Z" fill={C.brown} sw={3} />
+          <Pencil d="M-26,62 L26,62 L26,92 L-26,92 Z" fill={C.iron} sw={3.5} />
+        </g>
+      );
     case "ricebale":
       return (
         <g transform={`translate(${x - 6},${y - 40})`}>
@@ -447,6 +468,24 @@ const Hair: React.FC<{ tribe: Tribe; long?: boolean; back?: boolean }> = ({ trib
     />
   );
   if (tribe === "ninja") return null;
+  if (tribe === "portuguese") {
+    return (
+      <Pencil
+        d={`M-47,${hy + 2} C-50,${hy - 44} -20,${hy - 52} 0,${hy - 51} C20,${hy - 52} 50,${hy - 44} 47,${hy + 2} C44,${hy - 18} 30,${hy - 28} 2,${hy - 30} C-30,${hy - 28} -44,${hy - 18} -47,${hy + 2} Z`}
+        fill="#7a4a2a"
+        sw={3.5}
+      />
+    );
+  }
+  if (tribe === "smith") {
+    return (
+      <Pencil
+        d={`M-47,${hy + 2} C-50,${hy - 44} -20,${hy - 52} 0,${hy - 51} C20,${hy - 52} 50,${hy - 44} 47,${hy + 2} C44,${hy - 18} 30,${hy - 28} 2,${hy - 30} C-30,${hy - 28} -44,${hy - 18} -47,${hy + 2} Z`}
+        fill={C.hair}
+        sw={3.5}
+      />
+    );
+  }
   if (tribe === "emperor" || tribe === "noble" || tribe === "priest" || tribe === "modern" || tribe === "mongol" || tribe === "khan") {
     return neat;
   }
@@ -497,6 +536,21 @@ const Hat: React.FC<{ tribe: Tribe }> = ({ tribe }) => {
         <g>
           <Pencil d={`M-46,${hy - 24} Q0,${hy - 38} 46,${hy - 24} L45,${hy - 14} Q0,${hy - 28} -45,${hy - 14} Z`} fill={C.white} sw={3} />
           <Pencil d={`M44,${hy - 22} l22,-10 l-4,14 l14,8 l-22,2 Z`} fill={C.white} sw={2.5} />
+        </g>
+      );
+    case "portuguese":
+      return (
+        <g>
+          <Pencil d={`M-30,${hy - 40} Q-28,${hy - 96} 0,${hy - 98} Q28,${hy - 96} 30,${hy - 40} Z`} fill="#2b2b35" sw={3.5} />
+          <Pencil d={`M-86,${hy - 36} Q0,${hy - 64} 86,${hy - 36} Q60,${hy - 22} 0,${hy - 30} Q-60,${hy - 22} -86,${hy - 36} Z`} fill="#2b2b35" sw={3.5} />
+          <Ink d={`M24,${hy - 80} q30,-30 50,-20`} sw={5} color={C.red} />
+        </g>
+      );
+    case "smith":
+      return (
+        <g>
+          <Pencil d={`M-46,${hy - 24} Q0,${hy - 38} 46,${hy - 24} L45,${hy - 14} Q0,${hy - 28} -45,${hy - 14} Z`} fill={C.indigo} sw={3} />
+          <Pencil d={`M44,${hy - 22} l22,-10 l-4,14 l14,8 l-22,2 Z`} fill={C.indigo} sw={2.5} />
         </g>
       );
     case "ninja":
@@ -583,6 +637,8 @@ const OUTFIT: Partial<Record<Tribe, string>> = {
   ninja: "#2f3346",
   mongol: "#9a4a3a",
   khan: "#c9902f",
+  portuguese: "#7a2a3a",
+  smith: C.white,
 };
 
 const LEGS: Partial<Record<Tribe, string>> = {
@@ -598,6 +654,8 @@ const LEGS: Partial<Record<Tribe, string>> = {
   ninja: "#2f3346",
   mongol: "#5a4636",
   khan: "#7a3a2a",
+  portuguese: "#3a3a4a",
+  smith: "#5a4636",
 };
 
 /** Body details drawn over the tunic for the Part 2 cast. */
@@ -617,6 +675,18 @@ const Outfit: React.FC<{ tribe: Tribe }> = ({ tribe }) => {
       );
     case "priest":
       return <Pencil d="M-39,-80 Q0,-72 39,-80 L44,-50 Q0,-42 -44,-50 Z" fill="#9fc4dd" sw={3} />;
+    case "portuguese":
+      return (
+        <g>
+          <Pencil d="M-36,-140 Q-18,-152 0,-142 Q18,-152 36,-140 Q20,-126 0,-132 Q-20,-126 -36,-140 Z" fill={C.white} sw={3} />
+          {[-110, -94, -78, -62].map((by) => (
+            <path key={by} d={ellipseD(0, by, 3.5)} fill={C.yellow} />
+          ))}
+          <Pencil d="M-40,-60 Q0,-52 40,-60 L44,-48 Q0,-40 -44,-48 Z" fill="#2b2b35" sw={3} />
+        </g>
+      );
+    case "smith":
+      return <Pencil d="M-26,-122 L26,-122 L38,-50 Q0,-44 -38,-50 Z" fill={C.brown} sw={3.5} />;
     case "ninja":
       return <Pencil d="M-38,-84 Q0,-76 38,-84 L39,-74 Q0,-66 -39,-74 Z" fill="#555a70" sw={3} />;
     case "mongol":

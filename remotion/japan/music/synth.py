@@ -515,6 +515,19 @@ def fire(dur, vel=0.4):
     return (roar * 0.6 + pops * 0.5) * env * vel
 
 
+# ----------------------------------------------------------------- added for Part 5
+def gunshot(vel=0.5):
+    """Matchlock shot: a sharp crack, a short powder burst and a low boom with a tail."""
+    t = tt(1.8)
+    n = rng.standard_normal(len(t))
+    snap = hp(n, 1200) * np.exp(-t / 0.008) * 1.5
+    burst = lp(n, 1800) * np.exp(-t / 0.08)
+    f = 50 + 80 * np.exp(-t / 0.03)
+    thump = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.22)
+    tail = lp(n, 700) * np.exp(-t / 0.45) * 0.3
+    return np.tanh((snap + burst + thump * 1.2 + tail) * 1.3) * vel * 0.45
+
+
 # ----------------------------------------------------------------- shared arrangement helpers
 CH = {
     "G": (["G2", "D3", "G3", "B3", "D4"], ["G3", "D4", "G4", "D4", "B3", "D4", "G4", "D4"], "G2", "D3"),

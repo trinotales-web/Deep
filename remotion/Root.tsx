@@ -5,6 +5,7 @@ import { CastSheet } from "./japan/dev/CastSheet";
 import { JapanPart2, PART2_DURATION } from "./japan/Part2";
 import { JapanPart3, PART3_DURATION } from "./japan/Part3";
 import { JapanPart4, PART4_DURATION } from "./japan/Part4";
+import { JapanPart5, PART5_DURATION } from "./japan/Part5";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -45,6 +46,14 @@ export const RemotionRoot: React.FC = () => {
         id="JapanPart4"
         component={JapanPart4}
         durationInFrames={PART4_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="JapanPart5"
+        component={JapanPart5}
+        durationInFrames={PART5_DURATION}
         fps={30}
         width={1920}
         height={1080}

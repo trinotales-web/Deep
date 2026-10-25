@@ -94,12 +94,24 @@ A hybrid of two reference styles:
 | 44.4 | your family name no longer mattered | `FamilyName` |
 | 46.8 | push out your master and take his place | `PushOut` |
 
+## Part 5: guns change everything (31.5 s)
+
+| Video time | Narration | Scene |
+| --- | --- | --- |
+| 0.0 | (title) | `Title5` |
+| 3.0 | In 1543, traders from Portugal … brought guns | `Portugal` |
+| 8.15 | blacksmiths copied them … samurai swords | `Smiths` |
+| 12.95 | more guns than any country in Europe | `MoreGuns` |
+| 16.6 | war in Japan would never be the same | `NeverSame` |
+| 18.55 | a whole life with a sword vs. a few days with a gun | `Duel` |
+| 24.85 | with this new weapon … unite Japan, then a quiet ending | `Unite` |
+
 The parts end without a "to be continued" card.
 
-Scene cues come from word timings (`words-part1.ts` … `words-part4.ts`). These
+Scene cues come from word timings (`words-part1.ts` … `words-part5.ts`). These
 were made by force-aligning each script against the voiceover. `wf(i, "word")`
-(Part 1) and `w2`/`w3`/`w4` (Parts 2–4) return the frame where word *i* starts,
-and they throw if the index doesn't match the expected word. The Part 2–4
+(Part 1) and `w2` … `w5` (Parts 2–5) return the frame where word *i* starts,
+and they throw if the index doesn't match the expected word. The Part 2–5
 scores read the same timing files, so the music hits the same words as
 the picture.
 
@@ -115,11 +127,14 @@ python3 remotion/japan/music/compose_part3.py \
   --narration narration_p3.wav --out music_p3.wav
 python3 remotion/japan/music/compose_part4.py \
   --narration narration_p4.wav --out music_p4.wav
+python3 remotion/japan/music/compose_part5.py \
+  --narration narration_p5.wav --out music_p5.wav
 ffmpeg -i music_p1.wav -c:a aac -b:a 192k public/japan/music_p1.m4a
 npx remotion render JapanPart1 out/japan_part1.mp4      # final videos
 npx remotion render JapanPart2 out/japan_part2.mp4
 npx remotion render JapanPart3 out/japan_part3.mp4
 npx remotion render JapanPart4 out/japan_part4.mp4
+npx remotion render JapanPart5 out/japan_part5.mp4
 # long parts render more reliably in chunks (retries, then joins video + audio):
 remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
 ```

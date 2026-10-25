@@ -284,12 +284,12 @@ export const NobodyWon: React.FC<{ f: number; from: number; to: number }> = ({ f
   );
 };
 
-const FLAGS: Pt[] = [
+export const FLAGS: Pt[] = [
   proj(130.5, 32.8), proj(131.3, 33.6), proj(133.3, 34.6), proj(132.5, 33.6), proj(134.2, 35.2), proj(135.9, 35.4),
   proj(136.9, 36.3), proj(137.9, 35.6), proj(139.0, 36.4), proj(139.9, 35.9), proj(140.3, 38.3), proj(140.8, 39.8),
   proj(141.1, 40.6), proj(138.6, 37.3),
 ];
-const FLAG_COLORS = [C.red, C.indigo, C.orange, C.darkGreen, C.terracotta, "#7a5aa0", C.yellow];
+export const FLAG_COLORS = [C.red, C.indigo, C.orange, C.darkGreen, C.terracotta, "#7a5aa0", C.yellow];
 
 /** "The real power went to local lords all over Japan, and the Sengoku period began." */
 export const LordsMap: React.FC<{ f: number; from: number; to: number }> = ({ f, from, to }) => {

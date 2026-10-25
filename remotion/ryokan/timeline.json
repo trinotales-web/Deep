@@ -1,0 +1,54 @@
+{
+  "fps": 30,
+  "duration": 22,
+  "bpm": 100,
+  "beatOffset": 0.2,
+  "scenes": {
+    "mountain": { "start": 0, "end": 3.8 },
+    "nothing": { "start": 3.8, "end": 6.2 },
+    "night": { "start": 6.2, "end": 12.4 },
+    "moon": { "start": 12.4, "end": 17 },
+    "lightness": { "start": 17, "end": 22 }
+  },
+  "cues": {
+    "ryokanWave": 2.6,
+    "matPop": 4.1,
+    "bowlPop": 4.4,
+    "spiderDrop": 5.0,
+    "thiefEnter": 6.2,
+    "thiefStop": 7.7,
+    "bowlLift": 8.0,
+    "bowlShake": 8.3,
+    "question": 8.6,
+    "eyeOpen": 9.2,
+    "robeOffer": 9.8,
+    "robeTaken": 10.4,
+    "thiefBow": 10.7,
+    "thiefRun": 11.0,
+    "goodbyeWave": 11.3,
+    "rin": 12.5,
+    "haikuColumns": [12.8, 13.3, 13.8],
+    "haikuCharStep": 0.1,
+    "romaji": 14.0,
+    "translation": 14.4,
+    "ballFirstBounce": 17.6,
+    "finale": 20.6
+  },
+  "captions": [
+    { "start": 0.2, "end": 1.9, "text": "two hundred years ago, in echigo..." },
+    { "start": 1.95, "end": 3.75, "text": "lived a monk named ryōkan." },
+    { "start": 3.9, "end": 6.15, "text": "he owned almost nothing." },
+    { "start": 6.3, "end": 7.95, "text": "one night, a thief broke in..." },
+    { "start": 8.0, "end": 9.75, "text": "but found nothing to steal." },
+    { "start": 9.9, "end": 12.35, "text": "so ryōkan gave him his clothes." },
+    { "start": 17.15, "end": 18.9, "text": "nothing to guard. nothing to lose." },
+    { "start": 18.95, "end": 20.5, "text": "let's borrow a little of his lightness." },
+    { "start": 20.6, "end": 22.0, "text": "let's get started." }
+  ],
+  "haiku": {
+    "columns": ["盗人に", "取り残されし", "窓の月"],
+    "romaji": "nusubito ni / torinokosareshi / mado no tsuki",
+    "translation": ["the thief left one thing behind:", "the moon in my window."],
+    "end": 16.95
+  }
+}

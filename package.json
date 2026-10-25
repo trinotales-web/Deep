@@ -13,11 +13,15 @@
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
     "remotion:studio": "remotion studio remotion/index.ts",
-    "remotion:render": "remotion render remotion/index.ts HelloWorld out/video.mp4"
+    "remotion:render": "remotion render remotion/index.ts HelloWorld out/video.mp4",
+    "ryokan:music": "python3 remotion/ryokan/compose_music.py",
+    "ryokan:render": "remotion render remotion/index.ts Ryokan out/ryokan.mp4"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
     "@prisma/client": "^5.20.0",
+    "@remotion/fonts": "4.0.538",
+    "@remotion/media": "4.0.538",
     "@remotion/player": "4.0.538",
     "autoprefixer": "^10.4.20",
     "bcryptjs": "^2.4.3",

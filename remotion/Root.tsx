@@ -7,6 +7,7 @@ import { JapanPart3, PART3_DURATION } from "./japan/Part3";
 import { JapanPart4, PART4_DURATION } from "./japan/Part4";
 import { JapanPart5, PART5_DURATION } from "./japan/Part5";
 import { JapanPart6, PART6_DURATION } from "./japan/Part6";
+import { JapanPart7, PART7_DURATION } from "./japan/Part7";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -63,6 +64,14 @@ export const RemotionRoot: React.FC = () => {
         id="JapanPart6"
         component={JapanPart6}
         durationInFrames={PART6_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="JapanPart7"
+        component={JapanPart7}
+        durationInFrames={PART7_DURATION}
         fps={30}
         width={1920}
         height={1080}

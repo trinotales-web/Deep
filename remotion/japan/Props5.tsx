@@ -3,7 +3,7 @@ import { C } from "./theme";
 import { blobD, ellipseD, Ink, Pencil, Shade } from "./draw";
 
 /** Portuguese carrack ("black ship") with crossed sails. */
-export const Carrack: React.FC<{ x: number; y: number; s?: number; tilt?: number }> = ({ x, y, s = 1, tilt = 0 }) => (
+export const Carrack: React.FC<{ x: number; y: number; s?: number; tilt?: number; dutch?: boolean }> = ({ x, y, s = 1, tilt = 0, dutch }) => (
   <g transform={`translate(${x},${y}) rotate(${tilt}) scale(${s})`}>
     {[-120, 20, 150].map((mx, i) => {
       const top = [300, 380, 260][i];
@@ -19,7 +19,7 @@ export const Carrack: React.FC<{ x: number; y: number; s?: number; tilt?: number
               return (
                 <g key={k}>
                   <Pencil d={`M${mx - w},-${sy} Q${mx},-${sy + 14} ${mx + w},-${sy} Q${mx + w + 10},-${sy - 60} ${mx + w - 6},-${sy - 110} Q${mx},-${sy - 96} ${mx - w + 6},-${sy - 110} Q${mx - w - 10},-${sy - 60} ${mx - w},-${sy} Z`} fill={C.white} />
-                  <Ink d={`M${mx},-${sy - 12} L${mx},-${sy - 92} M${mx - 30},-${sy - 52} L${mx + 30},-${sy - 52}`} sw={9} color={C.red} />
+                  {dutch ? null : <Ink d={`M${mx},-${sy - 12} L${mx},-${sy - 92} M${mx - 30},-${sy - 52} L${mx + 30},-${sy - 52}`} sw={9} color={C.red} />}
                 </g>
               );
             })
@@ -27,7 +27,14 @@ export const Carrack: React.FC<{ x: number; y: number; s?: number; tilt?: number
         </g>
       );
     })}
-    <Pencil d="M-260,-80 L230,-80 L200,10 Q0,40 -200,10 Z" fill="#3d3434" />
+    {dutch ? (
+      <g transform="translate(25,-380)">
+        {["#c0392b", C.white, "#2f4f9f"].map((col, k) => (
+          <Pencil key={k} d={`M0,${-60 + k * 20} h80 v20 h-80 Z`} fill={col} sw={2.5} />
+        ))}
+      </g>
+    ) : null}
+    <Pencil d="M-260,-80 L230,-80 L200,10 Q0,40 -200,10 Z" fill={dutch ? "#4a3a2a" : "#3d3434"} />
     <Pencil d="M-260,-80 L-300,-150 L-200,-150 L-190,-80 Z M160,-80 L170,-140 L260,-140 L230,-80 Z" fill="#3d3434" sw={4} />
     <Ink d="M-220,-40 L200,-40" sw={3} color={C.bronze} />
     {[-160, -100, -40, 20, 80, 140].map((px) => (

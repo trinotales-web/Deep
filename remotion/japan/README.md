@@ -126,12 +126,53 @@ A hybrid of two reference styles:
 | 53.05 | What is seppuku? Search it, but at your own risk | `SearchIt` |
 | 56.6 | why did his general turn against him? nobody knows, then a quiet ending | `Mystery` |
 
+## Part 7: the bird that would not sing (174.5 s)
+
+| Video time | Narration | Scene |
+| --- | --- | --- |
+| 0.0 | (title) | `Title7` |
+| 3.0 | Hideyoshi rushed back to Kyoto and destroyed the traitor | `Rush` |
+| 8.3 | finish Nobunaga's work … all of Japan | `Unify` |
+| 13.0 | took weapons away from farmers and monks | `SwordHunt` |
+| 15.75 | melt the weapons down … a giant Buddha statue | `Melt` |
+| 19.4 | the real reason … nobody could fight back | `RealReason` |
+| 23.8 | wanted more … China by going through Korea | `WantedMore` |
+| 29.1 | captured Seoul in just a few weeks | `Seoul` |
+| 34.4 | Admiral Yi Sun-sin's turtle ships … supply ships | `Turtle` |
+| 40.6 | who would feed the soldiers? | `Hungry` |
+| 43.4 | China sent a huge army to help Korea | `ChinaArmy` |
+| 47.25 | six years … Hideyoshi died … army home | `Home` |
+| 52.3 | a small child … Tokugawa Ieyasu | `Child` |
+| 58.3 | Nobunaga was wild, but Ieyasu was patient | `Opposite` |
+| 64.1 | the death of Ieyasu's son … still loyal, and waited | `Loyal` |
+| 70.0 | a famous saying about these three men | `Saying` |
+| 73.1 | if the bird won't sing … kills / convinces / waits | `Bird` |
+| 80.8 | 1600 … Sekigahara | `Sekigahara` |
+| 86.4 | thick fog … 80,000 soldiers each | `FogBattle` |
+| 91.5 | for hours, nobody was winning | `NobodyWinning` |
+| 93.8 | a secret deal with an enemy commander | `SecretDeal` |
+| 97.7 | that commander switched sides | `Switch` |
+| 100.8 | Ieyasu had won … the shogun of Japan | `Shogun` |
+| 106.0 | only his own family, the Tokugawa | `Family` |
+| 110.7 | the Portuguese traders … Christianity … thousands of Christians | `Christians` |
+| 119.0 | obey the Pope instead of the shogun | `Pope` |
+| 123.2 | Christianity banned, priests thrown out | `Banned` |
+| 127.3 | Shimabara … huge taxes and cruel punishments | `Shimabara` |
+| 133.4 | they fought back, led by 16-year-old Amakusa Shiro | `Shiro` |
+| 138.7 | one lakh soldiers … Dutch ships | `Siege` |
+| 144.0 | after three months, their castle fell | `Fell` |
+| 146.5 | 37,000 people … almost every single one (non-graphic) | `Inside` |
+| 153.0 | Japan shut its doors … sakoku | `Sakoku` |
+| 157.7 | every foreigner thrown out, except the Dutch | `ExceptDutch` |
+| 163.2 | a tiny man-made island near Nagasaki: Dejima | `DejimaScene` |
+| 168.7 | not allowed to step onto Japanese land, then a quiet ending | `NoStep` |
+
 The parts end without a "to be continued" card.
 
-Scene cues come from word timings (`words-part1.ts` … `words-part6.ts`). These
+Scene cues come from word timings (`words-part1.ts` … `words-part7.ts`). These
 were made by force-aligning each script against the voiceover. `wf(i, "word")`
-(Part 1) and `w2` … `w6` (Parts 2–6) return the frame where word *i* starts,
-and they throw if the index doesn't match the expected word. The Part 2–6
+(Part 1) and `w2` … `w7` (Parts 2–7) return the frame where word *i* starts,
+and they throw if the index doesn't match the expected word. The Part 2–7
 scores read the same timing files, so the music hits the same words as
 the picture.
 
@@ -151,6 +192,8 @@ python3 remotion/japan/music/compose_part5.py \
   --narration narration_p5.wav --out music_p5.wav
 python3 remotion/japan/music/compose_part6.py \
   --narration narration_p6.wav --out music_p6.wav
+python3 remotion/japan/music/compose_part7.py \
+  --narration narration_p7.wav --out music_p7.wav
 ffmpeg -i music_p1.wav -c:a aac -b:a 192k public/japan/music_p1.m4a
 npx remotion render JapanPart1 out/japan_part1.mp4      # final videos
 npx remotion render JapanPart2 out/japan_part2.mp4
@@ -158,6 +201,7 @@ npx remotion render JapanPart3 out/japan_part3.mp4
 npx remotion render JapanPart4 out/japan_part4.mp4
 npx remotion render JapanPart5 out/japan_part5.mp4
 npx remotion render JapanPart6 out/japan_part6.mp4
+remotion/japan/tools/render_chunked.sh JapanPart7 5235 out/japan_part7.mp4 960
 # long parts render more reliably in chunks (retries, then joins video + audio):
 remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
 ```

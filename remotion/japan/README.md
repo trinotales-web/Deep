@@ -46,13 +46,45 @@ A hybrid of two reference styles:
 | 74.7 | bushido | `Bushido` |
 | 77.9 | the long katana and the short wakizashi, then a quiet ending | `Swords` |
 
+## Part 3: ninjas, Mongols & a divine wind (136 s)
+
+| Video time | Narration | Scene |
+| --- | --- | --- |
+| 0.0 | (title) | `Title3` |
+| 3.0 | who were the ninjas? … secret agents | `Ninjas` |
+| 7.5 | By day … farmers or monks | `ByDay` |
+| 10.5 | at night … sneaked into enemy castles | `ByNight` |
+| 16.0 | no enemy from outside … 1274 … the Mongols were coming | `Peace` |
+| 23.4 | Kublai Khan, grandson of Genghis Khan … wanted Japan too | `Kublai` |
+| 30.1 | accept him as its ruler … refused | `Letter` |
+| 34.0 | the Mongols attacked … gunpowder | `Attack` |
+| 39.9 | nature saved Japan … typhoon … turn back | `Typhoon1` |
+| 46.0 | messengers again … the shogun had them killed | `Envoys` |
+| 52.0 | stone walls along the coast | `Walls` |
+| 57.3 | 1281 … 4,400 ships … 1,40,000 soldiers | `Fleet` |
+| 66.1 | the walls held … attacked their ships at night | `Hold` |
+| 70.4 | guess what happened? | `Guess` |
+| 72.5 | another typhoon … more than half lost at sea | `Typhoon2` |
+| 79.4 | kamikaze, the wind of the gods | `Kamikaze` |
+| 84.1 | a new problem … rewarded with land | `Reward` |
+| 89.8 | no land to give | `NoLand` |
+| 94.7 | fought for nothing … power began to crack | `Crack` |
+| 99.5 | local lords stopped listening | `Lords` |
+| 103.5 | Yoshimasa … tea … the Silver Pavilion | `Yoshimasa` |
+| 111.5 | politics … hopeless | `Hopeless` |
+| 114.3 | promised the title to his younger brother | `Promised` |
+| 118.5 | his wife gave birth to a baby boy | `Baby` |
+| 122.9 | two people wanted the same seat | `Seat` |
+| 128.0 | the Onin War … not onion | `OninWar` |
+
 The parts end without a "to be continued" card.
 
-Scene cues come from word timings (`words-part1.ts`, `words-part2.ts`). These
+Scene cues come from word timings (`words-part1.ts`, `words-part2.ts`, `words-part3.ts`). These
 were made by force-aligning each script against the voiceover. `wf(i, "word")`
-(Part 1) and `w2(i, "word")` (Part 2) return the frame where word *i* starts,
-and they throw if the index doesn't match the expected word. The Part 2 score
-reads the same timing file, so the music hits the same words as the picture.
+(Part 1), `w2(i, "word")` (Part 2) and `w3(i, "word")` (Part 3) return the frame where word *i* starts,
+and they throw if the index doesn't match the expected word. The Part 2 and
+Part 3 scores read the same timing files, so the music hits the same words as
+the picture.
 
 ## Rebuilding assets
 
@@ -62,9 +94,12 @@ python3 remotion/japan/music/compose_part1.py \
   --narration narration_p1.wav --out music_p1.wav       # original score, ducked under the voice
 python3 remotion/japan/music/compose_part2.py \
   --narration narration_p2.wav --out music_p2.wav       # (instruments live in music/synth.py)
+python3 remotion/japan/music/compose_part3.py \
+  --narration narration_p3.wav --out music_p3.wav
 ffmpeg -i music_p1.wav -c:a aac -b:a 192k public/japan/music_p1.m4a
 npx remotion render JapanPart1 out/japan_part1.mp4      # final videos
 npx remotion render JapanPart2 out/japan_part2.mp4
+npx remotion render JapanPart3 out/japan_part3.mp4
 ```
 
 The `JapanCast` composition is a lineup of every character type, for checking

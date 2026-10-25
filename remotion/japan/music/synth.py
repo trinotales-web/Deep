@@ -451,3 +451,117 @@ def bass_slide(f0, f1, dur, vel=0.4):
     tone = np.sin(ph) + 0.35 * np.sin(2 * ph) + 0.12 * np.sin(3 * ph)
     env = np.clip(t / 0.02, 0, 1) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.06))
     return tone * env * vel * 0.32
+
+
+# ----------------------------------------------------------------- added for Part 3
+def storm(dur, vel=0.5):
+    """Howling wind: band-passed noise with gusts sweeping its centre frequency."""
+    t = tt(dur)
+    n = rng.standard_normal(len(t))
+    gust = 0.55 + 0.45 * np.sin(2 * np.pi * 0.23 * t) * np.sin(2 * np.pi * 0.61 * t + 1.0)
+    out = np.zeros_like(t)
+    seg = int(0.05 * SR)
+    for i in range(0, len(t), seg):  # cheap time-varying filter: per-block bandpass
+        g = gust[i]
+        lo, hi = 250 + 500 * g, 900 + 2600 * g
+        blk = n[max(0, i - 256):i + seg]
+        out[i:i + seg] = bp(blk, lo, hi)[-min(seg, len(t) - i):]
+    whistle = np.sin(2 * np.pi * np.cumsum(700 + 500 * gust) / SR) * 0.06 * gust
+    env = np.clip(t / 0.8, 0, 1) * np.clip((dur - t) / 1.0, 0, 1)
+    return (out * gust * 0.8 + whistle) * env * vel
+
+
+def boom(vel=0.7):
+    """Gunpowder explosion: a deep thump under a burst of debris noise."""
+    t = tt(2.2)
+    f = 38 + 70 * np.exp(-t / 0.06)
+    thump = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.5)
+    n = rng.standard_normal(len(t))
+    burst = lp(n, 2400) * np.exp(-t / 0.18) + hp(n, 3000) * np.exp(-t / 0.05) * 0.5
+    crackle = (rng.random(len(t)) < 0.002) * rng.standard_normal(len(t)) * np.exp(-t / 0.6) * 3
+    return np.tanh((thump * 1.4 + burst + crackle) * 1.2) * vel * 0.5
+
+
+def crack(vel=0.5):
+    """Something splitting: a sharp snap followed by a crumbling crackle."""
+    t = tt(1.2)
+    n = rng.standard_normal(len(t))
+    snap = hp(n, 1500) * np.exp(-t / 0.012)
+    crumble = bp(n, 300, 2500) * ((rng.random(len(t)) < 0.01) * 1.0) * np.exp(-t / 0.4) * 6
+    low = np.sin(2 * np.pi * 70 * t) * np.exp(-t / 0.15) * 0.5
+    return (snap + crumble + low) * vel * 0.35
+
+
+def boing(f0=330, vel=0.4):
+    """Comic spring 'boing': a pluck whose pitch wobbles upward."""
+    t = tt(0.8)
+    f = f0 * (1 + 0.6 * (1 - np.exp(-t / 0.08)) + 0.08 * np.sin(2 * np.pi * 12 * t) * np.exp(-t / 0.3))
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    s = (np.sin(ph) + 0.3 * np.sin(2 * ph)) * np.exp(-t / 0.3)
+    return s * vel * 0.3
+
+
+# ----------------------------------------------------------------- shared arrangement helpers
+CH = {
+    "G": (["G2", "D3", "G3", "B3", "D4"], ["G3", "D4", "G4", "D4", "B3", "D4", "G4", "D4"], "G2", "D3"),
+    "Em": (["E2", "B2", "E3", "G3", "B3"], ["E3", "B3", "E4", "B3", "G3", "B3", "E4", "B3"], "E2", "B2"),
+    "C": (["C3", "G3", "C4", "E4", "G4"], ["C4", "G4", "C5", "G4", "E4", "G4", "C5", "G4"], "C2", "G2"),
+    "Am": (["A2", "E3", "A3", "C4", "E4"], ["A3", "E4", "A4", "E4", "C4", "E4", "A4", "E4"], "A2", "E2"),
+    "D": (["D3", "A3", "D4", "F#4", "A4"], ["D4", "A4", "D5", "A4", "F#4", "A4", "D5", "A4"], "D2", "A2"),
+    "Bm": (["B2", "F#3", "B3", "D4", "F#4"], ["B3", "F#4", "B4", "F#4", "D4", "F#4", "B4", "F#4"], "B1", "F#2"),
+    "A": (["A2", "E3", "A3", "C#4", "E4"], ["A3", "E4", "A4", "E4", "C#4", "E4", "A4", "E4"], "A2", "E2"),
+    "Dm": (["D3", "A3", "D4", "F4", "A4"], ["D4", "A4", "D5", "A4", "F4", "A4", "D5", "A4"], "D2", "A2"),
+    "Bb": (["Bb2", "F3", "Bb3", "D4", "F4"], ["Bb3", "F4", "Bb4", "F4", "D4", "F4", "Bb4", "F4"], "Bb1", "F2"),
+    "Gm": (["G2", "D3", "G3", "Bb3", "D4"], ["G3", "D4", "G4", "D4", "Bb3", "D4", "G4", "D4"], "G2", "D3"),
+    "Eb": (["Eb3", "G3", "Bb3", "Eb4"], ["Eb4", "Bb4", "Eb5", "Bb4", "G4", "Bb4", "Eb5", "Bb4"], "Eb2", "Bb2"),
+    "Din": (["D3", "A3", "D4"], ["D4", "A4", "D5", "A4", "Bb4", "A4", "D5", "A4"], "D2", "A2"),
+}
+
+
+def groove(start, end, chords, style="light", pad_vel=0.3, arp_vel=0.2):
+    """Lay down pad, bass, koto arpeggio and drums for a run of chords.
+    chords: list of (time, name); each lasts until the next (or `end`)."""
+    times = [c[0] for c in chords[1:]] + [end]
+    for (t0, name), t1 in zip(chords, times):
+        chord, arp, root, fifth = CH[name]
+        bright = {"battle": 1.7, "modern": 1.2, "march": 1.1}.get(style, 1.0)
+        place(pad(chord, t1 - t0, pad_vel, attack=0.3, release=0.5, bright=bright), t0, rev=0.45)
+        step = BEAT / (4 if style == "battle" else 2)
+        arpeggio(t0, t1, arp, step, arp_vel, -0.3, dur=0.25 if style == "battle" else 0.3)
+        b = 0
+        while t0 + b * BEAT < t1 - 0.05:
+            tb = t0 + b * BEAT
+            if style == "light":
+                if b % 2 == 0:
+                    place(bass(hz(root if b % 4 == 0 else fifth), BEAT * 1.6, 0.36), tb)
+                    place(taiko(0.2, 1.35), tb, rev=0.3)
+                place(shaker(0.18), tb + BEAT / 2, 0.4)
+                place(shaker(0.1), tb, 0.4)
+            elif style == "modern":
+                for off, n, v in [(0, root, 0.38), (0.75, root, 0.26), (1.5, fifth, 0.3)]:
+                    if b % 2 == 0 and tb + off * BEAT < t1 - 0.05:
+                        place(bass(hz(n), BEAT * 0.45, v), tb + off * BEAT)
+                for k in range(4):
+                    place(shaker(0.14 if k % 2 else 0.08), tb + k * BEAT / 4, 0.4)
+                if b % 4 == 2:
+                    place(woodblock(1100, 0.18), tb, 0.3)
+            elif style == "march":
+                place(taiko(0.32 if b % 2 == 0 else 0.22, 1.2), tb, rev=0.3)
+                place(shime(0.2), tb + BEAT / 2, 0.35)
+                place(bass(hz(root if b % 2 == 0 else fifth), BEAT * 0.5, 0.36), tb)
+            elif style == "battle":
+                for k, g in enumerate([1.0, 0, 0.6, 0.8]):
+                    if g and tb + k * BEAT / 4 < t1 - 0.05:
+                        place(taiko(0.5 * g, 0.95), tb + k * BEAT / 4, (-0.2 if k % 2 else 0.2), rev=0.3)
+                    place(shime(0.16 + 0.08 * (k == 0)), tb + k * BEAT / 4, 0.35, rev=0.2)
+                place(bass(hz(root), BEAT * 0.4, 0.4), tb)
+            elif style == "stately":
+                if b % 2 == 0:
+                    place(taiko(0.22, 1.4), tb, rev=0.45)
+                    place(bass(hz(root), BEAT * 1.8, 0.3, pluck=False), tb)
+            b += 1
+
+
+def sho(notes, t0, dur, vel=0.3):
+    """Sho-like mouth-organ cluster: a soft bright pad that swells in."""
+    place(pad(notes, dur, vel, attack=min(1.2, dur * 0.4), release=0.9, bright=0.75, width=0.3), t0, rev=0.55)

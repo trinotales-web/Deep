@@ -253,7 +253,9 @@ const GreenArm: React.FC<{ x: number; y: number; a: number; side: 1 | -1 }> = ({
 );
 
 /** Japan itself as a character, like the personified maps of the explainer reference. */
-export const JapanChar: React.FC<{ f: number; x: number; y: number; s: number; expr: "smile" | "wink" | "grin"; armR: number; armL: number }> = ({
+export type JapanMood = "smile" | "wink" | "grin" | "sleep" | "shock" | "worry";
+
+export const JapanChar: React.FC<{ f: number; x: number; y: number; s: number; expr: JapanMood; armR: number; armL: number }> = ({
   f,
   x,
   y,
@@ -277,18 +279,25 @@ export const JapanChar: React.FC<{ f: number; x: number; y: number; s: number; e
       <GreenArm x={fx + 58} y={fy + 10} a={armR} side={1} />
       {/* face */}
       <g transform={`translate(${fx},${fy})`}>
-        {expr === "wink" ? (
-          <Ink d="M-50,2 q16,-14 32,0" sw={5} />
+        {expr === "sleep" ? (
+          <Ink d="M-50,2 q16,12 32,0 M10,2 q16,12 32,0" sw={5} />
         ) : (
           <g>
-            <path d={ellipseD(-34, 0, 18, 21)} fill={C.white} stroke={INK} strokeWidth={4} />
-            <path d={ellipseD(-31, 3, 9, 10)} fill={INK} />
-            <path d={ellipseD(-28, -1, 3)} fill={C.white} />
+            {expr === "wink" ? (
+              <Ink d="M-50,2 q16,-14 32,0" sw={5} />
+            ) : (
+              <g>
+                <path d={ellipseD(-34, 0, 18, 21)} fill={C.white} stroke={INK} strokeWidth={4} />
+                <path d={ellipseD(-31, 3, expr === "shock" ? 5 : 9, expr === "shock" ? 6 : 10)} fill={INK} />
+                <path d={ellipseD(-28, -1, 3)} fill={C.white} />
+              </g>
+            )}
+            <path d={ellipseD(26, 0, 18, 21)} fill={C.white} stroke={INK} strokeWidth={4} />
+            <path d={ellipseD(29, 3, expr === "shock" ? 5 : 9, expr === "shock" ? 6 : 10)} fill={INK} />
+            <path d={ellipseD(32, -1, 3)} fill={C.white} />
           </g>
         )}
-        <path d={ellipseD(26, 0, 18, 21)} fill={C.white} stroke={INK} strokeWidth={4} />
-        <path d={ellipseD(29, 3, 9, 10)} fill={INK} />
-        <path d={ellipseD(32, -1, 3)} fill={C.white} />
+        {expr === "worry" || expr === "shock" ? <Ink d="M-56,-30 L-20,-38 M48,-30 L12,-38" sw={4.5} /> : null}
         <Shade d={ellipseD(-58, 30, 13, 8)} fill={C.pink} opacity={0.85} />
         <Shade d={ellipseD(52, 30, 13, 8)} fill={C.pink} opacity={0.85} />
         {expr === "grin" ? (
@@ -296,6 +305,10 @@ export const JapanChar: React.FC<{ f: number; x: number; y: number; s: number; e
             <path d="M-30,30 Q-4,26 22,30 Q18,58 -4,60 Q-26,58 -30,30 Z" fill={C.white} stroke={INK} strokeWidth={4} />
             <Ink d="M-26,42 Q-4,46 18,42" sw={2.5} />
           </g>
+        ) : expr === "shock" ? (
+          <path d={ellipseD(-4, 44, 10, 13)} fill={INK} />
+        ) : expr === "worry" ? (
+          <Ink d="M-22,44 Q-12,36 -4,44 Q4,52 14,44" sw={4.5} />
         ) : (
           <Ink d="M-22,34 Q-4,50 14,34" sw={5} />
         )}

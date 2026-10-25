@@ -9,7 +9,7 @@ export const proj = (lon: number, lat: number): Pt => [(lon - 112) * 53.33, (47 
 
 const P = (ll: [number, number][]) => ll.map(([lo, la]) => proj(lo, la));
 
-const MAINLAND = P([
+export const MAINLAND = P([
   [105, 48.5], [139.6, 48.5], [138.6, 46.8], [137.4, 45.4], [135.6, 43.9], [133.6, 42.8], [132.2, 43.25],
   [131.6, 42.7], [130.7, 42.3], [129.8, 41.7], [129.6, 40.9], [128.6, 40.2], [127.5, 39.75], [127.4, 39.2],
   [128.3, 38.5], [128.9, 37.7], [129.4, 36.8], [129.5, 36.0], [129.3, 35.4], [129.0, 35.1], [128.2, 34.85],
@@ -61,6 +61,7 @@ const SMALL: Pt[][] = [
 
 export const JAPAN_ISLANDS = [HONSHU, KYUSHU, SHIKOKU, HOKKAIDO];
 export const japanD = JAPAN_ISLANDS.map((pts) => smooth(pts));
+export const mainlandD = () => smooth(MAINLAND, true, 0.6);
 
 const mountainDoodles: Pt[] = P([
   [114, 40.5], [116, 42], [118.5, 43], [121.5, 44.2], [125, 43.3], [127.5, 42], [128.5, 44.5], [132.5, 45.5],

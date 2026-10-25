@@ -105,17 +105,17 @@ export const SceneNothing = ({ start }) => {
   const t = useStoryTime(start);
   const spider = interpolate(t, [Q.spiderDrop, Q.spiderDrop + 0.45, Q.spiderDrop + 0.7, Q.spiderDrop + 0.9], [0, 230, 200, 214], clamp);
   return (
-    <Frame camera={zoomTo(1 + prog(t, 3.8, 6.4) * 0.04, 560, 560)}>
+    <Frame camera={zoomTo(1 + prog(t, 3.8, 6.4) * 0.03, 560, 560)}>
       <Room t={t} id="day" />
-      <g transform={`translate(600 772) scale(${pop(t, Q.matPop)}) translate(-600 -772)`}>
-        <Mat x={600} y={772} w={300} />
+      <g transform={`translate(440 772) scale(${pop(t, Q.matPop)}) translate(-440 -772)`}>
+        <Mat x={440} y={772} w={300} />
       </g>
-      <MonkSeiza x={588} y={764} s={1.05} breath={Math.sin(t * 2.4)} eyes={t > 5.2 && t < 5.5 ? "open" : "closed"} />
-      <g transform={`translate(790 772) scale(${pop(t, Q.bowlPop)}) translate(-790 -772)`}>
-        <Bowl x={790} y={770} />
+      <MonkSeiza x={430} y={766} s={1.05} breath={Math.sin(t * 2.4)} eyes={t > 5.2 && t < 5.5 ? "open" : "closed"} />
+      <g transform={`translate(700 772) scale(${pop(t, Q.bowlPop)}) translate(-700 -772)`}>
+        <Bowl x={700} y={770} />
       </g>
       <Spider x={862} y={112} len={spider} />
-      {t > Q.bowlPop + 0.3 && <Sparkle x={830} y={700} r={9} k={pop(t, Q.bowlPop + 0.3)} />}
+      {t > Q.bowlPop + 0.3 && <Sparkle x={742} y={700} r={9} k={pop(t, Q.bowlPop + 0.3)} />}
     </Frame>
   );
 };

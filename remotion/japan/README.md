@@ -77,13 +77,30 @@ A hybrid of two reference styles:
 | 122.9 | two people wanted the same seat | `Seat` |
 | 128.0 | the Onin War … not onion | `OninWar` |
 
+## Part 4: Kyoto burns & the warring states (54 s)
+
+| Video time | Narration | Scene |
+| --- | --- | --- |
+| 0.0 | (title) | `Title4` |
+| 3.0 | fought right in the streets of Kyoto | `Streets` |
+| 5.6 | the Red Monk … his own son-in-law | `Leaders` |
+| 11.4 | set fire to houses, temples and palaces | `Fire` |
+| 15.3 | the beautiful old city of Kyoto was destroyed | `Destroyed` |
+| 19.1 | how long? one year? two? five? ten whole years | `HowLong` |
+| 25.9 | both leaders were dead, and nobody won | `NobodyWon` |
+| 29.8 | power went to local lords … the Sengoku period | `LordsMap` |
+| 34.4 | for about 150 years, civil wars | `CivilWars` |
+| 38.4 | gekokujo: the low defeat the high | `Gekokujo` |
+| 44.4 | your family name no longer mattered | `FamilyName` |
+| 46.8 | push out your master and take his place | `PushOut` |
+
 The parts end without a "to be continued" card.
 
-Scene cues come from word timings (`words-part1.ts`, `words-part2.ts`, `words-part3.ts`). These
+Scene cues come from word timings (`words-part1.ts` … `words-part4.ts`). These
 were made by force-aligning each script against the voiceover. `wf(i, "word")`
-(Part 1), `w2(i, "word")` (Part 2) and `w3(i, "word")` (Part 3) return the frame where word *i* starts,
-and they throw if the index doesn't match the expected word. The Part 2 and
-Part 3 scores read the same timing files, so the music hits the same words as
+(Part 1) and `w2`/`w3`/`w4` (Parts 2–4) return the frame where word *i* starts,
+and they throw if the index doesn't match the expected word. The Part 2–4
+scores read the same timing files, so the music hits the same words as
 the picture.
 
 ## Rebuilding assets
@@ -96,10 +113,15 @@ python3 remotion/japan/music/compose_part2.py \
   --narration narration_p2.wav --out music_p2.wav       # (instruments live in music/synth.py)
 python3 remotion/japan/music/compose_part3.py \
   --narration narration_p3.wav --out music_p3.wav
+python3 remotion/japan/music/compose_part4.py \
+  --narration narration_p4.wav --out music_p4.wav
 ffmpeg -i music_p1.wav -c:a aac -b:a 192k public/japan/music_p1.m4a
 npx remotion render JapanPart1 out/japan_part1.mp4      # final videos
 npx remotion render JapanPart2 out/japan_part2.mp4
 npx remotion render JapanPart3 out/japan_part3.mp4
+npx remotion render JapanPart4 out/japan_part4.mp4
+# long parts render more reliably in chunks (retries, then joins video + audio):
+remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
 ```
 
 The `JapanCast` composition is a lineup of every character type, for checking

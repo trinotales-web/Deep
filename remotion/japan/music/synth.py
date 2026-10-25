@@ -501,6 +501,20 @@ def boing(f0=330, vel=0.4):
     return s * vel * 0.3
 
 
+# ----------------------------------------------------------------- added for Part 4
+def fire(dur, vel=0.4):
+    """Crackling fire: a low roar with random pops."""
+    t = tt(dur)
+    n = rng.standard_normal(len(t))
+    roar = lp(n, 500) * (0.7 + 0.3 * np.sin(2 * np.pi * 0.8 * t))
+    pops = np.zeros_like(t)
+    idx = rng.random(len(t)) < 0.0009
+    pops[idx] = rng.standard_normal(idx.sum()) * 4
+    pops = hp(np.convolve(pops, np.exp(-np.arange(200) / 30), mode="same"), 1500)
+    env = np.clip(t / 0.6, 0, 1) * np.clip((dur - t) / 0.6, 0, 1)
+    return (roar * 0.6 + pops * 0.5) * env * vel
+
+
 # ----------------------------------------------------------------- shared arrangement helpers
 CH = {
     "G": (["G2", "D3", "G3", "B3", "D4"], ["G3", "D4", "G4", "D4", "B3", "D4", "G4", "D4"], "G2", "D3"),

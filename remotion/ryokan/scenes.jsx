@@ -1,10 +1,10 @@
 import React from "react";
-import { AbsoluteFill, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import tl from "./timeline.json";
 import { C, Layer, circle, ellipse, cloudPad, clamp, prog, pop, onTwos, easeOut } from "./style";
 import {
   MonkSeiza, MonkStand, MonkBack, RobeCloth, Thief, Hut, Pine, Sun, Moon, Ground, Birds, Sparkle,
-  Bowl, Mat, Temari, Petal, Butterfly, Susuki, Spider, Desk, MotionLines, Puff, InkText,
+  Bowl, Mat, Temari, Butterfly, Susuki, Spider, Desk, MotionLines, Puff, InkText,
 } from "./characters";
 
 const Q = tl.cues;
@@ -114,8 +114,7 @@ export const SceneNothing = ({ start }) => {
       <g transform={`translate(700 772) scale(${pop(t, Q.bowlPop)}) translate(-700 -772)`}>
         <Bowl x={700} y={770} />
       </g>
-      <Spider x={862} y={112} len={spider} />
-      {t > Q.bowlPop + 0.3 && <Sparkle x={742} y={700} r={9} k={pop(t, Q.bowlPop + 0.3)} />}
+      <Spider x={840} y={112} len={spider} sway={Math.sin((t - Q.spiderDrop) * 3) * 6 * (t > Q.spiderDrop ? 1 : 0)} />
     </Frame>
   );
 };
@@ -332,14 +331,6 @@ export const SceneMoon = ({ start }) => {
 
 // ---------------------------------------------------------------- 6. lightness
 
-const petals = new Array(16).fill(0).map((_, i) => ({
-  x: random(`px${i}`) * 1080,
-  y: 300 + random(`py${i}`) * 700,
-  v: 40 + random(`pv${i}`) * 60,
-  ph: random(`pp${i}`) * 6,
-  c: i % 3 === 0 ? "#F7D27A" : C.petal,
-}));
-
 export const SceneLightness = ({ start }) => {
   const t = useStoryTime(start);
   const GY = 770;
@@ -358,7 +349,6 @@ export const SceneLightness = ({ start }) => {
     ball = [hand[0] + 4 - up * 20, GY - 92 - up * 120];
   }
   const handY = t >= Q.finale ? ball[1] - 28 : Math.min(hand[1] + 10, ball[1] - 30);
-  const sparkle = pop(t, Q.finale + 0.1);
   return (
     <Frame camera={zoomTo(1.1 - prog(t, 17, 21.5) * 0.1, 540, 540)}>
       <Sun x={860} y={168} t={t} />
@@ -370,14 +360,6 @@ export const SceneLightness = ({ start }) => {
       <Temari x={ball[0]} y={ball[1]} spin={t * 200} />
       <Ground y={GY} tufts={[60, 380, 470, 700, 820, 1040]} flowers={[[120, C.petal], [420, C.sunCore], [760, "#C9A6E0"], [1010, C.petal]]} />
       <Butterfly x={720 + Math.sin(lt * 1.3) * 90} y={430 + Math.sin(lt * 2.1) * 40 - lt * 10} t={t} s={0.9} />
-      {petals.map((p, i) => {
-        const y = p.y - p.v * lt;
-        const x = p.x + Math.sin(lt * 1.5 + p.ph) * 30 + lt * 12;
-        return y > -30 ? <Petal key={i} x={x} y={y} r={lt * 60 + p.ph * 50} color={p.c} s={0.9} /> : null;
-      })}
-      {t > Q.finale && [[MX - 120, GY - 330], [MX + 150, GY - 340], [MX + 60, GY - 420], [MX - 40, GY - 420]].map(([sx, sy], i) => (
-        <Sparkle key={i} x={sx} y={sy} r={12} k={sparkle * (0.7 + 0.3 * Math.sin(t * 6 + i))} />
-      ))}
     </Frame>
   );
 };

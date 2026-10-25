@@ -302,13 +302,13 @@ export const Pine = ({ x, y, s = 1, sway = 0 }) => (
   </g>
 );
 
-export const Sun = ({ x, y, r = 46, t = 0 }) => {
+export const Sun = ({ x, y, r = 64, t = 0 }) => {
   const rays = [];
-  for (let i = 0; i < 11; i++) {
-    const a = (i / 11) * Math.PI * 2 + t * 0.25;
-    const r0 = r + 18 + (i % 2) * 2;
-    const r1 = r0 + 18;
-    rays.push({ d: `M ${(Math.cos(a) * r0).toFixed(1)} ${(Math.sin(a) * r0).toFixed(1)} L ${(Math.cos(a) * r1).toFixed(1)} ${(Math.sin(a) * r1).toFixed(1)}`, w: 3 });
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * Math.PI * 2 + t * 0.25;
+    const r0 = r + 18 + (i % 2) * 3;
+    const r1 = r0 + 24;
+    rays.push({ d: `M ${(Math.cos(a) * r0).toFixed(1)} ${(Math.sin(a) * r0).toFixed(1)} L ${(Math.cos(a) * r1).toFixed(1)} ${(Math.sin(a) * r1).toFixed(1)}`, w: 3.6 });
   }
   return (
     <g transform={`translate(${x} ${y})`}>
@@ -410,12 +410,6 @@ export const Temari = ({ x, y, r = 22, spin = 0 }) => (
   </g>
 );
 
-export const Petal = ({ x, y, r = 0, s = 1, color = C.petal }) => (
-  <g transform={`translate(${x} ${y}) rotate(${r}) scale(${s})`}>
-    <Layer parts={[{ d: "M 0 -9 Q 9 -2 0 9 Q -9 -2 0 -9 Z", fill: color, w: 2.2 }]} />
-  </g>
-);
-
 export const Butterfly = ({ x, y, t, s = 1 }) => {
   const f = 0.35 + 0.65 * Math.abs(Math.sin(t * 14));
   return (
@@ -451,21 +445,38 @@ export const Susuki = ({ x, y, h = 160, lean = 10, sway = 0, s = 1 }) => {
   );
 };
 
-export const Spider = ({ x, y, len }) => (
-  <g>
-    <Ink>
-      <path d={`M ${x} 118 L ${x} ${y + len}`} stroke={C.ink} strokeWidth={1.6} opacity={0.7} />
-    </Ink>
-    <g transform={`translate(${x} ${y + len})`}>
-      <Layer parts={[
-        { d: circle(0, 6, 8), fill: "#5B5F78" },
-        { d: "M -6 4 L -16 -2 M -6 8 L -17 10 M 6 4 L 16 -2 M 6 8 L 17 10", w: 2 },
-        { d: circle(-3, 5, 1.4), inkFill: "#FFFFFF" },
-        { d: circle(3, 5, 1.4), inkFill: "#FFFFFF" },
-      ]} />
+// A small, friendly spider dangling on its thread: the hut's only other resident.
+export const Spider = ({ x, y, len, sway = 0 }) => {
+  const sx = x + sway;
+  const sy = y + len;
+  const legs = [-1, 1].flatMap((side) => [
+    `M ${side * 10} 4 Q ${side * 22} -10 ${side * 30} -2`,
+    `M ${side * 12} 10 Q ${side * 26} 2 ${side * 33} 12`,
+    `M ${side * 12} 16 Q ${side * 25} 16 ${side * 31} 27`,
+    `M ${side * 10} 21 Q ${side * 20} 28 ${side * 24} 38`,
+  ]);
+  return (
+    <g>
+      <Ink>
+        <path d={`M ${x} ${y} Q ${x + sway * 0.3} ${y + len * 0.6} ${sx} ${sy - 12}`} stroke={C.ink} strokeWidth={2.6} fill="none" />
+      </Ink>
+      <g transform={`translate(${sx} ${sy}) rotate(${-sway * 0.6})`}>
+        <Layer parts={[
+          ...legs.map((d) => ({ d, w: 2.8 })),
+          { d: circle(0, 14, 15), fill: "#5B5F78" },
+          { d: circle(0, -4, 10), fill: "#6E7290" },
+          { d: circle(-4.5, -5, 3.6), inkFill: "#FFFFFF", w: 1.6 },
+          { d: circle(4.5, -5, 3.6), inkFill: "#FFFFFF", w: 1.6 },
+          { d: circle(-4, -4.6, 1.7), inkFill: C.ink },
+          { d: circle(5, -4.6, 1.7), inkFill: C.ink },
+          { d: ellipse(-7, 18, 3.5, 2.5), fill: C.blush, alpha: 0.8, line: false },
+          { d: ellipse(7, 18, 3.5, 2.5), fill: C.blush, alpha: 0.8, line: false },
+          { d: "M -4 22 Q 0 26 4 22", w: 2.2 },
+        ]} />
+      </g>
     </g>
-  </g>
-);
+  );
+};
 
 export const Desk = ({ x, y }) => (
   <g transform={`translate(${x} ${y})`}>

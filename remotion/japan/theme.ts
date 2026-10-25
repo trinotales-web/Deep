@@ -73,11 +73,16 @@ export const ip = (
   output: [number, number],
   easing: (t: number) => number = ease,
 ) =>
-  interpolate(f, input, output, {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing,
-  });
+  // A window that collapses (e.g. a cue landing after the scene ends) acts as a step.
+  input[1] <= input[0]
+    ? f < input[0]
+      ? output[0]
+      : output[1]
+    : interpolate(f, input, output, {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+        easing,
+      });
 
 /** Multi-stop clamped interpolation. */
 export const ipm = (f: number, input: number[], output: number[]) =>

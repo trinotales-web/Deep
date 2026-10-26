@@ -297,12 +297,15 @@ remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
 python3 remotion/japan/tools/build_story.py              # the film, from the part renders
 ```
 
-The `ChannelLogo` still (`remotion/brand/ChannelLogo.tsx`) is the YouTube channel
-picture in the same pencil style; its `name` and `tagline` props hold the text:
+The `ChannelLogo` still (`remotion/brand/ChannelLogo.tsx`) is the channel's
+YouTube picture: no text, a close-up of the mascot, a history explorer peering
+through a magnifying glass in front of a globe. It's drawn from the same parts
+and line weights as the cast in `Person.tsx`, with the pencil grain kept at the
+videos' size (`Defs`' `texScale`). `mood` is `grin`, `smirk` or `wow`:
 
 ```bash
-npx remotion still ChannelLogo "out/Zectenn Histori logo 800x800.png"            # YouTube size
-npx remotion still ChannelLogo "out/Zectenn Histori logo 1600x1600.png" --scale=2
+npx remotion still ChannelLogo "out/logo 800x800.png"                       # YouTube size
+npx remotion still ChannelLogo "out/logo smirk.png" --props='{"mood":"smirk"}'
 ```
 
 The `JapanCast` composition is a lineup of every character type, for checking

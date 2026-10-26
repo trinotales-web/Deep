@@ -51,12 +51,13 @@ export const blobD = (
 };
 
 /** Shared SVG definitions: pencil grain and the line-boil wobble filter. */
-export const Defs: React.FC<{ frame: number; boil?: number }> = ({ frame, boil = 2.6 }) => {
+/** `texScale` sizes the pencil grain, e.g. 1/zoom keeps it fine on a close-up. */
+export const Defs: React.FC<{ frame: number; boil?: number; texScale?: number }> = ({ frame, boil = 2.6, texScale }) => {
   // Lines "boil" at ~7.5 fps like hand-redrawn animation frames.
   const seed = Math.floor(frame / 4) % 9;
   return (
     <defs>
-      <pattern id="tex" width="512" height="512" patternUnits="userSpaceOnUse">
+      <pattern id="tex" width="512" height="512" patternUnits="userSpaceOnUse" patternTransform={texScale ? `scale(${texScale})` : undefined}>
         <image href={staticFile("japan/pencil.png")} width="512" height="512" />
       </pattern>
       <filter id="wobble" x="-3%" y="-3%" width="106%" height="106%">

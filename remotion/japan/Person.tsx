@@ -79,6 +79,7 @@ export type Hold =
   | "gourd"
   | "whisk"
   | "megaphone"
+  | "phone"
   | "none";
 
 export type PersonProps = {
@@ -103,6 +104,8 @@ export type PersonProps = {
   sit?: boolean;
   blinkOff?: boolean;
   beard?: boolean;
+  /** Leave the arms off, to draw a custom pose over the figure. */
+  noArms?: boolean;
 };
 
 const HEAD_Y = -178;
@@ -393,6 +396,13 @@ export const Item: React.FC<{ kind: Hold; x: number; y: number; side?: 1 | -1 }>
           {[-8, -3, 2, 7].map((dx) => (
             <Ink key={dx} d={`M${dx},4 L${dx * 1.4},28`} sw={1.5} color={C.darkBrown} />
           ))}
+        </g>
+      );
+    case "phone":
+      return (
+        <g transform={`translate(${x},${y})`}>
+          <Pencil d="M-9,-6 L9,-6 L9,30 L-9,30 Z" fill="#2b2b35" sw={2.5} />
+          <path d="M-6,-2 h12 v26 h-12 Z" fill="#8fd0f0" />
         </g>
       );
     case "megaphone":
@@ -1385,6 +1395,7 @@ export const Person: React.FC<PersonProps> = ({
   sit,
   blinkOff,
   beard,
+  noArms,
 }) => {
   const outfit = cloth ?? OUTFIT[tribe] ?? C.tan;
   const legs = LEGS[tribe] ?? skin;
@@ -1425,7 +1436,7 @@ export const Person: React.FC<PersonProps> = ({
           <Hair tribe={tribe} long={long} back />
 
           {/* back arm */}
-          <Arm sx={-27} sy={-124} a={walking ? 8 - swing : aL} skin={skin} cloth={outfit} side={-1} />
+          {noArms ? null : <Arm sx={-27} sy={-124} a={walking ? 8 - swing : aL} skin={skin} cloth={outfit} side={-1} />}
           {/* body / tunic */}
           <Pencil d="M-30,-136 Q0,-142 30,-136 L44,-50 Q0,-42 -44,-50 Z" fill={outfit} sw={4} />
           {tribe === "jomon" ? (
@@ -1477,7 +1488,7 @@ export const Person: React.FC<PersonProps> = ({
             <Pencil d={`M54,${HEAD_Y - 30} Q62,${HEAD_Y - 14} 56,${HEAD_Y - 8} Q48,${HEAD_Y - 12} 54,${HEAD_Y - 30} Z`} fill={C.sky} sw={2.5} />
           ) : null}
           {/* front arm */}
-          <Arm sx={27} sy={-124} a={walking ? 8 + swing : aR} skin={skin} cloth={outfit} side={1} hold={hold} />
+          {noArms ? null : <Arm sx={27} sy={-124} a={walking ? 8 + swing : aR} skin={skin} cloth={outfit} side={1} hold={hold} />}
         </g>
       </g>
     </g>

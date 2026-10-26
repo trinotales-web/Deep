@@ -167,12 +167,38 @@ A hybrid of two reference styles:
 | 163.2 | a tiny man-made island near Nagasaki: Dejima | `DejimaScene` |
 | 168.7 | not allowed to step onto Japanese land, then a quiet ending | `NoStep` |
 
-The parts end without a "to be continued" card.
+## Part 8: 250 years of peace (88.5 s)
 
-Scene cues come from word timings (`words-part1.ts` … `words-part7.ts`). These
+| Video time | Narration | Scene |
+| --- | --- | --- |
+| 0.0 | (title) | `Title8` |
+| 3.0 | a clever way to control the daimyo (puppet strings) | `Control` |
+| 5.9 | every other year in the capital, Edo | `ToEdo` |
+| 9.2 | wives and children in Edo all the time | `Hostages` |
+| 12.6 | turn against the shogun … family in danger | `Danger` |
+| 17.3 | traveling cost so much … no daimyo could afford a war | `Cost` |
+| 21.6 | about 250 years of peace, 1600 to 1868 | `Peace` |
+| 26.7 | the Edo period | `EdoPeriod` |
+| 29.0 | cities grew, traders got rich | `Cities` |
+| 31.6 | kabuki theatre and ukiyo-e prints | `Art` |
+| 36.8 | Japan stayed closed, the world raced ahead | `RacedAhead` |
+| 40.4 | revolutions, steam engines, railways, rifles | `Europe` |
+| 46.3 | tea ceremonies: "No, no, this is how we make tea!" | `TeaTime` |
+| 53.7 | the Dutch warned … Japan did not listen | `Warned` |
+| 58.0 | a single Western warship … towns along the coast | `Warship` |
+| 62.7 | a samurai with a sword against cannons | `SamuraiVsCannon` |
+| 66.7 | the door was closed … about to break it open | `Knock` |
+| 71.2 | 1853, American warships … big guns | `BlackShips` |
+| 77.0 | open your doors, or face the cannons | `Choice` |
+| 82.0 | what did Japan do? (left as an open question) | `WhatNow` |
+
+The parts end without a "to be continued" card (Part 8's own narration
+points ahead, but nothing on screen does).
+
+Scene cues come from word timings (`words-part1.ts` … `words-part8.ts`). These
 were made by force-aligning each script against the voiceover. `wf(i, "word")`
-(Part 1) and `w2` … `w7` (Parts 2–7) return the frame where word *i* starts,
-and they throw if the index doesn't match the expected word. The Part 2–7
+(Part 1) and `w2` … `w8` (Parts 2–8) return the frame where word *i* starts,
+and they throw if the index doesn't match the expected word. The Part 2–8
 scores read the same timing files, so the music hits the same words as
 the picture.
 
@@ -194,6 +220,8 @@ python3 remotion/japan/music/compose_part6.py \
   --narration narration_p6.wav --out music_p6.wav
 python3 remotion/japan/music/compose_part7.py \
   --narration narration_p7.wav --out music_p7.wav
+python3 remotion/japan/music/compose_part8.py \
+  --narration narration_p8.wav --out music_p8.wav
 ffmpeg -i music_p1.wav -c:a aac -b:a 192k public/japan/music_p1.m4a
 npx remotion render JapanPart1 out/japan_part1.mp4      # final videos
 npx remotion render JapanPart2 out/japan_part2.mp4
@@ -202,6 +230,7 @@ npx remotion render JapanPart4 out/japan_part4.mp4
 npx remotion render JapanPart5 out/japan_part5.mp4
 npx remotion render JapanPart6 out/japan_part6.mp4
 remotion/japan/tools/render_chunked.sh JapanPart7 5235 out/japan_part7.mp4 960
+remotion/japan/tools/render_chunked.sh JapanPart8 2655 out/japan_part8.mp4 960
 # long parts render more reliably in chunks (retries, then joins video + audio):
 remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
 ```

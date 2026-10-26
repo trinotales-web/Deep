@@ -297,6 +297,14 @@ remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
 python3 remotion/japan/tools/build_story.py              # the film, from the part renders
 ```
 
+The `ChannelLogo` still (`remotion/brand/ChannelLogo.tsx`) is the YouTube channel
+picture in the same pencil style; its `name` and `tagline` props hold the text:
+
+```bash
+npx remotion still ChannelLogo "out/Zectenn Histori logo 800x800.png"            # YouTube size
+npx remotion still ChannelLogo "out/Zectenn Histori logo 1600x1600.png" --scale=2
+```
+
 The `JapanCast` composition is a lineup of every character type, for checking
 the drawings. To review a few frames quickly, run `node remotion/japan/tools/stills.mjs <dir> <frame>...`
 (`COMP=JapanStory` for the film)

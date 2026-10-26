@@ -1,4 +1,5 @@
-import { Composition } from "remotion";
+import { Composition, Still } from "remotion";
+import { ChannelLogo } from "./brand/ChannelLogo";
 import { HelloWorld } from "./HelloWorld";
 import { JapanPart1, PART1_DURATION } from "./japan/Part1";
 import { CastSheet } from "./japan/dev/CastSheet";
@@ -124,6 +125,7 @@ export const RemotionRoot: React.FC = () => {
         schema={japanAudioSchema}
         defaultProps={storyAudioProps}
       />
+      <Still id="ChannelLogo" component={ChannelLogo} width={800} height={800} defaultProps={{ name: "Zectenn", tagline: "HISTORI" }} />
       <Composition id="JapanCast" component={CastSheet} durationInFrames={30} fps={30} width={1920} height={1080} />
     </>
   );

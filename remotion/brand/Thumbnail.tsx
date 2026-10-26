@@ -1,80 +1,176 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import { useJapanAssets } from "../japan/assets";
-import { Defs, ellipseD, Ink, Pencil, Shade } from "../japan/draw";
-import { Person } from "../japan/Person";
-import { Steamship } from "../japan/Props8";
-import { C, FONT_TITLE, INK } from "../japan/theme";
+import { Defs, ellipseD, Ink, Pencil } from "../japan/draw";
+import { Expr, Person, Tribe } from "../japan/Person";
+import { CherryTree, Pagoda, Torii } from "../japan/Props2";
+import { Castle } from "../japan/Props3";
+import { C, INK, rand } from "../japan/theme";
+import { MarkerText } from "./MarkerText";
 
 const W = 1280;
 const H = 720;
+const ZOOM = 2.6; // the hero's scale
+const HERO = { x: 640, y: 470 }; // centre of the hero's head
 
-/** Thumbnail lettering: big hand-lettered words with a navy outline and a white halo. */
-const Words: React.FC<{ x: number; y: number; size: number; fill: string; text: string; rot?: number }> = ({ x, y, size, fill, text, rot = 0 }) => (
-  <g transform={`rotate(${rot} ${x} ${y})`}>
+/** A white cut-out edge round the hero, so he lifts off the background like a sticker. */
+const StickerDefs: React.FC = () => (
+  <defs>
     {[
-      { stroke: C.white, sw: size * 0.3, fill: C.white, dx: 0, dy: 0 },
-      { stroke: INK, sw: size * 0.13, fill: INK, dx: size * 0.04, dy: size * 0.05 },
-      { stroke: INK, sw: size * 0.13, fill, dx: 0, dy: 0 },
-    ].map((l, i) => (
-      <text
-        key={i}
-        x={x + l.dx}
-        y={y + l.dy}
-        fontFamily={FONT_TITLE}
-        fontSize={size}
-        fill={l.fill}
-        stroke={l.stroke}
-        strokeWidth={l.sw}
-        strokeLinejoin="round"
-        paintOrder="stroke"
-        letterSpacing={size * 0.02}
-      >
-        {text}
-      </text>
+      ["sticker", 9],
+      ["stickerThin", 5],
+    ].map(([id, r]) => (
+      <filter key={id} id={String(id)} x="-10%" y="-10%" width="120%" height="120%">
+        <feMorphology in="SourceAlpha" operator="dilate" radius={r} result="grown" />
+        <feFlood floodColor="#ffffff" />
+        <feComposite in2="grown" operator="in" result="edge" />
+        <feMerge>
+          <feMergeNode in="edge" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
     ))}
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stopColor="#fffdf7" stopOpacity={0.92} />
+      <stop offset="0.45" stopColor="#fffdf7" stopOpacity={0.55} />
+      <stop offset="1" stopColor="#fffdf7" stopOpacity={0.35} />
+    </linearGradient>
+  </defs>
+);
+
+/** A cherry blossom petal, notched at the tip. */
+const Petal: React.FC<{ x: number; y: number; s: number; rot: number; opacity?: number }> = ({ x, y, s, rot, opacity = 1 }) => (
+  <g transform={`translate(${x},${y}) rotate(${rot}) scale(${s})`} opacity={opacity}>
+    <path d="M0,10 Q-9,2 -7,-6 Q-4,-11 -1,-8 L0,-5 L1,-8 Q4,-11 7,-6 Q9,2 0,10 Z" fill={C.pink} stroke={INK} strokeWidth={1.6} strokeLinejoin="round" />
+    <path d="M0,6 L0,-2" stroke="#d98a8a" strokeWidth={1.2} />
   </g>
 );
 
+const Petals: React.FC<{ n: number; seed: number; front?: boolean }> = ({ n, seed, front }) => (
+  <g>
+    {Array.from({ length: n }, (_, i) => {
+      const x = rand(seed + i * 3) * W;
+      const y = 60 + rand(seed + i * 3 + 1) * (H - 120);
+      // keep the hero's face clear
+      if (Math.hypot(x - HERO.x, y - HERO.y) < 170) return null;
+      return <Petal key={i} x={x} y={y} s={front ? 1.6 + rand(seed + i * 3 + 2) : 1 + rand(seed + i * 3 + 2) * 0.7} rot={rand(seed + i) * 360} opacity={front ? 1 : 0.75} />;
+    })}
+  </g>
+);
+
+/** A stopwatch, for the speedrun. */
+const Stopwatch: React.FC<{ x: number; y: number }> = ({ x, y }) => (
+  <g>
+    <Pencil d={`M${x - 5},${y - 27} L${x + 5},${y - 27} L${x + 5},${y - 20} L${x - 5},${y - 20} Z`} fill={C.bronze} sw={2.5} />
+    <Pencil d={ellipseD(x, y - 31, 8, 4)} fill={C.bronze} sw={2.5} />
+    <Pencil d={ellipseD(x, y, 21)} fill={C.yellow} sw={3.5} />
+    <path d={ellipseD(x, y, 15)} fill={C.white} stroke={INK} strokeWidth={2} />
+    {[0, 90, 180, 270].map((a) => (
+      <Ink key={a} d={`M${x + Math.sin((a * Math.PI) / 180) * 11},${y - Math.cos((a * Math.PI) / 180) * 11} L${x + Math.sin((a * Math.PI) / 180) * 14},${y - Math.cos((a * Math.PI) / 180) * 14}`} sw={1.6} />
+    ))}
+    <Ink d={`M${x},${y} L${x + 7},${y - 10}`} sw={2.5} color={C.red} />
+    <path d={ellipseD(x, y, 2)} fill={INK} />
+  </g>
+);
+
+/** An arm thrown up in a V (longer than a Person's, which would hide behind the helmet flaps). */
+const RaisedArm: React.FC<{ side: 1 | -1; color: string; children?: React.ReactNode }> = ({ side, color, children }) => {
+  const [sx, sy, hx, hy] = [side * 30, -126, side * 104, -236];
+  const a = (Math.atan2(hy - sy, hx - sx) * 180) / Math.PI - 90;
+  const len = Math.hypot(hx - sx, hy - sy);
+  return (
+    <g>
+      <g transform={`translate(${sx},${sy}) rotate(${a})`}>
+        <Pencil d={`M-10,-4 Q-12,${len * 0.5} -8,${len - 4} L8,${len - 4} Q12,${len * 0.5} 10,-4 Z`} fill={color} sw={3.5} />
+      </g>
+      {children}
+      <Pencil d={ellipseD(hx, hy, 12, 12)} fill={C.skin} sw={3.5} />
+    </g>
+  );
+};
+
+/** Japan's history, crowding in along the bottom edge. */
+const CROWD: { tribe: Tribe; expr: Expr; x: number; row: 0 | 1; up?: boolean; beard?: boolean }[] = [
+  { tribe: "jomon", expr: "grin", x: 40, row: 0, up: true },
+  { tribe: "emperor", expr: "smile", x: 170, row: 0 },
+  { tribe: "mongol", expr: "shock", x: 300, row: 0 },
+  { tribe: "portuguese", expr: "grin", x: 425, row: 0, up: true },
+  { tribe: "hideyoshi", expr: "grin", x: 858, row: 0, up: true },
+  { tribe: "kabuki", expr: "happy", x: 985, row: 0 },
+  { tribe: "american", expr: "shock", x: 1110, row: 0 },
+  { tribe: "lady", expr: "happy", x: 1240, row: 0, up: true },
+  { tribe: "yayoi", expr: "happy", x: 100, row: 1, up: true },
+  { tribe: "ninja", expr: "grin", x: 245, row: 1 },
+  { tribe: "nobunaga", expr: "angry", x: 390, row: 1, up: true },
+  { tribe: "monk", expr: "smile", x: 520, row: 1 },
+  { tribe: "ieyasu", expr: "smile", x: 765, row: 1 },
+  { tribe: "fool", expr: "grin", x: 895, row: 1, up: true },
+  { tribe: "merchant", expr: "grin", x: 1035, row: 1 },
+  { tribe: "dutch", expr: "smile", x: 1180, row: 1, up: true },
+];
+
 /**
- * Video thumbnail (1280x720) in the series' pencil style: a short, huge title
- * on the left and a close-up of one of the cast reacting on the right.
- * This one is for "The Entire History of Japan": a samurai catching sight of
- * the black ships of 1853.
+ * Video thumbnail (1280x720) in the series' pencil style, built the way the
+ * niche's best thumbnails are: one line of fat marker lettering across the
+ * top, one hero in close-up with a white sticker edge, a faded backdrop that
+ * mirrors left and right, and a crowd piled along the bottom.
  */
-export const JapanThumbnail: React.FC = () => {
+export const JapanThumbnail: React.FC<{ title: string }> = ({ title }) => {
   useJapanAssets();
-  const zoom = 3.05;
-  const head = { x: 945, y: 410 };
   return (
     <AbsoluteFill style={{ backgroundColor: "#f3ede0" }}>
       <Img src={staticFile("japan/paper.jpg")} style={{ width: W, height: H, objectFit: "cover" }} />
       <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ position: "absolute", inset: 0 }}>
-        <Defs frame={0} texScale={1 / zoom} />
+        <Defs frame={0} texScale={1 / 2.2} />
+        <StickerDefs />
+
+        {/* backdrop: Japan on both sides, then faded back */}
         <g filter="url(#wobble)">
-          {/* warm sky, a little Fuji, the sea with the black ships coming in */}
-          <Shade d={`M0,0 H${W} V${H} H0 Z`} fill="#f2c79a" opacity={0.55} />
-          <Pencil d={ellipseD(head.x - 20, head.y - 60, 300)} fill="#e66a43" ink={false} off={[0, 0]} />
-          <Pencil d="M300,560 L470,400 Q490,384 510,400 L690,560 Z" fill="#8a9ab8" sw={4} />
-          <Pencil d="M440,428 L470,400 Q490,384 510,400 L540,428 Q522,442 506,430 Q490,446 474,430 Q458,442 440,428 Z" fill={C.white} sw={3} />
-          <Pencil d={`M-20,560 Q320,548 640,560 T${W + 20},556 L${W + 20},${H + 20} L-20,${H + 20} Z`} fill={C.sea} sw={4} />
-          {[600, 640, 690].map((y, i) => (
-            <Ink key={y} d={`M${60 + i * 90},${y} q20,-12 40,0 t40,0 M${300 + i * 120},${y + 14} q20,-12 40,0 t40,0`} sw={3} color={C.white} opacity={0.7} />
-          ))}
-          <Steamship x={300} y={600} s={0.62} f={8} />
-          <Steamship x={140} y={590} s={0.4} f={20} />
+          <CherryTree x={70} y={560} s={1.25} />
+          <Castle x={270} y={600} s={0.95} />
+          <Torii x={1265} y={600} s={0.9} />
+          <Pagoda x={1035} y={600} s={1.05} />
+          <CherryTree x={1210} y={560} s={1.25} />
+          <Petals n={26} seed={40} />
+        </g>
+        <rect x={0} y={0} width={W} height={H} fill="url(#haze)" />
 
-          {/* the samurai, close up */}
-          <g transform={`translate(${head.x},${head.y + 178 * zoom}) scale(${zoom})`}>
-            <Person x={0} y={0} tribe="samurai" expr="shock" f={0} blinkOff look={[-0.9, 0.2]} aR={40} aL={8} />
-            {/* sweat drops */}
-            <Pencil d="M-66,-226 Q-58,-206 -64,-198 Q-74,-202 -66,-226 Z" fill={C.sky} sw={2.5} off={[1, 1]} />
-            <Pencil d="M-78,-196 Q-72,-182 -76,-176 Q-84,-180 -78,-196 Z" fill={C.sky} sw={2.5} off={[1, 1]} />
+        {/* the red sun behind the hero */}
+        <g filter="url(#wobble)">
+          <Pencil d={ellipseD(HERO.x, HERO.y + 6, 272)} fill="#e0573a" sw={5} />
+        </g>
+
+        {/* the hero: a samurai who just finished all of Japanese history */}
+        <g filter="url(#sticker)">
+          <g filter="url(#wobble)">
+            <g transform={`translate(${HERO.x},${HERO.y + 178 * ZOOM}) scale(${ZOOM})`}>
+              <Person x={0} y={0} tribe="samurai" expr="grin" f={0} blinkOff aL={4} aR={4} />
+              <RaisedArm side={-1} color={C.indigo} />
+              <RaisedArm side={1} color={C.indigo}>
+                <Stopwatch x={110} y={-262} />
+              </RaisedArm>
+            </g>
           </g>
+        </g>
 
-          <Words x={36} y={128} size={60} fill={C.white} text="THE ENTIRE" rot={-3} />
-          <Words x={36} y={202} size={60} fill={C.white} text="HISTORY OF" rot={-3} />
-          <Words x={28} y={378} size={190} fill={C.red} text="JAPAN" rot={-4} />
+        {/* the crowd */}
+        <g filter="url(#stickerThin)">
+          <g filter="url(#wobble)">
+            {CROWD.filter((c) => c.row === 0).map((c, i) => (
+              <Person key={i} x={c.x} y={650 + 178 * 0.95} s={0.95} tribe={c.tribe} expr={c.expr} f={0} blinkOff aL={c.up ? 150 : 14} aR={c.up ? 150 : 14} beard={c.beard} />
+            ))}
+            {CROWD.filter((c) => c.row === 1).map((c, i) => (
+              <Person key={i} x={c.x} y={712 + 178 * 1.1} s={1.1} tribe={c.tribe} expr={c.expr} f={0} blinkOff aL={c.up ? 150 : 14} aR={c.up ? 150 : 14} beard={c.beard} />
+            ))}
+          </g>
+        </g>
+        <g filter="url(#wobble)">
+          <Petals n={9} seed={90} front />
+        </g>
+
+        {/* the title, in marker */}
+        <g filter="url(#wobble)">
+          <MarkerText text={title} x={W / 2} y={34} cap={170} maxWidth={1210} seed={3} />
         </g>
       </svg>
       <AbsoluteFill
@@ -82,9 +178,11 @@ export const JapanThumbnail: React.FC = () => {
           backgroundImage: `url(${staticFile("japan/grain.jpg")})`,
           backgroundSize: "768px 768px",
           mixBlendMode: "multiply",
-          opacity: 0.5,
+          opacity: 0.4,
         }}
       />
     </AbsoluteFill>
   );
 };
+
+export const japanThumbnailDefaults = { title: "Japan speedrun" };

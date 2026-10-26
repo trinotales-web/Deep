@@ -3,6 +3,7 @@ import { ChannelLogo, channelLogoDefaults } from "./brand/ChannelLogo";
 import { ChannelBanner } from "./brand/ChannelBanner";
 import { JapanThumbnail, japanThumbnailDefaults } from "./brand/Thumbnail";
 import { JapanThumbnailNinja, JapanThumbnailShips, JapanThumbnailSlash } from "./brand/ThumbnailVariants";
+import { JapanThumbHero } from "./brand/ThumbnailHero";
 import { ONIN_DURATION, OninShort } from "./shorts/OninShort";
 import { HelloWorld } from "./HelloWorld";
 import { JapanPart1, PART1_DURATION } from "./japan/Part1";
@@ -135,6 +136,7 @@ export const RemotionRoot: React.FC = () => {
       <Still id="JapanThumbnailShips" component={JapanThumbnailShips} width={1280} height={720} defaultProps={japanThumbnailDefaults} />
       <Still id="JapanThumbnailSlash" component={JapanThumbnailSlash} width={1280} height={720} defaultProps={japanThumbnailDefaults} />
       <Still id="JapanThumbnailNinja" component={JapanThumbnailNinja} width={1280} height={720} defaultProps={japanThumbnailDefaults} />
+      <Still id="JapanThumbHero" component={JapanThumbHero} width={1280} height={720} />
       <Composition id="ShortOninWar" component={OninShort} durationInFrames={ONIN_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="JapanCast" component={CastSheet} durationInFrames={30} fps={30} width={1920} height={1080} />
     </>

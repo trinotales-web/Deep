@@ -59,14 +59,16 @@ const STROKE = 18; // marker width on the 100-unit cap height
 const GAP = 4; // between the inked edges of neighbouring letters
 const SPACE = 30;
 
-const advance = (ch: string) => (ch === " " ? SPACE : (GLYPHS[ch]?.[0] ?? 40) + STROKE + GAP);
+const advance = (ch: string, tracking = 0) => (ch === " " ? SPACE : (GLYPHS[ch]?.[0] ?? 40) + STROKE + GAP) + tracking;
 
-/** Width of a line in cap-height units (multiply by the cap height in px / 100). */
-export const markerWidth = (text: string) =>
+/** Width of a line in cap-height units (multiply by the cap height in px / 100). `tracking` adds space between letters. */
+export const markerWidth = (text: string, tracking = 0) =>
   text
     .toUpperCase()
     .split("")
-    .reduce((w, ch) => w + advance(ch), 0) - GAP;
+    .reduce((w, ch) => w + advance(ch, tracking), 0) -
+  GAP -
+  tracking;
 
 export const MarkerText: React.FC<{
   text: string;
@@ -83,10 +85,13 @@ export const MarkerText: React.FC<{
   jitter?: number;
   /** Stroke width on the 100-unit cap height; a wider pass under the letters makes an outline. */
   weight?: number;
-}> = ({ text, x, y, cap, maxWidth = Infinity, color = "#15161d", seed = 1, jitter = 1, weight = STROKE }) => {
+  /** Extra space between letters (cap units), for heavier weights. */
+  tracking?: number;
+}> = ({ text, x, y, cap, maxWidth = Infinity, color = "#15161d", seed = 1, jitter = 1, weight = STROKE, tracking = 0 }) => {
   const upper = text.toUpperCase();
-  const k = Math.min(cap, (maxWidth * 100) / markerWidth(upper)) / 100;
-  let pen = x - (markerWidth(upper) * k) / 2;
+  const width = markerWidth(upper, tracking);
+  const k = Math.min(cap, (maxWidth * 100) / width) / 100;
+  let pen = x - (width * k) / 2;
   const letters: React.ReactNode[] = [];
   upper.split("").forEach((ch, i) => {
     const glyph = GLYPHS[ch];
@@ -103,7 +108,7 @@ export const MarkerText: React.FC<{
         </g>,
       );
     }
-    pen += advance(ch) * k;
+    pen += advance(ch, tracking) * k;
   });
   return <g>{letters}</g>;
 };

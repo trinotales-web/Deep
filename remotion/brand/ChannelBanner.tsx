@@ -199,7 +199,7 @@ const Lawn: React.FC = () => {
   return <g>{items}</g>;
 };
 
-const NAME = "Zectenn Histori";
+const NAME = "Zectenn Historian";
 
 const Title: React.FC = () => {
   const tilt = NAME.split("").map((_, i) => (i % 2 ? 3 : -3)).join(" ");
@@ -225,6 +225,7 @@ const Title: React.FC = () => {
           rotate={tilt}
           dy={bounce}
           letterSpacing={2}
+          wordSpacing={22}
         >
           {NAME}
         </text>
@@ -266,8 +267,8 @@ export const ChannelBanner: React.FC = () => {
           <Lawn />
 
           <Title />
-          <Sparkle x={690} y={548} s={1.1} />
-          <Sparkle x={1876} y={560} s={0.9} />
+          <Sparkle x={600} y={552} s={1.1} />
+          <Sparkle x={1930} y={604} s={0.9} />
 
           {LINEUP.map((slot, i) => (
             <Holder key={i} slot={slot} x={X0 + i * SP} />

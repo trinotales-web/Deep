@@ -58,6 +58,14 @@ It writes `The Entire History of Japan.mp4` (with chapter marks) and
 `chapters.txt` (the same chapters as YouTube timestamps). Rendering JapanStory
 straight from Studio works too; it just takes as long as all eight parts.
 
+The film's English captions come straight from the narration timings, so they
+spell every name the way it's spoken (Jomon, gekokujo, Amakusa Shiro…). Upload
+the SRT under Subtitles instead of relying on YouTube's automatic captions:
+
+```bash
+python3 remotion/japan/tools/make_captions.py   # -> out/The Entire History of Japan/… English captions.srt
+```
+
 ### Web player
 
 `remotion/web/` is a stand-alone page that plays **JapanFull** in the Remotion

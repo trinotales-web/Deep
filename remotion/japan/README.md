@@ -31,6 +31,17 @@ npx remotion render JapanFull out/japan_full.mp4 --props='{"musicVolume":0.6,"na
 `musicVolume` scales the finished score. To change the music itself, edit
 `music/compose_partN.py` and rebuild it (see "Rebuilding assets" below).
 
+### Web player
+
+`remotion/web/` is a stand-alone page that plays **JapanFull** in the Remotion
+Player, with separate voice-over and music faders, a list of parts to jump
+between, and the matching render command to copy. Build it into a folder you
+can serve or publish as a static page:
+
+```bash
+remotion/web/build.sh out/japan-player     # index.html, player.js and japan/ assets
+```
+
 ## Part 1: where it all began (60 s)
 
 | Video time | Narration | Scene |

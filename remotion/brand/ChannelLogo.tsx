@@ -46,8 +46,8 @@ const Hat: React.FC = () => (
   </g>
 );
 
-/** A curious history-explorer peering through a magnifying glass. */
-const Mascot: React.FC<{ mood: Mood }> = ({ mood }) => {
+/** A curious history-explorer peering through a magnifying glass. `legs` draws him full length (feet 178 below the head centre, like Person). */
+export const Mascot: React.FC<{ mood: Mood; look?: Pt; legs?: boolean }> = ({ mood, look, legs }) => {
   const lens = { x: 22, y: -2, r: 23 };
   const hand: Pt = [59, 80];
   const shoulder: Pt = [30, 52];
@@ -62,6 +62,14 @@ const Mascot: React.FC<{ mood: Mood }> = ({ mood }) => {
   );
   return (
     <g>
+      {legs
+        ? [-1, 1].map((sd) => (
+            <g key={sd} transform={`translate(${sd * 13},128)`}>
+              <Pencil d="M-8,0 L8,0 L7,48 L-7,48 Z" fill={C.tan} sw={3.5} />
+              <Pencil d={ellipseD(5, 50, 13, 7)} fill={C.darkBrown} sw={3} />
+            </g>
+          ))
+        : null}
       {/* body: the Person tunic with an explorer's neckerchief */}
       <Pencil d="M-30,42 Q0,36 30,42 L44,128 Q0,136 -44,128 Z" fill="#5f8f6a" sw={4} />
       <Ink d="M-16,46 L0,70 L16,46" sw={3} />
@@ -78,7 +86,7 @@ const Mascot: React.FC<{ mood: Mood }> = ({ mood }) => {
       <Pencil d="M-47,2 C-50,-44 -20,-52 0,-51 C20,-52 50,-44 47,2 C44,-18 30,-28 2,-30 C-30,-28 -44,-18 -47,2 Z" fill={C.hair} sw={3.5} />
       <Hat />
       {/* the bare eye, its brow raised: "wait... really?" */}
-      <Eye x={-17} y={-2} look={[0.2, 0.05]} />
+      <Eye x={-17} y={-2} look={look ?? [0.2, 0.05]} />
       <Ink d="M-31,-23 Q-20,-38 -6,-29" sw={4.5} />
       <Mouth mood={mood} />
       {/* magnifying glass: the eye behind it, drawn 1.6x */}
@@ -91,7 +99,7 @@ const Mascot: React.FC<{ mood: Mood }> = ({ mood }) => {
       <g clipPath="url(#lensClip)">
         <g transform={`translate(${lens.x},${lens.y}) scale(1.6) translate(${-lens.x},${-lens.y})`}>
           {face}
-          <Eye x={17} y={-2} look={[-0.15, 0.05]} />
+          <Eye x={17} y={-2} look={look ?? [-0.15, 0.05]} />
           <Ink d="M9,-27 Q19,-34 29,-27" sw={4.5} />
         </g>
         <path d={ellipseD(lens.x, lens.y, lens.r)} fill={C.sky} opacity={0.18} />

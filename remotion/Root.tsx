@@ -1,5 +1,6 @@
 import { Composition, Still } from "remotion";
 import { ChannelLogo, channelLogoDefaults } from "./brand/ChannelLogo";
+import { ChannelBanner } from "./brand/ChannelBanner";
 import { HelloWorld } from "./HelloWorld";
 import { JapanPart1, PART1_DURATION } from "./japan/Part1";
 import { CastSheet } from "./japan/dev/CastSheet";
@@ -126,6 +127,7 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={storyAudioProps}
       />
       <Still id="ChannelLogo" component={ChannelLogo} width={800} height={800} defaultProps={channelLogoDefaults} />
+      <Still id="ChannelBanner" component={ChannelBanner} width={2560} height={1440} />
       <Composition id="JapanCast" component={CastSheet} durationInFrames={30} fps={30} width={1920} height={1080} />
     </>
   );

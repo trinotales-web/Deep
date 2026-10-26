@@ -37,7 +37,12 @@ export type Tribe =
   | "european"
   | "american"
   | "lady"
-  | "merchant";
+  | "merchant"
+  | "roman"
+  | "pharaoh"
+  | "viking"
+  | "knight"
+  | "napoleon";
 export type Hold =
   | "spear"
   | "rice"
@@ -547,7 +552,7 @@ const Hair: React.FC<{ tribe: Tribe; long?: boolean; back?: boolean }> = ({ trib
       sw={3.5}
     />
   );
-  if (tribe === "ninja") return null;
+  if (tribe === "ninja" || tribe === "pharaoh" || tribe === "knight") return null;
   const tinted: Partial<Record<Tribe, string>> = {
     jesuit: "#7a4a2a",
     dutch: "#b08a4a",
@@ -557,6 +562,8 @@ const Hair: React.FC<{ tribe: Tribe; long?: boolean; back?: boolean }> = ({ trib
     shiro: C.hair,
     european: "#8a6a4a",
     american: "#6a4a32",
+    roman: C.hair,
+    napoleon: C.hair,
   };
   if (tribe === "kabuki") {
     // a great shaggy lion wig
@@ -632,17 +639,19 @@ const Hair: React.FC<{ tribe: Tribe; long?: boolean; back?: boolean }> = ({ trib
       </g>
     );
   }
-  // nomad / bandit: shaggy hair
+  // nomad / bandit / viking: shaggy hair
   return (
     <Pencil
       d={`M-48,${hy + 6} L-52,${hy - 18} L-40,${hy - 30} L-42,${hy - 48} L-22,${hy - 46} L-12,${hy - 62} L4,${hy - 50} L20,${hy - 62} L26,${hy - 44} L44,${hy - 46} L42,${hy - 28} L54,${hy - 16} L48,${hy + 6} C40,${hy - 16} 22,${hy - 26} 0,${hy - 26} C-22,${hy - 26} -40,${hy - 16} -48,${hy + 6} Z`}
-      fill={C.hair}
+      fill={tribe === "viking" ? GINGER : C.hair}
       sw={3.5}
     />
   );
 };
 
 const DARK = "#2b2b35";
+const GINGER = "#c8743a";
+const NAVY_STRIPE = "#2f4f9a";
 
 const Hat: React.FC<{ tribe: Tribe }> = ({ tribe }) => {
   const hy = HEAD_Y;
@@ -867,6 +876,96 @@ const Hat: React.FC<{ tribe: Tribe }> = ({ tribe }) => {
         </g>
       );
     }
+    case "roman":
+      return (
+        <g>
+          {/* front-to-back crest, seen head-on */}
+          <Pencil d={`M-5,${hy - 74} C-20,${hy - 84} -22,${hy - 112} -8,${hy - 124} Q0,${hy - 128} 8,${hy - 124} C22,${hy - 112} 20,${hy - 84} 5,${hy - 74} Z`} fill={C.red} sw={3.5} />
+          <Ink d={`M-8,${hy - 86} L-12,${hy - 114} M0,${hy - 84} L0,${hy - 120} M8,${hy - 86} L12,${hy - 114}`} sw={2} color="#8a2a1e" opacity={0.7} />
+          {[-1, 1].map((sd) => (
+            <Pencil key={sd} d={`M${sd * 40},${hy - 12} L${sd * 54},${hy - 14} L${sd * 52},${hy + 26} Q${sd * 44},${hy + 38} ${sd * 34},${hy + 30} Z`} fill={C.bronze} sw={3.5} />
+          ))}
+          <Pencil d={`M-52,${hy - 8} C-56,${hy - 66} -26,${hy - 80} 0,${hy - 80} C26,${hy - 80} 56,${hy - 66} 52,${hy - 8} Q0,${hy - 30} -52,${hy - 8} Z`} fill="#c9a24e" sw={4} />
+          <Pencil d={`M-56,${hy - 12} Q0,${hy - 36} 56,${hy - 12} L54,${hy - 2} Q0,${hy - 26} -54,${hy - 2} Z`} fill={C.bronze} sw={3} />
+          <Ink d={`M-30,${hy - 30} Q-32,${hy - 60} -14,${hy - 74} M30,${hy - 30} Q32,${hy - 60} 14,${hy - 74}`} sw={2} color={C.white} opacity={0.5} />
+        </g>
+      );
+    case "pharaoh": {
+      // nemes headcloth: gold with blue stripes, falling in lappets past the ears
+      const lappet = (sd: number) =>
+        [20, 32, 44, 56].map((dy) => `M${sd * 41},${hy + dy} L${sd * (52 + (dy - 6) * 0.28)},${hy + dy}`).join(" ");
+      return (
+        <g>
+          <Pencil
+            d={`M-38,${hy + 70} L-40,${hy + 14} Q-42,${hy - 14} -34,${hy - 22} Q0,${hy - 44} 34,${hy - 22} Q42,${hy - 14} 40,${hy + 14} L38,${hy + 70} L70,${hy + 64} L54,${hy + 6} C60,${hy - 52} 26,${hy - 68} 0,${hy - 68} C-26,${hy - 68} -60,${hy - 52} -54,${hy + 6} L-70,${hy + 64} Z`}
+            fill={C.yellow}
+            sw={4}
+          />
+          <Ink d={`${lappet(-1)} ${lappet(1)}`} sw={4.5} color={NAVY_STRIPE} />
+          <Ink
+            d={`M-22,${hy - 34} Q-30,${hy - 52} -14,${hy - 64} M22,${hy - 34} Q30,${hy - 52} 14,${hy - 64} M-42,${hy - 18} Q-52,${hy - 44} -32,${hy - 60} M42,${hy - 18} Q52,${hy - 44} 32,${hy - 60}`}
+            sw={4.5}
+            color={NAVY_STRIPE}
+          />
+          {/* the cobra on the brow */}
+          <Pencil d={`M-6,${hy - 34} Q-8,${hy - 50} 0,${hy - 56} Q8,${hy - 50} 6,${hy - 34} Z`} fill={C.yellow} sw={2.5} />
+          <path d={ellipseD(0, hy - 46, 2.5)} fill={C.red} />
+          {/* braided false beard */}
+          <Pencil d={`M-7,${hy + 40} L7,${hy + 40} L6,${hy + 76} Q0,${hy + 82} -6,${hy + 76} Z`} fill={NAVY_STRIPE} sw={3} />
+          <Ink d={`M-6,${hy + 52} L6,${hy + 52} M-6,${hy + 64} L6,${hy + 64}`} sw={2.5} color={C.yellow} />
+        </g>
+      );
+    }
+    case "viking":
+      return (
+        <g>
+          {[-1, 1].map((sd) => (
+            <Pencil
+              key={sd}
+              d={`M${sd * 44},${hy - 36} C${sd * 72},${hy - 40} ${sd * 88},${hy - 66} ${sd * 84},${hy - 104} C${sd * 74},${hy - 78} ${sd * 62},${hy - 62} ${sd * 40},${hy - 56} Z`}
+              fill="#efe6cf"
+              sw={3.5}
+            />
+          ))}
+          <Pencil d={`M-50,${hy - 10} C-54,${hy - 64} -24,${hy - 78} 0,${hy - 78} C24,${hy - 78} 54,${hy - 64} 50,${hy - 10} Q0,${hy - 30} -50,${hy - 10} Z`} fill={C.iron} sw={4} />
+          <Pencil d={`M-52,${hy - 18} Q0,${hy - 38} 52,${hy - 18} L51,${hy - 8} Q0,${hy - 28} -51,${hy - 8} Z`} fill={C.bronze} sw={3} />
+          <Pencil d={`M-5,${hy - 26} L5,${hy - 26} L4,${hy + 8} L-4,${hy + 8} Z`} fill={C.iron} sw={3} />
+          {/* big ginger beard and moustache */}
+          <Pencil
+            d={`M-38,${hy + 18} Q-42,${hy + 62} -14,${hy + 84} L0,${hy + 96} L14,${hy + 84} Q42,${hy + 62} 38,${hy + 18} Q30,${hy + 44} 16,${hy + 44} Q0,${hy + 50} -16,${hy + 44} Q-30,${hy + 44} -38,${hy + 18} Z`}
+            fill={GINGER}
+            sw={3.5}
+          />
+          <Pencil d={`M-2,${hy + 14} Q-18,${hy + 6} -30,${hy + 20} Q-16,${hy + 20} -2,${hy + 20} Z M2,${hy + 14} Q18,${hy + 6} 30,${hy + 20} Q16,${hy + 20} 2,${hy + 20} Z`} fill={GINGER} sw={2.5} />
+          <Ink d={`M-10,${hy + 60} L-6,${hy + 80} M10,${hy + 60} L6,${hy + 80}`} sw={2} opacity={0.5} />
+        </g>
+      );
+    case "knight":
+      return (
+        <g>
+          <Pencil d={`M0,${hy - 80} C4,${hy - 116} -22,${hy - 134} -44,${hy - 124} C-32,${hy - 116} -24,${hy - 100} -10,${hy - 78} Z`} fill={C.red} sw={3.5} />
+          {/* open helmet framing the face, visor pushed up */}
+          <Pencil
+            d={`M-54,${hy + 34} C-60,${hy - 40} -30,${hy - 84} 0,${hy - 86} C30,${hy - 84} 60,${hy - 40} 54,${hy + 34} L40,${hy + 42} L40,${hy - 16} Q0,${hy - 50} -40,${hy - 16} L-40,${hy + 42} Z`}
+            fill={C.iron}
+            sw={4}
+          />
+          <Pencil d={`M-46,${hy - 30} Q0,${hy - 62} 46,${hy - 30} L44,${hy - 46} Q0,${hy - 76} -44,${hy - 46} Z`} fill="#b3b8c0" sw={3} />
+          <Ink d={`M-30,${hy - 46} Q0,${hy - 64} 30,${hy - 46}`} sw={3} />
+          <Ink d={`M-36,${hy - 56} Q-40,${hy - 70} -24,${hy - 78}`} sw={2.5} color={C.white} opacity={0.6} />
+        </g>
+      );
+    case "napoleon":
+      // the bicorne worn sideways, with the tricolour cockade
+      return (
+        <g>
+          <Pencil d={`M-94,${hy - 30} C-86,${hy - 74} -44,${hy - 96} 0,${hy - 96} C44,${hy - 96} 86,${hy - 74} 94,${hy - 30} Q0,${hy - 58} -94,${hy - 30} Z`} fill="#1f1f26" sw={3.5} />
+          <Ink d={`M-78,${hy - 36} Q0,${hy - 60} 78,${hy - 36}`} sw={2} color={C.white} opacity={0.35} />
+          <path d={ellipseD(-48, hy - 52, 11)} fill={C.red} stroke={INK} strokeWidth={2.5} />
+          <path d={ellipseD(-48, hy - 52, 7.5)} fill={C.white} />
+          <path d={ellipseD(-48, hy - 52, 4)} fill={NAVY_STRIPE} />
+        </g>
+      );
     default:
       return null;
   }
@@ -907,6 +1006,11 @@ const OUTFIT: Partial<Record<Tribe, string>> = {
   american: "#22305a",
   lady: "#d96f86",
   merchant: "#8a6a45",
+  roman: "#b8402e",
+  pharaoh: C.white,
+  viking: "#5a7f8f",
+  knight: C.iron,
+  napoleon: "#2a3f7a",
 };
 
 const LEGS: Partial<Record<Tribe, string>> = {
@@ -939,6 +1043,9 @@ const LEGS: Partial<Record<Tribe, string>> = {
   american: C.white,
   lady: "#d96f86",
   merchant: "#5a4636",
+  viking: "#6e5a46",
+  knight: "#7a7f88",
+  napoleon: C.white,
 };
 
 /** Body details drawn over the tunic for the Part 2 cast. */
@@ -1181,6 +1288,62 @@ const Outfit: React.FC<{ tribe: Tribe }> = ({ tribe }) => {
         <g>
           <Pencil d="M-24,-100 L-8,-100 L-8,-86 L-24,-86 Z" fill={C.tan} sw={2.5} />
           <Pencil d="M10,-72 L26,-72 L26,-58 L10,-58 Z" fill={C.darkBrown} sw={2.5} />
+        </g>
+      );
+    case "roman":
+      // segmented armour over the red tunic
+      return (
+        <g>
+          {[-128, -116, -104, -92].map((ry) => (
+            <Pencil key={ry} d={`M-34,${ry} Q0,${ry - 6} 34,${ry} L34,${ry + 11} Q0,${ry + 5} -34,${ry + 11} Z`} fill="#b9bec6" sw={2.5} />
+          ))}
+          <Pencil d="M-38,-80 Q0,-72 38,-80 L39,-70 Q0,-62 -39,-70 Z" fill={C.darkBrown} sw={3} />
+          {[-24, -8, 8, 24].map((dx) => (
+            <Pencil key={dx} d={`M${dx - 4},-68 L${dx + 4},-68 L${dx + 4},-50 L${dx - 4},-50 Z`} fill={C.darkBrown} sw={2} />
+          ))}
+        </g>
+      );
+    case "pharaoh":
+      return (
+        <g>
+          <Pencil d="M-40,-80 Q0,-72 40,-80 L41,-68 Q0,-60 -41,-68 Z" fill={C.yellow} sw={3} />
+          <Pencil d="M-8,-68 L8,-68 L10,-50 L-10,-50 Z" fill={NAVY_STRIPE} sw={2.5} />
+          <Pencil d="M-38,-138 Q0,-150 38,-138 Q30,-102 0,-98 Q-30,-102 -38,-138 Z" fill="#3a9a9a" sw={3} />
+          <Ink d="M-32,-128 Q0,-110 32,-128 M-26,-116 Q0,-102 26,-116" sw={3} color={C.yellow} />
+        </g>
+      );
+    case "viking":
+      return (
+        <g>
+          <Pencil d="M-38,-142 Q0,-128 38,-142 Q42,-126 30,-116 Q0,-106 -30,-116 Q-42,-126 -38,-142 Z" fill={C.tan} sw={3} />
+          <Ink d="M-30,-126 l4,6 M-18,-122 l4,6 M18,-122 l4,6 M30,-126 l4,6" sw={2} opacity={0.6} />
+          <Pencil d="M-40,-82 Q0,-74 40,-82 L41,-70 Q0,-62 -41,-70 Z" fill={C.darkBrown} sw={3} />
+          <Pencil d="M-8,-82 L8,-82 L8,-68 L-8,-68 Z" fill={C.bronze} sw={2.5} />
+        </g>
+      );
+    case "knight":
+      // a tabard over the mail, with a gold bend
+      return (
+        <g>
+          {[[-34, -120], [30, -116], [-38, -96], [36, -92], [-40, -70], [38, -66]].map(([dx, dy], i) => (
+            <Ink key={i} d={`M${dx - 5},${dy} q5,6 10,0`} sw={2} opacity={0.6} />
+          ))}
+          <Pencil d="M-22,-136 L22,-136 L32,-50 Q0,-44 -32,-50 Z" fill="#3f5f9f" sw={3.5} />
+          <Pencil d="M-20,-128 L-10,-134 L30,-60 L20,-54 Z" fill={C.yellow} sw={2.5} />
+          <Pencil d="M-34,-80 Q0,-72 34,-80 L35,-70 Q0,-62 -35,-70 Z" fill={C.darkBrown} sw={3} />
+        </g>
+      );
+    case "napoleon":
+      return (
+        <g>
+          <Pencil d="M-14,-134 L14,-134 L20,-56 Q0,-52 -20,-56 Z" fill={C.white} sw={3} />
+          <Pencil d="M-26,-140 Q0,-146 26,-140 L22,-128 Q0,-132 -22,-128 Z" fill={C.red} sw={2.5} />
+          {[-1, 1].map((sd) => (
+            <Pencil key={sd} d={`M${sd * 22},-140 L${sd * 52},-138 L${sd * 56},-124 L${sd * 24},-126 Z`} fill={C.yellow} sw={2.5} />
+          ))}
+          {[-112, -96, -80].map((by) => (
+            <path key={by} d={ellipseD(0, by, 3)} fill={C.yellow} />
+          ))}
         </g>
       );
     default:

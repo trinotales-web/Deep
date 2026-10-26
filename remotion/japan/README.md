@@ -308,6 +308,20 @@ npx remotion still ChannelLogo "out/logo 800x800.png"                       # Yo
 npx remotion still ChannelLogo "out/logo smirk.png" --props='{"mood":"smirk"}'
 ```
 
+The `ChannelBanner` still (`remotion/brand/ChannelBanner.tsx`) is the channel art
+(2560x1440): the name, and history lining up to spell SUBSCRIBE with signs,
+where the samurai has run his "S" through with his katana, Napoleon stands on a
+crate, and the caveman holds his "E" backwards while the explorer squints at it.
+Everything that matters sits in YouTube's safe area (the middle 1546x423, all a
+phone shows); desktops add the pyramids, Pisa and a moai, TVs the sky and lawn.
+Render it as a JPEG, since the PNG is over YouTube's 6 MB limit:
+
+```bash
+npx remotion still ChannelBanner "out/banner.jpg" --image-format=jpeg --jpeg-quality=93
+```
+
+The cast now also has a `roman`, `pharaoh`, `viking`, `knight` and `napoleon`.
+
 The `JapanCast` composition is a lineup of every character type, for checking
 the drawings. To review a few frames quickly, run `node remotion/japan/tools/stills.mjs <dir> <frame>...`
 (`COMP=JapanStory` for the film)

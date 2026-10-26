@@ -50,6 +50,9 @@ const GLYPHS: Record<string, [number, string]> = {
   ",": [6, "M6,92 L0,108"],
   "-": [30, "M0,55 L30,55"],
   "'": [0, "M0,0 L0,24"],
+  ":": [0, "M0,38 L0,39 M0,92 L0,93"],
+  "(": [20, "M20,-4 Q-6,48 20,104"],
+  ")": [20, "M0,-4 Q26,48 0,104"],
 };
 
 const STROKE = 18; // marker width on the 100-unit cap height

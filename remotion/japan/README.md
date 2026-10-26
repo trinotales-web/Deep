@@ -66,6 +66,24 @@ the SRT under Subtitles instead of relying on YouTube's automatic captions:
 python3 remotion/japan/tools/make_captions.py   # -> out/The Entire History of Japan/… English captions.srt
 ```
 
+### Shorts (9:16)
+
+**ShortOninWar** (`remotion/shorts/OninShort.tsx`, 1080x1920, 50 s) retells the
+Onin War as a vertical Short: a cold open ("ten whole years… nobody won"),
+the story in close-ups of the cast, big marker captions, and an end card that
+points down to the related-video link. The voice is the narrator's own takes,
+cut from the film's narration by `remotion/shorts/make_onin.py`, which also
+writes `onin.json` (shots and word times), scores the Short
+(`music/compose_short_onin.py`) and mixes it to -14 LUFS:
+
+```bash
+python3 remotion/shorts/make_onin.py                     # voice, timeline, music, mix
+remotion/japan/tools/render_chunked.sh ShortOninWar 1509 out/shorts/onin_master.mp4 510
+```
+
+Titles and labels sit below YouTube's top bar, captions above the bottom
+overlay, and nothing important in the right-hand button column.
+
 ### Web player
 
 `remotion/web/` is a stand-alone page that plays **JapanFull** in the Remotion

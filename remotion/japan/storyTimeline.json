@@ -1,0 +1,23 @@
+{
+ "title": "The Entire History of Japan",
+ "fps": 30,
+ "overlap": 12,
+ "duration": 19704,
+ "chapters": [
+  { "title": "Beginnings: gods, emperors & samurai", "part": 1 },
+  { "title": "Ninjas, Mongols & Kyoto burns", "part": 3 },
+  { "title": "Guns & the fool of Owari", "part": 5 },
+  { "title": "The bird that would not sing", "part": 7 },
+  { "title": "250 years of peace & the black ships", "part": 8 }
+ ],
+ "segments": [
+  { "part": 1, "from": 0, "to": 1743, "at": 0, "stripHideFrom": 1716 },
+  { "part": 2, "from": 90, "to": 2515, "at": 1731, "stripHideFrom": 2490 },
+  { "part": 3, "from": 90, "to": 4011, "at": 4144, "stripHideFrom": 3996 },
+  { "part": 4, "from": 90, "to": 1555, "at": 8053, "stripHideFrom": 1542 },
+  { "part": 5, "from": 90, "to": 883, "at": 9506, "stripHideFrom": 870 },
+  { "part": 6, "from": 90, "to": 1867, "at": 10287, "stripHideFrom": 1848 },
+  { "part": 7, "from": 90, "to": 5189, "at": 12052, "stripHideFrom": 5178 },
+  { "part": 8, "from": 90, "to": 2655, "at": 17139, "stripHideFrom": 2598 }
+ ]
+}

@@ -14,7 +14,8 @@
     "postinstall": "prisma generate",
     "remotion:studio": "remotion studio",
     "remotion:render": "remotion render HelloWorld out/video.mp4",
-    "japan:render": "remotion render JapanFull out/japan_full.mp4"
+    "japan:render": "remotion render JapanFull out/japan_full.mp4",
+    "japan:film": "python3 remotion/japan/tools/build_story.py"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",

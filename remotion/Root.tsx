@@ -10,7 +10,8 @@ import { JapanPart6, PART6_DURATION } from "./japan/Part6";
 import { JapanPart7, PART7_DURATION } from "./japan/Part7";
 import { JapanPart8, PART8_DURATION } from "./japan/Part8";
 import { FULL_DURATION, JapanFull } from "./japan/Full";
-import { defaultAudioProps, japanAudioSchema } from "./japan/audioProps";
+import { JapanStory, STORY_DURATION } from "./japan/Story";
+import { defaultAudioProps, japanAudioSchema, storyAudioProps } from "./japan/audioProps";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -112,6 +113,16 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
         schema={japanAudioSchema}
         defaultProps={defaultAudioProps}
+      />
+      <Composition
+        id="JapanStory"
+        component={JapanStory}
+        durationInFrames={STORY_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+        schema={japanAudioSchema}
+        defaultProps={storyAudioProps}
       />
       <Composition id="JapanCast" component={CastSheet} durationInFrames={30} fps={30} width={1920} height={1080} />
     </>

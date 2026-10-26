@@ -1,6 +1,6 @@
 import React from "react";
 import { useJapanAssets } from "./assets";
-import { JapanAudioProps } from "./audioProps";
+import { JapanPartProps, musicGain } from "./audioProps";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { ip, NARRATION_OFFSET, sec } from "./theme";
 import { CaptionStrip, Captions, GrainOverlay, PaperBg, Shot } from "./Stage";
@@ -28,7 +28,7 @@ export const T = {
   out: 60,
 };
 
-export const JapanPart1: React.FC<JapanAudioProps> = ({ musicVolume = 1, narrationVolume = 1 }) => {
+export const JapanPart1: React.FC<JapanPartProps> = ({ musicVolume = 1, narrationVolume = 1, seamless = false, musicWindow, captionsClearBy, introSubtitle }) => {
   useJapanAssets();
   const f = useCurrentFrame();
   const s = (x: number) => sec(x);
@@ -36,7 +36,7 @@ export const JapanPart1: React.FC<JapanAudioProps> = ({ musicVolume = 1, narrati
     <AbsoluteFill style={{ backgroundColor: "#f3ede0" }}>
       <PaperBg />
       <Shot f={f} from={s(T.title)} to={s(T.map1)} xf={0}>
-        <TitleScene f={f} />
+        <TitleScene f={f} subtitle={introSubtitle} />
       </Shot>
       <Shot f={f} from={s(T.map1)} to={s(T.land)}>
         <MapIntro f={f} from={s(T.map1)} />
@@ -71,10 +71,10 @@ export const JapanPart1: React.FC<JapanAudioProps> = ({ musicVolume = 1, narrati
       <Shot f={f} from={s(T.end)} to={s(T.out)}>
         <Finale f={f} from={s(T.end)} to={s(T.out)} />
       </Shot>
-      <CaptionStrip f={f} show={ip(f, [s(2.4), s(3.0)], [0, 1]) * ip(f, [s(57.2), s(58)], [1, 0])} />
-      <Captions f={f} />
+      <CaptionStrip f={f} show={ip(f, [s(2.4), s(3.0)], [0, 1]) * (seamless ? 1 : ip(f, [s(57.2), s(58)], [1, 0]))} />
+      <Captions f={f} clearBy={captionsClearBy} />
       <GrainOverlay />
-      <Audio src={staticFile("japan/music_p1.m4a")} volume={musicVolume} />
+      <Audio src={staticFile("japan/music_p1.m4a")} volume={(fr) => musicVolume * musicGain(fr, musicWindow)} />
       <Sequence from={s(NARRATION_OFFSET)} layout="none">
         <Audio src={staticFile("japan/narration_p1.m4a")} volume={narrationVolume} />
       </Sequence>

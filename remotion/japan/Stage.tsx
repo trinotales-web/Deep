@@ -76,7 +76,9 @@ export const Captions: React.FC<{
   phrases?: [number, number][];
   keyColors?: Record<string, string>;
   offset?: number;
-}> = ({ f, words: W = WORDS_P1, phrases: PH = P1_PHRASES, keyColors = KEY_COLORS, offset = NARRATION_OFFSET }) => {
+  /** Frame by which any caption has faded away (the film cuts to the next part there). */
+  clearBy?: number;
+}> = ({ f, words: W = WORDS_P1, phrases: PH = P1_PHRASES, keyColors = KEY_COLORS, offset = NARRATION_OFFSET, clearBy }) => {
   const t = f / 30 - offset;
   let active = -1;
   for (let i = 0; i < PH.length; i++) {
@@ -89,7 +91,9 @@ export const Captions: React.FC<{
   const [a, b] = PH[active];
   const phraseEnd = W[b][2] + 1.4;
   const nextStart = active + 1 < PH.length ? W[PH[active + 1][0]][1] - 0.12 : Infinity;
-  const fadeOut = nextStart < phraseEnd ? 1 : ip(t, [phraseEnd - 0.35, phraseEnd], [1, 0]);
+  const fadeOut =
+    (nextStart < phraseEnd ? 1 : ip(t, [phraseEnd - 0.35, phraseEnd], [1, 0])) * (clearBy === undefined ? 1 : ip(f, [clearBy - 8, clearBy], [1, 0]));
+  if (fadeOut <= 0) return null;
   const words = W.slice(a, b + 1).filter(([w]) => w.length > 0);
   return (
     <div

@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { useJapanAssets } from "./assets";
-import { JapanAudioProps } from "./audioProps";
+import { JapanPartProps, musicGain } from "./audioProps";
 import { C, ip, NARRATION_OFFSET, sec } from "./theme";
 import { CaptionStrip, Captions, GrainOverlay, PaperBg, Shot } from "./Stage";
 import { WORDS_P3 } from "./words-part3";
@@ -107,16 +107,18 @@ const SCENES: [keyof typeof T3, React.FC<{ f: number; from: number; to: number }
 
 const KEYS = Object.keys(T3) as (keyof typeof T3)[];
 
-export const JapanPart3: React.FC<JapanAudioProps> = ({ musicVolume = 1, narrationVolume = 1 }) => {
+export const JapanPart3: React.FC<JapanPartProps> = ({ musicVolume = 1, narrationVolume = 1, seamless = false, skipTitle = false, musicWindow, captionsClearBy }) => {
   useJapanAssets();
   const f = useCurrentFrame();
   const s = (x: number) => sec(x);
   return (
     <AbsoluteFill style={{ backgroundColor: "#f3ede0" }}>
       <PaperBg />
-      <Shot f={f} from={0} to={s(T3.ninjas)} xf={0}>
-        <Title3 f={f} />
-      </Shot>
+      {skipTitle ? null : (
+        <Shot f={f} from={0} to={s(T3.ninjas)} xf={0}>
+          <Title3 f={f} />
+        </Shot>
+      )}
       {SCENES.map(([key, Scene]) => {
         const from = s(T3[key]);
         const to = s(T3[KEYS[KEYS.indexOf(key) + 1]]);
@@ -126,10 +128,10 @@ export const JapanPart3: React.FC<JapanAudioProps> = ({ musicVolume = 1, narrati
           </Shot>
         );
       })}
-      <CaptionStrip f={f} show={ip(f, [s(2.4), s(3.0)], [0, 1]) * ip(f, [s(133.2), s(134)], [1, 0])} />
-      <Captions f={f} words={WORDS_P3} phrases={PHRASES_P3} keyColors={KEY_COLORS_P3} />
+      <CaptionStrip f={f} show={ip(f, [s(2.4), s(3.0)], [0, 1]) * (seamless ? 1 : ip(f, [s(133.2), s(134)], [1, 0]))} />
+      <Captions f={f} words={WORDS_P3} phrases={PHRASES_P3} keyColors={KEY_COLORS_P3} clearBy={captionsClearBy} />
       <GrainOverlay />
-      <Audio src={staticFile("japan/music_p3.m4a")} volume={musicVolume} />
+      <Audio src={staticFile("japan/music_p3.m4a")} volume={(fr) => musicVolume * musicGain(fr, musicWindow)} />
       <Sequence from={s(NARRATION_OFFSET)} layout="none">
         <Audio src={staticFile("japan/narration_p3.m4a")} volume={narrationVolume} />
       </Sequence>

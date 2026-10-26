@@ -15,8 +15,10 @@ npm install
 npm run remotion:studio        # opens http://localhost:3000
 ```
 
-- **JapanFull** plays all the parts back to back (about 11½ minutes); **JapanPart1** …
-  **JapanPart8** are the single parts.
+- **JapanStory** is the finished film, *The Entire History of Japan* (10:57): one
+  opening title, then each part carrying straight on from the last, with no part
+  cards. **JapanFull** plays the eight parts back to back as they were released
+  (about 11½ minutes); **JapanPart1** … **JapanPart8** are the single parts.
 - Every Japan composition has two props, shown as number fields in the Studio's
   **Props** panel: `musicVolume` and `narrationVolume` (1 = as mixed, 0.5 = half,
   0 = off). Studio can save the values back into `remotion/Root.tsx`.
@@ -30,6 +32,31 @@ npx remotion render JapanFull out/japan_full.mp4 --props='{"musicVolume":0.6,"na
 
 `musicVolume` scales the finished score. To change the music itself, edit
 `music/compose_partN.py` and rebuild it (see "Rebuilding assets" below).
+
+### The film (JapanStory)
+
+`storyTimeline.json` lays the parts end to end: each one starts where its
+narration begins (3 s in, after its title card) and the previous one ends 1 s
+after its last word, with a 12-frame crossfade. In the film the parts get
+`skipTitle`, `seamless` (the caption strip stays up), `musicWindow` (the music
+fades at the cuts) and `captionsClearBy` (the last caption clears before the
+cut); Part 1's title reads "the entire history of Japan". The chapters in the
+same file group the eight parts into five.
+
+The film's balance is the voice at 200% and the music at 75%. Remotion has no
+limiter, so a voice above 1 would clip; JapanStory's default props keep the same
+ratio instead (`narrationVolume: 1`, `musicVolume: 0.375`). The delivered file is
+built by a script that reuses the part renders and only renders the title and
+the seven joins again, then mixes the stems at 200% / 75% and brings the result
+to -14 LUFS under a -1.5 dBTP limiter:
+
+```bash
+python3 remotion/japan/tools/build_story.py   # -> out/The Entire History of Japan/
+```
+
+It writes `The Entire History of Japan.mp4` (with chapter marks) and
+`chapters.txt` (the same chapters as YouTube timestamps). Rendering JapanStory
+straight from Studio works too; it just takes as long as all eight parts.
 
 ### Web player
 
@@ -267,8 +294,10 @@ remotion/japan/tools/render_chunked.sh JapanPart7 5235 out/japan_part7.mp4 960
 remotion/japan/tools/render_chunked.sh JapanPart8 2655 out/japan_part8.mp4 960
 # long parts render more reliably in chunks (retries, then joins video + audio):
 remotion/japan/tools/render_chunked.sh JapanPart3 4080 out/japan_part3.mp4
+python3 remotion/japan/tools/build_story.py              # the film, from the part renders
 ```
 
 The `JapanCast` composition is a lineup of every character type, for checking
 the drawings. To review a few frames quickly, run `node remotion/japan/tools/stills.mjs <dir> <frame>...`
+(`COMP=JapanStory` for the film)
 and then `python3 remotion/japan/tools/sheet.py`.

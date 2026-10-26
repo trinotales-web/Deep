@@ -8,6 +8,29 @@ A hybrid of two reference styles:
   hand-lettered labels, characters with exaggerated grins and frowns, a volcano
   and Japan itself as characters, yellow speech bubbles, camera pans and zooms.
 
+## Opening it in Remotion Studio
+
+```bash
+npm install
+npm run remotion:studio        # opens http://localhost:3000
+```
+
+- **JapanFull** plays all the parts back to back (about 11½ minutes); **JapanPart1** …
+  **JapanPart8** are the single parts.
+- Every Japan composition has two props, shown as number fields in the Studio's
+  **Props** panel: `musicVolume` and `narrationVolume` (1 = as mixed, 0.5 = half,
+  0 = off). Studio can save the values back into `remotion/Root.tsx`.
+- Edits to the scene files (`scenes*/`, `Props*.tsx`, `Person.tsx`) reload live.
+- Render from the Studio's **Render** button, or from a terminal:
+
+```bash
+npm run japan:render           # all parts -> out/japan_full.mp4
+npx remotion render JapanFull out/japan_full.mp4 --props='{"musicVolume":0.6,"narrationVolume":1}'
+```
+
+`musicVolume` scales the finished score. To change the music itself, edit
+`music/compose_partN.py` and rebuild it (see "Rebuilding assets" below).
+
 ## Part 1: where it all began (60 s)
 
 | Video time | Narration | Scene |

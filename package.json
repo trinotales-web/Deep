@@ -13,7 +13,8 @@
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
     "remotion:studio": "remotion studio",
-    "remotion:render": "remotion render HelloWorld out/video.mp4"
+    "remotion:render": "remotion render HelloWorld out/video.mp4",
+    "japan:render": "remotion render JapanFull out/japan_full.mp4"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
@@ -33,7 +34,8 @@
     "recharts": "^2.13.3",
     "remotion": "4.0.538",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss": "^3.4.14"
+    "tailwindcss": "^3.4.14",
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "@remotion/cli": "4.0.538",

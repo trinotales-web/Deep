@@ -1,5 +1,6 @@
 import React from "react";
 import { useJapanAssets } from "./assets";
+import { JapanAudioProps } from "./audioProps";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { ip, NARRATION_OFFSET, sec } from "./theme";
 import { CaptionStrip, Captions, GrainOverlay, PaperBg, Shot } from "./Stage";
@@ -27,7 +28,7 @@ export const T = {
   out: 60,
 };
 
-export const JapanPart1: React.FC = () => {
+export const JapanPart1: React.FC<JapanAudioProps> = ({ musicVolume = 1, narrationVolume = 1 }) => {
   useJapanAssets();
   const f = useCurrentFrame();
   const s = (x: number) => sec(x);
@@ -73,9 +74,9 @@ export const JapanPart1: React.FC = () => {
       <CaptionStrip f={f} show={ip(f, [s(2.4), s(3.0)], [0, 1]) * ip(f, [s(57.2), s(58)], [1, 0])} />
       <Captions f={f} />
       <GrainOverlay />
-      <Audio src={staticFile("japan/music_p1.m4a")} />
+      <Audio src={staticFile("japan/music_p1.m4a")} volume={musicVolume} />
       <Sequence from={s(NARRATION_OFFSET)} layout="none">
-        <Audio src={staticFile("japan/narration_p1.m4a")} />
+        <Audio src={staticFile("japan/narration_p1.m4a")} volume={narrationVolume} />
       </Sequence>
     </AbsoluteFill>
   );

@@ -9,6 +9,8 @@ import { JapanPart5, PART5_DURATION } from "./japan/Part5";
 import { JapanPart6, PART6_DURATION } from "./japan/Part6";
 import { JapanPart7, PART7_DURATION } from "./japan/Part7";
 import { JapanPart8, PART8_DURATION } from "./japan/Part8";
+import { FULL_DURATION, JapanFull } from "./japan/Full";
+import { defaultAudioProps, japanAudioSchema } from "./japan/audioProps";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -28,6 +30,8 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition
         id="JapanPart2"
@@ -36,6 +40,8 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition
         id="JapanPart3"
@@ -44,6 +50,8 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition
         id="JapanPart4"
@@ -52,6 +60,8 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition
         id="JapanPart5"
@@ -60,6 +70,8 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition
         id="JapanPart6"
@@ -68,6 +80,8 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition
         id="JapanPart7"
@@ -76,6 +90,8 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition
         id="JapanPart8"
@@ -84,6 +100,18 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
+      />
+      <Composition
+        id="JapanFull"
+        component={JapanFull}
+        durationInFrames={FULL_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+        schema={japanAudioSchema}
+        defaultProps={defaultAudioProps}
       />
       <Composition id="JapanCast" component={CastSheet} durationInFrames={30} fps={30} width={1920} height={1080} />
     </>

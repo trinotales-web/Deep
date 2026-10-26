@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { useJapanAssets } from "./assets";
+import { JapanAudioProps } from "./audioProps";
 import { C, ip, NARRATION_OFFSET, sec } from "./theme";
 import { CaptionStrip, Captions, GrainOverlay, PaperBg, Shot } from "./Stage";
 import { WORDS_P7 } from "./words-part7";
@@ -137,7 +138,7 @@ const SCENES: [keyof typeof T7, React.FC<{ f: number; from: number; to: number }
 
 const KEYS = Object.keys(T7) as (keyof typeof T7)[];
 
-export const JapanPart7: React.FC = () => {
+export const JapanPart7: React.FC<JapanAudioProps> = ({ musicVolume = 1, narrationVolume = 1 }) => {
   useJapanAssets();
   const f = useCurrentFrame();
   const s = (x: number) => sec(x);
@@ -159,9 +160,9 @@ export const JapanPart7: React.FC = () => {
       <CaptionStrip f={f} show={ip(f, [s(2.4), s(3.0)], [0, 1]) * ip(f, [s(172.6), s(173.4)], [1, 0])} />
       <Captions f={f} words={WORDS_P7} phrases={PHRASES_P7} keyColors={KEY_COLORS_P7} />
       <GrainOverlay />
-      <Audio src={staticFile("japan/music_p7.m4a")} />
+      <Audio src={staticFile("japan/music_p7.m4a")} volume={musicVolume} />
       <Sequence from={s(NARRATION_OFFSET)} layout="none">
-        <Audio src={staticFile("japan/narration_p7.m4a")} />
+        <Audio src={staticFile("japan/narration_p7.m4a")} volume={narrationVolume} />
       </Sequence>
     </AbsoluteFill>
   );

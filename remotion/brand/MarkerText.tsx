@@ -78,7 +78,9 @@ export const MarkerText: React.FC<{
   seed?: number;
   /** How hand-made it looks: 0 is ruler-straight. */
   jitter?: number;
-}> = ({ text, x, y, cap, maxWidth = Infinity, color = "#15161d", seed = 1, jitter = 1 }) => {
+  /** Stroke width on the 100-unit cap height; a wider pass under the letters makes an outline. */
+  weight?: number;
+}> = ({ text, x, y, cap, maxWidth = Infinity, color = "#15161d", seed = 1, jitter = 1, weight = STROKE }) => {
   const upper = text.toUpperCase();
   const k = Math.min(cap, (maxWidth * 100) / markerWidth(upper)) / 100;
   let pen = x - (markerWidth(upper) * k) / 2;
@@ -94,7 +96,7 @@ export const MarkerText: React.FC<{
       const cx = pen + ((w + STROKE) / 2) * k;
       letters.push(
         <g key={i} transform={`translate(${cx},${y + 50 * k + dy * k}) rotate(${rot}) scale(${k * sc}) translate(${-w / 2},-50)`}>
-          <path d={d} fill="none" stroke={color} strokeWidth={STROKE} strokeLinecap="round" strokeLinejoin="round" />
+          <path d={d} fill="none" stroke={color} strokeWidth={weight} strokeLinecap="round" strokeLinejoin="round" />
         </g>,
       );
     }

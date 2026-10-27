@@ -18,6 +18,9 @@ Whenever we create 3D animations or videos in this project, use exactly this sta
 - `remotion/components/Captions.tsx`: reusable word-highlighted captions (loads a `Caption[]` JSON)
 - `remotion/lib/useGsapTimeline.ts`: frame-driven GSAP hook
 - `public/animations/`: captions JSON, audio and other assets (load with `staticFile()`)
+- `remotion/toon/`: cartoon "history short" style kit: cel-shaded materials with ink outlines (`materials.ts`, `Part.tsx`), egg-head `Character` with painted faces (`face.ts`), set pieces (`Environment.tsx`, `props.tsx`), painted canvas layers (`paint.ts`), grain and vignette overlay (`FilmLook.tsx`)
+- `remotion/components/ShortsCaptions.tsx`: word-by-word uppercase captions; wrap a word in `*asterisks*` in the JSON to make it red
+- `remotion/compositions/LastSoldier/`: reference scene for that style (vertical 1080×1920)
 
 ### Rules
 

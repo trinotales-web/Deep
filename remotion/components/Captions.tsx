@@ -45,9 +45,8 @@ const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
   );
 };
 
-/** Loads a `Caption[]` JSON file from `public/` and renders word-highlighted pages. */
-export const Captions: React.FC<{ src: string }> = ({ src }) => {
-  const { fps } = useVideoConfig();
+/** Loads a `Caption[]` JSON file from `public/`, holding the render until it arrives. */
+export const useCaptionsFile = (src: string) => {
   const [captions, setCaptions] = useState<Caption[] | null>(null);
   const { delayRender, continueRender, cancelRender } = useDelayRender();
   const [handle] = useState(() => delayRender());
@@ -61,6 +60,14 @@ export const Captions: React.FC<{ src: string }> = ({ src }) => {
       })
       .catch((err) => cancelRender(err));
   }, [src, handle, continueRender, cancelRender]);
+
+  return captions;
+};
+
+/** Loads a `Caption[]` JSON file from `public/` and renders word-highlighted pages. */
+export const Captions: React.FC<{ src: string }> = ({ src }) => {
+  const { fps } = useVideoConfig();
+  const captions = useCaptionsFile(src);
 
   const pages = useMemo(
     () =>

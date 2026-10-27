@@ -1,0 +1,12 @@
+[
+  { "text": "In", "startMs": 150, "endMs": 350, "timestampMs": null, "confidence": null },
+  { "text": " 1974,", "startMs": 350, "endMs": 950, "timestampMs": null, "confidence": null },
+  { "text": " one", "startMs": 1050, "endMs": 1250, "timestampMs": null, "confidence": null },
+  { "text": " soldier", "startMs": 1250, "endMs": 1650, "timestampMs": null, "confidence": null },
+  { "text": " was", "startMs": 1650, "endMs": 1850, "timestampMs": null, "confidence": null },
+  { "text": " *still*", "startMs": 1850, "endMs": 2300, "timestampMs": null, "confidence": null },
+  { "text": " fighting", "startMs": 2350, "endMs": 2750, "timestampMs": null, "confidence": null },
+  { "text": " World", "startMs": 2800, "endMs": 3100, "timestampMs": null, "confidence": null },
+  { "text": " War", "startMs": 3100, "endMs": 3350, "timestampMs": null, "confidence": null },
+  { "text": " II.", "startMs": 3350, "endMs": 3900, "timestampMs": null, "confidence": null }
+]

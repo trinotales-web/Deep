@@ -1,0 +1,8 @@
+[
+  { "text": "Built", "startMs": 300, "endMs": 700, "timestampMs": 500, "confidence": 1 },
+  { "text": " with", "startMs": 700, "endMs": 1000, "timestampMs": 850, "confidence": 1 },
+  { "text": " Three.js,", "startMs": 1000, "endMs": 1800, "timestampMs": 1400, "confidence": 1 },
+  { "text": " Remotion", "startMs": 2000, "endMs": 2700, "timestampMs": 2350, "confidence": 1 },
+  { "text": " and", "startMs": 2700, "endMs": 3000, "timestampMs": 2850, "confidence": 1 },
+  { "text": " GSAP.", "startMs": 3000, "endMs": 3800, "timestampMs": 3400, "confidence": 1 }
+]

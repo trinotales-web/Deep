@@ -30,6 +30,12 @@ Whenever we create 3D animations or videos in this project, use exactly this sta
 4. **Audio**: use `<Audio src={staticFile(...)} />` from `@remotion/media`.
 5. Follow the `remotion-best-practices` skill (`.agents/skills/remotion-best-practices/`) for everything else, especially `rules/3d.md`, `rules/subtitles.md` and `rules/audio.md`.
 
+### Style and usage budget
+
+- Keep the **2D + 3D hybrid**: sky, clouds, hills, treelines, ground and foreground foliage are 2D painted canvas layers (`paint.ts`). Use 3D (`Part`/`Character`) only for characters and props that move, turn or need depth.
+- Reuse existing characters, outfits, props and set pieces before building new ones.
+- To keep credit usage low, check each scene with at most 2–3 half-scale stills (`--scale=0.5`), then do one final render. Don't inspect every frame.
+
 ### Commands
 
 ```bash

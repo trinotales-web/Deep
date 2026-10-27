@@ -20,7 +20,8 @@ Whenever we create 3D animations or videos in this project, use exactly this sta
 - `public/animations/`: captions JSON, audio and other assets (load with `staticFile()`)
 - `remotion/toon/`: cartoon "history short" style kit: cel-shaded materials with ink outlines (`materials.ts`, `Part.tsx`), egg-head `Character` with painted faces (`face.ts`), set pieces (`Environment.tsx`, `props.tsx`), painted canvas layers (`paint.ts`), grain and vignette overlay (`FilmLook.tsx`)
 - `remotion/components/ShortsCaptions.tsx`: word-by-word uppercase captions; wrap a word in `*asterisks*` in the JSON to make it red
-- `remotion/compositions/LastSoldier/`: reference scene for that style (vertical 1080×1920)
+- `remotion/compositions/KnightCamp.tsx`: approved reference frame for the channel style (16:9)
+- `remotion/compositions/LastSoldier/`: earlier vertical test scene
 
 ### Rules
 
@@ -29,6 +30,14 @@ Whenever we create 3D animations or videos in this project, use exactly this sta
 3. **Captions**: store captions as `Caption[]` JSON (`@remotion/captions`) in `public/animations/`, and render them with `<Captions src="animations/…json" />`.
 4. **Audio**: use `<Audio src={staticFile(...)} />` from `@remotion/media`.
 5. Follow the `remotion-best-practices` skill (`.agents/skills/remotion-best-practices/`) for everything else, especially `rules/3d.md`, `rules/subtitles.md` and `rules/audio.md`.
+
+### Final visual style (approved reference: the medieval knights short)
+
+Match this look exactly. Don't drift toward other styles (no pencil/hatching look).
+- Landscape 16:9 (1920×1080) cartoon history short. `remotion/compositions/KnightCamp.tsx` is the reference frame.
+- Characters: egg-head `Character` with thick warm-brown ink outlines and soft two-tone cel shading. Smug half-lidded or expressive faces. Knights wear a great helm with a raised slotted visor and chin guard, grey plate armour, and a yellow surcoat or shield with the red rampant lion (`heraldry.ts`).
+- Sets: pink/peach sunset or blue-grey storm skies, puffy ink-outlined clouds, mauve far hills, green fields with grass tufts and a dirt path. Striped pavilion tents, banners, campfire and pot, barrels.
+- Finish: subtle grain, warm tint, soft vignette.
 
 ### Style and usage budget
 

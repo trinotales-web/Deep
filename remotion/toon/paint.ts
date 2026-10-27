@@ -93,7 +93,7 @@ export const paintCloudBank = (
   const rand = rng(seed);
   for (let i = 0; i < count; i++) {
     const cw = w * (0.18 + rand() * 0.16);
-    const cx = (w * (i + 0.5)) / count + (rand() - 0.5) * w * 0.08;
+    const cx = Math.min(w - cw * 0.62, Math.max(cw * 0.62, (w * (i + 0.5)) / count + (rand() - 0.5) * w * 0.08));
     const cy = h * (0.35 + rand() * 0.45);
     paintCloud(ctx, cx, cy, cw, rand, colors, Math.max(3, w / 450));
   }
@@ -354,5 +354,33 @@ export const paintOrder = () => {
   ctx.beginPath();
   ctx.arc(300, 450, 34, 0, Math.PI * 2);
   ctx.fill();
+  return toTexture(canvas);
+};
+
+/** Dirt path strip (laid flat on the ground), ink-edged with pebbles. */
+export const paintPath = (w: number, h: number, seed: number) => {
+  const { canvas, ctx } = canvas2d(w, h);
+  const rand = rng(seed);
+  const edge = (side: 1 | -1) =>
+    Array.from({ length: 41 }, (_, i) => {
+      const y = (i / 40) * h;
+      const half = w * (0.36 + 0.04 * Math.sin(i * 0.7 + seed)) ;
+      return [w / 2 + side * half + Math.sin(i * 0.35) * w * 0.05, y] as [number, number];
+    });
+  const left = edge(-1);
+  const right = edge(1).reverse();
+  const path = new Path2D();
+  [...left, ...right].forEach(([x, y], i) => (i === 0 ? path.moveTo(x, y) : path.lineTo(x, y)));
+  path.closePath();
+  inkUnion(ctx, path, "#c9a46e", 4);
+  ctx.save();
+  ctx.clip(path);
+  for (let i = 0; i < 160; i++) {
+    ctx.fillStyle = rand() < 0.5 ? "rgba(140,105,65,0.45)" : "rgba(235,210,160,0.5)";
+    ctx.beginPath();
+    ctx.ellipse(rand() * w, rand() * h, 3 + rand() * 6, 2 + rand() * 3, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
   return toTexture(canvas);
 };

@@ -1,5 +1,8 @@
 import * as THREE from "three";
-import { INK } from "./materials";
+import { INK as DEFAULT_INK } from "./materials";
+
+// Feature ink for the face currently being painted (set per paintFace call).
+let INK = DEFAULT_INK;
 
 export type Expression =
   | "neutral"
@@ -21,6 +24,12 @@ export type FaceSpec = {
   glasses?: boolean;
   /** Tear progress 0..1 (0 = none). */
   tear?: number;
+  /** Sweat drop on the forehead. */
+  sweat?: boolean;
+  /** Pink blush under the eyes (instead of / with freckles). */
+  blush?: boolean;
+  /** Line color for features; defaults to the cartoon ink. */
+  ink?: string;
 };
 
 const SIZE = 512;
@@ -90,6 +99,7 @@ const brow = (ctx: Ctx, side: 1 | -1, inner: number, outer: number, w = 0.05) =>
 };
 
 const paintFace = (spec: FaceSpec) => {
+  INK = spec.ink ?? DEFAULT_INK;
   const canvas = document.createElement("canvas");
   canvas.width = SIZE;
   canvas.height = SIZE;
@@ -105,6 +115,10 @@ const paintFace = (spec: FaceSpec) => {
         disc(ctx, side * 0.41 + fx, -0.12 + fy, 0.017, "rgba(196,112,74,0.85)");
       }
     }
+  }
+
+  if (spec.blush) {
+    for (const side of [-1, 1]) disc(ctx, side * 0.42, -0.14, 0.11, "rgba(236,150,150,0.45)", 0.06);
   }
 
   const eyes = (draw: (x: number, side: 1 | -1) => void) => {
@@ -238,6 +252,18 @@ const paintFace = (spec: FaceSpec) => {
     ctx.moveTo(px(tx), py(ty + 0.07));
     ctx.quadraticCurveTo(px(tx + 0.05), py(ty - 0.01), px(tx), py(ty - 0.035));
     ctx.quadraticCurveTo(px(tx - 0.05), py(ty - 0.01), px(tx), py(ty + 0.07));
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  if (spec.sweat) {
+    ctx.fillStyle = "#bfe3f5";
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = u(0.02);
+    ctx.beginPath();
+    ctx.moveTo(px(0.5), py(0.52));
+    ctx.quadraticCurveTo(px(0.58), py(0.36), px(0.5), py(0.33));
+    ctx.quadraticCurveTo(px(0.42), py(0.36), px(0.5), py(0.52));
     ctx.fill();
     ctx.stroke();
   }

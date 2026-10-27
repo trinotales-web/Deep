@@ -13,7 +13,7 @@ const loadFonts = () => {
   return ready;
 };
 
-/** Blocks rendering until Montserrat is loaded; needed before painting text onto canvases. */
+/** Blocks rendering until the caption fonts are loaded; needed before painting text onto canvases. */
 export const useFontsReady = () => {
   const [ok, setOk] = useState(false);
   const { delayRender, continueRender, cancelRender } = useDelayRender();

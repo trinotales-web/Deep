@@ -47,6 +47,37 @@ export const setHaze = (color: string, near: number, far: number, max: number) =
   HAZE.uHazeMax.value = max;
 };
 
+/**
+ * Shared look switches. Default = bold cartoon (LastSoldier). `setStyle` with
+ * hatch > 0 gives an optional colored-pencil look: hatched fills, softer
+ * shadows, navy wobbly outlines that "boil" a little every few frames.
+ */
+export const STYLE = {
+  uHatch: { value: 0 },
+  uHatchSpacing: { value: 7 },
+  uShadeStrength: { value: 1 },
+  uPaper: { value: new THREE.Color("#efe5cc") },
+  uInk: { value: new THREE.Color(INK) },
+  uWobble: { value: 0 },
+  uBoil: { value: 0 },
+};
+
+export const setStyle = (o: {
+  hatch: number;
+  shadeStrength: number;
+  ink: string;
+  paper: string;
+  wobble: number;
+  boil: number;
+}) => {
+  STYLE.uHatch.value = o.hatch;
+  STYLE.uShadeStrength.value = o.shadeStrength;
+  STYLE.uInk.value.set(o.ink);
+  STYLE.uPaper.value.set(o.paper);
+  STYLE.uWobble.value = o.wobble;
+  STYLE.uBoil.value = o.boil;
+};
+
 const HAZE_GLSL = /* glsl */ `
 uniform vec3 uHazeColor;
 uniform float uHazeNear;
@@ -84,20 +115,47 @@ uniform float uGrain;
 uniform sampler2D uFace;
 uniform float uHasFace;
 uniform float uOpacity;
+uniform vec3 uStripe;
+uniform vec3 uStripeShade;
+uniform float uStripes;
+uniform float uHatch;
+uniform float uHatchSpacing;
+uniform float uShadeStrength;
+uniform vec3 uPaper;
 varying vec3 vN;
 varying vec3 vL;
 varying vec3 vObj;
 ${NOISE_GLSL}
 ${HAZE_GLSL}
+// 1 on a pencil stroke, 0 between strokes (screen space, slightly wavy and broken).
+float hatchLine(vec2 p, float angle, float spacing) {
+  vec2 dir = vec2(cos(angle), sin(angle));
+  float d = dot(p, dir) / spacing + vnoise(vec3(p * 0.012, 1.0)) * 1.2;
+  float f = abs(fract(d) - 0.5) * 2.0;
+  float along = vnoise(vec3(dot(p, vec2(-dir.y, dir.x)) * 0.05, floor(d), 2.0));
+  return (1.0 - smoothstep(0.25, 0.6, f)) * smoothstep(0.2, 0.45, along);
+}
 void main() {
   float d = dot(normalize(vN), vL);
   float lit = smoothstep(-0.05, 0.3, d);
-  vec3 col = mix(uShade, uColor, lit);
+  vec3 col = mix(mix(uColor, uShade, uShadeStrength), uColor, lit);
+  if (uStripes > 0.0) {
+    float a = atan(vObj.z, vObj.x) / 6.2831853 * uStripes;
+    float band = smoothstep(0.47, 0.53, abs(fract(a) - 0.5) * 2.0);
+    col = mix(col, mix(uStripeShade, uStripe, lit), band);
+  }
   if (uPatternAmt > 0.0) {
     float b = vnoise(vObj * uPatternScale + 3.0);
     col = mix(col, uPattern * mix(0.82, 1.0, lit), uPatternAmt * smoothstep(0.56, 0.6, b));
   }
   col *= 1.0 - uGrain * (vnoise(vObj * 7.0) * 0.5 + specks(vObj * 16.0) * 0.9);
+  if (uHatch > 0.0) {
+    vec2 p = gl_FragCoord.xy;
+    float h1 = hatchLine(p, 0.8, uHatchSpacing);
+    float h2 = hatchLine(p, -0.7, uHatchSpacing * 0.85);
+    col = mix(col, uPaper, uHatch * 0.22 * (1.0 - h1));
+    col *= 1.0 - uHatch * (0.1 * h1 + 0.2 * (1.0 - lit) * h2);
+  }
   if (uHasFace > 0.5 && vObj.z > 0.0) {
     vec4 f = texture2D(uFace, vObj.xy * 0.5 + 0.5);
     col = mix(col, f.rgb, f.a);
@@ -109,10 +167,14 @@ void main() {
 
 const OUTLINE_VERT = /* glsl */ `
 uniform float uThickness;
+uniform float uWobble;
+uniform float uBoil;
 varying float vDepth;
+${NOISE_GLSL}
 void main() {
   vec4 mv = modelViewMatrix * vec4(position, 1.0);
-  mv.xyz += normalize(normalMatrix * normal) * uThickness;
+  float w = 1.0 + uWobble * (vnoise(position * 9.0 + uBoil * 17.0) - 0.5) * 2.0;
+  mv.xyz += normalize(normalMatrix * normal) * uThickness * w;
   vDepth = -mv.z;
   gl_Position = projectionMatrix * mv;
 }
@@ -140,6 +202,9 @@ export type ToonOpts = {
   /** Unlit look (flames, glowing things): shade equals color. */
   flat?: boolean;
   opacity?: number;
+  /** Vertical stripes around the y axis (tents, banners): second color and count. */
+  stripe?: string;
+  stripes?: number;
 };
 
 const shadeOf = (hex: string) =>
@@ -164,7 +229,11 @@ const makeToon = (o: ToonOpts, face: THREE.Texture | null) => {
       uHasFace: { value: face ? 1 : 0 },
       uLightDir: { value: LIGHT_DIR },
       uOpacity: { value: opacity },
+      uStripe: { value: new THREE.Color(o.stripe ?? o.color) },
+      uStripeShade: { value: o.flat ? new THREE.Color(o.stripe ?? o.color) : shadeOf(o.stripe ?? o.color) },
+      uStripes: { value: o.stripe ? (o.stripes ?? 10) : 0 },
       ...HAZE,
+      ...STYLE,
     },
   });
 };
@@ -182,22 +251,23 @@ export const toonMaterial = (o: ToonOpts): THREE.ShaderMaterial => {
   return m;
 };
 
-const faceCache = new Map<THREE.Texture, THREE.ShaderMaterial>();
+const faceCache = new Map<string, THREE.ShaderMaterial>();
 
-/** Toon material whose front (+z, object space) has a painted face texture projected onto it. */
+/** Toon material whose front (+z, object space) has a painted texture (face, emblem) projected onto it. */
 export const faceMaterial = (o: ToonOpts, face: THREE.Texture): THREE.ShaderMaterial => {
-  let m = faceCache.get(face);
+  const key = `${face.uuid}|${JSON.stringify(o)}`;
+  let m = faceCache.get(key);
   if (!m) {
     m = makeToon(o, face);
-    faceCache.set(face, m);
+    faceCache.set(key, m);
   }
   return m;
 };
 
 const outlineCache = new Map<string, THREE.ShaderMaterial>();
 
-/** Inverted-hull outline: back faces pushed out along the normal, drawn in ink. */
-export const outlineMaterial = (thickness: number, color: string = INK) => {
+/** Inverted-hull outline: back faces pushed out along the normal, drawn in the style's ink. */
+export const outlineMaterial = (thickness: number, color?: string) => {
   const key = `${thickness}|${color}`;
   let m = outlineCache.get(key);
   if (!m) {
@@ -207,8 +277,9 @@ export const outlineMaterial = (thickness: number, color: string = INK) => {
       side: THREE.BackSide,
       uniforms: {
         uThickness: { value: thickness },
-        uColor: { value: new THREE.Color(color) },
         ...HAZE,
+        ...STYLE,
+        uColor: color ? { value: new THREE.Color(color) } : STYLE.uInk,
       },
     });
     outlineCache.set(key, m);

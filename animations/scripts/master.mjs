@@ -39,7 +39,7 @@ const meas = JSON.parse(json[0]);
 // pass 2: apply (linear when possible)
 const ln = `loudnorm=${target}:measured_I=${meas.input_i}:measured_TP=${meas.input_tp}:measured_LRA=${meas.input_lra}:measured_thresh=${meas.input_thresh}:offset=${meas.target_offset}:linear=true`;
 // final brick-wall limiter keeps true peaks under -1 dBTP after the gain change
-const post = systemOk ? ",alimiter=limit=0.87:attack=2:release=50:level=disabled" : "";
+const post = systemOk ? ",alimiter=limit=0.8:attack=2:release=50:level=disabled" : "";
 const r = run(["-hide_banner", "-y", "-i", input, "-c:v", "copy", "-af", `${pre}${ln}${post},aresample=48000`, "-c:a", "aac", "-b:a", "192k", output]);
 if (r.status !== 0) {
   console.error(r.stderr);

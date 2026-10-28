@@ -27,6 +27,8 @@ def main():
     ap.add_argument("script")
     ap.add_argument("out")
     ap.add_argument("--merge", action="append", default=[], help='"spoken words=Display" (repeatable)')
+    ap.add_argument("--dict", action="append", default=[], help='"word=PH ON EMES" pronunciation for names not in the dictionary (repeatable)')
+    ap.add_argument("--say", action="append", default=[], help='"1,600=sixteen hundred": how a written token is spoken (repeatable)')
     a = ap.parse_args()
 
     ffmpeg = os.environ.get("FFMPEG", "ffmpeg")
@@ -36,10 +38,16 @@ def main():
     ).stdout
 
     text = open(a.script, encoding="utf8").read()
+    for rule in a.say:
+        written, spoken = rule.split("=", 1)
+        text = text.replace(written, spoken)
     tokens = text.split()
     words = [w.lower() for w in re.findall(r"[A-Za-z']+", text)]
 
     dec = Decoder(samprate=16000, bestpath=False, loglevel="ERROR")
+    for rule in a.dict:
+        w, phones = rule.split("=", 1)
+        dec.add_word(w.lower(), phones.strip(), True)
     dec.set_align_text(" ".join(words))
     dec.start_utt()
     dec.process_raw(raw, full_utt=True)
@@ -68,7 +76,7 @@ def main():
         while k < len(caps):
             window = [re.sub(r"[^\w']", "", c["text"]).lower() for c in caps[k : k + len(parts)]]
             if window == [p.lower() for p in parts]:
-                tail = re.sub(r"[\w']+$", "", caps[k + len(parts) - 1]["text"])  # keep trailing punctuation
+                tail = re.match(r"[\w']*(.*)$", caps[k + len(parts) - 1]["text"]).group(1)  # keep trailing punctuation
                 out.append({"text": shown + tail, "startMs": caps[k]["startMs"], "endMs": caps[k + len(parts) - 1]["endMs"]})
                 k += len(parts)
             else:

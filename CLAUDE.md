@@ -54,6 +54,10 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
 - **Process every voiceover first**: `node scripts/process-vo.mjs public/vo/<name>.mp3`
   → `<name>.voice.m4a` (high-pass, de-box, presence, de-ess, gentle compression,
   -16 LUFS). Use the processed file as the episode's `voiceover`.
+- **Tighten long reads before processing**: align the raw VO first, then
+  `python3 scripts/tighten-vo.py <vo.mp3> <captions.json> <script.txt> <out.wav> <out.json> [--beat "out.=0.6"]`
+  removes dead air (never speech), keeps natural pauses and chosen dramatic
+  beats, and remaps the captions. Process `out.wav` and use `out.json`.
 - Layers under the voice: an ambience bed per location (quiet), a whoosh on
   every cut, impacts on key words, small foley on character actions. Every
   effect and ambience ducks under speech (`duck` / `gainAt` with
@@ -72,10 +76,8 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `SoundAt` + `licensedSrc(name, file)`. **Never commit or redistribute these
   files** — the license only allows using them inside videos. Prefer the bundle
   for hits/whooshes/foley; use the synth library for loopable ambience beds.
-- Mix check: render the episode's `…AudioOnly` composition with
-  `withVoice: false` and compare against the VO: the whole bed should sit about
-  6–9 dB under the narration (hits may come close). Set bus gains (`MUSIC`,
-  `AMB`, `FX`) in the episode's `sound.tsx`.
+- Set bus gains (`AMB`, `FX`, `*_DUCK`) in the episode's `sound.tsx` and render
+  the `…AudioOnly` composition (`--codec=wav`) for the mix check above.
 
 ## Kit map (`animations/src/kit`)
 
@@ -111,7 +113,9 @@ keep randomness seeded (`rng`, `noise1`), `<Sequence layout="none">` inside a
 canvas. Add new props/characters to the kit, not to episodes, when reusable.
 
 ## Making an episode (templates: `src/episodes/woodenwall/` — real VO, ~90 s
-short, 38 shots; `src/episodes/onoda/` — small demo)
+short, 38 shots; `src/episodes/firearrows/` — 16:9 long video, ~8 min, ~180
+shots in act files `actA…actE.tsx` with the cut list in `timeline.ts`;
+`src/episodes/onoda/` — small demo)
 
 1. `script.ts` — shot list with durations, narration phrases (`*word*` = red),
    transition length.
@@ -135,5 +139,7 @@ short, 38 shots; `src/episodes/onoda/` — small demo)
 - `npx remotion render WoodenWallShort out/wooden-wall.mp4 && node scripts/master.mjs out/wooden-wall.mp4`
 - `npm run audio` — regenerate the sound library
 - `npm run typecheck`
+- Long videos: render the muted video in chunks (`--frames=a-b --muted`), concat
+  with ffmpeg, render the `…AudioOnly` mix (`--codec=wav`), mux, then master.
 - In a cloud container with no GPU or internet, add
   `--gl=swangle --browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`

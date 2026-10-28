@@ -3,6 +3,7 @@ import type { ShotProps } from "../../kit";
 import * as A from "./actA";
 import * as B from "./actB";
 import * as C from "./actC";
+import * as D from "./actD";
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
 export type Cut = { id: string; at: number; into: Into; C: React.FC<ShotProps> };
@@ -130,4 +131,35 @@ export const CUTS: Cut[] = [
   { id: "h17", at: 302.7, into: "cut", C: C.DirtShot },
   { id: "h18", at: 305.7, into: "cut", C: C.MakeScaryShot },
   { id: "h19", at: 309.85, into: "cut", C: C.BiggerShot },
+  // Saguntum: the falarica
+  { id: "i01", at: 311.0, into: "slide-left", C: D.SaguntumTitleShot },
+  { id: "i02", at: 313.8, into: "cut", C: D.HannibalShot },
+  { id: "i03", at: 315.5, into: "cut", C: D.FalaricaWeaponShot },
+  { id: "i04", at: 317.75, into: "cut", C: D.NotArrowShot },
+  { id: "i05", at: 318.85, into: "cut", C: D.SpearDiagramShot },
+  { id: "i06", at: 321.8, into: "cut", C: D.WrapThrowShot },
+  { id: "i07", at: 325.85, into: "cut", C: D.ShieldBurnShot },
+  { id: "i08", at: 329.15, into: "cut", C: D.OpenToSpearShot },
+  { id: "i09", at: 334.05, into: "cut", C: D.LivyShot },
+  { id: "i10", at: 337.95, into: "cut", C: D.PatternShot },
+  { id: "i11", at: 338.95, into: "cut", C: D.BigHeavyShot },
+  { id: "i12", at: 340.9, into: "cut", C: D.ShowShot },
+  // the Viking funeral
+  { id: "j01", at: 343.4, into: "slide-left", C: D.SceneSeenShot },
+  { id: "j02", at: 347.05, into: "cut", C: D.VikingFuneralTitleShot },
+  { id: "j03", at: 348.75, into: "cut", C: D.DeadKingShot },
+  { id: "j04", at: 352.0, into: "cut", C: D.VikingArcherShot },
+  { id: "j05", at: 353.75, into: "cut", C: D.ShipBurstsShot },
+  { id: "j06", at: 356.45, into: "cut", C: D.BeautifulShot },
+  { id: "j07", at: 357.3, into: "cut", C: D.NoProofShot },
+  { id: "j08", at: 359.3, into: "slide-left", C: D.IbnFadlanShot },
+  { id: "j09", at: 363.2, into: "cut", C: D.Year922Shot },
+  { id: "j10", at: 367.25, into: "cut", C: D.VolgaShot },
+  { id: "j11", at: 370.3, into: "cut", C: D.NotOnWaterShot },
+  { id: "j12", at: 372.25, into: "cut", C: D.PulledLandShot },
+  { id: "j13", at: 374.3, into: "cut", C: D.NobodyShotShot },
+  { id: "j14", at: 376.0, into: "cut", C: D.NakedRelativeShot },
+  { id: "j15", at: 379.5, into: "cut", C: D.BackwardsShot },
+  { id: "j16", at: 380.6, into: "cut", C: D.BurningWoodShot },
+  { id: "j17", at: 382.5, into: "cut", C: D.SetFireHimselfShot },
 ];

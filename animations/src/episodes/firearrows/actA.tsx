@@ -265,7 +265,7 @@ export const DropShot: React.FC<ShotProps> = ({ start }) => {
 };
 
 /** A volley of fire arrows across a night sky (used inside "movie" shots). */
-const Volley: React.FC<{ t: number; n?: number; dir?: 1 | -1; spread?: number; seed?: number; fire?: boolean }> = ({ t, n = 14, dir = 1, spread = 900, seed = 1, fire = true }) => (
+export const Volley: React.FC<{ t: number; n?: number; dir?: 1 | -1; spread?: number; seed?: number; fire?: boolean }> = ({ t, n = 14, dir = 1, spread = 900, seed = 1, fire = true }) => (
   <>
     {Array.from({ length: n }, (_, i) => {
       const off = ((i * 0.37 + seed * 0.13) % 1) * 1.2;

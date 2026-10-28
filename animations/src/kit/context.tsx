@@ -97,6 +97,8 @@ export const X: React.FC<XProps> = ({
   children,
 }) => {
   const parent = useKit();
+  // a zero scale (e.g. a pop-in at its first frame) would make the outline math divide by zero
+  if (s * sx === 0 || s * sy === 0) return null;
   const scl = Math.sqrt(Math.abs(s * sx * s * sy));
   const value: KitContext = {
     m: compose(parent.m, x, y, rot, s * sx, s * sy),

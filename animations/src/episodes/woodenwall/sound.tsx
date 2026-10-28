@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useVideoConfig } from "remotion";
 import type { Caption } from "@remotion/captions";
 import { Ambience, Sfx, SoundAt, licensedSrc, duckFromCaptions, type SfxName } from "../../kit/audio";
@@ -145,8 +145,8 @@ const steps = (from: number, to: number, rate: number) => {
 
 export const WoodenWallSound: React.FC<{ captions: Caption[] }> = ({ captions }) => {
   const { fps } = useVideoConfig();
-  const fxDuck = duckFromCaptions(captions, fps, FX_DUCK, 0.12);
-  const ambDuck = duckFromCaptions(captions, fps, AMB_DUCK, 0.2);
+  const fxDuck = useMemo(() => duckFromCaptions(captions, fps, FX_DUCK, 0.12), [captions, fps]);
+  const ambDuck = useMemo(() => duckFromCaptions(captions, fps, AMB_DUCK, 0.2), [captions, fps]);
   const slides = CUTS.filter((c) => c.into !== "cut" && c.at > 0);
   return (
     <>

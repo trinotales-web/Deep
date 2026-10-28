@@ -79,8 +79,7 @@ export const Ambience: React.FC<{
  */
 export const duckFromCaptions = (captions: Caption[], fps: number, depth = 0.45, ramp = 0.15) => {
   const spans = captions.map((c) => [c.startMs / 1000 - 0.08, c.endMs / 1000 + 0.2] as const);
-  return (frame: number) => {
-    const t = frame / fps;
+  const curve = (t: number) => {
     let d = Infinity;
     for (const [a, b] of spans) {
       if (t >= a && t <= b) return depth;
@@ -88,6 +87,16 @@ export const duckFromCaptions = (captions: Caption[], fps: number, depth = 0.45,
     }
     const k = Math.min(1, d / ramp);
     return depth + (1 - depth) * k;
+  };
+  // every audio element asks for its gain on every frame: cache per frame
+  const cache = new Map<number, number>();
+  return (frame: number) => {
+    let v = cache.get(frame);
+    if (v === undefined) {
+      v = curve(frame / fps);
+      cache.set(frame, v);
+    }
+    return v;
   };
 };
 
@@ -118,18 +127,20 @@ export const licensedSrc = (bundle: string, name: string, ext = "mp3") => static
  * Any one-shot audio file at `at` seconds. `duck` (absolute frame → gain)
  * pulls it under the voiceover while someone is speaking.
  */
-export const SoundAt: React.FC<{ src: string; at: number; volume?: number; rate?: number; name?: string; duck?: (frame: number) => number }> = ({
-  src,
-  at,
-  volume = 0.7,
-  rate = 1,
-  name,
-  duck,
-}) => {
+export const SoundAt: React.FC<{
+  src: string;
+  at: number;
+  volume?: number;
+  rate?: number;
+  name?: string;
+  duck?: (frame: number) => number;
+  /** Seconds to keep the sound mounted (≥ the file's length); unmounting afterwards keeps long renders fast. */
+  dur?: number;
+}> = ({ src, at, volume = 0.7, rate = 1, name, duck, dur = 8 }) => {
   const { fps } = useVideoConfig();
   const from = Math.max(0, sec(at, fps));
   return (
-    <Sequence from={from} layout="none" name={name ?? "sfx"}>
+    <Sequence from={from} durationInFrames={Math.ceil((dur * fps) / rate)} layout="none" name={name ?? "sfx"}>
       <Audio src={src} volume={duck ? (f) => volume * duck(from + f) : volume} playbackRate={rate} />
     </Sequence>
   );

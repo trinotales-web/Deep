@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useVideoConfig } from "remotion";
 import type { Caption } from "@remotion/captions";
 import { Ambience, Bed, Sfx, SoundAt, licensedSrc, duckFromCaptions, type SfxName } from "../../kit/audio";
@@ -447,8 +447,8 @@ const BEDS: [Parameters<typeof Ambience>[0]["name"], number, number, number][] =
 
 export const FireArrowsSound: React.FC<{ captions: Caption[] }> = ({ captions }) => {
   const { fps } = useVideoConfig();
-  const fxDuck = duckFromCaptions(captions, fps, FX_DUCK, 0.12);
-  const ambDuck = duckFromCaptions(captions, fps, AMB_DUCK, 0.2);
+  const fxDuck = useMemo(() => duckFromCaptions(captions, fps, FX_DUCK, 0.12), [captions, fps]);
+  const ambDuck = useMemo(() => duckFromCaptions(captions, fps, AMB_DUCK, 0.2), [captions, fps]);
   const slides = CUTS.filter((c) => c.into === "slide-left" || c.into === "slide-up");
   // hard cuts get a soft swish unless a cue already lands right there
   const hardCuts = CUTS.filter((c) => c.into === "cut" && c.at > 0 && !CUES.some(([t]) => Math.abs(t - c.at) < 0.35));

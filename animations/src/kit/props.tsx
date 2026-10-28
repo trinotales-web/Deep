@@ -474,3 +474,36 @@ export const Crosshair: React.FC<XProps & { r?: number }> = ({ r = 160, ...xf })
     <InkLine pts={[[0, r * 0.5], [0, r * 1.3]]} width={14} color="#fe5649" outline={6} />
   </X>
 );
+
+/**
+ * Magnifying glass. Origin = grip (handle end); the lens sits up the +y axis.
+ * `eye` draws a giant magnified eye inside the lens (gaze -1..1 each axis).
+ */
+export const Magnifier: React.FC<XProps & { r?: number; eye?: boolean; gaze?: [number, number] }> = ({ r = 70, eye = false, gaze = [0, 0], ...xf }) => {
+  const cy = 120 + r;
+  const ring = Array.from({ length: 41 }, (_, k) => [Math.cos((k / 40) * Math.PI * 2) * r, cy + Math.sin((k / 40) * Math.PI * 2) * r] as [number, number]);
+  return (
+    <X {...xf}>
+      <Part shape={roundRect(26, 116, 12)} color="#7a4a2a" shade={0.3} y={58} />
+      <Part shape={roundRect(34, 20, 8)} color={palette.gold} shade={0.25} y={104} z={0.001} />
+      <Part shape={circle(r)} color="#cfeeff" flat outline={0} opacity={0.35} y={cy} z={0.002} />
+      {eye ? (
+        <X y={cy} z={0.003}>
+          <Part shape={circle(r * 0.72)} color="#ffffff" shade={0.15} />
+          <Part shape={circle(r * 0.34)} color="#211b20" flat outline={0} x={gaze[0] * r * 0.25} y={gaze[1] * r * 0.25} z={0.001} />
+          <Part shape={circle(r * 0.1)} color="#ffffff" flat outline={0} x={gaze[0] * r * 0.25 - r * 0.12} y={gaze[1] * r * 0.25 + r * 0.12} z={0.002} />
+        </X>
+      ) : null}
+      <Part shape={ellipse(r * 0.28, r * 0.12)} color="#ffffff" flat outline={0} opacity={0.65} x={-r * 0.38} y={cy + r * 0.42} rot={0.7} z={0.004} />
+      <InkLine pts={ring} width={r * 0.24} color="#5a3a26" outline={6} z={0.005} />
+    </X>
+  );
+};
+
+/** Protest-style placard on a stick (write on it with a Label). Origin = bottom of the stick. */
+export const Placard: React.FC<XProps & { w?: number; h?: number; stick?: number; color?: string }> = ({ w = 110, h = 120, stick = 120, color = "#f8f4ea", ...xf }) => (
+  <X {...xf}>
+    <InkLine pts={[[0, 0], [0, stick + 10]]} width={12} color={palette.wood} outline={4} />
+    <Part shape={roundRect(w, h, 10)} color={color} shade={0.14} y={stick + h / 2 - 6} z={0.001} />
+  </X>
+);

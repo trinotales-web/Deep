@@ -397,3 +397,67 @@ export const Pagoda: React.FC<XProps & { tiers?: number; w?: number; color?: str
     <Part shape={roundRect(14, 80, 6)} color={palette.gold} y={tiers * 170 + 60} z={0.1} />
   </X>
 );
+
+/** Egyptian pyramid with stone courses; the side away from the light is a darker facet. Origin = ground center. */
+export const Pyramid: React.FC<XProps & { w?: number; h?: number; color?: string }> = ({ w = 420, h = 260, color = "#e3bb7a", ...xf }) => {
+  const rows = 7;
+  return (
+    <X {...xf}>
+      <Part shape={poly([[-w / 2, 0], [w / 2, 0], [0, h]])} color={color} shade={0.1}>
+        <Part shape={poly([[w * 0.12, 0], [w / 2, 0], [0, h]])} color={shadeHex(color, 0.16)} flat outline={0} z={0.001} />
+        {Array.from({ length: rows - 1 }, (_, i) => {
+          const y = ((i + 1) / rows) * h;
+          const half = (w / 2) * (1 - y / h);
+          return <Line key={i} pts={[[-half + 6, y], [half - 6, y]]} width={3.5} color={shadeHex(color, 0.35)} z={0.002} />;
+        })}
+      </Part>
+    </X>
+  );
+};
+
+/** Leaning Tower of Pisa (arcaded tiers + belfry). Origin = ground center; `lean` in radians (negative leans right). */
+export const LeaningTower: React.FC<XProps & { tiers?: number; w?: number; lean?: number; color?: string }> = ({ tiers = 6, w = 130, lean = -0.08, color = "#f1ece0", ...xf }) => {
+  const th = 52;
+  return (
+    <X {...xf}>
+      <X rot={lean}>
+        <Part shape={roundRect(w * 1.08, 26, 6)} color={shadeHex(color, 0.06)} shade={0.2} y={13} />
+        {Array.from({ length: tiers }, (_, i) => (
+          <X key={i} y={26 + i * th} z={0.001 + i * 0.001}>
+            <Part shape={roundRect(w, th, 4)} color={color} shade={0.22} y={th / 2} />
+            {[-0.32, -0.11, 0.11, 0.32].map((k) => (
+              <Part key={k} shape={roundRect(w * 0.12, th * 0.56, w * 0.06)} color={shadeHex(color, 0.4)} flat outline={3} x={k * w} y={th * 0.44} z={0.001} />
+            ))}
+            <Part shape={roundRect(w * 1.08, 10, 4)} color={shadeHex(color, 0.04)} shade={0.2} y={th} z={0.002} />
+          </X>
+        ))}
+        <X y={26 + tiers * th} z={0.02}>
+          <Part shape={roundRect(w * 0.72, th * 0.8, 4)} color={color} shade={0.22} y={th * 0.4} />
+          {[-0.15, 0.15].map((k) => (
+            <Part key={k} shape={roundRect(w * 0.1, th * 0.42, w * 0.05)} color={shadeHex(color, 0.4)} flat outline={3} x={k * w} y={th * 0.4} z={0.001} />
+          ))}
+          <Part shape={roundRect(w * 0.8, 10, 4)} color={shadeHex(color, 0.04)} shade={0.2} y={th * 0.8} z={0.002} />
+        </X>
+      </X>
+    </X>
+  );
+};
+
+/** Easter Island moai, seen from the front. Origin = ground center. */
+export const Moai: React.FC<XProps & { h?: number; color?: string; hat?: boolean }> = ({ h = 300, color = "#8a8580", hat = false, ...xf }) => {
+  const w = h * 0.5;
+  return (
+    <X {...xf}>
+      {[-1, 1].map((k) => (
+        <Part key={k} shape={roundRect(w * 0.16, h * 0.34, w * 0.07)} color={shadeHex(color, 0.06)} shade={0.25} x={k * w * 0.54} y={h * 0.62} z={-0.001} />
+      ))}
+      <Part shape={roundPoly([[-w * 0.5, 0], [w * 0.5, 0], [w * 0.52, h * 0.86], [w * 0.4, h], [-w * 0.4, h], [-w * 0.52, h * 0.86]], 14)} color={color} shade={0.22}>
+        <Part shape={roundRect(w * 0.9, h * 0.08, h * 0.04)} color={shadeHex(color, 0.28)} flat outline={0} y={h * 0.7} z={0.001} />
+        <Part shape={roundPoly([[-w * 0.1, h * 0.7], [w * 0.1, h * 0.7], [w * 0.16, h * 0.42], [-w * 0.16, h * 0.42]], 8)} color={shadeHex(color, 0.08)} shade={0.25} z={0.002} />
+        <Line pts={[[-w * 0.22, h * 0.3], [w * 0.22, h * 0.3]]} width={5} color={shadeHex(color, 0.45)} z={0.003} />
+        <Line pts={[[-w * 0.16, h * 0.24], [w * 0.16, h * 0.24]]} width={4} color={shadeHex(color, 0.45)} z={0.003} />
+      </Part>
+      {hat ? <Part shape={roundRect(w * 0.6, h * 0.14, h * 0.05)} color="#b0533a" shade={0.25} y={h * 1.04} z={0.01} /> : null}
+    </X>
+  );
+};

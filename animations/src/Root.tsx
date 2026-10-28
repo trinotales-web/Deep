@@ -8,6 +8,7 @@ import { WoodenWall, WoodenWallAudio, WoodenWallVisuals, calculateWoodenWallMeta
 import { TOTAL_FRAMES as WW_FRAMES } from "./episodes/woodenwall/script";
 import { AncientTest } from "./dev/AncientTest";
 import { MedievalTest } from "./dev/MedievalTest";
+import { ChannelBanner, ChannelLogo } from "./brand/Brand";
 
 // When the voiceover is ready: put it in public/vo/, run
 // `node scripts/transcribe.mjs public/vo/onoda.mp3`, then set
@@ -89,6 +90,10 @@ export const RemotionRoot = () => {
           calculateMetadata={calculateOnodaMetadata}
         />
         <Composition id="OnodaVisualsOnly" component={OnodaVisuals} durationInFrames={TOTAL_FRAMES} fps={30} width={1080} height={1920} />
+      </Folder>
+      <Folder name="Brand">
+        <Composition id="ChannelBanner" component={ChannelBanner} durationInFrames={30} fps={30} width={2560} height={1440} defaultProps={{ guides: false }} />
+        <Composition id="ChannelLogo" component={ChannelLogo} durationInFrames={30} fps={30} width={800} height={800} />
       </Folder>
       <Folder name="Dev">
         <Composition id="KitTest" component={KitTest} durationInFrames={90} fps={30} width={1080} height={1920} />

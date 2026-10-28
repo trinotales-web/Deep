@@ -10,6 +10,7 @@ export type HatKind =
   | "helmet" | "fieldcap" | "sidecap" | "officer" | "headband" | "bandana" | "hardhat"
   | "persian" | "crown" | "veil" | "wreath" | "corinthian" | "hood"
   | "kettle" | "viking" | "turban" | "kabuto" | "song" | "joseon" | "astronaut"
+  | "explorer" | "bicorne" | "nemes"
   | null;
 export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | null;
 
@@ -274,6 +275,48 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
         </X>
       );
     }
+    case "explorer": {
+      // explorer's safari hat: tall khaki crown, dark band, wide soft brim
+      const c = color ?? "#c9a86a";
+      return (
+        <X y={46}>
+          <Part shape={blob([[-84, 4], [-80, 60], [-60, 98], [-20, 108], [24, 112], [64, 100], [82, 62], [86, 4]], 8)} color={c} shade={0.28} />
+          <Part shape={roundRect(176, 26, 10)} color={accent ?? "#5a3a26"} y={18} z={0.001} />
+          <Part shape={blob([[-170, -2], [-120, 14], [0, 20], [120, 14], [170, -2], [110, -16], [0, -18], [-110, -16]], 8)} color={shadeHex(c, 0.05)} shade={0.25} y={2} z={0.002} />
+          <Line pts={[[-30, 100], [0, 80], [30, 104]]} smooth width={4} color={shadeHex(c, 0.35)} z={0.003} />
+        </X>
+      );
+    }
+    case "bicorne": {
+      // Napoleon's bicorne, worn side-on, with a tricolour cockade
+      const c = color ?? "#23202a";
+      return (
+        <X y={58}>
+          <Part shape={blob([[-178, -6], [-130, 24], [-70, 84], [0, 112], [70, 84], [130, 24], [178, -6], [110, 6], [0, 14], [-110, 6]], 8)} color={c} shade={0.22} />
+          <Line pts={[[-170, -2], [-110, 10], [0, 18], [110, 10], [170, -2]]} smooth width={6} color={accent ?? palette.gold} z={0.001} />
+          <Part shape={circle(26)} color="#2f4f9a" flat outline={4} x={40} y={50} z={0.002}>
+            <Part shape={circle(17)} color="#f4f1ea" flat outline={0} z={0.001} />
+            <Part shape={circle(9)} color="#c0362c" flat outline={0} z={0.002} />
+          </Part>
+        </X>
+      );
+    }
+    case "nemes": {
+      // pharaoh's striped headcloth (front part; the lappets are in HatBack)
+      const c = color ?? palette.gold;
+      const stripe = accent ?? "#2f4f9a";
+      return (
+        <X y={20}>
+          <Part shape={blob([[-110, 10], [-106, 64], [-74, 112], [0, 132], [74, 112], [106, 64], [110, 10], [60, 24], [0, 28], [-60, 24]], 8)} color={c} shade={0.25}>
+            {[-70, -35, 0, 35, 70].map((x) => (
+              <Part key={x} shape={poly([[x - 9, 30], [x + 9, 30], [x * 0.6 + 8, 128], [x * 0.6 - 8, 128]])} color={stripe} flat outline={0} z={0.001} />
+            ))}
+          </Part>
+          <Part shape={roundRect(214, 22, 10)} color={c} shade={0.2} y={22} z={0.002} />
+          <Part shape={blob([[0, 28], [10, 46], [6, 74], [-6, 74], [-10, 46]], 6)} color={palette.gold} shade={0.2} x={30} y={10} z={0.003} />
+        </X>
+      );
+    }
     case "astronaut": {
       return (
         <X y={6}>
@@ -298,6 +341,21 @@ export const HatBack: React.FC<{ kind: HatKind; color?: string }> = ({ kind, col
         color={shadeHex(c, 0.12)}
         shade={0.2}
       />
+    );
+  }
+  if (kind === "nemes") {
+    // striped lappets flaring down behind the ears to the shoulders
+    const c = color ?? palette.gold;
+    return (
+      <Part shape={blob([[-104, 40], [-150, -120], [-136, -176], [136, -176], [150, -120], [104, 40]], 8)} color={shadeHex(c, 0.08)} shade={0.2}>
+        {[
+          [-140, 270],
+          [-80, 256],
+          [-20, 222],
+        ].map(([y, w]) => (
+          <Part key={y} shape={roundRect(w, 18, 4)} color="#2f4f9a" flat outline={0} y={y} z={0.001} />
+        ))}
+      </Part>
     );
   }
   if (kind === "persian") {

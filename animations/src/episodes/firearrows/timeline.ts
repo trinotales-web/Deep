@@ -2,6 +2,7 @@ import type React from "react";
 import type { ShotProps } from "../../kit";
 import * as A from "./actA";
 import * as B from "./actB";
+import * as C from "./actC";
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
 export type Cut = { id: string; at: number; into: Into; C: React.FC<ShotProps> };
@@ -83,4 +84,50 @@ export const CUTS: Cut[] = [
   { id: "f16", at: 191.4, into: "cut", C: B.SailShot },
   { id: "f17", at: 192.3, into: "cut", C: B.HayShot },
   { id: "f18", at: 193.65, into: "cut", C: B.SiegesShot },
+  // Athens, the wooden wall
+  { id: "g01", at: 198.45, into: "slide-left", C: C.AthensTitleShot },
+  { id: "g02", at: 200.6, into: "cut", C: C.PersianMarchShot },
+  { id: "g03", at: 203.25, into: "cut", C: C.EmptyCityShot },
+  { id: "g04", at: 205.3, into: "cut", C: C.AcropolisStayShot },
+  { id: "g05", at: 210.0, into: "cut", C: C.WhyStayShot },
+  { id: "g06", at: 210.85, into: "cut", C: C.OracleShot },
+  { id: "g07", at: 215.4, into: "cut", C: C.ProphecyWallShot },
+  { id: "g08", at: 217.4, into: "cut", C: C.ShipsMeantShot },
+  { id: "g09", at: 219.2, into: "cut", C: C.LiterallyShot },
+  { id: "g10", at: 220.95, into: "cut", C: C.BlockWayShot },
+  { id: "g11", at: 223.85, into: "cut", C: C.WaitShot },
+  { id: "g12", at: 225.1, into: "cut", C: C.PersianHillShot },
+  { id: "g13", at: 227.45, into: "cut", C: C.HerodotusShot },
+  { id: "g14", at: 229.1, into: "cut", C: C.WrapFiberShot },
+  { id: "g15", at: 232.2, into: "cut", C: C.VolleyShot },
+  { id: "g16", at: 233.9, into: "cut", C: C.DryPlanksShot },
+  { id: "g17", at: 236.5, into: "cut", C: C.PerfectTargetShot },
+  { id: "g18", at: 237.7, into: "cut", C: C.ItBurnsShot },
+  { id: "g19", at: 238.7, into: "cut", C: C.ClimbShot },
+  { id: "g20", at: 240.4, into: "cut", C: C.KilledShot },
+  { id: "g21", at: 242.4, into: "cut", C: C.WallFlamesShot },
+  { id: "g22", at: 245.8, into: "slide-left", C: C.OtherWallShot },
+  { id: "g23", at: 248.3, into: "cut", C: C.SalamisShot },
+  { id: "g24", at: 253.1, into: "cut", C: C.OracleRightShot },
+  { id: "g25", at: 254.55, into: "cut", C: C.WrongWallShot },
+  // defending against fire
+  { id: "h01", at: 256.6, into: "slide-left", C: C.SwitchSidesShot },
+  { id: "h02", at: 257.95, into: "cut", C: C.DefendWallShot },
+  { id: "h03", at: 261.05, into: "cut", C: C.WhatDoYouDoShot },
+  { id: "h04", at: 262.2, into: "cut", C: C.AeneasShot },
+  { id: "h05", at: 265.75, into: "cut", C: C.HandbookShot },
+  { id: "h06", at: 268.3, into: "cut", C: C.AdviceShot },
+  { id: "h07", at: 269.4, into: "cut", C: C.CoverWallsShot },
+  { id: "h08", at: 274.3, into: "cut", C: C.FreshHideShot },
+  { id: "h09", at: 276.45, into: "cut", C: C.AttackerHidesShot },
+  { id: "h10", at: 282.0, into: "slide-left", C: C.AssyriaShot },
+  { id: "h11", at: 286.8, into: "cut", C: C.TorchesDropShot },
+  { id: "h12", at: 290.0, into: "cut", C: C.LadlesShot },
+  { id: "h13", at: 293.9, into: "cut", C: C.WaterNotAnswerShot },
+  { id: "h14", at: 295.8, into: "cut", C: C.RememberAmmianusShot },
+  { id: "h15", at: 297.1, into: "cut", C: C.NastyTrickShot },
+  { id: "h16", at: 299.95, into: "cut", C: C.WaterWorseShot },
+  { id: "h17", at: 302.7, into: "cut", C: C.DirtShot },
+  { id: "h18", at: 305.7, into: "cut", C: C.MakeScaryShot },
+  { id: "h19", at: 309.85, into: "cut", C: C.BiggerShot },
 ];

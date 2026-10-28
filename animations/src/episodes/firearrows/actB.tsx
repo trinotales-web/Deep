@@ -126,7 +126,7 @@ export const RomansKnewShot: React.FC<ShotProps> = ({ dur }) => {
 };
 
 /** Writer's table with scroll, quill pot and candle. Origin = floor center. */
-const WriterDesk: React.FC<{ x?: number; y?: number; z?: number; s?: number }> = ({ x = 0, y = 0, z = 0, s = 1 }) => (
+export const WriterDesk: React.FC<{ x?: number; y?: number; z?: number; s?: number }> = ({ x = 0, y = 0, z = 0, s = 1 }) => (
   <X x={x} y={y} z={z} s={s}>
     <Part shape={roundRect(520, 30, 8)} color="#8a5a32" shade={0.2} y={230} />
     {[-220, 220].map((lx) => (
@@ -137,7 +137,7 @@ const WriterDesk: React.FC<{ x?: number; y?: number; z?: number; s?: number }> =
   </X>
 );
 
-const Interior: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
+export const Interior: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   <>
     <X z={-30}>
       <Part shape={roundRect(5000, 3000, 0)} color="#5a4436" flat outline={0} />

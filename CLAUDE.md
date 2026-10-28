@@ -46,12 +46,23 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
 
 ## Sound design (matched to the references)
 
-- Final mix: **-14 LUFS integrated, -1 dBTP, dense (LRA ≈ 2–6)**. Always run
-  `node scripts/master.mjs <render>` after rendering.
-- Layers: VO on top; a continuous music bed ducked under the VO
-  (`duckFromCaptions`); an ambience bed per location; a whoosh on every cut;
-  impacts/braams/risers on key words; small foley (pops, swishes, steps, page
-  flips) on character actions. Drop the music out for dramatic beats.
+- Final mix: **-14 LUFS integrated, -1 dBTP**. Always run
+  `node scripts/master.mjs <render>` after rendering (256 kbps AAC — at 192 kbps
+  the encoder overshoots the peak ceiling).
+- **Voice-first mix (user preference): no background music** unless the user
+  asks for it. The narration carries the video; sound effects support it.
+- **Process every voiceover first**: `node scripts/process-vo.mjs public/vo/<name>.mp3`
+  → `<name>.voice.m4a` (high-pass, de-box, presence, de-ess, gentle compression,
+  -16 LUFS). Use the processed file as the episode's `voiceover`.
+- Layers under the voice: an ambience bed per location (quiet), a whoosh on
+  every cut, impacts on key words, small foley on character actions. Every
+  effect and ambience ducks under speech (`duck` / `gainAt` with
+  `duckFromCaptions`, about -5 dB for FX, -6 dB for ambience).
+- Mix targets (check with the episode's `…AudioOnly` composition,
+  `withVoice: false`, against the processed VO): whole bed **~15 dB under the
+  voice**, ~20 dB during speech, impacts peaking ~10 dB below voice peaks, and
+  no effect within ~5 dB of a spoken word. Musical stingers (drumrolls,
+  suspense/strings cues) count as music — leave them out.
 - The library is synthesized by `scripts/synth-audio.mjs` into
   `public/audio/lib/{sfx,amb,music}` (generated on `npm install`, gitignored).
   Use the typed helpers in `src/kit/audio` (`Sfx`, `Ambience`, `Music`).
@@ -60,7 +71,7 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `public/audio/licensed/<name>/` (slugged names, gitignored) and play with
   `SoundAt` + `licensedSrc(name, file)`. **Never commit or redistribute these
   files** — the license only allows using them inside videos. Prefer the bundle
-  for hits/whooshes/foley; use the synth library for loopable beds/music.
+  for hits/whooshes/foley; use the synth library for loopable ambience beds.
 - Mix check: render the episode's `…AudioOnly` composition with
   `withVoice: false` and compare against the VO: the whole bed should sit about
   6–9 dB under the narration (hits may come close). Set bus gains (`MUSIC`,

@@ -26,7 +26,7 @@ export const RemotionRoot = () => {
           fps={30}
           width={1080}
           height={1920}
-          defaultProps={{ voiceover: "vo/wooden-wall.mp3", captionsFile: "captions/wooden-wall.json" } satisfies WoodenWallProps}
+          defaultProps={{ voiceover: "vo/wooden-wall.voice.m4a", captionsFile: "captions/wooden-wall.json" } satisfies WoodenWallProps}
           calculateMetadata={calculateWoodenWallMetadata}
         />
         <Composition
@@ -36,7 +36,7 @@ export const RemotionRoot = () => {
           fps={30}
           width={1080}
           height={1920}
-          defaultProps={{ voiceover: "vo/wooden-wall.mp3", captionsFile: "captions/wooden-wall.json" } satisfies WoodenWallProps}
+          defaultProps={{ voiceover: "vo/wooden-wall.voice.m4a", captionsFile: "captions/wooden-wall.json" } satisfies WoodenWallProps}
           calculateMetadata={calculateWoodenWallMetadata}
         />
         <Composition id="WoodenWallVisualsOnly" component={WoodenWallVisuals} durationInFrames={WW_FRAMES} fps={30} width={1080} height={1920} />

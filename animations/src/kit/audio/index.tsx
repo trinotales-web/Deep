@@ -21,14 +21,13 @@ export const musicSrc = (n: MusicName) => staticFile(`audio/lib/music/${n}.wav`)
 const sec = (s: number, fps: number) => Math.round(s * fps);
 
 /** One-shot sound effect at `at` seconds on the current timeline. */
-export const Sfx: React.FC<{ name: SfxName; at: number; volume?: number; rate?: number }> = ({ name, at, volume = 0.7, rate = 1 }) => {
-  const { fps } = useVideoConfig();
-  return (
-    <Sequence from={sec(at, fps)} layout="none" name={`sfx:${name}`}>
-      <Audio src={sfxSrc(name)} volume={volume} playbackRate={rate} />
-    </Sequence>
-  );
-};
+export const Sfx: React.FC<{ name: SfxName; at: number; volume?: number; rate?: number; duck?: (frame: number) => number }> = ({
+  name,
+  at,
+  volume = 0.7,
+  rate = 1,
+  duck,
+}) => <SoundAt src={sfxSrc(name)} at={at} volume={volume} rate={rate} duck={duck} name={`sfx:${name}`} />;
 
 /** Looping bed between `from` and `to` seconds with fades. */
 export const Bed: React.FC<{
@@ -61,7 +60,15 @@ export const Bed: React.FC<{
   );
 };
 
-export const Ambience: React.FC<{ name: AmbName; from: number; to: number; volume?: number; fadeIn?: number; fadeOut?: number }> = ({
+export const Ambience: React.FC<{
+  name: AmbName;
+  from: number;
+  to: number;
+  volume?: number;
+  fadeIn?: number;
+  fadeOut?: number;
+  gainAt?: (frame: number) => number;
+}> = ({
   name,
   ...rest
 }) => <Bed src={ambSrc(name)} name={`amb:${name}`} {...rest} />;
@@ -107,12 +114,23 @@ export const Music: React.FC<{
 /** Licensed bundle file imported with scripts/import-sfx.mjs (gitignored). */
 export const licensedSrc = (bundle: string, name: string, ext = "mp3") => staticFile(`audio/licensed/${bundle}/${name}.${ext}`);
 
-/** Any one-shot audio file at `at` seconds. */
-export const SoundAt: React.FC<{ src: string; at: number; volume?: number; rate?: number; name?: string }> = ({ src, at, volume = 0.7, rate = 1, name }) => {
+/**
+ * Any one-shot audio file at `at` seconds. `duck` (absolute frame → gain)
+ * pulls it under the voiceover while someone is speaking.
+ */
+export const SoundAt: React.FC<{ src: string; at: number; volume?: number; rate?: number; name?: string; duck?: (frame: number) => number }> = ({
+  src,
+  at,
+  volume = 0.7,
+  rate = 1,
+  name,
+  duck,
+}) => {
   const { fps } = useVideoConfig();
+  const from = Math.max(0, sec(at, fps));
   return (
-    <Sequence from={Math.max(0, sec(at, fps))} layout="none" name={name ?? "sfx"}>
-      <Audio src={src} volume={volume} playbackRate={rate} />
+    <Sequence from={from} layout="none" name={name ?? "sfx"}>
+      <Audio src={src} volume={duck ? (f) => volume * duck(from + f) : volume} playbackRate={rate} />
     </Sequence>
   );
 };

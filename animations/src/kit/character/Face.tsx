@@ -2,8 +2,8 @@ import React from "react";
 import * as THREE from "three";
 import { Part, Line } from "../Part";
 import { X } from "../context";
-import { circle, ellipse, blob, type ShapeSpec } from "../shapes";
-import { INK, palette } from "../style";
+import { circle, ellipse, blob, roundPoly, type ShapeSpec } from "../shapes";
+import { INK, palette, shadeHex } from "../style";
 
 // Faces are authored for a head of radius 100 (scale the head group to resize).
 
@@ -34,7 +34,7 @@ export type FaceProps = {
   freckles?: boolean;
   mustache?: "walrus" | "thin" | "handlebar" | null;
   mustacheColor?: string;
-  beard?: "goatee" | "full" | "stubble" | null;
+  beard?: "goatee" | "full" | "stubble" | "royal" | null;
   beardColor?: string;
 };
 
@@ -249,11 +249,29 @@ export const Face: React.FC<FaceProps> = ({
         : null}
       {beard === "full" ? (
         <Part
-          shape={blob([[-62, -10], [-50, -50], [-24, -82], [0, -90], [24, -82], [50, -50], [62, -10], [36, -28], [0, -36], [-36, -28]], 8)}
+          shape={blob([[-66, -14], [-54, -58], [-26, -88], [0, -96], [26, -88], [54, -58], [66, -14], [42, -38], [0, -60], [-42, -38]], 8)}
           color={beardColor}
           shade={0.3}
           z={0.015}
         />
+      ) : null}
+      {beard === "royal" ? (
+        <X y={-58} z={0.015}>
+          <Part
+            shape={roundPoly([[-46, 6], [46, 6], [40, -128], [-40, -128]], [22, 22, 14, 14])}
+            color={beardColor}
+            shade={0.22}
+          />
+          {[-20, -48, -76, -104].map((y) => (
+            <Line
+              key={y}
+              pts={Array.from({ length: 8 }, (_, i) => [-34 + i * 9.7, y + (i % 2 ? 5 : -5)] as [number, number])}
+              width={3.5}
+              color={shadeHex(beardColor, -0.25)}
+              z={0.001}
+            />
+          ))}
+        </X>
       ) : null}
       {beard === "stubble"
         ? [-30, -18, -6, 6, 18, 30, -24, -12, 0, 12, 24].map((x, i) => (

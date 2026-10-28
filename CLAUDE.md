@@ -55,7 +55,16 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
 - The library is synthesized by `scripts/synth-audio.mjs` into
   `public/audio/lib/{sfx,amb,music}` (generated on `npm install`, gitignored).
   Use the typed helpers in `src/kit/audio` (`Sfx`, `Ambience`, `Music`).
-  Licensed music/SFX can be dropped into `public/audio/` and used with `Bed`.
+- **Licensed SFX bundles** (e.g. the user's "Essential Sound Effects Bundle"):
+  import with `node scripts/import-sfx.mjs <bundle.zip> [name]` into
+  `public/audio/licensed/<name>/` (slugged names, gitignored) and play with
+  `SoundAt` + `licensedSrc(name, file)`. **Never commit or redistribute these
+  files** — the license only allows using them inside videos. Prefer the bundle
+  for hits/whooshes/foley; use the synth library for loopable beds/music.
+- Mix check: render the episode's `…AudioOnly` composition with
+  `withVoice: false` and compare against the VO: the whole bed should sit about
+  6–9 dB under the narration (hits may come close). Set bus gains (`MUSIC`,
+  `AMB`, `FX`) in the episode's `sound.tsx`.
 
 ## Kit map (`animations/src/kit`)
 
@@ -75,13 +84,23 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `PalmTree`, `Sun`, `Moon`, `Stars`, `Sunburst`, `PlankWall`, `Floorboards`,
   `BlindsWindow`, `HangingLamp`, `Desk`, `Calendar`, `Flag`, `Clock`, `Poster`,
   `Flame`, `Campfire`, `Torch`.
+- Ancient world (`env/ancient`, `env/sea`, `props`): `GreekTemple`, `RockHill`,
+  `Barricade` (planks + doors, `burn`/`char`), `OldDoor`, `StoneWall`,
+  `GreekHouse`, `City`, `OliveTree`, `Tent`, `Banner`, `Throne`, `Tripod`,
+  `Brazier`, `FireLine`, `Smoke`, `MysticSmoke`, `Trireme` (`sink`, `crack`,
+  rowing), `Splash`, `StraitMap`; hand props `Spear`, `Bow` (draw + fire arrow),
+  `Arrow` (`fire`), `Shield`, `WickerShield`, `Scroll`, `Hammer`, `Plank`,
+  `HandTorch`, `Staff`, `Boulder`, `QuestionMark`, `InkLine`.
+  Hats add `persian`, `crown`, `veil`, `wreath`, `corinthian`, `hood`; beards add
+  `royal`; outfits add `hem`, `patches`, `trim`, `sash`, `rope`, `armor`.
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers.
 
 Rules: drive every motion from `useCurrentFrame()` (never R3F `useFrame()`),
 keep randomness seeded (`rng`, `noise1`), `<Sequence layout="none">` inside a
 canvas. Add new props/characters to the kit, not to episodes, when reusable.
 
-## Making an episode (see `src/episodes/onoda/` as the template)
+## Making an episode (templates: `src/episodes/woodenwall/` — real VO, ~90 s
+short, 38 shots; `src/episodes/onoda/` — small demo)
 
 1. `script.ts` — shot list with durations, narration phrases (`*word*` = red),
    transition length.
@@ -89,13 +108,20 @@ canvas. Add new props/characters to the kit, not to episodes, when reusable.
 4. `sound.tsx` — cue sheet (music, ambiences, whooshes, hits, foley).
 5. `Episode.tsx` — `TransitionSeries` + `StyledCaptions` + sound + VO.
 6. Register Short + Video compositions in `src/Root.tsx`.
-7. Voiceover: put it in `public/vo/`, run
-   `node scripts/transcribe.mjs public/vo/<name>.mp3` (whisper.cpp → word-level
-   captions), set `voiceover` + `captionsFile` props, re-time shots/cues to it.
+7. Voiceover: put it in `public/vo/`. If the exact script is available (usual
+   case), save it as `script.txt` and force-align — more accurate than
+   transcription and needs no model download:
+   `pip install pocketsphinx && python3 scripts/align-captions.py public/vo/<name>.mp3 <script.txt> public/captions/<name>.json [--merge "four eighty four=484"]`.
+   Otherwise `node scripts/transcribe.mjs public/vo/<name>.mp3` (whisper.cpp).
+   Then cut shots in the breaths between phrases (print word times from the
+   JSON) and put hits on the key words.
+8. Review with contact sheets: `node scripts/stills.mjs <compId> out.png <f1,f2,…> [cols]`
+   (one bundle, many stills). Keep faces out of the caption band (~70 % height).
 
 ### Commands (run from `animations/`)
 - `npm run studio` — preview in Remotion Studio
 - `npm run render:short` / `npm run render:video` — render + master the demo
+- `npx remotion render WoodenWallShort out/wooden-wall.mp4 && node scripts/master.mjs out/wooden-wall.mp4`
 - `npm run audio` — regenerate the sound library
 - `npm run typecheck`
 - In a cloud container with no GPU or internet, add

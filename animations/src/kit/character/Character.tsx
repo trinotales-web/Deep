@@ -6,7 +6,7 @@ import { GroundShadow } from "../effects";
 import { blob, circle, limb, roundPoly, roundRect } from "../shapes";
 import { GLOVE, SKIN, palette, shadeHex } from "../style";
 import { Face, type Expression } from "./Face";
-import { Hat, HairBack, HairFront, type HatKind, type HairKind } from "./Headwear";
+import { Hat, HatBack, HairBack, HairFront, type HatKind, type HairKind } from "./Headwear";
 
 // Proportions authored for head radius 100. Origin = ground point between the feet.
 // Total height ≈ 410 units (~2 head heights), like the reference characters.
@@ -33,12 +33,24 @@ export type Outfit = {
   collarColor?: string;
   /** Long tunic/robe that covers the legs. */
   robe?: boolean;
+  /** Knee-length tunic: torso bottom edge (default 52; ~28 = knee). */
+  hem?: number;
   /** Diagonal strap (bandolier / satchel). */
   strap?: string | null;
   /** Sleeve chevrons / cuffs color. */
   cuffs?: string | null;
   /** Medals/ribbons on chest. */
   medals?: boolean;
+  /** Patch color for worn/ragged clothes. */
+  patches?: string | null;
+  /** Decorative band at hems and cuffs (Persian robes). */
+  trim?: string | null;
+  /** Wide diagonal cloth over one shoulder (Greek himation). */
+  sash?: string | null;
+  /** Rope belt (thin) instead of a leather belt. */
+  rope?: string | null;
+  /** Bronze breastplate overlay. */
+  armor?: string | null;
 };
 
 export type Pose = {
@@ -80,7 +92,7 @@ export type CharacterProps = {
   hairColor?: string;
   mustache?: "walrus" | "thin" | "handlebar" | null;
   mustacheColor?: string;
-  beard?: "goatee" | "full" | "stubble" | null;
+  beard?: "goatee" | "full" | "stubble" | "royal" | null;
   beardColor?: string;
   freckles?: boolean;
   /** Mouth flaps while true. */
@@ -161,8 +173,8 @@ const Leg: React.FC<{ angle: number; side: 1 | -1; pants: string; boots: string;
 
 const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe }) => {
   const top = outfit.top;
-  const bottomY = outfit.robe ? 10 : TORSO_BOTTOM;
-  const halfBottom = outfit.robe ? 78 : 66;
+  const bottomY = outfit.hem ?? (outfit.robe ? 10 : TORSO_BOTTOM);
+  const halfBottom = outfit.robe ? 78 : bottomY < TORSO_BOTTOM ? 72 : 66;
   return (
     <X sy={breathe}>
       <Part
@@ -225,6 +237,53 @@ const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe 
           flat
           z={0.005}
         />
+      ) : null}
+      {outfit.armor ? (
+        <Part
+          shape={roundPoly([[-60, 96], [60, 96], [52, TORSO_TOP - 6], [-52, TORSO_TOP - 6]], [10, 10, 26, 26])}
+          color={outfit.armor}
+          shade={0.24}
+          z={0.0035}
+        >
+          <Line pts={[[-30, 190], [0, 176], [30, 190]]} smooth width={4} color={shadeHex(outfit.armor, 0.4)} z={0.001} />
+          <Line pts={[[-24, 140], [0, 132], [24, 140]]} smooth width={4} color={shadeHex(outfit.armor, 0.4)} z={0.001} />
+        </Part>
+      ) : null}
+      {outfit.sash ? (
+        <Part
+          shape={roundPoly([[-58, 222], [-20, 226], [70, 70], [40, 56]], 10)}
+          color={outfit.sash}
+          shade={0.2}
+          z={0.0055}
+        />
+      ) : null}
+      {outfit.patches
+        ? [
+            [-34, 120, 0.2],
+            [30, 172, -0.15],
+            [22, 70, 0.1],
+          ].map(([x, y, r], i) => (
+            <X key={i} x={x} y={y} rot={r} z={0.004}>
+              <Part shape={roundRect(26, 22, 3)} color={outfit.patches!} flat outline={3.5} />
+              <Line pts={[[-9, 7], [-5, 3]]} width={2.5} />
+              <Line pts={[[5, -3], [9, -7]]} width={2.5} />
+            </X>
+          ))
+        : null}
+      {outfit.trim ? (
+        <Part
+          shape={roundRect(outfit.robe ? 150 : (outfit.hem ?? TORSO_BOTTOM) < TORSO_BOTTOM ? 140 : 128, 16, 6)}
+          color={outfit.trim}
+          flat
+          y={(outfit.hem ?? (outfit.robe ? 10 : TORSO_BOTTOM)) + 10}
+          z={0.0045}
+        />
+      ) : null}
+      {outfit.rope ? (
+        <X y={outfit.robe ? 104 : 74} z={0.006}>
+          <Part shape={roundRect(outfit.robe ? 142 : 130, 10, 5)} color={outfit.rope} flat outline={3.5} />
+          <Line pts={[[18, -4], [24, -30], [20, -44]]} smooth width={5} color={outfit.rope} />
+        </X>
       ) : null}
       {outfit.belt ? (
         <X y={outfit.robe ? 104 : 74} z={0.006}>
@@ -327,6 +386,9 @@ export const Character: React.FC<CharacterProps> = ({
               <X y={HEAD_Y}>
                 <X z={-0.02}>
                   <HairBack kind={hair} color={hairColor} />
+                </X>
+                <X z={-0.03}>
+                  <HatBack kind={hat} color={hatColor} />
                 </X>
                 {/* ear on the far side (opposite the look direction) */}
                 <X x={look > 0.15 ? -96 : -98} y={-4} z={-0.01}>

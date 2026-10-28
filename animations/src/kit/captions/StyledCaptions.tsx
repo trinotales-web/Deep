@@ -25,7 +25,7 @@ export type CaptionPage = { startMs: number; endMs: number; words: Caption[] };
  * starts; otherwise a new page starts after a pause or every `maxWords`.
  */
 export const paginate = (captions: Caption[], opts: { pageStartsMs?: number[]; maxWords?: number; pauseMs?: number } = {}) => {
-  const { pageStartsMs, maxWords = 4, pauseMs = 350 } = opts;
+  const { pageStartsMs, maxWords = 3, pauseMs = 350 } = opts;
   const pages: CaptionPage[] = [];
   let cur: Caption[] = [];
   const flush = () => {
@@ -36,7 +36,7 @@ export const paginate = (captions: Caption[], opts: { pageStartsMs?: number[]; m
     const prev = captions[i - 1];
     const breakHere = pageStartsMs
       ? pageStartsMs.includes(c.startMs) || pageStartsMs.some((p) => prev && prev.startMs < p && c.startMs >= p)
-      : cur.length >= maxWords || (prev && c.startMs - prev.endMs > pauseMs);
+      : cur.length >= maxWords || (prev && (c.startMs - prev.endMs > pauseMs || /[.,?!;:]$/.test(prev.text.trim().replace(/\*/g, ""))));
     if (breakHere) flush();
     cur.push(c);
   });
@@ -58,6 +58,7 @@ export type StyledCaptionsProps = {
   size?: number;
   /** Keep the last page on screen this long after its last word (ms). */
   holdMs?: number;
+  maxWords?: number;
 };
 
 export const StyledCaptions: React.FC<StyledCaptionsProps> = ({
@@ -67,6 +68,7 @@ export const StyledCaptions: React.FC<StyledCaptionsProps> = ({
   y,
   size = 0.05,
   holdMs = 450,
+  maxWords = 3,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
@@ -76,7 +78,7 @@ export const StyledCaptions: React.FC<StyledCaptionsProps> = ({
     ensureFont().then(() => continueRender(handle)).catch(cancelRender);
   }, [handle, continueRender, cancelRender]);
 
-  const pages = useMemo(() => paginate(captions, { pageStartsMs }), [captions, pageStartsMs]);
+  const pages = useMemo(() => paginate(captions, { pageStartsMs, maxWords }), [captions, pageStartsMs, maxWords]);
   const hl = useMemo(() => new Set(highlights.map(norm)), [highlights]);
   const nowMs = (frame / fps) * 1000;
 

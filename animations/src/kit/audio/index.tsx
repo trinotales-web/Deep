@@ -103,3 +103,16 @@ export const Music: React.FC<{
     {...rest}
   />
 );
+
+/** Licensed bundle file imported with scripts/import-sfx.mjs (gitignored). */
+export const licensedSrc = (bundle: string, name: string, ext = "mp3") => staticFile(`audio/licensed/${bundle}/${name}.${ext}`);
+
+/** Any one-shot audio file at `at` seconds. */
+export const SoundAt: React.FC<{ src: string; at: number; volume?: number; rate?: number; name?: string }> = ({ src, at, volume = 0.7, rate = 1, name }) => {
+  const { fps } = useVideoConfig();
+  return (
+    <Sequence from={Math.max(0, sec(at, fps))} layout="none" name={name ?? "sfx"}>
+      <Audio src={src} volume={volume} playbackRate={rate} />
+    </Sequence>
+  );
+};

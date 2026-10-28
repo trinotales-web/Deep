@@ -89,3 +89,97 @@ export const Torch: React.FC<XProps & { seed?: number }> = ({ seed = 1, ...xf })
     </X>
   );
 };
+
+/** A row of flames along a width (burning walls, rooftops). Origin = base center. */
+export const FireLine: React.FC<XProps & { w: number; intensity?: number; seed?: number; glow?: number }> = ({
+  w,
+  intensity = 1,
+  seed = 5,
+  glow = 1,
+  ...xf
+}) => {
+  const frame = useCurrentFrame();
+  const r = rng(seed);
+  const n = Math.max(2, Math.round(w / 70));
+  const flames = Array.from({ length: n }, (_, i) => [-w / 2 + (i + 0.5) * (w / n) + (r() - 0.5) * 30, 0.5 + r() * 0.6, r() * 100]);
+  const flick = 1 + noise1(frame / 4, seed) * 0.12;
+  if (intensity <= 0.01) return null;
+  return (
+    <X {...xf}>
+      <Glow rx={w * 0.75 * flick} ry={260 * intensity} color="#ff8a3a" alpha={0.38 * glow * intensity} y={80 * intensity} additive z={-0.1} />
+      {flames.map(([x, s, sd], i) => (
+        <Flame key={i} x={x} size={s * intensity} seed={sd} z={i * 0.001} />
+      ))}
+    </X>
+  );
+};
+
+/** Rising soft smoke column. Origin = source. */
+export const Smoke: React.FC<XProps & { w?: number; h?: number; color?: string; alpha?: number; puffs?: number; seed?: number; speed?: number }> = ({
+  w = 160,
+  h = 900,
+  color = "#5a5257",
+  alpha = 0.55,
+  puffs = 10,
+  seed = 7,
+  speed = 1,
+  ...xf
+}) => {
+  const frame = useCurrentFrame();
+  const r = rng(seed);
+  const items = Array.from({ length: puffs }, (_, i) => [i / puffs, r() * 2 - 1, r()]);
+  return (
+    <X {...xf}>
+      {items.map(([p, dx, k], i) => {
+        const t = (p + (frame * 0.004 * speed)) % 1;
+        const rad = w * (0.35 + t * 0.9) * (0.8 + k * 0.4);
+        return (
+          <Glow
+            key={i}
+            x={dx * w * 0.25 + Math.sin(t * 5 + i) * w * 0.3 * t}
+            y={t * h}
+            rx={rad}
+            color={color}
+            alpha={alpha * Math.sin(Math.min(1, t * 1.15) * Math.PI) * (0.7 + k * 0.3)}
+            inner={0.25}
+            power={1.2}
+            z={i * 0.0001}
+          />
+        );
+      })}
+    </X>
+  );
+};
+
+/** Swirling oracle vapour (additive, colored). */
+export const MysticSmoke: React.FC<XProps & { w?: number; h?: number; colors?: string[]; seed?: number }> = ({
+  w = 200,
+  h = 600,
+  colors = ["#b98cff", "#7fe0c8", "#e9a8ff"],
+  seed = 3,
+  ...xf
+}) => {
+  const frame = useCurrentFrame();
+  const r = rng(seed);
+  const items = Array.from({ length: 14 }, (_, i) => [i / 14, r() * 2 - 1, Math.floor(r() * colors.length)]);
+  return (
+    <X {...xf}>
+      {items.map(([p, dx, ci], i) => {
+        const t = (p + frame * 0.006) % 1;
+        return (
+          <Glow
+            key={i}
+            x={dx * w * 0.2 + Math.sin(t * 7 + i * 1.3) * w * 0.45 * t}
+            y={t * h}
+            rx={w * (0.3 + t * 0.6)}
+            color={colors[ci]}
+            alpha={0.35 * Math.sin(Math.min(1, t * 1.1) * Math.PI)}
+            inner={0.2}
+            additive
+            z={i * 0.0001}
+          />
+        );
+      })}
+    </X>
+  );
+};

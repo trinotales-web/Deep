@@ -6,7 +6,10 @@ import { palette, shadeHex } from "../style";
 
 // Authored for a head of radius 100, origin at the head center, facing +x.
 
-export type HatKind = "helmet" | "fieldcap" | "sidecap" | "officer" | "headband" | "bandana" | "hardhat" | null;
+export type HatKind =
+  | "helmet" | "fieldcap" | "sidecap" | "officer" | "headband" | "bandana" | "hardhat"
+  | "persian" | "crown" | "veil" | "wreath" | "corinthian" | "hood"
+  | null;
 export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | null;
 
 export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; camo?: boolean }> = ({
@@ -125,9 +128,104 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
         </>
       );
     }
+    case "persian": {
+      // tall rounded felt cap of the Persian infantry
+      const c = color ?? "#e6d3a3";
+      return (
+        <X y={38}>
+          <Part
+            shape={blob([[-106, 6], [-104, 70], [-84, 128], [-40, 160], [20, 166], [70, 146], [100, 96], [106, 6], [0, -2]], 8)}
+            color={c}
+            shade={0.26}
+          />
+          <Part shape={roundRect(220, 30, 12)} color={accent ?? shadeHex(c, 0.18)} y={10} z={0.001} />
+          {[-60, -20, 20, 60].map((x) => (
+            <Line key={x} pts={[[x, 30], [x * 0.8, 140]]} width={3.5} color={shadeHex(c, 0.3)} z={0.0005} />
+          ))}
+        </X>
+      );
+    }
+    case "crown": {
+      // Achaemenid royal crown: tall crenellated gold cylinder
+      const c = color ?? palette.gold;
+      const top = 150;
+      const pts: [number, number][] = [[-84, 20], [84, 20], [92, top - 30]];
+      for (let i = 4; i >= 0; i--) {
+        const x = -92 + (i + 0.5) * 36.8;
+        pts.push([x + 14, top - 30], [x + 10, top], [x - 10, top], [x - 14, top - 30]);
+      }
+      pts.push([-92, top - 30]);
+      return (
+        <X y={44}>
+          <Part shape={poly(pts)} color={c} shade={0.22} />
+          <Part shape={roundRect(190, 24, 8)} color={shadeHex(c, 0.15)} y={30} z={0.001} />
+          {[-50, 0, 50].map((x, i) => (
+            <Part key={x} shape={circle(i === 1 ? 12 : 9)} color={i === 1 ? "#c0362c" : "#2f6fb0"} flat outline={4} x={x} y={80} z={0.002} />
+          ))}
+        </X>
+      );
+    }
+    case "wreath": {
+      const c = color ?? "#5f8f3a";
+      return (
+        <X y={58}>
+          {Array.from({ length: 11 }, (_, i) => {
+            const a = Math.PI * (0.08 + (i / 10) * 0.84);
+            const x = Math.cos(a) * 104;
+            const y = Math.sin(a) * 26;
+            return <Part key={i} shape={ellipse(20, 9)} color={i % 2 ? c : shadeHex(c, 0.15)} x={x} y={y} rot={a - Math.PI / 2 + (x > 0 ? -0.6 : 0.6)} outline={4} shade={0.3} />;
+          })}
+        </X>
+      );
+    }
+    case "veil":
+    case "hood": {
+      const c = color ?? (kind === "veil" ? "#7a4b8f" : "#6b5a44");
+      return (
+        <X y={0}>
+          <Part
+            shape={blob([[-112, -20], [-108, 50], [-80, 104], [-30, 124], [30, 124], [80, 104], [108, 50], [112, -20], [92, 10], [60, 58], [0, 70], [-60, 58], [-92, 10]], 8)}
+            color={c}
+            shade={0.24}
+          />
+          {accent ? <Line pts={[[-92, 10], [-60, 58], [0, 70], [60, 58], [92, 10]]} smooth width={6} color={accent} z={0.001} /> : null}
+        </X>
+      );
+    }
+    case "corinthian": {
+      const c = color ?? "#c9963f";
+      const crest = accent ?? "#c0362c";
+      return (
+        <X y={28}>
+          <Part shape={blob([[-110, -40], [-112, 40], [-86, 100], [-30, 124], [30, 124], [86, 100], [112, 40], [110, -40], [84, -30], [80, 26], [0, 34], [-80, 26], [-84, -30]], 8)} color={c} shade={0.26} />
+          <Part shape={blob([[-80, 120], [-50, 168], [0, 186], [50, 168], [90, 120], [40, 140], [-30, 138]], 8)} color={crest} shade={0.25} z={-0.001} />
+          <Line pts={[[-96, 50], [-40, 60], [40, 60], [96, 50]]} smooth width={4} color={shadeHex(c, 0.45)} z={0.001} />
+        </X>
+      );
+    }
     default:
       return null;
   }
+};
+
+/** Parts of headwear drawn behind the head (veils, hood backs). */
+export const HatBack: React.FC<{ kind: HatKind; color?: string }> = ({ kind, color }) => {
+  if (kind === "veil" || kind === "hood") {
+    const c = color ?? (kind === "veil" ? "#7a4b8f" : "#6b5a44");
+    return (
+      <Part
+        shape={blob([[-118, 40], [-128, -60], [-120, -170], [-60, -190], [60, -190], [120, -170], [128, -60], [118, 40], [60, 110], [-60, 110]], 8)}
+        color={shadeHex(c, 0.12)}
+        shade={0.2}
+      />
+    );
+  }
+  if (kind === "persian") {
+    // cloth flap covering the neck
+    const c = color ?? "#e6d3a3";
+    return <Part shape={blob([[-104, 30], [-112, -60], [-90, -120], [90, -120], [112, -60], [104, 30]], 8)} color={shadeHex(c, 0.1)} shade={0.2} />;
+  }
+  return null;
 };
 
 /** Hair drawn behind the head (back) — long hair, buns. */

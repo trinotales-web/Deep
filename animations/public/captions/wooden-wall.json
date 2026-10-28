@@ -1,0 +1,1955 @@
+[
+ {
+  "text": "A",
+  "startMs": 160,
+  "endMs": 260,
+  "timestampMs": 210,
+  "confidence": null
+ },
+ {
+  "text": " prophecy",
+  "startMs": 260,
+  "endMs": 740,
+  "timestampMs": 500,
+  "confidence": null
+ },
+ {
+  "text": " says",
+  "startMs": 740,
+  "endMs": 1220,
+  "timestampMs": 980,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 1220,
+  "endMs": 1340,
+  "timestampMs": 1280,
+  "confidence": null
+ },
+ {
+  "text": " wooden",
+  "startMs": 1340,
+  "endMs": 1650,
+  "timestampMs": 1495,
+  "confidence": null
+ },
+ {
+  "text": " wall",
+  "startMs": 1650,
+  "endMs": 1960,
+  "timestampMs": 1805,
+  "confidence": null
+ },
+ {
+  "text": " will",
+  "startMs": 1960,
+  "endMs": 2090,
+  "timestampMs": 2025,
+  "confidence": null
+ },
+ {
+  "text": " save",
+  "startMs": 2090,
+  "endMs": 2430,
+  "timestampMs": 2260,
+  "confidence": null
+ },
+ {
+  "text": " these",
+  "startMs": 2430,
+  "endMs": 2650,
+  "timestampMs": 2540,
+  "confidence": null
+ },
+ {
+  "text": " men.",
+  "startMs": 2650,
+  "endMs": 2930,
+  "timestampMs": 2790,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 3200,
+  "endMs": 3360,
+  "timestampMs": 3280,
+  "confidence": null
+ },
+ {
+  "text": " going",
+  "startMs": 3360,
+  "endMs": 3600,
+  "timestampMs": 3480,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 3600,
+  "endMs": 3680,
+  "timestampMs": 3640,
+  "confidence": null
+ },
+ {
+  "text": " get",
+  "startMs": 3680,
+  "endMs": 3860,
+  "timestampMs": 3770,
+  "confidence": null
+ },
+ {
+  "text": " them",
+  "startMs": 3860,
+  "endMs": 3990,
+  "timestampMs": 3925,
+  "confidence": null
+ },
+ {
+  "text": " killed.",
+  "startMs": 3990,
+  "endMs": 4440,
+  "timestampMs": 4215,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 5050,
+  "endMs": 5210,
+  "timestampMs": 5130,
+  "confidence": null
+ },
+ {
+  "text": " 484",
+  "startMs": 5210,
+  "endMs": 6030,
+  "timestampMs": 5620,
+  "confidence": null
+ },
+ {
+  "text": " BC,",
+  "startMs": 6030,
+  "endMs": 6670,
+  "timestampMs": 6350,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 6900,
+  "endMs": 7030,
+  "timestampMs": 6965,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 7030,
+  "endMs": 7070,
+  "timestampMs": 7050,
+  "confidence": null
+ },
+ {
+  "text": " huge",
+  "startMs": 7070,
+  "endMs": 7460,
+  "timestampMs": 7265,
+  "confidence": null
+ },
+ {
+  "text": " Persian",
+  "startMs": 7460,
+  "endMs": 7860,
+  "timestampMs": 7660,
+  "confidence": null
+ },
+ {
+  "text": " army",
+  "startMs": 7860,
+  "endMs": 8210,
+  "timestampMs": 8035,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 8210,
+  "endMs": 8350,
+  "timestampMs": 8280,
+  "confidence": null
+ },
+ {
+  "text": " marching",
+  "startMs": 8350,
+  "endMs": 8710,
+  "timestampMs": 8530,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 8710,
+  "endMs": 8820,
+  "timestampMs": 8765,
+  "confidence": null
+ },
+ {
+  "text": " Athens,",
+  "startMs": 8820,
+  "endMs": 9350,
+  "timestampMs": 9085,
+  "confidence": null
+ },
+ {
+  "text": " led",
+  "startMs": 9540,
+  "endMs": 9730,
+  "timestampMs": 9635,
+  "confidence": null
+ },
+ {
+  "text": " by",
+  "startMs": 9730,
+  "endMs": 9880,
+  "timestampMs": 9805,
+  "confidence": null
+ },
+ {
+  "text": " King",
+  "startMs": 9880,
+  "endMs": 10160,
+  "timestampMs": 10020,
+  "confidence": null
+ },
+ {
+  "text": " Xerxes.",
+  "startMs": 10160,
+  "endMs": 10940,
+  "timestampMs": 10550,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 11150,
+  "endMs": 11280,
+  "timestampMs": 11215,
+  "confidence": null
+ },
+ {
+  "text": " Athenians",
+  "startMs": 11280,
+  "endMs": 11800,
+  "timestampMs": 11540,
+  "confidence": null
+ },
+ {
+  "text": " ask",
+  "startMs": 11800,
+  "endMs": 12100,
+  "timestampMs": 11950,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 12100,
+  "endMs": 12230,
+  "timestampMs": 12165,
+  "confidence": null
+ },
+ {
+  "text": " oracle",
+  "startMs": 12230,
+  "endMs": 12630,
+  "timestampMs": 12430,
+  "confidence": null
+ },
+ {
+  "text": " at",
+  "startMs": 12630,
+  "endMs": 12700,
+  "timestampMs": 12665,
+  "confidence": null
+ },
+ {
+  "text": " Delphi",
+  "startMs": 12700,
+  "endMs": 13070,
+  "timestampMs": 12885,
+  "confidence": null
+ },
+ {
+  "text": " what",
+  "startMs": 13070,
+  "endMs": 13250,
+  "timestampMs": 13160,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 13250,
+  "endMs": 13340,
+  "timestampMs": 13295,
+  "confidence": null
+ },
+ {
+  "text": " do,",
+  "startMs": 13340,
+  "endMs": 13720,
+  "timestampMs": 13530,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 13970,
+  "endMs": 14110,
+  "timestampMs": 14040,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 14110,
+  "endMs": 14250,
+  "timestampMs": 14180,
+  "confidence": null
+ },
+ {
+  "text": " answer",
+  "startMs": 14250,
+  "endMs": 14740,
+  "timestampMs": 14495,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 14740,
+  "endMs": 14880,
+  "timestampMs": 14810,
+  "confidence": null
+ },
+ {
+  "text": " strange.",
+  "startMs": 14880,
+  "endMs": 15570,
+  "timestampMs": 15225,
+  "confidence": null
+ },
+ {
+  "text": " Only",
+  "startMs": 15780,
+  "endMs": 16080,
+  "timestampMs": 15930,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 16080,
+  "endMs": 16120,
+  "timestampMs": 16100,
+  "confidence": null
+ },
+ {
+  "text": " wooden",
+  "startMs": 16120,
+  "endMs": 16410,
+  "timestampMs": 16265,
+  "confidence": null
+ },
+ {
+  "text": " wall",
+  "startMs": 16410,
+  "endMs": 16750,
+  "timestampMs": 16580,
+  "confidence": null
+ },
+ {
+  "text": " will",
+  "startMs": 16750,
+  "endMs": 16890,
+  "timestampMs": 16820,
+  "confidence": null
+ },
+ {
+  "text": " not",
+  "startMs": 16890,
+  "endMs": 17090,
+  "timestampMs": 16990,
+  "confidence": null
+ },
+ {
+  "text": " fall.",
+  "startMs": 17090,
+  "endMs": 17610,
+  "timestampMs": 17350,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 18110,
+  "endMs": 18250,
+  "timestampMs": 18180,
+  "confidence": null
+ },
+ {
+  "text": " what's",
+  "startMs": 18250,
+  "endMs": 18490,
+  "timestampMs": 18370,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 18490,
+  "endMs": 18560,
+  "timestampMs": 18525,
+  "confidence": null
+ },
+ {
+  "text": " wooden",
+  "startMs": 18560,
+  "endMs": 18820,
+  "timestampMs": 18690,
+  "confidence": null
+ },
+ {
+  "text": " wall?",
+  "startMs": 18820,
+  "endMs": 19260,
+  "timestampMs": 19040,
+  "confidence": null
+ },
+ {
+  "text": " Most",
+  "startMs": 19710,
+  "endMs": 19970,
+  "timestampMs": 19840,
+  "confidence": null
+ },
+ {
+  "text": " Athenians",
+  "startMs": 19970,
+  "endMs": 20440,
+  "timestampMs": 20205,
+  "confidence": null
+ },
+ {
+  "text": " decide",
+  "startMs": 20440,
+  "endMs": 20920,
+  "timestampMs": 20680,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 20920,
+  "endMs": 21090,
+  "timestampMs": 21005,
+  "confidence": null
+ },
+ {
+  "text": " means",
+  "startMs": 21090,
+  "endMs": 21390,
+  "timestampMs": 21240,
+  "confidence": null
+ },
+ {
+  "text": " their",
+  "startMs": 21390,
+  "endMs": 21500,
+  "timestampMs": 21445,
+  "confidence": null
+ },
+ {
+  "text": " ships.",
+  "startMs": 21500,
+  "endMs": 22090,
+  "timestampMs": 21795,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 22380,
+  "endMs": 22500,
+  "timestampMs": 22440,
+  "confidence": null
+ },
+ {
+  "text": " put",
+  "startMs": 22500,
+  "endMs": 22660,
+  "timestampMs": 22580,
+  "confidence": null
+ },
+ {
+  "text": " their",
+  "startMs": 22660,
+  "endMs": 22760,
+  "timestampMs": 22710,
+  "confidence": null
+ },
+ {
+  "text": " families",
+  "startMs": 22760,
+  "endMs": 23200,
+  "timestampMs": 22980,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 23200,
+  "endMs": 23330,
+  "timestampMs": 23265,
+  "confidence": null
+ },
+ {
+  "text": " boats",
+  "startMs": 23330,
+  "endMs": 23730,
+  "timestampMs": 23530,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 23730,
+  "endMs": 23900,
+  "timestampMs": 23815,
+  "confidence": null
+ },
+ {
+  "text": " leave",
+  "startMs": 23900,
+  "endMs": 24130,
+  "timestampMs": 24015,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 24130,
+  "endMs": 24200,
+  "timestampMs": 24165,
+  "confidence": null
+ },
+ {
+  "text": " city",
+  "startMs": 24200,
+  "endMs": 24480,
+  "timestampMs": 24340,
+  "confidence": null
+ },
+ {
+  "text": " empty.",
+  "startMs": 24480,
+  "endMs": 24900,
+  "timestampMs": 24690,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 25230,
+  "endMs": 25360,
+  "timestampMs": 25295,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 25360,
+  "endMs": 25400,
+  "timestampMs": 25380,
+  "confidence": null
+ },
+ {
+  "text": " few",
+  "startMs": 25400,
+  "endMs": 25680,
+  "timestampMs": 25540,
+  "confidence": null
+ },
+ {
+  "text": " men",
+  "startMs": 25680,
+  "endMs": 25900,
+  "timestampMs": 25790,
+  "confidence": null
+ },
+ {
+  "text": " stay",
+  "startMs": 25900,
+  "endMs": 26140,
+  "timestampMs": 26020,
+  "confidence": null
+ },
+ {
+  "text": " behind,",
+  "startMs": 26140,
+  "endMs": 26670,
+  "timestampMs": 26405,
+  "confidence": null
+ },
+ {
+  "text": " poor",
+  "startMs": 26940,
+  "endMs": 27200,
+  "timestampMs": 27070,
+  "confidence": null
+ },
+ {
+  "text": " men",
+  "startMs": 27200,
+  "endMs": 27510,
+  "timestampMs": 27355,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 27510,
+  "endMs": 27750,
+  "timestampMs": 27630,
+  "confidence": null
+ },
+ {
+  "text": " temple",
+  "startMs": 27750,
+  "endMs": 28070,
+  "timestampMs": 27910,
+  "confidence": null
+ },
+ {
+  "text": " keepers.",
+  "startMs": 28070,
+  "endMs": 28620,
+  "timestampMs": 28345,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 29170,
+  "endMs": 29290,
+  "timestampMs": 29230,
+  "confidence": null
+ },
+ {
+  "text": " take",
+  "startMs": 29290,
+  "endMs": 29510,
+  "timestampMs": 29400,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 29510,
+  "endMs": 29590,
+  "timestampMs": 29550,
+  "confidence": null
+ },
+ {
+  "text": " prophecy",
+  "startMs": 29590,
+  "endMs": 30120,
+  "timestampMs": 29855,
+  "confidence": null
+ },
+ {
+  "text": " word",
+  "startMs": 30120,
+  "endMs": 30440,
+  "timestampMs": 30280,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 30440,
+  "endMs": 30580,
+  "timestampMs": 30510,
+  "confidence": null
+ },
+ {
+  "text": " word.",
+  "startMs": 30580,
+  "endMs": 31010,
+  "timestampMs": 30795,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 31400,
+  "endMs": 31500,
+  "timestampMs": 31450,
+  "confidence": null
+ },
+ {
+  "text": " climb",
+  "startMs": 31500,
+  "endMs": 31850,
+  "timestampMs": 31675,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 31850,
+  "endMs": 31970,
+  "timestampMs": 31910,
+  "confidence": null
+ },
+ {
+  "text": " Acropolis,",
+  "startMs": 31970,
+  "endMs": 32770,
+  "timestampMs": 32370,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 32990,
+  "endMs": 33080,
+  "timestampMs": 33035,
+  "confidence": null
+ },
+ {
+  "text": " rocky",
+  "startMs": 33080,
+  "endMs": 33470,
+  "timestampMs": 33275,
+  "confidence": null
+ },
+ {
+  "text": " hill",
+  "startMs": 33470,
+  "endMs": 33830,
+  "timestampMs": 33650,
+  "confidence": null
+ },
+ {
+  "text": " above",
+  "startMs": 33830,
+  "endMs": 34100,
+  "timestampMs": 33965,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 34100,
+  "endMs": 34180,
+  "timestampMs": 34140,
+  "confidence": null
+ },
+ {
+  "text": " city.",
+  "startMs": 34180,
+  "endMs": 34590,
+  "timestampMs": 34385,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 34930,
+  "endMs": 35060,
+  "timestampMs": 34995,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 35060,
+  "endMs": 35140,
+  "timestampMs": 35100,
+  "confidence": null
+ },
+ {
+  "text": " block",
+  "startMs": 35140,
+  "endMs": 35470,
+  "timestampMs": 35305,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 35470,
+  "endMs": 35540,
+  "timestampMs": 35505,
+  "confidence": null
+ },
+ {
+  "text": " way",
+  "startMs": 35540,
+  "endMs": 35730,
+  "timestampMs": 35635,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 35730,
+  "endMs": 35950,
+  "timestampMs": 35840,
+  "confidence": null
+ },
+ {
+  "text": " with",
+  "startMs": 35950,
+  "endMs": 36080,
+  "timestampMs": 36015,
+  "confidence": null
+ },
+ {
+  "text": " planks",
+  "startMs": 36080,
+  "endMs": 36620,
+  "timestampMs": 36350,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 36620,
+  "endMs": 36760,
+  "timestampMs": 36690,
+  "confidence": null
+ },
+ {
+  "text": " old",
+  "startMs": 36760,
+  "endMs": 37010,
+  "timestampMs": 36885,
+  "confidence": null
+ },
+ {
+  "text": " doors.",
+  "startMs": 37010,
+  "endMs": 37540,
+  "timestampMs": 37275,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 38180,
+  "endMs": 38260,
+  "timestampMs": 38220,
+  "confidence": null
+ },
+ {
+  "text": " Persians",
+  "startMs": 38260,
+  "endMs": 38740,
+  "timestampMs": 38500,
+  "confidence": null
+ },
+ {
+  "text": " take",
+  "startMs": 38740,
+  "endMs": 38960,
+  "timestampMs": 38850,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 38960,
+  "endMs": 39030,
+  "timestampMs": 38995,
+  "confidence": null
+ },
+ {
+  "text": " hill",
+  "startMs": 39030,
+  "endMs": 39260,
+  "timestampMs": 39145,
+  "confidence": null
+ },
+ {
+  "text": " right",
+  "startMs": 39260,
+  "endMs": 39470,
+  "timestampMs": 39365,
+  "confidence": null
+ },
+ {
+  "text": " across",
+  "startMs": 39470,
+  "endMs": 39850,
+  "timestampMs": 39660,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 39850,
+  "endMs": 40000,
+  "timestampMs": 39925,
+  "confidence": null
+ },
+ {
+  "text": " them.",
+  "startMs": 40000,
+  "endMs": 40240,
+  "timestampMs": 40120,
+  "confidence": null
+ },
+ {
+  "text": " Now,",
+  "startMs": 40500,
+  "endMs": 40860,
+  "timestampMs": 40680,
+  "confidence": null
+ },
+ {
+  "text": " fire",
+  "startMs": 41010,
+  "endMs": 41340,
+  "timestampMs": 41175,
+  "confidence": null
+ },
+ {
+  "text": " arrows",
+  "startMs": 41340,
+  "endMs": 41730,
+  "timestampMs": 41535,
+  "confidence": null
+ },
+ {
+  "text": " almost",
+  "startMs": 41730,
+  "endMs": 42090,
+  "timestampMs": 41910,
+  "confidence": null
+ },
+ {
+  "text": " never",
+  "startMs": 42090,
+  "endMs": 42340,
+  "timestampMs": 42215,
+  "confidence": null
+ },
+ {
+  "text": " work.",
+  "startMs": 42340,
+  "endMs": 42710,
+  "timestampMs": 42525,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 42940,
+  "endMs": 43020,
+  "timestampMs": 42980,
+  "confidence": null
+ },
+ {
+  "text": " flame",
+  "startMs": 43020,
+  "endMs": 43370,
+  "timestampMs": 43195,
+  "confidence": null
+ },
+ {
+  "text": " blows",
+  "startMs": 43370,
+  "endMs": 43690,
+  "timestampMs": 43530,
+  "confidence": null
+ },
+ {
+  "text": " out",
+  "startMs": 43690,
+  "endMs": 43870,
+  "timestampMs": 43780,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 43870,
+  "endMs": 43980,
+  "timestampMs": 43925,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 43980,
+  "endMs": 44080,
+  "timestampMs": 44030,
+  "confidence": null
+ },
+ {
+  "text": " air,",
+  "startMs": 44080,
+  "endMs": 44400,
+  "timestampMs": 44240,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 44600,
+  "endMs": 44730,
+  "timestampMs": 44665,
+  "confidence": null
+ },
+ {
+  "text": " thick",
+  "startMs": 44730,
+  "endMs": 44990,
+  "timestampMs": 44860,
+  "confidence": null
+ },
+ {
+  "text": " walls",
+  "startMs": 44990,
+  "endMs": 45330,
+  "timestampMs": 45160,
+  "confidence": null
+ },
+ {
+  "text": " don't",
+  "startMs": 45330,
+  "endMs": 45530,
+  "timestampMs": 45430,
+  "confidence": null
+ },
+ {
+  "text": " catch",
+  "startMs": 45530,
+  "endMs": 45820,
+  "timestampMs": 45675,
+  "confidence": null
+ },
+ {
+  "text": " fire.",
+  "startMs": 45820,
+  "endMs": 46290,
+  "timestampMs": 46055,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 46590,
+  "endMs": 46700,
+  "timestampMs": 46645,
+  "confidence": null
+ },
+ {
+  "text": " this",
+  "startMs": 46700,
+  "endMs": 46890,
+  "timestampMs": 46795,
+  "confidence": null
+ },
+ {
+  "text": " wall",
+  "startMs": 46890,
+  "endMs": 47140,
+  "timestampMs": 47015,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 47140,
+  "endMs": 47250,
+  "timestampMs": 47195,
+  "confidence": null
+ },
+ {
+  "text": " made",
+  "startMs": 47250,
+  "endMs": 47410,
+  "timestampMs": 47330,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 47410,
+  "endMs": 47500,
+  "timestampMs": 47455,
+  "confidence": null
+ },
+ {
+  "text": " dry",
+  "startMs": 47500,
+  "endMs": 47780,
+  "timestampMs": 47640,
+  "confidence": null
+ },
+ {
+  "text": " planks",
+  "startMs": 47780,
+  "endMs": 48160,
+  "timestampMs": 47970,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 48160,
+  "endMs": 48260,
+  "timestampMs": 48210,
+  "confidence": null
+ },
+ {
+  "text": " doors.",
+  "startMs": 48260,
+  "endMs": 48720,
+  "timestampMs": 48490,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 48970,
+  "endMs": 49110,
+  "timestampMs": 49040,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 49110,
+  "endMs": 49170,
+  "timestampMs": 49140,
+  "confidence": null
+ },
+ {
+  "text": " Persians",
+  "startMs": 49170,
+  "endMs": 49600,
+  "timestampMs": 49385,
+  "confidence": null
+ },
+ {
+  "text": " wrap",
+  "startMs": 49600,
+  "endMs": 49870,
+  "timestampMs": 49735,
+  "confidence": null
+ },
+ {
+  "text": " their",
+  "startMs": 49870,
+  "endMs": 50010,
+  "timestampMs": 49940,
+  "confidence": null
+ },
+ {
+  "text": " arrows",
+  "startMs": 50010,
+  "endMs": 50350,
+  "timestampMs": 50180,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 50350,
+  "endMs": 50420,
+  "timestampMs": 50385,
+  "confidence": null
+ },
+ {
+  "text": " plant",
+  "startMs": 50420,
+  "endMs": 50740,
+  "timestampMs": 50580,
+  "confidence": null
+ },
+ {
+  "text": " fiber,",
+  "startMs": 50740,
+  "endMs": 51210,
+  "timestampMs": 50975,
+  "confidence": null
+ },
+ {
+  "text": " set",
+  "startMs": 51480,
+  "endMs": 51660,
+  "timestampMs": 51570,
+  "confidence": null
+ },
+ {
+  "text": " them",
+  "startMs": 51660,
+  "endMs": 51790,
+  "timestampMs": 51725,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 51790,
+  "endMs": 51890,
+  "timestampMs": 51840,
+  "confidence": null
+ },
+ {
+  "text": " fire,",
+  "startMs": 51890,
+  "endMs": 52400,
+  "timestampMs": 52145,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 52710,
+  "endMs": 52860,
+  "timestampMs": 52785,
+  "confidence": null
+ },
+ {
+  "text": " shoot.",
+  "startMs": 52860,
+  "endMs": 53310,
+  "timestampMs": 53085,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 53730,
+  "endMs": 53840,
+  "timestampMs": 53785,
+  "confidence": null
+ },
+ {
+  "text": " wooden",
+  "startMs": 53840,
+  "endMs": 54110,
+  "timestampMs": 53975,
+  "confidence": null
+ },
+ {
+  "text": " wall",
+  "startMs": 54110,
+  "endMs": 54390,
+  "timestampMs": 54250,
+  "confidence": null
+ },
+ {
+  "text": " burns.",
+  "startMs": 54390,
+  "endMs": 54940,
+  "timestampMs": 54665,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 55550,
+  "endMs": 55630,
+  "timestampMs": 55590,
+  "confidence": null
+ },
+ {
+  "text": " men",
+  "startMs": 55630,
+  "endMs": 55830,
+  "timestampMs": 55730,
+  "confidence": null
+ },
+ {
+  "text": " still",
+  "startMs": 55830,
+  "endMs": 56100,
+  "timestampMs": 55965,
+  "confidence": null
+ },
+ {
+  "text": " don't",
+  "startMs": 56100,
+  "endMs": 56270,
+  "timestampMs": 56185,
+  "confidence": null
+ },
+ {
+  "text": " give",
+  "startMs": 56270,
+  "endMs": 56460,
+  "timestampMs": 56365,
+  "confidence": null
+ },
+ {
+  "text": " up.",
+  "startMs": 56460,
+  "endMs": 56750,
+  "timestampMs": 56605,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 57070,
+  "endMs": 57200,
+  "timestampMs": 57135,
+  "confidence": null
+ },
+ {
+  "text": " roll",
+  "startMs": 57200,
+  "endMs": 57480,
+  "timestampMs": 57340,
+  "confidence": null
+ },
+ {
+  "text": " giant",
+  "startMs": 57480,
+  "endMs": 57930,
+  "timestampMs": 57705,
+  "confidence": null
+ },
+ {
+  "text": " rocks",
+  "startMs": 57930,
+  "endMs": 58280,
+  "timestampMs": 58105,
+  "confidence": null
+ },
+ {
+  "text": " down",
+  "startMs": 58280,
+  "endMs": 58530,
+  "timestampMs": 58405,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 58530,
+  "endMs": 58670,
+  "timestampMs": 58600,
+  "confidence": null
+ },
+ {
+  "text": " anyone",
+  "startMs": 58670,
+  "endMs": 59130,
+  "timestampMs": 58900,
+  "confidence": null
+ },
+ {
+  "text": " who",
+  "startMs": 59130,
+  "endMs": 59240,
+  "timestampMs": 59185,
+  "confidence": null
+ },
+ {
+  "text": " comes",
+  "startMs": 59240,
+  "endMs": 59590,
+  "timestampMs": 59415,
+  "confidence": null
+ },
+ {
+  "text": " near",
+  "startMs": 59590,
+  "endMs": 59790,
+  "timestampMs": 59690,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 59790,
+  "endMs": 59880,
+  "timestampMs": 59835,
+  "confidence": null
+ },
+ {
+  "text": " gate.",
+  "startMs": 59880,
+  "endMs": 60320,
+  "timestampMs": 60100,
+  "confidence": null
+ },
+ {
+  "text": " Then",
+  "startMs": 60650,
+  "endMs": 60800,
+  "timestampMs": 60725,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 60800,
+  "endMs": 60830,
+  "timestampMs": 60815,
+  "confidence": null
+ },
+ {
+  "text": " few",
+  "startMs": 60830,
+  "endMs": 61090,
+  "timestampMs": 60960,
+  "confidence": null
+ },
+ {
+  "text": " Persians",
+  "startMs": 61090,
+  "endMs": 61570,
+  "timestampMs": 61330,
+  "confidence": null
+ },
+ {
+  "text": " climb",
+  "startMs": 61570,
+  "endMs": 61890,
+  "timestampMs": 61730,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 61890,
+  "endMs": 61950,
+  "timestampMs": 61920,
+  "confidence": null
+ },
+ {
+  "text": " steepest",
+  "startMs": 61950,
+  "endMs": 62470,
+  "timestampMs": 62210,
+  "confidence": null
+ },
+ {
+  "text": " cliff",
+  "startMs": 62470,
+  "endMs": 62730,
+  "timestampMs": 62600,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 62730,
+  "endMs": 62820,
+  "timestampMs": 62775,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 62820,
+  "endMs": 62900,
+  "timestampMs": 62860,
+  "confidence": null
+ },
+ {
+  "text": " hill.",
+  "startMs": 62900,
+  "endMs": 63230,
+  "timestampMs": 63065,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 63610,
+  "endMs": 63810,
+  "timestampMs": 63710,
+  "confidence": null
+ },
+ {
+  "text": " so",
+  "startMs": 63810,
+  "endMs": 64010,
+  "timestampMs": 63910,
+  "confidence": null
+ },
+ {
+  "text": " steep,",
+  "startMs": 64010,
+  "endMs": 64400,
+  "timestampMs": 64205,
+  "confidence": null
+ },
+ {
+  "text": " nobody",
+  "startMs": 64590,
+  "endMs": 64930,
+  "timestampMs": 64760,
+  "confidence": null
+ },
+ {
+  "text": " thought",
+  "startMs": 64930,
+  "endMs": 65170,
+  "timestampMs": 65050,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 65170,
+  "endMs": 65250,
+  "timestampMs": 65210,
+  "confidence": null
+ },
+ {
+  "text": " guard",
+  "startMs": 65250,
+  "endMs": 65520,
+  "timestampMs": 65385,
+  "confidence": null
+ },
+ {
+  "text": " it.",
+  "startMs": 65520,
+  "endMs": 65730,
+  "timestampMs": 65625,
+  "confidence": null
+ },
+ {
+  "text": " When",
+  "startMs": 66090,
+  "endMs": 66260,
+  "timestampMs": 66175,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 66260,
+  "endMs": 66320,
+  "timestampMs": 66290,
+  "confidence": null
+ },
+ {
+  "text": " defenders",
+  "startMs": 66320,
+  "endMs": 66740,
+  "timestampMs": 66530,
+  "confidence": null
+ },
+ {
+  "text": " see",
+  "startMs": 66740,
+  "endMs": 66930,
+  "timestampMs": 66835,
+  "confidence": null
+ },
+ {
+  "text": " enemies",
+  "startMs": 66930,
+  "endMs": 67280,
+  "timestampMs": 67105,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 67280,
+  "endMs": 67410,
+  "timestampMs": 67345,
+  "confidence": null
+ },
+ {
+  "text": " top,",
+  "startMs": 67410,
+  "endMs": 67990,
+  "timestampMs": 67700,
+  "confidence": null
+ },
+ {
+  "text": " some",
+  "startMs": 67990,
+  "endMs": 68290,
+  "timestampMs": 68140,
+  "confidence": null
+ },
+ {
+  "text": " jump",
+  "startMs": 68290,
+  "endMs": 68520,
+  "timestampMs": 68405,
+  "confidence": null
+ },
+ {
+  "text": " off",
+  "startMs": 68520,
+  "endMs": 68700,
+  "timestampMs": 68610,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 68700,
+  "endMs": 68760,
+  "timestampMs": 68730,
+  "confidence": null
+ },
+ {
+  "text": " walls.",
+  "startMs": 68760,
+  "endMs": 69250,
+  "timestampMs": 69005,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 69440,
+  "endMs": 69520,
+  "timestampMs": 69480,
+  "confidence": null
+ },
+ {
+  "text": " rest",
+  "startMs": 69520,
+  "endMs": 69830,
+  "timestampMs": 69675,
+  "confidence": null
+ },
+ {
+  "text": " run",
+  "startMs": 69830,
+  "endMs": 70040,
+  "timestampMs": 69935,
+  "confidence": null
+ },
+ {
+  "text": " into",
+  "startMs": 70040,
+  "endMs": 70200,
+  "timestampMs": 70120,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 70200,
+  "endMs": 70290,
+  "timestampMs": 70245,
+  "confidence": null
+ },
+ {
+  "text": " temple.",
+  "startMs": 70290,
+  "endMs": 70740,
+  "timestampMs": 70515,
+  "confidence": null
+ },
+ {
+  "text": " Not",
+  "startMs": 71320,
+  "endMs": 71550,
+  "timestampMs": 71435,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 71550,
+  "endMs": 71690,
+  "timestampMs": 71620,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 71690,
+  "endMs": 71780,
+  "timestampMs": 71735,
+  "confidence": null
+ },
+ {
+  "text": " them",
+  "startMs": 71780,
+  "endMs": 71910,
+  "timestampMs": 71845,
+  "confidence": null
+ },
+ {
+  "text": " survives,",
+  "startMs": 71910,
+  "endMs": 72560,
+  "timestampMs": 72235,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 72680,
+  "endMs": 72830,
+  "timestampMs": 72755,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 72830,
+  "endMs": 72920,
+  "timestampMs": 72875,
+  "confidence": null
+ },
+ {
+  "text": " Acropolis",
+  "startMs": 72920,
+  "endMs": 73470,
+  "timestampMs": 73195,
+  "confidence": null
+ },
+ {
+  "text": " burns.",
+  "startMs": 73470,
+  "endMs": 74000,
+  "timestampMs": 73735,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 74330,
+  "endMs": 74660,
+  "timestampMs": 74495,
+  "confidence": null
+ },
+ {
+  "text": " remember",
+  "startMs": 74660,
+  "endMs": 74960,
+  "timestampMs": 74810,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 74960,
+  "endMs": 75040,
+  "timestampMs": 75000,
+  "confidence": null
+ },
+ {
+  "text": " ships?",
+  "startMs": 75040,
+  "endMs": 75540,
+  "timestampMs": 75290,
+  "confidence": null
+ },
+ {
+  "text": " Soon",
+  "startMs": 75810,
+  "endMs": 76100,
+  "timestampMs": 75955,
+  "confidence": null
+ },
+ {
+  "text": " after,",
+  "startMs": 76100,
+  "endMs": 76580,
+  "timestampMs": 76340,
+  "confidence": null
+ },
+ {
+  "text": " at",
+  "startMs": 76690,
+  "endMs": 76890,
+  "timestampMs": 76790,
+  "confidence": null
+ },
+ {
+  "text": " Salamis,",
+  "startMs": 76890,
+  "endMs": 77560,
+  "timestampMs": 77225,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 77770,
+  "endMs": 77930,
+  "timestampMs": 77850,
+  "confidence": null
+ },
+ {
+  "text": " Athenian",
+  "startMs": 77930,
+  "endMs": 78350,
+  "timestampMs": 78140,
+  "confidence": null
+ },
+ {
+  "text": " fleet",
+  "startMs": 78350,
+  "endMs": 78740,
+  "timestampMs": 78545,
+  "confidence": null
+ },
+ {
+  "text": " traps",
+  "startMs": 78740,
+  "endMs": 79130,
+  "timestampMs": 78935,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 79130,
+  "endMs": 79200,
+  "timestampMs": 79165,
+  "confidence": null
+ },
+ {
+  "text": " Persian",
+  "startMs": 79200,
+  "endMs": 79580,
+  "timestampMs": 79390,
+  "confidence": null
+ },
+ {
+  "text": " navy",
+  "startMs": 79580,
+  "endMs": 80010,
+  "timestampMs": 79795,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 80010,
+  "endMs": 80150,
+  "timestampMs": 80080,
+  "confidence": null
+ },
+ {
+  "text": " smashes",
+  "startMs": 80150,
+  "endMs": 80720,
+  "timestampMs": 80435,
+  "confidence": null
+ },
+ {
+  "text": " it.",
+  "startMs": 80720,
+  "endMs": 80930,
+  "timestampMs": 80825,
+  "confidence": null
+ },
+ {
+  "text": " Xerxes",
+  "startMs": 81250,
+  "endMs": 81750,
+  "timestampMs": 81500,
+  "confidence": null
+ },
+ {
+  "text": " watches",
+  "startMs": 81750,
+  "endMs": 82160,
+  "timestampMs": 81955,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 82160,
+  "endMs": 82310,
+  "timestampMs": 82235,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 82310,
+  "endMs": 82380,
+  "timestampMs": 82345,
+  "confidence": null
+ },
+ {
+  "text": " shore",
+  "startMs": 82380,
+  "endMs": 82810,
+  "timestampMs": 82595,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 82810,
+  "endMs": 82970,
+  "timestampMs": 82890,
+  "confidence": null
+ },
+ {
+  "text": " his",
+  "startMs": 82970,
+  "endMs": 83060,
+  "timestampMs": 83015,
+  "confidence": null
+ },
+ {
+  "text": " ships",
+  "startMs": 83060,
+  "endMs": 83370,
+  "timestampMs": 83215,
+  "confidence": null
+ },
+ {
+  "text": " go",
+  "startMs": 83370,
+  "endMs": 83550,
+  "timestampMs": 83460,
+  "confidence": null
+ },
+ {
+  "text": " down.",
+  "startMs": 83550,
+  "endMs": 83920,
+  "timestampMs": 83735,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 84620,
+  "endMs": 85000,
+  "timestampMs": 84810,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 85160,
+  "endMs": 85290,
+  "timestampMs": 85225,
+  "confidence": null
+ },
+ {
+  "text": " oracle",
+  "startMs": 85290,
+  "endMs": 85700,
+  "timestampMs": 85495,
+  "confidence": null
+ },
+ {
+  "text": " was",
+  "startMs": 85700,
+  "endMs": 85860,
+  "timestampMs": 85780,
+  "confidence": null
+ },
+ {
+  "text": " right.",
+  "startMs": 85860,
+  "endMs": 86260,
+  "timestampMs": 86060,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 86620,
+  "endMs": 86710,
+  "timestampMs": 86665,
+  "confidence": null
+ },
+ {
+  "text": " wooden",
+  "startMs": 86710,
+  "endMs": 86990,
+  "timestampMs": 86850,
+  "confidence": null
+ },
+ {
+  "text": " wall",
+  "startMs": 86990,
+  "endMs": 87320,
+  "timestampMs": 87155,
+  "confidence": null
+ },
+ {
+  "text": " did",
+  "startMs": 87320,
+  "endMs": 87530,
+  "timestampMs": 87425,
+  "confidence": null
+ },
+ {
+  "text": " save",
+  "startMs": 87530,
+  "endMs": 87850,
+  "timestampMs": 87690,
+  "confidence": null
+ },
+ {
+  "text": " Athens.",
+  "startMs": 87850,
+  "endMs": 88500,
+  "timestampMs": 88175,
+  "confidence": null
+ },
+ {
+  "text": " Just",
+  "startMs": 88720,
+  "endMs": 89160,
+  "timestampMs": 88940,
+  "confidence": null
+ },
+ {
+  "text": " not",
+  "startMs": 89160,
+  "endMs": 89420,
+  "timestampMs": 89290,
+  "confidence": null
+ },
+ {
+  "text": " theirs.",
+  "startMs": 89420,
+  "endMs": 89940,
+  "timestampMs": 89680,
+  "confidence": null
+ }
+]

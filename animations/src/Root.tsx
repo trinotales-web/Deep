@@ -1,22 +1,46 @@
-import { Composition, staticFile } from "remotion";
-import { Animation2D, type Animation2DProps } from "./Animation2D";
+import { Composition, Folder } from "remotion";
+import { OnodaEpisode, OnodaVisuals, calculateOnodaMetadata, type OnodaProps } from "./episodes/onoda/Episode";
+import { TOTAL_FRAMES } from "./episodes/onoda/script";
+import { KitTest } from "./dev/KitTest";
+
+// When the voiceover is ready: put it in public/vo/, run
+// `node scripts/transcribe.mjs public/vo/onoda.mp3`, then set
+// voiceover: "vo/onoda.mp3", captionsFile: "captions/onoda.json".
+const onodaDefaults: OnodaProps = {
+  voiceover: null,
+  captionsFile: null,
+  highlights: ["order", "never", "surrender", "ends", "tells", "him", "fighting", "29", "twenty-nine", "years"],
+};
 
 export const RemotionRoot = () => {
   return (
-    <Composition
-      id="Animation2D"
-      component={Animation2D}
-      durationInFrames={150}
-      fps={30}
-      width={1920}
-      height={1080}
-      defaultProps={
-        {
-          captionsSrc: staticFile("captions/example.json"),
-          // Drop an audio file in public/audio/ and point this at it, e.g. staticFile("audio/voice.mp3").
-          audioSrc: null,
-        } satisfies Animation2DProps
-      }
-    />
+    <>
+      <Folder name="Onoda">
+        <Composition
+          id="OnodaShort"
+          component={OnodaEpisode}
+          durationInFrames={TOTAL_FRAMES}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={onodaDefaults}
+          calculateMetadata={calculateOnodaMetadata}
+        />
+        <Composition
+          id="OnodaVideo"
+          component={OnodaEpisode}
+          durationInFrames={TOTAL_FRAMES}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={onodaDefaults}
+          calculateMetadata={calculateOnodaMetadata}
+        />
+        <Composition id="OnodaVisualsOnly" component={OnodaVisuals} durationInFrames={TOTAL_FRAMES} fps={30} width={1080} height={1920} />
+      </Folder>
+      <Folder name="Dev">
+        <Composition id="KitTest" component={KitTest} durationInFrames={90} fps={30} width={1080} height={1920} />
+      </Folder>
+    </>
   );
 };

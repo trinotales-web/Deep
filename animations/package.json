@@ -4,23 +4,31 @@
   "private": true,
   "description": "2D animations: Three.js visuals + Remotion captions/audio",
   "scripts": {
+    "postinstall": "node scripts/synth-audio.mjs --if-missing",
+    "audio": "node scripts/synth-audio.mjs",
     "studio": "remotion studio",
     "render": "remotion render",
     "still": "remotion still",
+    "master": "node scripts/master.mjs",
+    "render:short": "remotion render OnodaShort out/onoda-short.mp4 && node scripts/master.mjs out/onoda-short.mp4",
+    "render:video": "remotion render OnodaVideo out/onoda-video.mp4 && node scripts/master.mjs out/onoda-video.mp4",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@react-three/fiber": "9.8.2",
     "@remotion/captions": "4.0.539",
     "@remotion/cli": "4.0.539",
+    "@remotion/fonts": "4.0.539",
     "@remotion/media": "4.0.539",
     "@remotion/three": "4.0.539",
+    "@remotion/transitions": "4.0.539",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "remotion": "4.0.539",
     "three": "0.186.1"
   },
   "devDependencies": {
+    "@remotion/install-whisper-cpp": "4.0.539",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.186.0",

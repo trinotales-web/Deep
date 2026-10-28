@@ -238,7 +238,7 @@ const CUES: [number, string, number][] = [
   [324.9, "grunt", 0.35],
   [325.15, "whoosh-powerful", 0.5],
   [326.15, "whoosh-sizzling", 0.3],
-  [326.75, "impact-hit-3", 0.3],
+  [326.75, "impact-hit-3", 0.2],
   [326.78, "hit-double", 0.18],
   [327.7, "whoosh-sizzling", 0.35],
   [330.3, "whoosh-fast-short-low", 0.4],

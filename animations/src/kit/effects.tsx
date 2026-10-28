@@ -239,3 +239,15 @@ export const Wash: React.FC<{ width: number; height: number; color?: string; alp
   mat.uniforms.uAlpha.value = alpha;
   return <mesh geometry={plane} material={mat} position={[0, 0, z]} scale={[width * 1.5, height * 1.5, 1]} frustumCulled={false} />;
 };
+
+/** Cinema letterbox bars (screen-space). Place inside a Stage. */
+export const Letterbox: React.FC<{ width: number; height: number; ratio?: number }> = ({ width, height, ratio = 2.39 }) => {
+  const barH = Math.max(0, (height - width / ratio) / 2);
+  const mat = useShader(WASH_FRAG, { uColor: { value: v3("#000000") }, uAlpha: { value: 1 } });
+  return (
+    <>
+      <mesh geometry={plane} material={mat} position={[0, height / 2 - barH / 2, 455]} scale={[width * 1.2, barH, 1]} frustumCulled={false} />
+      <mesh geometry={plane} material={mat} position={[0, -height / 2 + barH / 2, 455]} scale={[width * 1.2, barH, 1]} frustumCulled={false} />
+    </>
+  );
+};

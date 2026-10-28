@@ -51,6 +51,8 @@ export type Outfit = {
   rope?: string | null;
   /** Bronze breastplate overlay. */
   armor?: string | null;
+  /** Quilted gambeson stitching color. */
+  quilt?: string | null;
 };
 
 export type Pose = {
@@ -238,6 +240,12 @@ const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe 
           z={0.005}
         />
       ) : null}
+      {outfit.quilt
+        ? [
+            ...[-30, 0, 30].map((x) => [[x, TORSO_TOP - 12], [x * 1.12, (outfit.hem ?? TORSO_BOTTOM) + 8]] as [number, number][]),
+            ...[90, 130, 170].map((y) => [[-60, y], [60, y]] as [number, number][]),
+          ].map((pts, i) => <Line key={`q${i}`} pts={pts} width={3.5} color={outfit.quilt!} z={0.0015} />)
+        : null}
       {outfit.armor ? (
         <Part
           shape={roundPoly([[-60, 96], [60, 96], [52, TORSO_TOP - 6], [-52, TORSO_TOP - 6]], [10, 10, 26, 26])}

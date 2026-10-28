@@ -6,3 +6,4 @@ export * from "./effects";
 export * from "./Stage";
 export * from "./random";
 export * from "./props";
+export * from "./timing";

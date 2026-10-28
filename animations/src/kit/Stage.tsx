@@ -61,7 +61,7 @@ export const Stage: React.FC<StageProps> = ({
       orthographic
       linear
       flat
-      gl={{ stencil: true, antialias: true }}
+      gl={{ stencil: true, antialias: true, alpha: false }}
       camera={{ position: [0, 0, 500], zoom: 1, near: 0.1, far: 2000 }}
       style={{ position: "absolute", inset: 0 }}
     >

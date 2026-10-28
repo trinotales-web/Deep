@@ -9,6 +9,7 @@ import { palette, shadeHex } from "../style";
 export type HatKind =
   | "helmet" | "fieldcap" | "sidecap" | "officer" | "headband" | "bandana" | "hardhat"
   | "persian" | "crown" | "veil" | "wreath" | "corinthian" | "hood"
+  | "kettle" | "viking" | "turban" | "kabuto" | "song" | "joseon" | "astronaut"
   | null;
 export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | null;
 
@@ -200,6 +201,85 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
           <Part shape={blob([[-110, -40], [-112, 40], [-86, 100], [-30, 124], [30, 124], [86, 100], [112, 40], [110, -40], [84, -30], [80, 26], [0, 34], [-80, 26], [-84, -30]], 8)} color={c} shade={0.26} />
           <Part shape={blob([[-80, 120], [-50, 168], [0, 186], [50, 168], [90, 120], [40, 140], [-30, 138]], 8)} color={crest} shade={0.25} z={-0.001} />
           <Line pts={[[-96, 50], [-40, 60], [40, 60], [96, 50]]} smooth width={4} color={shadeHex(c, 0.45)} z={0.001} />
+        </X>
+      );
+    }
+    case "kettle": {
+      // medieval kettle hat: steel dome with a wide brim
+      const c = color ?? "#a9aeb8";
+      return (
+        <X y={40}>
+          <Part shape={blob([[-96, 6], [-90, 60], [-56, 100], [0, 112], [56, 100], [90, 60], [96, 6]], 8)} color={c} shade={0.3} />
+          <Part shape={ellipse(160, 22)} color={shadeHex(c, 0.06)} shade={0.25} y={6} z={0.001} />
+          <Line pts={[[0, 18], [0, 108]]} width={4} color={shadeHex(c, 0.35)} z={0.002} />
+          {accent ? <Part shape={blob([[-6, 100], [40, 150], [70, 210], [30, 170], [-10, 120]], 6)} color={accent} shade={0.25} z={-0.001} /> : null}
+        </X>
+      );
+    }
+    case "viking": {
+      // round spangenhelm with a nose guard (no horns — they're a myth)
+      const c = color ?? "#9aa0aa";
+      return (
+        <X y={40}>
+          <Part shape={blob([[-104, 0], [-98, 60], [-60, 104], [0, 116], [60, 104], [98, 60], [104, 0]], 8)} color={c} shade={0.3} />
+          <Part shape={roundRect(214, 26, 10)} color="#8a6a3a" y={8} z={0.001} />
+          <Part shape={roundRect(18, 104, 6)} color="#8a6a3a" y={60} z={0.0005} />
+          <Part shape={roundRect(22, 70, 8)} color={shadeHex(c, 0.08)} y={-28} x={18} z={0.002} />
+        </X>
+      );
+    }
+    case "turban": {
+      const c = color ?? "#efe6d2";
+      return (
+        <X y={36}>
+          <Part shape={blob([[-110, 0], [-104, 60], [-70, 104], [0, 120], [70, 104], [104, 60], [110, 0], [0, -8]], 8)} color={c} shade={0.26} />
+          {[20, 50, 80].map((y, i) => (
+            <Line key={y} pts={[[-100 + i * 10, y - 20], [0, y + 10], [100 - i * 10, y - 6]]} smooth width={4} color={shadeHex(c, 0.3)} z={0.001} />
+          ))}
+          {accent ? <Part shape={ellipse(14, 18)} color={accent} flat outline={4} y={34} x={30} z={0.002} /> : null}
+        </X>
+      );
+    }
+    case "kabuto": {
+      const c = color ?? "#2a2a34";
+      const gold = accent ?? palette.gold;
+      return (
+        <X y={40}>
+          <Part shape={blob([[-150, -40], [-120, 10], [-104, 40], [-70, 96], [0, 112], [70, 96], [104, 40], [120, 10], [150, -40], [100, -10], [0, 0], [-100, -10]], 8)} color={c} shade={0.25} />
+          {[-1, 1].map((k) => (
+            <Part key={k} shape={blob([[0, 30], [k * 20, 80], [k * 60, 150], [k * 40, 90], [k * 10, 40]], 6)} color={gold} shade={0.2} x={k * 10} z={0.001} />
+          ))}
+          <Part shape={circle(14)} color={gold} flat outline={4} y={30} z={0.002} />
+        </X>
+      );
+    }
+    case "song": {
+      // Song-dynasty soldier helmet with neck flaps and a red tassel
+      const c = color ?? "#7a6a5a";
+      return (
+        <X y={36}>
+          <Part shape={blob([[-120, -50], [-112, 20], [-90, 80], [-40, 112], [40, 112], [90, 80], [112, 20], [120, -50], [92, -30], [80, 14], [0, 26], [-80, 14], [-92, -30]], 8)} color={c} shade={0.26} />
+          <Part shape={circle(22)} color={accent ?? "#c0362c"} shade={0.3} y={124} z={0.001} />
+        </X>
+      );
+    }
+    case "joseon": {
+      // Joseon soldier's wide-brimmed black hat with a red tassel
+      const c = color ?? "#26222a";
+      return (
+        <X y={50}>
+          <Part shape={blob([[-76, 0], [-70, 60], [0, 92], [70, 60], [76, 0]], 8)} color={c} shade={0.2} />
+          <Part shape={ellipse(170, 24)} color={c} shade={0.2} y={4} z={0.001} />
+          <Part shape={blob([[0, 86], [28, 120], [10, 150], [-12, 118]], 6)} color={accent ?? "#c0362c"} shade={0.25} z={0.002} />
+        </X>
+      );
+    }
+    case "astronaut": {
+      return (
+        <X y={6}>
+          <Part shape={circle(150)} color="#dff1ff" flat outline={8} opacity={0.22} />
+          <Part shape={ellipse(40, 20)} color="#ffffff" flat outline={0} opacity={0.7} x={-70} y={80} rot={0.6} z={0.001} />
+          <Part shape={roundRect(220, 40, 18)} color="#e8e8ee" y={-150} z={-0.2} />
         </X>
       );
     }

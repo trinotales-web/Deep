@@ -375,3 +375,25 @@ export const OldDoor: React.FC<XProps & { w?: number; h?: number; char?: number;
     </X>
   );
 };
+
+/** Chinese pagoda / hall with curved roofs. Origin = ground center. */
+export const Pagoda: React.FC<XProps & { tiers?: number; w?: number; color?: string; roof?: string }> = ({ tiers = 3, w = 360, color = "#b8322a", roof = "#3a4a3a", ...xf }) => (
+  <X {...xf}>
+    {Array.from({ length: tiers }, (_, i) => {
+      const ww = w * (1 - i * 0.18);
+      const y = i * 170;
+      return (
+        <X key={i} y={y} z={i * 0.01}>
+          <Part shape={roundRect(ww * 0.7, 130, 4)} color={color} shade={0.22} y={65} />
+          <Part
+            shape={blob([[-ww * 0.72, 140], [-ww * 0.5, 160], [0, 210], [ww * 0.5, 160], [ww * 0.72, 140], [ww * 0.5, 150], [0, 180], [-ww * 0.5, 150]], 8)}
+            color={roof}
+            shade={0.22}
+            z={0.005}
+          />
+        </X>
+      );
+    })}
+    <Part shape={roundRect(14, 80, 6)} color={palette.gold} y={tiers * 170 + 60} z={0.1} />
+  </X>
+);

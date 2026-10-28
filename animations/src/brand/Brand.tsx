@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { Stage, X, Part, Line, InkLine, Arrow, Bow, Magnifier, Glow, roundRect, circle, rng } from "../kit";
-import { Character, poses } from "../kit/character";
+import { Character, poses, reachArm, frontEye } from "../kit/character";
 import { Sky, Cloud, Ground, Hill, PalmTree, Pyramid, LeaningTower, Moai, Flame, Smoke, Sunburst, FireLine } from "../kit/env";
 import { ARCHER } from "../episodes/firearrows/cast";
 import { EXPLORER } from "./cast";
@@ -17,30 +17,7 @@ const INK = "#1d1519";
 const CORAL = "#fe5649";
 const FONT = "Montserrat, sans-serif";
 
-// arm rig (see kit/character/Character.tsx)
-const SHOULDER: [number, number] = [50, 206];
-const UPPER = 60;
-const FORE = 56;
-const GRIP = 30;
-const clamp1 = (v: number) => Math.max(-1, Math.min(1, v));
-
-/** Two-bone IK: front-arm angles so the hand's grip lands on `target` (world). */
-const reach = (x: number, y: number, s: number, facing: 1 | -1, target: [number, number]): [number, number] => {
-  const sx = x + facing * SHOULDER[0] * s;
-  const sy = y + SHOULDER[1] * s;
-  const dx = (target[0] - sx) * facing;
-  const dy = target[1] - sy;
-  const L1 = UPPER * s;
-  const L2 = (FORE + GRIP) * s;
-  const d = Math.min(Math.hypot(dx, dy), L1 + L2 - 0.01);
-  const phi = Math.atan2(dx, -dy);
-  const a = Math.acos(clamp1((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d)));
-  const b = Math.acos(clamp1((L1 * L1 + L2 * L2 - d * d) / (2 * L1 * L2)));
-  return [phi - a, Math.PI - b];
-};
-
-/** Front-eye position (world) of a character with look 0.5. */
-const frontEye = (x: number, y: number, s: number, facing: 1 | -1): [number, number] => [x + facing * 46 * s, y + 310 * s];
+const reach = reachArm;
 
 /** Heavy outlined text in the thumbnail style. */
 const BigText: React.FC<{ text: string; x: number; y: number; size: number; color: string; rotate?: number; stroke?: number }> = ({

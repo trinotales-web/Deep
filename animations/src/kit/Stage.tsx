@@ -26,6 +26,8 @@ export type StageProps = {
   /** 0..1 fade to black (or `washColor`). */
   wash?: number;
   washColor?: string;
+  /** Transparent canvas (for layering a sharp foreground over a blurred background). */
+  transparent?: boolean;
   children: React.ReactNode;
 };
 
@@ -47,6 +49,7 @@ export const Stage: React.FC<StageProps> = ({
   grain = 0.035,
   wash = 0,
   washColor = "#000000",
+  transparent = false,
   children,
 }) => {
   const { width, height } = useVideoConfig();
@@ -61,7 +64,7 @@ export const Stage: React.FC<StageProps> = ({
       orthographic
       linear
       flat
-      gl={{ stencil: true, antialias: true, alpha: false }}
+      gl={{ stencil: true, antialias: true, alpha: transparent, premultipliedAlpha: false }}
       camera={{ position: [0, 0, 500], zoom: 1, near: 0.1, far: 2000 }}
       style={{ position: "absolute", inset: 0 }}
     >

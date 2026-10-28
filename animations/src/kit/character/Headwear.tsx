@@ -213,6 +213,9 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
           <Part shape={blob([[-96, 6], [-90, 60], [-56, 100], [0, 112], [56, 100], [90, 60], [96, 6]], 8)} color={c} shade={0.3} />
           <Part shape={ellipse(160, 22)} color={shadeHex(c, 0.06)} shade={0.25} y={6} z={0.001} />
           <Line pts={[[0, 18], [0, 108]]} width={4} color={shadeHex(c, 0.35)} z={0.002} />
+          {[-72, -36, 0, 36, 72].map((x) => (
+            <Part key={x} shape={circle(6)} color="#d9b84e" flat outline={3} x={x} y={24 + (1 - Math.abs(x) / 90) * 6} z={0.003} />
+          ))}
           {accent ? <Part shape={blob([[-6, 100], [40, 150], [70, 210], [30, 170], [-10, 120]], 6)} color={accent} shade={0.25} z={-0.001} /> : null}
         </X>
       );

@@ -6,12 +6,12 @@ import { Sky, Cloud, Ground, Hill, PalmTree, Pyramid, LeaningTower, Moai, Flame,
 import { ARCHER } from "../episodes/firearrows/cast";
 import { EXPLORER } from "./cast";
 
-// "Zecten Historical" brand art, drawn with the same kit as the videos and
+// "Zectenn Historical" brand art, drawn with the same kit as the videos and
 // rendered as Remotion stills:
 //   npx remotion still ChannelBanner out/brand/banner.png --frame=20
 //   npx remotion still ChannelLogo out/brand/logo.png --frame=20
 
-export const CHANNEL = { name: "ZECTEN", sub: "HISTORICAL" };
+export const CHANNEL = { name: "ZECTENN", sub: "HISTORICAL" };
 
 const INK = "#1d1519";
 const CORAL = "#fe5649";
@@ -169,7 +169,7 @@ export const ChannelBanner: React.FC<{ guides?: boolean }> = ({ guides = false }
           s={hs}
           look={0.5}
           z={4}
-          expression={{ eyes: "squint", mouth: "smirk", brows: 0.4 }}
+          expression={{ eyes: "open", mouth: "smirk", brows: 0.5, gaze: [0.6, 0] }}
           pose={{ ...poses.idle(frame, 1), armF: reach(hx, FEET, hs, 1, grip), armB: [-0.25, -0.15] }}
         />
         <X x={grip[0]} y={grip[1]} rot={lens.rot} s={lens.scale} z={4.5}>
@@ -200,7 +200,7 @@ export const ChannelBanner: React.FC<{ guides?: boolean }> = ({ guides = false }
         ) : null}
       </Stage>
       <AbsoluteFill style={{ pointerEvents: "none" }}>
-        <BigText text={CHANNEL.name} x={0} y={104} size={192} color="#ffffff" rotate={-2} />
+        <BigText text={CHANNEL.name} x={0} y={104} size={176} color="#ffffff" rotate={-2} />
         <BigText text={CHANNEL.sub} x={6} y={-28} size={102} color={CORAL} rotate={-2} />
         <BigText text="SUBSCRIBE" x={button.x - 18} y={button.y + 2} size={50} color="#ffffff" stroke={0.1} />
       </AbsoluteFill>
@@ -236,7 +236,7 @@ export const ChannelLogo: React.FC = () => {
           look={0.5}
           shadow={false}
           z={1}
-          expression={{ eyes: "squint", mouth: "grin", brows: 0.5 }}
+          expression={{ eyes: "open", mouth: "grin", brows: 0.6, gaze: [0.2, -0.1] }}
           pose={{ armF: [0.1, 0.1], armB: [-0.1, -0.1] }}
         />
         <X x={grip[0]} y={grip[1]} rot={lens.rot} s={lens.scale} z={3}>

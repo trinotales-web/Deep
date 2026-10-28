@@ -1,7 +1,7 @@
 import type { CharacterProps } from "../kit/character";
 import { palette } from "../kit";
 
-// Channel mascots for "Zecten Historical" brand art.
+// Channel mascots for "Zectenn Historical" brand art.
 type Design = Omit<CharacterProps, "pose" | "expression">;
 
 /** The channel's host: a history explorer with a magnifying glass. */

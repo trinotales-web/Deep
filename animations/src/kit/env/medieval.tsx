@@ -311,7 +311,7 @@ export const Hwacha: React.FC<XProps & { loaded?: number; tilt?: number }> = ({ 
     <Part shape={roundRect(360, 40, 10)} color="#8a5a32" shade={0.25} y={90} />
     <Line pts={[[-170, 90], [-300, 30]]} width={14} color="#7a5232" />
     <Line pts={[[-170, 110], [-300, 50]]} width={14} color="#7a5232" />
-    <X x={40} y={110} rot={tilt} z={0.01}>
+    <X x={40} y={110} rot={-tilt} z={0.01}>
       <Part shape={roundRect(300, 220, 8)} color="#a5764a" shade={0.22} y={110} />
       {Array.from({ length: 30 }, (_, i) => {
         const c = i % 10;

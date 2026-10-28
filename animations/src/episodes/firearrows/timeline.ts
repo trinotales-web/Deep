@@ -4,6 +4,7 @@ import * as A from "./actA";
 import * as B from "./actB";
 import * as C from "./actC";
 import * as D from "./actD";
+import * as E from "./actE";
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
 export type Cut = { id: string; at: number; into: Into; C: React.FC<ShotProps> };
@@ -162,4 +163,49 @@ export const CUTS: Cut[] = [
   { id: "j15", at: 379.5, into: "cut", C: D.BackwardsShot },
   { id: "j16", at: 380.6, into: "cut", C: D.BurningWoodShot },
   { id: "j17", at: 382.5, into: "cut", C: D.SetFireHimselfShot },
+  // gunpowder: China and Korea
+  { id: "k01", at: 385.3, into: "slide-left", C: E.FailureShot },
+  { id: "k02", at: 388.15, into: "cut", C: E.NotQuiteShot },
+  { id: "k03", at: 389.2, into: "slide-left", C: E.ChinaShot },
+  { id: "k04", at: 392.8, into: "cut", C: E.TubesShot },
+  { id: "k05", at: 398.55, into: "cut", C: E.GunpowderShot },
+  { id: "k06", at: 399.45, into: "cut", C: E.SameOldIdeaShot },
+  { id: "k07", at: 403.5, into: "cut", C: E.NoticeStrangeShot },
+  { id: "k08", at: 406.4, into: "cut", C: E.PushDiagramShot },
+  { id: "k09", at: 410.95, into: "cut", C: E.NoBowShot },
+  { id: "k10", at: 412.95, into: "cut", C: E.FliesItselfShot },
+  { id: "k11", at: 414.8, into: "fade", C: E.RomanProblemShot },
+  { id: "k12", at: 419.3, into: "cut", C: E.FireMakesFlyShot },
+  { id: "k13", at: 421.4, into: "slide-left", C: E.KoreaShot },
+  { id: "k14", at: 424.1, into: "cut", C: E.HwachaRevealShot },
+  { id: "k15", at: 425.0, into: "cut", C: E.HwachaFireShot },
+  { id: "k16", at: 428.85, into: "cut", C: E.HaengjuShot },
+  { id: "k17", at: 432.2, into: "cut", C: E.OddsShot },
+  { id: "k18", at: 436.55, into: "cut", C: E.HwachaVolleyShot },
+  { id: "k19", at: 438.3, into: "cut", C: E.KoreansWinShot },
+  // huojian
+  { id: "l01", at: 440.95, into: "slide-left", C: E.FavoritePartShot },
+  { id: "l02", at: 442.5, into: "cut", C: E.ChineseCallShot },
+  { id: "l03", at: 444.5, into: "cut", C: E.HuojianShot },
+  { id: "l04", at: 445.6, into: "cut", C: E.FireArrowCharsShot },
+  { id: "l05", at: 446.7, into: "cut", C: E.RocketTodayShot },
+  { id: "l06", at: 449.1, into: "cut", C: E.SameWordShot },
+  { id: "l07", at: 451.15, into: "cut", C: E.LaunchShot },
+  { id: "l08", at: 453.5, into: "cut", C: E.AstronautShot },
+  // recap
+  { id: "m01", at: 456.2, into: "fade", C: E.RecapWhyShot },
+  { id: "m02", at: 459.5, into: "cut", C: E.RecapHatesFlyingShot },
+  { id: "m03", at: 461.95, into: "cut", C: E.RecapSlowShot },
+  { id: "m04", at: 465.0, into: "cut", C: E.RecapPeopleShot },
+  { id: "m05", at: 467.25, into: "cut", C: E.RecapWallsShot },
+  { id: "m06", at: 469.5, into: "cut", C: E.RecapNightmareShot },
+  { id: "m07", at: 473.55, into: "cut", C: E.RecapWorseShot },
+  { id: "m08", at: 476.3, into: "cut", C: E.RecapMoviesShot },
+  { id: "m09", at: 480.2, into: "cut", C: E.RealArchersShot },
+  // outro
+  { id: "n01", at: 482.8, into: "slide-left", C: E.LastLaughShot },
+  { id: "n02", at: 484.95, into: "cut", C: E.FliesToSpaceShot },
+  { id: "n03", at: 488.3, into: "slide-left", C: E.CommanderShot },
+  { id: "n04", at: 491.7, into: "cut", C: E.ChoiceShot },
+  { id: "n05", at: 495.6, into: "cut", C: E.CommentsShot },
 ];

@@ -55,7 +55,7 @@ export const AthensTitleShot: React.FC<ShotProps> = ({ dur }) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.76, 0.82), y: 10 }} light={{ dir: [-0.8, 0.6] }}>
+      <Stage camera={{ zoom: push(frame, dur, 0.72, 0.78), y: 150 }} light={{ dir: [-0.8, 0.6] }}>
         <AthensWide mood="warm" rockX={260} />
       </Stage>
       <Label text="ATHENS" sub="ANCIENT GREECE" x={0.24} y={0.2} size={0.1} kind="title" at={6} />

@@ -11,6 +11,7 @@ export type HatKind =
   | "persian" | "crown" | "veil" | "wreath" | "corinthian" | "hood"
   | "kettle" | "viking" | "turban" | "kabuto" | "song" | "joseon" | "astronaut"
   | "explorer" | "bicorne" | "nemes"
+  | "aviator" | "stahlhelm"
   | null;
 export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | null;
 
@@ -112,6 +113,7 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
       return (
         <X y={14}>
           <Part shape={blob([[-104, 28], [0, 38], [104, 28], [100, 66], [0, 76], [-100, 66]], 8)} color={c} shade={0.25} />
+          {accent && kind === "headband" ? <Part shape={circle(16)} color={accent} flat outline={3.5} x={34} y={54} z={0.001} /> : null}
           {kind === "bandana" ? (
             <Part shape={blob([[-100, 60], [-90, 96], [-40, 114], [40, 114], [90, 96], [100, 60], [0, 70]], 8)} color={c} shade={0.25} z={-0.001} />
           ) : null}
@@ -317,6 +319,51 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
           </Part>
           <Part shape={roundRect(214, 22, 10)} color={c} shade={0.2} y={22} z={0.002} />
           <Part shape={blob([[0, 28], [10, 46], [6, 74], [-6, 74], [-10, 46]], 6)} color={palette.gold} shade={0.2} x={30} y={10} z={0.003} />
+        </X>
+      );
+    }
+    case "aviator": {
+      // leather flying helmet with ear flaps and goggles; `accent` adds a
+      // hachimaki (white headband with a red sun) tied over it
+      const c = color ?? "#6b4a30";
+      return (
+        <X y={0}>
+          <Part
+            shape={blob([[-110, -64], [-112, 20], [-94, 78], [-50, 112], [0, 120], [50, 112], [94, 78], [112, 20], [110, -64], [88, -70], [84, 8], [56, 34], [0, 42], [-56, 34], [-84, 8], [-88, -70]], 8)}
+            color={c}
+            shade={0.26}
+          />
+          <Line pts={[[-100, 18], [-60, 46], [0, 54], [60, 46], [100, 18]]} smooth width={4} color={shadeHex(c, 0.4)} z={0.001} />
+          <Line pts={[[0, 56], [0, 116]]} width={4} color={shadeHex(c, 0.4)} z={0.001} />
+          {accent ? (
+            <>
+              <Part shape={blob([[-108, 40], [0, 54], [108, 40], [104, 72], [0, 86], [-104, 72]], 8)} color="#f4f1ea" shade={0.2} z={0.002} />
+              <Part shape={circle(15)} color={accent} flat outline={3.5} x={34} y={70} z={0.003} />
+            </>
+          ) : null}
+          <X y={accent ? 98 : 80} z={0.004}>
+            <Part shape={roundRect(214, 16, 8)} color="#3a3236" />
+            {[-34, 34].map((x) => (
+              <Part key={x} shape={circle(25)} color="#7c7a84" shade={0.25} x={x} z={0.001}>
+                <Part shape={circle(16)} color="#9fd6f0" flat outline={3} z={0.001} />
+                <Part shape={circle(5)} color="#ffffff" flat outline={0} x={-5} y={5} z={0.002} />
+              </Part>
+            ))}
+          </X>
+        </X>
+      );
+    }
+    case "stahlhelm": {
+      // WWII German steel helmet (flared skirt)
+      const c = color ?? "#6f7466";
+      return (
+        <X y={36}>
+          <Part
+            shape={blob([[-132, -36], [-118, 24], [-96, 82], [-44, 116], [20, 120], [74, 104], [108, 64], [122, 14], [126, -22], [104, -14], [96, 6], [0, 10], [-96, 4], [-108, -26]], 8)}
+            color={c}
+            shade={0.3}
+          />
+          <Line pts={[[-108, 10], [-60, 18], [40, 20], [110, 12]]} smooth width={4} color={shadeHex(c, 0.4)} z={0.001} />
         </X>
       );
     }

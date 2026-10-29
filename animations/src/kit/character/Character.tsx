@@ -53,6 +53,8 @@ export type Outfit = {
   armor?: string | null;
   /** Quilted gambeson stitching color. */
   quilt?: string | null;
+  /** Neck scarf (pilots): colour; the tail flutters behind. */
+  scarf?: string | null;
 };
 
 export type Pose = {
@@ -96,6 +98,8 @@ export type CharacterProps = {
   mustacheColor?: string;
   beard?: "goatee" | "full" | "stubble" | "royal" | null;
   beardColor?: string;
+  /** Round spectacles (frame colour). */
+  glasses?: string | null;
   freckles?: boolean;
   /** Mouth flaps while true. */
   talking?: boolean;
@@ -327,6 +331,7 @@ export const Character: React.FC<CharacterProps> = ({
   mustacheColor,
   beard = null,
   beardColor,
+  glasses = null,
   freckles = false,
   talking = false,
   seed = 0,
@@ -382,6 +387,15 @@ export const Character: React.FC<CharacterProps> = ({
             <X z={0.1}>
               <Torso outfit={outfit} breathe={breathe} />
             </X>
+            {outfit.scarf ? (
+              <X y={NECK_Y - 8} z={0.28}>
+                <Part shape={roundRect(132, 40, 18)} color={outfit.scarf} shade={0.2} />
+                <X x={-52} y={4} rot={0.25 + Math.sin(frame * 0.35 + seed) * 0.12} z={-0.4}>
+                  <Part shape={blob([[0, 10], [-60, 18], [-120, 6], [-150, -10], [-112, -10], [-56, -12], [0, -14]], 8)} color={shadeHex(outfit.scarf, 0.06)} shade={0.22} />
+                </X>
+                <Part shape={blob([[10, -10], [40, -14], [46, -74], [24, -82], [6, -30]], 6)} color={outfit.scarf} shade={0.22} z={0.01} />
+              </X>
+            ) : null}
             {!backArmBehind ? (
               <X z={armZ}>
                 <Arm angles={armB} side={-1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdB} />
@@ -421,6 +435,7 @@ export const Character: React.FC<CharacterProps> = ({
                     mustacheColor={mustacheColor}
                     beard={beard}
                     beardColor={beardColor}
+                    glasses={glasses}
                   />
                 </X>
                 <X z={0.1}>

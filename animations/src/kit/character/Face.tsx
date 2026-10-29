@@ -36,6 +36,8 @@ export type FaceProps = {
   mustacheColor?: string;
   beard?: "goatee" | "full" | "stubble" | "royal" | null;
   beardColor?: string;
+  /** Round spectacles in this frame colour. */
+  glasses?: string | null;
 };
 
 const EYE_RX = 17;
@@ -207,6 +209,7 @@ export const Face: React.FC<FaceProps> = ({
   mustacheColor = palette.hairDark,
   beard,
   beardColor = palette.hairDark,
+  glasses = null,
 }) => {
   const {
     eyes = "open",
@@ -228,8 +231,20 @@ export const Face: React.FC<FaceProps> = ({
           <Eye kind={eyes} side={side} blink={blink} gaze={gaze} brows={brows} />
           {showBrows ? <Brow side={side} brows={brows} kind={eyes} /> : null}
           {eyebags ? <Line pts={[[-12, -26], [0, -30], [12, -26]]} smooth width={3.5} color="#8f8899" /> : null}
+          {glasses ? (
+            <X z={0.05}>
+              <Part shape={circle(25)} color="#e8f6ff" flat outline={0} opacity={0.18} />
+              <Line pts={Array.from({ length: 25 }, (_, k) => [Math.cos((k / 24) * Math.PI * 2) * 25, Math.sin((k / 24) * Math.PI * 2) * 25] as [number, number])} width={5} color={glasses} z={0.001} />
+            </X>
+          ) : null}
         </X>
       ))}
+      {glasses ? (
+        <>
+          <Line pts={[[-eyeDX + 24 + look * 4, eyeY + 6], [0, eyeY + 10], [eyeDX - 24 - look * 4, eyeY + 6]]} smooth width={4.5} color={glasses} z={0.07} />
+          <Line pts={[[-eyeDX - 25 + look * 4, eyeY + 4], [-eyeDX - 60, eyeY + 12]]} width={4.5} color={glasses} z={0.07} />
+        </>
+      ) : null}
       {blush ? (
         <>
           <Part shape={ellipse(15, 9)} color={palette.blush} flat outline={0} opacity={0.75} x={-40} y={-30} z={0.01} />

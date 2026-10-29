@@ -8,6 +8,7 @@ import { WoodenWall, WoodenWallAudio, WoodenWallVisuals, calculateWoodenWallMeta
 import { TOTAL_FRAMES as WW_FRAMES } from "./episodes/woodenwall/script";
 import { AncientTest } from "./dev/AncientTest";
 import { MedievalTest } from "./dev/MedievalTest";
+import { WW2Test } from "./dev/WW2Test";
 import { ChannelBanner, ChannelLogo } from "./brand/Brand";
 import { ThumbFireArrows } from "./thumbnails/FireArrowsThumb";
 
@@ -102,6 +103,7 @@ export const RemotionRoot = () => {
       <Folder name="Dev">
         <Composition id="KitTest" component={KitTest} durationInFrames={90} fps={30} width={1080} height={1920} />
         <Composition id="MedievalTest" component={MedievalTest} durationInFrames={90} fps={30} width={1920} height={1080} />
+        <Composition id="WW2Test" component={WW2Test} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="AncientTest" component={AncientTest} durationInFrames={90} fps={30} width={1080} height={1920} />
       </Folder>
     </>

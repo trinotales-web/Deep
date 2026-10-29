@@ -507,3 +507,131 @@ export const Placard: React.FC<XProps & { w?: number; h?: number; stick?: number
     <Part shape={roundRect(w, h, 10)} color={color} shade={0.14} y={stick + h / 2 - 6} z={0.001} />
   </X>
 );
+
+/** Glass syringe pointing +x. Origin = middle of the barrel (where it's held). `fill` 0..1 liquid, `push` 0..1 plunger. */
+export const Syringe: React.FC<XProps & { fill?: number; push?: number; liquid?: string }> = ({ fill = 0.7, push = 0, liquid = "#e8d9a8", ...xf }) => {
+  const L = 150;
+  const plunger = -L / 2 - 30 + push * 70;
+  return (
+    <X {...xf}>
+      <InkLine pts={[[plunger - 50, 0], [plunger, 0]]} width={8} color="#d9d6de" outline={3.5} />
+      <Part shape={roundRect(10, 40, 4)} color="#d9d6de" shade={0.2} x={plunger - 54} z={0.001} />
+      <Part shape={roundRect(L, 34, 10)} color="#e6f4fa" flat outline={5} opacity={0.75} z={0.002} />
+      {fill > 0 ? <Part shape={roundRect((L - 20) * fill * (1 - push * 0.8), 22, 6)} color={liquid} flat outline={0} opacity={0.9} x={L / 2 - 10 - ((L - 20) * fill * (1 - push * 0.8)) / 2} z={0.003} /> : null}
+      <Part shape={roundRect(12, 46, 4)} color="#d9d6de" shade={0.2} x={-L / 2 - 4} z={0.004} />
+      {[-40, -10, 20, 50].map((x) => (
+        <Line key={x} pts={[[x, 8], [x, 17]]} width={3} z={0.005} />
+      ))}
+      <Part shape={roundRect(22, 16, 4)} color="#c9c6ce" shade={0.2} x={L / 2 + 10} z={0.004} />
+      <Line pts={[[L / 2 + 20, 0], [L / 2 + 120, 0]]} width={3.5} color="#8a8790" z={0.003} />
+    </X>
+  );
+};
+
+/** Small brown glass ampoule (sealed glass tube). Origin = bottom centre; `label` shows a paper band. */
+export const Ampoule: React.FC<XProps & { label?: boolean; glow?: number }> = ({ label = true, glow = 0, ...xf }) => (
+  <X {...xf}>
+    {glow > 0 ? <Glow rx={150 * glow} y={50} color="#ffcf7a" alpha={0.4} additive z={-0.01} /> : null}
+    <Part shape={roundPoly([[-20, 0], [20, 0], [20, 74], [8, 88], [8, 98], [12, 104], [3, 130], [-3, 130], [-12, 104], [-8, 98], [-8, 88], [-20, 74]], [10, 10, 10, 4, 3, 3, 3, 3, 3, 3, 4, 10])} color="#8a4a1e" shade={0.25} opacity={0.95} />
+    <Part shape={ellipse(4, 22)} color="#ffffff" flat outline={0} opacity={0.6} x={-9} y={42} z={0.001} />
+    {label ? <Part shape={roundRect(40, 24, 4)} color="#f2ead8" flat outline={3} y={38} z={0.002} /> : null}
+  </X>
+);
+
+/** Thick chocolate stick (about 15 cm) stamped with the imperial crest; `wrap` 0..1 paper wrapper. Origin = centre, long axis on x. */
+export const ChocolateStick: React.FC<XProps & { wrap?: number; crest?: boolean; bite?: boolean }> = ({ wrap = 0, crest = true, bite = false, ...xf }) => {
+  const W = 300;
+  return (
+    <X {...xf}>
+      <Part
+        shape={bite ? blob([[-W / 2, -30], [W / 2 - 30, -30], [W / 2 - 10, -14], [W / 2 - 34, 0], [W / 2 - 10, 14], [W / 2 - 30, 30], [-W / 2, 30]], 6) : roundRect(W, 64, 16)}
+        color="#5a3424"
+        shade={0.25}
+      >
+        {[-90, -30, 30].map((x) => (
+          <Line key={x} pts={[[x, -24], [x, 24]]} width={3} color="#3a2018" z={0.001} />
+        ))}
+      </Part>
+      {crest ? (
+        <X x={-W / 2 + 60} z={0.002}>
+          {Array.from({ length: 16 }, (_, i) => {
+            const a = (i / 16) * Math.PI * 2;
+            return <Part key={i} shape={ellipse(9, 4)} color="#7a4a34" flat outline={2} x={Math.cos(a) * 15} y={Math.sin(a) * 15} rot={a} />;
+          })}
+          <Part shape={circle(8)} color="#7a4a34" flat outline={2} z={0.001} />
+        </X>
+      ) : null}
+      {wrap > 0 ? <Part shape={roundRect(W * wrap + 8, 76, 10)} color="#efe6cf" shade={0.18} x={W / 2 - (W * wrap) / 2} z={0.01} /> : null}
+    </X>
+  );
+};
+
+/** Aluminium pill tube with a coloured label (write on it with a Label). Origin = bottom centre. */
+export const PillTube: React.FC<XProps & { label?: string; h?: number }> = ({ label = "#2f4f9a", h = 170, ...xf }) => (
+  <X {...xf}>
+    <Part shape={roundRect(56, h, 10)} color="#c9c6ce" shade={0.25} y={h / 2} />
+    <Part shape={roundRect(60, h * 0.42, 4)} color={label} shade={0.2} y={h * 0.48} z={0.001} />
+    <Part shape={roundRect(66, 30, 8)} color="#9a979f" shade={0.25} y={h + 6} z={0.002} />
+  </X>
+);
+
+/** Round-bottomed chemistry flask with liquid; `bubbles` animates. Origin = bottom centre. */
+export const LabFlask: React.FC<XProps & { liquid?: string; bubbles?: boolean }> = ({ liquid = "#9fd8c8", bubbles = true, ...xf }) => {
+  const frame = useCurrentFrame();
+  return (
+    <X {...xf}>
+      <Part shape={circle(70)} color="#e6f4fa" flat outline={5} opacity={0.7} y={70} />
+      <Part shape={blob([[-62, 60], [62, 60], [52, 24], [0, 2], [-52, 24]], 8)} color={liquid} flat outline={0} opacity={0.9} z={0.001} />
+      <Part shape={roundRect(30, 90, 6)} color="#e6f4fa" flat outline={5} opacity={0.7} y={170} z={-0.001} />
+      {bubbles
+        ? [0, 1, 2, 3].map((i) => {
+            const k = ((frame * 0.03 + i * 0.25) % 1);
+            return <Part key={i} shape={circle(5 + i)} color="#ffffff" flat outline={2} x={(i - 1.5) * 16} y={20 + k * 160} z={0.002} />;
+          })
+        : null}
+    </X>
+  );
+};
+
+/** Ephedra (ma huang) in a pot: jointed green stems. Origin = bottom of the pot. */
+export const Ephedra: React.FC<XProps> = (xf) => (
+  <X {...xf}>
+    {[-0.4, -0.2, 0, 0.2, 0.4].map((a, i) => (
+      <X key={i} y={70} rot={a} z={-0.01}>
+        <InkLine pts={[[0, 0], [0, 150 + (i % 2) * 40]]} width={9} color="#6f8f45" outline={3.5} />
+        {[50, 100, 150].map((y) => (
+          <Line key={y} pts={[[-6, y], [6, y]]} width={4} color="#3f5a2a" z={0.001} />
+        ))}
+      </X>
+    ))}
+    <Part shape={roundPoly([[-60, 0], [60, 0], [74, 80], [-74, 80]], 8)} color="#a85a3a" shade={0.25} />
+  </X>
+);
+
+/** WWII bolt-action rifle (Arisaka style) pointing +x. Origin = grip. */
+export const Rifle: React.FC<XProps & { bayonet?: boolean }> = ({ bayonet = false, ...xf }) => (
+  <X {...xf}>
+    <Part shape={blob([[-160, -18], [-60, -6], [180, -2], [180, 10], [-60, 12], [-160, 26]], 6)} color="#8a5a32" shade={0.25} />
+    <Line pts={[[-40, 12], [300, 12]]} width={8} color="#3a3a42" z={0.001} />
+    <Line pts={[[0, 18], [-12, 34]]} width={6} color="#3a3a42" z={0.002} />
+    {bayonet ? <Part shape={poly([[296, 6], [420, 10], [296, 16]])} color="#c9c6ce" flat outline={3} z={0.003} /> : null}
+  </X>
+);
+
+/** Coffee cup with steam. Origin = bottom centre. */
+export const CoffeeCup: React.FC<XProps & { steam?: boolean }> = ({ steam = true, ...xf }) => {
+  const frame = useCurrentFrame();
+  return (
+    <X {...xf}>
+      <Part shape={ellipse(110, 18)} color="#f4f1ea" shade={0.15} y={-4} z={-0.01} />
+      <Part shape={roundPoly([[-64, 0], [64, 0], [76, 110], [-76, 110]], [20, 20, 6, 6])} color="#f4f1ea" shade={0.2} />
+      <Part shape={ellipse(72, 14)} color="#5a3424" flat outline={4} y={106} z={0.001} />
+      <InkLine pts={[[70, 86], [104, 80], [104, 40], [66, 30]]} width={12} color="#f4f1ea" outline={4} smooth z={-0.005} />
+      {steam
+        ? [-24, 8, 36].map((x, i) => (
+            <Line key={x} pts={Array.from({ length: 6 }, (_, k) => [x + Math.sin(frame * 0.12 + k + i) * 8, 130 + k * 22] as [number, number])} smooth width={5} color="#ffffff" opacity={0.7} z={0.002} />
+          ))
+        : null}
+    </X>
+  );
+};

@@ -94,7 +94,7 @@ export const BombLoadShot: React.FC<ShotProps> = ({ start }) => {
               s={0.95}
               z={3 + i * 0.01}
               look={0.5}
-              expression={{ eyes: "squint", mouth: "teeth", brows: -0.3 }}
+              expression={{ eyes: "closed", mouth: "teeth", brows: -0.3 }}
               pose={{ ...poses.walk(frame + i * 5, attached ? 0 : 0.8), armF: [1.4, 0.2], armB: [1.3, 0.3], lean: -0.15 }}
             />
           ))}

@@ -340,7 +340,7 @@ export const KeepSharpShot: React.FC<ShotProps> = ({ start }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: 1.12, y: -20 }} light={{ pos: [0, 300] }} shadowMul={[0.55, 0.5, 0.6]} vignette={0.7}>
         <WarRoom swing={Math.sin(frame * 0.1) * 0.04}>
-          <Character {...GENERAL(2)} x={-260} y={-420} s={1.3} z={1} look={0.5} expression={{ eyes: "squint", mouth: "flat", brows: -0.3, gaze: [0.6, 0] }} pose={poses.think} />
+          <Character {...GENERAL(2)} x={-260} y={-420} s={1.3} z={1} look={0.5} expression={{ eyes: "half", mouth: "flat", brows: -0.3, gaze: [0.6, 0] }} pose={poses.think} />
           <Character {...NAVY_OFFICER(0)} x={280} y={-420} s={1.3} z={1} facing={-1} look={0.5} expression={{ eyes: "open", mouth: "smirk", brows: -0.2 }} pose={poses.think} />
           <QuestionMark x={10} y={260} s={1.1 * pop(t, 109.2)} rot={0.1} z={20} />
         </WarRoom>
@@ -530,7 +530,7 @@ export const FoodFactoryShot: React.FC<ShotProps> = ({ start, dur }) => {
           {[-560, -260, 40].map((x, i) => (
             <ChocolateStick key={x} x={x} y={-380} s={0.6} wrap={i === 1 ? 1 : 0} z={4.1} />
           ))}
-          <Character {...SOLDIER(1)} x={700} y={-560} s={1.15} z={2} facing={-1} look={0.4} expression={{ eyes: "squint", mouth: "flat", brows: -0.4 }} pose={poses.handsOnHips} />
+          <Character {...SOLDIER(1)} x={700} y={-560} s={1.15} z={2} facing={-1} look={0.4} expression={{ eyes: "half", mouth: "flat", brows: -0.4 }} pose={poses.handsOnHips} />
           {[0, 1, 2].map((i) => (
             <Crate key={i} x={600 + (i % 2) * 230 - 110} y={-620 + Math.floor(i / 2) * 150} s={1} z={5 + i * 0.01} />
           ))}
@@ -846,7 +846,7 @@ export const ResearcherShot: React.FC<ShotProps> = ({ start, dur }) => {
             s={1.4}
             z={1}
             look={0.5}
-            expression={sly ? { eyes: "squint", mouth: "smirk", brows: -0.5 } : { eyes: "open", mouth: "flat", brows: 0.2, gaze: [0.6, -0.4] }}
+            expression={sly ? { eyes: "half", mouth: "smirk", brows: -0.5 } : { eyes: "open", mouth: "flat", brows: 0.2, gaze: [0.6, -0.4] }}
             pose={sly ? poses.point(frame) : { armF: [1.2, 0.8], armB: [-0.2, -0.1] }}
             holdF={sly ? undefined : <Magnifier r={60} rot={-1.2} />}
           />

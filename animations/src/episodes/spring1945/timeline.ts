@@ -2,6 +2,7 @@ import type React from "react";
 import type { ShotProps } from "../../kit";
 import * as A from "./actA";
 import * as B from "./actB";
+import * as C from "./actC";
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
 export type Cut = { id: string; at: number; into: Into; C: React.FC<ShotProps> };
@@ -74,4 +75,40 @@ export const CUTS: Cut[] = [
   { id: "e16", at: 156.2, into: "cut", C: B.NoRecordShot },
   { id: "e17", at: 158.85, into: "cut", C: B.ResearcherShot },
   { id: "e18", at: 161.15, into: "cut", C: B.SilenceShot },
+  // F · clue 2: the needle
+  { id: "f01", at: 163.95, into: "slide-left", C: C.ClueTwoShot },
+  { id: "f02", at: 166.8, into: "cut", C: C.KambaraNameShot },
+  { id: "f03", at: 168.95, into: "cut", C: C.YoungDoctorShot },
+  { id: "f04", at: 172.3, into: "cut", C: C.KushiraShot },
+  { id: "f05", at: 175.0, into: "cut", C: C.OkinawaBattleShot },
+  { id: "f06", at: 176.85, into: "cut", C: C.OrderShot },
+  { id: "f07", at: 178.65, into: "cut", C: C.InjectPilotsShot },
+  { id: "f08", at: 181.5, into: "cut", C: C.BrownTubesShot },
+  { id: "f09", at: 184.8, into: "cut", C: C.WakeThemShot },
+  { id: "f10", at: 186.75, into: "cut", C: C.DoesItShot },
+  { id: "f11", at: 187.95, into: "cut", C: C.AgainShot },
+  { id: "f12", at: 190.85, into: "cut", C: C.TallyShot },
+  { id: "f13", at: 194.3, into: "fade", C: C.QuietShot },
+  { id: "f14", at: 196.05, into: "cut", C: C.GoodbyeShot },
+  { id: "f15", at: 198.4, into: "cut", C: C.LuckyShot },
+  { id: "f16", at: 201.5, into: "cut", C: C.DontHaveToShot },
+  { id: "f17", at: 202.9, into: "cut", C: C.NoAnswerShot },
+  { id: "f18", at: 204.15, into: "fade", C: C.UnderstandShot },
+  { id: "f19", at: 208.3, into: "cut", C: C.HiroponRevealShot },
+  // G · the myth
+  { id: "g01", at: 209.6, into: "slide-left", C: C.DruggedIntoDyingShot },
+  { id: "g02", at: 212.7, into: "cut", C: C.MythShot },
+  { id: "g03", at: 214.5, into: "cut", C: C.NotWantDieShot },
+  { id: "g04", at: 216.7, into: "cut", C: C.PuppetShot },
+  { id: "g05", at: 218.45, into: "cut", C: C.AwakeAlertShot },
+  { id: "g06", at: 221.3, into: "cut", C: C.ThatsItShot },
+  { id: "g07", at: 222.2, into: "slide-left", C: C.PushedShot },
+  { id: "g08", at: 225.5, into: "cut", C: C.ByOfficersShot },
+  { id: "g09", at: 226.55, into: "cut", C: C.ByTrainingShot },
+  { id: "g10", at: 227.85, into: "cut", C: C.SendOffShot },
+  { id: "g11", at: 231.85, into: "cut", C: C.AwakeOnWayShot },
+  { id: "g12", at: 234.75, into: "slide-left", C: C.NotOnlyOneShot },
+  { id: "g13", at: 236.7, into: "cut", C: C.PervitinShot },
+  { id: "g14", at: 239.6, into: "cut", C: C.BenzedrineShot },
+  { id: "g15", at: 242.4, into: "cut", C: C.RanOnSpeedShot },
 ];

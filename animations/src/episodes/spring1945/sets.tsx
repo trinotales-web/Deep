@@ -2,6 +2,7 @@ import React from "react";
 import { X, Part, Line, Glow, Gradient, roundRect } from "../../kit";
 import {
   Sky, Cloud, Mountains, Ground, Sea, Stars, Moon, Hangar, Windsock, SakuraTree, Petals, ZeroFighter, PlankWall, Floorboards, ShojiWall, Tatami,
+  JapanMap, HangingLamp, Desk, Flag,
 } from "../../kit/env";
 
 // Locations for "Spring 1945". Everything takes `children` drawn between the
@@ -106,6 +107,31 @@ export const Barracks: React.FC<{ floorY?: number; light?: string; children?: Re
     <Glow x={420} y={floorY + 300} rx={900} ry={700} color={light} alpha={0.25} additive z={-38} />
     <Floorboards w={4000} h={1400} y={floorY} color="#7a5232" z={-36} />
     {children}
+  </>
+);
+
+/** Imperial HQ war room: dark panelling, framed map, hanging lamp, a long table in front of `children`. */
+export const WarRoom: React.FC<{ floorY?: number; table?: boolean; lampX?: number; swing?: number; children?: React.ReactNode }> = ({
+  floorY = -460,
+  table = true,
+  lampX = 0,
+  swing = 0,
+  children,
+}) => (
+  <>
+    <PlankWall w={4000} h={2400} y={floorY + 1200} color="#5e4a3a" z={-40} />
+    <X x={-80} y={floorY + 780} z={-38}>
+      <Part shape={roundRect(700, 440, 8)} color="#3a2a20" shade={0.15} />
+      <X s={0.26} y={0} z={0.01}>
+        <JapanMap />
+      </X>
+    </X>
+    <Flag x={620} y={floorY} pole={820} z={-37} />
+    <Floorboards w={4000} h={1400} y={floorY} color="#4e3424" z={-36} />
+    <Glow y={floorY + 300} rx={900} ry={600} color="#ffcf7a" alpha={0.16} additive z={-35} />
+    {children}
+    {table ? <Desk w={1500} h={250} y={floorY - 40} color="#6e4a2c" z={10} /> : null}
+    <HangingLamp x={lampX} y={560} cord={200} color="#2f3a2f" cone={1000} coneW={900} rot={swing} z={12} />
   </>
 );
 

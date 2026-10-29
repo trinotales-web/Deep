@@ -1,6 +1,7 @@
 import type React from "react";
 import type { ShotProps } from "../../kit";
 import * as A from "./actA";
+import * as B from "./actB";
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
 export type Cut = { id: string; at: number; into: Into; C: React.FC<ShotProps> };
@@ -42,4 +43,35 @@ export const CUTS: Cut[] = [
   { id: "c12", at: 68.7, into: "cut", C: A.PilotsNightShot },
   { id: "c13", at: 70.5, into: "cut", C: A.GuardShot },
   { id: "c14", at: 72.1, into: "cut", C: A.FactoryShot },
+  // D · the tokko
+  { id: "d01", at: 74.85, into: "fade", C: B.EndOf1944Shot },
+  { id: "d02", at: 77.55, into: "cut", C: B.LosingShot },
+  { id: "d03", at: 79.45, into: "cut", C: B.DesperateShot },
+  { id: "d04", at: 82.2, into: "slide-left", C: B.PlanDiagramShot },
+  { id: "d05", at: 86.1, into: "cut", C: B.KamikazeShot },
+  { id: "d06", at: 90.45, into: "cut", C: B.TokkoShot },
+  { id: "d07", at: 94.45, into: "cut", C: B.TeenagersShot },
+  { id: "d08", at: 97.8, into: "cut", C: B.BarelyFlyShot },
+  { id: "d09", at: 99.9, into: "slide-left", C: B.FlightTimeShot },
+  { id: "d10", at: 104.7, into: "cut", C: B.SleepyPilotShot },
+  { id: "d11", at: 108.65, into: "cut", C: B.KeepSharpShot },
+  // E · clue 1: the chocolate
+  { id: "e01", at: 110.25, into: "slide-left", C: B.ClueOneShot },
+  { id: "e02", at: 113.75, into: "cut", C: B.UmedaNameShot },
+  { id: "e03", at: 115.8, into: "cut", C: B.SchoolShot },
+  { id: "e04", at: 121.35, into: "cut", C: B.NoLessonsShot },
+  { id: "e05", at: 123.55, into: "cut", C: B.FoodFactoryShot },
+  { id: "e06", at: 126.5, into: "cut", C: B.WrapChocolateShot },
+  { id: "e07", at: 128.25, into: "cut", C: B.FifteenCmShot },
+  { id: "e08", at: 131.62, into: "cut", C: B.StampShot },
+  { id: "e09", at: 135.5, into: "slide-left", C: B.OlderGirlsShot },
+  { id: "e10", at: 138.62, into: "cut", C: B.HotRushShot },
+  { id: "e11", at: 142.1, into: "slide-left", C: B.FatherShot },
+  { id: "e12", at: 145.92, into: "cut", C: B.TeachersShot },
+  { id: "e13", at: 148.62, into: "cut", C: B.DarkerShot },
+  { id: "e14", at: 150.72, into: "fade", C: B.BeforeTheyDieShot },
+  { id: "e15", at: 154.6, into: "cut", C: B.StrangePartShot },
+  { id: "e16", at: 156.2, into: "cut", C: B.NoRecordShot },
+  { id: "e17", at: 158.85, into: "cut", C: B.ResearcherShot },
+  { id: "e18", at: 161.15, into: "cut", C: B.SilenceShot },
 ];

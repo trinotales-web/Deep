@@ -11,6 +11,8 @@ import { MedievalTest } from "./dev/MedievalTest";
 import { WW2Test } from "./dev/WW2Test";
 import { ChannelBanner, ChannelLogo } from "./brand/Brand";
 import { ThumbFireArrows } from "./thumbnails/FireArrowsThumb";
+import { Spring1945, Spring1945Audio, Spring1945Visuals, calculateSpring1945Metadata, type Spring1945Props } from "./episodes/spring1945/Episode";
+import { TOTAL_FRAMES as S45_FRAMES } from "./episodes/spring1945/script";
 
 // When the voiceover is ready: put it in public/vo/, run
 // `node scripts/transcribe.mjs public/vo/onoda.mp3`, then set
@@ -24,6 +26,29 @@ const onodaDefaults: OnodaProps = {
 export const RemotionRoot = () => {
   return (
     <>
+      <Folder name="Spring1945">
+        <Composition
+          id="Spring1945Video"
+          component={Spring1945}
+          durationInFrames={S45_FRAMES}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ voiceover: "vo/spring-1945.voice.m4a", captionsFile: "captions/spring-1945.json" } satisfies Spring1945Props}
+          calculateMetadata={calculateSpring1945Metadata}
+        />
+        <Composition
+          id="Spring1945AudioOnly"
+          component={Spring1945Audio}
+          durationInFrames={S45_FRAMES}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ voiceover: "vo/spring-1945.voice.m4a", captionsFile: "captions/spring-1945.json" } satisfies Spring1945Props}
+          calculateMetadata={calculateSpring1945Metadata}
+        />
+        <Composition id="Spring1945VisualsOnly" component={Spring1945Visuals} durationInFrames={S45_FRAMES} fps={30} width={1920} height={1080} />
+      </Folder>
       <Folder name="FireArrows">
         <Composition
           id="FireArrowsVideo"

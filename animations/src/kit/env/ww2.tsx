@@ -473,9 +473,9 @@ export const Flak: React.FC<XProps & { w?: number; h?: number; n?: number; seed?
 };
 
 /** Paper sliding-door wall (shoji). Origin = bottom centre. */
-export const ShojiWall: React.FC<XProps & { w?: number; h?: number; light?: string }> = ({ w = 1200, h = 520, light = "#f6efd9", ...xf }) => (
+export const ShojiWall: React.FC<XProps & { w?: number; h?: number; paper?: string }> = ({ w = 1200, h = 520, paper = "#f6efd9", ...xf }) => (
   <X {...xf}>
-    <Part shape={roundRect(w, h, 4)} color={light} shade={0.12} y={h / 2} />
+    <Part shape={roundRect(w, h, 4)} color={paper} shade={0.12} y={h / 2} />
     {Array.from({ length: Math.round(w / 80) + 1 }, (_, i) => (
       <Line key={`v${i}`} pts={[[-w / 2 + i * 80, 0], [-w / 2 + i * 80, h]]} width={i % 3 === 0 ? 10 : 4} color="#7a5a3a" z={0.001} />
     ))}

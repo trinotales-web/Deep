@@ -115,6 +115,7 @@ canvas. Add new props/characters to the kit, not to episodes, when reusable.
 ## Making an episode (templates: `src/episodes/woodenwall/` — real VO, ~90 s
 short, 38 shots; `src/episodes/firearrows/` — 16:9 long video, ~8 min, ~180
 shots in act files `actA…actE.tsx` with the cut list in `timeline.ts`;
+`src/episodes/spring1945/` — 16:9, ~5 min, WWII Japan, act files `actA…actD.tsx`;
 `src/episodes/onoda/` — small demo)
 
 1. `script.ts` — shot list with durations, narration phrases (`*word*` = red),

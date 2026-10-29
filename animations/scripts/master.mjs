@@ -38,9 +38,11 @@ const meas = JSON.parse(json[0]);
 
 // pass 2: apply (linear when possible)
 const ln = `loudnorm=${target}:measured_I=${meas.input_i}:measured_TP=${meas.input_tp}:measured_LRA=${meas.input_lra}:measured_thresh=${meas.input_thresh}:offset=${meas.target_offset}:linear=true`;
-// final brick-wall limiter keeps true peaks under -1 dBTP after the gain change;
-// 256 kbps AAC: at 192 kbps the native encoder overshoots by up to ~4 dB on dense mixes
-const post = systemOk ? ",alimiter=limit=0.78:attack=2:release=50:level=disabled" : "";
+// final brick-wall limiter keeps true peaks under -1 dBTP after the gain change.
+// It runs 4x oversampled so it also catches inter-sample peaks (sibilant voice
+// tracks overshot +0.6 dBTP with a 48 kHz limiter); 256 kbps AAC: at 192 kbps the
+// native encoder overshoots by up to ~4 dB on dense mixes.
+const post = systemOk ? ",aresample=192000,alimiter=limit=0.79:attack=1:release=50:level=disabled" : "";
 const r = run(["-hide_banner", "-y", "-i", input, "-c:v", "copy", "-af", `${pre}${ln}${post},aresample=48000`, "-c:a", "aac", "-b:a", "256k", output]);
 if (r.status !== 0) {
   console.error(r.stderr);

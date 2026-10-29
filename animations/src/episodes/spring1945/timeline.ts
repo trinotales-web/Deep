@@ -3,6 +3,7 @@ import type { ShotProps } from "../../kit";
 import * as A from "./actA";
 import * as B from "./actB";
 import * as C from "./actC";
+import * as D from "./actD";
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
 export type Cut = { id: string; at: number; into: Into; C: React.FC<ShotProps> };
@@ -111,4 +112,29 @@ export const CUTS: Cut[] = [
   { id: "g13", at: 236.7, into: "cut", C: C.PervitinShot },
   { id: "g14", at: 239.6, into: "cut", C: C.BenzedrineShot },
   { id: "g15", at: 242.4, into: "cut", C: C.RanOnSpeedShot },
+  // H · the second war
+  { id: "h01", at: 245.8, into: "slide-left", C: D.TwistShot },
+  { id: "h02", at: 248.7, into: "fade", C: D.WarEndsShot },
+  { id: "h03", at: 251.45, into: "cut", C: D.WarehouseShot },
+  { id: "h04", at: 254.25, into: "cut", C: D.NotDestroyedShot },
+  { id: "h05", at: 255.75, into: "cut", C: D.BlackMarketShot },
+  { id: "h06", at: 257.8, into: "cut", C: D.SurvivorsShot },
+  { id: "h07", at: 262.4, into: "cut", C: D.AllWantItShot },
+  { id: "h08", at: 263.75, into: "slide-left", C: D.TwoMillionShot },
+  { id: "h09", at: 268.85, into: "cut", C: D.HookedShot },
+  { id: "h10", at: 270.95, into: "cut", C: D.BannedShot },
+  { id: "h11", at: 274.55, into: "cut", C: D.AnotherWarShot },
+  // I · Kambara's wish
+  { id: "i01", at: 278.95, into: "fade", C: D.OldKambaraShot },
+  { id: "i02", at: 280.1, into: "cut", C: D.RegretShot },
+  { id: "i03", at: 282.75, into: "cut", C: D.TerribleShot },
+  { id: "i04", at: 284.9, into: "fade", C: D.EmptySeatShot },
+  { id: "i05", at: 289.05, into: "cut", C: D.PoemShot },
+  { id: "i06", at: 290.85, into: "fade", C: D.DewShot },
+  { id: "i07", at: 294.2, into: "cut", C: D.WishShot },
+  { id: "i08", at: 296.05, into: "cut", C: D.NoMoreWarShot },
+  // J · outro
+  { id: "j01", at: 297.4, into: "slide-left", C: D.WhatThinkShot },
+  { id: "j02", at: 298.95, into: "cut", C: D.WouldYouAskShot },
+  { id: "j03", at: 303.3, into: "slide-left", C: D.CommentsShot },
 ];

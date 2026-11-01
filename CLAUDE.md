@@ -106,6 +106,14 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `HandTorch`, `Staff`, `Boulder`, `QuestionMark`, `InkLine`.
   Hats add `persian`, `crown`, `veil`, `wreath`, `corinthian`, `hood`; beards add
   `royal`; outfits add `hem`, `patches`, `trim`, `sash`, `rope`, `armor`.
+- Pacific War (`env/pacific`, `env/ww2`): `ZeroFighter` (side view: `bomb`, `gear`,
+  `spin`, `trail`, `fire`, `pilot` in the canopy), `ZeroTop`, `Warship`
+  (`destroyer`/`battleship`/`carrier`, hull `number`, `hit`, `list`), `ShipTop`,
+  `Tracers`, `FlakBurst`/`FlakField`, `SplashColumn`, `USFlag`, `HullNumber`,
+  `Ribbon` (map label banner), `JapanMap` (real Natural Earth coastlines in
+  `env/geo/eastAsia.json`; `ppd`, `route`, `dots`, `w`/`h`, `only`; helpers
+  `geoXY`, `cityXY`, `japanRouteAt`). Outfits add `harness` and `sword` (katana).
+  Never hand-draw maps: use `JapanMap` (extend the geo data for other regions).
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers.
 
 Rules: drive every motion from `useCurrentFrame()` (never R3F `useFrame()`),

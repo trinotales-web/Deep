@@ -1,7 +1,7 @@
 import React from "react";
 import { Part, Line } from "../Part";
 import { X } from "../context";
-import { blob, circle, ellipse, roundRect, poly } from "../shapes";
+import { blob, circle, ellipse, roundRect, roundPoly, poly } from "../shapes";
 import { palette, shadeHex } from "../style";
 
 // Authored for a head of radius 100, origin at the head center, facing +x.
@@ -95,15 +95,29 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
       );
     }
     case "officer": {
+      // peaked service cap: wide crown, coloured band, short dark visor at the
+      // front (toward the facing side), badge on the band
       const c = color ?? "#f2efe8";
       const band = accent ?? palette.navy;
       return (
-        <X y={42}>
-          <Part shape={blob([[-126, 70], [-104, 112], [0, 126], [116, 114], [140, 80], [104, 58], [0, 52], [-104, 58]], 8)} color={c} shade={0.25} />
-          <Part shape={roundRect(208, 42, 12)} color={band} y={42} z={0.001} />
-          <Line pts={[[-100, 32], [100, 32]]} width={4} color={palette.gold} z={0.002} />
-          <Part shape={blob([[10, 26], [80, 20], [138, 6], [140, -6], [70, 0], [10, 8]], 6)} color="#1d1d26" z={0.003} />
-          <Part shape={circle(12)} color={palette.gold} flat outline={4} x={30} y={70} z={0.004} />
+        <X y={30}>
+          <Part shape={blob([[-100, 46], [-128, 78], [-120, 104], [-60, 120], [20, 124], [96, 114], [132, 84], [104, 46]], 8)} color={c} shade={0.25} />
+          <Part shape={roundPoly([[-102, 26], [104, 26], [106, 62], [-100, 62]], 10)} color={band} shade={0.2} z={0.001} />
+          <Part shape={blob([[-30, 30], [40, 32], [108, 26], [128, 14], [104, 4], [30, 2], [-36, 14]], 6)} color="#211c20" shade={0.2} z={0.003} />
+          <Line pts={[[-28, 22], [40, 22], [104, 18]]} smooth width={4} color={palette.gold} z={0.004} />
+          <Part
+            shape={poly(Array.from({ length: 10 }, (_, i) => {
+              const a = Math.PI / 2 + (i * Math.PI) / 5;
+              const r = i % 2 ? 6 : 14;
+              return [Math.cos(a) * r, Math.sin(a) * r] as [number, number];
+            }))}
+            color={palette.gold}
+            flat
+            outline={3.5}
+            x={42}
+            y={46}
+            z={0.005}
+          />
         </X>
       );
     }
@@ -323,32 +337,38 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
       );
     }
     case "aviator": {
-      // leather flying helmet with ear flaps and goggles; `accent` adds a
-      // hachimaki (white headband with a red sun) tied over it
-      const c = color ?? "#6b4a30";
+      // leather flying helmet covering the skull down to the jaw, centre seam,
+      // ear flaps with a chin strap, goggles resting on the forehead; `accent`
+      // adds a hachimaki (white headband with a red sun) tied under the goggles
+      const c = color ?? "#7a4e2c";
       return (
         <X y={0}>
           <Part
-            shape={blob([[-110, -64], [-112, 20], [-94, 78], [-50, 112], [0, 120], [50, 112], [94, 78], [112, 20], [110, -64], [88, -70], [84, 8], [56, 34], [0, 42], [-56, 34], [-84, 8], [-88, -70]], 8)}
+            shape={blob([[-104, -40], [-110, 30], [-92, 82], [-48, 112], [6, 120], [56, 110], [96, 78], [110, 26], [104, -40], [86, -56], [76, -10], [62, 30], [0, 40], [-62, 30], [-78, -10], [-88, -56]], 8)}
             color={c}
             shade={0.26}
           />
-          <Line pts={[[-100, 18], [-60, 46], [0, 54], [60, 46], [100, 18]]} smooth width={4} color={shadeHex(c, 0.4)} z={0.001} />
-          <Line pts={[[0, 56], [0, 116]]} width={4} color={shadeHex(c, 0.4)} z={0.001} />
+          {/* stitched seams */}
+          <Line pts={[[14, 42], [20, 80], [12, 118]]} smooth width={4} color={shadeHex(c, 0.42)} z={0.001} />
+          <Line pts={[[-96, 4], [-70, 34], [-30, 44]]} smooth width={3.5} color={shadeHex(c, 0.42)} z={0.001} />
+          {/* ear flap + chin strap on the near side */}
+          <Part shape={blob([[62, -6], [92, -8], [100, -50], [80, -70], [62, -50]], 6)} color={shadeHex(c, 0.1)} shade={0.24} z={0.002} />
+          <Line pts={[[78, -66], [40, -96], [-10, -104]]} smooth width={6} color={shadeHex(c, 0.3)} z={0.002} />
           {accent ? (
             <>
-              <Part shape={blob([[-108, 40], [0, 54], [108, 40], [104, 72], [0, 86], [-104, 72]], 8)} color="#f4f1ea" shade={0.2} z={0.002} />
-              <Part shape={circle(15)} color={accent} flat outline={3.5} x={34} y={70} z={0.003} />
+              <Part shape={blob([[-106, 34], [0, 50], [108, 36], [106, 64], [0, 80], [-104, 62]], 8)} color="#f4f1ea" shade={0.2} z={0.003} />
+              <Part shape={circle(14)} color={accent} flat outline={3.5} x={30} y={64} z={0.004} />
             </>
           ) : null}
-          <X y={accent ? 98 : 80} z={0.004}>
-            <Part shape={roundRect(214, 16, 8)} color="#3a3236" />
-            {[-34, 34].map((x) => (
-              <Part key={x} shape={circle(25)} color="#7c7a84" shade={0.25} x={x} z={0.001}>
-                <Part shape={circle(16)} color="#9fd6f0" flat outline={3} z={0.001} />
-                <Part shape={circle(5)} color="#ffffff" flat outline={0} x={-5} y={5} z={0.002} />
+          <X y={accent ? 94 : 76} z={0.005}>
+            <Line pts={[[-102, -14], [-60, 4], [0, 10], [60, 4], [104, -14]]} smooth width={12} color="#3a2f2a" />
+            {[-14, 50].map((x) => (
+              <Part key={x} shape={circle(25)} color="#8a8890" shade={0.25} x={x} y={8} z={0.001}>
+                <Part shape={circle(17)} color="#a9dcf2" flat outline={3} z={0.001} />
+                <Part shape={circle(5)} color="#ffffff" flat outline={0} x={-6} y={6} z={0.002} />
               </Part>
             ))}
+            <Part shape={roundRect(18, 10, 4)} color="#3a2f2a" flat outline={2.5} x={18} y={8} z={0.0005} />
           </X>
         </X>
       );

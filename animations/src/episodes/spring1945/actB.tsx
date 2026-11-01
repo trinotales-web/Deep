@@ -167,8 +167,8 @@ export const KamikazeShot: React.FC<ShotProps> = ({ start, dur }) => {
         <WindSwirl x={-560} y={60} s={1.4} rot={-frame * 0.03} color="#fbe1d4" z={-11} />
         <WindSwirl x={620} y={-60} s={1.0} rot={-frame * 0.04 + 1} color="#fbe1d4" z={-11} />
         {[0, 1, 2].map((i) => (
-          <X key={i} x={-200 + i * 260 + frame * 1.5} y={-80 + i * 70} s={0.28} z={1}>
-            <ZeroFighter gear={false} spin={1} />
+          <X key={i} x={-420 + i * 330 + frame * 1.5} y={-120 + i * 90} s={0.42 - i * 0.04} z={1 + i * 0.01}>
+            <ZeroFighter gear={false} spin={1} bomb />
           </X>
         ))}
       </Stage>

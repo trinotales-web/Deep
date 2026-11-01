@@ -6,18 +6,18 @@ type Design = Omit<CharacterProps, "pose" | "expression">;
 /** Tokko pilot: leather flying helmet + goggles, hachimaki with the red sun, white silk scarf, flight suit. */
 export const PILOT = (i = 0): Design => ({
   outfit: {
-    top: ["#7a6044", "#6e5a42", "#806548"][i % 3],
-    bottom: ["#6a5238", "#5e4c36", "#705840"][i % 3],
+    top: ["#a07a4e", "#94714a", "#a8824f"][i % 3],
+    bottom: ["#8e6c44", "#84643f", "#957347"][i % 3],
     boots: "#3a2a20",
     belt: "#3a2a20",
     buckle: "#c9a24a",
-    strap: "#d9c58f",
+    harness: "#8a6a3e",
     scarf: "#f4f1ea",
     collar: "high",
     collarColor: "#5a4430",
   },
   hat: "aviator",
-  hatColor: ["#6b4a30", "#5e422c", "#74513a"][i % 3],
+  hatColor: ["#7a4e2c", "#6e4628", "#83552f"][i % 3],
   hatAccent: "#c8262f",
   seed: 100 + i,
 });
@@ -52,7 +52,7 @@ export const KAMBARA_OLD: Design = {
 
 /** IJN officer (navy). */
 export const NAVY_OFFICER = (i = 0): Design => ({
-  outfit: { top: "#23283a", bottom: "#23283a", boots: "#1e1a1c", buttons: "#c9a24a", collar: "high", collarColor: "#23283a", cuffs: "#c9a24a", medals: i === 0, belt: null },
+  outfit: { top: "#23283a", bottom: "#23283a", boots: "#1e1a1c", buttons: "#c9a24a", collar: "high", collarColor: "#23283a", cuffs: "#c9a24a", medals: i === 0, belt: "#1a1c26", buckle: "#c9a24a", sword: "#1a1a1e" },
   hat: "officer",
   hatColor: "#23283a",
   hatAccent: "#1a1c26",
@@ -63,10 +63,10 @@ export const NAVY_OFFICER = (i = 0): Design => ({
 
 /** Army general / staff officer. */
 export const GENERAL = (i = 0): Design => ({
-  outfit: { top: "#8f8a58", bottom: "#7f794c", boots: "#3a2a1e", belt: "#4a2f1e", buckle: "#c9a24a", buttons: "#c9a24a", collar: "high", collarColor: "#7d7849", medals: true, strap: "#4a2f1e" },
+  outfit: { top: "#6f7146", bottom: "#64663f", boots: "#3a2a1e", belt: "#4a2f1e", buckle: "#c9a24a", buttons: "#c9a24a", collar: "high", collarColor: "#5f6139", medals: true, strap: "#4a2f1e", pockets: true, sword: "#2a2622" },
   hat: "officer",
-  hatColor: "#8f8a58",
-  hatAccent: "#a3302a",
+  hatColor: "#6f7146",
+  hatAccent: "#55573a",
   mustache: i % 2 ? "walrus" : "thin",
   mustacheColor: "#2a2226",
   glasses: i === 2 ? "#3a3236" : null,
@@ -75,9 +75,9 @@ export const GENERAL = (i = 0): Design => ({
 
 /** Army soldier / guard. */
 export const SOLDIER = (i = 0): Design => ({
-  outfit: { top: "#8f8a58", bottom: "#7f794c", boots: "#4a3524", belt: "#5a3a26", buckle: "#c9a24a", pockets: true, buttons: "#c9a24a", collar: "high", collarColor: "#7d7849" },
+  outfit: { top: "#6f7146", bottom: "#64663f", boots: "#4a3524", belt: "#5a3a26", buckle: "#c9a24a", pockets: true, buttons: "#c9a24a", collar: "high", collarColor: "#5f6139" },
   hat: "fieldcap",
-  hatColor: "#8f8a58",
+  hatColor: "#6f7146",
   seed: 150 + i,
 });
 
@@ -121,6 +121,14 @@ export const FATHER: Design = {
   mustache: "walrus",
   mustacheColor: "#3a3438",
   seed: 181,
+};
+
+/** A pilot's mother in mourning (dark kimono). */
+export const MOTHER: Design = {
+  outfit: { top: "#3a3a46", robe: true, sash: "#23232c", collar: "wrap", collarColor: "#e8e4dc" },
+  hair: "bun",
+  hairColor: "#3a3438",
+  seed: 182,
 };
 
 /** Meiji-era chemist (1893). */

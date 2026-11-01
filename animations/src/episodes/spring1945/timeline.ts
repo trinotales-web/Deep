@@ -4,6 +4,7 @@ import * as A from "./actA";
 import * as B from "./actB";
 import * as C from "./actC";
 import * as D from "./actD";
+import * as V from "./actV2";
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
 export type Cut = { id: string; at: number; into: Into; C: React.FC<ShotProps> };
@@ -15,21 +16,21 @@ export const CUTS: Cut[] = [
   { id: "a01", at: 0, into: "cut", C: A.SpringShot },
   { id: "a02", at: 2.15, into: "cut", C: A.PilotStandShot },
   { id: "a03", at: 6.1, into: "cut", C: A.BombLoadShot },
-  { id: "a04", at: 9.2, into: "cut", C: A.WarshipShot },
-  { id: "a05", at: 10.8, into: "cut", C: A.OneWayShot },
+  { id: "a04", at: 9.2, into: "cut", C: V.AttackShot },
+  { id: "a05", at: 10.8, into: "cut", C: V.OneWayMapShot },
   { id: "a06", at: 12.55, into: "cut", C: A.DoctorArrivesShot },
   { id: "a07", at: 14.4, into: "cut", C: A.InjectionCloseShot },
   { id: "a08", at: 16.0, into: "cut", C: A.WakeUpShot },
   { id: "a09", at: 18.0, into: "cut", C: A.NeitherKnowsShot },
   { id: "a10", at: 19.95, into: "cut", C: A.ItsMethShot },
   // B · the question + teasers
-  { id: "b01", at: 21.2, into: "slide-left", C: A.DruggedShot },
+  { id: "b01", at: 21.2, into: "slide-left", C: V.CockpitDiveShot },
   { id: "b02", at: 25.5, into: "cut", C: A.StrangerShot },
   { id: "b03", at: 27.55, into: "slide-left", C: A.TeaserChocolateShot },
   { id: "b04", at: 30.7, into: "slide-left", C: A.TeaserDoctorShot },
   { id: "b05", at: 32.9, into: "slide-left", C: A.TeaserOutlivedShot },
   { id: "b06", at: 34.9, into: "cut", C: A.DrugItselfShot },
-  { id: "b07", at: 37.0, into: "cut", C: A.StartsInJapanShot },
+  { id: "b07", at: 37.0, into: "cut", C: V.JapanBoardShot },
   // C · the drug
   { id: "c01", at: 38.95, into: "fade", C: A.ChemistShot },
   { id: "c02", at: 42.05, into: "cut", C: A.EphedraShot },
@@ -47,15 +48,16 @@ export const CUTS: Cut[] = [
   { id: "c14", at: 72.1, into: "cut", C: A.FactoryShot },
   // D · the tokko
   { id: "d01", at: 74.85, into: "fade", C: B.EndOf1944Shot },
-  { id: "d02", at: 77.55, into: "cut", C: B.LosingShot },
+  { id: "d02", at: 77.55, into: "cut", C: V.LosingMapShot },
   { id: "d03", at: 79.45, into: "cut", C: B.DesperateShot },
   { id: "d04", at: 82.2, into: "slide-left", C: B.PlanDiagramShot },
+  { id: "d04b", at: 84.05, into: "cut", C: V.TopDiveShot },
   { id: "d05", at: 86.1, into: "cut", C: B.KamikazeShot },
   { id: "d06", at: 90.45, into: "cut", C: B.TokkoShot },
   { id: "d07", at: 94.45, into: "cut", C: B.TeenagersShot },
   { id: "d08", at: 97.8, into: "cut", C: B.BarelyFlyShot },
-  { id: "d09", at: 99.9, into: "slide-left", C: B.FlightTimeShot },
-  { id: "d10", at: 104.7, into: "cut", C: B.SleepyPilotShot },
+  { id: "d09", at: 99.9, into: "slide-left", C: V.FlightMapShot },
+  { id: "d10", at: 104.7, into: "cut", C: V.SleepyCockpitShot },
   { id: "d11", at: 108.65, into: "cut", C: B.KeepSharpShot },
   // E · clue 1: the chocolate
   { id: "e01", at: 110.25, into: "slide-left", C: B.ClueOneShot },
@@ -71,7 +73,8 @@ export const CUTS: Cut[] = [
   { id: "e11", at: 142.1, into: "slide-left", C: B.FatherShot },
   { id: "e12", at: 145.92, into: "cut", C: B.TeachersShot },
   { id: "e13", at: 148.62, into: "cut", C: B.DarkerShot },
-  { id: "e14", at: 150.72, into: "fade", C: B.BeforeTheyDieShot },
+  { id: "e14", at: 150.72, into: "fade", C: V.ChocolateCockpitShot },
+  { id: "e14b", at: 153.1, into: "cut", C: V.FarDiveShot },
   { id: "e15", at: 154.6, into: "cut", C: B.StrangePartShot },
   { id: "e16", at: 156.2, into: "cut", C: B.NoRecordShot },
   { id: "e17", at: 158.85, into: "cut", C: B.ResearcherShot },
@@ -80,8 +83,8 @@ export const CUTS: Cut[] = [
   { id: "f01", at: 163.95, into: "slide-left", C: C.ClueTwoShot },
   { id: "f02", at: 166.8, into: "cut", C: C.KambaraNameShot },
   { id: "f03", at: 168.95, into: "cut", C: C.YoungDoctorShot },
-  { id: "f04", at: 172.3, into: "cut", C: C.KushiraShot },
-  { id: "f05", at: 175.0, into: "cut", C: C.OkinawaBattleShot },
+  { id: "f04", at: 172.3, into: "cut", C: V.KushiraMapShot },
+  { id: "f05", at: 175.0, into: "cut", C: V.BattleShot },
   { id: "f06", at: 176.85, into: "cut", C: C.OrderShot },
   { id: "f07", at: 178.65, into: "cut", C: C.InjectPilotsShot },
   { id: "f08", at: 181.5, into: "cut", C: C.BrownTubesShot },
@@ -89,11 +92,12 @@ export const CUTS: Cut[] = [
   { id: "f10", at: 186.75, into: "cut", C: C.DoesItShot },
   { id: "f11", at: 187.95, into: "cut", C: C.AgainShot },
   { id: "f12", at: 190.85, into: "cut", C: C.TallyShot },
+  { id: "f12b", at: 192.6, into: "cut", C: V.PortraitWallShot },
   { id: "f13", at: 194.3, into: "fade", C: C.QuietShot },
   { id: "f14", at: 196.05, into: "cut", C: C.GoodbyeShot },
   { id: "f15", at: 198.4, into: "cut", C: C.LuckyShot },
   { id: "f16", at: 201.5, into: "cut", C: C.DontHaveToShot },
-  { id: "f17", at: 202.9, into: "cut", C: C.NoAnswerShot },
+  { id: "f17", at: 202.9, into: "cut", C: V.TakeoffShot },
   { id: "f18", at: 204.15, into: "fade", C: C.UnderstandShot },
   { id: "f19", at: 208.3, into: "cut", C: C.HiroponRevealShot },
   // G · the myth
@@ -107,7 +111,8 @@ export const CUTS: Cut[] = [
   { id: "g08", at: 225.5, into: "cut", C: C.ByOfficersShot },
   { id: "g09", at: 226.55, into: "cut", C: C.ByTrainingShot },
   { id: "g10", at: 227.85, into: "cut", C: C.SendOffShot },
-  { id: "g11", at: 231.85, into: "cut", C: C.AwakeOnWayShot },
+  { id: "g10b", at: 229.5, into: "cut", C: V.AltarShot },
+  { id: "g11", at: 231.85, into: "cut", C: V.AwakeCockpitShot },
   { id: "g12", at: 234.75, into: "slide-left", C: C.NotOnlyOneShot },
   { id: "g13", at: 236.7, into: "cut", C: C.PervitinShot },
   { id: "g14", at: 239.6, into: "cut", C: C.BenzedrineShot },

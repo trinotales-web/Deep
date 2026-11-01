@@ -1,8 +1,9 @@
 import React from "react";
-import { X, Part, Line, Glow, Gradient, roundRect } from "../../kit";
+import { X, Part, Line, Glow, Gradient, roundRect, roundPoly, poly, blob, circle } from "../../kit";
+import { Face, Hat } from "../../kit/character";
 import {
   Sky, Cloud, Mountains, Ground, Sea, Stars, Moon, Hangar, Windsock, SakuraTree, Petals, ZeroFighter, PlankWall, Floorboards, ShojiWall, Tatami,
-  JapanMap, HangingLamp, Desk, Flag,
+  JapanMap, HangingLamp, Desk, Flag, Flame, Smoke,
 } from "../../kit/env";
 
 // Locations for "Spring 1945". Everything takes `children` drawn between the
@@ -122,8 +123,8 @@ export const WarRoom: React.FC<{ floorY?: number; table?: boolean; lampX?: numbe
     <PlankWall w={4000} h={2400} y={floorY + 1200} color="#5e4a3a" z={-40} />
     <X x={-80} y={floorY + 780} z={-38}>
       <Part shape={roundRect(700, 440, 8)} color="#3a2a20" shade={0.15} />
-      <X s={0.26} y={0} z={0.01}>
-        <JapanMap />
+      <X x={-30} y={-40} z={0.01}>
+        <JapanMap ppd={15} w={660} h={400} only="japan" waves={false} x={60} y={60} />
       </X>
     </X>
     <Flag x={620} y={floorY} pole={820} z={-37} />
@@ -154,3 +155,169 @@ export const ObjectBack: React.FC<{ color?: string; glow?: string; children?: Re
     {children}
   </>
 );
+
+const COCKPIT_GREEN = "#566b3e";
+
+/**
+ * Inside the cockpit of a Zero: the world outside (sky, sea, ships) rolls with
+ * `tilt` and drops away with `dive` 0..1; the pilot (children) sits behind the
+ * green windscreen frame and the cockpit sill. Put a Character with its head
+ * at about (−40, 150), s≈2.2 (feet y ≈ −528).
+ */
+export const CockpitView: React.FC<{ tilt?: number; dive?: number; mood?: Mood; outside?: React.ReactNode; children?: React.ReactNode }> = ({
+  tilt = 0,
+  dive = 0,
+  mood = "day",
+  outside,
+  children,
+}) => {
+  const c = SKY[mood];
+  const horizon = 60 + dive * 900;
+  return (
+    <>
+      <X rot={tilt} y={0} z={-40}>
+        <Sky w={6000} h={4000} y={horizon + 2000} top={c.top} mid={c.mid} bottom={c.bottom} />
+        <Cloud x={-700} y={horizon + 420} w={460} seed={4} />
+        <Cloud x={680} y={horizon + 300} w={380} seed={9} />
+        <Sea w={6000} h={4000} y={horizon} color={mood === "dusk" ? "#4a6a9a" : mood === "dawn" ? "#5a8ab8" : "#3f86b8"} z={0.5} />
+        <X y={horizon} z={1}>
+          {outside}
+        </X>
+      </X>
+      {children}
+      {/* windscreen glass + frame */}
+      <Part shape={roundRect(1240, 820, 30)} color="#d6f1fb" flat outline={0} opacity={0.1} y={150} z={20} />
+      <Part shape={poly([[-420, 560], [-300, 560], [-520, -200], [-640, -200]])} color="#ffffff" flat outline={0} opacity={0.12} z={20.1} />
+      <Part shape={poly([[240, 560], [300, 560], [80, -200], [20, -200]])} color="#ffffff" flat outline={0} opacity={0.1} z={20.1} />
+      <Part shape={poly([[-720, -260], [-650, -260], [-560, 600], [-630, 600]])} color={COCKPIT_GREEN} shade={0.22} z={21} />
+      <Part shape={poly([[650, -260], [720, -260], [630, 600], [560, 600]])} color={COCKPIT_GREEN} shade={0.22} z={21} />
+      <Part shape={blob([[-640, 560], [-300, 590], [300, 590], [640, 560], [640, 640], [-640, 640]], 6)} color={COCKPIT_GREEN} shade={0.22} z={21.1} />
+      {/* cockpit sill */}
+      <Part shape={blob([[-1100, -620], [1100, -620], [1100, -280], [700, -250], [0, -232], [-700, -250], [-1100, -280]], 8)} color={COCKPIT_GREEN} shade={0.24} z={22}>
+        <Line pts={[[-1000, -276], [-700, -262], [0, -246], [700, -262], [1000, -276]]} smooth width={5} color="#3e4c2c" z={0.001} />
+        {Array.from({ length: 22 }, (_, i) => (
+          <Part key={i} shape={circle(5)} color="#6f8256" flat outline={2.5} x={-1000 + i * 95} y={-300 + Math.abs(i - 10.5) * 2} z={0.002} />
+        ))}
+      </Part>
+    </>
+  );
+};
+
+/** A small portrait head (for framed photos): skin, face and headwear. */
+export const PortraitHead: React.FC<{ hat?: Parameters<typeof Hat>[0]["kind"]; hatColor?: string; hatAccent?: string; smile?: boolean; s?: number; x?: number; y?: number; z?: number }> = ({
+  hat = "aviator",
+  hatColor = "#7a4e2c",
+  hatAccent,
+  smile = true,
+  s = 1,
+  x = 0,
+  y = 0,
+  z = 0,
+}) => (
+  <X x={x} y={y} s={s} z={z}>
+    <Part shape={roundPoly4(150, 110)} color="#a07a4e" shade={0.2} y={-140} z={-0.01} />
+    <Part shape={roundRect(110, 34, 16)} color="#f4f1ea" shade={0.2} y={-96} z={-0.005} />
+    <Part shape={circle(100)} color="#f6f5f8" shade={0.24} />
+    <X z={0.01}>
+      <Face expression={{ eyes: "open", mouth: smile ? "smile" : "flat" }} look={0} blink={0} talk={0} />
+    </X>
+    <X z={0.12}>
+      <Hat kind={hat} color={hatColor} accent={hatAccent} />
+    </X>
+  </X>
+);
+const roundPoly4 = (w: number, h: number) => roundRect(w, h, 40);
+
+/** Framed memorial portrait with black mourning ribbons. Origin = frame centre. */
+export const MemorialPortrait: React.FC<{ x?: number; y?: number; s?: number; z?: number; seed?: number }> = ({ x = 0, y = 0, s = 1, z = 0, seed = 0 }) => (
+  <X x={x} y={y} s={s} z={z}>
+    <Part shape={roundRect(230, 290, 8)} color="#3a2a20" shade={0.2} />
+    <Part shape={roundRect(190, 250, 4)} color={["#e9e0c8", "#e4dcc6", "#ebe3cc"][seed % 3]} flat outline={4} z={0.001} />
+    <PortraitHead s={0.62} y={-6} z={0.01} hatColor={["#7a4e2c", "#6e4628", "#83552f"][seed % 3]} hatAccent={seed % 2 ? "#c8262f" : undefined} />
+    <Part shape={roundRect(194, 70, 0)} color="#3a2a20" flat outline={0} y={-112} z={0.03} />
+    {[-1, 1].map((k) => (
+      <Part key={k} shape={poly([[k * 115, 145], [k * 60, 145], [k * 115, 90]])} color="#1a1618" flat outline={3} z={0.04} />
+    ))}
+  </X>
+);
+
+/** Spray of white chrysanthemums in a vase (funeral flowers). Origin = vase bottom. */
+const FuneralFlowers: React.FC<{ x: number; y: number; s?: number; z?: number }> = ({ x, y, s = 1, z = 0 }) => (
+  <X x={x} y={y} s={s} z={z}>
+    <Part shape={roundPoly([[-40, 0], [40, 0], [30, 110], [-30, 110]], 10)} color="#6a6e78" shade={0.22} y={0} />
+    {[[-50, 220], [0, 250], [50, 220], [-24, 180], [28, 186]].map(([fx, fy], i) => (
+      <X key={i} x={fx} y={fy} z={0.01 + i * 0.001}>
+        <Line pts={[[0, 0], [-fx * 0.6, -fy + 110]]} width={6} color="#4a7a32" z={-0.01} />
+        <Part shape={circle(34)} color="#f6f4ee" shade={0.2} />
+        <Part shape={circle(14)} color="#efe6b0" flat outline={3} z={0.001} />
+      </X>
+    ))}
+  </X>
+);
+
+/**
+ * Family Buddhist altar (butsudan) with the pilot's memorial portrait,
+ * white chrysanthemums, candles and incense. Origin = floor centre of the altar.
+ */
+export const MemorialAltar: React.FC<{ x?: number; y?: number; s?: number; z?: number; seed?: number }> = ({ x = 0, y = 0, s = 1, z = 0, seed = 0 }) => (
+  <X x={x} y={y} s={s} z={z}>
+    <Part shape={roundRect(760, 760, 10)} color="#4a2e20" shade={0.2} y={380} />
+    <Part shape={roundRect(640, 560, 6)} color="#c9963f" shade={0.15} y={430} z={0.001} />
+    <Part shape={roundRect(600, 520, 4)} color="#3a2418" flat outline={4} y={430} z={0.002} />
+    <Glow y={430} rx={360} ry={300} color="#ffcf7a" alpha={0.25} additive z={0.003} />
+    <MemorialPortrait y={470} s={0.95} z={0.01} seed={seed} />
+    <Part shape={roundRect(820, 40, 8)} color="#5a3a26" shade={0.2} y={200} z={0.02} />
+    <FuneralFlowers x={-250} y={220} s={0.7} z={0.03} />
+    <FuneralFlowers x={250} y={220} s={0.7} z={0.03} />
+    {[-140, 140].map((cx) => (
+      <X key={cx} x={cx} y={220} z={0.04}>
+        <Part shape={roundRect(22, 90, 6)} color="#f4f1ea" shade={0.15} y={45} />
+        <Flame y={92} size={0.18} seed={cx > 0 ? 3 : 5} z={0.01} />
+      </X>
+    ))}
+    <X y={220} z={0.05}>
+      <Part shape={roundPoly([[-50, 0], [50, 0], [40, 46], [-40, 46]], 10)} color="#8a8790" shade={0.22} />
+      {[-12, 0, 12].map((ix) => (
+        <Line key={ix} pts={[[ix, 46], [ix * 1.2, 110]]} width={4} color="#7a3a2a" z={0.001} />
+      ))}
+      <Smoke y={110} w={60} h={500} alpha={0.35} seed={7} z={0.002} />
+    </X>
+  </X>
+);
+
+/**
+ * Framed wall map (red-and-gold frame, as in the reference map shots). The
+ * children are drawn in board coordinates; anything outside the board is
+ * hidden behind the wall.
+ */
+export const MapBoard: React.FC<{ w?: number; h?: number; wall?: string; frame?: string; children?: React.ReactNode }> = ({
+  w = 1500,
+  h = 860,
+  wall = "#7a3a2c",
+  frame = "#8e2f26",
+  children,
+}) => {
+  const W = 6000;
+  return (
+    <>
+      <X z={-30}>{children}</X>
+      <X z={-10}>
+        <Part shape={roundRect(W, W, 0)} color={wall} flat outline={0} y={h / 2 + W / 2} />
+        <Part shape={roundRect(W, W, 0)} color={wall} flat outline={0} y={-h / 2 - W / 2} />
+        <Part shape={roundRect(W, h, 0)} color={wall} flat outline={0} x={-w / 2 - W / 2} />
+        <Part shape={roundRect(W, h, 0)} color={wall} flat outline={0} x={w / 2 + W / 2} />
+      </X>
+      <X z={-9}>
+        {[
+          [0, h / 2 + 22, w + 88, 44],
+          [0, -h / 2 - 22, w + 88, 44],
+          [-w / 2 - 22, 0, 44, h],
+          [w / 2 + 22, 0, 44, h],
+        ].map(([x, y, bw, bh], i) => (
+          <Part key={i} shape={roundRect(bw, bh, 6)} color={frame} shade={0.18} x={x} y={y} />
+        ))}
+        <Line pts={[[-w / 2 - 6, -h / 2 - 6], [w / 2 + 6, -h / 2 - 6], [w / 2 + 6, h / 2 + 6], [-w / 2 - 6, h / 2 + 6], [-w / 2 - 6, -h / 2 - 6]]} width={9} color="#d9a441" z={0.002} />
+      </X>
+    </>
+  );
+};

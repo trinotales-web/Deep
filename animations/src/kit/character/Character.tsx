@@ -3,7 +3,7 @@ import { useCurrentFrame } from "remotion";
 import { Part, Line } from "../Part";
 import { X } from "../context";
 import { GroundShadow } from "../effects";
-import { blob, circle, limb, roundPoly, roundRect } from "../shapes";
+import { blob, circle, ellipse, limb, roundPoly, roundRect } from "../shapes";
 import { GLOVE, SKIN, palette, shadeHex } from "../style";
 import { Face, type Expression } from "./Face";
 import { Hat, HatBack, HairBack, HairFront, type HatKind, type HairKind } from "./Headwear";
@@ -53,8 +53,12 @@ export type Outfit = {
   armor?: string | null;
   /** Quilted gambeson stitching color. */
   quilt?: string | null;
-  /** Neck scarf (pilots): colour; the tail flutters behind. */
+  /** Neck scarf (pilots): colour; the front end is tucked into the suit. */
   scarf?: string | null;
+  /** Parachute harness (pilots): two shoulder straps, chest strap, buckle. */
+  harness?: string | null;
+  /** Officer's sword (katana) hanging at the hip: scabbard colour. */
+  sword?: string | null;
 };
 
 export type Pose = {
@@ -297,6 +301,15 @@ const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe 
           <Line pts={[[18, -4], [24, -30], [20, -44]]} smooth width={5} color={outfit.rope} />
         </X>
       ) : null}
+      {outfit.harness ? (
+        <X z={0.0058}>
+          {[-1, 1].map((k) => (
+            <Part key={k} shape={roundPoly([[k * 30 - 8, TORSO_TOP - 2], [k * 30 + 8, TORSO_TOP - 2], [k * 26 + 8, 60], [k * 26 - 8, 60]], 3)} color={outfit.harness!} flat />
+          ))}
+          <Part shape={roundRect(76, 13, 4)} color={outfit.harness} flat y={150} />
+          <Part shape={roundRect(22, 22, 5)} color="#b9b6ae" flat outline={3.5} y={150} z={0.001} />
+        </X>
+      ) : null}
       {outfit.belt ? (
         <X y={outfit.robe ? 104 : 74} z={0.006}>
           <Part shape={roundRect(outfit.robe ? 142 : 136, 20, 6)} color={outfit.belt} flat />
@@ -387,13 +400,22 @@ export const Character: React.FC<CharacterProps> = ({
             <X z={0.1}>
               <Torso outfit={outfit} breathe={breathe} />
             </X>
+            {outfit.sword ? (
+              <X x={34} y={92} rot={-2.62} z={0.27}>
+                {/* handle (white wrap), guard, scabbard */}
+                <Part shape={roundRect(70, 15, 6)} color="#f2efe6" shade={0.15} x={-36} />
+                {[-60, -44, -28].map((x) => (
+                  <Line key={x} pts={[[x - 6, -7], [x + 6, 7]]} width={3} z={0.001} />
+                ))}
+                <Part shape={ellipse(7, 16)} color="#c9a24a" shade={0.2} z={0.002} />
+                <Part shape={roundRect(150, 14, 7)} color={outfit.sword} shade={0.2} x={80} z={-0.001} />
+                <Part shape={roundRect(14, 15, 4)} color="#c9a24a" flat outline={3} x={150} z={0.001} />
+              </X>
+            ) : null}
             {outfit.scarf ? (
               <X y={NECK_Y - 8} z={0.28}>
-                <Part shape={roundRect(132, 40, 18)} color={outfit.scarf} shade={0.2} />
-                <X x={-52} y={4} rot={0.25 + Math.sin(frame * 0.35 + seed) * 0.12} z={-0.4}>
-                  <Part shape={blob([[0, 10], [-60, 18], [-120, 6], [-150, -10], [-112, -10], [-56, -12], [0, -14]], 8)} color={shadeHex(outfit.scarf, 0.06)} shade={0.22} />
-                </X>
-                <Part shape={blob([[10, -10], [40, -14], [46, -74], [24, -82], [6, -30]], 6)} color={outfit.scarf} shade={0.22} z={0.01} />
+                <Part shape={roundRect(110, 34, 16)} color={outfit.scarf} shade={0.2} />
+                <Part shape={blob([[-6, -8], [22, -10], [26, -58], [8, -66], [-8, -40]], 6)} color={outfit.scarf} shade={0.22} z={0.01} />
               </X>
             ) : null}
             {!backArmBehind ? (

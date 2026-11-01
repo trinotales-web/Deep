@@ -307,7 +307,7 @@ export const ChocolateCockpitShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06) }} light={{ dir: [0.6, 0.5] }}>
         <CockpitView mood="dawn" tilt={Math.sin(frame * 0.04) * 0.02}>
-          <DivingPilot i={1} face="calm" armF={[bite ? 2.2 : 1.6, bite ? 1.4 : 0.9]} holdF={<ChocolateStick s={0.9} rot={Math.PI / 2} crest bite={bite} />} />
+          <DivingPilot i={1} face="calm" armF={[1.6, 0.9]} holdF={<ChocolateStick s={0.45} rot={Math.PI / 2} crest bite={bite} />} />
         </CockpitView>
       </Stage>
     </AbsoluteFill>

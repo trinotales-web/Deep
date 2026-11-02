@@ -13,7 +13,7 @@ import { EMPEROR, HUHAI, FUSU, WORKER, OFFICIAL, ZHAO_GAO, GUARD, WIFE, SIMA_QIA
 import { upright, You } from "./p1a";
 
 /** Travel tent interior at night (the emperor's last journey). */
-const Tent: React.FC<{ dim?: number; children?: React.ReactNode }> = ({ dim = 0.35, children }) => (
+export const Tent: React.FC<{ dim?: number; children?: React.ReactNode }> = ({ dim = 0.35, children }) => (
   <>
     <Part shape={roundRect(5000, 3000, 0)} color="#4a3a2e" flat outline={0} z={-41} />
     {Array.from({ length: 9 }, (_, i) => (
@@ -27,7 +27,7 @@ const Tent: React.FC<{ dim?: number; children?: React.ReactNode }> = ({ dim = 0.
 );
 
 /** Low writing desk with a candle. Origin = floor centre. */
-const WritingDesk: React.FC<{ x?: number; y?: number; lit?: number; z?: number }> = ({ x = 0, y = 0, lit = 1, z = 0 }) => (
+export const WritingDesk: React.FC<{ x?: number; y?: number; lit?: number; z?: number }> = ({ x = 0, y = 0, lit = 1, z = 0 }) => (
   <X x={x} y={y} z={z}>
     <Part shape={roundRect(560, 30, 8)} color="#3a2420" shade={0.2} y={200} />
     {[-1, 1].map((k) => (
@@ -217,7 +217,7 @@ export const KeepSecretShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Dusty road for the funeral caravan. */
-const Road: React.FC<{ mood?: "day" | "dusk"; children?: React.ReactNode }> = ({ mood = "day", children }) => (
+export const Road: React.FC<{ mood?: "day" | "dusk"; children?: React.ReactNode }> = ({ mood = "day", children }) => (
   <Plains mood={mood} horizon={-40}>
     <Part shape={roundRect(5000, 220, 0)} color="#c9a274" flat outline={0} y={-470} z={-25} />
     {children}
@@ -285,7 +285,7 @@ export const ReportsShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Buzzing flies around a point. */
-const Flies: React.FC<{ x: number; y: number; n?: number; r?: number; z?: number }> = ({ x, y, n = 6, r = 120, z = 0 }) => {
+export const Flies: React.FC<{ x: number; y: number; n?: number; r?: number; z?: number }> = ({ x, y, n = 6, r = 120, z = 0 }) => {
   const frame = useCurrentFrame();
   return (
     <X x={x} y={y} z={z}>

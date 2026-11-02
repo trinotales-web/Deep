@@ -15,7 +15,7 @@ import { upright, You } from "./p1a";
 type Design = ReturnType<typeof TERRACOTTA>;
 
 /** Terracotta warrior with the original paint faded in by `k` 0..1. */
-const terra = (i: number, k: number): Design => {
+export const terra = (i: number, k: number): Design => {
   const plain = TERRACOTTA(i, false);
   const paint = TERRACOTTA(i, true);
   const m = (a?: string | null, b?: string | null) => (a && b ? mixHex(a, b, k) : (b ?? a ?? undefined));
@@ -35,7 +35,7 @@ const terra = (i: number, k: number): Design => {
 };
 
 /** Paint flakes peeling off (curl then fall). */
-const Flakes: React.FC<{ x: number; y: number; w: number; h: number; k: number; fall: number; seed?: number; z?: number }> = ({ x, y, w, h, k, fall, seed = 3, z = 0 }) => {
+export const Flakes: React.FC<{ x: number; y: number; w: number; h: number; k: number; fall: number; seed?: number; z?: number }> = ({ x, y, w, h, k, fall, seed = 3, z = 0 }) => {
   const r = rng(seed);
   const items = Array.from({ length: 22 }, () => [(r() - 0.5) * w, r() * h, r(), ["#b8322a", "#3f8a5a", "#7a4a9a", "#2f5fa8", "#f2c9b8"][Math.floor(r() * 5)]] as [number, number, number, string]);
   return (
@@ -218,7 +218,7 @@ export const EightThousandShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Pit floor backdrop for close shots of the statues. */
-const PitFloor: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
+export const PitFloor: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   <>
     <Part shape={roundRect(5000, 3000, 0)} color="#b08458" flat outline={0} z={-41} />
     {[-300, 100].map((y, i) => (
@@ -400,7 +400,7 @@ export const ColorsShot: React.FC<ShotProps> = ({ start }) => {
 };
 
 /** Big stopwatch. */
-const Stopwatch: React.FC<{ x: number; y: number; s?: number; k: number; z?: number }> = ({ x, y, s = 1, k, z = 0 }) => (
+export const Stopwatch: React.FC<{ x: number; y: number; s?: number; k: number; z?: number }> = ({ x, y, s = 1, k, z = 0 }) => (
   <X x={x} y={y} s={s} z={z}>
     <Part shape={roundRect(40, 40, 8)} color="#8a8790" shade={0.2} y={120} />
     <Part shape={circle(110)} color="#f4f1ea" shade={0.15} />
@@ -563,7 +563,7 @@ export const NeverOpenedShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Handheld mercury meter with a needle. */
-const Gauge: React.FC<{ x: number; y: number; s?: number; k: number; z?: number }> = ({ x, y, s = 1, k, z = 0 }) => {
+export const Gauge: React.FC<{ x: number; y: number; s?: number; k: number; z?: number }> = ({ x, y, s = 1, k, z = 0 }) => {
   const a = Math.PI - k * Math.PI;
   return (
     <X x={x} y={y} s={s} z={z}>
@@ -615,7 +615,7 @@ export const MercuryHighShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Mercury vapour wisps rising. */
-const Vapor: React.FC<{ x: number; y: number; h?: number; z?: number; seed?: number }> = ({ x, y, h = 600, z = 0, seed = 0 }) => {
+export const Vapor: React.FC<{ x: number; y: number; h?: number; z?: number; seed?: number }> = ({ x, y, h = 600, z = 0, seed = 0 }) => {
   const frame = useCurrentFrame();
   return (
     <X x={x} y={y} z={z}>

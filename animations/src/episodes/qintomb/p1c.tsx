@@ -55,7 +55,7 @@ const PoleBaskets: React.FC<{ x?: number; y?: number; rot?: number; s?: number; 
 );
 
 /** Bone-white skeleton lying on its back (head toward -x). */
-const Bones: React.FC<{ x: number; y: number; s?: number; rot?: number; z?: number }> = ({ x, y, s = 1, rot = 0, z = 0 }) => {
+export const Bones: React.FC<{ x: number; y: number; s?: number; rot?: number; z?: number }> = ({ x, y, s = 1, rot = 0, z = 0 }) => {
   const B = "#efe6cf";
   return (
     <X x={x} y={y} s={s} rot={rot} z={z}>

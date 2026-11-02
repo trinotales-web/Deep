@@ -1,4 +1,5 @@
 import type { Cut } from "./script";
+import * as R from "./redo";
 import * as A from "./p1a";
 import * as B from "./p1b";
 import * as C from "./p1c";
@@ -55,7 +56,7 @@ export const CUTS1: Cut[] = [
   { id: "d14", at: 132.2, into: "cut", C: B.CutDownShot },
   // chasing immortality
   { id: "e01", at: 135.75, into: "fade", C: C.ThinkingDeathShot },
-  { id: "e02", at: 139.65, into: "cut", C: C.NeverDieShot },
+  { id: "e02", at: 139.65, into: "cut", C: R.NeverDieRedoShot },
   { id: "e03", at: 142.15, into: "slide-left", C: C.MagicIslandsShot },
   { id: "e04", at: 146.45, into: "cut", C: C.XuFuShot },
   { id: "e05", at: 149.05, into: "cut", C: C.ChildrenSailShot },
@@ -67,17 +68,17 @@ export const CUTS1: Cut[] = [
   { id: "e11", at: 167.55, into: "cut", C: C.NotFoundYetShot },
   { id: "e12", at: 171.25, into: "cut", C: C.HerbsShot },
   { id: "e13", at: 173.4, into: "slide-left", C: C.PillsShot },
-  { id: "e14", at: 176.45, into: "cut", C: C.PillMercuryShot },
+  { id: "e14", at: 176.45, into: "cut", C: R.PillMercuryRedoShot },
   { id: "e15", at: 179.45, into: "cut", C: C.LiquidMetalShot },
   { id: "e16", at: 183.95, into: "cut", C: C.KillHimShot },
   { id: "e17", at: 186.85, into: "cut", C: C.RememberShot },
   // building the tomb
-  { id: "f01", at: 189.2, into: "slide-left", C: C.WorkNeverStopsShot },
+  { id: "f01", at: 189.2, into: "slide-left", C: R.WorkNeverStopsRedoShot },
   { id: "f02", at: 192.05, into: "cut", C: C.SevenHundredKShot },
   { id: "f03", at: 195.55, into: "cut", C: C.NotVolunteersShot },
   { id: "f04", at: 197.6, into: "cut", C: C.PrisonersShot },
   { id: "f05", at: 200.0, into: "cut", C: C.DumpedPitsShot },
-  { id: "f06", at: 203.75, into: "fade", C: C.FoundPitsShot },
+  { id: "f06", at: 203.75, into: "fade", C: R.FoundPitsRedoShot },
   { id: "f07", at: 206.25, into: "cut", C: C.SkeletonsShot },
   { id: "f08", at: 209.0, into: "slide-left", C: C.PalaceUnderHillShot },
   { id: "f09", at: 213.55, into: "cut", C: C.TrapTestShot },

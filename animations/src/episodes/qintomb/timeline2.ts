@@ -1,4 +1,5 @@
 import type { Cut } from "./script";
+import * as R from "./redo";
 import * as H from "./p2a";
 import * as J from "./p2b";
 
@@ -9,12 +10,12 @@ export const CUTS2: Cut[] = [
   { id: "h01", at: 0, into: "cut", C: H.EmperorDiesShot },
   { id: "h02", at: 2.2, into: "cut", C: H.MustCloseShot },
   { id: "h03", at: 4.45, into: "slide-left", C: H.LastTripShot },
-  { id: "h04", at: 9.65, into: "cut", C: H.FortyNineShot },
-  { id: "h05", at: 10.95, into: "cut", C: H.NotFiftyShot },
+  { id: "h04", at: 9.65, into: "cut", C: R.FortyNineRedoShot },
+  { id: "h05", at: 10.95, into: "cut", C: R.NotFiftyRedoShot },
   { id: "h06", at: 14.35, into: "slide-left", C: H.AdvisersPanicShot },
   { id: "h07", at: 16.35, into: "cut", C: H.EmpireCracksShot },
   { id: "h08", at: 19.15, into: "cut", C: H.KeepSecretShot },
-  { id: "h09", at: 20.55, into: "slide-left", C: H.MealsShot },
+  { id: "h09", at: 20.55, into: "slide-left", C: R.MealsRedoShot },
   { id: "h10", at: 25.45, into: "cut", C: H.ReportsShot },
   { id: "h11", at: 29.85, into: "cut", C: H.SummerSmellShot },
   { id: "h12", at: 32.95, into: "cut", C: H.FishCoverShot },
@@ -54,8 +55,8 @@ export const CUTS2: Cut[] = [
   { id: "k02", at: 119.4, into: "cut", C: J.NotBrownShot },
   { id: "k03", at: 120.65, into: "cut", C: J.PaintedShot },
   { id: "k04", at: 122.75, into: "cut", C: J.ColorsShot },
-  { id: "k05", at: 126.15, into: "cut", C: J.CurlShot },
-  { id: "k06", at: 130.6, into: "cut", C: J.FallsOffShot },
+  { id: "k05", at: 126.15, into: "cut", C: R.CurlRedoShot },
+  { id: "k06", at: 130.6, into: "cut", C: R.FallsOffRedoShot },
   // fire and mercury
   { id: "l01", at: 133.6, into: "slide-left", C: J.BurnMarksShot },
   { id: "l02", at: 137.75, into: "cut", C: J.WhoDidItShot },
@@ -64,15 +65,15 @@ export const CUTS2: Cut[] = [
   { id: "l05", at: 144.65, into: "slide-left", C: J.NeverOpenedShot },
   { id: "l06", at: 149.5, into: "cut", C: J.SoilTestShot },
   { id: "l07", at: 152.1, into: "cut", C: J.MercuryHighShot },
-  { id: "l08", at: 154.75, into: "cut", C: J.VaporShot },
+  { id: "l08", at: 154.75, into: "cut", C: R.VaporRedoShot },
   { id: "l09", at: 159.95, into: "cut", C: J.MightBeRealShot },
   // truth and waiting
   { id: "m01", at: 162.75, into: "slide-left", C: J.HowTrueShot },
   { id: "m02", at: 165.25, into: "cut", C: J.MadeUpShot },
   { id: "m03", at: 167.8, into: "cut", C: J.HardToArgueShot },
   { id: "m04", at: 170.0, into: "cut", C: J.AnotherReasonShot },
-  { id: "m05", at: 171.3, into: "cut", C: J.PaintCallbackShot },
-  { id: "m06", at: 173.95, into: "cut", C: J.WholePalaceShot },
+  { id: "m05", at: 171.3, into: "cut", C: R.PaintCallbackRedoShot },
+  { id: "m06", at: 173.95, into: "cut", C: R.WholePalaceRedoShot },
   { id: "m07", at: 176.4, into: "cut", C: J.BetterTechShot },
   { id: "m08", at: 178.85, into: "cut", C: J.UntouchedShot },
   { id: "m09", at: 182.2, into: "cut", C: J.StillWaitingShot },

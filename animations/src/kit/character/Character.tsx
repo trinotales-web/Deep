@@ -59,6 +59,10 @@ export type Outfit = {
   harness?: string | null;
   /** Officer's sword (katana) hanging at the hip: scabbard colour. */
   sword?: string | null;
+  /** Lamellar armour vest (small plates laced in rows): plate colour. */
+  lamellar?: string | null;
+  /** Modern hi-vis safety vest: colour (reflective stripes added). */
+  vest?: string | null;
 };
 
 export type Pose = {
@@ -104,6 +108,8 @@ export type CharacterProps = {
   beardColor?: string;
   /** Round spectacles (frame colour). */
   glasses?: string | null;
+  /** Skin colour for head and hands (e.g. clay for terracotta statues). */
+  skin?: string;
   freckles?: boolean;
   /** Mouth flaps while true. */
   talking?: boolean;
@@ -145,12 +151,13 @@ const Hand: React.FC<{ color: string; children?: React.ReactNode }> = ({ color, 
   </X>
 );
 
-const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cuffs?: string | null; hold?: React.ReactNode }> = ({
+const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cuffs?: string | null; hold?: React.ReactNode; glove?: string }> = ({
   angles,
   side,
   sleeve,
   cuffs,
   hold,
+  glove = GLOVE,
 }) => (
   <X x={SHOULDER[0] * side} y={SHOULDER[1]} rot={angles[0]}>
     <Part shape={limb(UPPER, 36, 32)} color={sleeve} shade={0.24} />
@@ -160,7 +167,7 @@ const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cu
       <Line pts={[[-8, -14], [3, -19], [8, -16]]} smooth width={3.5} color={shadeHex(sleeve, 0.4)} z={0.001} />
       {cuffs ? <Part shape={roundRect(34, 10, 4)} color={cuffs} flat y={-FORE + 10} z={0.001} /> : null}
       <X y={-FORE + 2} z={0.02}>
-        <Hand color={GLOVE}>{hold}</Hand>
+        <Hand color={glove}>{hold}</Hand>
       </X>
     </X>
   </X>
@@ -301,6 +308,32 @@ const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe 
           <Line pts={[[18, -4], [24, -30], [20, -44]]} smooth width={5} color={outfit.rope} />
         </X>
       ) : null}
+      {outfit.lamellar ? (
+        <Part
+          shape={roundPoly([[-62, 70], [62, 70], [54, TORSO_TOP - 10], [-54, TORSO_TOP - 10]], [8, 8, 22, 22])}
+          color={outfit.lamellar}
+          shade={0.24}
+          z={0.0035}
+        >
+          {[96, 122, 148, 174, 200].map((y) => (
+            <Line key={y} pts={[[-56, y], [56, y]]} width={3.5} color={shadeHex(outfit.lamellar!, 0.45)} z={0.001} />
+          ))}
+          {[96, 122, 148, 174].flatMap((y, r) =>
+            [-42, -21, 0, 21, 42].map((x) => (
+              <Part key={`${y}${x}`} shape={circle(3.2)} color={shadeHex(outfit.lamellar!, -0.25)} flat outline={0} x={x + (r % 2) * 10} y={y + 13} z={0.002} />
+            )),
+          )}
+        </Part>
+      ) : null}
+      {outfit.vest ? (
+        <X z={0.0057}>
+          <Part shape={roundPoly([[-62, 64], [-8, 64], [-8, TORSO_TOP - 30], [-40, TORSO_TOP - 4], [-56, TORSO_TOP - 10]], 8)} color={outfit.vest} shade={0.2} />
+          <Part shape={roundPoly([[8, 64], [62, 64], [56, TORSO_TOP - 10], [40, TORSO_TOP - 4], [8, TORSO_TOP - 30]], 8)} color={outfit.vest} shade={0.2} />
+          {[104, 140].map((y) => (
+            <Part key={y} shape={roundRect(116, 10, 2)} color="#e8e8e0" flat outline={2.5} y={y} z={0.001} />
+          ))}
+        </X>
+      ) : null}
       {outfit.harness ? (
         <X z={0.0058}>
           {[-1, 1].map((k) => (
@@ -345,6 +378,7 @@ export const Character: React.FC<CharacterProps> = ({
   beard = null,
   beardColor,
   glasses = null,
+  skin,
   freckles = false,
   talking = false,
   seed = 0,
@@ -394,7 +428,7 @@ export const Character: React.FC<CharacterProps> = ({
           <X y={-HIP_Y}>
             {backArmBehind ? (
               <X z={0.05}>
-                <Arm angles={armB} side={-1} sleeve={shadeHex(sleeve, 0.12)} cuffs={outfit.cuffs} hold={holdB} />
+                <Arm angles={armB} side={-1} sleeve={shadeHex(sleeve, 0.12)} cuffs={outfit.cuffs} hold={holdB} glove={skin ?? GLOVE} />
               </X>
             ) : null}
             <X z={0.1}>
@@ -420,11 +454,11 @@ export const Character: React.FC<CharacterProps> = ({
             ) : null}
             {!backArmBehind ? (
               <X z={armZ}>
-                <Arm angles={armB} side={-1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdB} />
+                <Arm angles={armB} side={-1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdB} glove={skin ?? GLOVE} />
               </X>
             ) : null}
             <X z={armZ + 0.02}>
-              <Arm angles={armF} side={1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdF} />
+              <Arm angles={armF} side={1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdF} glove={skin ?? GLOVE} />
             </X>
             <X y={NECK_Y + headBob * 0.5} rot={headTilt} z={0.3}>
               <X y={HEAD_Y}>
@@ -436,16 +470,16 @@ export const Character: React.FC<CharacterProps> = ({
                 </X>
                 {/* ear on the far side (opposite the look direction) */}
                 <X x={look > 0.15 ? -96 : -98} y={-4} z={-0.01}>
-                  <Part shape={circle(22)} color={SKIN} shade={0.25} />
+                  <Part shape={circle(22)} color={skin ?? SKIN} shade={0.25} />
                   <Line pts={[[4, 10], [-6, 6], [-8, -4], [2, -10]]} smooth width={4} z={0.001} />
                 </X>
                 {look < 0.15 ? (
                   <X x={98} y={-4} z={-0.01}>
-                    <Part shape={circle(22)} color={SKIN} shade={0.25} />
+                    <Part shape={circle(22)} color={skin ?? SKIN} shade={0.25} />
                     <Line pts={[[-4, 10], [6, 6], [8, -4], [-2, -10]]} smooth width={4} z={0.001} />
                   </X>
                 ) : null}
-                <Part shape={circle(100)} color={SKIN} shade={0.24} />
+                <Part shape={circle(100)} color={skin ?? SKIN} shade={0.24} />
                 <X z={0.01}>
                   <Face
                     expression={expression}

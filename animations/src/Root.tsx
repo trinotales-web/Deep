@@ -10,6 +10,7 @@ import { AncientTest } from "./dev/AncientTest";
 import { MedievalTest } from "./dev/MedievalTest";
 import { WW2Test } from "./dev/WW2Test";
 import { S45Kit } from "./dev/S45Kit";
+import { QinKit } from "./dev/QinKit";
 import { ChannelBanner, ChannelLogo } from "./brand/Brand";
 import { ThumbFireArrows } from "./thumbnails/FireArrowsThumb";
 import { Spring1945, Spring1945Audio, Spring1945MusicAudio, Spring1945Visuals, calculateSpring1945Metadata, type Spring1945Props } from "./episodes/spring1945/Episode";
@@ -139,6 +140,7 @@ export const RemotionRoot = () => {
       <Folder name="Dev">
         <Composition id="KitTest" component={KitTest} durationInFrames={90} fps={30} width={1080} height={1920} />
         <Composition id="MedievalTest" component={MedievalTest} durationInFrames={90} fps={30} width={1920} height={1080} />
+        <Composition id="QinKit" component={QinKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="S45Kit" component={S45Kit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="WW2Test" component={WW2Test} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="AncientTest" component={AncientTest} durationInFrames={90} fps={30} width={1080} height={1920} />

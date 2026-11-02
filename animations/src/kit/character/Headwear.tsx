@@ -12,8 +12,9 @@ export type HatKind =
   | "kettle" | "viking" | "turban" | "kabuto" | "song" | "joseon" | "astronaut"
   | "explorer" | "bicorne" | "nemes"
   | "aviator" | "stahlhelm"
+  | "mian" | "guan" | "wrap" | "maocap"
   | null;
-export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | null;
+export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | "topknot" | "palace" | "sidebun" | null;
 
 export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; camo?: boolean }> = ({
   kind,
@@ -373,6 +374,74 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
         </X>
       );
     }
+    case "mian": {
+      // Chinese imperial crown: black cap, red band, flat board on top with
+      // strings of coloured beads hanging over the forehead
+      const c = color ?? "#1e1a20";
+      const beads = ["#c8262f", "#3f9a6a", "#f4f1ea", "#e9b23a", "#2f6fb8"];
+      return (
+        <X y={0}>
+          <Part shape={blob([[-102, 30], [-104, 84], [-64, 116], [0, 124], [64, 116], [104, 84], [102, 30]], 8)} color={c} shade={0.26} />
+          <Part shape={roundRect(208, 20, 6)} color={accent ?? "#b8322a"} flat outline={4} y={40} z={0.001} />
+          <Part shape={roundRect(30, 28, 6)} color={c} shade={0.2} y={132} z={0.002} />
+          <X y={148} rot={-0.05} z={0.003}>
+            <Part shape={roundRect(236, 18, 4)} color={c} shade={0.2} />
+            <Line pts={[[-112, -5], [112, -5]]} width={4} color={palette.gold} z={0.001} />
+          </X>
+          {Array.from({ length: 7 }, (_, i) => {
+            const x = -96 + i * 32;
+            const top = 142 - i * 1.4;
+            return (
+              <X key={i} x={x} z={0.01 + i * 0.0001}>
+                <Line pts={[[0, top], [0, top - 70]]} width={2.5} />
+                {[0, 1, 2].map((k) => (
+                  <Part key={k} shape={circle(5.5)} color={beads[(i * 2 + k) % beads.length]} flat outline={2.5} y={top - 18 - k * 22} z={0.001} />
+                ))}
+              </X>
+            );
+          })}
+        </X>
+      );
+    }
+    case "guan": {
+      // Qin official: black hair with a small black cap over the topknot,
+      // held by a hairpin and tied under the chin
+      const c = color ?? "#211c22";
+      return (
+        <X y={0}>
+          <Part shape={blob([[-104, 18], [-100, 70], [-60, 102], [0, 110], [62, 102], [100, 70], [104, 20], [80, 50], [30, 62], [-24, 56], [-74, 40]], 8)} color="#1e1a1c" shade={0.25} />
+          <Part shape={roundPoly([[-44, 92], [40, 92], [44, 150], [-48, 150]], [8, 8, 16, 16])} color={c} shade={0.24} x={-6} z={0.001} />
+          <Part shape={roundRect(100, 14, 5)} color={accent ?? shadeHex(c, -0.2)} flat outline={3} x={-6} y={98} z={0.002} />
+          <Line pts={[[-76, 124], [64, 132]]} width={5} color={palette.gold} z={0.003} />
+        </X>
+      );
+    }
+    case "wrap": {
+      // workman's cloth head wrap with a knot and tails at the back
+      const c = color ?? "#c8662f";
+      return (
+        <X y={0}>
+          <Part shape={blob([[-110, 22], [-108, 82], [-70, 116], [0, 128], [70, 116], [108, 82], [110, 22], [60, 34], [0, 38], [-60, 34]], 8)} color={c} shade={0.25}>
+            <Line pts={[[-80, 62], [-20, 84], [50, 80]]} smooth width={3.5} color={shadeHex(c, 0.35)} z={0.001} />
+            <Line pts={[[-60, 96], [0, 108], [56, 102]]} smooth width={3.5} color={shadeHex(c, 0.35)} z={0.001} />
+          </Part>
+          <Part shape={circle(22)} color={shadeHex(c, 0.08)} shade={0.25} x={-106} y={70} z={0.002} />
+          <Part shape={blob([[-110, 60], [-146, 40], [-160, 14], [-134, 26], [-112, 48]], 6)} color={shadeHex(c, 0.12)} shade={0.2} z={-0.001} />
+          <Part shape={blob([[-110, 74], [-150, 78], [-170, 66], [-140, 60]], 6)} color={shadeHex(c, 0.12)} shade={0.2} z={-0.001} />
+        </X>
+      );
+    }
+    case "maocap": {
+      // 1970s soft worker's cap with a short peak
+      const c = color ?? "#3f5a86";
+      return (
+        <X y={34}>
+          <Part shape={blob([[-104, 16], [-106, 64], [-70, 96], [0, 104], [70, 96], [106, 62], [104, 16], [0, 8]], 8)} color={c} shade={0.25} />
+          <Part shape={roundRect(212, 26, 10)} color={shadeHex(c, 0.08)} y={18} z={0.001} />
+          <Part shape={blob([[20, 10], [110, 4], [130, -8], [80, -8], [20, 0]], 6)} color={shadeHex(c, 0.25)} z={0.002} />
+        </X>
+      );
+    }
     case "stahlhelm": {
       // WWII German steel helmet (flared skirt)
       const c = color ?? "#6f7466";
@@ -485,6 +554,52 @@ export const HairFront: React.FC<{ kind: HairKind; color: string }> = ({ kind, c
           color={color}
           shade={0.25}
         />
+      );
+    case "topknot":
+      return (
+        <>
+          <Part
+            shape={blob([[-104, 18], [-100, 70], [-60, 102], [0, 110], [62, 102], [100, 70], [104, 20], [80, 50], [30, 62], [-24, 56], [-74, 40]], 8)}
+            color={color}
+            shade={0.25}
+          />
+          <Part shape={circle(30)} color={color} shade={0.28} x={-4} y={130} z={0.001} />
+          <Part shape={roundRect(44, 10, 4)} color="#b8322a" flat outline={3} x={-4} y={108} z={0.002} />
+        </>
+      );
+    case "sidebun":
+      return (
+        <>
+          <Part
+            shape={blob([[-104, 18], [-100, 70], [-60, 102], [0, 110], [62, 102], [100, 70], [104, 20], [80, 50], [30, 62], [-24, 56], [-74, 40]], 8)}
+            color={color}
+            shade={0.25}
+          >
+            {[-60, -20, 20, 60].map((x) => (
+              <Line key={x} pts={[[x, 56], [x * 0.6, 104]]} width={3} color={shadeHex(color, 0.35)} z={0.001} />
+            ))}
+          </Part>
+          <Part shape={circle(28)} color={color} shade={0.28} x={56} y={112} z={0.001} />
+          <Part shape={roundRect(30, 9, 3)} color={shadeHex(color, 0.4)} flat outline={2.5} x={56} y={112} rot={0.4} z={0.002} />
+        </>
+      );
+    case "palace":
+      return (
+        <>
+          <Part
+            shape={blob([[-108, 0], [-104, 70], [-62, 108], [0, 118], [64, 108], [104, 70], [108, 4], [82, 44], [30, 58], [-22, 54], [-74, 36]], 8)}
+            color={color}
+            shade={0.25}
+          />
+          <Part shape={circle(38)} color={color} shade={0.28} x={-40} y={138} z={-0.001} />
+          <Part shape={circle(32)} color={color} shade={0.28} x={30} y={142} z={-0.0005} />
+          <Line pts={[[-90, 120], [70, 170]]} width={6} color={palette.gold} z={0.002} />
+          <Part shape={circle(9)} color="#c8262f" flat outline={3} x={70} y={170} z={0.003} />
+          {[0, 1, 2, 3, 4].map((k) => (
+            <Part key={k} shape={circle(9)} color="#f6c1d1" flat outline={2.5} x={66 + Math.cos(k * 1.256) * 13} y={98 + Math.sin(k * 1.256) * 13} z={0.004} />
+          ))}
+          <Part shape={circle(6)} color="#e9b23a" flat outline={2} x={66} y={98} z={0.005} />
+        </>
       );
     case "sides":
       return (

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useVideoConfig } from "remotion";
 import type { Caption } from "@remotion/captions";
-import { Ambience, Bed, Sfx, SoundAt, licensedSrc, duckFromCaptions, type SfxName } from "../../kit/audio";
+import { Ambience, Bed, Music, Sfx, SoundAt, licensedSrc, duckFromCaptions, type SfxName, type MusicName } from "../../kit/audio";
 import { CUTS } from "./timeline";
 import { END } from "./script";
 
@@ -278,11 +278,6 @@ export const Spring1945Sound: React.FC<{ captions: Caption[] }> = ({ captions })
       {BEDS.map(([name, from, to, g], i) => (
         <Ambience key={`bed${i}`} name={name} from={from} to={to} volume={g * AMB} gainAt={ambDuck} fadeIn={0.3} fadeOut={0.4} />
       ))}
-      <Bed src={E("bird-singing")} from={0} to={9.2} volume={0.18 * AMB} gainAt={ambDuck} name="amb:birds" />
-      <Bed src={E("bird-singing")} from={115.8} to={121.35} volume={0.25 * AMB} gainAt={ambDuck} name="amb:birds" />
-      <Bed src={E("bird-singing")} from={172.3} to={175.0} volume={0.2 * AMB} gainAt={ambDuck} name="amb:birds" />
-      <Bed src={E("bird-chirping")} from={278.95} to={284.9} volume={0.15 * AMB} gainAt={ambDuck} name="amb:birds" />
-      <Bed src={E("bird-singing")} from={290.85} to={297.4} volume={0.2 * AMB} gainAt={ambDuck} name="amb:birds" />
       <Bed src={E("ambient-crowd-murmur-1")} from={46.9} to={51.8} volume={0.35 * AMB} gainAt={ambDuck} name="amb:street" />
       <Bed src={E("crickets-chirping-country-night")} from={68.7} to={72.1} volume={0.25 * AMB} gainAt={ambDuck} name="amb:crickets" />
       <Bed src={E("machinery-1")} from={72.1} to={74.85} volume={0.3 * AMB} gainAt={ambDuck} name="amb:factory" />
@@ -338,6 +333,30 @@ export const Spring1945Sound: React.FC<{ captions: Caption[] }> = ({ captions })
       {/* cue sheet */}
       {CUES.map(([t, f, g], i) => (
         <SoundAt key={`${i}-${f}`} src={E(f)} at={t} volume={g * FX} duck={fxDuck} name={f} />
+      ))}
+    </>
+  );
+};
+
+// Optional music bed, delivered as a separate stem only (the user's mix is
+// voice-first with no music). Ducks under the narration like the effects.
+const MUSIC: [MusicName, number, number, number][] = [
+  ["tension", 0, 38.95, 0.5],
+  ["curious", 38.95, 74.85, 0.5],
+  ["tension", 74.85, 110.25, 0.5],
+  ["curious", 110.25, 148.62, 0.45],
+  ["somber", 148.62, 209.6, 0.5],
+  ["tension", 209.6, 245.8, 0.45],
+  ["somber", 245.8, END, 0.5],
+];
+
+export const Spring1945MusicBed: React.FC<{ captions: Caption[] }> = ({ captions }) => {
+  const { fps } = useVideoConfig();
+  const duck = useMemo(() => duckFromCaptions(captions, fps, 0.5, 0.25), [captions, fps]);
+  return (
+    <>
+      {MUSIC.map(([name, from, to, g], i) => (
+        <Music key={i} name={name} from={Math.max(0, from - 0.75)} to={Math.min(END, to + 0.75)} volume={g} fadeIn={1.5} fadeOut={1.5} duck={duck} />
       ))}
     </>
   );

@@ -7,7 +7,7 @@ import type { Caption } from "@remotion/captions";
 import { Audio } from "@remotion/media";
 import { StyledCaptions } from "../../kit/captions";
 import { shotTimeline, TRANSITION, markHighlights } from "./script";
-import { Spring1945Sound } from "./sound";
+import { Spring1945Sound, Spring1945MusicBed } from "./sound";
 
 export const Spring1945Visuals: React.FC = () => {
   const timeline = shotTimeline();
@@ -52,5 +52,12 @@ export const Spring1945Audio: React.FC<Spring1945Props> = ({ voiceover, captions
   <AbsoluteFill>
     <Spring1945Sound captions={captions ?? []} />
     {withVoice ? <Audio src={staticFile(voiceover)} /> : null}
+  </AbsoluteFill>
+);
+
+/** Music stem only (not part of the delivered mix). */
+export const Spring1945MusicAudio: React.FC<Spring1945Props> = ({ captions }) => (
+  <AbsoluteFill>
+    <Spring1945MusicBed captions={captions ?? []} />
   </AbsoluteFill>
 );

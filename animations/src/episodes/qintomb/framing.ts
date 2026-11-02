@@ -1,8 +1,93 @@
 import type { CameraAdjust } from "../../kit";
 
 /**
- * Per-shot close-up framing (v2): zoom multiplier `z` and frame-centre offset
- * (`x`, `y`, world px) applied on top of each shot's own camera. Captions are off,
- * so shots can use the full frame down to the bottom edge.
+ * Close-up framing: centre the frame on the point (fx, fy) of the original shot
+ * (fractions of the 1920×1080 frame, y down) and zoom in by z.
  */
-export const FRAMING: Record<string, CameraAdjust> = {};
+const f = (fx: number, fy: number, z: number): CameraAdjust => ({ z, x: (fx - 0.5) * 1920, y: (0.5 - fy) * 1080 });
+
+/**
+ * Per-shot close-up framing (v2), applied on top of each shot's own camera.
+ * Captions are off, so shots use the full frame down to the bottom edge.
+ * Shots not listed keep their own framing (maps, close-ups, wide crowds).
+ */
+export const FRAMING: Record<string, CameraAdjust> = {
+  // ── first half
+  b01: f(0.5, 0.62, 1.35),
+  b02: f(0.5, 0.68, 1.7),
+  b03: f(0.6, 0.76, 1.75),
+  b04: f(0.45, 0.6, 1.2),
+  b05: f(0.5, 0.68, 1.4),
+  b07: f(0.5, 0.6, 1.65),
+  c01: f(0.5, 0.62, 1.45),
+  c05: f(0.5, 0.7, 1.5),
+  c06: f(0.45, 0.72, 1.6),
+  c09: f(0.5, 0.6, 1.45),
+  c11: f(0.45, 0.7, 1.3),
+  d01: f(0.5, 0.64, 1.5),
+  d02: f(0.45, 0.68, 1.35),
+  d03: f(0.5, 0.72, 1.5),
+  d05: f(0.45, 0.7, 1.45),
+  d07: f(0.36, 0.74, 1.6),
+  d08: f(0.48, 0.74, 1.6),
+  d09: f(0.5, 0.74, 1.5),
+  d10: f(0.5, 0.74, 1.5),
+  d11: f(0.45, 0.74, 1.6),
+  d12: f(0.45, 0.74, 1.5),
+  d13: f(0.55, 0.66, 1.3),
+  d14: f(0.48, 0.74, 1.6),
+  e01: f(0.5, 0.7, 1.65),
+  e04: f(0.4, 0.66, 1.35),
+  e05: f(0.36, 0.68, 1.3),
+  e06: f(0.62, 0.62, 1.5),
+  e09: f(0.5, 0.7, 1.45),
+  e10: f(0.5, 0.7, 1.5),
+  e11: f(0.45, 0.62, 1.45),
+  e12: f(0.45, 0.68, 1.6),
+  e15: f(0.45, 0.72, 1.6),
+  f03: f(0.38, 0.7, 1.5),
+  f04: f(0.5, 0.74, 1.45),
+  f05: f(0.36, 0.74, 1.6),
+  f09: f(0.5, 0.72, 1.6),
+  g02: f(0.38, 0.74, 1.75),
+  g05: f(0.5, 0.7, 1.3),
+  g09: f(0.5, 0.72, 1.4),
+  // ── second half
+  h01: f(0.42, 0.68, 1.8),
+  h06: f(0.5, 0.72, 1.45),
+  h08: f(0.45, 0.68, 1.5),
+  h10: f(0.4, 0.68, 1.35),
+  h11: f(0.4, 0.68, 1.4),
+  h12: f(0.5, 0.7, 1.25),
+  h13: f(0.4, 0.72, 1.6),
+  h14: f(0.45, 0.68, 1.45),
+  h16: f(0.5, 0.62, 1.5),
+  i01: f(0.45, 0.7, 1.3),
+  i02: f(0.5, 0.68, 1.35),
+  i04: f(0.5, 0.62, 1.35),
+  i05: f(0.4, 0.72, 1.3),
+  i06: f(0.45, 0.7, 1.3),
+  i07: f(0.48, 0.68, 1.6),
+  i09: f(0.5, 0.65, 1.25),
+  i10: f(0.5, 0.68, 1.3),
+  i11: f(0.5, 0.72, 1.5),
+  i12: f(0.4, 0.72, 1.3),
+  j01: f(0.45, 0.65, 1.2),
+  j03: f(0.5, 0.68, 1.35),
+  j05: f(0.35, 0.68, 1.45),
+  j06: f(0.5, 0.68, 1.4),
+  j07: f(0.5, 0.68, 1.35),
+  k02: f(0.45, 0.7, 1.5),
+  k03: f(0.47, 0.7, 1.5),
+  l03: f(0.5, 0.7, 1.5),
+  l06: f(0.48, 0.72, 1.6),
+  m01: f(0.45, 0.75, 1.8),
+  m02: f(0.5, 0.72, 1.6),
+  m03: f(0.4, 0.7, 1.5),
+  m07: f(0.45, 0.72, 1.5),
+  n02: f(0.45, 0.55, 1.4),
+  n03: f(0.4, 0.72, 1.25),
+  n07: f(0.5, 0.7, 1.25),
+  n08: f(0.5, 0.72, 1.4),
+  n09: f(0.45, 0.68, 1.3),
+};

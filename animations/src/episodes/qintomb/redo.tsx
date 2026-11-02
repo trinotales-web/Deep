@@ -3,13 +3,13 @@ import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, X, Part, Line, Glow, Wash, LightCone, Shovel, roundRect, roundPoly, circle, ellipse, blob, poly, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
 import { Character, poses, reachArm } from "../../kit/character";
-import { BurialMound, MercuryBowl, BambooSlips, ImperialCarriage, OilLamp, Flame, Smoke, Tree, StarCeiling, Sunburst } from "../../kit/env";
+import { BurialMound, MercuryBowl, BambooSlips, ImperialCarriage, OilLamp, Flame, Smoke, Tree, StarCeiling, Sunburst, Jian } from "../../kit/env";
 import { sec, pop, CJK } from "../../kit/shot";
 import { Plains, ThroneHall } from "./sets";
-import { EMPEROR, WORKER, ARCHAEOLOGIST, SCIENTIST, ARCH74, TERRACOTTA, CLAY } from "./cast";
+import { EMPEROR, WORKER, ARCHAEOLOGIST, SCIENTIST, ARCH74, TERRACOTTA, CLAY, FUSU, GUARD, WIFE } from "./cast";
 import { upright } from "./p1a";
 import { Bones } from "./p1c";
-import { Tent, WritingDesk, Flies, Road } from "./p2a";
+import { Tent, WritingDesk, Flies, Road, Frontier } from "./p2a";
 import { terra, PitFloor, Stopwatch, Gauge, Vapor, Flakes } from "./p2b";
 
 // Re-made scenes (v2): closer framing, richer staging.
@@ -634,6 +634,87 @@ export const VaporRedoShot: React.FC<ShotProps> = ({ start, dur }) => {
       </Stage>
       <Label text="2020" x={0.16} y={0.13} size={0.08} kind="box" at={sec(start)(155.0)} />
       <Label text="MERCURY VAPOR" x={0.62} y={0.13} size={0.065} kind="box" at={sec(start)(157.3)} />
+    </AbsoluteFill>
+  );
+};
+
+// ───────────────────────── deaths, shown ─────────────────────────
+
+// 42.95 "And he does."
+export const HeDoesRedoShot: React.FC<ShotProps> = ({ start, dur }) => {
+  const frame = useCurrentFrame();
+  const s = 1.55;
+  const ground = -560;
+  return (
+    <AbsoluteFill>
+      <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -200 }} light={{ dir: [0.6, 0.4] }} shadowMul={[0.55, 0.5, 0.62]} vignette={0.75}>
+        <Frontier mood="dusk">
+          <Part shape={roundRect(5000, 700, 0)} color="#8a6a4a" flat outline={0} y={ground - 350} z={-5} />
+          {/* the prince lies dead, his sword beside him */}
+          <X x={330} y={ground + 62 * s} rot={Math.PI / 2} z={2}>
+            <Character {...FUSU} s={s} look={0.3} shadow={false} expression={{ eyes: "dead", mouth: "flat" }} pose={{ armF: [0.1, 0.1], armB: [0.1, 0.1] }} />
+          </X>
+          <X x={120} y={ground + 20} rot={-1.45} z={2.5}>
+            <Jian len={320} />
+          </X>
+          <Part shape={ellipse(150, 18)} color="#5a2a2a" flat outline={0} opacity={0.55} x={-40} y={ground + 6} z={1.9} />
+          {/* a loyal soldier kneels beside him */}
+          <Character
+            {...GUARD(1)}
+            x={-470}
+            y={ground - 40}
+            s={1.6}
+            z={3}
+            look={0.45}
+            expression={{ eyes: "closed", mouth: "wavy", brows: 0.9 }}
+            pose={{ ...poses.sit(frame), armF: [0.9, 1.4], armB: [0.6, 1.2], headTilt: -0.2, lean: -0.15 }}
+          />
+        </Frontier>
+      </Stage>
+    </AbsoluteFill>
+  );
+};
+
+/** A body under a white funeral shroud on a mat. Origin = floor centre. */
+const Shroud: React.FC<{ x: number; y: number; s?: number; z?: number }> = ({ x, y, s = 1, z = 0 }) => (
+  <X x={x} y={y} s={s} z={z}>
+    <Part shape={roundRect(360, 30, 8)} color="#7a5a3a" shade={0.2} y={10} />
+    <Part shape={blob([[-170, 20], [-150, 70], [-80, 82], [60, 74], [110, 92], [150, 84], [172, 48], [170, 20]], 8)} color="#f2efe8" shade={0.24} z={0.001} />
+    <Line pts={[[-60, 72], [-40, 50], [-20, 72]]} smooth width={3} color="#c9c4ba" z={0.002} />
+  </X>
+);
+
+// 54.75 "Sima Qian says a great many of them die."
+export const ManyDieRedoShot: React.FC<ShotProps> = ({ start, dur }) => {
+  const frame = useCurrentFrame();
+  const floor = -520;
+  return (
+    <AbsoluteFill>
+      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.07), y: -120 }} light={{ pos: [0, 200] }} shadowMul={[0.5, 0.45, 0.6]} vignette={0.75} vignetteColor="#04060c">
+        <ThroneHall floorY={floor} throne={false} dim={0.4}>
+          {[[-620, 0], [-140, 0], [340, 0], [820, 0], [-380, -120], [100, -120], [580, -120]].map(([x, dy], i) => (
+            <X key={i} z={2 + (dy < 0 ? 0.5 : 0) + i * 0.01}>
+              <Shroud x={x} y={floor + dy} s={dy < 0 ? 1.0 : 0.85} />
+              <X x={x + 150} y={floor + dy + 20}>
+                <Part shape={roundRect(16, 60, 5)} color="#f4f1ea" shade={0.15} y={30} />
+                <Flame y={66} size={0.16} seed={i} />
+                <Glow y={68} rx={140} color="#ffb35a" alpha={0.4} additive />
+              </X>
+            </X>
+          ))}
+          <Character
+            {...WIFE(1)}
+            x={-560}
+            y={floor - 330}
+            s={1.75}
+            z={5}
+            look={0.45}
+            expression={{ eyes: "closed", mouth: "wavy", brows: 0.95 }}
+            pose={{ ...poses.idle(frame), armF: [1.9, 1.4], armB: [1.6, 1.5], headTilt: -0.12 }}
+          />
+        </ThroneHall>
+      </Stage>
+      <Label text="SIMA QIAN" sub="RECORDS OF THE GRAND HISTORIAN" x={0.7} y={0.13} size={0.05} kind="box" at={sec(start)(55.0)} />
     </AbsoluteFill>
   );
 };

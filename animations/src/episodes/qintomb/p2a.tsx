@@ -376,7 +376,7 @@ export const FakeLetterShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Northern frontier: mountains with a section of rammed-earth wall. */
-const Frontier: React.FC<{ mood?: "day" | "dusk"; children?: React.ReactNode }> = ({ mood = "day", children }) => (
+export const Frontier: React.FC<{ mood?: "day" | "dusk"; children?: React.ReactNode }> = ({ mood = "day", children }) => (
   <Plains mood={mood} horizon={-80}>
     <X y={-80} z={-26}>
       <Part shape={roundRect(5000, 120, 0)} color="#a8906a" shade={0.15} y={60} />

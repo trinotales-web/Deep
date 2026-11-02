@@ -117,14 +117,14 @@ export const Tree: React.FC<XProps & { h?: number; kind?: TreeKind; seed?: numbe
       {kind === "persimmon"
         ? tips.map((t, i) => (
             <X key={`p${i}`} x={t.x + wind(i) * 0.4} y={t.y} z={0.01 + i * 0.0001}>
-              {/* a few leaves */}
-              {[0, 1].map((k) => (
+              {/* an odd dry leaf here and there (the reference trees are almost bare) */}
+              {(i % 3 === 0 ? [0] : []).map((k) => (
                 <X key={k} rot={t.a - Math.PI / 2 + (k ? 0.7 : -0.7)} z={-0.001}>
                   <Part shape={blob([[0, 0], [12, 16], [0, 40], [-12, 16]], 6)} color={leaves[(i + k) % leaves.length]} shade={0.2} />
                 </X>
               ))}
               {/* fruit hanging just below the twig end */}
-              {Array.from({ length: 1 + (i % 2) }, (_, k) => {
+              {Array.from({ length: 1 + ((i + 1) % 2) + (i % 3 === 1 ? 1 : 0) }, (_, k) => {
                 const fx = (r() - 0.5) * 30 + k * 26;
                 const fy = -18 - r() * 16;
                 const fr = h * 0.03;

@@ -143,7 +143,7 @@ export const CrossbowsShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Paper plan of the tomb's traps, seen from above. */
-const TrapPlan: React.FC<{ t: number; marks: number[] }> = ({ t, marks }) => {
+export const TrapPlan: React.FC<{ t: number; marks: number[] }> = ({ t, marks }) => {
   const xs: [number, number][] = [[-360, 200], [320, 220], [-380, -140], [360, -150], [0, 260], [40, -40]];
   return (
     <X>

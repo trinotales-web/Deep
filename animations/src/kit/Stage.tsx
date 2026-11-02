@@ -14,6 +14,10 @@ export type Camera = {
   shake?: number;
 };
 
+/** Per-shot framing override (zoom multiplier + offset of the frame center), set by the episode around a shot. */
+export type CameraAdjust = { z?: number; x?: number; y?: number };
+export const CameraAdjustContext = React.createContext<CameraAdjust>({});
+
 export type StageProps = {
   camera?: Camera;
   light?: Light;
@@ -54,7 +58,11 @@ export const Stage: React.FC<StageProps> = ({
 }) => {
   const { width, height } = useVideoConfig();
   const frame = useCurrentFrame();
-  const { x = 0, y = 0, zoom = 1, rot = 0, shake = 0 } = camera;
+  const adj = React.useContext(CameraAdjustContext);
+  const { rot = 0, shake = 0 } = camera;
+  const zoom = (camera.zoom ?? 1) * (adj.z ?? 1);
+  const x = (camera.x ?? 0) + (adj.x ?? 0);
+  const y = (camera.y ?? 0) + (adj.y ?? 0);
   const sx = shake * noise(frame * 0.9, 1.3);
   const sy = shake * noise(frame * 0.9, 7.1);
   return (

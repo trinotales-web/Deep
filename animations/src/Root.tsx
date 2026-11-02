@@ -11,7 +11,7 @@ import { MedievalTest } from "./dev/MedievalTest";
 import { WW2Test } from "./dev/WW2Test";
 import { S45Kit } from "./dev/S45Kit";
 import { QinKit } from "./dev/QinKit";
-import { QinTomb, QinTombAudio, QinTombVisuals, calculateQinTombMetadata, type QinTombProps } from "./episodes/qintomb/Episode";
+import { QinTomb, QinTombAudio, QinTombVisuals, QinTombFull, FULL_FRAMES as QF, calculateQinTombMetadata, calculateQinTombFullMetadata, type QinTombProps, type QinTombFullProps } from "./episodes/qintomb/Episode";
 import { END1 as QT1, END2 as QT2 } from "./episodes/qintomb/script";
 import { ChannelBanner, ChannelLogo } from "./brand/Brand";
 import { ThumbFireArrows } from "./thumbnails/FireArrowsThumb";
@@ -31,6 +31,26 @@ export const RemotionRoot = () => {
   return (
     <>
       <Folder name="QinTomb">
+        <Composition
+          id="QinTombFullVideo"
+          component={QinTombFull}
+          durationInFrames={QF.p1 + QF.p2}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{} satisfies QinTombFullProps}
+          calculateMetadata={calculateQinTombFullMetadata}
+        />
+        <Composition
+          id="QinTombFullAudioOnly"
+          component={QinTombFull}
+          durationInFrames={QF.p1 + QF.p2}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ visuals: false } satisfies QinTombFullProps}
+          calculateMetadata={calculateQinTombFullMetadata}
+        />
         <Composition
           id="QinTomb1Video"
           component={QinTomb}

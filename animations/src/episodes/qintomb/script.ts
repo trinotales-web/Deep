@@ -1,13 +1,15 @@
 import type { Caption } from "@remotion/captions";
-import { FPS } from "../../kit";
+import { FPS, type CameraAdjust } from "../../kit";
 
 // Two videos cut from one narration (public/vo/qin-tomb-{1,2}.voice.m4a).
 export const END1 = 256.2;
 export const END2 = 213.7;
 export const TRANSITION = 8;
+/** In the single full video, part 1 is trimmed so the pause into part 2 stays ~1.3 s. */
+export const FULL1 = 255.4;
 
 export type Into = "cut" | "slide-left" | "slide-up" | "fade";
-export type Cut = { id: string; at: number; into: Into; C: React.FC<{ dur: number; start: number }> };
+export type Cut = { id: string; at: number; into: Into; C: React.FC<{ dur: number; start: number }>; cam?: CameraAdjust };
 
 /** TransitionSeries durations: every shot is fully on screen at its cut time. */
 export const shotTimeline = (cuts: Cut[], end: number) => {

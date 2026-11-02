@@ -5,7 +5,7 @@ import { Character, poses } from "../kit/character";
 import {
   Sky, RedPillar, Lantern, QinThrone, TombWall, StoneFloor, WallTorch, OilLamp, CrossbowTrap, TreasureChest, JadeDisc, Ding, Jar, Coin, MercuryRiver,
   StarCeiling, ChineseHall, StoneGate, BurialMound, MoundSection, Horse, ImperialCarriage, FishCart, AncientShip, TerracottaPit, ClaySoldier, Dagger, Jian,
-  BambooSlips, MapScroll, MedicineBag, MercuryBowl, ClayHead, DigWell, PersimmonTree, ChinaMap, RoundTree, Ground,
+  BambooSlips, MapScroll, MedicineBag, MercuryBowl, ClayHead, DigWell, PersimmonTree, ChinaMap, RoundTree, Ground, Tree, FallingLeaves,
 } from "../kit/env";
 import {
   EMPEROR, BOY_KING, HUHAI, FUSU, WORKER, OFFICIAL, ZHAO_GAO, GUARD, JING_KE, COURT_DOCTOR, XU_FU, CHILD, SIMA_QIAN, WIFE, VILLAGER, REBEL, FARMER,
@@ -21,6 +21,17 @@ export const QinKit: React.FC<{ page?: number }> = ({ page = 0 }) => {
     <AbsoluteFill style={{ backgroundColor: "#cfe6f2" }}>
       <Stage camera={{ zoom: 1 }} light={{ dir: [-0.6, 0.8] }} vignette={0.1}>
         <Sky w={4000} h={3000} top="#8ec9ee" bottom="#e8f4f8" z={-40} />
+        {page === 9 ? (
+          <>
+            <Sky w={4000} h={2400} y={600} top="#3b2a5a" mid="#d0603e" bottom="#f6b46a" z={-40} />
+            <Ground w={4000} h={1200} y={-300} color="#8a6a48" far="#9a7a52" z={-30} />
+            <BurialMound x={-150} y={-300} w={1100} h={420} stage="build" />
+            <Tree x={620} y={-520} h={760} kind="autumn" seed={4} />
+            <Tree x={-760} y={-520} h={520} kind="persimmon" seed={3} />
+            <Tree x={250} y={-300} h={300} kind="green" seed={8} />
+            <FallingLeaves w={1920} h={1080} count={22} />
+          </>
+        ) : null}
         {page === 0 ? (
           <>
             {row([EMPEROR, BOY_KING, HUHAI, FUSU, WORKER(0), WORKER(1), WORKER(2), OFFICIAL(0), OFFICIAL(1), ZHAO_GAO, GUARD(0)] as never, 60, 0.62)}

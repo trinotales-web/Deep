@@ -8,6 +8,7 @@ import { palette, shadeHex, mixHex } from "../style";
 import { rng } from "../random";
 import { Flame } from "./fire";
 import { cloudShape } from "./nature";
+import { Tree } from "./trees";
 import { geoXY } from "./pacific";
 import geoEA from "./geo/eastAsia.json";
 import geoWS from "./geo/warringStates.json";
@@ -343,43 +344,95 @@ export const RoundTree: React.FC<XProps & { h?: number; color?: string; seed?: n
  */
 export const BurialMound: React.FC<XProps & { w?: number; h?: number; stage?: "build" | "done"; seed?: number }> = ({ w = 1400, h = 520, stage = "done", seed = 3, ...xf }) => {
   if (stage === "build") {
-    const tiers = 5;
+    // rammed-earth stepped mound: battered earth tiers with tamped layer lines,
+    // pale ledges, dirt ramps, formwork posts, ladders and a hoist on top
+    const tiers = 4;
+    const th = h / tiers;
+    const r = rng(seed);
     return (
       <X {...xf}>
         {Array.from({ length: tiers }, (_, i) => {
-          const tw = w * (1 - i * 0.17);
-          const y = (i * h) / tiers;
+          const tw = w * (1 - i * 0.2);
+          const y = i * th;
+          const inset = 34;
+          // rough top edge
+          const n = Math.max(6, Math.round(tw / 90));
+          const top: P[] = Array.from({ length: n + 1 }, (_, k) => [tw / 2 - inset - (k / n) * (tw - inset * 2), y + th + (k === 0 || k === n ? 0 : (r() - 0.5) * 8)] as P);
+          const face: P[] = [[-tw / 2, y], [tw / 2, y], ...top];
+          const col = i % 2 ? "#ad7a4e" : "#b5835a";
           return (
-            <Part
-              key={i}
-              shape={roundPoly([[-tw / 2, y], [tw / 2, y], [tw / 2 - 40, y + h / tiers], [-tw / 2 + 40, y + h / tiers]], 6)}
-              color={i % 2 ? "#d9b27a" : "#cfa56c"}
-              shade={0.2}
-              z={i * 0.001}
-            >
-              <Line pts={[[-tw / 2 + 30, y + h / tiers / 2], [tw / 2 - 30, y + h / tiers / 2]]} width={3} color="#a8824e" z={0.001} />
-            </Part>
+            <X key={i} z={i * 0.002}>
+              <Part shape={roundPoly(face, 4)} color={col} shade={0.24} />
+              {/* tamped layers: broken, low-contrast strokes */}
+              {[0.22, 0.44, 0.66, 0.86].flatMap((q, qi) => {
+                const xl = -tw / 2 + inset * q + 18;
+                const xr = tw / 2 - inset * q - 18;
+                const segs: React.ReactNode[] = [];
+                let x = xl + r() * 40;
+                let k = 0;
+                while (x < xr - 30) {
+                  const len = Math.min(xr - x, 80 + r() * 160);
+                  segs.push(<Line key={`${qi}-${k++}`} pts={[[x, y + th * q], [x + len, y + th * q + (r() - 0.5) * 3]]} width={2.5} color={shadeHex(col, 0.12)} z={0.0005} />);
+                  x += len + 20 + r() * 40;
+                }
+                return segs;
+              })}
+              {/* soil specks */}
+              {Array.from({ length: Math.round(tw / 70) }, (_, k) => (
+                <Part key={`s${k}`} shape={circle(2.5 + r() * 3)} color={shadeHex(col, 0.22)} flat outline={0} x={(r() - 0.5) * (tw - 120)} y={y + 10 + r() * (th - 20)} z={0.0006} />
+              ))}
+              {/* pale trodden ledge along the top */}
+              <Part shape={roundRect(tw - inset * 2 - 6, 12, 4)} color={shadeHex(col, -0.18)} flat outline={0} y={y + th - 7} z={0.0008} />
+              {i === tiers - 1
+                ? Array.from({ length: Math.floor((tw - 100) / 110) }, (_, k) => (
+                    <Line key={`p${k}`} pts={[[-tw / 2 + 70 + k * 110, y + th - 6], [-tw / 2 + 70 + k * 110, y + th + 46]]} width={7} color="#6e4a2c" z={0.001} />
+                  ))
+                : null}
+            </X>
           );
         })}
-        {[[-0.3, 0, 0.45], [0.15, 1, 0.38], [-0.05, 2, 0.3]].map(([k, t, len], i) => (
-          <Line key={i} pts={[[k * w, (t * h) / tiers + 8], [k * w + len * w * 0.5, ((t + 1) * h) / tiers - 4]]} width={12} color="#8a6a3e" z={0.01} />
-        ))}
-        {[[0.32, 0], [-0.2, 2]].map(([k, t], i) => (
-          <X key={`l${i}`} x={k * w} y={(t * h) / tiers} z={0.012}>
-            <Line pts={[[-14, 0], [-14, h / tiers + 10]]} width={6} color="#6e4a2c" />
-            <Line pts={[[14, 0], [14, h / tiers + 10]]} width={6} color="#6e4a2c" />
+        {/* dirt ramps zig-zagging up the front */}
+        {[[-0.42, 0, 1], [0.05, 1, -1], [-0.2, 2, 1]].map(([k, t, dir], i) => {
+          const x0 = k * w;
+          const y0 = t * th;
+          const len = w * 0.26;
+          const rw = 84;
+          return (
+            <X key={`r${i}`} z={0.01 + i * 0.0001}>
+              <Part shape={roundPoly([[x0, y0], [x0 + rw, y0], [x0 + rw + dir * len, y0 + th], [x0 + dir * len, y0 + th]], 6)} color="#d2a674" shade={0.12} />
+              {[0.25, 0.5, 0.75].map((q) => (
+                <Part key={q} shape={circle(5)} color="#b88a58" flat outline={0} x={x0 + rw / 2 + dir * len * q + (q - 0.5) * 10} y={y0 + th * q} z={0.001} />
+              ))}
+            </X>
+          );
+        })}
+        {[[0.36, 0], [-0.3, 1], [0.22, 2]].map(([k, t], i) => (
+          <X key={`l${i}`} x={k * w} y={t * th} z={0.012}>
+            <Line pts={[[-14, 0], [-14, th + 14]]} width={6} color="#6e4a2c" />
+            <Line pts={[[14, 0], [14, th + 14]]} width={6} color="#6e4a2c" />
             {[0.2, 0.45, 0.7, 0.95].map((q) => (
-              <Line key={q} pts={[[-14, (h / tiers) * q], [14, (h / tiers) * q]]} width={5} color="#6e4a2c" />
+              <Line key={q} pts={[[-14, th * q], [14, th * q]]} width={5} color="#6e4a2c" />
             ))}
           </X>
         ))}
-        <X y={h} z={0.02}>
+        {/* hoist on the top tier */}
+        <X x={w * 0.08} y={h} z={0.02}>
           {[-1, 1].map((k) => (
             <Line key={k} pts={[[k * 60, 0], [0, 140]]} width={7} color="#6e4a2c" />
           ))}
           <Line pts={[[0, 140], [40, 60]]} width={3} />
           <Part shape={roundRect(30, 26, 6)} color="#a8823a" shade={0.2} x={40} y={50} />
         </X>
+        {/* spoil heaps and baskets at the foot */}
+        {[-0.55, -0.38, 0.47, 0.6].map((k, i) => (
+          <Part key={`h${i}`} shape={blob([[-70, 0], [-40, 40], [0, 58 + r() * 20], [44, 36], [72, 0]], 6)} color={i % 2 ? "#a87a50" : "#b8895a"} shade={0.22} x={k * w} y={-6} z={0.03 + i * 0.0001} />
+        ))}
+        {[-0.47, 0.53].map((k, i) => (
+          <X key={`b${i}`} x={k * w + 60} y={0} z={0.031}>
+            <Part shape={roundPoly([[-22, 0], [22, 0], [28, 30], [-28, 30]], 4)} color="#c9a24a" shade={0.2} />
+            <Line pts={[[-24, 18], [24, 18]]} width={3} color="#8a6a2a" z={0.001} />
+          </X>
+        ))}
       </X>
     );
   }
@@ -770,31 +823,9 @@ export const DigWell: React.FC<XProps & { pull?: number }> = ({ pull = 0, ...xf 
 );
 
 /** Bare autumn tree with orange persimmons. Origin = ground. */
-export const PersimmonTree: React.FC<XProps & { h?: number; seed?: number }> = ({ h = 520, seed = 3, ...xf }) => {
-  const r = rng(seed);
-  const branches: [P, P][] = [
-    [[0, h * 0.45], [-h * 0.35, h * 0.85]],
-    [[0, h * 0.55], [h * 0.3, h * 0.95]],
-    [[0, h * 0.7], [-h * 0.12, h * 1.05]],
-    [[-h * 0.2, h * 0.68], [-h * 0.45, h * 0.72]],
-    [[h * 0.15, h * 0.75], [h * 0.42, h * 0.78]],
-  ];
-  return (
-    <X {...xf}>
-      <Line pts={[[0, 0], [0, h * 0.75]]} width={22} color="#4a3428" />
-      {branches.map(([a, b], i) => (
-        <Line key={i} pts={[a, b]} width={10} color="#4a3428" />
-      ))}
-      {branches.map(([, b], i) => (
-        <X key={`f${i}`} z={0.01}>
-          {[0, 1].map((k) => (
-            <Part key={k} shape={circle(18)} color="#f08a2a" shade={0.22} x={b[0] + (r() - 0.5) * 60} y={b[1] - r() * 50} />
-          ))}
-        </X>
-      ))}
-    </X>
-  );
-};
+export const PersimmonTree: React.FC<XProps & { h?: number; seed?: number }> = ({ h = 520, seed = 3, ...xf }) => (
+  <Tree h={h} kind="persimmon" seed={seed} depth={3} spread={1.35} {...xf} />
+);
 
 // ───────────────────────── map ─────────────────────────
 

@@ -2,20 +2,21 @@ import type { Cut } from "./script";
 import * as A from "./p1a";
 import * as B from "./p1b";
 import * as C from "./p1c";
+import * as H from "./hook";
 
 // Part 1 cut list (seconds on public/vo/qin-tomb-1.voice.m4a), in the breaths
 // between phrases (see public/captions/qin-tomb-1.json).
 export const CUTS1: Cut[] = [
-  { id: "a01", at: 0, into: "cut", C: A.AutumnShot },
-  { id: "a02", at: 2.75, into: "cut", C: A.UnderHillShot },
-  { id: "a03", at: 6.15, into: "cut", C: A.SilverRiversShot },
-  { id: "a04", at: 9.45, into: "cut", C: A.StarsShot },
-  { id: "a05", at: 12.25, into: "cut", C: A.CrossbowsShot },
-  { id: "a06", at: 16.45, into: "cut", C: A.TrapPlanShot },
-  { id: "a07", at: 18.05, into: "cut", C: A.BuildTrapShot },
-  { id: "a08", at: 19.45, into: "cut", C: A.FuneralShot },
+  { id: "a01", at: 0, into: "cut", C: H.AutumnHookShot },
+  { id: "a02", at: 2.75, into: "cut", C: H.DiveHookShot },
+  { id: "a03", at: 6.15, into: "cut", C: H.SilverHookShot },
+  { id: "a04", at: 9.45, into: "cut", C: H.StarsHookShot },
+  { id: "a05", at: 12.25, into: "cut", C: H.CrossbowHookShot },
+  { id: "a06", at: 16.45, into: "cut", C: H.KnowWhereHookShot },
+  { id: "a07", at: 18.05, into: "cut", C: H.BuildHookShot },
+  { id: "a08", at: 19.45, into: "cut", C: H.FuneralHookShot },
   { id: "a09", at: 22.55, into: "cut", C: A.SecretProblemShot },
-  { id: "a10", at: 25.5, into: "cut", C: A.DecidingShot },
+  { id: "a10", at: 25.5, into: "cut", C: H.DecidingHookShot },
   { id: "b01", at: 29.05, into: "slide-left", C: A.WhyWorldShot },
   { id: "b02", at: 32.65, into: "cut", C: A.StayForeverShot },
   { id: "b03", at: 35.55, into: "slide-left", C: A.TeaserPillarShot },

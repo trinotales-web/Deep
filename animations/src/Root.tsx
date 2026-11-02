@@ -11,6 +11,8 @@ import { MedievalTest } from "./dev/MedievalTest";
 import { WW2Test } from "./dev/WW2Test";
 import { S45Kit } from "./dev/S45Kit";
 import { QinKit } from "./dev/QinKit";
+import { QinTomb, QinTombAudio, QinTombVisuals, calculateQinTombMetadata, type QinTombProps } from "./episodes/qintomb/Episode";
+import { END1 as QT1, END2 as QT2 } from "./episodes/qintomb/script";
 import { ChannelBanner, ChannelLogo } from "./brand/Brand";
 import { ThumbFireArrows } from "./thumbnails/FireArrowsThumb";
 import { Spring1945, Spring1945Audio, Spring1945MusicAudio, Spring1945Visuals, calculateSpring1945Metadata, type Spring1945Props } from "./episodes/spring1945/Episode";
@@ -28,6 +30,50 @@ const onodaDefaults: OnodaProps = {
 export const RemotionRoot = () => {
   return (
     <>
+      <Folder name="QinTomb">
+        <Composition
+          id="QinTomb1Video"
+          component={QinTomb}
+          durationInFrames={Math.round(QT1 * 30)}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ part: 1, voiceover: "vo/qin-tomb-1.voice.m4a", captionsFile: "captions/qin-tomb-1.json" } satisfies QinTombProps}
+          calculateMetadata={calculateQinTombMetadata}
+        />
+        <Composition
+          id="QinTomb1AudioOnly"
+          component={QinTombAudio}
+          durationInFrames={Math.round(QT1 * 30)}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ part: 1, voiceover: "vo/qin-tomb-1.voice.m4a", captionsFile: "captions/qin-tomb-1.json" } satisfies QinTombProps}
+          calculateMetadata={calculateQinTombMetadata}
+        />
+        <Composition id="QinTomb1VisualsOnly" component={QinTombVisuals} durationInFrames={Math.round(QT1 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 1 as 1 | 2 }} />
+        <Composition
+          id="QinTomb2Video"
+          component={QinTomb}
+          durationInFrames={Math.round(QT2 * 30)}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ part: 2, voiceover: "vo/qin-tomb-2.voice.m4a", captionsFile: "captions/qin-tomb-2.json" } satisfies QinTombProps}
+          calculateMetadata={calculateQinTombMetadata}
+        />
+        <Composition
+          id="QinTomb2AudioOnly"
+          component={QinTombAudio}
+          durationInFrames={Math.round(QT2 * 30)}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{ part: 2, voiceover: "vo/qin-tomb-2.voice.m4a", captionsFile: "captions/qin-tomb-2.json" } satisfies QinTombProps}
+          calculateMetadata={calculateQinTombMetadata}
+        />
+        <Composition id="QinTomb2VisualsOnly" component={QinTombVisuals} durationInFrames={Math.round(QT2 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 2 as 1 | 2 }} />
+      </Folder>
       <Folder name="Spring1945">
         <Composition
           id="Spring1945Video"

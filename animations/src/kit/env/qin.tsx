@@ -615,7 +615,7 @@ export const TerracottaPit: React.FC<XProps & { w?: number; rows?: number; cols?
   const r = rng(11);
   return (
     <X {...xf}>
-      <Part shape={roundRect(w * 1.4, 900, 0)} color="#b08458" flat outline={0} y={450} z={-0.1} />
+      <Part shape={roundRect(w * 1.6, 2400, 0)} color="#b08458" flat outline={0} y={1000} z={-0.1} />
       {Array.from({ length: rows }, (_, i) => {
         const ri = rows - 1 - i;
         const sc = 1 - ri * 0.14;
@@ -834,8 +834,9 @@ export const ChinaMap: React.FC<
   XProps & {
     ppd?: number; center?: P; kingdoms?: boolean; conquered?: string[]; sea?: string; land?: string; china?: string; waves?: boolean;
     route?: P[]; routeK?: number; routeColor?: string; dots?: P[]; w?: number; h?: number;
+    /** Only draw these kingdoms (to pop them in one by one). */ only?: string[];
   }
-> = ({ ppd = 40, center = [112, 34], kingdoms = false, conquered = [], sea = "#93c3c4", land = "#ddcca2", china = "#efd39b", waves = true, route, routeK = 1, routeColor = "#c8262f", dots = [], w = 5000, h = 3600, ...xf }) => {
+> = ({ ppd = 40, center = [112, 34], kingdoms = false, conquered = [], only, sea = "#93c3c4", land = "#ddcca2", china = "#efd39b", waves = true, route, routeK = 1, routeColor = "#c8262f", dots = [], w = 5000, h = 3600, ...xf }) => {
   const r = rng(9);
   const [cx, cy] = geoXY(center[0], center[1], ppd);
   const sc = (ring: P[]) => ring.map(([x, y]) => [x * ppd - cx, y * ppd - cy] as P);
@@ -879,7 +880,7 @@ export const ChinaMap: React.FC<
         <Part key={`c${i}`} shape={poly(sc(ring))} color={china} flat outline={5} z={0.02 + i * 0.0001} />
       ))}
       {kingdoms
-        ? Object.entries(KS.kingdoms).map(([name, rings]) =>
+        ? Object.entries(KS.kingdoms).filter(([name]) => !only || only.includes(name)).map(([name, rings]) =>
             rings.map((ring, i) => (
               <Part
                 key={`${name}${i}`}

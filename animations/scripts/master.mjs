@@ -43,7 +43,9 @@ const ln = `loudnorm=${target}:measured_I=${meas.input_i}:measured_TP=${meas.inp
 // tracks overshot +0.6 dBTP with a 48 kHz limiter, explosions need the extra
 // headroom); 256 kbps AAC: at 192 kbps the
 // native encoder overshoots by up to ~4 dB on dense mixes.
-const post = systemOk ? ",aresample=192000,alimiter=limit=0.74:attack=0.5:release=50:level=disabled" : "";
+// MASTER_LIMIT lowers the ceiling for transient-heavy mixes (AAC adds overshoot).
+const LIMIT = process.env.MASTER_LIMIT ?? "0.74";
+const post = systemOk ? `,aresample=192000,alimiter=limit=${LIMIT}:attack=0.5:release=50:level=disabled` : "";
 const r = run(["-hide_banner", "-y", "-i", input, "-c:v", "copy", "-af", `${pre}${ln}${post},aresample=48000`, "-c:a", "aac", "-b:a", "256k", output]);
 if (r.status !== 0) {
   console.error(r.stderr);

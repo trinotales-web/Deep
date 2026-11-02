@@ -1,6 +1,7 @@
 import type { Cut } from "./script";
 import * as A from "./p1a";
 import * as B from "./p1b";
+import * as C from "./p1c";
 
 // Part 1 cut list (seconds on public/vo/qin-tomb-1.voice.m4a), in the breaths
 // between phrases (see public/captions/qin-tomb-1.json).
@@ -51,4 +52,44 @@ export const CUTS1: Cut[] = [
   { id: "d12", at: 126.25, into: "cut", C: B.DoctorThrowsShot },
   { id: "d13", at: 129.35, into: "cut", C: B.ShoutShot },
   { id: "d14", at: 132.2, into: "cut", C: B.CutDownShot },
+  // chasing immortality
+  { id: "e01", at: 135.75, into: "fade", C: C.ThinkingDeathShot },
+  { id: "e02", at: 139.65, into: "cut", C: C.NeverDieShot },
+  { id: "e03", at: 142.15, into: "slide-left", C: C.MagicIslandsShot },
+  { id: "e04", at: 146.45, into: "cut", C: C.XuFuShot },
+  { id: "e05", at: 149.05, into: "cut", C: C.ChildrenSailShot },
+  { id: "e06", at: 151.55, into: "cut", C: C.NeverBackShot },
+  { id: "e07", at: 152.95, into: "slide-left", C: C.JapanLegendShot },
+  { id: "e08", at: 156.65, into: "slide-left", C: C.EveryCornerShot },
+  { id: "e09", at: 159.95, into: "cut", C: C.DecreeShot },
+  { id: "e10", at: 163.15, into: "fade", C: C.OldWellShot },
+  { id: "e11", at: 167.55, into: "cut", C: C.NotFoundYetShot },
+  { id: "e12", at: 171.25, into: "cut", C: C.HerbsShot },
+  { id: "e13", at: 173.4, into: "slide-left", C: C.PillsShot },
+  { id: "e14", at: 176.45, into: "cut", C: C.PillMercuryShot },
+  { id: "e15", at: 179.45, into: "cut", C: C.LiquidMetalShot },
+  { id: "e16", at: 183.95, into: "cut", C: C.KillHimShot },
+  { id: "e17", at: 186.85, into: "cut", C: C.RememberShot },
+  // building the tomb
+  { id: "f01", at: 189.2, into: "slide-left", C: C.WorkNeverStopsShot },
+  { id: "f02", at: 192.05, into: "cut", C: C.SevenHundredKShot },
+  { id: "f03", at: 195.55, into: "cut", C: C.NotVolunteersShot },
+  { id: "f04", at: 197.6, into: "cut", C: C.PrisonersShot },
+  { id: "f05", at: 200.0, into: "cut", C: C.DumpedPitsShot },
+  { id: "f06", at: 203.75, into: "fade", C: C.FoundPitsShot },
+  { id: "f07", at: 206.25, into: "cut", C: C.SkeletonsShot },
+  { id: "f08", at: 209.0, into: "slide-left", C: C.PalaceUnderHillShot },
+  { id: "f09", at: 213.55, into: "cut", C: C.TrapTestShot },
+  { id: "f10", at: 217.65, into: "slide-left", C: C.SeventySixShot },
+  { id: "f11", at: 223.35, into: "cut", C: C.TowerCompareShot },
+  // Sima Qian
+  { id: "g01", at: 226.35, into: "cut", C: C.HowKnowShot },
+  { id: "g02", at: 228.05, into: "fade", C: C.SimaQianShot },
+  { id: "g03", at: 232.65, into: "cut", C: C.CeilingStarsShot },
+  { id: "g04", at: 235.25, into: "cut", C: C.MercuryEmpireShot },
+  { id: "g05", at: 241.25, into: "cut", C: C.ManFishLampShot },
+  { id: "g06", at: 246.4, into: "cut", C: C.WhatManFishShot },
+  { id: "g07", at: 248.95, into: "cut", C: C.WhaleShot },
+  { id: "g08", at: 250.15, into: "slide-left", C: C.ThatsSecretShot },
+  { id: "g09", at: 251.45, into: "cut", C: C.OnlyWorkersShot },
 ];

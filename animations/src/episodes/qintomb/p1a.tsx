@@ -365,7 +365,7 @@ export const TeaserPillarShot: React.FC<ShotProps> = ({ dur }) => {
 };
 
 /** Misty magic island of the immortals. */
-const MagicIsland: React.FC<{ x: number; y: number; s?: number; z?: number }> = ({ x, y, s = 1, z = 0 }) => (
+export const MagicIsland: React.FC<{ x: number; y: number; s?: number; z?: number }> = ({ x, y, s = 1, z = 0 }) => (
   <X x={x} y={y} s={s} z={z}>
     <Glow y={160} rx={520} ry={320} color="#fff4d0" alpha={0.5} additive z={-0.01} />
     {[[-160, 220], [40, 340], [210, 240]].map(([mx, h], i) => (

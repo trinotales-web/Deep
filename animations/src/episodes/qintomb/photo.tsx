@@ -28,6 +28,8 @@ export type PhotoSpec = {
   /** Small corner tag, e.g. REAL PHOTO / ARTIST'S IMPRESSION. */
   tag?: string;
   rot?: number;
+  /** Largest blow-up allowed for a card (keeps small images sharp). */
+  maxScale?: number;
 };
 
 const Cropped: React.FC<{ spec: PhotoSpec; dw: number; dh: number; style?: React.CSSProperties }> = ({ spec, dw, dh, style }) => {
@@ -68,7 +70,7 @@ export const photoShot = (spec: PhotoSpec): React.FC<ShotProps> => {
       const top = Math.min(0, Math.max(height - dh, height / 2 - fy * dh));
       content = <Cropped spec={spec} dw={dw} dh={dh} style={{ position: "absolute", left, top, ...grade }} />;
     } else {
-      const fit = Math.min(1460 / cw, 760 / ch);
+      const fit = Math.min(1460 / cw, 760 / ch, spec.maxScale ?? 2.6);
       const dw = cw * fit;
       const dh = ch * fit;
       const pad = 16;
@@ -143,4 +145,8 @@ export const BrokenPhoto = photoShot({
 export const MoundPhoto = photoShot({
   src: "photos/qin/mound-today.jpg", w: 768, h: 413, mode: "card", rot: -0.8,
   tag: REAL, label: "NEVER OPENED", labelKind: "stamp", labelAt: 146.3,
+});
+export const ReconstructionPhoto = photoShot({
+  src: "photos/qin/mound-reconstruction.jpg", w: 480, h: 270, mode: "card", rot: 0.8, maxScale: 2.7,
+  from: [1.0, 0.5, 0.5], to: [1.1, 0.5, 0.5], tag: "3D RECONSTRUCTION", label: "A HUGE MAN-MADE HILL", labelAt: 209.5,
 });

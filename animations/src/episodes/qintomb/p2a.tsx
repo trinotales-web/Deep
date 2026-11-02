@@ -651,7 +651,7 @@ export const PlantTreesShot: React.FC<ShotProps> = ({ start, dur }) => {
             <RoundTree key={x} x={x} y={-162 + Math.sqrt(1 - Math.pow(x / 680, 2)) * 480 * green - 10} h={120} seed={i + 4} s={Math.max(0.001, pop(t, 74.7 + i * 0.2))} z={-26} />
           ))}
           {[-640, 640].map((x, i) => (
-            <Character key={x} {...WORKER(i + 1)} x={x} y={-560} s={1.0} z={2} facing={x < 0 ? 1 : -1} look={0.5} expression={{ eyes: "half", mouth: "flat" }} pose={{ armF: [1.4 + Math.sin(frame * 0.3 + i) * 0.3, 0.6], armB: [1.2, 0.7], lean: -0.15 }} holdF={<Shovel rot={upright([1.4, 0.6]) + 2.6} />} />
+            <Character key={x} {...WORKER(i + 1)} x={x} y={-560} s={1.0} z={2} facing={x < 0 ? 1 : -1} look={0.5} expression={{ eyes: "half", mouth: "flat" }} pose={{ armF: [0.9 + Math.sin(frame * 0.3 + i) * 0.25, 0.4], armB: [0.7, 0.5], lean: -0.1 }} holdF={<X rot={upright([0.9 + Math.sin(frame * 0.3 + i) * 0.25, 0.4]) - Math.PI / 2 + 0.2} s={0.6}><Shovel x={-120} /></X>} />
           ))}
         </Plains>
       </Stage>

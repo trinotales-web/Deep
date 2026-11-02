@@ -145,8 +145,8 @@ export const DiggingStartsShot: React.FC<ShotProps> = ({ start, dur }) => {
                 facing={i % 2 ? -1 : 1}
                 look={0.5}
                 expression={{ eyes: "half", mouth: "teeth", brows: -0.3, sweat: i === 2 }}
-                pose={{ armF: [1.4 + dig * 0.4, 0.6], armB: [1.1 + dig * 0.3, 0.7], lean: -0.15 }}
-                holdF={<Shovel rot={upright([1.4, 0.6]) + 2.6} s={1.0} />}
+                pose={{ armF: [0.9 + dig * 0.25, 0.4], armB: [0.7 + dig * 0.2, 0.5], lean: -0.1 + dig * 0.05 }}
+                holdF={<X rot={upright([0.9 + dig * 0.25, 0.4]) - Math.PI / 2 + 0.2} s={0.6}><Shovel x={-120} /></X>}
               />
             );
           })}

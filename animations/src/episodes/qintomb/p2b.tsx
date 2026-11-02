@@ -78,7 +78,7 @@ export const FarmersWellShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Farmland horizon={60}>
           <DigWell x={-80} y={-60} s={0.6} z={1} />
           {[-320, 160].map((x, i) => (
-            <Character key={x} {...FARMER(i)} x={x} y={-80} s={0.75} z={2} facing={i ? -1 : 1} look={0.5} expression={{ eyes: "half", mouth: "teeth", brows: -0.2 }} pose={{ armF: [1.4 + dig * 0.4, 0.6], armB: [1.1, 0.7], lean: -0.15 }} holdF={<Shovel rot={upright([1.4, 0.6]) + 2.6} />} />
+            <Character key={x} {...FARMER(i)} x={x} y={-80} s={0.75} z={2} facing={i ? -1 : 1} look={0.5} expression={{ eyes: "half", mouth: "teeth", brows: -0.2 }} pose={{ armF: [0.9 + dig * 0.25, 0.4], armB: [0.7, 0.5], lean: -0.1 }} holdF={<X rot={upright([0.9 + dig * 0.25, 0.4]) - Math.PI / 2 + 0.2} s={0.6}><Shovel x={-120} /></X>} />
           ))}
           <Underground y={-100} reveal={ramp(t, 88.8, 90.3)} z={3} />
         </Farmland>

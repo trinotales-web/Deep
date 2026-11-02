@@ -54,7 +54,7 @@ export const EmperorDiesShot: React.FC<ShotProps> = ({ start }) => {
         <Tent dim={0.3}>
           <Character {...EMPEROR} x={-80} y={-560} s={1.3} z={1} look={0.4} expression={slump > 0.5 ? { eyes: "closed", mouth: "o", brows: 0.4 } : { eyes: "half", mouth: "flat", brows: 0.3, eyebags: true }} pose={{ ...poses.sit(frame), armF: [1.3, 0.6], armB: [1.1, 0.6], lean: -0.5 * slump, headTilt: -0.4 * slump }} />
           <WritingDesk x={60} y={-560} lit={1 - ramp(t, 1.6, 2.1)} z={2} />
-          <BambooSlips x={-40} y={-330} n={6} s={0.4} rot={1.4} z={2.1} />
+          <BambooSlips x={230} y={-345} n={6} s={0.4} rot={1.5} z={2.1} />
         </Tent>
       </Stage>
     </AbsoluteFill>
@@ -72,7 +72,7 @@ export const MustCloseShot: React.FC<ShotProps> = ({ start }) => {
           <StoneGate x={0} y={-460} w={620} h={700} drop={ramp(t, 2.6, 3.9, Easing.in(Easing.quad))} z={2} />
         </TombCorridor>
       </Stage>
-      <Label text="FOREVER" x={0.5} y={0.14} size={0.07} kind="stamp" rotate={-6} at={sec(start)(3.9)} />
+      <Label text="FOREVER" x={0.5} y={0.08} size={0.065} kind="stamp" rotate={-6} at={sec(start)(3.9)} />
     </AbsoluteFill>
   );
 };
@@ -211,7 +211,7 @@ export const KeepSecretShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Character {...ZHAO_GAO} x={-300} y={-40 - 308 * s} s={s} z={2} look={0.4} expression={{ eyes: "half", mouth: "smirk", brows: -0.6 }} pose={{ armF: shh, armB: [-0.2, -0.1], armsOverHead: true }} />
         <Character {...OFFICIAL(0)} x={400} y={-60 - 308 * s} s={s * 0.9} z={1.9} facing={-1} look={0.4} expression={{ eyes: "wide", mouth: "flat", brows: 0.5, sweat: true }} pose={{ armF: shh, armB: [-0.2, -0.1], armsOverHead: true }} />
       </Stage>
-      <Label text="SHHH..." x={0.5} y={0.14} size={0.08} kind="box" at={sec(start)(19.8)} />
+      <Label text="SHHH..." x={0.5} y={0.08} size={0.065} kind="box" at={sec(start)(19.8)} />
     </AbsoluteFill>
   );
 };
@@ -669,7 +669,7 @@ export const NotOneShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -60 }} light={{ pos: [0, 200] }} vignette={0.9} vignetteColor="#010203">
-        <TombCorridor floorY={-460} torches={false} dark={0.6}>
+        <TombCorridor floorY={-460} torches={false} dark={0.45}>
           {[-420, 0, 420].map((x, i) => (
             <Character key={x} {...WORKER(i)} x={x} y={-580} s={1.15} z={3} look={0.3} expression={{ eyes: "half", mouth: "frown", brows: 0.8, sweat: i === 1 }} pose={{ ...poses.sit(frame + i * 9), headTilt: -0.15 }} />
           ))}

@@ -749,7 +749,7 @@ export const SimaQianShot: React.FC<ShotProps> = ({ start, dur }) => {
           </X>
         </ThroneHall>
       </Stage>
-      <Label text="~100 YEARS LATER" x={0.24} y={0.12} size={0.05} kind="box" at={sec(start)(228.2)} />
+      <Label text="~100 YEARS LATER" x={0.5} y={0.07} size={0.045} kind="box" at={sec(start)(228.2)} />
       <Label text="SIMA QIAN" sub="HISTORIAN" x={0.7} y={0.14} size={0.075} kind="title" at={sec(start)(230.9)} />
     </AbsoluteFill>
   );
@@ -880,8 +880,8 @@ export const OnlyWorkersShot: React.FC<ShotProps> = ({ start, dur }) => {
           <CrossbowTrap x={-900} y={-480} s={0.9} z={1} />
         </TombCorridor>
       </Stage>
-      <Label text="TRAPS" x={0.18} y={0.24} size={0.05} kind="box" at={sec(start)(253.0)} />
-      <Label text="TREASURE" x={0.5} y={0.2} size={0.06} kind="box" at={sec(start)(253.7)} />
+      <Label text="TRAPS" x={0.3} y={0.08} size={0.05} kind="box" at={sec(start)(253.0)} />
+      <Label text="TREASURE" x={0.62} y={0.08} size={0.05} kind="box" at={sec(start)(253.7)} />
     </AbsoluteFill>
   );
 };

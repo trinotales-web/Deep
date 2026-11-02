@@ -359,7 +359,7 @@ export const TeaserPillarShot: React.FC<ShotProps> = ({ dur }) => {
           <Character {...JING_KE} x={j.x} y={-500} s={1.0} z={1 + j.z} facing={Math.sin(a - 1.0) > 0 ? -1 : 1} look={0.6} expression={{ eyes: "angry", mouth: "teeth", brows: -0.8 }} pose={{ ...poses.run(frame + 7), armF: [2.4, 0.4] }} />
         </ThroneHall>
       </Stage>
-      <Label text="COMING UP" x={0.16} y={0.1} size={0.05} kind="box" at={4} />
+      <Label text="COMING UP" x={0.86} y={0.08} size={0.05} kind="box" at={4} />
     </AbsoluteFill>
   );
 };

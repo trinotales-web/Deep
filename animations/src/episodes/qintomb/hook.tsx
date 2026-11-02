@@ -101,7 +101,7 @@ export const AutumnHookShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Tree x={1000} y={-700} h={1250} kind="autumn" seed={4} spread={1.1} z={5} />
         <FallingLeaves w={2600} h={1400} count={30} seed={5} z={8} />
       </Stage>
-      <Label text="210 BC" sub="AUTUMN" x={0.56} y={0.12} size={0.12} kind="title" at={sec(start)(0.9)} />
+      <Label text="210 BC" sub="AUTUMN" x={0.56} y={0.11} size={0.1} kind="box" at={sec(start)(0.9)} />
     </AbsoluteFill>
   );
 };

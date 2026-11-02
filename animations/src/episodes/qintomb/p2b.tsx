@@ -83,7 +83,7 @@ export const FarmersWellShot: React.FC<ShotProps> = ({ start, dur }) => {
           <Underground y={-100} reveal={ramp(t, 88.8, 90.3)} z={3} />
         </Farmland>
       </Stage>
-      <Label text="2,000+ YEARS LATER" x={0.5} y={0.12} size={0.06} kind="box" at={sec(start)(85.9)} />
+      <Label text="2,000+ YEARS LATER" x={0.22} y={0.07} size={0.05} kind="box" at={sec(start)(85.9)} />
     </AbsoluteFill>
   );
 };
@@ -96,7 +96,7 @@ export const Year1974Shot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.05), y: 40 }} light={{ dir: [-0.6, 0.8] }}>
         <Farmland horizon={-120} />
       </Stage>
-      <Label text="1974" x={0.5} y={0.3} size={0.16} kind="title" at={sec(start)(91.4)} />
+      <Label text="1974" x={0.3} y={0.2} size={0.13} kind="box" at={sec(start)(91.4)} />
     </AbsoluteFill>
   );
 };
@@ -116,7 +116,7 @@ export const YangZhifaShot: React.FC<ShotProps> = ({ start, dur }) => {
           })}
         </Farmland>
       </Stage>
-      <Label text="YANG ZHIFA" sub="FARMER" x={0.26} y={0.14} size={0.075} kind="title" at={sec(start)(93.7)} />
+      <Label text="YANG ZHIFA" sub="FARMER" x={0.2} y={0.09} size={0.06} kind="box" at={sec(start)(93.7)} />
       <Label text="+ BROTHERS" x={0.72} y={0.14} size={0.05} kind="box" at={sec(start)(95.1)} />
     </AbsoluteFill>
   );
@@ -801,7 +801,7 @@ export const UntouchedShot: React.FC<ShotProps> = ({ start, dur }) => {
           <Glow x={0} y={200 - 820 * 0.55} rx={720} ry={300} color="#ffe9a8" alpha={0.25 * ramp(t, 180.0, 180.8)} additive z={5} />
         </Plains>
       </Stage>
-      <Label text="UNTOUCHED" x={0.5} y={0.14} size={0.08} kind="stamp" rotate={-6} at={sec(start)(181.3)} />
+      <Label text="UNTOUCHED" x={0.5} y={0.17} size={0.07} kind="stamp" rotate={-6} at={sec(start)(181.3)} />
     </AbsoluteFill>
   );
 };

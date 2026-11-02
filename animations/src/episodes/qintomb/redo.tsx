@@ -367,7 +367,7 @@ export const WorkNeverStopsRedoShot: React.FC<ShotProps> = ({ start, dur }) => {
   const walkX = -900 + frame * 4.2;
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.12, 1.2), y: -40 }} light={{ dir: [-0.5, 0.7] }} vignette={0.5}>
+      <Stage camera={{ zoom: push(frame, dur, 1.12, 1.2), y: -190 }} light={{ dir: [-0.5, 0.7] }} vignette={0.5}>
         <Excavation floor={floor} frame={frame}>
           {/* workers up on the rim */}
           {Array.from({ length: 7 }, (_, i) => (
@@ -546,8 +546,8 @@ export const NotFiftyRedoShot: React.FC<ShotProps> = ({ start, dur }) => {
         </Tent>
       </Stage>
       <Label text="FOREVER?" x={0.72} y={0.14} size={0.07} kind="box" at={sec(start)(11.9)} />
-      <Label text="50" x={0.78} y={0.42} size={0.18} kind="title" at={sec(start)(13.3)} />
-      <Label text="✕" x={0.78} y={0.42} size={0.2} color="#fe5649" at={sec(start)(13.6)} />
+      <Label text="NEVER MADE IT TO" x={0.76} y={0.3} size={0.04} kind="box" at={sec(start)(13.3)} />
+      <Label text="50" x={0.76} y={0.44} size={0.16} kind="title" color="#fe5649" at={sec(start)(13.3)} />
     </AbsoluteFill>
   );
 };

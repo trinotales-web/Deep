@@ -100,7 +100,7 @@ export const photoShot = (spec: PhotoSpec): React.FC<ShotProps> => {
       <AbsoluteFill style={{ backgroundColor: "#0c0a0a", overflow: "hidden" }}>
         {content}
         <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(10,6,8,0.55) 100%)" }} />
-        {spec.tag ? <Label text={spec.tag} x={0.11} y={0.07} size={0.028} kind="box" at={4} /> : null}
+        {spec.tag ? <Label text={spec.tag} x={0.035 + spec.tag.length * 0.0052} y={0.07} size={0.028} kind="box" at={4} /> : null}
         {spec.label ? <Label text={spec.label} sub={spec.sub} x={0.5} y={0.085} size={0.062} kind={spec.labelKind ?? "box"} at={spec.labelAt !== undefined ? sec(start)(spec.labelAt) : 6} /> : null}
       </AbsoluteFill>
     );

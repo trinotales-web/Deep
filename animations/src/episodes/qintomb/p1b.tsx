@@ -42,7 +42,7 @@ export const YingZhengShot: React.FC<ShotProps> = ({ start, dur }) => {
           ))}
         </ThroneHall>
       </Stage>
-      <Label text="YING ZHENG" sub="KING OF QIN" x={0.5} y={0.13} size={0.08} kind="title" at={sec(start)(55.9)} />
+      <Label text="YING ZHENG" sub="KING OF QIN" x={0.2} y={0.12} size={0.07} kind="box" at={sec(start)(55.9)} />
       <Label text="AGE 13" x={0.8} y={0.32} size={0.06} kind="box" at={sec(start)(58.2)} />
     </AbsoluteFill>
   );
@@ -554,7 +554,7 @@ export const GuardsWaitShot: React.FC<ShotProps> = ({ start, dur }) => {
           </X>
         </ThroneHall>
       </Stage>
-      <Label text="NO ORDER = NO ENTRY" x={0.5} y={0.12} size={0.06} kind="box" at={sec(start)(120.4)} />
+      <Label text="NO ORDER = NO ENTRY" x={0.24} y={0.08} size={0.05} kind="box" at={sec(start)(120.4)} />
     </AbsoluteFill>
   );
 };

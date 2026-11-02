@@ -14,7 +14,7 @@ import { END1, END2 } from "./script";
 
 const E = (name: string) => licensedSrc("essential", name);
 
-const AMB = 0.42;
+const AMB = 0.55;
 const FX = 0.9;
 const FX_DUCK = 0.55; // -5 dB under speech
 const AMB_DUCK = 0.5; // -6 dB under speech
@@ -319,6 +319,14 @@ export const QinTombSound: React.FC<{ captions: Caption[]; part: 1 | 2 }> = ({ c
   const walk = part === 1 ? WALK1 : WALK2;
   const dig = part === 1 ? DIG1 : DIG2;
   const slides = cuts.filter((c) => c.into === "slide-left");
+  // word onsets (s): keep transients off them, and soften whooshes that run into speech
+  const onsets = useMemo(() => captions.map((c) => c.startMs / 1000), [captions]);
+  const nearOnset = (t: number, before = 0.08, after = 0.12) => onsets.some((o) => t > o - before && t < o + after);
+  const intoSpeech = (t: number) => {
+    const next = onsets.find((o) => o >= t);
+    const gap = next === undefined ? 9 : next - t;
+    return gap < 0.25 ? 0.3 : gap < 0.5 ? 0.5 : 1;
+  };
   // hard cuts get a soft swish unless a cue already lands right there
   const hardCuts = cuts.filter((c) => c.into === "cut" && c.at > 0 && !cues.some(([t]) => Math.abs(t - c.at) < 0.35));
   return (
@@ -331,18 +339,22 @@ export const QinTombSound: React.FC<{ captions: Caption[]; part: 1 | 2 }> = ({ c
       ))}
 
       {walk.flatMap(([a, b, r], k) =>
-        steps(a, b, r).map((t, i) => <Sfx key={`w${k}-${i}`} name={FOOT[i % 4]} at={t} volume={0.14 * FX} duck={fxDuck} />),
+        steps(a, b, r)
+          .filter((t) => !nearOnset(t))
+          .map((t, i) => <Sfx key={`w${k}-${i}`} name={FOOT[i % 4]} at={t} volume={0.1 * FX} duck={fxDuck} />),
       )}
       {dig.flatMap(([a, b, r], k) =>
-        steps(a, b, r).map((t, i) => <Sfx key={`d${k}-${i}`} name="thud" at={t} volume={0.2 * FX} duck={fxDuck} />),
+        steps(a, b, r)
+          .filter((t) => !nearOnset(t))
+          .map((t, i) => <Sfx key={`d${k}-${i}`} name="thud" at={t} volume={0.12 * FX} duck={fxDuck} />),
       )}
 
       {slides.map((c, i) => {
         const f = WHOOSHES[i % WHOOSHES.length];
-        return <SoundAt key={`wh${c.id}`} src={E(f)} at={c.at - 0.18} volume={WHOOSH_GAIN[f] * FX} duck={fxDuck} name={`whoosh:${c.id}`} />;
+        return <SoundAt key={`wh${c.id}`} src={E(f)} at={c.at - 0.18} volume={WHOOSH_GAIN[f] * FX * intoSpeech(c.at - 0.18)} duck={fxDuck} name={`whoosh:${c.id}`} />;
       })}
       {hardCuts.map((c) => (
-        <Sfx key={`c${c.id}`} name="whoosh_soft" at={c.at - 0.08} volume={0.22 * FX} duck={fxDuck} />
+        <Sfx key={`c${c.id}`} name="whoosh_soft" at={c.at - 0.08} volume={0.22 * FX * intoSpeech(c.at - 0.08)} duck={fxDuck} />
       ))}
 
       {cues.map(([t, f, g], i) => (

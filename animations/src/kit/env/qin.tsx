@@ -32,7 +32,7 @@ export const RedPillar: React.FC<XProps & { h?: number; w?: number }> = ({ h = 9
     <Part shape={roundRect(w + 40, 40, 8)} color="#8a8790" shade={0.22} y={20} />
     <Part shape={roundRect(w, h, 6)} color={RED} shade={0.22} y={40 + h / 2} z={0.001}>
       {[80, h - 60].map((y) => (
-        <Part key={y} shape={roundRect(w + 6, 20, 4)} color={GOLD} flat outline={3} y={40 + y - h / 2} z={0.001} />
+        <Part key={y} shape={roundRect(w + 6, 20, 4)} color={GOLD} flat outline={3} y={y - h / 2} z={0.001} />
       ))}
     </Part>
     <Part shape={roundPoly([[-w / 2 - 30, h + 40], [w / 2 + 30, h + 40], [w / 2 + 14, h + 80], [-w / 2 - 14, h + 80]], 6)} color="#3a2a26" shade={0.2} z={0.002} />
@@ -71,20 +71,16 @@ export const QinThrone: React.FC<XProps & { w?: number }> = ({ w = 520, ...xf })
     <X y={120} z={0.01}>
       <Part shape={roundRect(w, 520, 14)} color={LACQUER} shade={0.2} y={300} />
       <Part shape={roundRect(w - 70, 440, 8)} color={RED} shade={0.15} y={320} z={0.001} />
+      {/* gold jade-disc emblem with cloud bars */}
+      <Part shape={circle(78)} color={GOLD} shade={0.15} y={330} z={0.002}>
+        <Part shape={circle(48)} color={RED} flat outline={5} z={0.001} />
+        <Part shape={circle(18)} color={GOLD} flat outline={4} z={0.002} />
+      </Part>
       {[-1, 1].map((k) => (
-        <Line
-          key={k}
-          pts={Array.from({ length: 26 }, (_, i) => {
-            const a = i * 0.45;
-            const r = 70 - i * 2.4;
-            return [k * 80 + Math.cos(a) * r * k, 380 + Math.sin(a) * r] as P;
-          })}
-          smooth
-          width={7}
-          color={GOLD}
-          z={0.002}
-        />
+        <Line key={k} pts={[[k * 110, 330], [k * (w / 2 - 70), 330]]} width={8} color={GOLD} z={0.002} />
       ))}
+      <Line pts={[[-(w / 2 - 70), 500], [w / 2 - 70, 500]]} width={6} color={GOLD} z={0.002} />
+      <Line pts={[[-(w / 2 - 70), 160], [w / 2 - 70, 160]]} width={6} color={GOLD} z={0.002} />
       <Part shape={roundRect(w + 40, 70, 10)} color={LACQUER} shade={0.2} y={40} z={0.01} />
       <Part shape={roundRect(w - 40, 34, 8)} color="#7a2a2a" shade={0.2} y={86} z={0.011} />
       {[-1, 1].map((k) => (
@@ -319,10 +315,10 @@ export const StoneGate: React.FC<XProps & { w?: number; h?: number; drop?: numbe
     <X y={h * (1 - drop)} z={0.01}>
       <Part shape={roundRect(w - 10, h, 6)} color="#6e7c7e" shade={0.24} y={h / 2}>
         {[0.3, 0.62].map((k) => (
-          <Line key={k} pts={[[-w / 2 + 20, h * k], [w / 2 - 20, h * k + 8]]} width={4} color="#4a5658" z={0.001} />
+          <Line key={k} pts={[[-w / 2 + 20, h * k - h / 2], [w / 2 - 20, h * k - h / 2 + 8]]} width={4} color="#4a5658" z={0.001} />
         ))}
         {[-1, 1].map((k) => (
-          <Part key={k} shape={circle(22)} color="#3a4648" flat outline={4} x={k * w * 0.18} y={h * 0.45} z={0.002} />
+          <Part key={k} shape={circle(22)} color="#3a4648" flat outline={4} x={k * w * 0.18} y={h * 0.45 - h / 2} z={0.002} />
         ))}
       </Part>
     </X>

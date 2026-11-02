@@ -1,5 +1,6 @@
 import type { Cut } from "./script";
 import * as H from "./p2a";
+import * as J from "./p2b";
 
 // Part 2 cut list (seconds on public/vo/qin-tomb-2.voice.m4a), in the breaths
 // between phrases (see public/captions/qin-tomb-2.json).
@@ -35,4 +36,56 @@ export const CUTS2: Cut[] = [
   { id: "i11", at: 77.45, into: "cut", C: H.NotOneShot },
   { id: "i12", at: 78.85, into: "fade", C: H.SupposedToLastShot },
   { id: "i13", at: 82.75, into: "cut", C: H.GoneShot },
+  // the discovery
+  { id: "j01", at: 85.5, into: "fade", C: J.FarmersWellShot },
+  { id: "j02", at: 91.05, into: "cut", C: J.Year1974Shot },
+  { id: "j03", at: 92.65, into: "cut", C: J.YangZhifaShot },
+  { id: "j04", at: 97.05, into: "cut", C: J.DistanceShot },
+  { id: "j05", at: 99.45, into: "cut", C: J.PotteryShot },
+  { id: "j06", at: 101.25, into: "cut", C: J.ClayHeadShot },
+  { id: "j07", at: 102.8, into: "cut", C: J.RushInShot },
+  { id: "j08", at: 106.3, into: "slide-left", C: J.EightThousandShot },
+  { id: "j09", at: 109.25, into: "cut", C: J.ArchersOfficersShot },
+  { id: "j10", at: 110.55, into: "cut", C: J.HorsesChariotsShot },
+  { id: "j11", at: 112.05, into: "cut", C: J.RowsShot },
+  { id: "j12", at: 114.25, into: "cut", C: J.FacesShot },
+  // the lost colours
+  { id: "k01", at: 117.15, into: "slide-left", C: J.MostDontKnowShot },
+  { id: "k02", at: 119.4, into: "cut", C: J.NotBrownShot },
+  { id: "k03", at: 120.65, into: "cut", C: J.PaintedShot },
+  { id: "k04", at: 122.75, into: "cut", C: J.ColorsShot },
+  { id: "k05", at: 126.15, into: "cut", C: J.CurlShot },
+  { id: "k06", at: 130.6, into: "cut", C: J.FallsOffShot },
+  // fire and mercury
+  { id: "l01", at: 133.6, into: "slide-left", C: J.BurnMarksShot },
+  { id: "l02", at: 137.75, into: "cut", C: J.WhoDidItShot },
+  { id: "l03", at: 138.65, into: "cut", C: J.RebelsShot },
+  { id: "l04", at: 140.0, into: "cut", C: J.SetFireShot },
+  { id: "l05", at: 144.65, into: "slide-left", C: J.NeverOpenedShot },
+  { id: "l06", at: 149.5, into: "cut", C: J.SoilTestShot },
+  { id: "l07", at: 152.1, into: "cut", C: J.MercuryHighShot },
+  { id: "l08", at: 154.75, into: "cut", C: J.VaporShot },
+  { id: "l09", at: 159.95, into: "cut", C: J.MightBeRealShot },
+  // truth and waiting
+  { id: "m01", at: 162.75, into: "slide-left", C: J.HowTrueShot },
+  { id: "m02", at: 165.25, into: "cut", C: J.MadeUpShot },
+  { id: "m03", at: 167.8, into: "cut", C: J.HardToArgueShot },
+  { id: "m04", at: 170.0, into: "cut", C: J.AnotherReasonShot },
+  { id: "m05", at: 171.3, into: "cut", C: J.PaintCallbackShot },
+  { id: "m06", at: 173.95, into: "cut", C: J.WholePalaceShot },
+  { id: "m07", at: 176.4, into: "cut", C: J.BetterTechShot },
+  { id: "m08", at: 178.85, into: "cut", C: J.UntouchedShot },
+  { id: "m09", at: 182.2, into: "cut", C: J.StillWaitingShot },
+  // ending
+  { id: "n01", at: 184.8, into: "fade", C: J.WantedForeverShot },
+  { id: "n02", at: 187.05, into: "cut", C: J.DiedAt49Shot },
+  { id: "n03", at: 188.65, into: "cut", C: J.TenThousandShot },
+  { id: "n04", at: 191.95, into: "cut", C: J.FifteenYearsShot },
+  { id: "n05", at: 194.25, into: "cut", C: J.FellApartShot },
+  { id: "n06", at: 196.7, into: "cut", C: J.ExceptOneShot },
+  { id: "n07", at: 198.45, into: "slide-left", C: J.SecretSafeShot },
+  { id: "n08", at: 201.2, into: "cut", C: J.NeverGotOutShot },
+  { id: "n09", at: 203.95, into: "fade", C: J.WouldYouOpenShot },
+  { id: "n10", at: 206.5, into: "cut", C: J.LeaveDarkShot },
+  { id: "n11", at: 208.5, into: "slide-left", C: J.CommentsShot },
 ];

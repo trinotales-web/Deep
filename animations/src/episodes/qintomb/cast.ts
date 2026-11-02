@@ -234,3 +234,14 @@ export const TERRACOTTA = (i = 0, paint = false): Design => ({
   mustacheColor: paint ? "#1e1a20" : "#7a5a3a",
   seed: 440 + i,
 });
+
+/** 1970s archaeologist (no hi-vis yet): work jacket, cap or bare head, glasses. */
+export const ARCH74 = (i = 0): Design => ({
+  outfit: { top: ["#5a6a5a", "#4a5a7a", "#7a6a52"][i % 3], bottom: "#3a3a44", boots: "#3a2e26", collar: "high", collarColor: "#3a3a44", pockets: true, buttons: "#2a2226", belt: null },
+  hat: i % 2 ? "maocap" : null,
+  hatColor: "#4a5a6a",
+  hair: "short",
+  hairColor: "#1e1a1c",
+  glasses: i === 0 ? "#2a2226" : null,
+  seed: 450 + i,
+});

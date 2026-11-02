@@ -121,7 +121,9 @@ export const StyledCaptions: React.FC<StyledCaptionsProps> = ({
         {page.words.map((w, i) => {
           const visible = nowMs >= w.startMs;
           const age = ((nowMs - w.startMs) / 1000) * fps; // frames since spoken
-          const pop = visible ? interpolate(age, [0, 4], [1.15, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.quad) }) : 1;
+          // long words pop less so their growth never eats the word gap
+          const peak = 1 + Math.min(0.15, 0.95 / Math.max(1, clean(w.text).length));
+          const pop = visible ? interpolate(age, [0, 4], [peak, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.quad) }) : 1;
           const red = /\*/.test(w.text) || hl.has(norm(w.text));
           return (
             <span

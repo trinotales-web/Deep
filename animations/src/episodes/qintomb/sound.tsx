@@ -21,6 +21,10 @@ const AMB_DUCK = 0.5; // -6 dB under speech
 
 // [time (s), bundle file, gain]
 const CUES1: [number, string, number][] = [
+  // v2 visuals
+  [2.82, "whoosh-low-distant", 0.16],
+  [177.42, "pop-2", 0.16],
+  [205.3, "camera-1", 0.14],
   [0.2, "wind-1", 0.3],
   [3.08, "rumble-soft", 0.35],
   [11.47, "sparkle", 0.3],
@@ -125,6 +129,13 @@ const CUES1: [number, string, number][] = [
   [253.67, "sparkle", 0.3],
 ];
 const CUES2: [number, string, number][] = [
+  // v2 visuals
+  [13.2, "thump", 0.2],
+  [13.3, "air-blowing", 0.1],
+  [156.5, "electronic-beeps-echo", 0.1],
+  [174.4, "air-blowing", 0.16],
+  [174.95, "whoosh-low-distant", 0.2],
+  [175.3, "crumple", 0.16],
   [1.53, "impact-hit-2", 0.3],
   [4.3, "door-slam-large-metal", 0.1599999964237213],
   [8.17, "creak-short", 0.23000000417232513],

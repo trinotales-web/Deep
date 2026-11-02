@@ -11,6 +11,7 @@ import { shotTimeline, TRANSITION, markHighlights, END1, END2, FULL1 } from "./s
 import { CUTS1 } from "./timeline1";
 import { CUTS2 } from "./timeline2";
 import { QinTombSound } from "./sound";
+import { FRAMING } from "./framing";
 
 // The First Emperor's tomb. One narration, built as two halves (part 1 ends on
 // "…every trap and every treasure is.") and delivered as one full video with no
@@ -25,7 +26,7 @@ export const QinTombVisuals: React.FC<{ part: 1 | 2 }> = ({ part }) => {
           const C = shot.C;
           const seq = (
             <TransitionSeries.Sequence key={shot.id} durationInFrames={shot.dur} premountFor={20} name={shot.id}>
-              <CameraAdjustContext.Provider value={shot.cam ?? {}}>
+              <CameraAdjustContext.Provider value={shot.cam ?? FRAMING[shot.id] ?? {}}>
                 <C dur={shot.dur} start={shot.from} />
               </CameraAdjustContext.Provider>
             </TransitionSeries.Sequence>

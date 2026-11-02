@@ -47,7 +47,10 @@ def main():
     dec = Decoder(samprate=16000, bestpath=False, loglevel="ERROR")
     for rule in a.dict:
         w, phones = rule.split("=", 1)
-        dec.add_word(w.lower(), phones.strip(), True)
+        try:
+            dec.add_word(w.lower(), phones.strip(), True)
+        except RuntimeError:
+            print(f"note: {w} already in the dictionary as {dec.lookup_word(w.lower())}; use {w}(2)=… for another pronunciation", file=sys.stderr)
     dec.set_align_text(" ".join(words))
     dec.start_utt()
     dec.process_raw(raw, full_utt=True)

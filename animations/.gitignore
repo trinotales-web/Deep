@@ -3,3 +3,4 @@ out
 public/audio/lib
 public/audio/licensed
 whisper.cpp
+public/photos

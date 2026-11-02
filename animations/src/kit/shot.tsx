@@ -3,6 +3,7 @@
 import React from "react";
 import { interpolate } from "remotion";
 import { X } from "./context";
+import { CameraAdjustContext } from "./Stage";
 import { Part } from "./Part";
 import { InkLine } from "./props";
 import { poly, ellipse } from "./shapes";
@@ -19,6 +20,12 @@ export const CJK = "Montserrat, 'WenQuanYi Zen Hei', sans-serif";
 
 /** World point → Label position (fractions of a 1920×1080 frame) for a camera (zoom, x, y). */
 export const scr = (x: number, y: number, zoom = 1, cx = 0, cy = 0) => ({ x: 0.5 + ((x - cx) * zoom) / 1920, y: 0.5 - ((y - cy) * zoom) / 1080 });
+
+/** `scr` that also follows the shot's CameraAdjust (per-shot close-up framing). */
+export const useScr = () => {
+  const adj = React.useContext(CameraAdjustContext);
+  return (x: number, y: number, zoom = 1, cx = 0, cy = 0) => scr(x, y, zoom * (adj.z ?? 1), cx + (adj.x ?? 0), cy + (adj.y ?? 0));
+};
 
 /** Thick map arrow that grows along `pts` (k 0..1) with a head at the tip. */
 export const GrowArrow: React.FC<{ pts: [number, number][]; k: number; color?: string; width?: number; z?: number }> = ({ pts, k, color = "#2f5f9a", width = 26, z = 0 }) => {
@@ -68,6 +75,7 @@ export const SpeechBubble: React.FC<{ x: number; y: number; w?: number; h?: numb
 
 /** Text on a map Ribbon drawn at the same world point (camera zoom/x/y). */
 export const RibbonText: React.FC<{ text: string; x: number; y: number; zoom?: number; cx?: number; cy?: number; size?: number; at?: number }> = ({ text, x, y, zoom = 1, cx = 0, cy = 0, size = 0.042, at = 0 }) => {
-  const p = scr(x, y + 4, zoom, cx, cy);
+  const sc = useScr();
+  const p = sc(x, y + 4, zoom, cx, cy);
   return <Label text={text} x={p.x} y={p.y} size={size} color="#fdf3dc" at={at} />;
 };

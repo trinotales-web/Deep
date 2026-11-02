@@ -7,7 +7,7 @@ import {
   ChinaMap, chinaXY, PLACES, Ribbon, Sunburst, StoneGate, ImperialCarriage, FishCart, BambooSlips, TreasureChest, JadeDisc, Coin, Ding, OilLamp,
   BurialMound, RoundTree, Flame, Smoke, Banner, Mountains, Sky, StoneWall, MapScroll,
 } from "../../kit/env";
-import { sec, pop, scr, RibbonText, SpeechBubble } from "../../kit/shot";
+import { sec, pop, scr, useScr, RibbonText, SpeechBubble } from "../../kit/shot";
 import { Plains, ThroneHall, TombCorridor } from "./sets";
 import { EMPEROR, HUHAI, FUSU, WORKER, OFFICIAL, ZHAO_GAO, GUARD, WIFE, SIMA_QIAN, REBEL } from "./cast";
 import { upright, You } from "./p1a";
@@ -263,6 +263,7 @@ export const MealsShot: React.FC<ShotProps> = ({ start, dur }) => {
 // 25.45 "Officials keep handing in their reports, and someone hidden inside answers them."
 export const ReportsShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
+  const sc = useScr();
   const t = absT(start, frame);
   const b = pop(t, 28.9);
   const arm: [number, number] = [1.6, 0.2];
@@ -279,7 +280,7 @@ export const ReportsShot: React.FC<ShotProps> = ({ start, dur }) => {
           <SpeechBubble x={540} y={300} w={480} h={200} tx={380} ty={-40} s={b} z={10} />
         </Road>
       </Stage>
-      {b > 0 ? <Label text="VERY GOOD." {...scr(540, 300 + 30, 1.2, 120, -60)} size={0.05} color="#211b20" at={0} /> : null}
+      {b > 0 ? <Label text="VERY GOOD." {...sc(540, 300 + 30, 1.2, 120, -60)} size={0.05} color="#211b20" at={0} /> : null}
     </AbsoluteFill>
   );
 };

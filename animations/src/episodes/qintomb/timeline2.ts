@@ -1,5 +1,6 @@
 import type { Cut } from "./script";
 import * as R from "./redo";
+import * as P from "./photo";
 import * as H from "./p2a";
 import * as J from "./p2b";
 
@@ -17,6 +18,7 @@ export const CUTS2: Cut[] = [
   { id: "h08", at: 19.15, into: "cut", C: H.KeepSecretShot },
   { id: "h09", at: 20.55, into: "slide-left", C: R.MealsRedoShot },
   { id: "h10", at: 25.45, into: "cut", C: H.ReportsShot },
+  { id: "h10b", at: 27.62, into: "cut", C: P.CarriagePhoto },
   { id: "h11", at: 29.85, into: "cut", C: H.SummerSmellShot },
   { id: "h12", at: 32.95, into: "cut", C: H.FishCoverShot },
   { id: "h13", at: 36.75, into: "slide-left", C: H.FakeLetterShot },
@@ -44,12 +46,12 @@ export const CUTS2: Cut[] = [
   { id: "j04", at: 97.05, into: "cut", C: J.DistanceShot },
   { id: "j05", at: 99.45, into: "cut", C: J.PotteryShot },
   { id: "j06", at: 101.25, into: "cut", C: J.ClayHeadShot },
-  { id: "j07", at: 102.8, into: "cut", C: J.RushInShot },
-  { id: "j08", at: 106.3, into: "slide-left", C: J.EightThousandShot },
-  { id: "j09", at: 109.25, into: "cut", C: J.ArchersOfficersShot },
+  { id: "j07", at: 102.8, into: "cut", C: P.ExcavationPhoto },
+  { id: "j08", at: 106.3, into: "slide-left", C: P.PitPhoto },
+  { id: "j09", at: 109.25, into: "cut", C: P.ArchersPhoto },
   { id: "j10", at: 110.55, into: "cut", C: J.HorsesChariotsShot },
   { id: "j11", at: 112.05, into: "cut", C: J.RowsShot },
-  { id: "j12", at: 114.25, into: "cut", C: J.FacesShot },
+  { id: "j12", at: 114.25, into: "cut", C: P.FacesPhoto },
   // the lost colours
   { id: "k01", at: 117.15, into: "slide-left", C: J.MostDontKnowShot },
   { id: "k02", at: 119.4, into: "cut", C: J.NotBrownShot },
@@ -58,11 +60,11 @@ export const CUTS2: Cut[] = [
   { id: "k05", at: 126.15, into: "cut", C: R.CurlRedoShot },
   { id: "k06", at: 130.6, into: "cut", C: R.FallsOffRedoShot },
   // fire and mercury
-  { id: "l01", at: 133.6, into: "slide-left", C: J.BurnMarksShot },
+  { id: "l01", at: 133.6, into: "slide-left", C: P.BrokenPhoto },
   { id: "l02", at: 137.75, into: "cut", C: J.WhoDidItShot },
   { id: "l03", at: 138.65, into: "cut", C: J.RebelsShot },
   { id: "l04", at: 140.0, into: "cut", C: J.SetFireShot },
-  { id: "l05", at: 144.65, into: "slide-left", C: J.NeverOpenedShot },
+  { id: "l05", at: 144.65, into: "slide-left", C: P.MoundPhoto },
   { id: "l06", at: 149.5, into: "cut", C: J.SoilTestShot },
   { id: "l07", at: 152.1, into: "cut", C: J.MercuryHighShot },
   { id: "l08", at: 154.75, into: "cut", C: R.VaporRedoShot },

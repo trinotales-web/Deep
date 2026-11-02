@@ -4,6 +4,7 @@ import * as A from "./p1a";
 import * as B from "./p1b";
 import * as C from "./p1c";
 import * as H from "./hook";
+import * as P from "./photo";
 
 // Part 1 cut list (seconds on public/vo/qin-tomb-1.voice.m4a), in the breaths
 // between phrases (see public/captions/qin-tomb-1.json).
@@ -81,8 +82,10 @@ export const CUTS1: Cut[] = [
   { id: "f06", at: 203.75, into: "fade", C: R.FoundPitsRedoShot },
   { id: "f07", at: 206.25, into: "cut", C: C.SkeletonsShot },
   { id: "f08", at: 209.0, into: "slide-left", C: C.PalaceUnderHillShot },
-  { id: "f09", at: 213.55, into: "cut", C: C.TrapTestShot },
+  { id: "f09", at: 213.55, into: "cut", C: P.CrossbowPhoto },
+  { id: "f09b", at: 215.05, into: "cut", C: C.TrapTestShot },
   { id: "f10", at: 217.65, into: "slide-left", C: C.SeventySixShot },
+  { id: "f10b", at: 220.87, into: "cut", C: P.AerialPhoto },
   { id: "f11", at: 223.35, into: "cut", C: C.TowerCompareShot },
   // Sima Qian
   { id: "g01", at: 226.35, into: "cut", C: C.HowKnowShot },

@@ -223,42 +223,50 @@ export const WholePalaceRedoShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const NeverDieRedoShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const arm: [number, number] = [1.15, 0.9];
+  const ex = -420;
+  const ey = -800;
+  const es = 2.25;
+  const desk = -470;
+  const arm = reachArm(ex, ey, es, 1, [20, desk + 70]);
   const obsessed = t > 141.3;
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.08), y: -40 }} light={{ pos: [500, -100] }} vignette={0.75} vignetteColor="#04060c">
         <ThroneHall floorY={-760} throne={false} dim={0.45}>
-          {/* piles of scrolls and a candle */}
-          {[[480, -470], [620, -500], [560, -420], [700, -455]].map(([x, y], i) => (
-            <X key={i} x={x} y={y} rot={(i % 2 ? 0.2 : -0.15)} z={4 + i * 0.01}>
+          {/* low desk with the open bamboo book, scrolls and a candle */}
+          <X x={330} y={desk} z={3.5}>
+            <Part shape={roundRect(980, 40, 10)} color="#3a2420" shade={0.2} />
+            {[-1, 1].map((k) => (
+              <Part key={k} shape={roundRect(34, 300, 6)} color="#2a1a18" shade={0.2} x={k * 420} y={-170} z={-0.01} />
+            ))}
+          </X>
+          <X x={120} y={desk + 20} z={4}>
+            <BambooSlips open={1} n={10} s={1.05} />
+          </X>
+          {[[520, desk + 40], [660, desk + 40], [590, desk + 86], [720, desk + 86]].map(([x, y], i) => (
+            <X key={i} x={x} y={y} rot={(i % 2 ? 0.08 : -0.06)} z={4 + i * 0.01}>
               <Part shape={roundRect(170, 46, 20)} color={i % 2 ? "#d9c49a" : "#c9b07a"} shade={0.2} />
               <Line pts={[[-60, 0], [60, 0]]} width={4} color="#b8322a" z={0.001} />
             </X>
           ))}
-          <X x={380} y={-560} z={4.5}>
+          <X x={380} y={desk + 20} z={4.5}>
             <Part shape={roundRect(30, 120, 8)} color="#f4f1ea" shade={0.15} y={60} />
             <Flame y={128} size={0.32} seed={4} z={0.01} />
             <Glow y={130} rx={620} color="#ffb35a" alpha={0.55} additive />
           </X>
           <Character
             {...EMPEROR}
-            x={-260}
-            y={-800}
-            s={2.25}
+            x={ex}
+            y={ey}
+            s={es}
             z={3}
             look={0.55}
-            expression={obsessed ? { eyes: "wide", mouth: "grin", brows: -0.5, eyebags: true } : { eyes: "open", mouth: "flat", brows: 0.3, eyebags: true, gaze: [0.5, -0.6] }}
-            pose={{ ...poses.idle(frame), armF: arm, armB: [1.0, 1.0] }}
-            holdF={
-              <X rot={upright(arm)} x={30}>
-                <BambooSlips open={1} n={10} s={1.05} />
-              </X>
-            }
+            expression={obsessed ? { eyes: "wide", mouth: "grin", brows: -0.5, eyebags: true, gaze: [0.6, -0.5] } : { eyes: "open", mouth: "flat", brows: 0.3, eyebags: true, gaze: [0.6, -0.6] }}
+            pose={{ ...poses.idle(frame), armF: arm, armB: [0.6, 0.9] }}
           />
         </ThroneHall>
       </Stage>
-      <Label text="長生不死" sub="NEVER DIE" x={0.5} y={0.13} size={0.1} kind="title" font={CJK} at={sec(start)(141.2)} />
+      <Label text="長生不死" sub="NEVER DIE" x={0.7} y={0.13} size={0.09} kind="box" font={CJK} at={sec(start)(141.2)} />
     </AbsoluteFill>
   );
 };

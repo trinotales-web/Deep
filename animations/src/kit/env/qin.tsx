@@ -289,9 +289,9 @@ export const ChineseHall: React.FC<XProps & { w?: number; h?: number; wall?: str
     <Part shape={roundRect(w + 40, 30, 4)} color="#a8a49a" shade={0.2} y={15} />
     <Part shape={roundRect(w - 40, h, 4)} color={wall} shade={0.2} y={30 + h / 2} z={0.001}>
       {Array.from({ length: 5 }, (_, i) => (
-        <Line key={i} pts={[[-w / 2 + 40 + (i * (w - 80)) / 4, 30], [-w / 2 + 40 + (i * (w - 80)) / 4, 30 + h]]} width={4} color={shadeHex(wall, 0.35)} z={0.001} />
+        <Line key={i} pts={[[-w / 2 + 40 + (i * (w - 80)) / 4, -h / 2], [-w / 2 + 40 + (i * (w - 80)) / 4, h / 2]]} width={4} color={shadeHex(wall, 0.35)} z={0.001} />
       ))}
-      <Part shape={roundRect(w * 0.18, h * 0.6, 3)} color="#3a2420" flat outline={3} y={30 + h * 0.3} z={0.002} />
+      <Part shape={roundRect(w * 0.18, h * 0.6, 3)} color="#3a2420" flat outline={3} y={-h / 2 + h * 0.3} z={0.002} />
     </Part>
     {Array.from({ length: tiers }, (_, t) => {
       const y = 30 + h + t * h * 0.7;
@@ -500,14 +500,14 @@ export const ImperialCarriage: React.FC<XProps & { horses?: number; walk?: numbe
         <Horse key={i} x={560 + i * 30} y={i * 10} s={0.9} walk={walk} seed={i * 1.3} color={i % 2 ? "#6e4a32" : "#8a5a3a"} z={-0.02 + i * 0.01} />
       ))}
       <Part shape={roundRect(360, 200, 14)} color={LACQUER} shade={0.22} y={230} z={0.01}>
-        <Part shape={roundRect(110, 70, 6)} color="#2a2026" flat outline={4} x={70} y={240} z={0.001} />
+        <Part shape={roundRect(110, 70, 6)} color="#2a2026" flat outline={4} x={70} y={10} z={0.001} />
         <Line
-          pts={Array.from({ length: 15 }, (_, i) => [-160 + i * 23, 150 + (i % 2 ? 10 : 0)] as P)}
+          pts={Array.from({ length: 15 }, (_, i) => [-160 + i * 23, -80 + (i % 2 ? 10 : 0)] as P)}
           width={5}
           color={GOLD}
           z={0.001}
         />
-        <Line pts={[[-180, 300], [180, 300]]} width={6} color={RED} z={0.001} />
+        <Line pts={[[-180, 70], [180, 70]]} width={6} color={RED} z={0.001} />
       </Part>
       <Part shape={blob([[-240, 330], [-180, 380], [0, 410], [180, 380], [240, 330], [0, 350]], 10)} color="#2a3a3e" shade={0.22} z={0.02} />
       <Wheel x={-30} y={100} r={100} spin={-frame * 0.08 * walk} z={0.03} />

@@ -21,6 +21,12 @@ export const QinKit: React.FC<{ page?: number }> = ({ page = 0 }) => {
     <AbsoluteFill style={{ backgroundColor: "#cfe6f2" }}>
       <Stage camera={{ zoom: 1 }} light={{ dir: [-0.6, 0.8] }} vignette={0.1}>
         <Sky w={4000} h={3000} top="#8ec9ee" bottom="#e8f4f8" z={-40} />
+        {page === 10 ? (
+          <>
+            <Ground w={4000} h={1200} y={-300} color="#7fae5a" far="#8fbc66" z={-30} />
+            <BurialMound x={0} y={-300} w={1300} h={640} stage="done" seed={4} />
+          </>
+        ) : null}
         {page === 9 ? (
           <>
             <Sky w={4000} h={2400} y={600} top="#3b2a5a" mid="#d0603e" bottom="#f6b46a" z={-40} />

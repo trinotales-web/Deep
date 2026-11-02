@@ -21,7 +21,7 @@ const KingdomTags: React.FC<{ names: string[]; zoom?: number; cy?: number; at?: 
     {names.map((n) => {
       const [lon, lat] = KINGDOM_LABEL[n];
       const [x, y] = chinaXY(lon, lat, MAP_PPD, MAP_C);
-      return <Label key={n} text={n.toUpperCase()} {...scr(x, y, zoom, 0, cy)} size={0.03} color="#fdf3dc" at={at} />;
+      return <Label key={n} text={n.toUpperCase()} {...scr(x, y - 30, zoom, 0, cy)} size={0.036} kind="box" at={at} />;
     })}
   </>
 );

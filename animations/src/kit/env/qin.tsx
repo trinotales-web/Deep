@@ -436,32 +436,83 @@ export const BurialMound: React.FC<XProps & { w?: number; h?: number; stage?: "b
       </X>
     );
   }
+  // planted mound (reference look): a steep, rounded hill wholly covered in a
+  // dense canopy — scalloped silhouette, rows of small foliage scallops inside,
+  // darker on the side away from the light
   const r = rng(seed);
-  const dome = (t: number) => Math.sqrt(Math.max(0, 1 - t * t));
-  const crowns: [number, number, number, number][] = [];
-  const rowsN = 6;
-  for (let row = 0; row < rowsN; row++) {
-    const yk = (row + 0.5) / rowsN;
-    const halfW = (w / 2) * Math.sqrt(Math.max(0, 1 - yk * yk)) * 0.9;
-    const n = Math.max(1, Math.round((halfW * 2) / 120));
-    for (let i = 0; i < n; i++) {
-      const x = -halfW + ((i + 0.5) / n) * halfW * 2 + (r() - 0.5) * 30;
-      crowns.push([x, yk * h * 0.92 + (r() - 0.5) * 16, 110 + r() * 30, crowns.length]);
+  const p = 2.5;
+  const half = (y: number) => (w / 2) * Math.pow(Math.max(0, 1 - Math.pow(Math.min(1, y / h), p)), 1 / p);
+  const N = Math.max(24, Math.round(w / 34));
+  const base: P[] = Array.from({ length: N + 1 }, (_, i) => {
+    const a = Math.PI - (i / N) * Math.PI;
+    const c = Math.cos(a);
+    const sn = Math.sin(a);
+    const x = (w / 2) * Math.sign(c) * Math.pow(Math.abs(c), 2 / p);
+    const y = h * Math.pow(sn, 2 / p);
+    return [x, y];
+  });
+  const bump = Math.max(6, w * 0.0075);
+  const edge: P[] = [];
+  base.forEach((pt, i) => {
+    if (i === base.length - 1) {
+      edge.push(pt);
+      return;
     }
+    const q = base[i + 1];
+    const mx = (pt[0] + q[0]) / 2;
+    const my = (pt[1] + q[1]) / 2;
+    const len = Math.hypot(q[0] - pt[0], q[1] - pt[1]);
+    const dx = (q[0] - pt[0]) / len;
+    const dy = (q[1] - pt[1]) / len;
+    // outward normal (curve runs left→right over the top)
+    const nx = -dy;
+    const ny = dx;
+    const bb = bump * (0.8 + r() * 0.5);
+    for (let k = 0; k < 6; k++) {
+      const t = k / 6;
+      const a = Math.PI * t;
+      edge.push([pt[0] + dx * len * t + nx * Math.sin(a) * bb, pt[1] + dy * len * t + ny * Math.sin(a) * bb]);
+    }
+    void mx;
+    void my;
+  });
+  const rows: P[][] = [];
+  const step = Math.max(26, w * 0.034);
+  for (let y = step * 0.8, row = 0; y < h - step * 0.3; y += step * 0.78, row++) {
+    const hw = half(y) - step * 0.6;
+    if (hw < step) continue;
+    // irregular crowns: varying widths, small vertical jitter, broken runs
+    let pts: P[] = [];
+    let x = -hw + (row % 2) * step * 0.45 + r() * step * 0.3;
+    while (x < hw - step * 0.5) {
+      const cw = step * (0.65 + r() * 0.7);
+      const jy = (r() - 0.5) * step * 0.28;
+      if (r() < 0.12 && pts.length > 1) {
+        rows.push(pts);
+        pts = [];
+        x += cw * 0.6;
+        continue;
+      }
+      for (let k = 0; k <= 6; k++) {
+        const a = Math.PI - (k / 6) * Math.PI;
+        pts.push([x + cw / 2 + Math.cos(a) * cw * 0.5, y + jy + Math.sin(a) * cw * 0.45]);
+      }
+      x += cw;
+    }
+    if (pts.length > 1) rows.push(pts);
   }
   return (
     <X {...xf}>
-      <Part
-        shape={blob(Array.from({ length: 13 }, (_, i) => {
-          const t = -1 + (i / 12) * 2;
-          return [t * (w / 2), Math.max(4, dome(t) * h)] as P;
-        }).concat([[w / 2, 0], [-w / 2, 0]]), 6)}
-        color="#4f8a3e"
-        shade={0.22}
-      />
-      {crowns.map(([x, y, s, i]) => (
-        <Part key={i} shape={cloudShape(s, s * 0.72, seed + i)} color={["#5a9a46", "#4f8a3e", "#66a850"][i % 3]} shade={0.22} x={x} y={y} z={0.001 + (h - y) * 0.000001} />
+      <Part shape={poly(edge.concat([[w / 2, 0], [-w / 2, 0]]))} color="#4f9a3c" shade={0.26} />
+      {rows.map((pts, i) => (
+        <Line key={i} pts={pts} width={Math.max(2, w * 0.0016)} color="#3c7f30" z={0.001} />
       ))}
+      {rows
+        .filter((pts) => pts[0][1] > h * 0.55)
+        .map((pts, i) => {
+          const hl = pts.filter(([x, y]) => x < -w * 0.02 && x > -half(y) * 0.85).map(([x, y]) => [x, y + 3] as P);
+          return hl.length > 1 && i % 2 === 0 ? <Line key={`h${i}`} pts={hl.slice(0, 14)} width={Math.max(2, w * 0.0015)} color="#68ad4c" z={0.0012} /> : null;
+        })}
     </X>
   );
 };
@@ -851,19 +902,135 @@ export const PLACES: Record<string, P> = {
   xianyang: [108.7, 34.35], lishan: [109.27, 34.38], langya: [119.6, 35.6], shaqiu: [115.2, 37.4],
 };
 
+// Approximate courses of the two great rivers (lon, lat), source → sea.
+const RIVERS: P[][] = [
+  // Yellow River (Huang He)
+  [[96.0, 34.8], [98.5, 34.9], [101.0, 35.4], [102.6, 35.9], [103.8, 36.1], [105.2, 37.0], [106.2, 38.0], [106.6, 39.3], [107.2, 40.5], [108.5, 40.8], [109.8, 40.6], [111.2, 40.3], [111.4, 39.4], [110.7, 38.3], [110.4, 36.6], [110.3, 35.3], [110.5, 34.6], [111.5, 34.8], [112.5, 34.75], [113.7, 34.9], [115.2, 35.2], [116.4, 36.0], [117.5, 36.9], [118.5, 37.6], [119.1, 37.8]],
+  // Yangtze (Chang Jiang)
+  [[91.5, 33.4], [94.0, 33.2], [96.5, 32.6], [98.6, 30.6], [99.4, 28.6], [100.1, 26.9], [101.4, 26.4], [102.7, 26.3], [103.8, 27.5], [104.6, 28.8], [105.6, 28.9], [106.5, 29.6], [108.0, 30.3], [109.5, 31.0], [111.0, 30.8], [112.2, 30.3], [113.3, 29.9], [114.3, 30.6], [115.5, 29.9], [116.4, 29.8], [117.2, 30.6], [118.4, 31.4], [118.8, 32.1], [119.9, 32.2], [120.9, 31.8], [121.8, 31.4]],
+];
+// Mountain ranges as clusters of peak icons (lon, lat, size 0..1)
+const PEAKS: [number, number, number][] = [
+  // Qinling, the wall south of Qin
+  [105.6, 33.7, 0.8], [106.9, 33.9, 0.9], [108.3, 33.8, 1], [109.6, 33.7, 0.8], [110.8, 33.6, 0.7],
+  // Taihang
+  [113.1, 36.0, 0.7], [113.5, 37.2, 0.8], [113.9, 38.5, 0.7],
+  // Yan mountains
+  [116.3, 40.7, 0.7], [117.8, 40.9, 0.6],
+  // the Tibetan highlands to the west
+  [96.5, 35.6, 0.9], [98.6, 34.3, 1], [100.6, 33.2, 0.9], [97.5, 31.6, 1], [99.6, 30.6, 0.9], [102.3, 31.4, 0.8], [95.0, 33.0, 1],
+  // southern hills
+  [110.6, 25.5, 0.6], [112.4, 25.2, 0.7], [114.1, 25.0, 0.6], [116.6, 26.6, 0.6], [117.6, 27.6, 0.6],
+];
+
+/** Diagonal hatch segments (45°) clipped to a set of rings (even-odd). */
+const hatchSegments = (rings: P[][], spacing: number): [P, P][] => {
+  if (!rings.length) return [];
+  let lo = Infinity;
+  let hi = -Infinity;
+  rings.forEach((ring) => ring.forEach(([x, y]) => {
+    lo = Math.min(lo, x - y);
+    hi = Math.max(hi, x - y);
+  }));
+  const out: [P, P][] = [];
+  for (let c = lo + spacing / 2; c < hi; c += spacing) {
+    const hits: P[] = [];
+    rings.forEach((ring) => {
+      for (let i = 0; i < ring.length; i++) {
+        const A = ring[i];
+        const B = ring[(i + 1) % ring.length];
+        const fa = A[0] - A[1] - c;
+        const fb = B[0] - B[1] - c;
+        if ((fa < 0 && fb >= 0) || (fa >= 0 && fb < 0)) {
+          const t = fa / (fa - fb);
+          hits.push([A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t]);
+        }
+      }
+    });
+    hits.sort((p1, p2) => p1[0] - p2[0]);
+    for (let i = 0; i + 1 < hits.length; i += 2) out.push([hits[i], hits[i + 1]]);
+  }
+  return out;
+};
+
+/** Map peak icon (triangle with a darker shadow face and optional snow cap). */
+const Peak: React.FC<XProps & { snow?: boolean }> = ({ snow = false, ...xf }) => (
+  <X {...xf}>
+    <Part shape={poly([[-34, 0], [0, 52], [34, 0]])} color="#b8975c" shade={0.12} outline={3} />
+    <Part shape={poly([[0, 52], [34, 0], [6, 0]])} color="#9a7a46" flat outline={0} z={0.001} />
+    {snow ? <Part shape={poly([[-11, 35], [0, 52], [11, 35], [4, 31], [0, 36], [-5, 31]])} color="#f6f2e6" flat outline={2.5} z={0.002} /> : null}
+  </X>
+);
+
+/** Map pin: red drop with a white centre. Origin = the point it marks. */
+export const MapPin: React.FC<XProps & { color?: string }> = ({ color = "#d8322f", ...xf }) => (
+  <X {...xf}>
+    <Part shape={ellipse(16, 6)} color="#000000" flat outline={0} opacity={0.25} z={-0.001} />
+    <Part shape={blob([[0, 0], [-22, 40], [-20, 62], [0, 76], [20, 62], [22, 40]], 8)} color={color} shade={0.2} outline={3.5} />
+    <Part shape={circle(8)} color="#ffffff" flat outline={0} y={52} z={0.001} />
+  </X>
+);
+
+/** Capital marker: gold star in a ring. */
+const CapitalStar: React.FC<XProps> = (xf) => (
+  <X {...xf}>
+    <Part shape={circle(26)} color="#f4e2b0" shade={0.15} outline={3.5} />
+    <Part
+      shape={poly(Array.from({ length: 10 }, (_, i) => {
+        const a = Math.PI / 2 + (i * Math.PI) / 5;
+        const rr = i % 2 ? 9 : 21;
+        return [Math.cos(a) * rr, Math.sin(a) * rr] as P;
+      }))}
+      color="#c8262f"
+      flat
+      outline={2.5}
+      z={0.001}
+    />
+  </X>
+);
+
+/** Compass rose. */
+const Compass: React.FC<XProps> = (xf) => (
+  <X {...xf}>
+    <Part shape={circle(70)} color="#efe2c0" shade={0.1} outline={3.5} />
+    <Part shape={circle(56)} color="#efe2c0" flat outline={2} z={0.001} />
+    {[0, 1, 2, 3].map((k) => {
+      const a = (k * Math.PI) / 2;
+      const tip: P = [Math.cos(a + Math.PI / 2) * 88, Math.sin(a + Math.PI / 2) * 88];
+      const l: P = [Math.cos(a + Math.PI / 2 + 0.7) * 16, Math.sin(a + Math.PI / 2 + 0.7) * 16];
+      const r2: P = [Math.cos(a + Math.PI / 2 - 0.7) * 16, Math.sin(a + Math.PI / 2 - 0.7) * 16];
+      return (
+        <X key={k} z={0.002 + k * 0.0001}>
+          <Part shape={poly([[0, 0], l, tip])} color={k === 0 ? "#c8262f" : "#3a3436"} flat outline={2.5} />
+          <Part shape={poly([[0, 0], tip, r2])} color={k === 0 ? "#e8574a" : "#6a6266"} flat outline={2.5} />
+        </X>
+      );
+    })}
+    <Part shape={circle(9)} color="#c9963f" flat outline={2.5} z={0.003} />
+    {/* "N" */}
+    <Line pts={[[-9, 104], [-9, 124], [9, 104], [9, 124]]} width={4} color="#3a3436" z={0.003} />
+  </X>
+);
+
 /**
- * Map of China and its neighbours on real coastlines (reference map style).
- * `center` = [lon, lat] placed at the origin; `kingdoms` draws the seven
- * Warring States; `conquered` lists kingdoms already painted in Qin black;
- * `route` = lon/lat polyline drawn dashed up to `routeK`; `dots` = lon/lat.
+ * Map of China and its neighbours on real coastlines (reference map style:
+ * parchment land, teal sea with a shallow-water halo, hatched realms, rivers,
+ * mountain icons, compass). `center` = [lon, lat] placed at the origin;
+ * `kingdoms` draws the seven Warring States; `conquered` lists kingdoms already
+ * painted in Qin black; `route` = lon/lat polyline drawn dashed up to `routeK`;
+ * `dots` = lon/lat pins; `capital` marks Xianyang.
  */
 export const ChinaMap: React.FC<
   XProps & {
     ppd?: number; center?: P; kingdoms?: boolean; conquered?: string[]; sea?: string; land?: string; china?: string; waves?: boolean;
     route?: P[]; routeK?: number; routeColor?: string; dots?: P[]; w?: number; h?: number;
     /** Only draw these kingdoms (to pop them in one by one). */ only?: string[];
+    rivers?: boolean; mountains?: boolean; compass?: boolean; capital?: boolean; hatch?: boolean;
   }
-> = ({ ppd = 40, center = [112, 34], kingdoms = false, conquered = [], only, sea = "#93c3c4", land = "#ddcca2", china = "#efd39b", waves = true, route, routeK = 1, routeColor = "#c8262f", dots = [], w = 5000, h = 3600, ...xf }) => {
+> = ({
+  ppd = 40, center = [112, 34], kingdoms = false, conquered = [], only, sea = "#8fc2c0", land = "#e2cf9f", china = "#efd9a3", waves = true, route, routeK = 1,
+  routeColor = "#c8262f", dots = [], w = 5000, h = 3600, rivers = true, mountains = true, compass = true, capital = false, hatch = true, ...xf
+}) => {
   const r = rng(9);
   const [cx, cy] = geoXY(center[0], center[1], ppd);
   const sc = (ring: P[]) => ring.map(([x, y]) => [x * ppd - cx, y * ppd - cy] as P);
@@ -871,6 +1038,15 @@ export const ChinaMap: React.FC<
     const [x, y] = geoXY(lon, lat, ppd);
     return [x - cx, y - cy];
   };
+  const kingdomRings = React.useMemo(
+    () => Object.fromEntries(Object.entries(KS.kingdoms).map(([name, rings]) => [name, rings.map((ring) => ring.map(([x, y]) => [x * ppd - cx, y * ppd - cy] as P))])),
+    [ppd, cx, cy],
+  );
+  const hatches = React.useMemo(
+    () => Object.fromEntries(Object.entries(kingdomRings).map(([name, rings]) => [name, hatchSegments(rings, Math.max(14, ppd * 0.5))])),
+    [kingdomRings, ppd],
+  );
+  const halo = shadeHex(sea, -0.22);
   let routePts: P[] = [];
   if (route && route.length > 1) {
     const pts = route.map(([lo, la]) => at(lo, la));
@@ -889,44 +1065,74 @@ export const ChinaMap: React.FC<
       }
     }
   }
+  const tip = routePts.length > 1 ? routePts[routePts.length - 1] : null;
+  const prev = routePts.length > 1 ? routePts[routePts.length - 2] : null;
+  const ang = tip && prev ? Math.atan2(tip[1] - prev[1], tip[0] - prev[0]) : 0;
   return (
     <X {...xf}>
       <Part shape={roundRect(w, h, 0)} color={sea} flat outline={0} z={-0.1} />
       {waves
-        ? Array.from({ length: 80 }, () => [(r() - 0.5) * w, (r() - 0.5) * h]).map(([x, y], i) => (
+        ? Array.from({ length: 90 }, () => [(r() - 0.5) * w, (r() - 0.5) * h]).map(([x, y], i) => (
             <Line key={`w${i}`} pts={[[x - 26, y], [x - 13, y + 7], [x, y], [x + 13, y - 7], [x + 26, y]]} smooth width={3.5} color={shadeHex(sea, 0.14)} z={-0.09} />
           ))
         : null}
+      {/* shallow-water halo along every coast */}
+      {[...EA.land, ...EA.japan].map((ring, i) => (
+        <Line key={`h${i}`} pts={[...sc(ring), sc(ring)[0]]} width={Math.max(10, ppd * 0.42)} color={halo} z={-0.05} />
+      ))}
       {EA.land.map((ring, i) => (
-        <Part key={`l${i}`} shape={poly(sc(ring))} color={land} flat outline={5} z={i * 0.0001} />
+        <Part key={`l${i}`} shape={poly(sc(ring))} color={land} flat outline={4.5} z={i * 0.0001} />
       ))}
       {EA.japan.map((ring, i) => (
-        <Part key={`j${i}`} shape={poly(sc(ring))} color={land} flat outline={5} z={0.01 + i * 0.0001} />
+        <Part key={`j${i}`} shape={poly(sc(ring))} color={land} flat outline={4.5} z={0.01 + i * 0.0001} />
       ))}
       {KS.china.map((ring, i) => (
-        <Part key={`c${i}`} shape={poly(sc(ring))} color={china} flat outline={5} z={0.02 + i * 0.0001} />
+        <Part key={`c${i}`} shape={poly(sc(ring))} color={china} flat outline={4.5} z={0.02 + i * 0.0001} />
       ))}
       {kingdoms
-        ? Object.entries(KS.kingdoms).filter(([name]) => !only || only.includes(name)).map(([name, rings]) =>
-            rings.map((ring, i) => (
-              <Part
-                key={`${name}${i}`}
-                shape={poly(sc(ring))}
-                color={conquered.includes(name) ? KINGDOM_COLORS.qin : KINGDOM_COLORS[name]}
-                flat
-                outline={4}
-                z={0.03 + i * 0.0001}
-              />
-            )),
-          )
+        ? Object.entries(kingdomRings).filter(([name]) => !only || only.includes(name)).map(([name, rings]) => {
+            const col = conquered.includes(name) ? KINGDOM_COLORS.qin : KINGDOM_COLORS[name];
+            const hc = name === "qin" || conquered.includes(name) ? mixHex(col, "#ffffff", 0.16) : shadeHex(col, 0.16);
+            return (
+              <X key={name} z={0.03}>
+                {rings.map((ring, i) => (
+                  <Part key={i} shape={poly(ring)} color={col} flat outline={4} z={i * 0.0001} />
+                ))}
+                {hatch
+                  ? hatches[name].map(([a, b], i) => <Line key={`x${i}`} pts={[a, b]} width={2.5} color={hc} z={0.001} />)
+                  : null}
+              </X>
+            );
+          })
+        : null}
+      {rivers
+        ? RIVERS.map((river, i) => (
+            <X key={`rv${i}`} z={0.04}>
+              <Line pts={river.map(([lo, la]) => at(lo, la))} smooth width={Math.max(7, ppd * 0.2)} color="#2f5a80" />
+              <Line pts={river.map(([lo, la]) => at(lo, la))} smooth width={Math.max(3.5, ppd * 0.1)} color="#7fb6e0" z={0.001} />
+            </X>
+          ))
+        : null}
+      {mountains
+        ? PEAKS.map(([lo, la, k], i) => {
+            const [x, y] = at(lo, la);
+            return <Peak key={`p${i}`} x={x} y={y} s={(0.55 + k * 0.45) * (ppd / 46)} snow={lo < 103} z={0.045 + i * 0.0001} />;
+          })
         : null}
       {routePts.length > 1
         ? routePts.slice(0, -1).map((p, i) => (i % 2 === 0 ? <Line key={`r${i}`} pts={[p, routePts[i + 1]]} width={9} color={routeColor} z={0.05} /> : null))
         : null}
+      {tip ? (
+        <X x={tip[0]} y={tip[1]} rot={ang} z={0.051}>
+          <Part shape={poly([[-6, 18], [30, 0], [-6, -18]])} color={routeColor} flat outline={3} />
+        </X>
+      ) : null}
+      {capital ? <CapitalStar {...(() => { const [x, y] = at(108.7, 34.35); return { x, y }; })()} z={0.07} /> : null}
       {dots.map(([lo, la], i) => {
         const [x, y] = at(lo, la);
-        return <Part key={`d${i}`} shape={circle(9)} color="#c8262f" flat outline={3.5} x={x} y={y} z={0.06} />;
+        return <MapPin key={`d${i}`} x={x} y={y} s={Math.max(0.6, ppd / 46)} z={0.06 + i * 0.001} />;
       })}
+      {compass ? <Compass {...(() => { const [x, y] = at(125.5, 25.5); return { x, y }; })()} s={ppd / 46} z={0.08} /> : null}
     </X>
   );
 };

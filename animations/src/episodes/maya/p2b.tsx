@@ -275,7 +275,7 @@ export const ChocolateShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.08), y: -40 }} light={{ dir: [-0.5, 0.6] }} vignette={0.55}>
         <Gradient w={6000} h={4000} stops={[[0, "#8a5a3a"], [1, "#4a2a1a"]]} z={-41} />
         <Sunburst r={2400} rays={20} color="#9a6a42" alt="#8a5a3a" speed={0.5} z={-40} />
-        <Character {...COLUMBUS} x={-520} y={-900} s={1.75} z={1} look={0.5} expression={{ eyes: "happy", mouth: "grin", brows: -0.2 }} pose={poses.shrug(t - 127.6)} />
+        <Character {...COLUMBUS} x={-520} y={-740} s={1.6} z={1} look={0.5} expression={{ eyes: "happy", mouth: "grin", brows: -0.2 }} pose={poses.shrug(t - 127.6)} />
         <X x={330} y={-120} s={pop(t, 128.9)} z={2}>
           <CoffeeCup x={-170} y={-140} s={1.6} />
           <ChocolateStick x={170} y={60} rot={0.5} s={1.0} />
@@ -334,7 +334,7 @@ export const WashAshoreShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.1, 1.16), y: -160 }} light={{ dir: [0.5, 0.6] }} vignette={0.65}>
         <BeachSet horizon={-60} mood="dusk">
-          <Lying design={{ ...GUERRERO_SAILOR }} x={-900} y={-330} s={1.0} z={2} dir={-1} lift={ramp(t, 136.4, 137.2) * 0.3} />
+          <Lying design={{ ...GUERRERO_SAILOR }} x={-760} y={-330} s={1.0} z={2} dir={-1} lift={ramp(t, 136.4, 137.2) * 0.3} />
           <Lying design={{ ...AGUILAR }} x={-10} y={-500} s={1.1} z={2.1} dir={-1} />
           <Lying design={{ ...SPANISH_SOLDIER(1), hat: null }} x={620} y={-250} s={0.75} z={1.9} dir={-1} />
           <Plank x={-260} y={-230} w={280} rot={0.2} z={1.5} />
@@ -360,7 +360,7 @@ export const CapturedShot: React.FC<ShotProps> = ({ start, dur }) => {
           {[0, 1, 2].map((i) => {
             const arm: [number, number] = [1.6, 0.2];
             return (
-              <Character key={i} {...ITZA_WARRIOR(i + 1)} x={900 - i * 180 - step * 160} y={-720 - i * 40} s={1.35 - i * 0.08} z={1.9 - i * 0.1} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "flat", brows: -0.7 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={<Spear rot={upright(arm) - 0.35} length={620} tip="#2a2228" />} />
+              <Character key={i} {...ITZA_WARRIOR(i + 1)} x={560 + i * 300 - step * 160} y={-720 + i * 50} s={1.35 - i * 0.12} z={1.9 - i * 0.1} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "flat", brows: -0.7 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={<Spear rot={upright(arm) - 0.35} length={620} tip="#2a2228" />} />
             );
           })}
         </BeachSet>
@@ -552,8 +552,8 @@ export const Cortes1519Shot: React.FC<ShotProps> = ({ start, dur }) => {
           <Caravel x={300} y={80} s={0.32} z={-37.5} />
           <Caravel x={900} y={70} s={0.36} sx={-1} z={-37.2} />
           <Character {...CORTES} x={-300} y={-760} s={1.6} z={2} look={0.5} expression={{ eyes: "half", mouth: "smirk", brows: -0.5 }} pose={{ ...poses.idle(frame), armF: arm }} holdF={hand > 0 && hand < 1 ? <Scroll open={1} w={130} rot={0.3} /> : null} />
-          {[0, 1].map((i) => (
-            <Character key={i} {...SPANISH_SOLDIER(i)} x={-760 - i * 200} y={-700 - i * 30} s={1.3} z={1.8 - i * 0.1} look={0.4} expression={{ eyes: "half", mouth: "flat" }} pose={{ ...poses.idle(frame, i), armF: [0.4, 0.4] }} holdF={<Spear rot={upright([0.4, 0.4])} length={680} tip="#c9ced6" />} />
+          {[0].map((i) => (
+            <Character key={i} {...SPANISH_SOLDIER(i)} x={-780 - i * 200} y={-700 - i * 30} s={1.3} z={1.8 - i * 0.1} look={0.4} expression={{ eyes: "half", mouth: "flat" }} pose={{ ...poses.idle(frame, i), armF: [0.4, 0.4] }} holdF={<Spear rot={upright([0.4, 0.4])} length={680} tip="#c9ced6" />} />
           ))}
           <Character {...MAYA_COMMONER(2)} x={300 - hand * 40} y={-760} s={1.4} z={2.1} facing={-1} look={0.5} expression={{ eyes: "open", mouth: "flat", brows: 0.3 }} pose={{ ...poses.idle(frame, 2), armF: [1.3 * hand, 0.4] }} holdF={hand >= 1 ? <Scroll open={0.3} w={120} rot={0.3} /> : null} />
         </BeachSet>

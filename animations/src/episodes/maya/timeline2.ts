@@ -1,6 +1,7 @@
 import type { Cut } from "./script";
 import * as A from "./p2a";
 import * as B from "./p2b";
+import * as C from "./p2c";
 
 // Second video cut list (seconds on public/vo/maya-2.voice.m4a), in the breaths
 // between phrases (see public/captions/maya-2.json).
@@ -69,4 +70,43 @@ export const CUTS2: Cut[] = [
   { id: "d17", at: 175.9, into: "cut", C: B.FaceTattooedShot },
   { id: "d18", at: 178.55, into: "cut", C: B.FightsSpanishShot },
   { id: "d19", at: 181.65, into: "cut", C: B.DiesInBattleShot },
+  { id: "e01", at: 186.7, into: "slide-left", C: C.ForRealShot },
+  { id: "e02", at: 188.45, into: "cut", C: C.RuleChangesShot },
+  { id: "e03", at: 190.9, into: "cut", C: C.OneCapitalShot },
+  { id: "e04", at: 193.9, into: "cut", C: C.Cortes1521Shot },
+  { id: "e05", at: 198.95, into: "cut", C: C.NoCapitalShot },
+  { id: "e06", at: 201.25, into: "cut", C: C.DozensShot },
+  { id: "e07", at: 202.7, into: "cut", C: C.OneAtATimeShot },
+  { id: "e08", at: 205.3, into: "cut", C: C.SmallpoxShot },
+  { id: "e09", at: 210.85, into: "slide-left", C: C.Alvarado1524Shot },
+  { id: "e10", at: 217.3, into: "cut", C: C.TecunUmanShot },
+  { id: "e11", at: 221.65, into: "cut", C: C.QuetzalLandsShot },
+  { id: "e12", at: 224.55, into: "cut", C: C.RedChestShot },
+  { id: "e13", at: 228.25, into: "cut", C: C.TwentyYearsShot },
+  { id: "e14", at: 233.0, into: "slide-left", C: C.CortesMarchShot },
+  { id: "e15", at: 239.35, into: "cut", C: C.LameHorseShot },
+  { id: "e16", at: 243.1, into: "cut", C: C.NeverSeenShot },
+  { id: "e17", at: 245.1, into: "cut", C: C.LikeAGodShot },
+  { id: "e18", at: 246.65, into: "cut", C: C.FeedItShot },
+  { id: "e19", at: 249.25, into: "cut", C: C.HorseDiesShot },
+  { id: "e20", at: 250.5, into: "cut", C: C.StatueShot },
+  { id: "e21", at: 255.1, into: "cut", C: C.TziminChacShot },
+  { id: "e22", at: 256.9, into: "cut", C: C.ThunderHorseShot },
+  { id: "e23", at: 258.0, into: "cut", C: C.Friars1618Shot },
+  { id: "e24", at: 263.6, into: "cut", C: C.SmashShot },
+  { id: "e25", at: 265.65, into: "cut", C: C.NotFriendsShot },
+  { id: "f01", at: 267.7, into: "slide-left", C: C.LandaShot },
+  { id: "f02", at: 274.4, into: "cut", C: C.ManiShot },
+  { id: "f03", at: 277.6, into: "cut", C: C.BonfireShot },
+  { id: "f04", at: 281.4, into: "cut", C: C.QuoteShot },
+  { id: "f05", at: 286.1, into: "cut", C: C.GoneInSmokeShot },
+  { id: "f06", at: 289.25, into: "cut", C: C.FourBooksShot },
+  { id: "f07", at: 293.3, into: "cut", C: C.TwistShot },
+  { id: "f08", at: 294.75, into: "cut", C: C.LandaWritesShot },
+  { id: "f09", at: 297.95, into: "cut", C: C.AlphabetShot },
+  { id: "f10", at: 303.2, into: "cut", C: C.MostlyWrongShot },
+  { id: "f11", at: 304.7, into: "slide-left", C: C.KnorozovShot },
+  { id: "f12", at: 309.25, into: "cut", C: C.SoundsShot },
+  { id: "f13", at: 312.6, into: "cut", C: C.KeyShot },
+  { id: "f14", at: 315.55, into: "cut", C: C.BurnedHelpedShot },
 ];

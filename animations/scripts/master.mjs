@@ -46,7 +46,10 @@ const ln = `loudnorm=${target}:measured_I=${meas.input_i}:measured_TP=${meas.inp
 // MASTER_LIMIT lowers the ceiling for transient-heavy mixes (AAC adds overshoot).
 const LIMIT = process.env.MASTER_LIMIT ?? "0.74";
 const post = systemOk ? `,aresample=192000,alimiter=limit=${LIMIT}:attack=0.5:release=50:level=disabled` : "";
-const r = run(["-hide_banner", "-y", "-i", input, "-c:v", "copy", "-af", `${pre}${ln}${post},aresample=48000`, "-c:a", "aac", "-b:a", "256k", output]);
+// -aac_pns 0: the native encoder's perceptual noise substitution makes the
+// decoder synthesize random noise in bright bands (shimmers, sparkles); one such
+// burst decoded at +0.4 dBFS through a -3.6 dB limiter. Not needed at 256 kbps.
+const r = run(["-hide_banner", "-y", "-i", input, "-c:v", "copy", "-af", `${pre}${ln}${post},aresample=48000`, "-c:a", "aac", "-aac_pns", "0", "-b:a", "256k", output]);
 if (r.status !== 0) {
   console.error(r.stderr);
   process.exit(1);

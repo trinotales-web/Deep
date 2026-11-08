@@ -3,7 +3,8 @@ import { useVideoConfig } from "remotion";
 import type { Caption } from "@remotion/captions";
 import { Ambience, Bed, Sfx, SoundAt, licensedSrc, duckFromCaptions, type AmbName, type SfxName } from "../../kit/audio";
 import { CUTS1 } from "./timeline1";
-import { END1 } from "./script";
+import { CUTS2 } from "./timeline2";
+import { END1, END2, type Cut } from "./script";
 
 // Sound design for the Maya story. Voice-first: no music, no musical stingers,
 // no birdsong. Licensed one-shots (Essential Sound Effects Bundle) on the key
@@ -210,6 +211,188 @@ const CUES1: [number, string, number][] = [
   [532.12, "rumble-soft", 0.3],
 ];
 
+const CUES2: [number, string, number][] = [
+  [0.94, "whoosh-low-distant", 0.2],
+  [2.79, "water-drip-single", 0.25],
+  [6.41, "impact-hit-1", 0.3],
+  [11.18, "deflating", 0.2],
+  [13.39, "stamp", 0.3],
+  [16.57, "thunderstorm-1", 0.15],
+  [17.8, "hit-fade-out", 0.25],
+  [19.2, "impact-hit-2", 0.28],
+  [20.57, "pop-1", 0.15],
+  [21.68, "wood-cracking", 0.2],
+  [22.95, "pop-2", 0.15],
+  [24.14, "crowd-disappointed-groans", 0.1],
+  [27.73, "stamp", 0.3],
+  [29.18, "sparkle", 0.18],
+  [32.35, "impact-hit-1", 0.25],
+  [36.24, "pop-3", 0.15],
+  [37.44, "swish-2", 0.2],
+  [41.65, "shimmer-bright", 0.16],
+  [42.43, "impact-hit-3", 0.25],
+  [45.13, "pop-1", 0.15],
+  [45.74, "water-drip-single", 0.25],
+  [46.34, "pop-2", 0.15],
+  [47.84, "water-ocean-wave-2", 0.15],
+  [51.1, "swish-1", 0.18],
+  [56.02, "ratcheting", 0.2],
+  [58.23, "pop-1", 0.15],
+  [60.42, "pop-3", 0.15],
+  [61.95, "stamp", 0.25],
+  [63.73, "sparkle", 0.16],
+  [67.93, "whoosh-low-distant", 0.18],
+  [70.38, "rattle", 0.15],
+  [77.85, "water-impact-echo", 0.22],
+  [78.45, "water-impact-echo", 0.2],
+  [78.69, "heartbeat-single-lub-dub", 0.22],
+  [82.86, "page-turning", 0.18],
+  [85.58, "electronic-beeps-echo", 0.12],
+  [87.92, "pop-2", 0.15],
+  [89.58, "rumble-soft", 0.22],
+  [93.05, "stamp", 0.3],
+  [94.86, "pop-1", 0.15],
+  [97.69, "shimmer-bright", 0.14],
+  [99.44, "impact-hit-3", 0.22],
+  [103.03, "rumble-soft", 0.2],
+  [107.08, "impact-hit-1", 0.22],
+  [112.17, "crash-2", 0.22],
+  [114.38, "pop-2", 0.15],
+  [117.81, "water-ocean-wave", 0.15],
+  [118.84, "creak-short", 0.25],
+  [120.7, "water-drip-single", 0.2],
+  [124.5, "pop-2", 0.18],
+  [126.64, "pop-3", 0.18],
+  [129.13, "sparkle", 0.2],
+  [131.68, "thunderstorm-2", 0.2],
+  [133.44, "wood-cracking-2", 0.3],
+  [133.84, "water-impact-echo", 0.3],
+  [136.79, "water-ocean-wave-3", 0.18],
+  [138.0, "gasp-male-1", 0.15],
+  [139.62, "hit-fade-out", 0.25],
+  [140.46, "pop-1", 0.15],
+  [143.97, "pop-2", 0.15],
+  [146.75, "pop-3", 0.15],
+  [149.04, "whoosh-rebound", 0.18],
+  [150.56, "impact-hit-3", 0.25],
+  [153.68, "pop-1", 0.15],
+  [155.31, "swish-3", 0.18],
+  [156.59, "pop-2", 0.15],
+  [158.02, "drum-hit-single", 0.25],
+  [159.69, "water-ocean-wave", 0.15],
+  [163.58, "page-turning", 0.18],
+  [165.38, "footsteps-fast", 0.2],
+  [169.22, "explosion-distant-2", 0.2],
+  [171.3, "stamp", 0.3],
+  [177.81, "pop-2", 0.15],
+  [179.82, "swish-slicing", 0.22],
+  [183.63, "impact-hit-2", 0.25],
+  [185.56, "hit-fade-out", 0.22],
+  [187.06, "gun-loading", 0.18],
+  [189.47, "stamp", 0.25],
+  [192.72, "impact-hit-1", 0.22],
+  [194.7, "explosion-distant-1", 0.28],
+  [198.18, "stamp", 0.25],
+  [200.59, "pop-3", 0.15],
+  [201.34, "pop-1", 0.15],
+  [204.66, "stamp", 0.2],
+  [205.41, "wind-2", 0.18],
+  [210.16, "hit-fade-out", 0.2],
+  [214.38, "animals-donkey", 0.06],
+  [216.41, "whoosh-low-distant", 0.15],
+  [220.9, "impact-hit-2", 0.25],
+  [221.97, "hit-dull", 0.22],
+  [223.38, "swish-1", 0.15],
+  [227.65, "sparkle", 0.16],
+  [231.96, "stamp", 0.22],
+  [235.21, "footsteps", 0.15],
+  [238.72, "pop-2", 0.15],
+  [240.51, "animals-donkey", 0.06],
+  [244.15, "gasp-female-1", 0.12],
+  [245.94, "shimmer-bright", 0.15],
+  [247.24, "pop-1", 0.14],
+  [247.82, "pop-2", 0.14],
+  [248.43, "pop-3", 0.14],
+  [249.82, "hit-fade-out", 0.25],
+  [253.47, "grating-1", 0.2],
+  [256.21, "impact-hit-3", 0.25],
+  [257.2, "thunderstorm-3", 0.3],
+  [264.4, "crash-3", 0.3],
+  [264.4, "impact-hit-1", 0.22],
+  [266.55, "crowd-unhappy", 0.12],
+  [271.8, "impact-hit-1", 0.2],
+  [273.57, "rumble-soft", 0.2],
+  [276.95, "pop-2", 0.15],
+  [277.79, "whoosh-sizzling", 0.2],
+  [280.65, "stamp", 0.25],
+  [283.15, "sizzle", 0.15],
+  [288.15, "wind-2", 0.18],
+  [290.33, "pop-1", 0.15],
+  [293.96, "record-scratch-short", 0.12],
+  [296.58, "page-turning-2", 0.2],
+  [302.25, "pop-2", 0.15],
+  [304.01, "stamp", 0.28],
+  [307.79, "pop-3", 0.15],
+  [309.13, "cat-meow-1", 0.07],
+  [311.81, "sparkle", 0.16],
+  [313.6, "ratcheting", 0.2],
+  [314.85, "shimmer-bright", 0.15],
+  [318.13, "pop-2", 0.15],
+  [320.0, "water-ocean-wave-2", 0.15],
+  [323.96, "impact-hit-2", 0.25],
+  [329.74, "stamp", 0.2],
+  [331.87, "creak-short", 0.3],
+  [337.8, "explosion-distant-1", 0.3],
+  [341.04, "water-drip-single", 0.2],
+  [342.15, "whoosh-fast-short", 0.18],
+  [342.95, "explosion-1", 0.3],
+  [345.11, "crash-2", 0.25],
+  [346.61, "whoosh-sizzling", 0.2],
+  [349.3, "hit-dull", 0.22],
+  [351.38, "water-drip-single", 0.2],
+  [353.36, "hit-fade-out", 0.25],
+  [355.94, "shimmer-bright", 0.14],
+  [357.12, "pop-2", 0.18],
+  [358.87, "drum-hit-single", 0.22],
+  [361.17, "impact-hit-1", 0.25],
+  [364.4, "stamp", 0.25],
+  [367.71, "pop-1", 0.15],
+  [369.38, "shimmer-creepy", 0.15],
+  [370.81, "rumble-soft", 0.2],
+  [375.15, "hit-fade-out", 0.2],
+  [376.44, "page-turning", 0.15],
+  [378.52, "heartbeat-single-lub-dub", 0.18],
+  [382.94, "whoosh-low-distant", 0.18],
+  [387.99, "mouse-click", 0.15],
+  [390.7, "mouse-click-double", 0.15],
+  [391.76, "fly-by-low", 0.12],
+  [392.19, "electronic-beeps-echo", 0.12],
+  [396.01, "shimmer-bright", 0.15],
+  [396.82, "pop-1", 0.14],
+  [397.69, "pop-2", 0.14],
+  [398.94, "pop-3", 0.14],
+  [401.04, "stamp", 0.25],
+  [404.38, "impact-hit-3", 0.22],
+  [408.2, "pop-2", 0.15],
+  [409.67, "stamp", 0.25],
+  [411.51, "pop-1", 0.15],
+  [414.3, "impact-hit-1", 0.22],
+  [415.25, "explosion-distant-2", 0.2],
+  [417.29, "pop-3", 0.15],
+  [421.36, "stamp", 0.22],
+  [423.69, "sparkle", 0.15],
+  [426.58, "pop-1", 0.12],
+  [429.04, "pop-2", 0.12],
+  [433.41, "pop-3", 0.15],
+  [438.53, "ratcheting", 0.15],
+  [443.09, "pop-2", 0.15],
+  [444.98, "sparkle", 0.16],
+  [446.37, "impact-hit-3", 0.2],
+  [450.94, "hit-single", 0.2],
+  [455.7, "thump", 0.32],
+  [457.12, "pop-2", 0.2],
+];
+
 type BedRow = [AmbName, number, number, number];
 
 // Location beds (synthesized library): [bed, from, to, gain]
@@ -270,6 +453,101 @@ const DIG1: [number, number, number][] = [[153.9, 158.8, 1.2], [181.1, 183.7, 1.
 // paddle strokes in the canoe shots
 const PADDLE1: [number, number, number][] = [[0.3, 6.8, 0.55]];
 
+// Second video beds: [bed, from, to, gain]
+const BEDS2: BedRow[] = [
+  ["jungle_night", 0, 1.7, 0.3],
+  ["waves", 1.7, 6.2, 0.25],
+  ["wind", 6.2, 14.5, 0.3],
+  ["rain", 14.5, 17.25, 0.5],
+  ["wind", 17.25, 18.6, 0.35],
+  ["battle_distant", 18.6, 19.85, 0.4],
+  ["wind", 19.85, 26.25, 0.28],
+  ["room_tone", 26.25, 33.25, 0.35],
+  ["wind", 33.25, 39.45, 0.28],
+  ["room_tone", 39.45, 47.0, 0.35],
+  ["waves", 47.0, 49.75, 0.3],
+  ["room_tone", 49.75, 64.25, 0.35],
+  ["wind", 64.25, 72.7, 0.25],
+  ["jungle_night", 72.7, 79.4, 0.2],
+  ["room_tone", 79.4, 100.4, 0.35],
+  ["wind", 100.4, 105.7, 0.25],
+  ["wind", 105.7, 112.85, 0.25],
+  ["fire", 108.9, 112.85, 0.3],
+  ["room_tone", 112.85, 116.25, 0.35],
+  ["waves", 116.25, 130.3, 0.35],
+  ["rain", 130.3, 135.5, 0.6],
+  ["waves", 130.3, 140.2, 0.35],
+  ["jungle_night", 140.2, 159.0, 0.22],
+  ["waves", 159.0, 166.05, 0.35],
+  ["battle_distant", 166.05, 170.15, 0.25],
+  ["jungle_night", 170.15, 178.55, 0.22],
+  ["battle_distant", 178.55, 186.7, 0.4],
+  ["wind", 186.7, 190.9, 0.25],
+  ["waves", 190.9, 193.9, 0.25],
+  ["battle_distant", 193.9, 198.95, 0.35],
+  ["room_tone", 198.95, 205.3, 0.35],
+  ["wind", 205.3, 217.3, 0.32],
+  ["battle_distant", 217.3, 221.65, 0.3],
+  ["wind", 221.65, 228.25, 0.25],
+  ["room_tone", 228.25, 239.35, 0.35],
+  ["waves", 239.35, 245.1, 0.25],
+  ["room_tone", 245.1, 256.9, 0.4],
+  ["rain", 256.9, 258.0, 0.5],
+  ["room_tone", 258.0, 267.7, 0.4],
+  ["wind", 267.7, 277.6, 0.25],
+  ["fire", 277.6, 289.25, 0.45],
+  ["room_tone", 289.25, 318.9, 0.4],
+  ["clock", 304.7, 309.25, 0.2],
+  ["waves", 318.9, 345.95, 0.3],
+  ["jungle_night", 325.4, 330.5, 0.25],
+  ["battle_distant", 338.65, 345.95, 0.35],
+  ["fire", 345.95, 350.25, 0.45],
+  ["waves", 350.25, 354.85, 0.3],
+  ["wind", 354.85, 357.9, 0.25],
+  ["battle_distant", 357.9, 365.0, 0.3],
+  ["jungle_night", 365.0, 370.15, 0.3],
+  ["wind", 370.15, 376.0, 0.35],
+  ["battle_distant", 373.5, 376.0, 0.2],
+  ["room_tone", 376.0, 380.8, 0.35],
+  ["jungle_night", 380.8, 383.85, 0.3],
+  ["room_tone", 383.85, 391.25, 0.4],
+  ["wind", 391.25, 394.3, 0.3],
+  ["room_tone", 394.3, 424.6, 0.35],
+  ["battle_distant", 412.15, 416.05, 0.2],
+  ["wind", 424.6, 430.0, 0.25],
+  ["room_tone", 430.0, 434.35, 0.3],
+  ["fire", 434.35, 439.35, 0.3],
+  ["wind", 434.35, 439.35, 0.22],
+  ["room_tone", 439.35, 444.1, 0.35],
+  ["fire", 439.35, 444.1, 0.15],
+  ["wind", 444.1, 447.4, 0.2],
+  ["room_tone", 447.4, 452.35, 0.4],
+  ["wind", 452.35, 456.6, 0.2],
+  ["room_tone", 456.6, END2, 0.35],
+];
+
+const LBEDS2: [string, number, number, number][] = [
+  ["ambient-crowd-murmur-1", 39.45, 42.3, 0.18],
+  ["ambient-crowd-murmur-2", 64.3, 69.2, 0.15],
+  ["water-stream", 72.7, 79.4, 0.2],
+  ["typing-1", 384.0, 388.0, 0.15],
+  ["ambient-crowd-murmur-1", 430.0, 434.3, 0.2],
+  ["ambient-crowd-murmur-2", 452.4, 456.5, 0.12],
+];
+
+const WALK2: [number, number, number][] = [[25.3, 26.25, 1.8], [33.6, 36.9, 1.6], [186.7, 190.9, 2.2], [210.85, 217.3, 1.8], [260.8, 262.6, 1.6], [424.6, 427.1, 1.6]];
+// chisel / hammer taps (statue carving, building the warship)
+const DIG2: [number, number, number][] = [[250.6, 255.0, 2.0], [330.6, 333.4, 2.2]];
+const PADDLE2: [number, number, number][] = [[47.0, 49.75, 0.55], [119.2, 122.25, 0.7], [338.65, 341.8, 0.9], [350.25, 352.1, 0.55]];
+// tortilla patting
+const PAT2: [number, number, number][] = [[439.5, 443.9, 2.6]];
+
+type PartSound = { cuts: Cut[]; cues: [number, string, number][]; beds: BedRow[]; lbeds: [string, number, number, number][]; walk: [number, number, number][]; dig: [number, number, number][]; paddle: [number, number, number][]; pat: [number, number, number][] };
+const PARTS: Record<1 | 2, PartSound> = {
+  1: { cuts: CUTS1, cues: CUES1, beds: BEDS1, lbeds: LBEDS1, walk: WALK1, dig: DIG1, paddle: PADDLE1, pat: [] },
+  2: { cuts: CUTS2, cues: CUES2, beds: BEDS2, lbeds: LBEDS2, walk: WALK2, dig: DIG2, paddle: PADDLE2, pat: PAT2 },
+};
+
 const WHOOSHES = ["whoosh-1", "whoosh-2", "whoosh-3", "whoosh-5", "swoosh-fast-1"];
 const WHOOSH_GAIN: Record<string, number> = { "whoosh-1": 0.7, "whoosh-2": 0.6, "whoosh-3": 0.6, "whoosh-5": 0.5, "swoosh-fast-1": 0.9 };
 
@@ -284,31 +562,34 @@ export const MayaSound: React.FC<{ captions: Caption[]; part: 1 | 2 }> = ({ capt
     const gap = next === undefined ? 9 : next - t;
     return gap < 0.25 ? 0.3 : gap < 0.5 ? 0.5 : 1;
   };
-  if (part !== 1) return null;
-  const cuts = CUTS1;
-  const cues = CUES1;
+  const { cuts, cues, beds, lbeds, walk, dig, paddle, pat } = PARTS[part];
   const slides = cuts.filter((c) => c.into === "slide-left");
   const hardCuts = cuts.filter((c) => c.into === "cut" && c.at > 0 && !cues.some(([t]) => Math.abs(t - c.at) < 0.35));
   return (
     <>
-      {BEDS1.map(([name, from, to, g], i) => (
+      {beds.map(([name, from, to, g], i) => (
         <Ambience key={`bed${i}`} name={name} from={from} to={to} volume={g * AMB} gainAt={ambDuck} fadeIn={0.3} fadeOut={0.4} />
       ))}
-      {LBEDS1.map(([f, from, to, g], i) => (
+      {lbeds.map(([f, from, to, g], i) => (
         <Bed key={`lb${i}`} src={E(f)} from={from} to={to} volume={g * AMB} gainAt={ambDuck} name={`amb:${f}`} />
       ))}
-      {WALK1.flatMap(([a, b, r], k) =>
+      {walk.flatMap(([a, b, r], k) =>
         steps(a, b, r)
           .filter((t) => !nearOnset(t))
           .map((t, i) => <Sfx key={`w${k}-${i}`} name={FOOT[i % 4]} at={t} volume={0.1 * FX} duck={fxDuck} />),
       )}
-      {DIG1.flatMap(([a, b, r], k) =>
+      {dig.flatMap(([a, b, r], k) =>
         steps(a, b, r)
           .filter((t) => !nearOnset(t))
           .map((t, i) => <Sfx key={`d${k}-${i}`} name="thud" at={t} volume={0.12 * FX} duck={fxDuck} />),
       )}
-      {PADDLE1.flatMap(([a, b, r], k) =>
+      {paddle.flatMap(([a, b, r], k) =>
         steps(a, b, r).map((t, i) => <SoundAt key={`p${k}-${i}`} src={E("water-drip-single")} at={t} volume={0.12 * FX} duck={fxDuck} name="paddle" />),
+      )}
+      {pat.flatMap(([a, b, r], k) =>
+        steps(a, b, r)
+          .filter((t) => !nearOnset(t))
+          .map((t, i) => <SoundAt key={`pt${k}-${i}`} src={E("clap-single")} at={t} volume={0.06 * FX} duck={fxDuck} name="pat" />),
       )}
       {slides.map((c, i) => {
         const f = WHOOSHES[i % WHOOSHES.length];

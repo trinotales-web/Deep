@@ -182,7 +182,7 @@ export const CityFallsShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.6, 1.7), y: 120 }} light={{ dir: [0.6, 0.4] }} vignette={0.7} vignetteColor="#1a0a08">
         <LakeSet mood="dusk" horizon={-40} islandX={60} islandW={1300} burn={0.5}>
-          <X x={90} y={300} s={flag} z={-20}>
+          <X x={90} y={150} s={flag} z={-20}>
             <Line pts={[[0, -120], [0, 220]]} width={10} color="#4a3220" />
             <SpanishFlag x={0} y={220} w={140} />
           </X>
@@ -306,14 +306,14 @@ export const CasteWarShot: React.FC<ShotProps> = ({ start, dur }) => {
           {[0, 1, 2, 3].map((i) => {
             const arm: [number, number] = [1.2 + rise * 1.6, 0.2];
             return (
-              <Character key={i} {...CASTE_REBEL(i)} x={-780 + i * 520} y={-760 - (i % 2) * 40} s={1.35} z={2 - (i % 2) * 0.1} facing={i < 2 ? 1 : -1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.8 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={i % 2 ? <Rifle rot={upright(arm) + 1.4} /> : <Machete rot={upright(arm) + 0.2} />} />
+              <Character key={i} {...CASTE_REBEL(i)} x={-780 + i * 520} y={-660 - (i % 2) * 40} s={1.35} z={2 - (i % 2) * 0.1} facing={i < 2 ? 1 : -1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.8 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={i % 2 ? <Rifle rot={upright(arm) + 1.4} /> : <Machete rot={upright(arm) + 0.2} />} />
             );
           })}
         </Village>
       </Stage>
       <Label text="1847" x={0.15} y={0.1} size={0.07} kind="box" at={sec(start)(358.4)} />
       <Label text="THE MAYA OF THE YUCATÁN" x={0.62} y={0.1} size={0.045} kind="box" at={sec(start)(359.6)} />
-      <Label text="RISE UP" x={0.5} y={0.24} size={0.07} kind="stamp" rotate={-6} at={sec(start)(361.2)} />
+      <Label text="RISE UP" x={0.5} y={0.24} size={0.065} kind="box" at={sec(start)(361.2)} />
     </AbsoluteFill>
   );
 };
@@ -374,13 +374,13 @@ export const TalkingCrossShot: React.FC<ShotProps> = ({ start, dur }) => {
         <JungleSet mood="night" horizon={-260}>
           <MayaHut x={0} y={-260} w={700} door={false} z={-20} />
           <X y={-120} z={-19}>
-            <Part shape={roundRect(60, 440, 10)} color="#5a3a26" shade={0.24} y={220} />
-            <Part shape={roundRect(300, 60, 10)} color="#5a3a26" shade={0.24} y={320} z={0.001} />
+            <Part shape={roundRect(60, 520, 10)} color="#5a3a26" shade={0.24} y={260} />
+            <Part shape={roundRect(280, 56, 10)} color="#5a3a26" shade={0.24} y={340} z={0.001} />
             <Glow y={240} rx={420} color="#fff2c6" alpha={0.45 + 0.1 * Math.sin(frame * 0.3)} additive z={0.01} />
           </X>
           <SpeechBubble x={420} y={400} w={300} h={160} tx={80} ty={200} s={pop(t, 368.9)} z={1} />
           {[-1, 1].map((k) => (
-            <Character key={k} {...CASTE_REBEL(k > 0 ? 1 : 2)} x={k * 520} y={-640} s={1.1} z={2} facing={k > 0 ? -1 : 1} look={0.45} expression={{ eyes: "closed", mouth: "o" }} pose={{ ...poses.sit(frame), armF: [2.6, 0.3], armB: [2.4, 0.3], armsOverHead: true }} />
+            <Character key={k} {...CASTE_REBEL(k > 0 ? 1 : 2)} x={k * 520} y={-520} s={1.1} z={2} facing={k > 0 ? -1 : 1} look={0.45} expression={{ eyes: "closed", mouth: "o" }} pose={{ ...poses.sit(frame), armF: [2.6, 0.3], armB: [2.4, 0.3], armsOverHead: true }} />
           ))}
         </JungleSet>
       </Stage>
@@ -494,7 +494,7 @@ export const StudentShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -200 }} light={{ pos: [400, 0] }} vignette={0.75} vignetteColor="#0a0e14">
         <StudentRoom>
-          <Character {...STUDENT} x={-300} y={-800} s={1.6} z={1} look={0.5} expression={{ eyes: "half", mouth: "flat", brows: -0.2, gaze: [0.6, -0.3], eyebags: true }} pose={{ ...poses.sit(frame), armF: [1.4 + type, 1.2], armB: [1.3 - type, 1.2] }} />
+          <Character {...STUDENT} x={-330} y={-860} s={1.9} z={1} look={0.5} expression={{ eyes: "half", mouth: "flat", brows: -0.2, gaze: [0.6, -0.3], eyebags: true }} pose={{ ...poses.sit(frame), armF: [1.4 + type, 1.2], armB: [1.3 - type, 1.2] }} />
           <Desk x={260} y={-800} w={900} h={330} z={1.5} />
           <Laptop x={300} y={-470} w={520} z={1.6} />
           <Part shape={roundRect(90, 110, 20)} color="#c0392b" shade={0.24} x={640} y={-410} z={1.7} />
@@ -605,7 +605,7 @@ export const ValerianaShot: React.FC<ShotProps> = ({ start, dur }) => {
         <MesoMap ppd={ppd} center={center} maya={1} countries pins={t > 403.5 ? ["valeriana"] : []} highlight={["valeriana"]} />
       </Stage>
       <Label text="NOBODY KNEW" x={0.5} y={0.1} size={0.055} kind="box" at={sec(start)(402.3)} />
-      <Label text="VALERIANA" sub="CAMPECHE, MEXICO" {...sc(vx, vy + 110, z)} size={0.055} kind="box" at={sec(start)(404.3)} />
+      <Label text="VALERIANA" sub="CAMPECHE, MEXICO" {...sc(vx, vy - 90, z)} size={0.055} kind="box" at={sec(start)(404.3)} />
     </AbsoluteFill>
   );
 };
@@ -799,8 +799,8 @@ export const DaykeeperShot: React.FC<ShotProps> = ({ start, dur }) => {
           </>
         }
       >
-        <Character {...DAYKEEPER} x={-420} y={-880} s={1.7} z={2} look={0.5} expression={{ eyes: "closed", mouth: "o", brows: 0.2 }} pose={{ ...poses.sit(frame), armF: [1.4, 0.6] }} />
-        <X x={300} y={-640} z={2.1}>
+        <Character {...DAYKEEPER} x={-420} y={-760} s={1.7} z={2} look={0.5} expression={{ eyes: "closed", mouth: "o", brows: 0.2 }} pose={{ ...poses.sit(frame), armF: [1.4, 0.6] }} />
+        <X x={300} y={-500} z={2.1}>
           <Campfire size={1.1} />
           {Array.from({ length: 8 }, (_, i) => {
             const a = (i / 8) * Math.PI * 2;
@@ -822,7 +822,7 @@ export const TortillasShot: React.FC<ShotProps> = ({ start, dur }) => {
   const pat = Math.sin(frame * 0.6) * 0.15;
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -120 }} light={{ pos: [0, 300] }} vignette={0.6}>
+      <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -260 }} light={{ pos: [0, 300] }} vignette={0.6}>
         <PlankWall w={6000} h={3000} y={600} color="#c8a878" z={-41} />
         <Floorboards w={6000} h={1400} y={-760} color="#8a6a4a" z={-40} />
         <Character {...MODERN_MAYA_WOMAN(2)} x={-560} y={-820} s={1.5} z={1} look={0.5} expression={{ eyes: "happy", mouth: "smile" }} pose={{ ...poses.idle(frame), armF: [1.6 + pat, 1.4], armB: [1.6 - pat, 1.4] }} />
@@ -848,7 +848,7 @@ export const PeopleOfCornAgainShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Paper color="#f0d890">
           <Sunburst y={-200} r={2400} rays={22} color="#f6e0a0" alt="#ecd088" speed={0.5} z={-39} />
           {[-420, 0, 420].map((x, i) => (
-            <Character key={x} {...CORN_PERSON(i)} x={x} y={-860} s={1.5} z={2 + i * 0.01} facing={i === 2 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "smile" }} pose={i === 1 ? poses.armsUp(frame) : poses.idle(frame, i)} />
+            <Character key={x} {...CORN_PERSON(i)} x={x} y={-760} s={1.5} z={2 + i * 0.01} facing={i === 2 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "smile" }} pose={i === 1 ? poses.armsUp(frame) : poses.idle(frame, i)} />
           ))}
         </Paper>
       </Stage>
@@ -866,7 +866,7 @@ export const StillHereShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Village mood="dawn" horizon={-260}>
           <Sunburst y={-200} r={2400} rays={22} color="#f6d890" alt="#f0cc7a" speed={0.4} z={-39.5} />
           {[-420, 0, 420].map((x, i) => (
-            <Character key={x} {...(i === 1 ? MODERN_MAYA_WOMAN(3) : MODERN_MAYA_MAN(i + 1))} x={x} y={-860} s={1.5} z={2 + i * 0.01} facing={i === 2 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={i === 1 ? poses.armsUp(frame) : poses.idle(frame, i)} />
+            <Character key={x} {...(i === 1 ? MODERN_MAYA_WOMAN(3) : MODERN_MAYA_MAN(i + 1))} x={x} y={-760} s={1.5} z={2 + i * 0.01} facing={i === 2 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={i === 1 ? poses.armsUp(frame) : poses.idle(frame, i)} />
           ))}
         </Village>
       </Stage>
@@ -910,7 +910,7 @@ export const RatherBallShot: React.FC<ShotProps> = ({ start, dur }) => {
       </Stage>
       <Label text="OR A BALLPLAYER?" x={0.5} y={0.08} size={0.06} kind="title" at={sec(start)(452.6)} />
       <Label text="3 KG RUBBER BALL" x={0.22} y={0.22} size={0.045} kind="box" at={sec(start)(454.3)} />
-      <Label text="WITH YOUR HIPS!" x={0.76} y={0.22} size={0.05} kind="stamp" rotate={-6} at={sec(start)(hit)} />
+      <Label text="WITH YOUR HIPS!" x={0.76} y={0.22} size={0.05} kind="box" at={sec(start)(hit)} />
     </AbsoluteFill>
   );
 };

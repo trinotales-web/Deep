@@ -263,7 +263,7 @@ export const TooManyShot: React.FC<ShotProps> = ({ start, dur }) => {
             <Stump key={i} x={-380 + i * 95 + ((i * 53) % 40)} y={-300 - (i % 3) * 90} w={70 + (i % 3) * 18} z={1 + i * 0.01} />
           ))}
           <X x={1250} y={-200} z={0.5}>
-            <CrackedGround w={1400} h={800} z={0} seed={8} />
+            <CrackedGround w={2600} h={800} z={0} seed={8} />
             {[-260, 0, 260].map((x, i) => (
               <X key={x} x={x} y={-100 - (i % 2) * 60} rot={(i - 1) * 0.3} z={1 + i * 0.01}>
                 <CornPlant h={420} grow={1} seed={i + 5} dry={1} />

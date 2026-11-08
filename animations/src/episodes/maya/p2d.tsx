@@ -71,7 +71,7 @@ export const HiddenLakeShot: React.FC<ShotProps> = ({ start, dur }) => {
         fgBlur={8}
       >
         {[0, 1].map((i) => (
-          <Character key={i} {...SPANISH_SOLDIER(i + 2)} x={-420 + i * 360} y={-900 - i * 30} s={1.6} z={2 - i * 0.1} facing={i ? -1 : 1} look={0.5} expression={{ eyes: "half", mouth: "wavy", brows: 0.8, sweat: true, eyebags: true }} pose={i ? poses.shrug(0.3) : poses.scared(frame)} />
+          <Character key={i} {...SPANISH_SOLDIER(i + 2)} x={-560 + i * 520} y={-900 - i * 30} s={1.55} z={2 - i * 0.1} facing={i ? -1 : 1} look={0.5} expression={{ eyes: "half", mouth: "wavy", brows: 0.8, sweat: true, eyebags: true }} pose={i ? poses.shrug(0.3) : poses.scared(frame)} />
         ))}
       </DepthStage>
       <Label text="HIDDEN BEHIND A LAKE" x={0.5} y={0.1} size={0.05} kind="box" at={sec(start)(326.4)} />

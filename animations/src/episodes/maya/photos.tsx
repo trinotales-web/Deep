@@ -58,7 +58,7 @@ export const Figurines = photoShot({
   ],
 });
 export const FourCodices = photoShot({
-  src: P("dresden.jpg"), w: 900, h: 506, cardsAt: 291.0, tag: REAL, label: "ONLY 4 SURVIVE", labelAt: 290.4,
+  src: P("dresden.jpg"), w: 900, h: 506, cardsAt: 289.6, tag: REAL, label: "ONLY 4 MAYA BOOKS SURVIVE", labelAt: 290.3,
   cards: [
     { src: P("dresden.jpg"), w: 900, h: 506, rot: -1.2, caption: "DRESDEN CODEX" },
     { src: P("madrid.jpg"), w: 1289, h: 957, crop: [180, 0, 1110, 957], rot: 1.0, caption: "MADRID CODEX" },

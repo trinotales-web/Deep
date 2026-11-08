@@ -1000,9 +1000,9 @@ export const KeyShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 0 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
         <Paper color="#e2d2a8">
-          <GlyphPanel x={160} y={-40} cols={4} rows={3} size={150} seed={13} reveal={ramp(t, 314.0, 315.3)} z={1} />
+          <GlyphPanel x={160} y={-40} cols={4} rows={3} size={150} seed={13} reveal={ramp(t, 313.3, 314.0)} z={1} />
           <Key x={-660} y={-40} rot={turn * -Math.PI / 2} s={pop(t, 312.9)} z={2} />
-          <Glow x={160} y={-40} rx={800} ry={500} color="#fff2c6" alpha={0.35 * ramp(t, 314.0, 314.6)} additive z={1.5} />
+          <Glow x={160} y={-40} rx={800} ry={500} color="#fff2c6" alpha={0.35 * ramp(t, 313.4, 314.0)} additive z={1.5} />
         </Paper>
       </Stage>
       <Label text="THE KEY" x={0.2} y={0.12} size={0.07} kind="title" at={sec(start)(313.1)} />

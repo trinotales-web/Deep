@@ -188,7 +188,7 @@ export const CityFallsShot: React.FC<ShotProps> = ({ start, dur }) => {
           </X>
         </LakeSet>
       </Stage>
-      <Label text="A FEW HOURS" x={0.5} y={0.1} size={0.065} kind="box" at={sec(start)(344.3)} />
+      <Label text="A FEW HOURS" x={0.5} y={0.88} size={0.065} kind="box" at={sec(start)(344.3)} />
     </AbsoluteFill>
   );
 };
@@ -384,7 +384,7 @@ export const TalkingCrossShot: React.FC<ShotProps> = ({ start, dur }) => {
           ))}
         </JungleSet>
       </Stage>
-      <Label text="THE “TALKING CROSS”" x={0.5} y={0.1} size={0.06} kind="box" at={sec(start)(368.9)} />
+      <Label text="THE “TALKING CROSS”" x={0.5} y={0.88} size={0.06} kind="box" at={sec(start)(368.9)} />
     </AbsoluteFill>
   );
 };
@@ -828,9 +828,9 @@ export const TortillasShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Character {...MODERN_MAYA_WOMAN(2)} x={-560} y={-820} s={1.5} z={1} look={0.5} expression={{ eyes: "happy", mouth: "smile" }} pose={{ ...poses.idle(frame), armF: [1.6 + pat, 1.4], armB: [1.6 - pat, 1.4] }} />
         <Character {...MODERN_MAYA_MAN(0)} x={560} y={-820} s={1.45} z={1} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "grin" }} pose={{ ...poses.sit(frame), armF: [1.4, 0.6] }} />
         <Character {...MAYA_COMMONER(8)} x={180} y={-800} s={0.95} z={1.05} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "tongue" }} pose={poses.sit(frame)} />
-        <Part shape={roundRect(1300, 60, 10)} color="#8a5a32" shade={0.24} y={-420} z={1.5} />
+        <Part shape={roundRect(1300, 60, 10)} color="#8a5a32" shade={0.24} y={-580} z={1.5} />
         {[-260, 0, 260].map((x, i) => (
-          <Tortilla key={x} x={x} y={-370} r={80} comal={i === 1} s={pop(t, 440.0 + i * 0.25)} z={1.6 + i * 0.01} />
+          <Tortilla key={x} x={x} y={-530} r={80} comal={i === 1} s={pop(t, 440.0 + i * 0.25)} z={1.6 + i * 0.01} />
         ))}
       </Stage>
       <Label text="EVERY DAY" x={0.2} y={0.1} size={0.05} kind="box" at={sec(start)(439.7)} />

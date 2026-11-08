@@ -305,7 +305,7 @@ export const CasteWarShot: React.FC<ShotProps> = ({ start, dur }) => {
           {[0, 1, 2, 3].map((i) => {
             const arm: [number, number] = [1.2 + rise * 1.6, 0.2];
             return (
-              <Character key={i} {...CASTE_REBEL(i)} x={-780 + i * 520} y={-660 - (i % 2) * 40} s={1.35} z={2 - (i % 2) * 0.1} facing={i < 2 ? 1 : -1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.8 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={i % 2 ? <Rifle rot={upright(arm) + 1.4} /> : <Machete rot={upright(arm) + 0.2} />} />
+              <Character key={i} {...CASTE_REBEL(i)} x={-840 + i * 560} y={-640 - (i % 2) * 40} s={1.2} z={2 - (i % 2) * 0.1} facing={i < 2 ? 1 : -1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.8 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={i % 2 ? <Rifle rot={upright(arm) + 1.4} /> : <Machete rot={upright(arm) + 0.2} />} />
             );
           })}
         </Village>
@@ -636,7 +636,7 @@ export const HowLastShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const RuleAgainShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const n = Math.round(ramp(t, 409.4, 411.3) * 5);
+  const n = Math.round(ramp(t, 409.1, 409.9) * 5);
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -60 }} light={{ pos: [0, 300] }} vignette={0.6}>

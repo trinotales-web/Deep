@@ -1,5 +1,6 @@
 import type { Cut } from "./script";
 import * as A from "./p2a";
+import * as B from "./p2b";
 
 // Second video cut list (seconds on public/vo/maya-2.voice.m4a), in the breaths
 // between phrases (see public/captions/maya-2.json).
@@ -41,4 +42,31 @@ export const CUTS2: Cut[] = [
   { id: "b19", at: 95.85, into: "cut", C: A.TwinsDnaShot },
   { id: "b20", at: 98.95, into: "cut", C: A.HeroTwinsAgainShot },
   { id: "b21", at: 100.4, into: "cut", C: A.TwinsRitualShot },
+  { id: "c01", at: 105.7, into: "slide-left", C: B.MayapanShot },
+  { id: "c02", at: 108.88, into: "cut", C: B.FamiliesTearShot },
+  { id: "c03", at: 112.85, into: "cut", C: B.NorthBreaksShot },
+  { id: "c04", at: 116.25, into: "slide-left", C: B.Columbus1502Shot },
+  { id: "c05", at: 119.2, into: "cut", C: B.TradeCanoeShot },
+  { id: "c06", at: 122.25, into: "cut", C: B.CargoShot },
+  { id: "c07", at: 125.55, into: "cut", C: B.AlmondsShot },
+  { id: "c08", at: 127.4, into: "cut", C: B.ChocolateShot },
+  { id: "d01", at: 130.3, into: "slide-left", C: B.Shipwreck1511Shot },
+  { id: "d02", at: 135.5, into: "cut", C: B.WashAshoreShot },
+  { id: "d03", at: 137.4, into: "cut", C: B.CapturedShot },
+  { id: "d04", at: 138.95, into: "cut", C: B.MostDieShot },
+  { id: "d05", at: 140.2, into: "cut", C: B.TwoSurviveShot },
+  { id: "d06", at: 142.05, into: "cut", C: B.AguilarShot },
+  { id: "d07", at: 144.7, into: "cut", C: B.GuerreroSailorShot },
+  { id: "d08", at: 147.7, into: "cut", C: B.NobodyExpectsShot },
+  { id: "d09", at: 149.95, into: "cut", C: B.BecomesMayaShot },
+  { id: "d10", at: 151.2, into: "cut", C: B.MarriesShot },
+  { id: "d11", at: 154.4, into: "cut", C: B.TattooShot },
+  { id: "d12", at: 159.0, into: "slide-left", C: B.Cortes1519Shot },
+  { id: "d13", at: 164.55, into: "cut", C: B.AguilarRunsShot },
+  { id: "d14", at: 166.05, into: "cut", C: B.TranslatorShot },
+  { id: "d15", at: 170.15, into: "cut", C: B.SaysNoShot },
+  { id: "d16", at: 171.8, into: "cut", C: B.BrotherAguilarShot },
+  { id: "d17", at: 175.9, into: "cut", C: B.FaceTattooedShot },
+  { id: "d18", at: 178.55, into: "cut", C: B.FightsSpanishShot },
+  { id: "d19", at: 181.65, into: "cut", C: B.DiesInBattleShot },
 ];

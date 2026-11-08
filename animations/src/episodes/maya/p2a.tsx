@@ -167,9 +167,8 @@ export const WorstShot: React.FC<ShotProps> = ({ start, dur }) => {
         }
       >
         {[-560, -220, 130, 470].map((x, i) => (
-          <X key={x} x={x} y={-420 - (i % 2) * 40} z={1 + i * 0.01} rot={wilt * (i % 2 ? 0.25 : -0.2)}>
-            <CornPlant h={520} grow={1} seed={i + 2} />
-            <Wash width={500} height={700} color="#a8843a" alpha={0.5 * wilt} z={0.5} />
+          <X key={x} x={x} y={-420 - (i % 2) * 40} z={1 + i * 0.01} rot={wilt * (i % 2 ? 0.2 : -0.15)}>
+            <CornPlant h={520} grow={1} seed={i + 2} dry={0.3 + wilt * 0.7} />
           </X>
         ))}
       </DepthStage>
@@ -183,14 +182,14 @@ export const RainKingJobShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 120 }} light={{ dir: [-0.5, 0.6] }} vignette={0.65} vignetteColor="#0e1418">
-        <JungleSet mood="storm" horizon={-200}>
+      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 80 }} light={{ dir: [-0.5, 0.6] }} vignette={0.65} vignetteColor="#0e1418">
+        <JungleSet mood="storm" horizon={-420}>
           {[-700, -150, 450].map((x, i) => (
             <Cloud key={x} x={x} y={620 + (i % 2) * 60} w={620} seed={i + 11} color="#6a7480" shadow="#4a5260" z={-38} />
           ))}
           <Rain y={140} w={2600} h={1200} n={110} z={-37} />
-          <MayaPyramid x={0} y={-200} w={1100} h={520} tiers={7} top={0.42} templeW={0} color="#e6dcc4" z={-25} />
-          <Character {...MAYA_KING(0)} x={0} y={320} s={1.15} z={2} look={0.3} expression={{ eyes: "closed", mouth: "open", brows: 0.2 }} pose={poses.armsUp(frame)} />
+          <MayaPyramid x={0} y={-420} w={1100} h={400} tiers={6} top={0.46} templeW={0} color="#e6dcc4" z={-25} />
+          <Character {...MAYA_KING(0)} x={0} y={-20} s={1.25} z={2} look={0.3} expression={{ eyes: "closed", mouth: "open", brows: 0.2 }} pose={poses.armsUp(frame)} />
         </JungleSet>
       </Stage>
       <Label text="HOLY LORD" x={0.2} y={0.1} size={0.05} kind="box" at={sec(start)(15.0)} />
@@ -226,21 +225,22 @@ export const WarsWorseShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const charge = ramp(t, 18.6, 19.8);
+  const arm: [number, number] = [1.5, 0.3];
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.1, 1.18), y: -60, shake: hitAt(t, 19.25, 0.3) * 8 }} light={{ dir: [0.6, 0.5] }} vignette={0.7} vignetteColor="#1a0a0a">
-        <JungleSet mood="dusk" horizon={-260}>
-          <Smoke x={-200} y={-260} w={500} h={900} alpha={0.4} seed={4} z={-20} />
-          <Smoke x={600} y={-260} w={400} h={800} alpha={0.35} seed={7} z={-20} />
-          {[0, 1, 2].map((i) => (
-            <Character key={`a${i}`} {...JAGUAR_WARRIOR(i)} x={-760 + i * 170 + charge * 160} y={-760 - i * 30} s={1.35 - i * 0.12} z={2 - i * 0.1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ ...poses.run(frame + i * 5), armF: [1.6, 0.2] }} holdF={<Spear rot={upright([1.6, 0.2]) - 1.2} length={640} tip="#2a2228" />} />
+      <Stage camera={{ zoom: push(frame, dur, 1.08, 1.15), y: -40, shake: hitAt(t, 19.25, 0.3) * 8 }} light={{ dir: [0.6, 0.5] }} vignette={0.7} vignetteColor="#1a0a0a">
+        <JungleSet mood="dusk" horizon={-240}>
+          <Smoke x={-200} y={-240} w={500} h={900} alpha={0.4} seed={4} z={-20} />
+          <Smoke x={600} y={-240} w={400} h={800} alpha={0.35} seed={7} z={-20} />
+          {[0, 1].map((i) => (
+            <Character key={`a${i}`} {...JAGUAR_WARRIOR(i)} x={-640 - i * 300 + charge * 160} y={-600 - i * 20} s={1.3 - i * 0.12} z={2 - i * 0.1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ ...poses.run(frame + i * 5), armF: arm }} holdF={<Spear rot={upright(arm) - 0.5} length={560} tip="#2a2228" />} />
           ))}
           {[0, 1].map((i) => (
-            <Character key={`b${i}`} {...MAYA_COMMONER(i + 1)} hat="plume" hatColor="#2f6fa8" x={640 - i * 170 - charge * 140} y={-780 - i * 30} s={1.3 - i * 0.1} z={1.8 - i * 0.1} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "teeth", brows: -0.8 }} pose={{ ...poses.run(frame + 9 + i * 4), armF: [1.6, 0.2] }} holdF={<Spear rot={upright([1.6, 0.2]) - 1.2} length={600} tip="#2a2228" />} />
+            <Character key={`b${i}`} {...MAYA_COMMONER(i + 1)} hat="plume" hatColor="#2f6fa8" marks="paint" x={560 + i * 300 - charge * 140} y={-610 - i * 20} s={1.25 - i * 0.1} z={1.8 - i * 0.1} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "teeth", brows: -0.8 }} pose={{ ...poses.run(frame + 9 + i * 4), armF: arm }} holdF={<Spear rot={upright(arm) - 0.5} length={540} tip="#2a2228" />} />
           ))}
         </JungleSet>
       </Stage>
-      <Label text="MORE WAR" x={0.5} y={0.12} size={0.07} kind="stamp" rotate={-5} at={sec(start)(19.2)} />
+      <Label text="MORE WAR" x={0.5} y={0.12} size={0.065} kind="box" at={sec(start)(19.2)} />
     </AbsoluteFill>
   );
 };
@@ -266,8 +266,7 @@ export const TooManyShot: React.FC<ShotProps> = ({ start, dur }) => {
             <CrackedGround w={1400} h={800} z={0} seed={8} />
             {[-260, 0, 260].map((x, i) => (
               <X key={x} x={x} y={-300 - (i % 2) * 60} rot={(i - 1) * 0.3} z={1 + i * 0.01}>
-                <CornPlant h={420} grow={1} seed={i + 5} />
-                <Wash width={400} height={500} color="#a8843a" alpha={0.55} z={0.5} />
+                <CornPlant h={420} grow={1} seed={i + 5} dry={1} />
               </X>
             ))}
             <Sun x={300} y={560} r={110} glow={1} z={-1} />
@@ -291,7 +290,7 @@ export const LoseFaithShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -80 }} light={{ dir: [0.5, 0.6] }} vignette={0.6}>
         <PlazaSet mood="dusk" horizon={-240}>
           <MayaPyramid x={560} y={-380} w={800} h={300} tiers={4} top={0.6} templeW={0} color="#e6dcc4" z={0} />
-          <Character {...MAYA_KING(1)} x={560} y={-80} s={1.25} z={2} facing={-1} look={0.5} expression={{ eyes: "wide", mouth: "open", brows: 0.8, sweat: true }} pose={poses.armsUp(frame)} />
+          <Character {...MAYA_KING(1)} x={560} y={-80} s={0.95} z={2} facing={-1} look={0.5} expression={{ eyes: "wide", mouth: "open", brows: 0.8, sweat: true }} pose={poses.armsUp(frame)} />
           {[-820, -560, -300, -60].map((x, i) => (
             <Character key={x} {...(i % 2 ? MAYA_WOMAN(i) : MAYA_COMMONER(i))} x={x} y={-760 - (i % 2) * 40} s={1.3} z={3 + i * 0.01} facing={turn ? -1 : 1} look={0.5} expression={turn ? { eyes: "half", mouth: "frown", brows: -0.6 } : { eyes: "open", mouth: "flat", brows: 0.3 }} pose={turn ? { ...poses.idle(frame, i), armF: [0.9, -1.9], armB: [-0.9, 1.9] } : poses.idle(frame, i)} />
           ))}
@@ -353,7 +352,7 @@ export const MostWrongShot: React.FC<ShotProps> = ({ start, dur }) => {
           </X>
         </Paper>
       </Stage>
-      <Label text="THE MAYA VANISHED!" x={0.5} y={0.19} size={0.06} kind="tag" color="#ffffff" at={sec(start)(26.3)} />
+      <Label text="THE MAYA VANISHED!" x={0.5} y={0.17} size={0.06} kind="box" at={sec(start)(26.3)} />
       <Label text="WRONG" x={0.62} y={0.55} size={0.13} kind="stamp" rotate={-10} at={sec(start)(27.72)} />
     </AbsoluteFill>
   );
@@ -388,7 +387,7 @@ export const NoEmpireAgainShot: React.FC<ShotProps> = ({ start, dur }) => {
         <KingdomsMap ppd={ppd} center={center} k={ramp(t, 30.2, 31.2)} crowns={ramp(t, 30.6, 31.0)} />
       </Stage>
       <Label text="THE RULE" sub="NEVER ONE KING" x={0.2} y={0.12} size={0.06} kind="box" at={sec(start)(30.25)} />
-      <Label text="NO EMPIRE TO COLLAPSE" x={0.5} y={0.5} size={0.075} kind="stamp" rotate={-6} at={sec(start)(32.3)} />
+      <Label text="NO EMPIRE TO COLLAPSE" x={0.5} y={0.9} size={0.06} kind="box" at={sec(start)(32.3)} />
     </AbsoluteFill>
   );
 };
@@ -474,7 +473,7 @@ export const NewStarShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.08), y: 60 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <ChichenSet mood="dawn" crowd={18}>
           <Sunburst y={180} r={2400} rays={22} color="#f6d890" alt="#f0cc7a" speed={0.4} z={-39.5} />
-          <X x={0} y={640} s={star} z={3}>
+          <X x={0} y={430} s={star} z={3}>
             <Part shape={poly(Array.from({ length: 10 }, (_, i) => [Math.cos((i / 10) * 6.283 + Math.PI / 2) * (i % 2 ? 60 : 140), Math.sin((i / 10) * 6.283 + Math.PI / 2) * (i % 2 ? 60 : 140)] as P))} color="#f2c84a" shade={0.2} />
             <Glow rx={320} color="#fff2c6" alpha={0.6} additive z={-0.01} />
           </X>
@@ -702,10 +701,10 @@ export const SacredCenoteShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -120 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
-        <JungleSet mood="day" horizon={240}>
-          <ElCastillo x={-900} y={240} s={0.45} z={-26} />
-          <Cenote x={260} y={240} w={1200} depth={780} z={-20} />
+      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -80 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <JungleSet mood="day" horizon={20}>
+          <ElCastillo x={-760} y={20} s={0.55} z={-26} />
+          <Cenote x={300} y={20} w={1100} depth={640} z={-20} />
         </JungleSet>
       </Stage>
       <Label text="THE SACRED CENOTE" x={0.6} y={0.1} size={0.055} kind="box" at={sec(start)(74.2)} />
@@ -726,14 +725,14 @@ export const OfferingsShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.15, 1.22), x: 120, y: -40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
-        <JungleSet mood="day" horizon={-120}>
-          <Cenote x={520} y={-120} w={900} depth={760} beam={0.6} z={-20} />
-          <Character {...MAYA_PRIEST(1)} x={-420} y={-120} s={1.35} z={2} look={0.5} expression={{ eyes: "closed", mouth: "o", brows: 0.2 }} pose={{ ...poses.idle(frame), armF: arm, armB: [2.2, 0.3] }} />
+        <JungleSet mood="day" horizon={-260}>
+          <Cenote x={520} y={-260} w={900} depth={760} beam={0.6} z={-20} />
+          <Character {...MAYA_PRIEST(1)} x={-420} y={-260} s={1.35} z={2} look={0.5} expression={{ eyes: "closed", mouth: "o", brows: 0.2 }} pose={{ ...poses.idle(frame), armF: arm, armB: [2.2, 0.3] }} />
           {items.map(([t0, kind, dx], i) => {
             const k = drop(t0);
             if (k <= 0 || k >= 1) return null;
             const x = -220 + dx + k * 380;
-            const y = 300 + Math.sin(k * Math.PI) * 140 - k * 900;
+            const y = 180 + Math.sin(k * Math.PI) * 140 - k * 900;
             return (
               <X key={i} x={x} y={y} rot={k * 6} z={3}>
                 {kind === "gold" ? (
@@ -747,7 +746,7 @@ export const OfferingsShot: React.FC<ShotProps> = ({ start, dur }) => {
               </X>
             );
           })}
-          {t > 78.4 ? <Smoke x={560} y={-700} w={260} h={300} alpha={0.25 * (1 - ramp(t, 79.0, 79.4))} color="#ffffff" seed={2} z={1} /> : null}
+          {t > 78.4 ? <Smoke x={560} y={-840} w={260} h={300} alpha={0.25 * (1 - ramp(t, 79.0, 79.4))} color="#ffffff" seed={2} z={1} /> : null}
         </JungleSet>
       </Stage>
       <Label text="GOLD" x={0.36} y={0.14} size={0.055} kind="box" at={sec(start)(76.8)} />

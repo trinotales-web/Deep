@@ -432,19 +432,21 @@ export const CornCob: React.FC<XProps & { len?: number; kind?: "corn" | "teosint
 };
 
 /** Maize plant: stalk, long leaves, an ear, tassel on top. Origin = base. `grow` 0..1. */
-export const CornPlant: React.FC<XProps & { h?: number; grow?: number; seed?: number }> = ({ h = 520, grow = 1, seed = 1, ...xf }) => {
+/** `dry` 0..1 browns the plant and droops its leaves (drought). */
+export const CornPlant: React.FC<XProps & { h?: number; grow?: number; seed?: number; dry?: number }> = ({ h = 520, grow = 1, seed = 1, dry = 0, ...xf }) => {
   const frame = useCurrentFrame();
-  const sway = Math.sin(frame * 0.05 + seed) * 0.05;
+  const sway = Math.sin(frame * 0.05 + seed) * 0.05 * (1 - dry);
   const hh = h * grow;
+  const tint = (c: string) => mixHex(c, "#b8954a", dry * 0.85);
   return (
     <X {...xf}>
-      <Line pts={[[0, 0], [sway * hh * 0.4, hh]]} width={12} color="#6a9a3a" />
+      <Line pts={[[0, 0], [sway * hh * 0.4 + dry * 40, hh * (1 - dry * 0.12)]]} smooth={false} width={12} color={tint("#6a9a3a")} />
       {[0.25, 0.42, 0.58, 0.74].map((q, i) => (
-        <X key={q} x={sway * hh * 0.4 * q} y={hh * q} rot={(i % 2 ? -1 : 1) * 0.9 + sway} z={0.001}>
-          <Part shape={blob([[0, 0], [hh * 0.12, 16], [hh * 0.34, 4], [hh * 0.46, -26], [hh * 0.3, -6], [hh * 0.1, -4]], 7)} color={i % 2 ? "#5a9a3a" : "#6aaa4a"} shade={0.24} sx={i % 2 ? -1 : 1} />
+        <X key={q} x={sway * hh * 0.4 * q} y={hh * q} rot={(i % 2 ? -1 : 1) * (0.9 + dry * 1.1) + sway} z={0.001}>
+          <Part shape={blob([[0, 0], [hh * 0.12, 16], [hh * 0.34, 4], [hh * 0.46, -26], [hh * 0.3, -6], [hh * 0.1, -4]], 7)} color={tint(i % 2 ? "#5a9a3a" : "#6aaa4a")} shade={0.24} sx={i % 2 ? -1 : 1} />
         </X>
       ))}
-      {grow > 0.6 ? <CornCob x={10 + sway * hh * 0.2} y={hh * 0.45} len={hh * 0.22} rot={-0.4} z={0.002} /> : null}
+      {grow > 0.6 && dry < 0.5 ? <CornCob x={10 + sway * hh * 0.2} y={hh * 0.45} len={hh * 0.22} rot={-0.4} z={0.002} /> : null}
       {grow > 0.85
         ? [-0.4, 0, 0.4].map((a) => (
             <Line key={a} pts={[[sway * hh * 0.4, hh], [sway * hh * 0.4 + Math.sin(a) * 40, hh + 50]]} width={4} color="#d9b84e" z={0.003} />

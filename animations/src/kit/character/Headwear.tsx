@@ -13,6 +13,7 @@ export type HatKind =
   | "explorer" | "bicorne" | "nemes"
   | "aviator" | "stahlhelm"
   | "mian" | "guan" | "wrap" | "maocap"
+  | "plume" | "mayaking" | "jaguar" | "morion" | "skull" | "maize" | "cap16"
   | null;
 export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | "topknot" | "palace" | "sidebun" | null;
 
@@ -465,6 +466,125 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
         </X>
       );
     }
+    case "plume": {
+      // Maya noble / warrior: cloth headband with a jade disc and a short crest
+      const c = color ?? "#c8322a";
+      const jade = accent ?? "#3fa07a";
+      return (
+        <X y={14}>
+          <Part shape={blob([[-104, 28], [0, 40], [104, 28], [100, 68], [0, 78], [-100, 68]], 8)} color={c} shade={0.25} />
+          {[-60, -20, 20].map((x) => (
+            <Line key={x} pts={[[x, 44], [x + 18, 70]]} width={4} color={shadeHex(c, 0.35)} z={0.001} />
+          ))}
+          <X x={60} y={62} z={0.002}>
+            <Part shape={circle(24)} color={jade} shade={0.25} />
+            <Part shape={circle(11)} color={shadeHex(jade, 0.35)} flat outline={3} z={0.001} />
+          </X>
+        </X>
+      );
+    }
+    case "mayaking": {
+      // royal headdress: a tall jade/serpent mask block on the brow, gold bands
+      const c = color ?? "#2f8a5a";
+      const gold = accent ?? palette.gold;
+      return (
+        <X y={20} s={0.82}>
+          <Part shape={blob([[-104, 30], [0, 42], [104, 30], [100, 70], [0, 80], [-100, 70]], 8)} color={gold} shade={0.25} />
+          <Part shape={blob([[-70, 70], [-60, 200], [-10, 236], [70, 226], [118, 188], [124, 120], [96, 70]], 8)} color={c} shade={0.25} z={0.001} />
+          {/* serpent mask: eye, brow scroll, snout curl, fangs */}
+          <Part shape={circle(26)} color="#f4f1ea" flat outline={4} x={50} y={150} z={0.002} />
+          <Part shape={circle(11)} color="#211b20" flat outline={0} x={58} y={150} z={0.003} />
+          <Line pts={[[18, 186], [46, 196], [82, 188], [104, 168]]} smooth width={6} color={gold} z={0.003} />
+          <Part shape={blob([[96, 118], [140, 124], [152, 100], [132, 86], [110, 96]], 6)} color={c} shade={0.25} z={0.002} />
+          <Part shape={poly([[100, 92], [110, 70], [118, 92]])} color="#f4f1ea" flat outline={3} z={0.003} />
+          <Part shape={roundRect(140, 16, 6)} color={gold} flat outline={3.5} x={20} y={226} rot={-0.08} z={0.004} />
+          {[-40, -10, 20].map((x) => (
+            <Part key={x} shape={circle(9)} color="#3fa07a" flat outline={3} x={x} y={100} z={0.004} />
+          ))}
+        </X>
+      );
+    }
+    case "jaguar": {
+      // jaguar-head helmet: the cat's upper jaw over the brow, ears on top
+      const c = color ?? "#e0a83a";
+      return (
+        <X y={20}>
+          <Part shape={blob([[-110, 30], [-104, 100], [-60, 140], [10, 150], [80, 128], [118, 80], [124, 30], [60, 22], [-40, 22]], 8)} color={c} shade={0.25} />
+          {([[-60, 100], [-20, 124], [24, 120], [60, 98], [-84, 60], [0, 84], [-40, 60]] as [number, number][]).map(([x, y], i) => (
+            <X key={i} x={x} y={y} z={0.001}>
+              <Part shape={ellipse(11, 9)} color="#2a2228" flat outline={0} />
+              <Part shape={ellipse(4.5, 3.5)} color={c} flat outline={0} z={0.001} />
+            </X>
+          ))}
+          {[-50, 30].map((x) => (
+            <Part key={x} shape={circle(20)} color={c} shade={0.25} x={x} y={150} z={-0.001} />
+          ))}
+          {/* snout and teeth over the forehead */}
+          <Part shape={blob([[60, 40], [150, 50], [160, 22], [140, 6], [70, 10]], 6)} color={c} shade={0.25} z={0.002} />
+          <Part shape={ellipse(12, 9)} color="#2a2228" flat outline={2} x={150} y={42} z={0.003} />
+          {[80, 100, 120, 140].map((x) => (
+            <Part key={x} shape={poly([[x - 6, 8], [x, -8], [x + 6, 8]])} color="#f4f1ea" flat outline={2.5} z={0.003} />
+          ))}
+          <Part shape={circle(8)} color="#f4e2a0" flat outline={3} x={92} y={56} z={0.003} />
+        </X>
+      );
+    }
+    case "morion": {
+      // Spanish morion: steel comb helmet with an upturned boat brim
+      const c = color ?? "#b9bec8";
+      return (
+        <X y={36}>
+          <Part shape={blob([[-90, 30], [-84, 92], [-44, 126], [44, 126], [84, 92], [90, 30]], 8)} color={c} shade={0.3} />
+          <Part shape={blob([[-50, 112], [-30, 172], [16, 186], [52, 150], [44, 112]], 6)} color={shadeHex(c, 0.05)} shade={0.3} z={0.001} />
+          <Part shape={blob([[-158, 82], [-120, 34], [0, 22], [120, 34], [158, 82], [124, 56], [0, 44], [-124, 56]], 6)} color={shadeHex(c, 0.06)} shade={0.28} z={0.002} />
+          {[-60, -30, 0, 30, 60].map((x) => (
+            <Part key={x} shape={circle(5)} color="#d9b84e" flat outline={2.5} x={x} y={52} z={0.003} />
+          ))}
+          {accent ? <Part shape={blob([[-50, 150], [-110, 200], [-150, 190], [-96, 160]], 6)} color={accent} shade={0.25} z={-0.001} /> : null}
+        </X>
+      );
+    }
+    case "skull": {
+      // lord of Xibalba: a skull worn on the head
+      const bone = color ?? "#ece4cf";
+      return (
+        <X y={60}>
+          <Part shape={blob([[-70, 30], [-74, 90], [-30, 130], [40, 130], [80, 96], [86, 40], [60, 10], [-40, 10]], 8)} color={bone} shade={0.28} />
+          <Part shape={ellipse(16, 20)} color="#211b20" flat outline={0} x={40} y={66} z={0.001} />
+          <Part shape={ellipse(12, 16)} color="#211b20" flat outline={0} x={-2} y={66} z={0.001} />
+          <Part shape={poly([[64, 36], [72, 50], [56, 50]])} color="#211b20" flat outline={0} z={0.001} />
+          <Part shape={roundRect(70, 22, 6)} color={bone} shade={0.25} x={40} y={12} z={0.002} />
+          {[16, 32, 48, 64].map((x) => (
+            <Line key={x} pts={[[x, 2], [x, 22]]} width={3} z={0.003} />
+          ))}
+        </X>
+      );
+    }
+    case "maize": {
+      // maize god: tall headdress like a ripe cob in its leaves
+      const c = color ?? "#f2c84a";
+      return (
+        <X y={60}>
+          <Part shape={blob([[-36, 40], [-46, 140], [-20, 210], [20, 214], [44, 140], [40, 40]], 8)} color={c} shade={0.25} />
+          {[70, 100, 130, 160, 186].map((y) => (
+            <Line key={y} pts={[[-38, y], [38, y]]} width={3} color={shadeHex(c, 0.3)} z={0.001} />
+          ))}
+          <Part shape={blob([[-40, 40], [-120, 140], [-100, 150], [-30, 90]], 6)} color="#5aa04a" shade={0.25} z={0.002} />
+          <Part shape={blob([[40, 40], [130, 130], [112, 144], [30, 90]], 6)} color="#5aa04a" shade={0.25} z={0.002} />
+          <Part shape={blob([[-104, 10], [0, 26], [104, 10], [100, 46], [0, 56], [-100, 46]], 8)} color="#3fa07a" shade={0.25} z={0.003} />
+        </X>
+      );
+    }
+    case "cap16": {
+      // 15th–16th c. soft bonnet
+      const c = color ?? "#5a1e22";
+      return (
+        <X y={74} rot={-0.12}>
+          <Part shape={ellipse(120, 34)} color={c} shade={0.25} />
+          <Part shape={blob([[-90, 10], [-70, 60], [0, 74], [70, 60], [90, 10]], 6)} color={c} shade={0.25} z={-0.001} />
+        </X>
+      );
+    }
     default:
       return null;
   }
@@ -472,6 +592,41 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
 
 /** Parts of headwear drawn behind the head (veils, hood backs). */
 export const HatBack: React.FC<{ kind: HatKind; color?: string }> = ({ kind, color }) => {
+  if (kind === "plume" || kind === "mayaking") {
+    // fan of quetzal / macaw feathers sweeping back from the crown
+    const royal = kind === "mayaking";
+    const n = royal ? 7 : 5;
+    const len = royal ? 300 : 170;
+    return (
+      <X x={royal ? -10 : -20} y={royal ? 220 : 100}>
+        {Array.from({ length: n }, (_, i) => {
+          const a = Math.PI / 2 + 0.25 + (i / (n - 1)) * (royal ? 1.5 : 1.1);
+          return (
+            <X key={i} rot={a - Math.PI / 2} z={-i * 0.0001}>
+              <Part shape={blob([[0, 0], [-16, len * 0.35], [-8, len * 0.85], [0, len], [8, len * 0.85], [16, len * 0.35]], 8)} color={i % 2 ? "#2f9a5a" : "#3fb070"} shade={0.22} />
+              <Part shape={blob([[0, len * 0.72], [-9, len * 0.86], [0, len], [9, len * 0.86]], 6)} color="#2f6fa8" flat outline={0} z={0.0001} />
+              <Line pts={[[0, 6], [0, len * 0.92]]} width={2.5} color="#1f6a3e" z={0.0002} />
+            </X>
+          );
+        })}
+      </X>
+    );
+  }
+  if (kind === "jaguar") {
+    return <Part shape={blob([[-104, 40], [-120, -80], [-96, -150], [40, -150], [60, -80], [40, 40]], 8)} color={shadeHex(color ?? "#e0a83a", 0.08)} shade={0.2} />;
+  }
+  if (kind === "skull") {
+    // black owl feathers behind the skull
+    return (
+      <X y={150}>
+        {[-0.6, -0.2, 0.2].map((a, i) => (
+          <X key={i} rot={a}>
+            <Part shape={blob([[0, 0], [-14, 60], [0, 130], [14, 60]], 6)} color="#2a2228" shade={0.2} />
+          </X>
+        ))}
+      </X>
+    );
+  }
   if (kind === "veil" || kind === "hood") {
     const c = color ?? (kind === "veil" ? "#7a4b8f" : "#6b5a44");
     return (

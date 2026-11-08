@@ -21,6 +21,14 @@ const UPPER = 60;
 const FORE = 56;
 
 export type Outfit = {
+  /** Jaguar-pelt rosettes over the tunic (color of the spots). */
+  spots?: string | null;
+  /** Mesoamerican ballplayer's padded hip yoke. */
+  yoke?: string | null;
+  /** Loincloth flap hanging from the belt. */
+  loin?: string | null;
+  /** Collar of jade (or shell) beads. */
+  beads?: string | null;
   top: string;
   bottom?: string;
   boots?: string;
@@ -108,6 +116,10 @@ export type CharacterProps = {
   beardColor?: string;
   /** Round spectacles (frame colour). */
   glasses?: string | null;
+  /** Jade ear spools (color). */
+  earspool?: string | null;
+  /** Face marks: tattoo lines, war paint, or jaguar spots (Hero Twin). */
+  marks?: "tattoo" | "paint" | "spots" | null;
   /** Skin colour for head and hands (e.g. clay for terracotta statues). */
   skin?: string;
   freckles?: boolean;
@@ -188,6 +200,45 @@ const Leg: React.FC<{ angle: number; side: 1 | -1; pants: string; boots: string;
   </X>
 );
 
+/** Face tattoos / war paint / jaguar spots, drawn over the face (head radius 100, facing +x). */
+const FaceMarks: React.FC<{ kind: "tattoo" | "paint" | "spots"; look: number }> = ({ kind, look }) => {
+  const fx = look * 36;
+  if (kind === "paint") {
+    // black band across the eyes, red chin stripes
+    return (
+      <>
+        {[0, 16, 32].map((dy) => (
+          <Line key={dy} pts={[[fx + 52, -10 - dy * 0.4], [fx + 86, -18 - dy * 0.6]]} width={6} color="#c8322a" />
+        ))}
+        {[-14, 0, 14].map((dx) => (
+          <Line key={dx} pts={[[fx + 20 + dx, -56], [fx + 22 + dx, -78]]} width={5} color="#2a2228" />
+        ))}
+      </>
+    );
+  }
+  if (kind === "spots") {
+    return (
+      <>
+        {([[-40, 40], [70, 54], [-60, -30], [90, -18], [10, -64], [-24, 70]] as [number, number][]).map(([x, y], i) => (
+          <Part key={i} shape={circle(9 + (i % 2) * 3)} color="#2a2228" flat outline={0} x={x + fx * 0.5} y={y} />
+        ))}
+      </>
+    );
+  }
+  // tattoo: dark blue scroll lines on cheek, forehead and jaw
+  return (
+    <>
+      <Line pts={[[fx - 20, 64], [fx, 80], [fx + 26, 74], [fx + 40, 58]]} smooth width={4} color="#2c3f6a" />
+      <Line pts={[[fx - 10, 56], [fx + 30, 60]]} width={3.5} color="#2c3f6a" />
+      <Line pts={[[fx + 56, -22], [fx + 74, -40], [fx + 64, -58], [fx + 46, -48]]} smooth width={4} color="#2c3f6a" />
+      <Line pts={[[fx - 64, -20], [fx - 58, -46], [fx - 40, -56]]} smooth width={4} color="#2c3f6a" />
+      {[-30, -14, 2].map((dy) => (
+        <Part key={dy} shape={circle(3.5)} color="#2c3f6a" flat outline={0} x={fx + 82} y={dy} />
+      ))}
+    </>
+  );
+};
+
 const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe }) => {
   const top = outfit.top;
   const bottomY = outfit.hem ?? (outfit.robe ? 10 : TORSO_BOTTOM);
@@ -254,6 +305,31 @@ const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe 
           flat
           z={0.005}
         />
+      ) : null}
+      {outfit.spots
+        ? ([[-32, 196], [14, 206], [38, 170], [-12, 160], [-40, 128], [22, 126], [-6, 96], [40, 88], [-36, 76]] as [number, number][]).map(([x, y], i) => (
+            <X key={`sp${i}`} x={x} y={y} rot={i * 0.9} z={0.0012}>
+              <Part shape={ellipse(10, 8)} color={outfit.spots!} flat outline={0} />
+              <Part shape={ellipse(4, 3)} color={top} flat outline={0} z={0.0001} />
+            </X>
+          ))
+        : null}
+      {outfit.beads
+        ? Array.from({ length: 9 }, (_, i) => {
+            const a = Math.PI * (0.15 + (i / 8) * 0.7);
+            return <Part key={`bd${i}`} shape={circle(i === 4 ? 13 : 9)} color={outfit.beads!} shade={0.25} outline={3} x={-Math.cos(a) * 52} y={TORSO_TOP - 8 - Math.sin(a) * 40} z={0.007} />;
+          })
+        : null}
+      {outfit.yoke ? (
+        <X y={86} z={0.008}>
+          <Part shape={roundRect(186, 56, 26)} color={outfit.yoke} shade={0.28} />
+          <Line pts={[[-80, 8], [80, 8]]} width={4} color={shadeHex(outfit.yoke, -0.25)} z={0.001} />
+          <Line pts={[[-80, -10], [80, -10]]} width={4} color={shadeHex(outfit.yoke, 0.35)} z={0.001} />
+          <Part shape={circle(16)} color={shadeHex(outfit.yoke, -0.2)} shade={0.25} x={40} z={0.002} />
+        </X>
+      ) : null}
+      {outfit.loin ? (
+        <Part shape={roundPoly([[-22, 80], [22, 80], [18, 26], [-18, 26]], 6)} color={outfit.loin} shade={0.2} y={0} z={0.0095} />
       ) : null}
       {outfit.quilt
         ? [
@@ -378,6 +454,8 @@ export const Character: React.FC<CharacterProps> = ({
   beard = null,
   beardColor,
   glasses = null,
+  earspool = null,
+  marks = null,
   skin,
   freckles = false,
   talking = false,
@@ -472,6 +550,12 @@ export const Character: React.FC<CharacterProps> = ({
                 <X x={look > 0.15 ? -96 : -98} y={-4} z={-0.01}>
                   <Part shape={circle(22)} color={skin ?? SKIN} shade={0.25} />
                   <Line pts={[[4, 10], [-6, 6], [-8, -4], [2, -10]]} smooth width={4} z={0.001} />
+                  {earspool ? (
+                    <X x={-6} y={-10} z={0.002}>
+                      <Part shape={circle(17)} color={earspool} shade={0.25} outline={3.5} />
+                      <Part shape={circle(7)} color={shadeHex(earspool, 0.4)} flat outline={2.5} z={0.001} />
+                    </X>
+                  ) : null}
                 </X>
                 {look < 0.15 ? (
                   <X x={98} y={-4} z={-0.01}>
@@ -494,6 +578,11 @@ export const Character: React.FC<CharacterProps> = ({
                     glasses={glasses}
                   />
                 </X>
+                {marks ? (
+                  <X z={0.015}>
+                    <FaceMarks kind={marks} look={look} />
+                  </X>
+                ) : null}
                 <X z={0.1}>
                   <HairFront kind={hair} color={hairColor} />
                 </X>

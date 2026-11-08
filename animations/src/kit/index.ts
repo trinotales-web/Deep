@@ -7,3 +7,4 @@ export * from "./Stage";
 export * from "./random";
 export * from "./props";
 export * from "./timing";
+export * from "./depth";

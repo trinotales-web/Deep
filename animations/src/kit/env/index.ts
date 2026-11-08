@@ -9,3 +9,6 @@ export * from "./ww2";
 export * from "./pacific";
 export * from "./qin";
 export * from "./trees";
+export * from "./maya";
+export * from "./mayaprops";
+export * from "./mayamap";

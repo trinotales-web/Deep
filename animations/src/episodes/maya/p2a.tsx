@@ -183,7 +183,7 @@ export const RainKingJobShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 80 }} light={{ dir: [-0.5, 0.6] }} vignette={0.65} vignetteColor="#0e1418">
+      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 150 }} light={{ dir: [-0.5, 0.6] }} vignette={0.65} vignetteColor="#0e1418">
         <JungleSet mood="storm" horizon={-420}>
           {[-700, -150, 450].map((x, i) => (
             <Cloud key={x} x={x} y={620 + (i % 2) * 60} w={620} seed={i + 11} color="#6a7480" shadow="#4a5260" z={-38} />

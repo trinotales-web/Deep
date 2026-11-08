@@ -262,14 +262,14 @@ export const TooManyShot: React.FC<ShotProps> = ({ start, dur }) => {
           {Array.from({ length: 9 }, (_, i) => (
             <Stump key={i} x={-380 + i * 95 + ((i * 53) % 40)} y={-300 - (i % 3) * 90} w={70 + (i % 3) * 18} z={1 + i * 0.01} />
           ))}
-          <X x={1250} z={0.5}>
+          <X x={1250} y={-200} z={0.5}>
             <CrackedGround w={1400} h={800} z={0} seed={8} />
             {[-260, 0, 260].map((x, i) => (
-              <X key={x} x={x} y={-300 - (i % 2) * 60} rot={(i - 1) * 0.3} z={1 + i * 0.01}>
+              <X key={x} x={x} y={-100 - (i % 2) * 60} rot={(i - 1) * 0.3} z={1 + i * 0.01}>
                 <CornPlant h={420} grow={1} seed={i + 5} dry={1} />
               </X>
             ))}
-            <Sun x={300} y={560} r={110} glow={1} z={-1} />
+            <Sun x={300} y={760} r={110} glow={1} z={-1} />
           </X>
         </JungleSet>
       </Stage>
@@ -302,7 +302,7 @@ export const LoseFaithShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** A family walking away with bundles on their backs (facing −x). */
-const Leavers: React.FC<{ x: number; y: number; s?: number; seed?: number; facing?: 1 | -1 }> = ({ x, y, s = 1, seed = 0, facing = -1 }) => {
+export const Leavers: React.FC<{ x: number; y: number; s?: number; seed?: number; facing?: 1 | -1 }> = ({ x, y, s = 1, seed = 0, facing = -1 }) => {
   const frame = useCurrentFrame();
   return (
     <X x={x} y={y} z={2}>
@@ -751,7 +751,7 @@ export const OfferingsShot: React.FC<ShotProps> = ({ start, dur }) => {
       </Stage>
       <Label text="GOLD" x={0.36} y={0.14} size={0.055} kind="box" at={sec(start)(76.8)} />
       <Label text="JADE" x={0.56} y={0.14} size={0.055} kind="box" at={sec(start)(77.4)} />
-      <Label text="…AND HUMANS" x={0.78} y={0.26} size={0.05} kind="stamp" rotate={-5} at={sec(start)(78.7)} />
+      <Label text="…AND HUMANS" x={0.78} y={0.26} size={0.05} kind="box" at={sec(start)(78.7)} />
     </AbsoluteFill>
   );
 };

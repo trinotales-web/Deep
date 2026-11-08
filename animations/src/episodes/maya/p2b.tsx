@@ -91,8 +91,8 @@ export const FamiliesTearShot: React.FC<ShotProps> = ({ start, dur }) => {
               <Glow x={0} y={0} rx={1400} ry={600} color="#ff8a3a" alpha={0.3 * burn} additive />
             </X>
           ) : null}
-          <Character {...MAYA_KING(0)} x={-360} y={-860} s={1.8} z={2} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ ...poses.idle(frame), armF: [2.0 + swing * 0.5, 0.4] }} holdF={<Spear rot={upright([2.0 + swing * 0.5, 0.4]) - 1.0} length={420} tip="#2a2228" />} />
-          <Character {...MAYA_KING(2)} x={380} y={-860} s={1.8} z={2} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "teeth", brows: -0.9 }} pose={{ ...poses.idle(frame, 3), armF: [2.0 - swing * 0.5, 0.4] }} holdF={<Spear rot={upright([2.0 - swing * 0.5, 0.4]) - 1.0} length={420} tip="#2a2228" />} />
+          <Character {...MAYA_KING(0)} x={-360} y={-860} s={1.8} z={2} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ ...poses.idle(frame), armF: [1.3 + swing * 0.25, 0.3] }} holdF={<Spear rot={upright([1.3 + swing * 0.25, 0.3]) - 1.57} length={420} tip="#2a2228" />} />
+          <Character {...MAYA_KING(2)} x={380} y={-860} s={1.8} z={2} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "teeth", brows: -0.9 }} pose={{ ...poses.idle(frame, 3), armF: [1.3 - swing * 0.25, 0.3] }} holdF={<Spear rot={upright([1.3 - swing * 0.25, 0.3]) - 1.57} length={420} tip="#2a2228" />} />
         </PlazaSet>
       </Stage>
       <Label text="1400s" x={0.5} y={0.1} size={0.07} kind="box" at={sec(start)(109.4)} />
@@ -249,7 +249,7 @@ export const AlmondsShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <DepthStage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -60 }} light={{ dir: [-0.5, 0.6] }} vignette={0.6} bgBlur={6}
-        bg={<><Sky w={6000} h={3600} y={1800} top="#6ab8e0" mid="#9ad0ea" bottom="#d8eef2" z={-41} /><Sea w={6000} h={2000} y={-100} color="#3a90b0" z={-38} /></>}
+        bg={<><Sky w={6000} h={3600} y={1600} top="#6ab8e0" mid="#9ad0ea" bottom="#d8eef2" z={-41} /><Sea w={6000} h={2000} y={-100} color="#3a90b0" z={-38} /></>}
       >
         <Character {...COLUMBUS} x={-380} y={-900} s={2.0} z={1} look={0.5} expression={{ eyes: "half", mouth: "smirk", brows: 0.2, gaze: [0.7, 0.2] }} pose={{ ...poses.idle(frame), armF: arm }} holdF={<CacaoBean size={60} y={20} />} />
         <SpeechBubble x={360} y={160} w={460} h={320} tx={0} ty={-120} s={pop(t, 126.0)} z={2} />
@@ -296,7 +296,7 @@ export const Shipwreck1511Shot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.08), y: 40, shake: bolt * 5 }} light={{ dir: [0.5, 0.6] }} vignette={0.75} vignetteColor="#0a1018">
-        <Sky w={6000} h={3600} y={1800} top="#2a3240" mid="#4a5260" bottom="#6a7480" z={-41} />
+        <Sky w={6000} h={3600} y={1500} top="#2a3240" mid="#4a5260" bottom="#6a7480" z={-41} />
         {[-700, 0, 700].map((x, i) => (
           <Cloud key={x} x={x} y={460 + (i % 2) * 70} w={700} seed={i + 21} color="#4a525e" shadow="#323842" z={-40} />
         ))}
@@ -310,7 +310,7 @@ export const Shipwreck1511Shot: React.FC<ShotProps> = ({ start, dur }) => {
         <Wash width={6000} height={4000} color="#ffffff" alpha={0.35 * Math.min(1, bolt)} z={20} />
       </Stage>
       <Label text="1511" x={0.17} y={0.1} size={0.07} kind="box" at={sec(start)(131.2)} />
-      <Label text="SHIPWRECK" x={0.75} y={0.12} size={0.06} kind="stamp" rotate={-6} at={sec(start)(133.5)} />
+      <Label text="SHIPWRECK" x={0.75} y={0.12} size={0.06} kind="box" at={sec(start)(133.5)} />
     </AbsoluteFill>
   );
 };
@@ -359,12 +359,12 @@ export const CapturedShot: React.FC<ShotProps> = ({ start, dur }) => {
           {[0, 1, 2].map((i) => {
             const arm: [number, number] = [1.6, 0.2];
             return (
-              <Character key={i} {...ITZA_WARRIOR(i + 1)} x={900 - i * 180 - step * 160} y={-720 - i * 40} s={1.35 - i * 0.08} z={1.9 - i * 0.1} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "flat", brows: -0.7 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={<Spear rot={upright(arm) - 1.25} length={620} tip="#2a2228" />} />
+              <Character key={i} {...ITZA_WARRIOR(i + 1)} x={900 - i * 180 - step * 160} y={-720 - i * 40} s={1.35 - i * 0.08} z={1.9 - i * 0.1} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "flat", brows: -0.7 }} pose={{ ...poses.idle(frame, i), armF: arm }} holdF={<Spear rot={upright(arm) - 0.35} length={620} tip="#2a2228" />} />
             );
           })}
         </BeachSet>
       </Stage>
-      <Label text="CAPTURED" x={0.3} y={0.12} size={0.065} kind="stamp" rotate={-6} at={sec(start)(138.1)} />
+      <Label text="CAPTURED" x={0.3} y={0.12} size={0.065} kind="box" at={sec(start)(138.1)} />
     </AbsoluteFill>
   );
 };
@@ -600,7 +600,7 @@ export const TranslatorShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Character {...AGUILAR} outfit={{ ...AGUILAR.outfit, patches: null }} x={60} y={-900} s={1.75} z={2.1} look={0.5} talking={t < 168.0} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={poses.point(frame)} />
         <SpeechBubble x={520} y={240} w={380} h={200} tx={200} ty={-80} s={pop(t, 166.9)} z={3} />
       </DepthStage>
-      <Label text="TRANSLATOR" x={0.77} y={0.27} size={0.04} kind="tag" color="#2a2026" at={sec(start)(167.2)} />
+      <Label text="TRANSLATOR" x={0.775} y={0.215} size={0.04} kind="tag" color="#2a2026" at={sec(start)(167.2)} />
       <Label text="CONQUEST OF THE AZTECS" x={0.5} y={0.1} size={0.045} kind="box" at={sec(start)(168.8)} />
     </AbsoluteFill>
   );
@@ -647,11 +647,11 @@ export const BrotherAguilarShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const FaceTattooedShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const arm: [number, number] = t > 177.1 ? [2.4, 2.1] : [2.2, 2.3];
+  const arm: [number, number] = t > 177.1 ? [1.6, 1.9] : [1.4, 2.1];
   return (
     <AbsoluteFill>
       <DepthStage camera={{ zoom: push(frame, dur, 1.5, 1.6), y: -260 }} light={{ dir: [-0.5, 0.6] }} vignette={0.65} bgBlur={8} bg={<Village mood="day" horizon={-200} />}>
-        <Character {...GUERRERO} x={60} y={-1000} s={2.2} z={2} look={0.5} talking={t < 177.9} expression={{ eyes: "open", mouth: "smile", brows: -0.2 }} pose={{ ...poses.idle(frame), armF: arm, armsOverHead: true }} />
+        <Character {...GUERRERO} x={60} y={-1000} s={2.2} z={2} look={0.5} talking={t < 177.9} expression={{ eyes: "open", mouth: "smile", brows: -0.2 }} pose={{ ...poses.idle(frame), armF: arm }} />
       </DepthStage>
       <Label text="“MY FACE IS TATTOOED…”" x={0.5} y={0.1} size={0.045} kind="box" at={sec(start)(176.2)} />
       <Label text="“…AND MY EARS ARE PIERCED.”" x={0.5} y={0.9} size={0.045} kind="box" at={sec(start)(177.3)} />
@@ -695,10 +695,10 @@ export const DiesInBattleShot: React.FC<ShotProps> = ({ start, dur }) => {
         <JungleSet mood="dusk" horizon={-260}>
           <Smoke x={-500} y={-260} w={500} h={900} alpha={0.4} seed={3} z={-20} />
           <Smoke x={500} y={-260} w={400} h={800} alpha={0.35} seed={8} z={-20} />
-          <X x={-60} y={-640} rot={fall * (Math.PI / 2 - 0.1)} z={2}>
+          <X x={200} y={-420} rot={fall * (Math.PI / 2 - 0.1)} z={2}>
             <Character {...GUERRERO} s={1.5} look={0.5} expression={fall > 0.5 ? { eyes: "closed", mouth: "flat" } : { eyes: "angry", mouth: "shout", brows: -0.8 }} pose={{ ...poses.idle(frame), armF: [1.4 + fall, 0.3] }} shadow={false} />
           </X>
-          <Spear x={300} y={-640} rot={1.45} length={720} tip="#2a2228" z={1.9} />
+          <Spear x={420} y={-440} rot={1.45} length={720} tip="#2a2228" z={1.9} />
         </JungleSet>
       </Stage>
       <Label text="1536" x={0.17} y={0.1} size={0.07} kind="box" at={sec(start)(182.0)} />

@@ -131,7 +131,7 @@ export const Cortes1521Shot: React.FC<ShotProps> = ({ start, dur }) => {
       </DepthStage>
       <Label text="1521" x={0.78} y={0.1} size={0.08} kind="box" at={sec(start)(194.9)} />
       <Label text="WHOLE EMPIRE FALLS" x={0.6} y={0.22} size={0.05} kind="box" at={sec(start)(196.7)} />
-      <Label text="~2 YEARS" x={0.84} y={0.34} size={0.05} kind="stamp" rotate={-6} at={sec(start)(197.9)} />
+      <Label text="~2 YEARS" x={0.84} y={0.34} size={0.05} kind="box" at={sec(start)(197.9)} />
     </AbsoluteFill>
   );
 };
@@ -195,8 +195,10 @@ export const SmallpoxShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.08), y: -80 }} light={{ dir: [0.5, 0.5] }} vignette={0.75} vignetteColor="#0a140a">
         <Village mood="dusk" horizon={-240}>
-          <MysticSmoke x={0} y={-200} w={2600} h={900} colors={["#8aa86a", "#6a8a5a", "#a8b88a"]} seed={4} z={1} />
-          <Wash width={6000} height={4000} color="#3a5a2a" alpha={0.18 * miasma} z={1.1} />
+          {[-700, -100, 500].map((x, i) => (
+            <Smoke key={x} x={x} y={-300} w={260} h={700} alpha={0.28 * miasma} color="#7a9a5a" seed={i + 6} z={0.5} />
+          ))}
+          <Wash width={6000} height={4000} color="#3a5a2a" alpha={0.12 * miasma} z={1.1} />
           {[-620, -220, 200, 600].map((x, i) => {
             const k = sick(i);
             return (
@@ -283,13 +285,13 @@ export const QuetzalLandsShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const fly = ramp(t, 222.4, 223.5, Easing.out(Easing.quad));
-  const qx = interpolate(fly, [0, 1], [900, 60]);
-  const qy = interpolate(fly, [0, 1], [500, -500]) + Math.sin(fly * Math.PI) * 120;
+  const qx = interpolate(fly, [0, 1], [900, 120]);
+  const qy = interpolate(fly, [0, 1], [400, -440]) + Math.sin(fly * Math.PI) * 120;
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.15, 1.25), y: -420 }} light={{ dir: [-0.5, 0.6] }} vignette={0.75} vignetteColor="#140a10">
         <JungleSet mood="dusk" horizon={-260} jungle={false} ground="#8aa85a">
-          <X x={-300} y={-600} rot={Math.PI / 2} z={2}>
+          <X x={420} y={-560} rot={Math.PI / 2} z={2}>
             <Character {...TECUN_UMAN} s={1.3} look={0.5} expression={{ eyes: "closed", mouth: "flat" }} pose={{ ...poses.idle(frame), armF: [0.3, 0.1], armB: [0.2, 0.1] }} shadow={false} />
           </X>
           <Quetzal x={qx} y={qy} s={1.1} sx={-1} flap={1 - ramp(t, 223.3, 223.6)} rot={(1 - fly) * 0.2} z={3} />
@@ -420,7 +422,7 @@ export const NeverSeenShot: React.FC<ShotProps> = ({ start, dur }) => {
         {[0, 1, 2].map((i) => (
           <Character key={i} {...(i === 1 ? MAYA_WOMAN(i) : ITZA_WARRIOR(i))} x={-760 + i * 260} y={-820 - (i % 2) * 30} s={1.5 - i * 0.1} z={2 - i * 0.05} look={0.5} expression={{ eyes: "wide", mouth: "o", brows: 0.9, gaze: [0.6, 0] }} pose={i === 2 ? poses.scared(frame) : poses.idle(frame, i)} />
         ))}
-        <QuestionMark x={-200} y={300} s={0.6 * pop(t, 244.0)} z={3} />
+        <QuestionMark x={-60} y={130} s={0.55 * pop(t, 244.0)} z={3} />
       </DepthStage>
       <Label text="NEVER SEEN A HORSE" x={0.5} y={0.1} size={0.06} kind="box" at={sec(start)(244.0)} />
     </AbsoluteFill>
@@ -482,12 +484,12 @@ export const HorseDiesShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.15, 1.2), y: -200 }} light={{ pos: [0, 400] }} vignette={0.8} vignetteColor="#0a0a10">
         <PalaceRoom floorY={-460} dim={0.35} throne={false}>
-          <X x={-40} y={-460} rot={-0.08} z={1}>
-            <X rot={Math.PI / 2 - 0.05} x={-220} y={60}>
-              <Horse color="#8a5a3a" />
-            </X>
+          <X x={-40} y={-640} rot={-0.06} z={1}>
+            <Horse color="#8a5a3a" />
           </X>
-          <Part shape={circle(30)} color="#e07a9a" flat outline={3} x={260} y={-420} z={2} />
+          <Part shape={roundRect(6000, 1400, 0)} color="#c9b994" flat outline={0} y={-460 - 700} z={1.2} />
+          <Line pts={[[-3000, -460], [3000, -460]]} width={6} z={1.21} />
+          <Part shape={circle(30)} color="#e07a9a" flat outline={3} x={-300} y={-420} z={2} />
         </PalaceRoom>
       </Stage>
     </AbsoluteFill>
@@ -778,12 +780,14 @@ export const GoneInSmokeShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.08), y: 40 }} light={{ pos: [0, -200] }} vignette={0.75} vignetteColor="#140a08">
-        <Gradient w={6000} h={4000} stops={[[0, "#2a1a14"], [1, "#140a08"]]} z={-41} />
-        <Codex y={-300} s={1.0} pages={6} open={1} burn={k} seed={6} z={1} />
+        <Gradient w={6000} h={4000} stops={[[0, "#6a4a32"], [1, "#3a2418"]]} z={-41} />
+        <Codex y={-300} s={1.0} pages={6} open={1} burn={k * 0.85} seed={6} z={1} />
+        <Flame y={-360} size={1.6 * Math.min(1, k * 2)} seed={4} z={1.5} />
+        <Glow y={-200} rx={700} ry={400} color="#ff9a4a" alpha={0.4 * Math.min(1, k * 2)} additive z={1.4} />
         <Smoke y={-100} w={600} h={1200} alpha={0.5 * k} color="#6a6060" seed={3} z={2} />
         {glyphs.map(([gx, gy, q], i) => {
           const f = Math.max(0, Math.min(1, k * 3 - q)) * Math.max(0, 1 - k * 1.1 + q * 0.3);
-          return f > 0.02 ? <Glyph key={i} x={gx * (0.6 + k)} y={-200 + gy + k * (500 + q * 500)} s={f} size={70} seed={i + 4} paint="#f2e8d0" z={3 + i * 0.001} /> : null;
+          return f > 0.02 ? <Glyph key={i} x={gx * (0.6 + k)} y={-200 + gy + k * (500 + q * 500)} s={f} size={90} seed={i + 4} paint="#f2e8d0" z={3 + i * 0.001} /> : null;
         })}
       </Stage>
       <Label text="CENTURIES OF KNOWLEDGE" x={0.5} y={0.1} size={0.055} kind="box" at={sec(start)(286.5)} />
@@ -946,8 +950,8 @@ export const KnorozovShot: React.FC<ShotProps> = ({ start, dur }) => {
         <HangingLamp x={160} y={540} cord={160} cone={0.6} coneW={700} z={-10} />
         <Character {...KNOROZOV} x={-260} y={-920} s={1.8} z={1} look={0.5} expression={{ eyes: "half", mouth: "flat", brows: -0.4, gaze: [0.5, -0.4] }} pose={{ ...poses.sit(frame), armF: [1.3, 1.1] }} />
         <Desk x={340} y={-920} w={900} h={360} z={1.5} />
-        <AlphabetPage y={-500} s={0.42} z={1.6} />
-        <Cat x={560} y={-560} s={0.95} look={-0.6} z={1.7} />
+        <X x={320} z={1.6}><AlphabetPage y={-530} s={0.4} /></X>
+        <Cat x={700} y={-560} s={0.95} look={-0.6} z={1.7} />
       </DepthStage>
       <Label text="1950s · USSR" x={0.2} y={0.1} size={0.055} kind="box" at={sec(start)(305.3)} />
       <Label text="YURI KNOROZOV" x={0.68} y={0.1} size={0.06} kind="box" at={sec(start)(307.6)} />

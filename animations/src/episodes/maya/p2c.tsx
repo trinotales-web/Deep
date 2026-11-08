@@ -54,10 +54,10 @@ export const ForRealShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [0.5, 0.6] }} vignette={0.65}>
         <JungleSet mood="day" horizon={-200}>
-          {[0, 1, 2, 3, 4].map((i) => {
+          {[0, 1, 2, 3].map((i) => {
             const arm: [number, number] = [0.4, 0.4];
             return (
-              <Character key={i} {...SPANISH_SOLDIER(i)} x={-900 + i * 300 + march} y={-640 - (i % 2) * 40} s={1.15} z={2 + (i % 2) * 0.1} look={0.4} expression={{ eyes: "half", mouth: "flat", brows: -0.5 }} pose={{ ...poses.walk(frame + i * 5, 0.5), armF: arm }} holdF={<Spear rot={upright(arm)} length={700} tip="#c9ced6" />} />
+              <Character key={i} {...SPANISH_SOLDIER(i)} x={-960 + i * 400 + march} y={-640 - (i % 2) * 40} s={1.15} z={2 + (i % 2) * 0.1} look={0.4} expression={{ eyes: "half", mouth: "flat", brows: -0.5 }} pose={{ ...poses.walk(frame + i * 5, 0.5), armF: arm }} holdF={<Spear rot={upright(arm)} length={700} tip="#c9ced6" />} />
             );
           })}
           <X x={-1100 + march} y={-280} z={1.5}>
@@ -74,13 +74,13 @@ export const ForRealShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const RuleChangesShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const n = Math.round(ramp(t, 188.6, 189.8) * 7);
+  const n = Math.round(ramp(t, 188.6, 189.8) * 5);
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.05), y: -60 }} light={{ pos: [0, 300] }} vignette={0.6}>
         <PalaceRoom floorY={-460} throne={false}>
           {Array.from({ length: n }, (_, i) => (
-            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={i % 2 ? -560 : -720} s={i % 2 ? 0.78 : 0.92} z={2 + (i % 2 ? 0 : 0.1) + i * 0.001} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
+            <Character key={i} {...MAYA_KING(i)} x={-760 + i * 380} y={-700} s={0.92} z={2 + i * 0.01} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
           ))}
         </PalaceRoom>
       </Stage>
@@ -421,7 +421,7 @@ export const NeverSeenShot: React.FC<ShotProps> = ({ start, dur }) => {
       <DepthStage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -100 }} light={{ dir: [-0.5, 0.6] }} vignette={0.6} bgBlur={6} bg={<Village mood="day" horizon={-240} />}>
         <LameHorse x={260} y={-700} s={1.2} z={1} />
         {[0, 1, 2].map((i) => (
-          <Character key={i} {...(i === 1 ? MAYA_WOMAN(i) : ITZA_WARRIOR(i))} x={-760 + i * 260} y={-820 - (i % 2) * 30} s={1.5 - i * 0.1} z={2 - i * 0.05} look={0.5} expression={{ eyes: "wide", mouth: "o", brows: 0.9, gaze: [0.6, 0] }} pose={i === 2 ? poses.scared(frame) : poses.idle(frame, i)} />
+          <Character key={i} {...(i === 1 ? MAYA_WOMAN(i) : ITZA_WARRIOR(i))} x={-800 + i * 340} y={-780 - (i % 2) * 30} s={1.35 - i * 0.08} z={2 - i * 0.05} look={0.5} expression={{ eyes: "wide", mouth: "o", brows: 0.9, gaze: [0.6, 0] }} pose={i === 2 ? poses.scared(frame) : poses.idle(frame, i)} />
         ))}
         <QuestionMark x={-60} y={130} s={0.55 * pop(t, 244.0)} z={3} />
       </DepthStage>
@@ -644,7 +644,7 @@ export const NotFriendsShot: React.FC<ShotProps> = ({ start, dur }) => {
         <PalaceRoom floorY={-560} throne={false}>
           <Character {...FRIAR(0)} x={-560} y={-780} s={1.5} z={2} look={0.5} expression={{ eyes: "wide", mouth: "wavy", brows: 0.9, sweat: true }} pose={poses.shrug(0.3)} />
           {[0, 1, 2].map((i) => (
-            <Character key={i} {...(i === 1 ? KAN_EK : ITZA_WARRIOR(i + 1))} x={160 + i * 280} y={-780 - (i % 2) * 30} s={1.45} z={2.1 - i * 0.05} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "frown", brows: -0.9 }} pose={i === 1 ? poses.handsOnHips : poses.idle(frame, i)} />
+            <Character key={i} {...(i === 1 ? KAN_EK : ITZA_WARRIOR(i + 1))} x={120 + i * 340} y={-760 - (i % 2) * 30} s={1.3} z={2.1 - i * 0.05} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "frown", brows: -0.9 }} pose={i === 1 ? poses.handsOnHips : poses.idle(frame, i)} />
           ))}
         </PalaceRoom>
       </Stage>

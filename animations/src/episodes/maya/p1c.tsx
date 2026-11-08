@@ -280,13 +280,13 @@ export const TradeMarryFightShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const TheRuleShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const n = Math.round(ramp(t, 236.4, 237.8) * 7);
+  const n = Math.round(ramp(t, 236.4, 237.8) * 5);
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.05), y: -60 }} light={{ pos: [0, 300] }} vignette={0.6}>
         <PalaceRoom floorY={-460} throne={false}>
           {Array.from({ length: n }, (_, i) => (
-            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={i % 2 ? -560 : -720} s={i % 2 ? 0.78 : 0.92} z={2 + (i % 2 ? 0 : 0.1) + i * 0.001} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
+            <Character key={i} {...MAYA_KING(i)} x={-760 + i * 380} y={-700} s={0.92} z={2 + i * 0.01} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
           ))}
         </PalaceRoom>
       </Stage>

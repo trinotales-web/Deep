@@ -673,7 +673,7 @@ export const FightsSpanishShot: React.FC<ShotProps> = ({ start, dur }) => {
           <Smoke x={600} y={-260} w={400} h={700} alpha={0.35} seed={5} z={-20} />
           <Character {...GUERRERO} x={-420 + charge * 200} y={-820} s={1.6} z={2.2} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ ...poses.run(frame), armF: arm }} holdF={<Spear rot={upright(arm) - 1.2} length={720} tip="#2a2228" />} />
           {[0, 1].map((i) => (
-            <Character key={i} {...ITZA_WARRIOR(i + 1)} x={-760 - i * 180 + charge * 200} y={-760 - i * 30} s={1.3} z={2 - i * 0.1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.8 }} pose={{ ...poses.run(frame + 6 + i * 4), armF: arm }} holdF={<Spear rot={upright(arm) - 1.2} length={640} tip="#2a2228" />} />
+            <Character key={i} {...ITZA_WARRIOR(i + 1)} x={-860 - i * 280 + charge * 200} y={-640 + i * 40} s={1.1 - i * 0.08} z={2 - i * 0.1} look={0.5} expression={{ eyes: "angry", mouth: "shout", brows: -0.8 }} pose={{ ...poses.run(frame + 6 + i * 4), armF: arm }} holdF={<Spear rot={upright(arm) - 1.2} length={640} tip="#2a2228" />} />
           ))}
           {[0, 1].map((i) => (
             <Character key={`s${i}`} {...SPANISH_SOLDIER(i + 1)} x={620 + i * 220} y={-780 - i * 30} s={1.35} z={1.9 - i * 0.1} facing={-1} look={0.5} expression={{ eyes: "wide", mouth: "o", brows: 0.8 }} pose={poses.scared(frame + i * 3)} />

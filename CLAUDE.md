@@ -19,12 +19,20 @@ Before writing Remotion code, load the `remotion-best-practices` skill
 
 ## House art style (matched to the reference uploads)
 
+The full style and production prompt (exact values) is in `animations/STYLE_PROMPT.md`.
+
 The look is the flat, outlined "history cartoon" style of the reference shorts.
 Measured values live in `animations/src/kit/style.ts`; keep to them.
 
 - **Characters**: big round white heads (`#f6f5f8`), ~2 head-heights tall, small
   bodies, sleeve arms with **white mitten gloves**, short legs with boots, ears
   on the far side, features shifted toward the facing direction (3/4 view).
+  Indigenous (e.g. Maya) characters get warm brown skin with white gloves
+  (`skin` + `gloves`, see `SKIN_TONES` in `episodes/maya/cast.ts`); Europeans keep
+  white heads. Beards are full jaw-wrapping beards (`beard: "full"`).
+  Hands never cover a face: use `poses` (armsUp V, scared, worship, pray, talk,
+  grief, point with finger) instead of raised arms with `armsOverHead`. No two
+  people on the same spot; use `crowdSpots` for crowds.
   Faces: sclera eyes w/ pupils or lids, simple line mouths, optional freckles,
   blush, mustache/beard, eyebags. Uniforms carry buttons, pockets, belts.
 - **Outlines**: warm near-black `#211b20`, ~8 px at 1080 wide, round joins.
@@ -36,11 +44,14 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
 - **Scenes**: flat colored backgrounds with outlines, subtle vertical gradients,
   soft contact shadows under feet, warm light cones/glows, strong vignette
   + light grain on every shot (`Stage` does this).
-- **Camera**: slow push-in on every shot (≈1.0 → 1.08), shake on hits, cuts
-  every 2–4 s, quick push-slide transitions; fades only for time jumps.
+- **Camera**: slow push-in on every shot (≈1.0 → 1.08, plus the episode's extra
+  push), hard punch-in cuts (×1.3–1.5) on key words, shake on hits, hard cuts every
+  1.5–3.5 s (no slide transitions); fades only for time jumps.
 - **Captions**: uppercase Montserrat Black, white, hard dark drop shadow, the
   phrase builds word by word with a small pop, keywords in coral red `#fe5649`,
   centered at ~70 % height on shorts (84 % on 16:9). Use `StyledCaptions`.
+  On long 16:9 videos the user prefers no on-screen captions: ship an `.srt`.
+  Labels (`Label`) snap to a fixed grid; pass `pin` for labels attached to objects.
 - **Formats**: Shorts 1080×1920 and videos 1920×1080, both 30 fps. Shots read
   `useVideoConfig()` and re-frame for each format.
 
@@ -58,8 +69,9 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `python3 scripts/tighten-vo.py <vo.mp3> <captions.json> <script.txt> <out.wav> <out.json> [--beat "out.=0.6"]`
   removes dead air (never speech), keeps natural pauses and chosen dramatic
   beats, and remaps the captions. Process `out.wav` and use `out.json`.
-- Layers under the voice: an ambience bed per location (quiet), a whoosh on
-  every cut, impacts on key words, small foley on character actions. Every
+- Layers under the voice: an ambience bed per location (quiet), impacts on key
+  words, small foley on visible character actions. No whoosh on cuts and no
+  swishes over static shots (user feedback): sound only what happens. Every
   effect and ambience ducks under speech (`duck` / `gainAt` with
   `duckFromCaptions`, about -5 dB for FX, -6 dB for ambience).
 - Mix targets (check with the episode's `…AudioOnly` composition,

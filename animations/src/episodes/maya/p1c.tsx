@@ -724,8 +724,8 @@ export const TwoCalendarsShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.04) }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <Paper color="#e2d2a8">
-          <CalendarGear x={-440} y={40} r={300 * pop(t, 298.0)} teeth={20} label="numbers" rot={frame * 0.012} color="#d9c49a" z={1} />
-          <CalendarGear x={440} y={40} r={330 * pop(t, 300.7)} teeth={24} label="months" rot={-frame * 0.01} color="#c8a878" z={1} />
+          {pop(t, 298.0) > 0.01 && <X x={-440} y={40} s={pop(t, 298.0)} z={1}><CalendarGear r={300} teeth={20} label="numbers" rot={frame * 0.012} color="#d9c49a" /></X>}
+          {pop(t, 300.7) > 0.01 && <X x={440} y={40} s={pop(t, 300.7)} z={1}><CalendarGear r={330} teeth={24} label="months" rot={-frame * 0.01} color="#c8a878" /></X>}
         </Paper>
       </Stage>
       <Label text="260 DAYS" sub="RITUALS" x={0.27} y={0.88} size={0.05} kind="box" at={sec(start)(298.5)} />

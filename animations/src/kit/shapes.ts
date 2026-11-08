@@ -187,7 +187,10 @@ export const buildGeo = (spec: ShapeSpec, line: number): BuiltGeo => {
   const { shapes, contours } = spec.build();
   const fill = toIndexed(new THREE.ShapeGeometry(shapes, 12));
   const strokes = line > 0
-    ? contours.map((c) => toIndexed(SVGLoader.pointsToStroke(closeLoop(c), strokeStyle(line), 8, 0.05)))
+    ? contours.flatMap((c) => {
+        const g = c.length > 1 ? SVGLoader.pointsToStroke(closeLoop(c), strokeStyle(line), 8, 0.05) : null;
+        return g ? [toIndexed(g)] : [];
+      })
     : [];
   const positions: number[] = [];
   const indices: number[] = [];
@@ -220,8 +223,9 @@ export const buildLine = (pts: THREE.Vector2[], width: number, key: string) => {
   const k = `line:${key}|${width}`;
   const hit = cache.get(k);
   if (hit) return hit.geometry;
-  const geometry = SVGLoader.pointsToStroke(pts, strokeStyle(width), 8, 0.05);
-  geometry.computeBoundingSphere();
+  // pointsToStroke gives null for fewer than two points (e.g. a line still being revealed).
+  const geometry = (pts.length > 1 ? SVGLoader.pointsToStroke(pts, strokeStyle(width), 8, 0.05) : null) ?? new THREE.BufferGeometry();
+  if (geometry.getAttribute("position")) geometry.computeBoundingSphere();
   cache.set(k, { geometry, fillCount: 0, outlineStart: 0, outlineCount: 0, size: width });
   return geometry;
 };

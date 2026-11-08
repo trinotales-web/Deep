@@ -197,6 +197,7 @@ export type LineProps = XProps & {
 
 /** An open drawn line (brows, mouths, wrinkles, wood grain...). */
 export const Line: React.FC<LineProps> = ({ pts, width, color = INK, smooth = false, opacity = 1, ...xform }) => {
+  if (pts.length < 2) return null;
   return (
     <X {...xform}>
       <LineMesh pts={pts} width={width} color={color} smooth={smooth} opacity={opacity} />

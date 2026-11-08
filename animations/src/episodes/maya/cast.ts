@@ -297,3 +297,95 @@ export const EARLY_FARMER = (i = 0): Design => ({
   hairColor: HAIR,
   seed: 840 + i,
 });
+
+// ── second video ──
+
+/** Gonzalo Guerrero in 1511, before he became Maya: Spanish sailor's shirt, cap, beard. */
+export const GUERRERO_SAILOR: Design = {
+  outfit: { top: "#e8e0cc", bottom: "#4a4a5a", boots: "#2a2220", belt: "#5a3a26", buckle: "#d9b84e", collar: "v", collarColor: "#c8bca4", patches: "#cfc4aa" },
+  hat: "cap16",
+  hatColor: "#8a2a2a",
+  hair: "short",
+  hairColor: "#3a2a20",
+  beard: "full",
+  beardColor: "#3a2a20",
+  seed: 752,
+};
+
+/** Kan Ek', the last Itza king (1697): royal plumes in Itza red. */
+export const KAN_EK: Design = { ...MAYA_KING(0), hatColor: "#c0392b", outfit: { ...MAYA_KING(0).outfit, bottom: "#2f6fa8" }, seed: 615 };
+
+/** Tecún Umán, K'iche' prince: green quetzal plumes, jade, red cape. */
+export const TECUN_UMAN: Design = {
+  outfit: { top: "#2fb070", bottom: MAYA_RED, boots: "#6e4a2c", belt: OCHRE, beads: JADE, loin: MAYA_RED, collar: "wrap", collarColor: "#f2c84a" },
+  hat: "mayaking",
+  hatColor: "#1f8a5a",
+  hair: "long",
+  hairColor: HAIR,
+  earspool: JADE,
+  marks: "paint",
+  seed: 616,
+};
+
+/** Yuri Knorozov (1950s Leningrad): grey suit, tie, swept-back hair. */
+export const KNOROZOV: Design = {
+  outfit: { top: "#5a5e6a", bottom: "#4a4e58", boots: "#2a2226", collar: "v", collarColor: "#f4f1ea", buttons: "#2a2226" },
+  hair: "short",
+  hairColor: "#6a5a4a",
+  seed: 780,
+};
+
+/** Graduate student at a laptop (2024). */
+export const STUDENT: Design = {
+  outfit: { top: "#3a6a9a", bottom: "#3a3a44", boots: "#2a2226", collar: "round" },
+  hair: "short",
+  hairColor: "#5a4030",
+  beard: "stubble",
+  beardColor: "#5a4030",
+  glasses: "#2a2226",
+  seed: 781,
+};
+
+/** Maya rebel of the Caste War (1847): white cotton, straw hat, sash. */
+export const CASTE_REBEL = (i = 0): Design => ({
+  outfit: { top: "#f4f0e4", bottom: "#ece6d4", boots: "#6e4a2c", belt: [MAYA_RED, MAYA_BLUE, "#5a8a3a"][i % 3], collar: "round" },
+  hat: "explorer",
+  hatColor: "#e2c98a",
+  hatAccent: [MAYA_RED, "#2a2226", MAYA_BLUE][i % 3],
+  hair: "short",
+  hairColor: HAIR,
+  mustache: i % 2 ? "thin" : null,
+  mustacheColor: HAIR,
+  seed: 790 + i,
+});
+
+/** Modern Maya woman in a bright woven huipil. */
+export const MODERN_MAYA_WOMAN = (i = 0): Design => ({
+  outfit: { top: ["#c0392b", "#8a3a8a", "#2f6fa8", "#e07a3a"][i % 4], robe: true, trim: ["#f2c84a", "#3fa07a", "#f2c84a", "#3a9ac9"][i % 4], belt: ["#2f6fa8", "#c0392b", "#3fa07a", "#8a3a8a"][i % 4], collar: "wrap", collarColor: "#f2c84a" },
+  hair: "long",
+  hairColor: HAIR,
+  seed: 795 + i,
+});
+
+/** Modern Maya man: shirt, trousers, straw hat (sometimes). */
+export const MODERN_MAYA_MAN = (i = 0): Design => ({
+  outfit: { top: ["#f4f0e4", "#3a6a9a", "#c8a878", "#5a8a5a"][i % 4], bottom: ["#3a3a44", "#5a4a3a"][i % 2], boots: "#2a2226", belt: "#5a3a26", collar: "v", collarColor: "#d8d0c0" },
+  hat: i % 2 ? "explorer" : null,
+  hatColor: "#e2c98a",
+  hatAccent: "#2a2226",
+  hair: "short",
+  hairColor: HAIR,
+  seed: 800 + i,
+});
+
+/** Day-keeper (aj q'ij) of the highlands: white shirt, red head cloth, sash. */
+export const DAYKEEPER: Design = {
+  outfit: { top: "#f4f0e4", bottom: "#3a3a44", boots: "#6e4a2c", belt: MAYA_RED, sash: MAYA_RED, collar: "round" },
+  hat: "bandana",
+  hatColor: MAYA_RED,
+  hair: "short",
+  hairColor: "#4a4a50",
+  mustache: "thin",
+  mustacheColor: "#5a5a60",
+  seed: 805,
+};

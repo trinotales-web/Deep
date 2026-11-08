@@ -690,3 +690,96 @@ export const Quetzal: React.FC<XProps & { flap?: number }> = ({ flap = 0, ...xf 
     </X>
   );
 };
+
+// ───────────────────────── collapse & contact props ─────────────────────────
+
+/**
+ * Lake-sediment core in a clear tube (the drought evidence): stacked mud layers
+ * with pale gypsum bands that form when lake water evaporates. `mark` 0..1
+ * highlights the drought band. Origin = centre; vertical.
+ */
+export const SedimentCore: React.FC<XProps & { w?: number; h?: number; mark?: number; seed?: number }> = ({ w = 150, h = 900, mark = 0, seed = 5, ...xf }) => {
+  const r = rng(seed);
+  const n = 22;
+  const layers = Array.from({ length: n }, (_, i) => {
+    const drought = i >= 9 && i <= 12;
+    const c = drought ? (i % 2 ? "#efe6cf" : "#e2d6b4") : ["#6e5038", "#5a4030", "#7a5a3e", "#4a3628", "#8a6a48"][Math.floor(r() * 5)];
+    return { c, hh: (h / n) * (0.6 + r() * 0.8), drought };
+  });
+  const total = layers.reduce((a, l) => a + l.hh, 0);
+  let y = -h / 2;
+  const iw = w - 18;
+  return (
+    <X {...xf}>
+      <Part shape={roundRect(w, h + 30, w * 0.18)} color="#cfe6ea" flat outline={5} opacity={0.55} />
+      {layers.map((l, i) => {
+        const hh = (l.hh / total) * h;
+        const yc = y + hh / 2;
+        y += hh;
+        return <Part key={i} shape={roundRect(iw, hh + 1, 2)} color={l.c} flat outline={0} y={yc} z={0.001 + i * 0.00001} />;
+      })}
+      {mark > 0 ? (
+        <X z={0.004}>
+          <Glow y={h * 0.0} rx={w * 1.4} ry={h * 0.16} color="#fff2c6" alpha={0.55 * mark} additive />
+          <Part shape={roundRect(w + 30, h * 0.2, 10)} color="#000000" flat outline={6} opacity={0} y={-h * 0.01} s={0.8 + 0.2 * mark} />
+        </X>
+      ) : null}
+      <Part shape={roundRect(w * 0.16, h * 0.9, w * 0.08)} color="#ffffff" flat outline={0} opacity={0.35} x={-w * 0.28} z={0.003} />
+    </X>
+  );
+};
+
+/** Cacao pod: ridged yellow-orange pod (origin = centre, long axis vertical). */
+export const CacaoPod: React.FC<XProps & { len?: number; color?: string; open?: boolean }> = ({ len = 260, color = "#e0902a", open = false, ...xf }) => {
+  const w = len * 0.46;
+  return (
+    <X {...xf}>
+      <Part shape={blob([[0, -len / 2], [w / 2, -len * 0.28], [w / 2 + 6, len * 0.1], [w * 0.3, len * 0.42], [0, len / 2], [-w * 0.3, len * 0.42], [-w / 2 - 6, len * 0.1], [-w / 2, -len * 0.28]], 10)} color={color} shade={0.26} />
+      {[-0.5, -0.2, 0.15, 0.45].map((q) => (
+        <Line key={q} pts={[[q * w * 0.7, -len * 0.4], [q * w * 0.85, 0], [q * w * 0.6, len * 0.4]]} smooth width={4} color={shadeHex(color, 0.3)} z={0.001} />
+      ))}
+      <Line pts={[[0, len / 2 - 4], [0, len / 2 + 30]]} width={9} color="#6e4a2c" z={-0.001} />
+      {open ? <Part shape={blob([[-w * 0.3, -len * 0.25], [w * 0.3, -len * 0.25], [w * 0.34, len * 0.2], [-w * 0.34, len * 0.2]], 8)} color="#f4ecd8" shade={0.18} z={0.002} /> : null}
+    </X>
+  );
+};
+
+/** One cacao bean (brown, with a crease) or, with `almond`, an almond. */
+export const CacaoBean: React.FC<XProps & { size?: number; almond?: boolean }> = ({ size = 60, almond = false, ...xf }) => {
+  const c = almond ? "#c99a62" : "#6a3a24";
+  return (
+    <X {...xf}>
+      {almond ? (
+        <Part shape={blob([[0, size * 0.7], [size * 0.42, size * 0.2], [size * 0.36, -size * 0.4], [0, -size * 0.62], [-size * 0.36, -size * 0.4], [-size * 0.42, size * 0.2]], 8)} color={c} shade={0.26} />
+      ) : (
+        <Part shape={ellipse(size * 0.44, size * 0.62)} color={c} shade={0.26} />
+      )}
+      {almond ? (
+        [-0.15, 0.12].map((q) => <Line key={q} pts={[[q * size, size * 0.4], [q * size * 1.3, 0], [q * size, -size * 0.4]]} smooth width={2.5} color={shadeHex(c, 0.3)} z={0.001} />)
+      ) : (
+        <Line pts={[[0, -size * 0.45], [size * 0.06, 0], [0, size * 0.45]]} smooth width={3} color={shadeHex(c, 0.4)} z={0.001} />
+      )}
+    </X>
+  );
+};
+
+/** Small clay effigy idol (the figures Landa burned): squat body, big face, feather crest. Origin = base. */
+export const ClayIdol: React.FC<XProps & { size?: number; seed?: number; char?: number }> = ({ size = 1, seed = 1, char = 0, ...xf }) => {
+  const cols = ["#c9784a", "#b8643a", "#d9905a", "#a8804a"];
+  const base = mixHex(cols[seed % 4], "#2a2026", char * 0.75);
+  return (
+    <X {...xf} s={(xf.s ?? 1) * size}>
+      <Part shape={roundRect(120, 110, 30)} color={base} shade={0.26} y={55} />
+      <Part shape={roundRect(150, 130, 40)} color={base} shade={0.26} y={170} z={0.001} />
+      <Part shape={roundRect(120, 26, 8)} color={mixHex(["#3a9ac9", "#3fa07a", "#c0392b", "#f2c84a"][seed % 4], "#2a2026", char * 0.75)} flat outline={3} y={232} z={0.002} />
+      {[-30, 30].map((x) => (
+        <Part key={x} shape={circle(16)} color={mixHex("#f4ead0", "#2a2026", char * 0.6)} flat outline={3} x={x} y={182} z={0.002} />
+      ))}
+      {[-30, 30].map((x) => (
+        <Part key={`p${x}`} shape={circle(6)} color="#211b20" flat outline={0} x={x} y={182} z={0.003} />
+      ))}
+      <Part shape={roundRect(54, 14, 7)} color="#211b20" flat outline={0} y={140} z={0.002} />
+      <Part shape={blob([[-60, 240], [-30, 300], [0, 270], [30, 300], [60, 240]], 6)} color={mixHex("#3fa07a", "#2a2026", char * 0.75)} shade={0.2} z={-0.001} />
+    </X>
+  );
+};

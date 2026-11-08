@@ -230,3 +230,75 @@ export const Popcorn: React.FC<XProps> = (xf) => (
 );
 
 
+
+/** Siamese cat sitting (Knorozov's Asya): cream body, dark points, blue eyes. Facing +x; origin = ground centre. */
+export const Cat: React.FC<XProps & { color?: string; points?: string; look?: number }> = ({ color = "#efe2c8", points = "#4a3428", look = 0, ...xf }) => {
+  const frame = useCurrentFrame();
+  const sway = Math.sin(frame * 0.07) * 0.25;
+  return (
+    <X {...xf}>
+      <X x={-70} y={20} rot={sway} z={-0.002}>
+        <Line pts={[[0, 0], [-60, 20], [-90, 80], [-70, 140]]} smooth width={26} color={points} />
+      </X>
+      <Part shape={blob([[-90, 10], [-100, 90], [-60, 170], [0, 200], [50, 160], [70, 80], [60, 10]], 10)} color={color} shade={0.24} />
+      {[[-20, 0], [40, 0]].map(([x, y], i) => (
+        <Part key={i} shape={ellipse(26, 16)} color={points} shade={0.2} x={x} y={y + 10} z={0.002} />
+      ))}
+      <X x={20 + look * 10} y={230} z={0.004}>
+        <Part shape={poly([[-62, 20], [-56, 96], [-16, 44]])} color={points} shade={0.2} z={-0.001} />
+        <Part shape={poly([[62, 20], [56, 96], [16, 44]])} color={points} shade={0.2} z={-0.001} />
+        <Part shape={blob([[-70, 0], [-60, 50], [0, 72], [60, 50], [70, 0], [40, -50], [0, -60], [-40, -50]], 10)} color={color} shade={0.22} />
+        <Part shape={blob([[-30, 10], [30, 10], [24, -34], [0, -50], [-24, -34]], 8)} color={points} flat outline={0} opacity={0.75} z={0.001} />
+        {[-24, 24].map((x) => (
+          <X key={x} x={x + look * 8} y={10} z={0.002}>
+            <Part shape={ellipse(13, 15)} color="#6ab0e0" flat outline={3} />
+            <Part shape={ellipse(4, 11)} color="#211b20" flat outline={0} z={0.001} />
+          </X>
+        ))}
+        <Part shape={poly([[-8, -16], [8, -16], [0, -26]])} color="#d88a8a" flat outline={2} z={0.003} />
+        {[-1, 1].map((k) => (
+          <Line key={k} pts={[[k * 20, -24], [k * 80, -14]]} width={2.5} color="#211b20" opacity={0.6} z={0.003} />
+        ))}
+      </X>
+    </X>
+  );
+};
+
+/** Open laptop, front view. Children draw on the screen (screen centre = origin of children). Origin = base centre. */
+export const Laptop: React.FC<XProps & { w?: number; glow?: number; children?: React.ReactNode }> = ({ w = 620, glow = 0.6, children, ...xf }) => {
+  const h = w * 0.62;
+  return (
+    <X {...xf}>
+      <Part shape={poly([[-w * 0.6, 0], [w * 0.6, 0], [w * 0.52, 40], [-w * 0.52, 40]])} color="#a8acb4" shade={0.22} />
+      <Part shape={roundRect(w * 0.3, 10, 4)} color="#7a7e88" flat outline={0} y={10} z={0.001} />
+      <X y={40 + h / 2} z={0.002}>
+        <Part shape={roundRect(w, h, 18)} color="#3a3e48" shade={0.18} />
+        <Part shape={roundRect(w - 40, h - 44, 6)} color="#e8eef4" flat outline={3} y={4} z={0.001} />
+        {glow > 0 ? <Glow rx={w * 0.9} ry={h * 0.8} color="#cfe6ff" alpha={0.25 * glow} additive z={-0.01} /> : null}
+        <X y={4} z={0.002}>{children}</X>
+      </X>
+    </X>
+  );
+};
+
+/** DNA double helix, vertical, turning with the frame. Origin = centre. */
+export const DnaHelix: React.FC<XProps & { h?: number; r?: number; turns?: number; colors?: [string, string] }> = ({ h = 700, r = 90, turns = 2.5, colors = ["#3a9ac9", "#fe5649"], ...xf }) => {
+  const frame = useCurrentFrame();
+  const ph = frame * 0.06;
+  const n = 60;
+  const strand = (off: number) => Array.from({ length: n + 1 }, (_, i) => [Math.sin((i / n) * turns * 6.283 + ph + off) * r, -h / 2 + (i / n) * h] as [number, number]);
+  const rungs = Array.from({ length: Math.round(turns * 8) }, (_, k) => {
+    const q = (k + 0.5) / Math.round(turns * 8);
+    const a = q * turns * 6.283 + ph;
+    return { y: -h / 2 + q * h, x1: Math.sin(a) * r, x2: Math.sin(a + Math.PI) * r, front: Math.cos(a) };
+  });
+  return (
+    <X {...xf}>
+      {rungs.map((g, k) => (
+        <Line key={k} pts={[[g.x1, g.y], [g.x2, g.y]]} width={8} color={["#f2c84a", "#3fa07a"][k % 2]} z={0.0005} />
+      ))}
+      <Line pts={strand(0)} smooth width={16} color={colors[0]} z={0.001} />
+      <Line pts={strand(Math.PI)} smooth width={16} color={colors[1]} z={0.0012} />
+    </X>
+  );
+};

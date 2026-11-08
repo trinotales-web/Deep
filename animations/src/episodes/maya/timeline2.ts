@@ -1,4 +1,44 @@
 import type { Cut } from "./script";
+import * as A from "./p2a";
 
-// Second video cut list (seconds on public/vo/maya-2.voice.m4a) — made after "next".
-export const CUTS2: Cut[] = [];
+// Second video cut list (seconds on public/vo/maya-2.voice.m4a), in the breaths
+// between phrases (see public/captions/maya-2.json).
+export const CUTS2: Cut[] = [
+  { id: "a01", at: 0, into: "cut", C: A.SoWhatShot },
+  { id: "a02", at: 1.7, into: "cut", C: A.LakeCoreShot },
+  { id: "a03", at: 6.2, into: "cut", C: A.DroughtCoreShot },
+  { id: "a04", at: 7.1, into: "cut", C: A.RainfallChartShot },
+  { id: "a05", at: 11.95, into: "cut", C: A.WorstShot },
+  { id: "a06", at: 14.5, into: "cut", C: A.RainKingJobShot },
+  { id: "a07", at: 17.25, into: "cut", C: A.RainStopsShot },
+  { id: "a08", at: 18.6, into: "cut", C: A.WarsWorseShot },
+  { id: "a09", at: 19.85, into: "cut", C: A.TooManyShot },
+  { id: "a10", at: 23.5, into: "cut", C: A.LoseFaithShot },
+  { id: "a11", at: 25.3, into: "cut", C: A.TheyLeaveShot },
+  { id: "a12", at: 26.25, into: "slide-left", C: A.MostWrongShot },
+  { id: "a13", at: 28.35, into: "cut", C: A.DontVanishShot },
+  { id: "a14", at: 30.05, into: "cut", C: A.NoEmpireAgainShot },
+  { id: "a15", at: 33.25, into: "cut", C: A.WalkAwayShot },
+  { id: "a16", at: 36.9, into: "cut", C: A.HeadNorthShot },
+  { id: "b01", at: 39.45, into: "slide-left", C: A.NewStarShot },
+  { id: "b02", at: 42.35, into: "cut", C: A.ChichenTitleShot },
+  { id: "b03", at: 43.75, into: "cut", C: A.NameMeansShot },
+  { id: "b04", at: 47.0, into: "cut", C: A.SameItzaShot },
+  { id: "b05", at: 49.75, into: "cut", C: A.AncestorsRouteShot },
+  { id: "b06", at: 53.0, into: "slide-left", C: A.GiantCalendarShot },
+  { id: "b07", at: 56.85, into: "cut", C: A.FourSidesShot },
+  { id: "b08", at: 59.7, into: "cut", C: A.Add365Shot },
+  { id: "b09", at: 62.55, into: "cut", C: A.EveryDayShot },
+  { id: "b10", at: 64.25, into: "cut", C: A.EquinoxShot },
+  { id: "b11", at: 69.25, into: "cut", C: A.SnakeShot },
+  { id: "b12", at: 72.7, into: "slide-left", C: A.SacredCenoteShot },
+  { id: "b13", at: 74.98, into: "cut", C: A.OfferingsShot },
+  { id: "b14", at: 79.4, into: "cut", C: A.OldStoryShot },
+  { id: "b15", at: 84.0, into: "slide-left", C: A.DnaTestShot },
+  { id: "b16", at: 88.7, into: "cut", C: A.ChamberShot },
+  { id: "b17", at: 92.0, into: "cut", C: A.AllBoysShot },
+  { id: "b18", at: 93.7, into: "cut", C: A.AgesShot },
+  { id: "b19", at: 95.85, into: "cut", C: A.TwinsDnaShot },
+  { id: "b20", at: 98.95, into: "cut", C: A.HeroTwinsAgainShot },
+  { id: "b21", at: 100.4, into: "cut", C: A.TwinsRitualShot },
+];

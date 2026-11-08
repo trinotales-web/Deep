@@ -468,7 +468,7 @@ export const Vines: React.FC<XProps & { w?: number; n?: number; len?: number; se
 };
 
 /** Cenote in cross-section: limestone ground with a round shaft, roots and vines, turquoise water, a light shaft. Origin = ground surface centre. */
-export const Cenote: React.FC<XProps & { w?: number; depth?: number; light?: number }> = ({ w = 900, depth = 700, light = 1, ...xf }) => {
+export const Cenote: React.FC<XProps & { w?: number; depth?: number; beam?: number }> = ({ w = 900, depth = 700, beam = 1, ...xf }) => {
   const frame = useCurrentFrame();
   return (
     <X {...xf}>
@@ -482,7 +482,7 @@ export const Cenote: React.FC<XProps & { w?: number; depth?: number; light?: num
       {[0, 1, 2, 3].map((k) => (
         <Line key={k} pts={[[-w / 2 + 120 + k * 60 + ((frame * 2) % 60), -depth * 0.78 - k * 18], [-w / 2 + 180 + k * 60 + ((frame * 2) % 60), -depth * 0.78 - k * 18]]} width={3} color="#ffffff" opacity={0.5} z={0.005} />
       ))}
-      {light > 0 ? <LightCone y={-10} w={w * 0.7} h={depth * 0.9} top={0.6} color="#fff2c6" alpha={0.28 * light} z={0.006} /> : null}
+      {beam > 0 ? <LightCone y={-10} w={w * 0.7} h={depth * 0.9} top={0.6} color="#fff2c6" alpha={0.28 * beam} z={0.006} /> : null}
       <X y={0} z={0.007}>
         <Vines w={w * 0.9} n={9} len={depth * 0.6} seed={5} />
       </X>
@@ -535,3 +535,168 @@ const MOOD: Record<JungleMood, { top: string; mid?: string; bottom: string; hill
   storm: { top: "#4a5260", bottom: "#8a929a", hills: "#4a5a50" },
 };
 export const jungleMood = (m: JungleMood) => MOOD[m];
+
+// ───────────────────────── ships of the contact period ─────────────────────────
+
+/**
+ * Spanish caravel / nao (Columbus 1502, the 1511 wreck, Cortés 1519): high stern
+ * castle, three masts with square sails bearing a red cross, a lateen mizzen.
+ * Facing +x; origin = waterline centre. `sails` 0 furled .. 1 full, `sink` 0..1
+ * tilts the bow down and lowers the hull (draw sea in front of it), `broken`
+ * snaps the main mast.
+ */
+export const Caravel: React.FC<XProps & { len?: number; sails?: number; sink?: number; broken?: boolean; hull?: string }> = ({
+  len = 1000,
+  sails = 1,
+  sink = 0,
+  broken = false,
+  hull = "#6e4a2c",
+  ...xf
+}) => {
+  const frame = useCurrentFrame();
+  const L = len / 2;
+  const sway = Math.sin(frame * 0.05) * 0.015;
+  const sail = (w: number, h: number, y: number, cross: boolean, k: number) => {
+    const sh = h * Math.max(0.12, sails);
+    const belly = 26 * sails;
+    return (
+      <X y={y} z={0.002 + k * 0.0001}>
+        <Part
+          shape={blob([[-w / 2, 0], [-w / 2 - belly * 0.4, -sh / 2], [-w / 2, -sh], [0, -sh - belly * 0.3], [w / 2, -sh], [w / 2 + belly, -sh / 2], [w / 2, 0], [0, belly * 0.4]], 10)}
+          color="#efe6d0"
+          shade={0.22}
+        />
+        {cross && sails > 0.4 ? (
+          <>
+            <Line pts={[[0, -sh * 0.15], [0, -sh * 0.85]]} width={w * 0.12} color="#b8322a" z={0.001} />
+            <Line pts={[[-w * 0.3, -sh * 0.45], [w * 0.3, -sh * 0.45]]} width={w * 0.12} color="#b8322a" z={0.001} />
+          </>
+        ) : null}
+        <Line pts={[[-w / 2 - 14, 0], [w / 2 + 14, 0]]} width={8} color="#4a3220" z={0.002} />
+      </X>
+    );
+  };
+  return (
+    <X {...xf}>
+      <X rot={sway - sink * 0.42} y={-sink * 420} x={sink * 80}>
+        {/* masts and rigging behind the hull */}
+        <X z={-0.01}>
+          {[
+            [-L * 0.62, 260],
+            [0, broken ? 0 : 640],
+            [L * 0.42, 500],
+          ].map(([x, h], i) => (
+            <X key={i} x={x}>
+              <Line pts={[[0, 60], [0, 60 + h]]} width={i === 1 ? 16 : 12} color="#4a3220" />
+              {h > 0 ? <Line pts={[[0, 60 + h], [L * (i === 2 ? 0.55 : 0.3), 90]]} width={3} color="#4a3220" opacity={0.7} z={-0.001} /> : null}
+            </X>
+          ))}
+          {broken ? (
+            <X x={0} y={180} rot={-1.1} z={0.003}>
+              <Line pts={[[0, 0], [0, 420]]} width={16} color="#4a3220" />
+              {sail(300, 260, 380, true, 3)}
+            </X>
+          ) : null}
+        </X>
+        {/* sails */}
+        <X z={-0.005}>
+          {broken ? null : (
+            <X x={0}>
+              {sail(380, 280, 640, true, 0)}
+              {sail(300, 170, 360 + 0 * 1, false, 1)}
+            </X>
+          )}
+          <X x={L * 0.42}>{sail(280, 220, 500, true, 2)}</X>
+          <X x={-L * 0.62} y={150} z={0.001}>
+            <Line pts={[[-140, 0], [120, 230]]} width={7} color="#4a3220" />
+            <Part shape={poly([[-130, 10], [110, 224], [40, 6]])} color="#efe6d0" shade={0.2} opacity={Math.max(0.2, sails)} />
+          </X>
+          {!broken ? <SpanishFlag x={0} y={700} w={90} z={0.002} /> : null}
+          <SpanishFlag x={L * 0.42} y={560} w={70} z={0.002} />
+        </X>
+        {/* hull: high stern castle (−x), forecastle (+x) */}
+        <Part
+          shape={blob(
+            [
+              [-L, 300], [-L - 30, 230], [-L + 10, 120], [-L + 60, 30], [-L * 0.4, -14], [L * 0.4, -8], [L - 60, 30], [L + 40, 150], [L + 70, 200], [L - 40, 190],
+              [L * 0.5, 140], [-L * 0.45, 150], [-L * 0.55, 300],
+            ],
+            10,
+          )}
+          color={hull}
+          shade={0.28}
+        />
+        <Line pts={[[-L + 40, 120], [-L * 0.4, 96], [L * 0.4, 92], [L - 40, 120]]} smooth width={5} color={shadeHex(hull, 0.35)} z={0.001} />
+        <Line pts={[[-L + 30, 70], [-L * 0.4, 50], [L * 0.4, 46], [L - 40, 70]]} smooth width={4} color={shadeHex(hull, 0.35)} z={0.001} />
+        <Part shape={roundRect(L * 0.55, 18, 6)} color="#b8322a" flat outline={3} x={-L * 0.72} y={250} z={0.002} />
+        {[0, 1, 2].map((k) => (
+          <Part key={k} shape={roundRect(34, 30, 6)} color="#2a2026" flat outline={3} x={-L * 0.88 + k * 70} y={200} z={0.002} />
+        ))}
+        {[-0.25, 0, 0.25].map((q) => (
+          <Part key={q} shape={circle(12)} color="#2a2026" flat outline={2.5} x={q * L * 1.4} y={75} z={0.002} />
+        ))}
+      </X>
+    </X>
+  );
+};
+
+/**
+ * Big Maya trading canoe (the one Columbus met off Guanaja in 1502): a long dugout
+ * with a palm-thatch shelter amidships and cargo (cotton cloth, copper axes,
+ * cacao sacks, pots). `paddlers` simple rowers on each side of the shelter.
+ * Facing +x; origin = waterline centre.
+ */
+export const TradeCanoe: React.FC<XProps & { len?: number; paddlers?: number; row?: number; cargo?: boolean }> = ({ len = 1500, paddlers = 8, row = 1, cargo = true, ...xf }) => {
+  const frame = useCurrentFrame();
+  const L = len / 2;
+  const seats = Array.from({ length: paddlers }, (_, k) => {
+    const half = Math.ceil(paddlers / 2);
+    const side = k < half ? -1 : 1;
+    const j = k < half ? k : k - half;
+    return side * (L * 0.36 + j * ((L * 0.5) / Math.max(1, half - 1 || 1)));
+  });
+  return (
+    <X {...xf}>
+      {seats.map((x, k) => {
+        const ph = frame * 0.18 * row + k * 0.35;
+        return (
+          <X key={`p${k}`} x={Math.max(-L + 90, Math.min(L - 90, x))} y={40} s={0.42} z={-0.004 + k * 0.0001}>
+            <Part shape={roundRect(110, 130, 30)} color={["#f1ead8", "#e2d2b0", "#d8c8a8"][k % 3]} shade={0.2} y={70} />
+            <Part shape={circle(64)} color="#f6f5f8" shade={0.24} y={200} z={0.001} />
+            <Part shape={blob([[-60, 230], [0, 280], [60, 230], [20, 214]], 6)} color="#1e1a20" flat z={0.002} />
+            <X x={30} y={110} rot={-0.6 + Math.sin(ph) * 0.4 * row} z={0.003}>
+              <Line pts={[[0, 0], [0, -260]]} width={9} color="#6e4a2c" />
+              <Part shape={blob([[-16, -230], [16, -230], [12, -320], [0, -340], [-12, -320]], 6)} color="#8a5a32" shade={0.25} />
+            </X>
+          </X>
+        );
+      })}
+      <Part
+        shape={blob([[-L - 40, 70], [-L + 40, 4], [0, -12], [L - 40, 4], [L + 50, 80], [L - 10, 62], [0, 52], [-L + 10, 62]], 10)}
+        color="#7a4e2c"
+        shade={0.26}
+        z={0.001}
+      />
+      <Line pts={[[-L + 30, 42], [0, 36], [L - 30, 42]]} smooth width={5} color="#c0392b" z={0.002} />
+      {/* shelter of palm thatch */}
+      <X y={50} z={-0.002}>
+        {[-150, 150].map((x) => (
+          <Line key={x} pts={[[x, 0], [x, 230]]} width={8} color="#6e4a2c" />
+        ))}
+        <Part shape={blob([[-230, 210], [0, 290], [230, 210], [200, 190], [0, 214], [-200, 190]], 8)} color="#c8a25a" shade={0.24} z={0.001} />
+        {[-160, -80, 0, 80, 160].map((x) => (
+          <Line key={x} pts={[[x, 200 + (1 - Math.abs(x) / 230) * 18], [x * 1.05, 236 + (1 - Math.abs(x) / 230) * 40]]} width={3} color="#a88238" z={0.002} />
+        ))}
+      </X>
+      {cargo ? (
+        <X y={50} z={0.0005}>
+          {[[-110, "#f1ead8", 70], [-30, "#3a9ac9", 60], [50, "#c0392b", 64], [120, "#d9a441", 56]].map(([x, c, h], i) => (
+            <Part key={i} shape={roundRect(70, h as number, 14)} color={c as string} shade={0.22} x={x as number} y={(h as number) / 2} />
+          ))}
+          <Part shape={blob([[-40, 0], [40, 0], [56, 50], [30, 80], [-30, 80], [-56, 50]], 8)} color="#8a5a32" shade={0.24} x={10} y={70} z={0.001} />
+          <Part shape={blob([[-30, 0], [30, 0], [44, 40], [0, 60], [-44, 40]], 7)} color="#d9864a" shade={0.24} x={-80} y={70} z={0.001} />
+        </X>
+      ) : null}
+    </X>
+  );
+};

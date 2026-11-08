@@ -16,7 +16,7 @@ import { upright } from "./p1a";
 // ───────────────────────── golden age ─────────────────────────
 
 /** Classic Maya kingdoms at their real sites (lon, lat). */
-const KINGDOMS: [string, number, number][] = [
+export const KINGDOMS: [string, number, number][] = [
   ["tikal", -89.62, 17.22], ["calakmul", -89.81, 18.1], ["palenque", -92.05, 17.48], ["copan", -89.14, 14.84], ["caracol", -89.12, 16.76],
   ["yaxchilan", -90.97, 16.9], ["piedras", -91.26, 17.17], ["naranjo", -89.25, 17.13], ["dospilas", -90.18, 16.44], ["quirigua", -89.04, 15.27],
   ["tonina", -92.01, 16.9], ["bonampak", -91.07, 16.7], ["uaxactun", -89.63, 17.39], ["seibal", -90.06, 16.51], ["holmul", -89.27, 17.31],
@@ -25,7 +25,7 @@ const KINGDOMS: [string, number, number][] = [
 ];
 const KCOL = ["#c0392b", "#3a9ac9", "#d9a441", "#8a5aa8", "#3fa07a", "#e07a3a"];
 
-const KingdomsMap: React.FC<{ ppd: number; center: [number, number]; k?: number; crowns?: number; pins?: string[] }> = ({ ppd, center, k = 1, crowns = 0, pins = [] }) => (
+export const KingdomsMap: React.FC<{ ppd: number; center: [number, number]; k?: number; crowns?: number; pins?: string[] }> = ({ ppd, center, k = 1, crowns = 0, pins = [] }) => (
   <>
     <MesoMap ppd={ppd} center={center} maya={1} pins={pins} />
     {KINGDOMS.map(([name, lon, lat], i) => {

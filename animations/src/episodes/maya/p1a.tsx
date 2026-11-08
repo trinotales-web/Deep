@@ -201,7 +201,7 @@ export const SoldiersCannonsShot: React.FC<ShotProps> = ({ start, dur }) => {
 const KINGDOM_PINS = ["champoton", "chetumal", "mani", "chichen", "mayapan", "uxmal", "quetzaltenango", "cozumel", "copan"] as const;
 
 /** Map of Spanish conquest: kingdoms falling one by one, Nojpetén last. */
-const ConquestMap: React.FC<{ t: number; t0: number; step: number; zoom: number; cx: number; cy: number; last?: number }> = ({ t, t0, step, zoom, cx, cy, last = 0 }) => {
+export const ConquestMap: React.FC<{ t: number; t0: number; step: number; zoom: number; cx: number; cy: number; last?: number }> = ({ t, t0, step, zoom, cx, cy, last = 0 }) => {
   const ppd = 120;
   const center: [number, number] = [-89.5, 18.2];
   return (
@@ -299,7 +299,7 @@ export const IslandVsEmpireShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Tenochtitlan's Templo Mayor: one pyramid with twin shrines (Aztec). */
-const TemploMayor: React.FC<{ x?: number; y?: number; s?: number; z?: number; fall?: number }> = ({ x = 0, y = 0, s = 1, z = 0, fall = 0 }) => (
+export const TemploMayor: React.FC<{ x?: number; y?: number; s?: number; z?: number; fall?: number }> = ({ x = 0, y = 0, s = 1, z = 0, fall = 0 }) => (
   <X x={x} y={y} s={s} z={z}>
     <MayaPyramid w={900} h={420} tiers={5} top={0.5} stairW={0.0} templeW={0} color="#d8ccb0" />
     {[-1, 1].map((k) => (

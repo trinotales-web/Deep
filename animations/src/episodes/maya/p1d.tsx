@@ -314,7 +314,7 @@ export const TwinsDescendShot: React.FC<ShotProps> = ({ start, dur }) => {
         {[0, 1].map((i) => {
           const q = k - i * 0.24;
           return (
-            <Character key={i} {...(i ? XBALANQUE : HUNAHPU)} x={-500 + q * 900} y={560 - q * 980} s={1.15 - i * 0.06} z={2 - i * 0.01} look={0.45} expression={{ eyes: "angry", mouth: "smirk", brows: -0.5 }} pose={poses.walk(frame + i * 10, 0.6)} />
+            <Character key={i} {...(i ? XBALANQUE : HUNAHPU)} x={-500 + q * 900} y={340 - q * 980} s={1.15 - i * 0.06} z={2 - i * 0.01} look={0.45} expression={{ eyes: "angry", mouth: "smirk", brows: -0.5 }} pose={poses.walk(frame + i * 10, 0.6)} />
           );
         })}
       </Stage>
@@ -697,8 +697,8 @@ export const CaracolAttacksShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40, shake: t > 416.3 ? 4 : 0 }} light={{ dir: [0.6, 0.4] }} vignette={0.65}>
         <JungleSet mood="dusk" horizon={-260}>
           <TikalTemple x={700} y={-260} s={0.7} z={-20} />
-          {Array.from({ length: 6 }, (_, i) => (
-            <Character key={i} {...(i % 2 ? JAGUAR_WARRIOR(i) : ITZA_WARRIOR(i + 1))} x={-900 + i * 180 + ramp(t, 415.8, 417.8) * 300} y={-660 + (i % 2) * 30} s={1.0 - (i % 2) * 0.08} z={2 - (i % 2) * 0.1} look={0.45} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ ...poses.run(frame * 0.6 + i * 5), armF: a }} holdF={<Spear rot={upright(a)} length={600} tip="#2a2228" />} />
+          {Array.from({ length: 5 }, (_, i) => (
+            <Character key={i} {...(i % 2 ? JAGUAR_WARRIOR(i) : ITZA_WARRIOR(i + 1))} x={-980 + i * 250 + ramp(t, 415.8, 417.8) * 300} y={-560 + (i % 2) * 70} s={0.95 - (i % 2) * 0.12} z={2 - (i % 2) * 0.1} look={0.45} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ ...poses.run(frame * 0.6 + i * 5), armF: a }} holdF={<Spear rot={upright(a)} length={600} tip="#2a2228" />} />
           ))}
         </JungleSet>
       </Stage>
@@ -759,9 +759,9 @@ export const KingCapturedShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [0.6, 0.4] }} vignette={0.8} vignetteColor="#100608" wash={ramp(t, 427.0, 427.7) * 0.4}>
         <JungleSet mood="dusk" horizon={-260}>
-          <Character {...MAYA_KING(1)} hat={null} x={-200} y={-860} s={1.8} z={2} look={0.45} expression={{ eyes: "closed", mouth: "wavy", brows: 0.9 }} pose={{ ...poses.sit(frame), armF: [-0.4, 0.9], armB: [-0.5, 0.9], headTilt: -0.15 }} />
+          <Character {...MAYA_KING(1)} hat={null} x={-200} y={-700} s={1.7} z={2} look={0.45} expression={{ eyes: "closed", mouth: "wavy", brows: 0.9 }} pose={{ ...poses.sit(frame), armF: [-0.4, 0.9], armB: [-0.5, 0.9], headTilt: -0.15 }} />
           {knife > 0 ? (
-            <Character {...JAGUAR_WARRIOR(1)} x={360} y={-820} s={1.7} z={1.9} facing={-1} look={0.45} expression={{ eyes: "angry", mouth: "flat", brows: -0.9 }} pose={{ ...poses.idle(frame), armF: arm }} holdF={<X rot={upright(arm)}><Line pts={[[0, -10], [0, 60]]} width={10} color="#6e4a2c" /><Part shape={poly([[-14, 60], [14, 60], [0, 170]])} color="#1e1a20" shade={0.3} /></X>} />
+            <Character {...JAGUAR_WARRIOR(1)} x={380} y={-680} s={1.6} z={1.9} facing={-1} look={0.45} expression={{ eyes: "angry", mouth: "flat", brows: -0.9 }} pose={{ ...poses.idle(frame), armF: arm }} holdF={<X rot={upright(arm)}><Line pts={[[0, -10], [0, 60]]} width={10} color="#6e4a2c" /><Part shape={poly([[-14, 60], [14, 60], [0, 170]])} color="#1e1a20" shade={0.3} /></X>} />
           ) : null}
         </JungleSet>
       </Stage>
@@ -1135,7 +1135,7 @@ export const LiftStoneShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -100 }} light={{ pos: [0, 300] }} vignette={0.75} vignetteColor="#0a0608">
         <Crypt lid={lid} glow={ramp(t, 484.6, 485.6)}>
           {[-640, 640].map((x, i) => (
-            <Character key={x} {...(i ? SCIENTIST(1) : RUZ)} x={x} y={-820} s={1.45} z={2} facing={x < 0 ? 1 : -1} look={0.45} expression={lid > 0.6 ? { eyes: "wide", mouth: "o", brows: 0.8 } : { eyes: "half", mouth: "teeth", brows: 0.4, sweat: true }} pose={{ ...poses.idle(frame, i), armF: arm, lean: 0.12 }} />
+            <Character key={x} {...(i ? SCIENTIST(1) : RUZ)} x={x * 0.85} y={-700} s={1.45} z={2} facing={x < 0 ? 1 : -1} look={0.45} expression={lid > 0.6 ? { eyes: "wide", mouth: "o", brows: 0.8 } : { eyes: "half", mouth: "teeth", brows: 0.4, sweat: true }} pose={{ ...poses.idle(frame, i), armF: arm, lean: 0.12 }} />
           ))}
         </Crypt>
       </Stage>

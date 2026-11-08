@@ -174,13 +174,13 @@ export const SoldiersCannonsShot: React.FC<ShotProps> = ({ start, dur }) => {
         <LakeSet mood="day" horizon={260} island={false}>
           <Part shape={roundRect(2400, 120, 10)} color="#5a3a26" shade={0.26} y={-620} z={1} />
           <Part shape={roundRect(2400, 22, 6)} color="#b8322a" flat outline={4} y={-560} z={1.01} />
-          {[-760, -480, -200, 80].map((x, i) => (
+          {[-820, -440, -60].map((x, i) => (
             <Character
               key={x}
               {...SPANISH_SOLDIER(i)}
               x={x}
               y={-720}
-              s={1.35}
+              s={1.3}
               z={1.5 + i * 0.01}
               look={0.5}
               expression={{ eyes: i % 2 ? "angry" : "half", mouth: i % 2 ? "smirk" : "flat", brows: -0.5 }}

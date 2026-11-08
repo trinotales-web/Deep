@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, DepthStage, X, Part, Line, Glow, Wash, Gradient, QuestionMark, Shovel, roundRect, roundPoly, circle, ellipse, poly, blob, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
+import { crowdSpots } from "../../kit/crowd";
 import { Character, poses, reachArm } from "../../kit/character";
 import {
   Globe, Asteroid, SpaceStars, Dinosaur, MesoMap, siteXY, mesoXY, Cenote, Vines, CornPlant, CornCob, Codex, MayaPyramid, Platform, LidarReveal, SurveyPlane,
@@ -590,8 +591,8 @@ export const ItWorkedShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.05, 1.1), y: -100 }} light={{ pos: [0, 300] }} vignette={0.55}>
         <Heaven>
-          {[-480, -160, 160, 480].map((x, i) => (
-            <Character key={x} {...CORN_PERSON(i)} x={x} y={-760} s={1.5} z={2 + i * 0.01} facing={x > 0 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame + i * 5)} />
+          {[-560, 0, 560].map((x, i) => (
+            <Character key={x} {...CORN_PERSON(i)} x={x} y={-760} s={1.45} z={2 + i * 0.01} facing={x > 0 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame + i * 5)} />
           ))}
         </Heaven>
       </Stage>
@@ -610,8 +611,8 @@ export const PeopleOfCornShot: React.FC<ShotProps> = ({ start, dur }) => {
           {Array.from({ length: 12 }, (_, i) => (
             <CornPlant key={i} x={-1300 + i * 240} y={-220} h={520} seed={i} z={-5 + (i % 2) * 0.01} />
           ))}
-          {[-560, -200, 180, 540].map((x, i) => (
-            <Character key={x} {...(i % 2 ? MAYA_WOMAN(i) : MAYA_COMMONER(i))} x={x} y={-640} s={1.3} z={2 + i * 0.01} facing={x > 0 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, i)} />
+          {[-600, -200, 200, 600].map((x, i) => (
+            <Character key={x} {...(i % 2 ? MAYA_WOMAN(i) : MAYA_COMMONER(i))} x={x} y={-640} s={1.12} z={2 + i * 0.01} facing={x > 0 ? -1 : 1} look={0.45} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, i)} />
           ))}
         </JungleSet>
       </Stage>
@@ -661,8 +662,8 @@ export const BuildingBigShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <JungleSet mood="day" horizon={-160} ground="#c9b48a">
           <Platform x={300} y={-200} w={2400} h={260} z={-20} />
-          {[-700, -380, -60].map((x, i) => (
-            <Carrier key={x} x={x + ((frame * 2.4) % 120)} y={-640 + i * 20} s={1.15} i={i} z={2 - i * 0.01} />
+          {[-760, -380, 0].map((x, i) => (
+            <Carrier key={x} x={x + ((frame * 2.4) % 120)} y={-640 + i * 20} s={1.0} i={i} z={2 - i * 0.01} />
           ))}
         </JungleSet>
       </Stage>
@@ -828,16 +829,16 @@ export const ElMiradorShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const MiradorPeopleShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const n = Math.round(ramp(t, 164.6, 165.9) * 60);
+  const spots = crowdSpots({ n: 40, x0: -1250, x1: 1250, yFar: -200, yNear: -430, sFar: 0.26, sNear: 0.42, rows: 3, seed: 5 });
   const r = rng(5);
-  const spots = Array.from({ length: 60 }, () => [(r() - 0.5) * 2400, -360 - r() * 280, r()] as [number, number, number]);
+  const order = spots.map(() => r());
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.05), y: 40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <JungleSet mood="day" horizon={-140} ground="#e0d2b4">
           <MiradorCity />
-          {spots.slice(0, n).map(([x, y, q], i) => (
-            <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={0.3 + (y + 640) * -0.0004} z={2 - y * 0.0001} facing={q > 0.5 ? 1 : -1} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={poses.walk(frame + i * 5, 0.5)} shadow={false} />
+          {spots.filter((p) => order[p.i] < ramp(t, 164.4, 165.9)).map(({ x, y, s, i }) => (
+            <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={s} z={2 + i * 0.001} facing={order[i] > 0.5 ? 1 : -1} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={poses.walk(frame + i * 5, 0.5)} shadow={false} />
           ))}
         </JungleSet>
       </Stage>

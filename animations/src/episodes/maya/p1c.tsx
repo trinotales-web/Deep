@@ -349,8 +349,8 @@ export const RainKingShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 120 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <JungleSet mood={rain > 0.5 ? "storm" : "day"} horizon={-420} ground="#a8b86a">
-          <MayaPyramid x={0} y={-420} w={900} h={620} tiers={7} top={0.4} templeW={0} color="#efe4cc" z={-10} />
-          <Character {...MAYA_KING(0)} x={0} y={200} s={1.0} z={-5} look={0.1} expression={{ eyes: "closed", mouth: "o", brows: 0.2 }} pose={poses.armsUp(frame)} />
+          <MayaPyramid x={0} y={-420} w={900} h={500} tiers={6} top={0.42} templeW={0} color="#efe4cc" z={-10} />
+          <Character {...MAYA_KING(0)} x={0} y={80} s={0.95} z={-5} look={0.1} expression={{ eyes: "closed", mouth: "o", brows: 0.2 }} pose={poses.armsUp(frame)} />
           {[-600, 0, 600].map((x, i) => (
             <Part key={x} shape={cloudShape(620, 240, 6, i + 2)} color={mixHex("#ffffff", "#7a8494", rain)} shade={0.2} x={x} y={820 - (1 - rain) * 200} z={-6} />
           ))}
@@ -816,8 +816,8 @@ export const PanicShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -80, shake: 3 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
         <JungleSet mood="storm" horizon={-200} jungle={false} ground="#8a8a8a">
-          {[-560, -180, 200, 580].map((x, i) => (
-            <Character key={x} {...SCIENTIST(i)} x={x} y={-700} s={1.35} z={2 + i * 0.01} facing={i % 2 ? -1 : 1} look={0.45} expression={{ eyes: "wide", mouth: "shout", brows: 0.9, sweat: true }} pose={poses.scared(frame + i * 5)} />
+          {[-660, -220, 220, 660].map((x, i) => (
+            <Character key={x} {...SCIENTIST(i)} x={x} y={-700} s={1.15} z={2 + i * 0.01} facing={i % 2 ? -1 : 1} look={0.45} expression={{ eyes: "wide", mouth: "shout", brows: 0.9, sweat: true }} pose={poses.scared(frame + i * 5)} />
           ))}
         </JungleSet>
       </Stage>
@@ -921,8 +921,8 @@ export const StillHereShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -60 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <JungleSet mood="day" horizon={-200} jungle={false} ground="#a8b0a0">
-          {[-480, -140, 200, 520].map((x, i) => (
-            <Character key={x} {...SCIENTIST(i)} x={x} y={-680} s={1.35} z={2 + i * 0.01} facing={i % 2 ? -1 : 1} look={0.45} expression={{ eyes: "half", mouth: "smirk", brows: 0.3 }} pose={i % 2 ? poses.shrug(frame) : poses.idle(frame, i)} />
+          {[-660, -220, 220, 660].map((x, i) => (
+            <Character key={x} {...SCIENTIST(i)} x={x} y={-680} s={1.15} z={2 + i * 0.01} facing={i % 2 ? -1 : 1} look={0.45} expression={{ eyes: "half", mouth: "smirk", brows: 0.3 }} pose={i % 2 ? poses.shrug(frame) : poses.idle(frame, i)} />
           ))}
         </JungleSet>
       </Stage>

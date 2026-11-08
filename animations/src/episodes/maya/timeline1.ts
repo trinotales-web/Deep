@@ -1,6 +1,7 @@
 import type { Cut } from "./script";
 import * as A from "./p1a";
 import * as B from "./p1b";
+import * as C from "./p1c";
 
 // First video cut list (seconds on public/vo/maya-1.voice.m4a), in the breaths
 // between phrases (see public/captions/maya-1.json).
@@ -63,4 +64,42 @@ export const CUTS1: Cut[] = [
   { id: "e14", at: 183.8, into: "cut", C: B.PlasterShot },
   { id: "e15", at: 188.1, into: "cut", C: B.ErosionShot },
   { id: "e16", at: 191.1, into: "cut", C: B.KeepInMindShot },
+  { id: "f01", at: 195.8, into: "fade", C: C.GoldenAgeShot },
+  { id: "f02", at: 200.9, into: "slide-left", C: C.CitiesShot },
+  { id: "f03", at: 207.1, into: "cut", C: C.Lidar2018Shot },
+  { id: "f04", at: 214.5, into: "cut", C: C.MillionsShot },
+  { id: "f05", at: 220.1, into: "slide-left", C: C.StrangePartShot },
+  { id: "f06", at: 221.8, into: "cut", C: C.NoEmpireShot },
+  { id: "f07", at: 223.9, into: "cut", C: C.NoEmperorShot },
+  { id: "f08", at: 225.95, into: "cut", C: C.DozensKingdomsShot },
+  { id: "f09", at: 229.9, into: "cut", C: C.TradeMarryFightShot },
+  { id: "f10", at: 234.45, into: "slide-left", C: C.TheRuleShot },
+  { id: "f11", at: 238.85, into: "cut", C: C.RememberRuleShot },
+  { id: "g01", at: 242.35, into: "slide-left", C: C.HolyLordShot },
+  { id: "g02", at: 244.9, into: "cut", C: C.RainKingShot },
+  { id: "g03", at: 248.4, into: "cut", C: C.GodsNeedBloodShot },
+  { id: "g04", at: 250.95, into: "cut", C: C.StingrayShot },
+  { id: "g05", at: 253.9, into: "cut", C: C.LintelShot },
+  { id: "g06", at: 257.0, into: "cut", C: C.ThornRopeShot },
+  { id: "g07", at: 260.55, into: "cut", C: C.TorchForHerShot },
+  { id: "g08", at: 263.5, into: "cut", C: C.RomanticShot },
+  { id: "h01", at: 265.0, into: "slide-left", C: C.DoingMathShot },
+  { id: "h02", at: 269.1, into: "cut", C: C.WritingSystemShot },
+  { id: "h03", at: 273.2, into: "cut", C: C.WordsSoundsShot },
+  { id: "h04", at: 277.95, into: "cut", C: C.StonePotsBooksShot },
+  { id: "h05", at: 282.3, into: "cut", C: C.Base20Shot },
+  { id: "h06", at: 287.05, into: "cut", C: C.DotBarShellShot },
+  { id: "h07", at: 292.75, into: "cut", C: C.FirstZeroShot },
+  { id: "i01", at: 295.75, into: "slide-left", C: C.ObsessedTimeShot },
+  { id: "i02", at: 297.55, into: "cut", C: C.TwoCalendarsShot },
+  { id: "i03", at: 303.55, into: "cut", C: C.FiftyTwoShot },
+  { id: "i04", at: 307.1, into: "cut", C: C.LongCountShot },
+  { id: "i05", at: 310.65, into: "cut", C: C.FamousMythShot },
+  { id: "i06", at: 312.75, into: "cut", C: C.CycleEndsShot },
+  { id: "i07", at: 317.25, into: "cut", C: C.PanicShot },
+  { id: "i08", at: 319.2, into: "cut", C: C.EndOfWorldShot },
+  { id: "i09", at: 321.1, into: "cut", C: C.TheyDidntShot },
+  { id: "i10", at: 322.55, into: "cut", C: C.OdometerShot },
+  { id: "i11", at: 326.65, into: "cut", C: C.NewCycleShot },
+  { id: "i12", at: 329.55, into: "cut", C: C.StillHereShot },
 ];

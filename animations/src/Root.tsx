@@ -12,6 +12,8 @@ import { WW2Test } from "./dev/WW2Test";
 import { S45Kit } from "./dev/S45Kit";
 import { QinKit } from "./dev/QinKit";
 import { MayaKit } from "./dev/MayaKit";
+import { Maya, calculateMayaMetadata, type MayaProps } from "./episodes/maya/Episode";
+import { END1 as MY1, END2 as MY2 } from "./episodes/maya/script";
 import { QinTomb, QinTombAudio, QinTombVisuals, QinTombFull, FULL_FRAMES as QF, calculateQinTombMetadata, calculateQinTombFullMetadata, type QinTombProps, type QinTombFullProps } from "./episodes/qintomb/Episode";
 import { END1 as QT1, END2 as QT2 } from "./episodes/qintomb/script";
 import { ChannelBanner, ChannelLogo } from "./brand/Brand";
@@ -31,6 +33,12 @@ const onodaDefaults: OnodaProps = {
 export const RemotionRoot = () => {
   return (
     <>
+      <Folder name="Maya">
+        <Composition id="Maya1Video" component={Maya} durationInFrames={Math.round(MY1 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 1 } satisfies MayaProps} calculateMetadata={calculateMayaMetadata} />
+        <Composition id="Maya1AudioOnly" component={Maya} durationInFrames={Math.round(MY1 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 1, visuals: false } satisfies MayaProps} calculateMetadata={calculateMayaMetadata} />
+        <Composition id="Maya2Video" component={Maya} durationInFrames={Math.round(MY2 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 2 } satisfies MayaProps} calculateMetadata={calculateMayaMetadata} />
+        <Composition id="Maya2AudioOnly" component={Maya} durationInFrames={Math.round(MY2 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 2, visuals: false } satisfies MayaProps} calculateMetadata={calculateMayaMetadata} />
+      </Folder>
       <Folder name="QinTomb">
         <Composition
           id="QinTombFullVideo"

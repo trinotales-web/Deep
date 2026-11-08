@@ -252,3 +252,48 @@ export const WRITER: Design = {
   glasses: "#2a2226",
   seed: 771,
 };
+
+/** Popol Vuh creator gods (Tepeu, Q'ukumatz, Heart of Sky): glowing sky-blue skin, royal plumes. */
+export const CREATOR_GOD = (i = 0): Design => ({
+  outfit: { top: ["#3a9ac9", "#3fa07a", "#d9a441"][i % 3], robe: true, trim: "#f2c84a", belt: "#f2c84a", beads: JADE, collar: "wrap", collarColor: "#f2c84a" },
+  hat: "mayaking",
+  hatColor: ["#2f6fa8", "#2f8a5a", "#c0392b"][i % 3],
+  skin: ["#bfe6f2", "#c8f0d8", "#f8e6b0"][i % 3],
+  hair: "long",
+  hairColor: "#2a2a40",
+  earspool: JADE,
+  seed: 800 + i,
+});
+
+/** Mud person (first try): brown, lumpy. */
+export const MUD_PERSON = (i = 0): Design => ({
+  outfit: { top: "#7a5232", bottom: "#6a4428", boots: "#5a3a22", collar: null },
+  skin: ["#8a5a3a", "#7a4e30"][i % 2],
+  seed: 810 + i,
+});
+
+/** Wooden person (second try): carved wood, no heart. */
+export const WOOD_PERSON = (i = 0): Design => ({
+  outfit: { top: "#b07a4a", bottom: "#9a6a3e", boots: "#7a5232", belt: "#7a5232", collar: "round" },
+  skin: ["#d0a06a", "#c8945e"][i % 2],
+  hair: "short",
+  hairColor: "#8a5a32",
+  seed: 820 + i,
+});
+
+/** Corn person (third try): golden skin, green leaf garments. */
+export const CORN_PERSON = (i = 0): Design => ({
+  outfit: { top: ["#6aaa4a", "#f1ead8", "#5a9a3a"][i % 3], bottom: "#7a4a2a", boots: "#6e4a2c", belt: "#f2c84a", loin: "#5a9a3a", collar: "round" },
+  skin: "#f6e6b0",
+  hair: i % 2 ? "long" : "topknot",
+  hairColor: HAIR,
+  seed: 830 + i,
+});
+
+/** Early farmer of ~7000 BC (simple hide/cotton wrap). */
+export const EARLY_FARMER = (i = 0): Design => ({
+  outfit: { top: ["#c8a878", "#b8986a"][i % 2], bottom: "#8a6a4a", boots: "#6e4a2c", belt: "#6e4a2c", collar: "round" },
+  hair: "long",
+  hairColor: HAIR,
+  seed: 840 + i,
+});

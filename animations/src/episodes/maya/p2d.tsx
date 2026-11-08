@@ -923,8 +923,8 @@ export const CommentsShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Gradient w={3000} h={4000} stops={[[0, "#8a3a3a"], [1, "#4a1a1a"]]} x={-1500} z={-41} />
         <Gradient w={3000} h={4000} stops={[[0, "#3a6a8a"], [1, "#1a3a4a"]]} x={1500} z={-40.9} />
         <Line pts={[[0, -2000], [0, 2000]]} width={12} z={-40} />
-        <Character {...MAYA_KING(1)} x={-500} y={-860} s={1.6} z={2} look={0.45} expression={{ eyes: "happy", mouth: "smirk" }} pose={poses.handsOnHips} />
-        <Character {...BALLPLAYER(0)} x={500} y={-860} s={1.6} z={2} facing={-1} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} />
+        <Character {...MAYA_KING(1)} x={-520} y={-740} s={1.5} z={2} look={0.45} expression={{ eyes: "happy", mouth: "smirk" }} pose={poses.handsOnHips} />
+        <Character {...BALLPLAYER(0)} x={520} y={-740} s={1.5} z={2} facing={-1} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} />
         <X y={-40} s={pop(t, 456.75)} z={3}>
           <Part shape={circle(110)} color="#f2c84a" shade={0.24} />
         </X>

@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, DepthStage, X, Part, Line, Glow, Wash, Gradient, QuestionMark, Spear, roundRect, roundPoly, circle, ellipse, poly, blob, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
+import { crowdSpots } from "../../kit/crowd";
 import { Character, poses, reachArm } from "../../kit/character";
 import {
   MesoMap, mesoXY, siteXY, LidarReveal, MayaPyramid, TikalTemple, Stela, Glyph, GlyphPanel, MayaNumber, MayaShell, Codex, CalendarGear, LongCount, StingraySpine,
@@ -118,15 +119,15 @@ export const Lidar2018Shot: React.FC<ShotProps> = ({ start, dur }) => {
 export const MillionsShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const n = Math.round(ramp(t, 215.6, 218.6) * 120);
+  const spots = crowdSpots({ n: 56, x0: -1300, x1: 1300, yFar: -250, yNear: -640, sFar: 0.3, sNear: 0.6, rows: 4, seed: 17 });
   const r = rng(17);
-  const spots = Array.from({ length: 120 }, () => [(r() - 0.5) * 2600, -200 - r() * 520] as [number, number]);
+  const order = spots.map(() => r());
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.05), y: -100 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <PlazaSet mood="day" horizon={-160}>
-          {spots.slice(0, n).sort((a, b) => b[1] - a[1]).map(([x, y], i) => (
-            <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={0.26 + (-200 - y) * 0.0006} z={2 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={poses.idle(frame, i)} shadow={false} />
+          {spots.filter((p) => order[p.i] < ramp(t, 215.0, 218.6)).map(({ x, y, s, i }) => (
+            <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={s} z={2 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={poses.idle(frame, i)} shadow={false} />
           ))}
         </PlazaSet>
       </Stage>
@@ -285,7 +286,7 @@ export const TheRuleShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.05), y: -60 }} light={{ pos: [0, 300] }} vignette={0.6}>
         <PalaceRoom floorY={-460} throne={false}>
           {Array.from({ length: n }, (_, i) => (
-            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={-700} s={0.95} z={2 + i * 0.01} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
+            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={i % 2 ? -560 : -720} s={i % 2 ? 0.78 : 0.92} z={2 + (i % 2 ? 0 : 0.1) + i * 0.001} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
           ))}
         </PalaceRoom>
       </Stage>

@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, DepthStage, X, Part, Line, Glow, Wash, Gradient, QuestionMark, Spear, roundRect, circle, ellipse, poly, blob, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
+import { crowdSpots } from "../../kit/crowd";
 import { Character, poses } from "../../kit/character";
 import {
   MesoMap, mesoXY, siteXY, MayaPyramid, MayaHut, Sunburst, Smoke, MysticSmoke, Flame, Campfire, Caravel, Horse, Quetzal, Codex, ClayIdol, GlyphPanel, Glyph,
@@ -79,7 +80,7 @@ export const RuleChangesShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.05), y: -60 }} light={{ pos: [0, 300] }} vignette={0.6}>
         <PalaceRoom floorY={-460} throne={false}>
           {Array.from({ length: n }, (_, i) => (
-            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={-700} s={0.95} z={2 + i * 0.01} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
+            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={i % 2 ? -560 : -720} s={i % 2 ? 0.78 : 0.92} z={2 + (i % 2 ? 0 : 0.1) + i * 0.001} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
           ))}
         </PalaceRoom>
       </Stage>

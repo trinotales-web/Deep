@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, DepthStage, X, Part, Line, Glow, Wash, Gradient, QuestionMark, Spear, roundRect, roundPoly, circle, ellipse, poly, blob, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
+import { crowdSpots } from "../../kit/crowd";
 import { Character, poses, reachArm } from "../../kit/character";
 import {
   BallCourt, RubberBall, Codex, MesoMap, mesoXY, Glyph, MayaNumber, TikalTemple, MayaPyramid, InscriptionsTemple, Stela, WarGodLitter, JadeMask, PakalLid, Sarcophagus,
@@ -311,9 +312,9 @@ export const TwinsDescendShot: React.FC<ShotProps> = ({ start, dur }) => {
           <Part key={i} shape={roundRect(1200, 60, 4)} color={mixHex("#8a7a6a", "#2a2028", i / 11)} shade={0.2} x={-200 + i * 80} y={540 - i * 90} z={-20 + i * 0.01} />
         ))}
         {[0, 1].map((i) => {
-          const q = k - i * 0.08;
+          const q = k - i * 0.24;
           return (
-            <Character key={i} {...(i ? XBALANQUE : HUNAHPU)} x={-500 + q * 900 + i * 140} y={560 - q * 980 - i * 40} s={1.15} z={2 + i * 0.01} look={0.45} expression={{ eyes: "angry", mouth: "smirk", brows: -0.5 }} pose={poses.walk(frame + i * 10, 0.6)} />
+            <Character key={i} {...(i ? XBALANQUE : HUNAHPU)} x={-500 + q * 900} y={560 - q * 980} s={1.15 - i * 0.06} z={2 - i * 0.01} look={0.45} expression={{ eyes: "angry", mouth: "smirk", brows: -0.5 }} pose={poses.walk(frame + i * 10, 0.6)} />
           );
         })}
       </Stage>

@@ -9,3 +9,4 @@ export * from "./props";
 export * from "./timing";
 export * from "./depth";
 export * from "./photo";
+export * from "./crowd";

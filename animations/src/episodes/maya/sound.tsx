@@ -23,10 +23,8 @@ const AMB_DUCK = 0.5; // -6 dB under speech
 const CUES1: [number, string, number][] = [
   [0.14, "water-ocean-wave-2", 0.18],
   [2.57, "water-drip-single", 0.3],
-  [5.53, "swish-1", 0.2],
   [6.65, "impact-hit-1", 0.3],
   [8.97, "water-drip-single", 0.2],
-  [10.42, "whoosh-low-distant", 0.16],
   [13.86, "creak-short", 0.35],
   [14.26, "horn-boat", 0.14],
   [16.3, "gun-loading", 0.22],
@@ -60,7 +58,6 @@ const CUES1: [number, string, number][] = [
   [80.25, "pop-1", 0.16],
   [83.2, "water-drip-single", 0.28],
   [88.14, "sparkle", 0.16],
-  [89.68, "swish-2", 0.2],
   [90.84, "pop-1", 0.15],
   [91.64, "pop-2", 0.15],
   [92.5, "pop-3", 0.15],
@@ -85,7 +82,6 @@ const CUES1: [number, string, number][] = [
   [140.69, "pounding-three-hits", 0.22],
   [144.32, "electronic-beeps-echo", 0.13],
   [147.38, "impact-hit-1", 0.09000000357627869],
-  [150.64, "swish-1", 0.18],
   [152.98, "pop-1", 0.15],
   [157.8, "thump", 0.22],
   [161.34, "rumble-soft", 0.28],
@@ -191,7 +187,6 @@ const CUES1: [number, string, number][] = [
   [463.71, "heartbeat-single-lub-dub", 0.25],
   [465.99, "rumble-soft", 0.25],
   [468.97, "crash-3", 0.22],
-  [473.44, "whoosh-low-distant", 0.2],
   [478.07, "stamp", 0.2],
   [479.35, "grating-2", 0.22],
   [484.42, "grating-1", 0.3],
@@ -212,7 +207,6 @@ const CUES1: [number, string, number][] = [
 ];
 
 const CUES2: [number, string, number][] = [
-  [0.94, "whoosh-low-distant", 0.2],
   [2.79, "water-drip-single", 0.25],
   [6.41, "impact-hit-1", 0.3],
   [11.18, "deflating", 0.2],
@@ -228,20 +222,17 @@ const CUES2: [number, string, number][] = [
   [29.18, "sparkle", 0.18],
   [32.35, "impact-hit-1", 0.11],
   [36.24, "pop-3", 0.15],
-  [37.44, "swish-2", 0.2],
   [41.65, "shimmer-bright", 0.16],
   [42.43, "impact-hit-3", 0.13],
   [45.13, "pop-1", 0.15],
   [45.74, "water-drip-single", 0.25],
   [46.34, "pop-2", 0.15],
   [47.84, "water-ocean-wave-2", 0.15],
-  [51.1, "swish-1", 0.18],
   [56.02, "ratcheting", 0.2],
   [58.23, "pop-1", 0.15],
   [60.42, "pop-3", 0.15],
   [61.95, "stamp", 0.25],
   [63.73, "sparkle", 0.16],
-  [67.93, "whoosh-low-distant", 0.18],
   [70.38, "rattle", 0.15],
   [77.85, "water-impact-echo", 0.22],
   [78.45, "water-impact-echo", 0.2],
@@ -273,10 +264,8 @@ const CUES2: [number, string, number][] = [
   [140.46, "pop-1", 0.15],
   [143.97, "pop-2", 0.15],
   [146.75, "pop-3", 0.15],
-  [149.04, "whoosh-rebound", 0.18],
   [150.56, "impact-hit-3", 0.25],
   [153.68, "pop-1", 0.15],
-  [155.31, "swish-3", 0.18],
   [156.59, "pop-2", 0.15],
   [158.02, "drum-hit-single", 0.25],
   [159.69, "water-ocean-wave", 0.15],
@@ -299,7 +288,6 @@ const CUES2: [number, string, number][] = [
   [205.41, "wind-2", 0.18],
   [210.16, "hit-fade-out", 0.2],
   [214.38, "animals-donkey", 0.06],
-  [216.41, "whoosh-low-distant", 0.15],
   [220.9, "impact-hit-2", 0.25],
   [221.97, "hit-dull", 0.22],
   [223.38, "swish-1", 0.15],
@@ -362,7 +350,6 @@ const CUES2: [number, string, number][] = [
   [375.15, "hit-fade-out", 0.2],
   [376.44, "page-turning", 0.15],
   [378.52, "heartbeat-single-lub-dub", 0.18],
-  [382.94, "whoosh-low-distant", 0.1],
   [387.99, "mouse-click", 0.15],
   [390.7, "mouse-click-double", 0.15],
   [391.76, "fly-by-low", 0.08],
@@ -563,8 +550,6 @@ export const MayaSound: React.FC<{ captions: Caption[]; part: 1 | 2 }> = ({ capt
     return gap < 0.25 ? 0.3 : gap < 0.5 ? 0.5 : 1;
   };
   const { cuts, cues, beds, lbeds, walk, dig, paddle, pat } = PARTS[part];
-  const slides = cuts.filter((c) => c.into === "slide-left");
-  const hardCuts = cuts.filter((c) => c.into === "cut" && c.at > 0 && !cues.some(([t]) => Math.abs(t - c.at) < 0.35));
   return (
     <>
       {beds.map(([name, from, to, g], i) => (
@@ -591,13 +576,6 @@ export const MayaSound: React.FC<{ captions: Caption[]; part: 1 | 2 }> = ({ capt
           .filter((t) => !nearOnset(t))
           .map((t, i) => <SoundAt key={`pt${k}-${i}`} src={E("clap-single")} at={t} volume={0.06 * FX} duck={fxDuck} name="pat" />),
       )}
-      {slides.map((c, i) => {
-        const f = WHOOSHES[i % WHOOSHES.length];
-        return <SoundAt key={`wh${c.id}`} src={E(f)} at={c.at - 0.18} volume={WHOOSH_GAIN[f] * FX * intoSpeech(c.at - 0.18)} duck={fxDuck} name={`whoosh:${c.id}`} />;
-      })}
-      {hardCuts.map((c) => (
-        <Sfx key={`c${c.id}`} name="whoosh_soft" at={c.at - 0.08} volume={0.2 * FX * intoSpeech(c.at - 0.08)} duck={fxDuck} />
-      ))}
       {cues.map(([t, f, g], i) => (
         <SoundAt key={`${i}-${f}`} src={E(f)} at={t} volume={g * FX} duck={fxDuck} name={f} />
       ))}

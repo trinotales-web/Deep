@@ -1,4 +1,5 @@
 import type { Cut } from "./script";
+import * as Ph from "./photos";
 import * as A from "./p1a";
 import * as B from "./p1b";
 import * as C from "./p1c";
@@ -6,7 +7,7 @@ import * as D from "./p1d";
 
 // First video cut list (seconds on public/vo/maya-1.voice.m4a), in the breaths
 // between phrases (see public/captions/maya-1.json).
-export const CUTS1: Cut[] = [
+const BASE_CUTS1: Cut[] = [
   { id: "a01", at: 0, into: "cut", C: A.WarriorCanoeShot },
   { id: "a02", at: 4.85, into: "cut", C: A.March1697Shot },
   { id: "a03", at: 6.85, into: "cut", C: A.IslandRevealShot },
@@ -38,7 +39,7 @@ export const CUTS1: Cut[] = [
   { id: "d01", at: 95.95, into: "slide-left", C: B.WildGrassShot },
   { id: "d02", at: 101.2, into: "cut", C: B.BecomesCornShot },
   { id: "d03", at: 104.35, into: "cut", C: B.CornEverythingShot },
-  { id: "d04", at: 107.3, into: "slide-left", C: B.PopolVuhShot },
+  { id: "d04", at: 109.45, into: "slide-left", C: B.PopolVuhShot },
   { id: "d05", at: 112.25, into: "cut", C: B.MudShot },
   { id: "d06", at: 114.3, into: "cut", C: B.MudFallsShot },
   { id: "d07", at: 116.2, into: "cut", C: B.WoodShot },
@@ -52,7 +53,7 @@ export const CUTS1: Cut[] = [
   { id: "e01", at: 137.95, into: "slide-left", C: B.BuildingBigShot },
   { id: "e02", at: 141.3, into: "cut", C: B.LaserPlaneShot },
   { id: "e03", at: 144.85, into: "cut", C: B.AguadaFenixShot },
-  { id: "e04", at: 148.25, into: "cut", C: B.PlatformLengthShot },
+  { id: "e04", at: 148.25, into: "cut", C: Ph.AguadaLidar },
   { id: "e05", at: 151.2, into: "cut", C: B.FootballFieldsShot },
   { id: "e06", at: 153.75, into: "cut", C: B.StoneToolsShot },
   { id: "e07", at: 158.95, into: "slide-left", C: B.ElMiradorShot },
@@ -87,11 +88,11 @@ export const CUTS1: Cut[] = [
   { id: "h01", at: 265.0, into: "slide-left", C: C.DoingMathShot },
   { id: "h02", at: 269.1, into: "cut", C: C.WritingSystemShot },
   { id: "h03", at: 273.2, into: "cut", C: C.WordsSoundsShot },
-  { id: "h04", at: 277.95, into: "cut", C: C.StonePotsBooksShot },
+  { id: "h04", at: 277.95, into: "cut", C: Ph.StelaStone },
   { id: "h05", at: 282.3, into: "cut", C: C.Base20Shot },
   { id: "h06", at: 287.05, into: "cut", C: C.DotBarShellShot },
   { id: "h07", at: 292.75, into: "cut", C: C.FirstZeroShot },
-  { id: "i01", at: 295.75, into: "slide-left", C: C.ObsessedTimeShot },
+  { id: "i01", at: 295.75, into: "slide-left", C: Ph.CalendarCarving },
   { id: "i02", at: 297.55, into: "cut", C: C.TwoCalendarsShot },
   { id: "i03", at: 303.55, into: "cut", C: C.FiftyTwoShot },
   { id: "i04", at: 307.1, into: "cut", C: C.LongCountShot },
@@ -126,8 +127,8 @@ export const CUTS1: Cut[] = [
   { id: "j21", at: 391.1, into: "cut", C: D.LosingDeathShot },
   { id: "k01", at: 394.2, into: "slide-left", C: D.RuleAgainShot },
   { id: "k02", at: 398.25, into: "cut", C: D.SuperpowersShot },
-  { id: "k03", at: 401.95, into: "cut", C: D.TikalShot },
-  { id: "k04", at: 404.5, into: "cut", C: D.CalakmulShot },
+  { id: "k03", at: 401.95, into: "cut", C: Ph.TikalPhoto },
+  { id: "k04", at: 404.5, into: "cut", C: Ph.CalakmulPhoto },
   { id: "k05", at: 408.35, into: "cut", C: D.MakesFriendsShot },
   { id: "k06", at: 411.9, into: "cut", C: D.CaracolAttacksShot },
   { id: "k07", at: 418.6, into: "cut", C: D.StarWarShot },
@@ -160,3 +161,26 @@ export const CUTS1: Cut[] = [
   { id: "m04", at: 524.95, into: "cut", C: D.SilenceShot },
   { id: "m05", at: 527.35, into: "cut", C: D.JungleSwallowsShot },
 ];
+
+// Real photos and artworks cut in at the matching words.
+const PHOTOS_CUTS1: Cut[] = [
+  { id: "b03p", at: 33.8, into: "cut", C: Ph.DuranFall },
+  { id: "d01p", at: 99.75, into: "cut", C: Ph.Teosinte },
+  { id: "d02p", at: 103.3, into: "cut", C: Ph.Corn },
+  { id: "d04p", at: 107.3, into: "cut", C: Ph.PopolVuhBook },
+  { id: "e03p", at: 146.85, into: "cut", C: Ph.AguadaAerial },
+  { id: "f08p", at: 227.85, into: "cut", C: Ph.Bonampak },
+  { id: "g01p", at: 243.75, into: "cut", C: Ph.VaseCourt },
+  { id: "g03p", at: 249.5, into: "cut", C: Ph.VaseSerpent },
+  { id: "h02p", at: 270.6, into: "cut", C: Ph.GlyphPanel },
+  { id: "h03p", at: 274.55, into: "cut", C: Ph.GlyphWords },
+  { id: "h03q", at: 275.85, into: "cut", C: Ph.PalenqueGlyphs },
+  { id: "h04p", at: 279.75, into: "cut", C: Ph.DresdenBooks },
+  { id: "i02p", at: 301.85, into: "cut", C: Ph.CalendarWheels },
+  { id: "i05p", at: 311.05, into: "cut", C: Ph.SunStone },
+  { id: "j09p", at: 356.2, into: "cut", C: Ph.XibalbaArt },
+  { id: "k04p", at: 405.85, into: "cut", C: Ph.SnakeGlyph },
+  { id: "l04p", at: 464.85, into: "cut", C: Ph.PharaohCoffins },
+];
+
+export const CUTS1: Cut[] = [...BASE_CUTS1, ...PHOTOS_CUTS1].sort((a, b) => a.at - b.at);

@@ -1,4 +1,5 @@
 import type { Cut } from "./script";
+import * as Ph from "./photos";
 import * as A from "./p2a";
 import * as B from "./p2b";
 import * as C from "./p2c";
@@ -6,7 +7,7 @@ import * as D from "./p2d";
 
 // Second video cut list (seconds on public/vo/maya-2.voice.m4a), in the breaths
 // between phrases (see public/captions/maya-2.json).
-export const CUTS2: Cut[] = [
+const BASE_CUTS2: Cut[] = [
   { id: "a01", at: 0, into: "cut", C: A.SoWhatShot },
   { id: "a02", at: 1.7, into: "cut", C: A.LakeCoreShot },
   { id: "a03", at: 6.2, into: "cut", C: A.DroughtCoreShot },
@@ -98,7 +99,7 @@ export const CUTS2: Cut[] = [
   { id: "e25", at: 265.65, into: "cut", C: C.NotFriendsShot },
   { id: "f01", at: 267.7, into: "slide-left", C: C.LandaShot },
   { id: "f02", at: 274.4, into: "cut", C: C.ManiShot },
-  { id: "f03", at: 277.6, into: "cut", C: C.BonfireShot },
+  { id: "f03", at: 279.6, into: "cut", C: C.BonfireShot },
   { id: "f04", at: 281.4, into: "cut", C: C.QuoteShot },
   { id: "f05", at: 286.1, into: "cut", C: C.GoneInSmokeShot },
   { id: "f06", at: 289.25, into: "cut", C: C.FourBooksShot },
@@ -128,8 +129,8 @@ export const CUTS2: Cut[] = [
   { id: "h05", at: 365.0, into: "cut", C: D.OwnLandShot },
   { id: "h06", at: 368.35, into: "cut", C: D.TalkingCrossShot },
   { id: "h07", at: 370.15, into: "cut", C: D.CivilWarShot },
-  { id: "h08", at: 376.0, into: "cut", C: D.TruthCommissionShot },
-  { id: "h09", at: 380.8, into: "slide-left", C: D.SecretsShot },
+  { id: "h08", at: 376.0, into: "cut", C: Ph.MemoryOfSilence },
+  { id: "h09", at: 380.8, into: "slide-left", C: Ph.TikalSecrets },
   { id: "h10", at: 383.85, into: "cut", C: D.StudentShot },
   { id: "h11", at: 388.9, into: "cut", C: D.Page16Shot },
   { id: "h12", at: 391.25, into: "cut", C: D.ForestSurveyShot },
@@ -153,3 +154,19 @@ export const CUTS2: Cut[] = [
   { id: "h30", at: 452.35, into: "cut", C: D.RatherBallShot },
   { id: "h31", at: 456.6, into: "cut", C: D.CommentsShot },
 ];
+
+// Real photos and artworks cut in at the matching words.
+const PHOTOS_CUTS2: Cut[] = [
+  { id: "e04p", at: 196.0, into: "cut", C: Ph.DuranFall2 },
+  { id: "f02p", at: 276.4, into: "cut", C: Ph.ManiConvent },
+  { id: "f03p", at: 277.6, into: "cut", C: Ph.Figurines },
+  { id: "f06p", at: 291.0, into: "cut", C: Ph.FourCodices },
+  { id: "f13p", at: 314.05, into: "cut", C: Ph.GlyphWords2 },
+  { id: "h07p", at: 372.3, into: "cut", C: Ph.Protest },
+  { id: "h07q", at: 374.1, into: "cut", C: Ph.Reburial },
+  { id: "h08p", at: 378.3, into: "cut", C: Ph.Memorial },
+  { id: "h17p", at: 410.35, into: "cut", C: Ph.Bonampak2 },
+  { id: "h25p", at: 437.55, into: "cut", C: Ph.CalendarWheels2 },
+];
+
+export const CUTS2: Cut[] = [...BASE_CUTS2, ...PHOTOS_CUTS2].sort((a, b) => a.at - b.at);

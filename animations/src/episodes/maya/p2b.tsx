@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, DepthStage, X, Part, Line, Glow, Wash, Gradient, QuestionMark, Spear, roundRect, circle, ellipse, poly, blob, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
+import { crowdSpots } from "../../kit/crowd";
 import { Character, poses } from "../../kit/character";
 import {
   MesoMap, mesoXY, MayaPyramid, MayaHut, Sunburst, Smoke, Flame, Caravel, TradeCanoe, CacaoBean, CacaoPod, Sea, Sky, Cloud, PalmTree, Rain, Ripples,
@@ -333,11 +334,11 @@ export const WashAshoreShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.1, 1.16), y: -160 }} light={{ dir: [0.5, 0.6] }} vignette={0.65}>
         <BeachSet horizon={-60} mood="dusk">
-          <Lying design={{ ...GUERRERO_SAILOR }} x={-560} y={-380} s={1.1} z={2} dir={-1} lift={ramp(t, 136.4, 137.2) * 0.3} />
-          <Lying design={{ ...AGUILAR }} x={180} y={-470} s={1.15} z={2.1} dir={1} />
-          <Lying design={{ ...SPANISH_SOLDIER(1), hat: null }} x={760} y={-330} s={0.9} z={1.9} dir={-1} />
-          <Plank x={-120} y={-250} w={300} rot={0.2} z={1.5} />
-          <Plank x={460} y={-200} w={220} rot={-0.4} z={1.5} />
+          <Lying design={{ ...GUERRERO_SAILOR }} x={-900} y={-330} s={1.0} z={2} dir={-1} lift={ramp(t, 136.4, 137.2) * 0.3} />
+          <Lying design={{ ...AGUILAR }} x={-10} y={-500} s={1.1} z={2.1} dir={-1} />
+          <Lying design={{ ...SPANISH_SOLDIER(1), hat: null }} x={620} y={-250} s={0.75} z={1.9} dir={-1} />
+          <Plank x={-260} y={-230} w={280} rot={0.2} z={1.5} />
+          <Plank x={520} y={-470} w={220} rot={-0.4} z={1.5} />
         </BeachSet>
       </Stage>
       <Label text="A FEW SURVIVORS" x={0.5} y={0.1} size={0.055} kind="box" at={sec(start)(135.9)} />

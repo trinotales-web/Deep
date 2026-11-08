@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, DepthStage, X, Part, Line, Glow, Wash, Gradient, QuestionMark, Spear, roundRect, circle, ellipse, poly, blob, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
+import { crowdSpots } from "../../kit/crowd";
 import { Character, poses } from "../../kit/character";
 import {
   MesoMap, mesoXY, siteXY, TikalTemple, ElCastillo, MayaPyramid, MayaHut, Cenote, Canoe, Jungle, Vines, Sunburst, Sun, Cloud, Smoke, Flame, CornPlant, Stump,
@@ -250,14 +251,13 @@ export const TooManyShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const cx = interpolate(t, [19.85, 21.0, 21.9, 23.4], [-1250, -1250, 0, 1250], { easing: Easing.inOut(Easing.quad), extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const r = rng(31);
-  const crowd = Array.from({ length: 22 }, () => [-1250 + (r() - 0.5) * 900, -420 - r() * 280] as P).sort((a, b) => b[1] - a[1]);
+  const crowd = crowdSpots({ n: 14, x0: -1720, x1: -780, yFar: -420, yNear: -680, sFar: 0.5, sNear: 0.72, rows: 3, seed: 31 });
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: 1.15, x: cx, y: -120 }} light={{ dir: [0.5, 0.6] }} vignette={0.55}>
         <JungleSet mood="day" horizon={-200} ground="#c8b07a" jungle={false}>
-          {crowd.map(([x, y], i) => (
-            <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={0.55 + (-420 - y) * 0.0004} z={1 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.5} expression={{ eyes: i % 4 ? "half" : "open", mouth: i % 3 ? "flat" : "wavy", brows: 0.4 }} pose={poses.idle(frame, i)} shadow={false} />
+          {crowd.map(({ x, y, s, i }) => (
+            <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={s} z={1 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.5} expression={{ eyes: i % 4 ? "half" : "open", mouth: i % 3 ? "flat" : "wavy", brows: 0.4 }} pose={poses.idle(frame, i)} shadow={false} />
           ))}
           {Array.from({ length: 9 }, (_, i) => (
             <Stump key={i} x={-380 + i * 95 + ((i * 53) % 40)} y={-300 - (i % 3) * 90} w={70 + (i % 3) * 18} z={1 + i * 0.01} />
@@ -444,8 +444,7 @@ export const HeadNorthShot: React.FC<ShotProps> = ({ start, dur }) => {
 /** Chichén Itzá: El Castillo on a plaza with the Temple of the Warriors and a crowd. */
 const ChichenSet: React.FC<{ mood?: "day" | "dawn" | "dusk"; horizon?: number; equinox?: number; crowd?: number; children?: React.ReactNode }> = ({ mood = "day", horizon = -300, equinox = 0, crowd = 0, children }) => {
   const frame = useCurrentFrame();
-  const r = rng(77);
-  const people = Array.from({ length: Math.round(crowd) }, () => [(r() - 0.5) * 2600, horizon - 160 - r() * 260] as P).sort((a, b) => b[1] - a[1]);
+  const people = crowd > 0 ? crowdSpots({ n: Math.round(crowd), x0: -1300, x1: 1300, yFar: horizon - 40, yNear: horizon - 130, sFar: 0.3, sNear: 0.38, rows: 2, seed: 77, width: 3.2 }) : [];
   return (
     <JungleSet mood={mood} horizon={horizon} ground="#e2d6b8" jungle>
       <X z={-28}>
@@ -455,8 +454,8 @@ const ChichenSet: React.FC<{ mood?: "day" | "dawn" | "dusk"; horizon?: number; e
         ))}
       </X>
       <ElCastillo x={0} y={horizon} s={1.0} equinox={equinox} z={-24} />
-      {people.map(([x, y], i) => (
-        <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={0.42} z={1 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.4} expression={{ eyes: "open", mouth: "smile" }} pose={poses.idle(frame, i)} shadow={false} />
+      {people.map(({ x, y, s, i }) => (
+        <Character key={i} {...(i % 3 ? MAYA_COMMONER(i) : MAYA_WOMAN(i))} x={x} y={y} s={s} z={1 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.4} expression={{ eyes: "open", mouth: "smile" }} pose={poses.idle(frame, i)} shadow={false} />
       ))}
       {children}
     </JungleSet>

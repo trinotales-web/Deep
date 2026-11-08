@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Stage, DepthStage, X, Part, Line, Glow, Wash, Gradient, QuestionMark, Spear, roundRect, circle, ellipse, poly, blob, ramp, push, hitAt, absT, rng, mixHex, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
+import { crowdSpots } from "../../kit/crowd";
 import { Character, poses } from "../../kit/character";
 import {
   MesoMap, mesoXY, siteXY, TikalTemple, MayaPyramid, MayaHut, Sunburst, Smoke, Flame, Campfire, Candle, SpanishGalley, SpanishFlag, IslandCity, Canoe, Ripples, BigLeaf,
@@ -120,15 +121,13 @@ export const March13Shot: React.FC<ShotProps> = ({ start, dur }) => {
 export const ThreeHundredCanoesShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const r = rng(41);
-  const canoes = Array.from({ length: 26 }, () => [(r() - 0.5) * 2600, -120 - r() * 360] as P).sort((a, b) => b[1] - a[1]);
+  const canoes = crowdSpots({ n: 24, x0: -1400, x1: 1400, yFar: -130, yNear: -470, sFar: 0.22, sNear: 0.52, rows: 4, seed: 41, width: 8.2 });
   const adv = ramp(t, 338.65, 341.8) * 120;
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [-0.5, 0.6] }} vignette={0.6}>
         <LakeSet mood="dawn" horizon={60} islandX={-600} islandW={700}>
-          {canoes.map(([x, y], i) => {
-            const s = 0.22 + (-120 - y) * 0.0009;
+          {canoes.map(({ x, y, s, i }) => {
             return <CanoeWarrior key={i} x={x + adv * (i % 2 ? 1 : 0.7)} y={y} s={s} i={(i % 3) + 1} ph={i * 0.7} z={1 + i * 0.01} />;
           })}
         </LakeSet>
@@ -643,7 +642,7 @@ export const RuleAgainShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -60 }} light={{ pos: [0, 300] }} vignette={0.6}>
         <PalaceRoom floorY={-460} throne={false}>
           {Array.from({ length: n }, (_, i) => (
-            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={-700} s={0.95} z={2 + i * 0.01} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
+            <Character key={i} {...MAYA_KING(i)} x={-780 + i * 260} y={i % 2 ? -560 : -720} s={i % 2 ? 0.78 : 0.92} z={2 + (i % 2 ? 0 : 0.1) + i * 0.001} facing={i < 3 ? 1 : -1} look={0.4} expression={{ eyes: i % 2 ? "half" : "open", mouth: i % 2 ? "smirk" : "flat", brows: -0.3 }} pose={i % 3 === 0 ? poses.handsOnHips : poses.idle(frame, i)} />
           ))}
         </PalaceRoom>
       </Stage>
@@ -757,15 +756,14 @@ export const FamiliesStayedShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const SevenMillionShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const r = rng(53);
-  const crowd = Array.from({ length: 16 }, () => [(r() - 0.5) * 2200, -360 - r() * 340] as P).sort((a, b) => b[1] - a[1]);
+  const crowd = crowdSpots({ n: 15, x0: -1150, x1: 1150, yFar: -380, yNear: -700, sFar: 0.55, sNear: 0.82, rows: 3, seed: 53 });
   const words = ["K'ICHE'", "YUCATEC", "Q'EQCHI'", "MAM", "TZELTAL", "KAQCHIKEL"];
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -60 }} light={{ dir: [-0.5, 0.5] }} vignette={0.55}>
         <Village mood="day" horizon={-200}>
-          {crowd.map(([x, y], i) => (
-            <Character key={i} {...(i % 2 ? MODERN_MAYA_WOMAN(i) : MODERN_MAYA_MAN(i))} x={x} y={y} s={0.62 + (-360 - y) * 0.0006} z={1 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.45} talking={i % 3 === 0} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, i)} shadow={false} />
+          {crowd.map(({ x, y, s, i }) => (
+            <Character key={i} {...(i % 2 ? MODERN_MAYA_WOMAN(i) : MODERN_MAYA_MAN(i))} x={x} y={y} s={s} z={1 + i * 0.001} facing={i % 2 ? 1 : -1} look={0.45} talking={i % 3 === 0} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, i)} shadow={false} />
           ))}
         </Village>
       </Stage>

@@ -400,7 +400,7 @@ export const LameHorseShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.05, 1.12), y: -80 }} light={{ dir: [-0.5, 0.6] }} vignette={0.6}>
         <LakeSet mood="day" horizon={-80} islandX={500} islandW={900}>
-          <Character {...CORTES} x={-640} y={-760} s={1.45} z={2} look={0.5} talking={t > 241.2 && t < 242.8} expression={{ eyes: "half", mouth: "smile", brows: -0.2 }} pose={{ ...poses.idle(frame), armF: [1.2, 0.4] }} />
+          <Character {...CORTES} x={-640} y={-760} s={1.45} z={2} look={0.5} talking={t > 241.2 && t < 242.8} expression={{ eyes: "half", mouth: "smile", brows: -0.2 }} pose={poses.blendAt(t, 241.1, { ...poses.idle(frame), armF: [1.2, 0.4] }, poses.talk(frame, 3))} />
           <LameHorse x={-120} y={-760} s={1.05} limp={1} z={1.9} />
           <Character {...KAN_EK} x={520} y={-760} s={1.45} z={2.1} facing={-1} look={0.5} expression={{ eyes: "wide", mouth: "o", brows: 0.6 }} pose={poses.idle(frame, 2)} />
         </LakeSet>
@@ -441,7 +441,7 @@ export const LikeAGodShot: React.FC<ShotProps> = ({ start, dur }) => {
           <LameHorse x={-80} y={-340} s={0.95} z={2} />
           <Glow y={0} rx={600} color="#fff2c6" alpha={0.35} additive z={1.5} />
           {[-700, 700].map((x, i) => (
-            <Character key={x} {...MAYA_PRIEST(i)} x={x} y={-560} s={1.3} z={3} facing={x < 0 ? 1 : -1} look={0.4} expression={{ eyes: "closed", mouth: "smile" }} pose={{ ...poses.sit(frame), armF: [2.6, 0.3], armB: [2.4, 0.3], armsOverHead: true }} />
+            <Character key={x} {...MAYA_PRIEST(i)} x={x} y={-560} s={1.3} z={3} facing={x < 0 ? 1 : -1} look={0.4} expression={{ eyes: "closed", mouth: "smile" }} pose={poses.worship(frame + i * 9)} />
           ))}
         </PalaceRoom>
       </Stage>
@@ -760,7 +760,7 @@ export const QuoteShot: React.FC<ShotProps> = ({ start, dur }) => {
         bg={<JungleSet mood="night" horizon={-200} ground="#c8b48a"><Bonfire y={-420} burn={1} s={0.8} z={1} /></JungleSet>}
       >
         {[0, 1, 2].map((i) => (
-          <Character key={i} {...(i === 1 ? MAYA_WOMAN(i + 2) : MAYA_PRIEST(i))} x={-640 + i * 420} y={-900 - (i % 2) * 30} s={1.7} z={2 + i * 0.01} facing={i === 2 ? -1 : 1} look={0.4} expression={{ eyes: "sad", mouth: "frown", brows: 1.0 }} pose={i === 1 ? { ...poses.idle(frame, i), armF: [2.4, 2.2], armB: [2.4, 2.2], armsOverHead: true } : poses.idle(frame, i)} />
+          <Character key={i} {...(i === 1 ? MAYA_WOMAN(i + 2) : MAYA_PRIEST(i))} x={-640 + i * 420} y={-900 - (i % 2) * 30} s={1.7} z={2 + i * 0.01} facing={i === 2 ? -1 : 1} look={0.4} expression={{ eyes: "sad", mouth: "frown", brows: 1.0 }} pose={i === 1 ? poses.grief(frame) : poses.idle(frame, i)} />
         ))}
       </DepthStage>
       <Label text="LANDA WROTE:" x={0.5} y={0.08} size={0.04} kind="box" at={sec(start)(281.6)} />
@@ -905,7 +905,7 @@ export const AlphabetShot: React.FC<ShotProps> = ({ start, dur }) => {
         <PlankWall w={6000} h={3000} y={600} color="#8a6a4a" z={-41} />
         <Floorboards w={6000} h={1400} y={-760} color="#6e4a2c" z={-40} />
         <Character {...LANDA} x={-700} y={-820} s={1.45} z={2} look={0.5} expression={{ eyes: "half", mouth: "flat", brows: -0.2 }} pose={poses.point(frame)} />
-        <Character {...MAYA_PRIEST(2)} hat="headband" x={720} y={-820} s={1.45} z={2} facing={-1} look={0.5} talking={t > 298.6 && t < 300.2} expression={{ eyes: "open", mouth: "flat", brows: 0.3 }} pose={poses.idle(frame, 2)} />
+        <Character {...MAYA_PRIEST(2)} hat="headband" x={720} y={-820} s={1.45} z={2} facing={-1} look={0.5} talking={t > 298.6 && t < 300.2} expression={{ eyes: "open", mouth: "flat", brows: 0.3 }} pose={t < 300.2 ? poses.talk(frame, 4) : poses.blendAt(t, 300.2, poses.talk(frame, 4), poses.idle(frame, 2))} />
         <AlphabetPage y={40} s={pop(t, 300.4) * 0.85} z={1} />
       </Stage>
       <Label text="WITH A MAYA NOBLE" x={0.78} y={0.1} size={0.045} kind="box" at={sec(start)(299.5)} />

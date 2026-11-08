@@ -434,7 +434,7 @@ export const TeaserHorseShot: React.FC<ShotProps> = ({ start, dur }) => {
           <Horse x={-140} y={-340} s={0.95} color="#b8b0a0" mane="#8a8070" clay z={2} />
           <Glow y={0} rx={600} color="#fff2c6" alpha={0.35} additive z={1.5} />
           {[-680, 680].map((x, i) => (
-            <Character key={x} {...MAYA_PRIEST(i)} x={x} y={-560} s={1.3} z={3} facing={x < 0 ? 1 : -1} look={0.4} expression={{ eyes: "closed", mouth: "smile" }} pose={{ ...poses.sit(frame), armF: [2.6, 0.3], armB: [2.4, 0.3], armsOverHead: true }} />
+            <Character key={x} {...MAYA_PRIEST(i)} x={x} y={-560} s={1.3} z={3} facing={x < 0 ? 1 : -1} look={0.4} expression={{ eyes: "closed", mouth: "smile" }} pose={poses.worship(frame + i * 9)} />
           ))}
         </PalaceRoom>
       </Stage>

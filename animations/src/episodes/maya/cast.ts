@@ -12,6 +12,10 @@ export const OCHRE = "#d9a441";
 export const COTTON = "#f1ead8";
 export const HAIR = "#1e1a20";
 export const STUCCO = "#efe4cc";
+/** Maya skin tones (warm browns) with white mitten gloves, as in the reference shorts. */
+export const SKIN_TONES = ["#c98e62", "#b97c52", "#d39c6e", "#a96d48"];
+const GLOVES = "#f6f5f8";
+const tone = (i: number) => ({ skin: SKIN_TONES[((i % 4) + 4) % 4], gloves: GLOVES });
 
 /** The narrator's "you": an Itza warrior in quilted cotton armor with a red feather band. */
 export const ITZA_WARRIOR = (i = 0): Design => ({
@@ -23,6 +27,7 @@ export const ITZA_WARRIOR = (i = 0): Design => ({
   hairColor: HAIR,
   earspool: JADE,
   marks: i === 0 ? null : "paint",
+  ...tone(i),
   seed: 600 + i,
 });
 
@@ -34,6 +39,7 @@ export const MAYA_KING = (i = 0): Design => ({
   hair: "long",
   hairColor: HAIR,
   earspool: JADE,
+  ...tone(i),
   seed: 610 + i,
 });
 
@@ -46,6 +52,7 @@ export const MAYA_QUEEN = (i = 0): Design => ({
   hair: "long",
   hairColor: HAIR,
   earspool: JADE,
+  ...tone(i),
   seed: 620 + i,
 });
 
@@ -58,6 +65,7 @@ export const MAYA_PRIEST = (i = 0): Design => ({
   hair: "topknot",
   hairColor: HAIR,
   earspool: "#e8d8b0",
+  ...tone(i),
   seed: 630 + i,
 });
 
@@ -68,6 +76,7 @@ export const MAYA_COMMONER = (i = 0): Design => ({
   hatColor: ["#c8a878", MAYA_RED, MAYA_BLUE, OCHRE][i % 4],
   hair: i % 3 === 2 ? "long" : "topknot",
   hairColor: HAIR,
+  ...tone(i),
   seed: 640 + i,
 });
 
@@ -76,6 +85,7 @@ export const MAYA_WOMAN = (i = 0): Design => ({
   outfit: { top: COTTON, robe: true, trim: [MAYA_RED, MAYA_BLUE, OCHRE][i % 3], belt: [MAYA_BLUE, MAYA_RED, "#5a8a3a"][i % 3], collar: "round" },
   hair: "long",
   hairColor: HAIR,
+  ...tone(i),
   seed: 650 + i,
 });
 
@@ -88,6 +98,7 @@ export const BALLPLAYER = (i = 0): Design => ({
   hair: "topknot",
   hairColor: HAIR,
   earspool: JADE,
+  ...tone(i),
   seed: 660 + i,
 });
 
@@ -98,6 +109,7 @@ export const JAGUAR_WARRIOR = (i = 0): Design => ({
   hair: "topknot",
   hairColor: HAIR,
   marks: "paint",
+  ...tone(i),
   seed: 670 + i,
 });
 
@@ -111,6 +123,7 @@ export const HUNAHPU: Design = {
   hairColor: HAIR,
   marks: "spots",
   earspool: JADE,
+  ...tone(1),
   seed: 680,
 };
 export const XBALANQUE: Design = {
@@ -121,6 +134,7 @@ export const XBALANQUE: Design = {
   hair: "topknot",
   hairColor: HAIR,
   earspool: JADE,
+  ...tone(2),
   seed: 681,
 };
 
@@ -140,6 +154,7 @@ export const MAIZE_GOD: Design = {
   hat: "maize",
   hair: null,
   earspool: JADE,
+  ...tone(2),
   seed: 700,
 };
 
@@ -295,6 +310,7 @@ export const EARLY_FARMER = (i = 0): Design => ({
   outfit: { top: ["#c8a878", "#b8986a"][i % 2], bottom: "#8a6a4a", boots: "#6e4a2c", belt: "#6e4a2c", collar: "round" },
   hair: "long",
   hairColor: HAIR,
+  ...tone(i),
   seed: 840 + i,
 });
 
@@ -324,6 +340,7 @@ export const TECUN_UMAN: Design = {
   hairColor: HAIR,
   earspool: JADE,
   marks: "paint",
+  ...tone(0),
   seed: 616,
 };
 
@@ -356,6 +373,7 @@ export const CASTE_REBEL = (i = 0): Design => ({
   hairColor: HAIR,
   mustache: i % 2 ? "thin" : null,
   mustacheColor: HAIR,
+  ...tone(i),
   seed: 790 + i,
 });
 
@@ -364,6 +382,7 @@ export const MODERN_MAYA_WOMAN = (i = 0): Design => ({
   outfit: { top: ["#c0392b", "#8a3a8a", "#2f6fa8", "#e07a3a"][i % 4], robe: true, trim: ["#f2c84a", "#3fa07a", "#f2c84a", "#3a9ac9"][i % 4], belt: ["#2f6fa8", "#c0392b", "#3fa07a", "#8a3a8a"][i % 4], collar: "wrap", collarColor: "#f2c84a" },
   hair: "long",
   hairColor: HAIR,
+  ...tone(i),
   seed: 795 + i,
 });
 
@@ -375,6 +394,7 @@ export const MODERN_MAYA_MAN = (i = 0): Design => ({
   hatAccent: "#2a2226",
   hair: "short",
   hairColor: HAIR,
+  ...tone(i),
   seed: 800 + i,
 });
 
@@ -387,5 +407,6 @@ export const DAYKEEPER: Design = {
   hairColor: "#4a4a50",
   mustache: "thin",
   mustacheColor: "#5a5a60",
+  ...tone(3),
   seed: 805,
 };

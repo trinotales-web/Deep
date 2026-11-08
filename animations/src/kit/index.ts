@@ -8,3 +8,4 @@ export * from "./random";
 export * from "./props";
 export * from "./timing";
 export * from "./depth";
+export * from "./photo";

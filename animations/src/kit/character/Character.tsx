@@ -90,7 +90,12 @@ export type Pose = {
   /** Draw the back arm behind the torso. */
   backArmBehind?: boolean;
   sit?: boolean;
+  /** Hand shapes: open mitten (default), pointing index finger, or fist. */
+  handF?: HandShape;
+  handB?: HandShape;
 };
+
+export type HandShape = "open" | "point" | "fist";
 
 export type CharacterProps = {
   x?: number;
@@ -122,6 +127,8 @@ export type CharacterProps = {
   marks?: "tattoo" | "paint" | "spots" | null;
   /** Skin colour for head and hands (e.g. clay for terracotta statues). */
   skin?: string;
+  /** Glove (hand) colour; defaults to the skin colour, else white mittens. */
+  gloves?: string;
   freckles?: boolean;
   /** Mouth flaps while true. */
   talking?: boolean;
@@ -154,22 +161,31 @@ export const talkAt = (frame: number, seed = 0) => {
   return v < 0.18 ? 0 : 0.35 + v * 0.65;
 };
 
-const Hand: React.FC<{ color: string; children?: React.ReactNode }> = ({ color, children }) => (
+const Hand: React.FC<{ color: string; shape?: HandShape; children?: React.ReactNode }> = ({ color, shape = "open", children }) => (
   <X y={-6}>
     <Part shape={blob([[2, -2], [14, -8], [18, -20], [8, -24], [0, -14]], 6)} color={color} z={-0.001} />
-    <Part shape={blob([[-15, 0], [13, 0], [17, -16], [15, -32], [4, -40], [-8, -39], [-17, -30], [-18, -14]], 6)} color={color} shade={0.2} />
+    {shape === "open" ? (
+      <Part shape={blob([[-15, 0], [13, 0], [17, -16], [15, -32], [4, -40], [-8, -39], [-17, -30], [-18, -14]], 6)} color={color} shade={0.2} />
+    ) : (
+      <>
+        <Part shape={blob([[-15, 0], [13, 0], [17, -12], [13, -25], [0, -29], [-12, -27], [-18, -14]], 6)} color={color} shade={0.2} />
+        {shape === "fist" ? <Line pts={[[-10, -20], [-2, -24], [8, -21]]} smooth width={3} color={shadeHex(color, 0.35)} z={0.001} /> : null}
+        {shape === "point" ? <Part shape={roundRect(14, 40, 7)} color={color} shade={0.2} x={-5} y={-38} z={0.0015} /> : null}
+      </>
+    )}
     <Line pts={[[-12, -4], [12, -4]]} width={3.5} color={shadeHex(color, 0.35)} z={0.001} />
     {children ? <X y={-24} z={0.002}>{children}</X> : null}
   </X>
 );
 
-const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cuffs?: string | null; hold?: React.ReactNode; glove?: string }> = ({
+const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cuffs?: string | null; hold?: React.ReactNode; glove?: string; hand?: HandShape }> = ({
   angles,
   side,
   sleeve,
   cuffs,
   hold,
   glove = GLOVE,
+  hand = "open",
 }) => (
   <X x={SHOULDER[0] * side} y={SHOULDER[1]} rot={angles[0]}>
     <Part shape={limb(UPPER, 36, 32)} color={sleeve} shade={0.24} />
@@ -179,7 +195,7 @@ const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cu
       <Line pts={[[-8, -14], [3, -19], [8, -16]]} smooth width={3.5} color={shadeHex(sleeve, 0.4)} z={0.001} />
       {cuffs ? <Part shape={roundRect(34, 10, 4)} color={cuffs} flat y={-FORE + 10} z={0.001} /> : null}
       <X y={-FORE + 2} z={0.02}>
-        <Hand color={glove}>{hold}</Hand>
+        <Hand color={glove} shape={hand}>{hold}</Hand>
       </X>
     </X>
   </X>
@@ -457,6 +473,7 @@ export const Character: React.FC<CharacterProps> = ({
   earspool = null,
   marks = null,
   skin,
+  gloves,
   freckles = false,
   talking = false,
   seed = 0,
@@ -477,6 +494,8 @@ export const Character: React.FC<CharacterProps> = ({
     armsOverHead = false,
     backArmBehind = false,
     sit = false,
+    handF = "open",
+    handB = "open",
   } = pose;
   const breathe = 1 + Math.sin(frame * 0.09 + seed) * 0.012;
   const headBob = Math.sin(frame * 0.09 + seed) * 1.6;
@@ -506,7 +525,7 @@ export const Character: React.FC<CharacterProps> = ({
           <X y={-HIP_Y}>
             {backArmBehind ? (
               <X z={0.05}>
-                <Arm angles={armB} side={-1} sleeve={shadeHex(sleeve, 0.12)} cuffs={outfit.cuffs} hold={holdB} glove={skin ?? GLOVE} />
+                <Arm angles={armB} side={-1} sleeve={shadeHex(sleeve, 0.12)} cuffs={outfit.cuffs} hold={holdB} glove={gloves ?? skin ?? GLOVE} hand={handB} />
               </X>
             ) : null}
             <X z={0.1}>
@@ -532,11 +551,11 @@ export const Character: React.FC<CharacterProps> = ({
             ) : null}
             {!backArmBehind ? (
               <X z={armZ}>
-                <Arm angles={armB} side={-1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdB} glove={skin ?? GLOVE} />
+                <Arm angles={armB} side={-1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdB} glove={gloves ?? skin ?? GLOVE} hand={handB} />
               </X>
             ) : null}
             <X z={armZ + 0.02}>
-              <Arm angles={armF} side={1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdF} glove={skin ?? GLOVE} />
+              <Arm angles={armF} side={1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdF} glove={gloves ?? skin ?? GLOVE} hand={handF} />
             </X>
             <X y={NECK_Y + headBob * 0.5} rot={headTilt} z={0.3}>
               <X y={HEAD_Y}>

@@ -201,7 +201,7 @@ export const LoudBrothersShot: React.FC<ShotProps> = ({ start, dur }) => {
         <X y={-220} z={-6}>
           <Gradient w={6000} h={1200} y={-300} stops={[[0, "#3a2030"], [1, "#0e0a14"]]} />
           {[-420, 0, 420].map((x, i) => (
-            <Character key={x} {...XIBALBA_LORD(i)} x={x} y={-520} s={0.9} z={1} look={0.4} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={{ armF: [2.7, 1.6], armB: [2.6, 1.6], armsOverHead: true }} />
+            <Character key={x} {...XIBALBA_LORD(i)} x={x} y={-520} s={0.9} z={1} look={0.4} expression={{ eyes: "angry", mouth: "shout", brows: -0.9 }} pose={poses.armsUp(frame + i * 7)} />
           ))}
         </X>
         <Line pts={[[-3000, 50], [3000, 50]]} width={8} z={-4} />
@@ -862,7 +862,7 @@ export const FireClawShot: React.FC<ShotProps> = ({ start, dur }) => {
                 <Glow y={400} rx={360} color="#ffd36a" alpha={0.25} additive z={0.005} />
               </X>
               {[-560, 140].map((x, i) => (
-                <Character key={x} {...JAGUAR_WARRIOR(i)} x={x + (t - 445.3) * 120} y={-700} s={1.2} z={1.9} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={{ ...poses.walk(frame + i * 8, 0.5), armF: [2.9, 0.1], armB: [2.9, 0.1], armsOverHead: true }} />
+                <Character key={x} {...JAGUAR_WARRIOR(i)} x={x + (t - 445.3) * 120} y={-700} s={1.2} z={1.9} look={0.45} expression={{ eyes: "happy", mouth: "grin" }} pose={{ ...poses.walk(frame + i * 8, 0.5), armF: [2.15, 0.5], armB: [-2.15, -0.5] }} />
               ))}
             </>
           )}

@@ -108,6 +108,22 @@ export const MayaKit: React.FC<{ page?: number }> = ({ page = 0 }) => {
             <Quetzal x={500} y={200} s={1} z={2} />
           </>
         ) : null}
+        {page === 11 ? (
+          <>
+            {([
+              ["idle", poses.idle(frame)], ["walk", poses.walk(frame)], ["point", poses.point(frame)], ["armsUp", poses.armsUp(frame)], ["hips", poses.handsOnHips],
+              ["shrug", poses.shrug(1)], ["think", poses.think],
+            ] as const).map(([, pz], i) => (
+              <Character key={`a${i}`} {...(i % 2 ? MAYA_KING(i) : ITZA_WARRIOR(i))} x={-840 + i * 280} y={60} s={0.75} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={pz} />
+            ))}
+            {([
+              ["scared", poses.scared(frame)], ["worship", poses.worship(frame)], ["pray", poses.pray(frame)], ["grief", poses.grief(frame)], ["talk", poses.talk(frame + 14)],
+              ["talk2", poses.talk(frame + 30, 1)], ["run", poses.run(frame)],
+            ] as const).map(([, pz], i) => (
+              <Character key={`b${i}`} {...(i % 2 ? SPANISH_SOLDIER(i) : MAYA_WOMAN(i))} x={-840 + i * 280} y={-500} s={0.75} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={pz} />
+            ))}
+          </>
+        ) : null}
         {page < 8 ? <Ground w={4000} h={800} y={-560} color="#9ac07a" far="#a8cc88" z={-30} /> : null}
       </Stage>
     </AbsoluteFill>

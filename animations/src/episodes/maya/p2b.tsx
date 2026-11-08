@@ -597,7 +597,7 @@ export const TranslatorShot: React.FC<ShotProps> = ({ start, dur }) => {
         }
       >
         <Character {...CORTES} x={-520} y={-880} s={1.75} z={2} look={0.5} expression={{ eyes: "half", mouth: "smirk", brows: -0.4 }} pose={poses.handsOnHips} />
-        <Character {...AGUILAR} outfit={{ ...AGUILAR.outfit, patches: null }} x={60} y={-900} s={1.75} z={2.1} look={0.5} talking={t < 168.0} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={poses.point(frame)} />
+        <Character {...AGUILAR} outfit={{ ...AGUILAR.outfit, patches: null }} x={60} y={-900} s={1.75} z={2.1} look={0.5} talking={t < 168.0} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={poses.blendAt(t, 167.9, poses.talk(frame, 1), poses.point(frame))} />
         <SpeechBubble x={520} y={240} w={380} h={200} tx={200} ty={-80} s={pop(t, 166.9)} z={3} />
       </DepthStage>
       <Label text="TRANSLATOR" x={0.775} y={0.215} size={0.04} kind="tag" color="#2a2026" at={sec(start)(167.2)} />
@@ -630,7 +630,7 @@ export const BrotherAguilarShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -80 }} light={{ dir: [-0.5, 0.6] }} vignette={0.6}>
         <Village mood="day" horizon={-240}>
           <Character {...AGUILAR} x={-700} y={-780} s={1.5} z={2} look={0.5} expression={{ eyes: "sad", mouth: "o", brows: 0.8 }} pose={poses.idle(frame)} />
-          <Character {...GUERRERO} x={-120} y={-780} s={1.55} z={2.1} facing={-1} look={0.5} talking={t > 172.0 && t < 175.4} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={{ ...poses.idle(frame, 2), armF: [1.1, 0.5] }} />
+          <Character {...GUERRERO} x={-120} y={-780} s={1.55} z={2.1} facing={-1} look={0.5} talking={t > 172.0 && t < 175.4} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={t > 172.0 && t < 175.4 ? poses.talk(frame, 2) : poses.blendAt(t, 175.4, poses.talk(frame, 2), poses.idle(frame, 2))} />
           <Character {...WIFE} x={260} y={-790} s={1.45} z={2.05} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, 3)} />
           {KIDS.map((d, i) => (
             <Character key={i} {...d} x={520 + i * 170} y={-760 - (i % 2) * 20} s={0.8} z={2.2 + i * 0.01} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, i + 6)} />

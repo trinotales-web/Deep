@@ -380,7 +380,7 @@ export const TalkingCrossShot: React.FC<ShotProps> = ({ start, dur }) => {
           </X>
           <SpeechBubble x={420} y={400} w={300} h={160} tx={80} ty={200} s={pop(t, 368.9)} z={1} />
           {[-1, 1].map((k) => (
-            <Character key={k} {...CASTE_REBEL(k > 0 ? 1 : 2)} x={k * 520} y={-520} s={1.1} z={2} facing={k > 0 ? -1 : 1} look={0.45} expression={{ eyes: "closed", mouth: "o" }} pose={{ ...poses.sit(frame), armF: [2.6, 0.3], armB: [2.4, 0.3], armsOverHead: true }} />
+            <Character key={k} {...CASTE_REBEL(k > 0 ? 1 : 2)} x={k * 520} y={-520} s={1.1} z={2} facing={k > 0 ? -1 : 1} look={0.45} expression={{ eyes: "closed", mouth: "o" }} pose={poses.worship(frame + k * 9)} />
           ))}
         </JungleSet>
       </Stage>

@@ -436,7 +436,7 @@ export const HeadNorthShot: React.FC<ShotProps> = ({ start, dur }) => {
         ))}
       </Stage>
       <Label text="SOUTH" x={0.5} y={0.86} size={0.04} kind="box" at={sec(start)(37.0)} />
-      <Label text="YUCATÁN" {...sc(yx, yy + 60, z)} size={0.06} kind="title" at={sec(start)(38.25)} />
+      <Label pin text="YUCATÁN" {...sc(yx, yy + 60, z)} size={0.06} kind="title" at={sec(start)(38.25)} />
     </AbsoluteFill>
   );
 };
@@ -541,8 +541,8 @@ export const AncestorsRouteShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: z }} light={{ dir: [-0.6, 0.8] }} vignette={0.45}>
         <MesoMap ppd={ppd} center={center} maya={1} pins={["chichen", "nojpeten"]} route={[[-88.57, 20.68], [-88.9, 19.6], [-89.5, 18.4], [-89.88, 16.93]]} routeK={ramp(t, 50.7, 52.4)} />
       </Stage>
-      <Label text="CHICHÉN ITZÁ" {...sc(cx, cy + 80, z)} size={0.04} kind="box" at={sec(start)(49.9)} />
-      <Label text="THE ITZA ISLAND" {...sc(nx, ny - 70, z)} size={0.04} kind="box" at={sec(start)(52.0)} />
+      <Label pin text="CHICHÉN ITZÁ" {...sc(cx, cy + 80, z)} size={0.04} kind="box" at={sec(start)(49.9)} />
+      <Label pin text="THE ITZA ISLAND" {...sc(nx, ny - 70, z)} size={0.04} kind="box" at={sec(start)(52.0)} />
       <Label text="THEIR STORIES" x={0.2} y={0.1} size={0.045} kind="box" at={sec(start)(50.2)} />
     </AbsoluteFill>
   );
@@ -819,8 +819,8 @@ export const ChamberShot: React.FC<ShotProps> = ({ start, dur }) => {
           <Glow rx={340} ry={200} color="#fff2c6" alpha={0.25 * reveal} additive z={0.01} />
         </X>
       </Stage>
-      <Label text="UNDERGROUND CHAMBER" x={0.25} y={0.84} size={0.045} kind="box" at={sec(start)(89.8)} />
-      <Label text="SACRED CENOTE" x={0.75} y={0.84} size={0.045} kind="box" at={sec(start)(90.9)} />
+      <Label pin text="UNDERGROUND CHAMBER" x={0.25} y={0.84} size={0.045} kind="box" at={sec(start)(89.8)} />
+      <Label pin text="SACRED CENOTE" x={0.75} y={0.84} size={0.045} kind="box" at={sec(start)(90.9)} />
     </AbsoluteFill>
   );
 };
@@ -864,8 +864,8 @@ export const AgesShot: React.FC<ShotProps> = ({ start, dur }) => {
           ))}
         </Paper>
       </Stage>
-      <Label text="AGE 3" x={0.27} y={0.82} size={0.04} kind="box" at={sec(start)(94.5)} />
-      <Label text="AGE 6" x={0.74} y={0.82} size={0.04} kind="box" at={sec(start)(94.9)} />
+      <Label pin text="AGE 3" x={0.27} y={0.82} size={0.04} kind="box" at={sec(start)(94.5)} />
+      <Label pin text="AGE 6" x={0.74} y={0.82} size={0.04} kind="box" at={sec(start)(94.9)} />
       <Label text="MOSTLY 3–6 YEARS OLD" x={0.5} y={0.1} size={0.055} kind="box" at={sec(start)(94.4)} />
     </AbsoluteFill>
   );

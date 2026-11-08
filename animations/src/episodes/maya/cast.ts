@@ -164,9 +164,9 @@ export const SPANISH_SOLDIER = (i = 0): Design => ({
   hat: "morion",
   hatAccent: i % 2 ? "#c8322a" : undefined,
   mustache: i % 2 ? "handlebar" : "walrus",
-  mustacheColor: "#3a2a20",
+  mustacheColor: ["#5a3a26", "#6a4a30", "#3a2a20", "#7a5434"][i % 4],
   beard: i % 3 === 0 ? "full" : "goatee",
-  beardColor: "#3a2a20",
+  beardColor: ["#5a3a26", "#6a4a30", "#3a2a20", "#7a5434"][i % 4],
   seed: 710 + i,
 });
 
@@ -176,9 +176,9 @@ export const CORTES: Design = {
   hat: "morion",
   hatAccent: "#c8322a",
   mustache: "handlebar",
-  mustacheColor: "#2a1e1a",
+  mustacheColor: "#3a2a22",
   beard: "full",
-  beardColor: "#2a1e1a",
+  beardColor: "#3a2a22",
   seed: 720,
 };
 
@@ -222,9 +222,11 @@ export const GUERRERO: Design = {
   hatColor: MAYA_RED,
   hatAccent: JADE,
   hair: "long",
-  hairColor: "#3a2a20",
-  beard: "stubble",
-  beardColor: "#3a2a20",
+  hairColor: "#6a4428",
+  beard: "full",
+  beardColor: "#7a4e2c",
+  mustache: "walrus",
+  mustacheColor: "#7a4e2c",
   earspool: JADE,
   marks: "tattoo",
   seed: 750,
@@ -236,7 +238,9 @@ export const AGUILAR: Design = {
   hair: "short",
   hairColor: "#3a2a20",
   beard: "full",
-  beardColor: "#3a2a20",
+  beardColor: "#5a3e2a",
+  mustache: "walrus",
+  mustacheColor: "#5a3e2a",
   seed: 751,
 };
 
@@ -322,9 +326,11 @@ export const GUERRERO_SAILOR: Design = {
   hat: "cap16",
   hatColor: "#8a2a2a",
   hair: "short",
-  hairColor: "#3a2a20",
+  hairColor: "#6a4428",
   beard: "full",
-  beardColor: "#3a2a20",
+  beardColor: "#7a4e2c",
+  mustache: "walrus",
+  mustacheColor: "#7a4e2c",
   seed: 752,
 };
 

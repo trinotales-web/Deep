@@ -377,7 +377,7 @@ export const CortesMarchShot: React.FC<ShotProps> = ({ start, dur }) => {
       </Stage>
       <Label text="1525" x={0.15} y={0.1} size={0.07} kind="box" at={sec(start)(233.4)} />
       <Label text="CORTÉS'S MARCH TO HONDURAS" x={0.6} y={0.1} size={0.045} kind="box" at={sec(start)(234.6)} />
-      <Label text="THE ITZA ISLAND" {...sc(nx, ny + 70, z)} size={0.04} kind="box" at={sec(start)(237.7)} />
+      <Label pin text="THE ITZA ISLAND" {...sc(nx, ny + 70, z)} size={0.04} kind="box" at={sec(start)(237.7)} />
     </AbsoluteFill>
   );
 };
@@ -471,9 +471,9 @@ export const FeedItShot: React.FC<ShotProps> = ({ start, dur }) => {
           {plate(560, 248.45, <>{[-60, 0, 60].map((x, i) => <Part key={x} shape={circle(34)} color={["#f2c84a", "#e07a9a", "#f4f1ea"][i]} flat outline={3} x={x} y={40 + (i % 2) * 20} />)}</>)}
         </PalaceRoom>
       </Stage>
-      <Label text="BIRDS" x={0.2} y={0.88} size={0.045} kind="box" at={sec(start)(247.3)} />
-      <Label text="MEAT" x={0.5} y={0.88} size={0.045} kind="box" at={sec(start)(247.9)} />
-      <Label text="FLOWERS" x={0.8} y={0.88} size={0.045} kind="box" at={sec(start)(248.5)} />
+      <Label pin text="BIRDS" x={0.2} y={0.88} size={0.045} kind="box" at={sec(start)(247.3)} />
+      <Label pin text="MEAT" x={0.5} y={0.88} size={0.045} kind="box" at={sec(start)(247.9)} />
+      <Label pin text="FLOWERS" x={0.8} y={0.88} size={0.045} kind="box" at={sec(start)(248.5)} />
     </AbsoluteFill>
   );
 };
@@ -817,7 +817,7 @@ export const FourBooksShot: React.FC<ShotProps> = ({ start, dur }) => {
         ))}
       </Stage>
       {names.map((n, i) => (
-        <Label key={n} text={n} x={0.157 + i * 0.229} y={0.8} size={0.035} kind="box" at={sec(start)(290.5 + i * 0.18)} />
+        <Label pin key={n} text={n} x={0.157 + i * 0.229} y={0.8} size={0.035} kind="box" at={sec(start)(290.5 + i * 0.18)} />
       ))}
       <Label text="ONLY 4 SURVIVE" x={0.5} y={0.1} size={0.065} kind="box" at={sec(start)(290.3)} />
     </AbsoluteFill>
@@ -912,7 +912,7 @@ export const AlphabetShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Label text="WITH A MAYA NOBLE" x={0.78} y={0.1} size={0.045} kind="box" at={sec(start)(299.5)} />
       <Label text="A MAYA “ALPHABET”" x={0.5} y={0.1} size={0.055} kind="box" at={sec(start)(301.9)} />
       {["A", "B", "C"].map((l, i) => (
-        <Label key={l} text={l} x={0.36 + i * 0.133} y={0.39} size={0.04} kind="tag" color="#2a2026" at={sec(start)(300.6 + i * 0.1)} />
+        <Label pin key={l} text={l} x={0.36 + i * 0.133} y={0.39} size={0.04} kind="tag" color="#2a2026" at={sec(start)(300.6 + i * 0.1)} />
       ))}
     </AbsoluteFill>
   );
@@ -972,7 +972,7 @@ export const SoundsShot: React.FC<ShotProps> = ({ start, dur }) => {
         <AlphabetPage y={0} sounds={ramp(t, 310.9, 311.6)} z={1} />
       </Stage>
       {["BA", "KA", "KU", "MA", "NA", "TU"].map((l, i) => (
-        <Label key={l} text={l} x={0.344 + (i % 3) * 0.156} y={0.38 + Math.floor(i / 3) * 0.24} size={0.035} kind="box" at={sec(start)(311.0 + i * 0.08)} />
+        <Label pin key={l} text={l} x={0.344 + (i % 3) * 0.156} y={0.38 + Math.floor(i / 3) * 0.24} size={0.035} kind="box" at={sec(start)(311.0 + i * 0.08)} />
       ))}
       <Label text="NOT LETTERS — SOUNDS" x={0.5} y={0.1} size={0.06} kind="box" at={sec(start)(311.8)} />
     </AbsoluteFill>

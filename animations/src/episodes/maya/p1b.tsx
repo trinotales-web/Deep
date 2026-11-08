@@ -239,7 +239,7 @@ export const CountriesShot: React.FC<ShotProps> = ({ start, dur }) => {
   const z = push(frame, dur, 1.0, 1.04);
   const tag = (name: string, lon: number, lat: number, at: number) => {
     const [x, y] = mesoXY(lon, lat, ppd, center);
-    return <Label key={name} text={name} {...sc(x, y, z)} size={0.034} kind="box" at={sec(start)(at)} />;
+    return <Label pin key={name} text={name} {...sc(x, y, z)} size={0.034} kind="box" at={sec(start)(at)} />;
   };
   return (
     <AbsoluteFill>
@@ -364,7 +364,7 @@ export const PopolVuhShot: React.FC<ShotProps> = ({ start, dur }) => {
       </Stage>
       <Label text="POPOL VUH" sub="THE K'ICHE' MAYA HOLY BOOK" x={0.17} y={0.1} size={0.05} kind="box" at={sec(start)(108.5)} />
       {[0, 1, 2].map((i) => (
-        <Label key={i} text={`TRY ${i + 1}`} x={0.3 + i * 0.2} y={0.9} size={0.035} kind="box" at={sec(start)(110.5 + i * 0.15)} />
+        <Label pin key={i} text={`TRY ${i + 1}`} x={0.3 + i * 0.2} y={0.9} size={0.035} kind="box" at={sec(start)(110.5 + i * 0.15)} />
       ))}
     </AbsoluteFill>
   );

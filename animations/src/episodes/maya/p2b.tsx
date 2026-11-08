@@ -97,8 +97,8 @@ export const FamiliesTearShot: React.FC<ShotProps> = ({ start, dur }) => {
         </PlazaSet>
       </Stage>
       <Label text="1400s" x={0.5} y={0.1} size={0.07} kind="box" at={sec(start)(109.4)} />
-      <Label text="COCOM" x={0.22} y={0.24} size={0.045} kind="box" at={sec(start)(110.7)} />
-      <Label text="XIU" x={0.78} y={0.24} size={0.045} kind="box" at={sec(start)(111.0)} />
+      <Label pin text="COCOM" x={0.22} y={0.24} size={0.045} kind="box" at={sec(start)(110.7)} />
+      <Label pin text="XIU" x={0.78} y={0.24} size={0.045} kind="box" at={sec(start)(111.0)} />
     </AbsoluteFill>
   );
 };

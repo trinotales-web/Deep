@@ -263,12 +263,30 @@ export const Face: React.FC<FaceProps> = ({
           )
         : null}
       {beard === "full" ? (
-        <Part
-          shape={blob([[-66, -14], [-54, -58], [-26, -88], [0, -96], [26, -88], [54, -58], [66, -14], [42, -38], [0, -60], [-42, -38]], 8)}
-          color={beardColor}
-          shade={0.3}
-          z={0.015}
-        />
+        // full beard (reference style): wraps the jaw from the sideburns, hangs
+        // below the chin, leaves the mouth open under the mustache
+        <X x={-fx * 0.5} z={0.015}>
+          <Part
+            shape={blob(
+              [
+                [-90, 8], [-97, -30], [-86, -80], [-58, -120], [-20, -140], [20, -140], [58, -120], [86, -80], [97, -30], [90, 8],
+                [74, 2], [66, -22], [44, -44], [18, -55], [0, -57], [-18, -55], [-44, -44], [-66, -22], [-74, 2],
+              ],
+              8,
+            )}
+            color={beardColor}
+            shade={0.26}
+          />
+          {[
+            [[-34, -78], [-28, -100], [-33, -120]],
+            [[0, -82], [3, -106], [0, -128]],
+            [[34, -78], [28, -100], [33, -120]],
+            [[-62, -50], [-58, -72]],
+            [[62, -50], [58, -72]],
+          ].map((pts, i) => (
+            <Line key={i} pts={pts as [number, number][]} smooth width={3.5} color={shadeHex(beardColor, 0.3)} z={0.001} />
+          ))}
+        </X>
       ) : null}
       {beard === "royal" ? (
         <X y={-58} z={0.015}>
@@ -297,7 +315,10 @@ export const Face: React.FC<FaceProps> = ({
         <Mouth kind={mouth} talk={talk} />
       </X>
       {beard === "goatee" ? (
-        <Part shape={blob([[-8, 0], [8, 0], [4, -26], [0, -32], [-4, -26]], 6)} color={beardColor} flat y={-58} z={0.031} />
+        <X y={-56} z={0.031}>
+          <Part shape={blob([[-24, 0], [24, 0], [22, -28], [10, -52], [0, -60], [-10, -52], [-22, -28]], 7)} color={beardColor} shade={0.24} />
+          <Line pts={[[0, -14], [2, -34], [0, -50]]} smooth width={3} color={shadeHex(beardColor, 0.3)} z={0.001} />
+        </X>
       ) : null}
       {mustache === "walrus" ? (
         <Part

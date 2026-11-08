@@ -93,7 +93,7 @@ export const CitiesShot: React.FC<ShotProps> = ({ start, dur }) => {
       </Stage>
       {cities.map(([key, name, at, lon, lat]) => {
         const [x, y] = mesoXY(lon, lat, ppd, center);
-        return <Label key={key} text={name} {...sc(x, y - 40, z)} size={0.034} kind="box" at={sec(start)(at)} />;
+        return <Label pin key={key} text={name} {...sc(x, y - 40, z)} size={0.034} kind="box" at={sec(start)(at)} />;
       })}
     </AbsoluteFill>
   );
@@ -729,8 +729,8 @@ export const TwoCalendarsShot: React.FC<ShotProps> = ({ start, dur }) => {
           {pop(t, 300.7) > 0.01 && <X x={440} y={40} s={pop(t, 300.7)} z={1}><CalendarGear r={330} teeth={24} label="months" rot={-frame * 0.01} color="#c8a878" /></X>}
         </Paper>
       </Stage>
-      <Label text="260 DAYS" sub="RITUALS" x={0.27} y={0.88} size={0.05} kind="box" at={sec(start)(298.5)} />
-      <Label text="365 DAYS" sub="SEASONS" x={0.73} y={0.88} size={0.05} kind="box" at={sec(start)(301.4)} />
+      <Label pin text="260 DAYS" sub="RITUALS" x={0.27} y={0.88} size={0.05} kind="box" at={sec(start)(298.5)} />
+      <Label pin text="365 DAYS" sub="SEASONS" x={0.73} y={0.88} size={0.05} kind="box" at={sec(start)(301.4)} />
     </AbsoluteFill>
   );
 };
@@ -887,7 +887,7 @@ export const OdometerShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Odometer k={k} />
       </Stage>
       {digits.split(" ").map((d, i) => (
-        <Label key={i} text={d} x={0.5 + ((i - 2) * 220 * push(frame, dur, 1.0, 1.05)) / 1920} y={0.5} size={0.13} kind="tag" color="#2a2026" at={0} />
+        <Label pin key={i} text={d} x={0.5 + ((i - 2) * 220 * push(frame, dur, 1.0, 1.05)) / 1920} y={0.5} size={0.13} kind="tag" color="#2a2026" at={0} />
       ))}
       <Label text="ODOMETER" x={0.5} y={0.14} size={0.05} kind="box" at={sec(start)(324.4)} />
     </AbsoluteFill>

@@ -336,8 +336,8 @@ export const HeroTwinsShot: React.FC<ShotProps> = ({ start, dur }) => {
         </Paper>
       </Stage>
       <Label text="THE HERO TWINS" x={0.5} y={0.08} size={0.07} kind="title" at={sec(start)(370.6)} />
-      <Label text="HUNAHPU" x={0.3} y={0.92} size={0.04} kind="box" at={sec(start)(370.8)} />
-      <Label text="XBALANQUE" x={0.7} y={0.92} size={0.04} kind="box" at={sec(start)(371.0)} />
+      <Label pin text="HUNAHPU" x={0.3} y={0.92} size={0.04} kind="box" at={sec(start)(370.8)} />
+      <Label pin text="XBALANQUE" x={0.7} y={0.92} size={0.04} kind="box" at={sec(start)(371.0)} />
     </AbsoluteFill>
   );
 };
@@ -407,8 +407,8 @@ export const SunMoonShot: React.FC<ShotProps> = ({ start, dur }) => {
           </X>
         </JungleSet>
       </Stage>
-      <Label text="THE SUN" x={0.32} y={0.88} size={0.05} kind="box" at={sec(start)(377.8)} />
-      <Label text="THE MOON" x={0.68} y={0.88} size={0.05} kind="box" at={sec(start)(378.5)} />
+      <Label pin text="THE SUN" x={0.32} y={0.88} size={0.05} kind="box" at={sec(start)(377.8)} />
+      <Label pin text="THE MOON" x={0.68} y={0.88} size={0.05} kind="box" at={sec(start)(378.5)} />
     </AbsoluteFill>
   );
 };
@@ -1382,8 +1382,8 @@ export const JungleSwallowsShot: React.FC<ShotProps> = ({ start, dur }) => {
           </X>
         </JungleSet>
       </Stage>
-      <Label text="TIKAL" x={0.3} y={0.86} size={0.04} kind="box" at={sec(start)(528.0)} />
-      <Label text="PALENQUE" x={0.72} y={0.86} size={0.04} kind="box" at={sec(start)(528.8)} />
+      <Label pin text="TIKAL" x={0.3} y={0.86} size={0.04} kind="box" at={sec(start)(528.0)} />
+      <Label pin text="PALENQUE" x={0.72} y={0.86} size={0.04} kind="box" at={sec(start)(528.8)} />
     </AbsoluteFill>
   );
 };

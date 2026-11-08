@@ -358,7 +358,7 @@ export const OwnLandShot: React.FC<ShotProps> = ({ start, dur }) => {
         </X>
       </Stage>
       <Label text="50+ YEARS" x={0.2} y={0.1} size={0.065} kind="box" at={sec(start)(365.7)} />
-      <Label text="CHAN SANTA CRUZ" sub="MAYA-RUN LAND" {...sc(cx + 40, cy - 120, z)} size={0.04} kind="box" at={sec(start)(367.2)} />
+      <Label pin text="CHAN SANTA CRUZ" sub="MAYA-RUN LAND" {...sc(cx + 40, cy - 120, z)} size={0.04} kind="box" at={sec(start)(367.2)} />
     </AbsoluteFill>
   );
 };
@@ -565,9 +565,9 @@ export const LostCityShot: React.FC<ShotProps> = ({ start, dur }) => {
         <LidarReveal w={1700} h={940} k={ramp(t, 394.6, 396.6)} city seed={31} z={1} />
       </Stage>
       <Label text="A LOST MAYA CITY" x={0.5} y={0.08} size={0.06} kind="box" at={sec(start)(395.7)} />
-      <Label text="PYRAMIDS" x={0.2} y={0.92} size={0.045} kind="box" at={sec(start)(396.9)} />
-      <Label text="PLAZAS" x={0.5} y={0.92} size={0.045} kind="box" at={sec(start)(397.7)} />
-      <Label text="BALL COURT" x={0.8} y={0.92} size={0.045} kind="box" at={sec(start)(398.6)} />
+      <Label pin text="PYRAMIDS" x={0.2} y={0.92} size={0.045} kind="box" at={sec(start)(396.9)} />
+      <Label pin text="PLAZAS" x={0.5} y={0.92} size={0.045} kind="box" at={sec(start)(397.7)} />
+      <Label pin text="BALL COURT" x={0.8} y={0.92} size={0.045} kind="box" at={sec(start)(398.6)} />
     </AbsoluteFill>
   );
 };
@@ -604,7 +604,7 @@ export const ValerianaShot: React.FC<ShotProps> = ({ start, dur }) => {
         <MesoMap ppd={ppd} center={center} maya={1} countries pins={t > 403.5 ? ["valeriana"] : []} highlight={["valeriana"]} />
       </Stage>
       <Label text="NOBODY KNEW" x={0.5} y={0.1} size={0.055} kind="box" at={sec(start)(402.3)} />
-      <Label text="VALERIANA" sub="CAMPECHE, MEXICO" {...sc(vx, vy - 90, z)} size={0.055} kind="box" at={sec(start)(404.3)} />
+      <Label pin text="VALERIANA" sub="CAMPECHE, MEXICO" {...sc(vx, vy - 90, z)} size={0.055} kind="box" at={sec(start)(404.3)} />
     </AbsoluteFill>
   );
 };
@@ -770,7 +770,7 @@ export const SevenMillionShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Label text="~7 MILLION" x={0.25} y={0.1} size={0.07} kind="box" at={sec(start)(431.3)} />
       <Label text="~30 MAYAN LANGUAGES" x={0.72} y={0.1} size={0.05} kind="box" at={sec(start)(432.8)} />
       {words.map((w, i) => (
-        <Label key={w} text={w} x={0.14 + i * 0.145} y={0.27 + (i % 2) * 0.07} size={0.03} kind="box" at={sec(start)(432.9 + i * 0.12)} />
+        <Label pin key={w} text={w} x={0.14 + i * 0.145} y={0.27 + (i % 2) * 0.07} size={0.03} kind="box" at={sec(start)(432.9 + i * 0.12)} />
       ))}
     </AbsoluteFill>
   );

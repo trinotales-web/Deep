@@ -457,6 +457,13 @@ export const Planet: React.FC<XProps & { r?: number; kind?: "mars" | "moon" | "e
           ? cr.map(([x, y, s], i) => <Part key={i} shape={ellipse(s, s * 0.85)} color={crater} flat outline={3} x={x} y={y} z={0.001} />)
           : null}
         {kind === "mars" ? <Part shape={ellipse(r * 0.35, r * 0.1)} color="#f6f1ea" flat outline={3} y={r * 0.88} z={0.002} /> : null}
+        {kind === "earth" ? (
+          <>
+            <Part shape={blob([[-r * 0.6, r * 0.5], [-r * 0.2, r * 0.62], [r * 0.05, r * 0.3], [-r * 0.1, -r * 0.1], [-r * 0.35, -r * 0.45], [-r * 0.6, -r * 0.1]], 8)} color="#5fa84a" flat outline={4} z={0.001} />
+            <Part shape={blob([[r * 0.25, r * 0.55], [r * 0.6, r * 0.45], [r * 0.7, r * 0.05], [r * 0.4, -r * 0.3], [r * 0.15, -r * 0.05]], 8)} color="#6ab04a" flat outline={4} z={0.001} />
+            <Part shape={ellipse(r * 0.45, r * 0.08)} color="#ffffff" flat outline={0} opacity={0.55} x={-r * 0.1} y={r * 0.15} rot={0.2} z={0.002} />
+          </>
+        ) : null}
         {kind === "mars"
           ? [-0.3, 0.1].map((k) => <Line key={k} pts={[[-r * 0.6, k * r], [-r * 0.1, k * r + r * 0.12], [r * 0.5, k * r - r * 0.05]]} smooth width={6} color="#b0552f" z={0.001} />)
           : null}

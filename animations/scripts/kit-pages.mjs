@@ -21,4 +21,5 @@ for (const page of pages) {
   await renderStill({ composition, serveUrl, output: f, frame, inputProps, chromiumOptions, browserExecutable, scale: 0.5 });
   process.stdout.write(`${page} `);
 }
+fs.rmSync(serveUrl, { recursive: true, force: true });
 console.log("done");

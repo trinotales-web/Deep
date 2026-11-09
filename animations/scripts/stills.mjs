@@ -33,3 +33,6 @@ const filter =
   `:fill=black`;
 spawnSync("ffmpeg", [...args, "-filter_complex", files.length > 1 ? filter : "null", out], { stdio: "inherit" });
 console.log(`\n→ ${out} (${rows}x${cols})`);
+// each bundle copies public/ (hundreds of MB): remove it and the frames so temp space doesn't fill up
+fs.rmSync(dir, { recursive: true, force: true });
+fs.rmSync(serveUrl, { recursive: true, force: true });

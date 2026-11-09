@@ -17,8 +17,8 @@ export type LabelProps = {
   /** Font size as a fraction of the frame height. */
   size?: number;
   color?: string;
-  /** "tag" (plain), "title" (big, two-tone), "stamp" (red plate, tilted), "box" (dark plate). */
-  kind?: "tag" | "title" | "stamp" | "box";
+  /** "tag" (plain), "title" (big, two-tone), "stamp" (red plate, tilted), "box" (dark plate), "ink" (dark text printed on a card / screen). */
+  kind?: "tag" | "title" | "stamp" | "box" | "ink";
   /** Frame (local to the shot) when the label appears. */
   at?: number;
   /** Frame when it leaves (optional). */
@@ -62,7 +62,7 @@ export const Label: React.FC<LabelProps> = ({
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   if (frame < at || (until !== undefined && frame >= until)) return null;
-  const slot = !pin && kind !== "tag" ? snap(x, y, kind) : null;
+  const slot = !pin && kind !== "tag" && kind !== "ink" ? snap(x, y, kind) : null;
   const px = slot ? slot.x : x;
   const py = slot ? slot.y : y;
   const align = slot ? slot.align : "center";
@@ -122,6 +122,9 @@ export const Label: React.FC<LabelProps> = ({
       WebkitTextStroke: "0px",
       fontWeight: 800,
     });
+  }
+  if (kind === "ink") {
+    Object.assign(base, { color: color === "#ffffff" ? INK : color, textShadow: "none", WebkitTextStroke: "0px", fontWeight: 800 });
   }
   if (kind === "title") {
     Object.assign(base, {

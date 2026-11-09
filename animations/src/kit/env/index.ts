@@ -12,3 +12,8 @@ export * from "./trees";
 export * from "./maya";
 export * from "./mayaprops";
 export * from "./mayamap";
+export * from "./worldmap";
+export * from "./space";
+export * from "./vehicles";
+export * from "./gadgets";
+export * from "./rooms";

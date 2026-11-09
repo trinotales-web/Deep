@@ -12,6 +12,9 @@ import { WW2Test } from "./dev/WW2Test";
 import { S45Kit } from "./dev/S45Kit";
 import { QinKit } from "./dev/QinKit";
 import { MayaKit } from "./dev/MayaKit";
+import { ElonKit } from "./dev/ElonKit";
+import { Elon, calculateElonMetadata, type ElonProps } from "./episodes/elon/Episode";
+import { END as ELON_END } from "./episodes/elon/script";
 import { Maya, calculateMayaMetadata, type MayaProps } from "./episodes/maya/Episode";
 import { END1 as MY1, END2 as MY2 } from "./episodes/maya/script";
 import { QinTomb, QinTombAudio, QinTombVisuals, QinTombFull, FULL_FRAMES as QF, calculateQinTombMetadata, calculateQinTombFullMetadata, type QinTombProps, type QinTombFullProps } from "./episodes/qintomb/Episode";
@@ -33,6 +36,10 @@ const onodaDefaults: OnodaProps = {
 export const RemotionRoot = () => {
   return (
     <>
+      <Folder name="Elon">
+        <Composition id="ElonVideo" component={Elon} durationInFrames={Math.round(ELON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{} satisfies ElonProps} calculateMetadata={calculateElonMetadata} />
+        <Composition id="ElonAudioOnly" component={Elon} durationInFrames={Math.round(ELON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{ visuals: false } satisfies ElonProps} calculateMetadata={calculateElonMetadata} />
+      </Folder>
       <Folder name="Maya">
         <Composition id="Maya1Video" component={Maya} durationInFrames={Math.round(MY1 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 1 } satisfies MayaProps} calculateMetadata={calculateMayaMetadata} />
         <Composition id="Maya1AudioOnly" component={Maya} durationInFrames={Math.round(MY1 * 30)} fps={30} width={1920} height={1080} defaultProps={{ part: 1, visuals: false } satisfies MayaProps} calculateMetadata={calculateMayaMetadata} />
@@ -217,6 +224,7 @@ export const RemotionRoot = () => {
         <Composition id="MedievalTest" component={MedievalTest} durationInFrames={90} fps={30} width={1920} height={1080} />
         <Composition id="QinKit" component={QinKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="MayaKit" component={MayaKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
+        <Composition id="ElonKit" component={ElonKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="S45Kit" component={S45Kit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="WW2Test" component={WW2Test} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="AncientTest" component={AncientTest} durationInFrames={90} fps={30} width={1080} height={1920} />

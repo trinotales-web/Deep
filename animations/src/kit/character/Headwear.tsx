@@ -14,8 +14,9 @@ export type HatKind =
   | "aviator" | "stahlhelm"
   | "mian" | "guan" | "wrap" | "maocap"
   | "plume" | "mayaking" | "jaguar" | "morion" | "skull" | "maize" | "cap16"
+  | "cap" | "ushanka" | "fedora" | "headset" | "beanie"
   | null;
-export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | "topknot" | "palace" | "sidebun" | null;
+export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | "topknot" | "palace" | "sidebun" | "parted" | "swoop" | "curly" | "slick" | "wild" | null;
 
 export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; camo?: boolean }> = ({
   kind,
@@ -585,6 +586,68 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
         </X>
       );
     }
+    case "cap": {
+      // modern baseball cap, brim toward the facing side
+      const c = color ?? "#26232a";
+      return (
+        <X y={40}>
+          <Part shape={blob([[-104, 22], [-100, 72], [-62, 104], [0, 112], [62, 104], [100, 72], [104, 22], [0, 14]], 8)} color={c} shade={0.25} />
+          <Part shape={blob([[40, 26], [150, 22], [162, 12], [150, 2], [40, 8]], 6)} color={shadeHex(c, 0.18)} shade={0.2} z={0.002} />
+          <Part shape={circle(9)} color={shadeHex(c, -0.2)} flat outline={3} y={110} z={0.001} />
+          <Line pts={[[-30, 104], [-10, 30]]} width={3} color={shadeHex(c, 0.35)} z={0.001} />
+          <Line pts={[[30, 104], [44, 34]]} width={3} color={shadeHex(c, 0.35)} z={0.001} />
+          {accent ? <Part shape={roundRect(44, 26, 6)} color={accent} flat outline={3} x={30} y={58} z={0.003} /> : null}
+        </X>
+      );
+    }
+    case "ushanka": {
+      // Russian fur hat with folded ear flaps
+      const c = color ?? "#6a5240";
+      return (
+        <X y={36}>
+          <Part shape={blob([[-110, 10], [-104, 82], [-60, 116], [0, 122], [60, 116], [104, 82], [110, 10]], 8)} color={c} shade={0.25} />
+          <Part shape={roundRect(232, 46, 22)} color={shadeHex(c, -0.12)} shade={0.2} y={18} z={0.001} />
+          {[-80, -40, 0, 40, 80].map((x) => (
+            <Line key={x} pts={[[x - 6, 6], [x + 4, 30]]} width={3} color={shadeHex(c, 0.35)} z={0.002} />
+          ))}
+          <Part shape={roundRect(40, 74, 18)} color={shadeHex(c, -0.12)} shade={0.2} x={-100} y={-22} z={-0.001} />
+        </X>
+      );
+    }
+    case "fedora": {
+      const c = color ?? "#2c2a30";
+      return (
+        <X y={64}>
+          <Part shape={ellipse(150, 26)} color={c} shade={0.22} />
+          <Part shape={blob([[-82, 10], [-76, 84], [-30, 100], [0, 84], [30, 100], [76, 84], [82, 10]], 8)} color={c} shade={0.25} z={0.001} />
+          <Part shape={roundRect(166, 20, 4)} color={accent ?? shadeHex(c, -0.35)} flat y={18} z={0.002} />
+        </X>
+      );
+    }
+    case "beanie": {
+      const c = color ?? "#3c6aa0";
+      return (
+        <X y={40}>
+          <Part shape={blob([[-106, 14], [-100, 76], [-60, 112], [0, 120], [60, 112], [100, 76], [106, 14]], 8)} color={c} shade={0.25} />
+          <Part shape={roundRect(222, 36, 14)} color={shadeHex(c, -0.12)} shade={0.2} y={18} z={0.001} />
+          {[-70, -35, 0, 35, 70].map((x) => (
+            <Line key={x} pts={[[x, 4], [x, 32]]} width={3} color={shadeHex(c, 0.3)} z={0.002} />
+          ))}
+        </X>
+      );
+    }
+    case "headset": {
+      // mission-control headset: band over the crown, cup on the far ear, boom mic to the mouth
+      const c = color ?? "#2a2a30";
+      return (
+        <>
+          <Line pts={[[-98, 30], [-84, 82], [-40, 110], [10, 112], [44, 100]]} smooth width={12} color={c} />
+          <Part shape={roundRect(40, 62, 16)} color={c} shade={0.2} x={-96} y={-2} z={-0.03} />
+          <Line pts={[[-80, -10], [-20, -50], [52, -52]]} smooth width={6} color={c} z={0.02} />
+          <Part shape={roundRect(22, 16, 7)} color={accent ?? "#4a4a52"} flat outline={3} x={58} y={-52} z={0.021} />
+        </>
+      );
+    }
     default:
       return null;
   }
@@ -675,6 +738,9 @@ export const HairBack: React.FC<{ kind: HairKind; color: string }> = ({ kind, co
   if (kind === "bun") {
     return <Part shape={circle(38)} color={color} shade={0.3} x={-6} y={118} />;
   }
+  if (kind === "swoop" || kind === "curly" || kind === "wild") {
+    return <Part shape={blob([[-114, -30], [-118, 60], [-80, 118], [0, 130], [60, 116], [90, 80], [40, 10], [-60, -40]], 8)} color={color} shade={0.28} />;
+  }
   return null;
 };
 
@@ -761,6 +827,73 @@ export const HairFront: React.FC<{ kind: HairKind; color: string }> = ({ kind, c
         <>
           <Part shape={blob([[-104, 40], [-112, 10], [-104, -24], [-90, -8], [-88, 30]], 6)} color={color} flat />
           <Part shape={blob([[104, 40], [112, 10], [104, -24], [90, -8], [88, 30]], 6)} color={color} flat />
+        </>
+      );
+    case "parted":
+      // neat short hair with a side part and a little lift at the front
+      return (
+        <Part
+          shape={blob([[-104, 26], [-100, 74], [-66, 104], [-10, 114], [44, 112], [86, 96], [108, 62], [110, 30], [90, 58], [56, 74], [20, 72], [-24, 62], [-62, 52], [-88, 34]], 8)}
+          color={color}
+          shade={0.25}
+        >
+          <Line pts={[[-36, 70], [-28, 98], [-24, 112]]} smooth width={4} color={shadeHex(color, 0.4)} z={0.001} />
+          <Line pts={[[-6, 74], [24, 96], [60, 100]]} smooth width={3.5} color={shadeHex(color, 0.35)} z={0.001} />
+          <Line pts={[[10, 64], [50, 78], [84, 78]]} smooth width={3.5} color={shadeHex(color, 0.35)} z={0.001} />
+        </Part>
+      );
+    case "slick":
+      // short, combed back, close to the head
+      return (
+        <Part
+          shape={blob([[-104, 22], [-98, 70], [-60, 100], [0, 106], [60, 100], [98, 70], [104, 26], [80, 58], [30, 70], [-30, 66], [-80, 44]], 8)}
+          color={color}
+          shade={0.25}
+        >
+          {[-50, -10, 30].map((x) => (
+            <Line key={x} pts={[[x + 40, 72], [x, 96], [x - 40, 92]]} smooth width={3} color={shadeHex(color, 0.35)} z={0.001} />
+          ))}
+        </Part>
+      );
+    case "swoop":
+      // voluminous blond hair swept back from a high front swoop
+      return (
+        <>
+          <Part
+            shape={blob([[-110, 0], [-112, 60], [-84, 108], [-30, 132], [40, 136], [96, 120], [128, 92], [122, 70], [100, 74], [96, 54], [60, 60], [10, 66], [-40, 52], [-80, 30], [-96, 6]], 8)}
+            color={color}
+            shade={0.22}
+          >
+            <Line pts={[[-60, 100], [0, 120], [70, 116], [112, 94]]} smooth width={4} color={shadeHex(color, 0.35)} z={0.001} />
+            <Line pts={[[-80, 70], [-30, 96], [40, 98], [96, 82]]} smooth width={3.5} color={shadeHex(color, 0.35)} z={0.001} />
+          </Part>
+        </>
+      );
+    case "curly":
+      return (
+        <Part
+          shape={blob([[-110, 20], [-118, 70], [-90, 108], [-50, 124], [0, 128], [50, 124], [92, 108], [116, 70], [110, 22], [86, 52], [50, 58], [20, 46], [-14, 58], [-50, 46], [-86, 50]], 10)}
+          color={color}
+          shade={0.25}
+        >
+          {([[-70, 90], [-30, 106], [14, 110], [56, 100], [86, 78], [-90, 60]] as [number, number][]).map(([x, y], i) => (
+            <Line key={i} pts={[[x - 12, y - 4], [x, y + 8], [x + 12, y - 2]]} smooth width={3} color={shadeHex(color, 0.35)} z={0.001} />
+          ))}
+        </Part>
+      );
+    case "wild":
+      // untamed, thick, swept up with long sideburns
+      return (
+        <>
+          <Part
+            shape={blob([[-112, -40], [-116, 40], [-112, 96], [-70, 134], [-10, 150], [56, 140], [104, 110], [120, 60], [112, 16], [92, 52], [60, 66], [20, 58], [-30, 70], [-80, 50], [-94, -40]], 8)}
+            color={color}
+            shade={0.22}
+          >
+            {[-60, -20, 20, 60].map((x) => (
+              <Line key={x} pts={[[x - 20, 70], [x, 110], [x + 16, 136]]} smooth width={3.5} color={shadeHex(color, 0.35)} z={0.001} />
+            ))}
+          </Part>
         </>
       );
     default:

@@ -3,7 +3,7 @@ import { useCurrentFrame } from "remotion";
 import { Part, Line } from "../Part";
 import { X } from "../context";
 import { GroundShadow } from "../effects";
-import { blob, circle, ellipse, limb, roundPoly, roundRect } from "../shapes";
+import { blob, circle, ellipse, limb, poly, roundPoly, roundRect } from "../shapes";
 import { GLOVE, SKIN, palette, shadeHex } from "../style";
 import { Face, type Expression } from "./Face";
 import { Hat, HatBack, HairBack, HairFront, type HatKind, type HairKind } from "./Headwear";
@@ -71,6 +71,18 @@ export type Outfit = {
   lamellar?: string | null;
   /** Modern hi-vis safety vest: colour (reflective stripes added). */
   vest?: string | null;
+  /** Suit jacket over a shirt: the shirt colour showing in the V (top = jacket). */
+  shirt?: string | null;
+  /** Necktie colour (drawn in the shirt V, or from the collar). */
+  tie?: string | null;
+  /** Tie tip height (default 104; lower = longer tie). */
+  tieTip?: number;
+  /** Small chest print on a t-shirt: colour of the mark. */
+  print?: string | null;
+  /** Shape of the chest print. */
+  printKind?: "x" | "dot" | "bar";
+  /** ID badge on a lanyard: badge colour. */
+  badge?: string | null;
 };
 
 export type Pose = {
@@ -433,6 +445,52 @@ const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe 
           ))}
           <Part shape={roundRect(76, 13, 4)} color={outfit.harness} flat y={150} />
           <Part shape={roundRect(22, 22, 5)} color="#b9b6ae" flat outline={3.5} y={150} z={0.001} />
+        </X>
+      ) : null}
+      {outfit.shirt ? (
+        <X z={0.0042}>
+          <Part shape={poly([[-30, TORSO_TOP - 1], [30, TORSO_TOP - 1], [0, TORSO_TOP - 104]])} color={outfit.shirt} flat outline={0} />
+          <Line pts={[[-31, TORSO_TOP - 2], [-2, TORSO_TOP - 106]]} width={5} z={0.001} />
+          <Line pts={[[31, TORSO_TOP - 2], [2, TORSO_TOP - 106]]} width={5} z={0.001} />
+          <Part shape={poly([[-30, TORSO_TOP - 1], [-4, TORSO_TOP - 1], [-16, TORSO_TOP - 24]])} color={outfit.shirt} flat outline={3.5} z={0.002} />
+          <Part shape={poly([[30, TORSO_TOP - 1], [4, TORSO_TOP - 1], [16, TORSO_TOP - 24]])} color={outfit.shirt} flat outline={3.5} z={0.002} />
+          {[96, 70].map((y) => (
+            <Part key={y} shape={circle(5)} color={shadeHex(outfit.top, -0.25)} flat outline={3} x={4} y={y} z={0.001} />
+          ))}
+        </X>
+      ) : null}
+      {outfit.tie ? (
+        <X z={0.0044}>
+          <Part shape={roundPoly([[-11, TORSO_TOP - 6], [11, TORSO_TOP - 6], [8, TORSO_TOP - 24], [-8, TORSO_TOP - 24]], 3)} color={outfit.tie} flat outline={3.5} z={0.002} />
+          <Part
+            shape={roundPoly([[-8, TORSO_TOP - 22], [8, TORSO_TOP - 22], [15, (outfit.tieTip ?? 104) + 16], [0, outfit.tieTip ?? 104], [-15, (outfit.tieTip ?? 104) + 16]], 3)}
+            color={outfit.tie}
+            shade={0.2}
+            outline={3.5}
+            z={0.001}
+          />
+        </X>
+      ) : null}
+      {outfit.print ? (
+        <X x={outfit.printKind === "bar" ? 0 : 26} y={168} z={0.0041}>
+          {outfit.printKind === "dot" ? (
+            <Part shape={circle(14)} color={outfit.print} flat outline={0} />
+          ) : outfit.printKind === "bar" ? (
+            <Part shape={roundRect(70, 12, 4)} color={outfit.print} flat outline={0} />
+          ) : (
+            <>
+              <Line pts={[[-12, -12], [12, 12]]} width={5} color={outfit.print} />
+              <Line pts={[[-12, 12], [12, -12]]} width={5} color={outfit.print} />
+            </>
+          )}
+        </X>
+      ) : null}
+      {outfit.badge ? (
+        <X z={0.0043}>
+          <Line pts={[[-26, TORSO_TOP - 4], [-14, 150], [0, 140]]} width={3.5} color="#2a6ac8" />
+          <Line pts={[[26, TORSO_TOP - 4], [14, 150], [0, 140]]} width={3.5} color="#2a6ac8" />
+          <Part shape={roundRect(30, 38, 4)} color={outfit.badge} flat outline={3} y={122} z={0.001} />
+          <Part shape={roundRect(18, 6, 2)} color="#2a2228" flat outline={0} y={128} z={0.002} />
         </X>
       ) : null}
       {outfit.belt ? (

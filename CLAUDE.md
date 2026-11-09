@@ -126,6 +126,29 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `env/geo/eastAsia.json`; `ppd`, `route`, `dots`, `w`/`h`, `only`; helpers
   `geoXY`, `cityXY`, `japanRouteAt`). Outfits add `harness` and `sword` (katana).
   Never hand-draw maps: use `JapanMap` (extend the geo data for other regions).
+- Modern world (`env/space`, `env/vehicles`, `env/gadgets`, `env/rooms`,
+  `env/worldmap`): `Falcon1` (`split`/`tilt2` for staging), `Falcon9` (`legs`,
+  `fins`, `soot`, `stage1`, `payload`), `FalconHeavy`, `Starship`, `SuperHeavy`,
+  `StarshipStack`, `LaunchTower` (catch arms: `close`, `armY`), `Dragon`,
+  `SpaceStation`, `StarlinkSat`, `Exhaust`, `Fireball` (`t` 0..1), `Planet`
+  (mars/moon/earth), `LandingPad`, `LaunchPad`, `SpaceBack`; cars `Roadster`
+  (seat a character in `children`), `SedanEV`, `Cybertruck` (`crack`, `crack2`),
+  `Supercar` (`wreck`, `glass`), `Robotaxi`, `Airliner`, `SmallPlane`,
+  `Wheelchair`; `Phone`, `OldPhone`, `Monitor`, `HomeComputer`, `PostCard`,
+  `LineChart`, `Bars`, `Pie`, money (`Banknote`, `Cash`, `MoneyBag`, `GoldCoin`,
+  `Cheque`), `Trophy`, `Medal`, `Gavel`, `Sink`, `Chainsaw`, `Book`, `BookRow`,
+  `Magazine`, `Bird`, `XMark`, `Brain`, `Implant`, `Humanoid` (robot rig),
+  `ChessBoard`, `Dish`, `BallotBox`, `Doc`, `Box`, `Bell`, `Lectern`, hospital
+  and home furniture, `Acacia`, `Jacaranda`, `DogeBadge`; sets `Room`, `Window`,
+  `Skyline`, `StageSet`, `FactorySet` + `RobotArm`, `MissionControlSet`,
+  `CourtroomSet`, `OvalOfficeSet`, `StoreFront`, `CampusBuilding`, `House`,
+  `TropicalIsland`, `SavannaSet`, `MoscowSet`, `ConcreteStairs`; `WorldMap`
+  (Natural Earth countries in a Miller projection, `geo/world.json`: `tint`,
+  `pins`, `routes` with a plane, `wrap` across the date line; `worldXY`, `CITY`).
+  Outfits add `shirt` + `tie` (suits), `print`, `badge`; hats add `cap`,
+  `ushanka`, `fedora`, `headset`, `beanie`; hair adds `parted`, `swoop`, `curly`,
+  `slick`, `wild`. Labels add kind `ink` (dark text printed on a card/screen).
+  Pin labels with `useScr()` so they follow the shot camera and punch-ins.
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers.
 
 Rules: drive every motion from `useCurrentFrame()` (never R3F `useFrame()`),
@@ -136,6 +159,8 @@ canvas. Add new props/characters to the kit, not to episodes, when reusable.
 short, 38 shots; `src/episodes/firearrows/` — 16:9 long video, ~8 min, ~180
 shots in act files `actA…actE.tsx` with the cut list in `timeline.ts`;
 `src/episodes/spring1945/` — 16:9, ~5 min, WWII Japan, act files `actA…actD.tsx`;
+`src/episodes/elon/` — 16:9 biography, ~15 min, ~255 shots in `actA…actG.tsx`,
+modern kit, sound sheet calibrated per cue;
 `src/episodes/onoda/` — small demo)
 
 1. `script.ts` — shot list with durations, narration phrases (`*word*` = red),
@@ -162,5 +187,11 @@ shots in act files `actA…actE.tsx` with the cut list in `timeline.ts`;
 - `npm run typecheck`
 - Long videos: render the muted video in chunks (`--frames=a-b --muted`), concat
   with ffmpeg, render the `…AudioOnly` mix (`--codec=wav`), mux, then master.
+  Bundle once (`npx remotion bundle --out-dir <dir>`) and pass that folder to
+  every chunk's `npx remotion render <dir> <comp>`: each fresh bundle copies
+  `public/` (~300 MB) into the temp dir, which fills the disk quickly.
+- Scripted VO with numbers: write `script.txt` with numbers as the narrator says
+  them; when unsure ("twenty ten" vs "two thousand ten"), decode a short window
+  with a JSGF grammar of the alternatives (pocketsphinx) and keep what matches.
 - In a cloud container with no GPU or internet, add
   `--gl=swangle --browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`

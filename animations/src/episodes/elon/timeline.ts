@@ -5,6 +5,7 @@ import * as C from "./actC";
 import * as D from "./actD";
 import * as E from "./actE";
 import * as F from "./actF";
+import * as G from "./actG";
 
 // Cut list (seconds on public/vo/elon.tight.voice.m4a), in the breaths between
 // phrases (see public/captions/elon.json). `punch` = hard punch-in cuts.
@@ -218,4 +219,57 @@ export const CUTS: Cut[] = [
   { id: "l08", at: 685.1, into: "cut", C: F.HardcoreShot },
   { id: "l09", at: 689.2, into: "cut", C: F.NewNameShot },
   { id: "l10", at: 694.2, into: "cut", C: F.XcomCallbackShot, punch: [[698.0, 1.3, 0.62, 0.45]] },
+  // politics (2024–2026)
+  { id: "m01", at: 700.85, into: "cut", C: G.PoliticsShot },
+  { id: "m02", at: 704.85, into: "cut", C: G.RallyShot },
+  { id: "m03", at: 709.5, into: "cut", C: G.EndorseShot },
+  { id: "m04", at: 710.9, into: "cut", C: G.DonateShot },
+  { id: "m05", at: 716.85, into: "cut", C: G.BiggestDonorShot },
+  { id: "m06", at: 720.5, into: "cut", C: G.DogeShot },
+  { id: "m07", at: 724.7, into: "cut", C: G.DepartmentShot },
+  { id: "m08", at: 730.45, into: "cut", C: G.TwoTrillionShot },
+  { id: "m09", at: 735.3, into: "cut", C: G.ChainsawShot, punch: [[739.6, 1.3, 0.55, 0.38]] },
+  { id: "m10", at: 741.75, into: "cut", C: G.CancelsShot },
+  { id: "m11", at: 745.4, into: "cut", C: G.FansCheerShot },
+  { id: "m12", at: 746.65, into: "cut", C: G.ProtestShot },
+  { id: "m13", at: 750.95, into: "cut", C: G.LeavesDogeShot },
+  { id: "m14", at: 754.25, into: "cut", C: G.FightShot },
+  { id: "m15", at: 758.95, into: "cut", C: G.ThreatShot },
+  { id: "m16", at: 762.25, into: "cut", C: G.WouldntWonShot },
+  { id: "m17", at: 764.65, into: "cut", C: G.AmericaPartyShot },
+  { id: "m18", at: 769.55, into: "cut", C: G.BackShot },
+  { id: "m19", at: 772.0, into: "cut", C: G.MidtermsShot },
+  { id: "m20", at: 776.9, into: "cut", C: G.MedalShot },
+  // Starship and the catch
+  { id: "n01", at: 780.8, into: "cut", C: G.BiggerRocketsShot },
+  { id: "n02", at: 783.3, into: "cut", C: G.StarshipBiggestShot },
+  { id: "n03", at: 788.0, into: "cut", C: G.FirstFlightShot },
+  { id: "n04", at: 792.5, into: "cut", C: G.RudShot },
+  { id: "n05", at: 797.2, into: "cut", C: G.BoosterReturnShot },
+  { id: "n06", at: 802.45, into: "cut", C: G.TwentyStoryShot },
+  { id: "n07", at: 804.6, into: "cut", C: G.ChopsticksShot },
+  // the trillion-dollar year
+  { id: "n08", at: 810.6, into: "cut", C: G.RobotaxiShot },
+  { id: "n09", at: 816.8, into: "cut", C: G.PayDealShot },
+  { id: "n10", at: 820.7, into: "cut", C: G.TrillionSharesShot },
+  { id: "n11", at: 827.5, into: "cut", C: G.MergerShot },
+  { id: "n12", at: 837.1, into: "cut", C: G.SpaceXIPOShot },
+  { id: "n13", at: 842.75, into: "cut", C: G.BiggestIPOShot },
+  { id: "n14", at: 845.45, into: "cut", C: G.RaisesShot },
+  { id: "n15", at: 851.6, into: "cut", C: G.TrillionaireShot },
+  // the jury, Mars, the Moon
+  { id: "o01", at: 857.75, into: "cut", C: G.JuryShot },
+  { id: "o02", at: 863.2, into: "cut", C: G.AppealShot },
+  { id: "o03", at: 865.2, into: "cut", C: G.MarsSlipShot },
+  { id: "o04", at: 871.7, into: "cut", C: G.MoonFirstShot },
+  // the ending
+  { id: "o05", at: 878.4, into: "cut", C: G.HowDoesShot },
+  { id: "o06", at: 882.75, into: "cut", C: G.RuleAgainShot },
+  { id: "o07", at: 885.45, into: "cut", C: G.BetsChainShot },
+  { id: "o08", at: 895.15, into: "cut", C: G.WrongHistoryShot },
+  { id: "o09", at: 898.8, into: "cut", C: G.GeniusRecklessShot },
+  { id: "o10", at: 902.9, into: "cut", C: G.NeverSmallShot },
+  { id: "o11", at: 907.25, into: "fade", C: G.IslandCallbackShot },
+  { id: "o12", at: 913.0, into: "cut", C: G.LastRocketShot },
+  { id: "o13", at: 918.75, into: "cut", C: G.ChoiceShot },
 ];

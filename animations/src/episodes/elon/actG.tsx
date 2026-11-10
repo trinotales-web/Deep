@@ -161,16 +161,18 @@ export const DonateShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
         <Paper>
-          <BallotBox x={300} y={-460} s={1.6} drop={(t * 1.5) % 1} z={1} />
+          {/* box raised and smaller so the bottom label band stays clear */}
+          <BallotBox x={320} y={-270} s={1.4} drop={(t * 1.5) % 1} z={1} />
           {Array.from({ length: 10 }, (_, i) => {
             const k = ((frame * 0.03 + i / 10) % 1);
-            return <Banknote key={i} x={interpolate(k, [0, 1], [-900, 280])} y={interpolate(k, [0, 0.5, 1], [-100, 300, 0])} rot={k * 4 + i} s={0.6} z={2} />;
+            return <Banknote key={i} x={interpolate(k, [0, 1], [-390, 300])} y={interpolate(k, [0, 0.5, 1], [-360, 300, 30])} rot={k * 4 + i} s={0.6} z={2} />;
           })}
-          <Character {...ELON_X(true)} x={-760} y={-620} s={1.5} look={0.6} expression={{ eyes: "open", mouth: "smirk" }} pose={poses.holdOut} z={3} />
+          {/* x -650 keeps the whole head in frame through the push-in */}
+          <Character {...ELON_X(true)} x={-650} y={-620} s={1.5} look={0.6} expression={{ eyes: "open", mouth: "smirk" }} pose={poses.holdOut} z={3} />
         </Paper>
       </Stage>
       <Label text="ABOUT $277 MILLION" x={0.1} y={0.1} size={0.065} kind="box" at={at(711.8)} />
-      <Label text="TO ELECT TRUMP AND OTHER REPUBLICANS" x={0.5} y={0.86} size={0.05} kind="box" at={at(714.5)} />
+      <Label text="TO ELECT TRUMP AND OTHER REPUBLICANS" x={0.9} y={0.86} size={0.05} kind="box" at={at(714.5)} />
     </AbsoluteFill>
   );
 };
@@ -516,7 +518,7 @@ export const AmericaPartyShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 0.9, 0.96), y: 40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
         <SkyBack mood="day" horizon={-420} />
         <Part shape={roundRect(6000, 1200, 0)} color="#8a9a6a" flat outline={5} y={-1020} z={-25} />
-        <X y={-200} s={pop(t, 765.8)}>
+        <X y={-200} s={pop(t, 765.05)}>
           <PartyBanner droop={ramp(t, 768.4, 769.4, Easing.in(Easing.quad))} frame={frame} />
         </X>
       </Stage>

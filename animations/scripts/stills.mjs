@@ -13,7 +13,9 @@ import { renderStill, selectComposition } from "@remotion/renderer";
 const [id, out, framesArg, colsArg] = process.argv.slice(2);
 const frames = framesArg.split(",").map(Number);
 const cols = Number(colsArg ?? 4);
-const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts") });
+// STILL_BUNDLE=<dir> reuses a bundle made with `npx remotion bundle --out-dir <dir>` (kept afterwards).
+const reuse = process.env.STILL_BUNDLE;
+const serveUrl = reuse ? path.resolve(reuse) : await bundle({ entryPoint: path.resolve("src/index.ts") });
 const chromiumOptions = process.env.STILL_GL ? { gl: process.env.STILL_GL } : {};
 const browserExecutable = process.env.STILL_BROWSER ?? null;
 const composition = await selectComposition({ serveUrl, id, chromiumOptions, browserExecutable });
@@ -35,4 +37,4 @@ spawnSync("ffmpeg", [...args, "-filter_complex", files.length > 1 ? filter : "nu
 console.log(`\n→ ${out} (${rows}x${cols})`);
 // each bundle copies public/ (hundreds of MB): remove it and the frames so temp space doesn't fill up
 fs.rmSync(dir, { recursive: true, force: true });
-fs.rmSync(serveUrl, { recursive: true, force: true });
+if (!reuse) fs.rmSync(serveUrl, { recursive: true, force: true });

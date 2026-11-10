@@ -177,7 +177,9 @@ modern kit, sound sheet calibrated per cue;
    Then cut shots in the breaths between phrases (print word times from the
    JSON) and put hits on the key words.
 8. Review with contact sheets: `node scripts/stills.mjs <compId> out.png <f1,f2,…> [cols]`
-   (one bundle, many stills). Keep faces out of the caption band (~70 % height).
+   (one bundle, many stills; `STILL_BUNDLE=<dir>` reuses a prebuilt bundle).
+   Keep faces out of the caption band (~70 % height). Check every punch-in
+   frame: a punch must never leave a face half out of frame.
 
 ### Commands (run from `animations/`)
 - `npm run studio` — preview in Remotion Studio
@@ -190,6 +192,10 @@ modern kit, sound sheet calibrated per cue;
   Bundle once (`npx remotion bundle --out-dir <dir>`) and pass that folder to
   every chunk's `npx remotion render <dir> <comp>`: each fresh bundle copies
   `public/` (~300 MB) into the temp dir, which fills the disk quickly.
+  To fix a few shots after a full render, re-render only their frame ranges
+  and splice them into the chunks; write any re-encoded chunk with
+  `-video_track_timescale 90000` (Remotion's time base) — the concat demuxer
+  assumes one time base and otherwise stretches the timeline several times over.
 - Scripted VO with numbers: write `script.txt` with numbers as the narrator says
   them; when unsure ("twenty ten" vs "two thousand ten"), decode a short window
   with a JSGF grammar of the alternatives (pocketsphinx) and keep what matches.

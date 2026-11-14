@@ -1,0 +1,11419 @@
+[
+ {
+  "text": "Imagine",
+  "startMs": 160,
+  "endMs": 580,
+  "timestampMs": 370,
+  "confidence": null
+ },
+ {
+  "text": " you're",
+  "startMs": 580,
+  "endMs": 730,
+  "timestampMs": 655,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 730,
+  "endMs": 760,
+  "timestampMs": 745,
+  "confidence": null
+ },
+ {
+  "text": " scientist",
+  "startMs": 760,
+  "endMs": 1420,
+  "timestampMs": 1090,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 1420,
+  "endMs": 1530,
+  "timestampMs": 1475,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 1530,
+  "endMs": 1570,
+  "timestampMs": 1550,
+  "confidence": null
+ },
+ {
+  "text": " small",
+  "startMs": 1570,
+  "endMs": 1940,
+  "timestampMs": 1755,
+  "confidence": null
+ },
+ {
+  "text": " boat",
+  "startMs": 1940,
+  "endMs": 2180,
+  "timestampMs": 2060,
+  "confidence": null
+ },
+ {
+  "text": " off",
+  "startMs": 2180,
+  "endMs": 2390,
+  "timestampMs": 2285,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 2390,
+  "endMs": 2460,
+  "timestampMs": 2425,
+  "confidence": null
+ },
+ {
+  "text": " coast",
+  "startMs": 2460,
+  "endMs": 2760,
+  "timestampMs": 2610,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 2760,
+  "endMs": 2840,
+  "timestampMs": 2800,
+  "confidence": null
+ },
+ {
+  "text": " California.",
+  "startMs": 2840,
+  "endMs": 3540,
+  "timestampMs": 3190,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 3880,
+  "endMs": 4070,
+  "timestampMs": 3975,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 4070,
+  "endMs": 4370,
+  "timestampMs": 4220,
+  "confidence": null
+ },
+ {
+  "text": " eighteen.",
+  "startMs": 4370,
+  "endMs": 4920,
+  "timestampMs": 4645,
+  "confidence": null
+ },
+ {
+  "text": " Next",
+  "startMs": 5270,
+  "endMs": 5520,
+  "timestampMs": 5395,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 5520,
+  "endMs": 5620,
+  "timestampMs": 5570,
+  "confidence": null
+ },
+ {
+  "text": " you,",
+  "startMs": 5620,
+  "endMs": 5950,
+  "timestampMs": 5785,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 6200,
+  "endMs": 6300,
+  "timestampMs": 6250,
+  "confidence": null
+ },
+ {
+  "text": " dark",
+  "startMs": 6300,
+  "endMs": 6650,
+  "timestampMs": 6475,
+  "confidence": null
+ },
+ {
+  "text": " back",
+  "startMs": 6650,
+  "endMs": 6990,
+  "timestampMs": 6820,
+  "confidence": null
+ },
+ {
+  "text": " rises",
+  "startMs": 6990,
+  "endMs": 7420,
+  "timestampMs": 7205,
+  "confidence": null
+ },
+ {
+  "text": " out",
+  "startMs": 7420,
+  "endMs": 7540,
+  "timestampMs": 7480,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 7540,
+  "endMs": 7640,
+  "timestampMs": 7590,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 7640,
+  "endMs": 7700,
+  "timestampMs": 7670,
+  "confidence": null
+ },
+ {
+  "text": " water.",
+  "startMs": 7700,
+  "endMs": 8150,
+  "timestampMs": 7925,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 8420,
+  "endMs": 8650,
+  "timestampMs": 8535,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 8650,
+  "endMs": 8810,
+  "timestampMs": 8730,
+  "confidence": null
+ },
+ {
+  "text": " keeps",
+  "startMs": 9060,
+  "endMs": 9410,
+  "timestampMs": 9235,
+  "confidence": null
+ },
+ {
+  "text": " rising.",
+  "startMs": 9410,
+  "endMs": 9950,
+  "timestampMs": 9680,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 10570,
+  "endMs": 10730,
+  "timestampMs": 10650,
+  "confidence": null
+ },
+ {
+  "text": " almost",
+  "startMs": 10730,
+  "endMs": 11180,
+  "timestampMs": 10955,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 11180,
+  "endMs": 11300,
+  "timestampMs": 11240,
+  "confidence": null
+ },
+ {
+  "text": " long",
+  "startMs": 11300,
+  "endMs": 11560,
+  "timestampMs": 11430,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 11560,
+  "endMs": 11660,
+  "timestampMs": 11610,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 11660,
+  "endMs": 11710,
+  "timestampMs": 11685,
+  "confidence": null
+ },
+ {
+  "text": " basketball",
+  "startMs": 11710,
+  "endMs": 12310,
+  "timestampMs": 12010,
+  "confidence": null
+ },
+ {
+  "text": " court.",
+  "startMs": 12310,
+  "endMs": 12730,
+  "timestampMs": 12520,
+  "confidence": null
+ },
+ {
+  "text": " Your",
+  "startMs": 13530,
+  "endMs": 13670,
+  "timestampMs": 13600,
+  "confidence": null
+ },
+ {
+  "text": " teammate",
+  "startMs": 13670,
+  "endMs": 14090,
+  "timestampMs": 13880,
+  "confidence": null
+ },
+ {
+  "text": " leans",
+  "startMs": 14090,
+  "endMs": 14430,
+  "timestampMs": 14260,
+  "confidence": null
+ },
+ {
+  "text": " out",
+  "startMs": 14430,
+  "endMs": 14540,
+  "timestampMs": 14485,
+  "confidence": null
+ },
+ {
+  "text": " with",
+  "startMs": 14540,
+  "endMs": 14750,
+  "timestampMs": 14645,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 14750,
+  "endMs": 14780,
+  "timestampMs": 14765,
+  "confidence": null
+ },
+ {
+  "text": " long",
+  "startMs": 14780,
+  "endMs": 15100,
+  "timestampMs": 14940,
+  "confidence": null
+ },
+ {
+  "text": " pole.",
+  "startMs": 15100,
+  "endMs": 15550,
+  "timestampMs": 15325,
+  "confidence": null
+ },
+ {
+  "text": " With",
+  "startMs": 15910,
+  "endMs": 16070,
+  "timestampMs": 15990,
+  "confidence": null
+ },
+ {
+  "text": " suction",
+  "startMs": 16070,
+  "endMs": 16480,
+  "timestampMs": 16275,
+  "confidence": null
+ },
+ {
+  "text": " cups,",
+  "startMs": 16480,
+  "endMs": 16970,
+  "timestampMs": 16725,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 17180,
+  "endMs": 17290,
+  "timestampMs": 17235,
+  "confidence": null
+ },
+ {
+  "text": " stick",
+  "startMs": 17290,
+  "endMs": 17570,
+  "timestampMs": 17430,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 17570,
+  "endMs": 17610,
+  "timestampMs": 17590,
+  "confidence": null
+ },
+ {
+  "text": " small",
+  "startMs": 17610,
+  "endMs": 18000,
+  "timestampMs": 17805,
+  "confidence": null
+ },
+ {
+  "text": " sensor",
+  "startMs": 18000,
+  "endMs": 18470,
+  "timestampMs": 18235,
+  "confidence": null
+ },
+ {
+  "text": " onto",
+  "startMs": 18470,
+  "endMs": 18710,
+  "timestampMs": 18590,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 18710,
+  "endMs": 18860,
+  "timestampMs": 18785,
+  "confidence": null
+ },
+ {
+  "text": " animal's",
+  "startMs": 18860,
+  "endMs": 19220,
+  "timestampMs": 19040,
+  "confidence": null
+ },
+ {
+  "text": " back.",
+  "startMs": 19220,
+  "endMs": 19620,
+  "timestampMs": 19420,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 20290,
+  "endMs": 20410,
+  "timestampMs": 20350,
+  "confidence": null
+ },
+ {
+  "text": " going",
+  "startMs": 20410,
+  "endMs": 20600,
+  "timestampMs": 20505,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 20600,
+  "endMs": 20690,
+  "timestampMs": 20645,
+  "confidence": null
+ },
+ {
+  "text": " do",
+  "startMs": 20690,
+  "endMs": 20840,
+  "timestampMs": 20765,
+  "confidence": null
+ },
+ {
+  "text": " something",
+  "startMs": 20840,
+  "endMs": 21250,
+  "timestampMs": 21045,
+  "confidence": null
+ },
+ {
+  "text": " nobody",
+  "startMs": 21250,
+  "endMs": 21600,
+  "timestampMs": 21425,
+  "confidence": null
+ },
+ {
+  "text": " has",
+  "startMs": 21600,
+  "endMs": 21800,
+  "timestampMs": 21700,
+  "confidence": null
+ },
+ {
+  "text": " ever",
+  "startMs": 21800,
+  "endMs": 22020,
+  "timestampMs": 21910,
+  "confidence": null
+ },
+ {
+  "text": " done",
+  "startMs": 22020,
+  "endMs": 22240,
+  "timestampMs": 22130,
+  "confidence": null
+ },
+ {
+  "text": " before.",
+  "startMs": 22240,
+  "endMs": 22740,
+  "timestampMs": 22490,
+  "confidence": null
+ },
+ {
+  "text": " Record",
+  "startMs": 23260,
+  "endMs": 23630,
+  "timestampMs": 23445,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 23630,
+  "endMs": 23700,
+  "timestampMs": 23665,
+  "confidence": null
+ },
+ {
+  "text": " heartbeat",
+  "startMs": 23700,
+  "endMs": 24340,
+  "timestampMs": 24020,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 24340,
+  "endMs": 24470,
+  "timestampMs": 24405,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 24470,
+  "endMs": 24530,
+  "timestampMs": 24500,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 24530,
+  "endMs": 24840,
+  "timestampMs": 24685,
+  "confidence": null
+ },
+ {
+  "text": " whale.",
+  "startMs": 24840,
+  "endMs": 25260,
+  "timestampMs": 25050,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 25700,
+  "endMs": 25800,
+  "timestampMs": 25750,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 25800,
+  "endMs": 26170,
+  "timestampMs": 25985,
+  "confidence": null
+ },
+ {
+  "text": " breathes,",
+  "startMs": 26170,
+  "endMs": 26810,
+  "timestampMs": 26490,
+  "confidence": null
+ },
+ {
+  "text": " then",
+  "startMs": 27030,
+  "endMs": 27270,
+  "timestampMs": 27150,
+  "confidence": null
+ },
+ {
+  "text": " dives.",
+  "startMs": 27270,
+  "endMs": 27870,
+  "timestampMs": 27570,
+  "confidence": null
+ },
+ {
+  "text": " Hours",
+  "startMs": 28350,
+  "endMs": 28700,
+  "timestampMs": 28525,
+  "confidence": null
+ },
+ {
+  "text": " later,",
+  "startMs": 28700,
+  "endMs": 29130,
+  "timestampMs": 28915,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 29490,
+  "endMs": 29610,
+  "timestampMs": 29550,
+  "confidence": null
+ },
+ {
+  "text": " look",
+  "startMs": 29610,
+  "endMs": 29770,
+  "timestampMs": 29690,
+  "confidence": null
+ },
+ {
+  "text": " at",
+  "startMs": 29770,
+  "endMs": 29840,
+  "timestampMs": 29805,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 29840,
+  "endMs": 29940,
+  "timestampMs": 29890,
+  "confidence": null
+ },
+ {
+  "text": " data.",
+  "startMs": 29940,
+  "endMs": 30290,
+  "timestampMs": 30115,
+  "confidence": null
+ },
+ {
+  "text": " Deep",
+  "startMs": 30700,
+  "endMs": 30980,
+  "timestampMs": 30840,
+  "confidence": null
+ },
+ {
+  "text": " underwater,",
+  "startMs": 30980,
+  "endMs": 31700,
+  "timestampMs": 31340,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 31940,
+  "endMs": 32180,
+  "timestampMs": 32060,
+  "confidence": null
+ },
+ {
+  "text": " giant",
+  "startMs": 32180,
+  "endMs": 32640,
+  "timestampMs": 32410,
+  "confidence": null
+ },
+ {
+  "text": " heart",
+  "startMs": 32640,
+  "endMs": 32980,
+  "timestampMs": 32810,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 32980,
+  "endMs": 33210,
+  "timestampMs": 33095,
+  "confidence": null
+ },
+ {
+  "text": " beating",
+  "startMs": 33210,
+  "endMs": 33660,
+  "timestampMs": 33435,
+  "confidence": null
+ },
+ {
+  "text": " just",
+  "startMs": 33660,
+  "endMs": 33950,
+  "timestampMs": 33805,
+  "confidence": null
+ },
+ {
+  "text": " twice",
+  "startMs": 33950,
+  "endMs": 34310,
+  "timestampMs": 34130,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 34310,
+  "endMs": 34360,
+  "timestampMs": 34335,
+  "confidence": null
+ },
+ {
+  "text": " minute.",
+  "startMs": 34360,
+  "endMs": 34810,
+  "timestampMs": 34585,
+  "confidence": null
+ },
+ {
+  "text": " This",
+  "startMs": 35370,
+  "endMs": 35560,
+  "timestampMs": 35465,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 35560,
+  "endMs": 35680,
+  "timestampMs": 35620,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 35680,
+  "endMs": 35790,
+  "timestampMs": 35735,
+  "confidence": null
+ },
+ {
+  "text": " biggest",
+  "startMs": 35790,
+  "endMs": 36300,
+  "timestampMs": 36045,
+  "confidence": null
+ },
+ {
+  "text": " animal",
+  "startMs": 36300,
+  "endMs": 36670,
+  "timestampMs": 36485,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 36670,
+  "endMs": 36820,
+  "timestampMs": 36745,
+  "confidence": null
+ },
+ {
+  "text": " Earth.",
+  "startMs": 36820,
+  "endMs": 37180,
+  "timestampMs": 37000,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 37460,
+  "endMs": 37580,
+  "timestampMs": 37520,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 37580,
+  "endMs": 37720,
+  "timestampMs": 37650,
+  "confidence": null
+ },
+ {
+  "text": " grow",
+  "startMs": 37720,
+  "endMs": 37980,
+  "timestampMs": 37850,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 37980,
+  "endMs": 38110,
+  "timestampMs": 38045,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 38110,
+  "endMs": 38360,
+  "timestampMs": 38235,
+  "confidence": null
+ },
+ {
+  "text": " thirty",
+  "startMs": 38360,
+  "endMs": 38730,
+  "timestampMs": 38545,
+  "confidence": null
+ },
+ {
+  "text": " three",
+  "startMs": 38730,
+  "endMs": 38930,
+  "timestampMs": 38830,
+  "confidence": null
+ },
+ {
+  "text": " meters",
+  "startMs": 38930,
+  "endMs": 39250,
+  "timestampMs": 39090,
+  "confidence": null
+ },
+ {
+  "text": " long",
+  "startMs": 39250,
+  "endMs": 39610,
+  "timestampMs": 39430,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 39860,
+  "endMs": 40000,
+  "timestampMs": 39930,
+  "confidence": null
+ },
+ {
+  "text": " weigh",
+  "startMs": 40000,
+  "endMs": 40230,
+  "timestampMs": 40115,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 40230,
+  "endMs": 40490,
+  "timestampMs": 40360,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 40490,
+  "endMs": 40760,
+  "timestampMs": 40625,
+  "confidence": null
+ },
+ {
+  "text": " fifty",
+  "startMs": 40760,
+  "endMs": 41120,
+  "timestampMs": 40940,
+  "confidence": null
+ },
+ {
+  "text": " tonnes.",
+  "startMs": 41120,
+  "endMs": 41660,
+  "timestampMs": 41390,
+  "confidence": null
+ },
+ {
+  "text": " Its",
+  "startMs": 42010,
+  "endMs": 42190,
+  "timestampMs": 42100,
+  "confidence": null
+ },
+ {
+  "text": " heart",
+  "startMs": 42190,
+  "endMs": 42450,
+  "timestampMs": 42320,
+  "confidence": null
+ },
+ {
+  "text": " alone",
+  "startMs": 42450,
+  "endMs": 42770,
+  "timestampMs": 42610,
+  "confidence": null
+ },
+ {
+  "text": " weighs",
+  "startMs": 42770,
+  "endMs": 43030,
+  "timestampMs": 42900,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 43030,
+  "endMs": 43290,
+  "timestampMs": 43160,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 43290,
+  "endMs": 43490,
+  "timestampMs": 43390,
+  "confidence": null
+ },
+ {
+  "text": " eighty",
+  "startMs": 43490,
+  "endMs": 43840,
+  "timestampMs": 43665,
+  "confidence": null
+ },
+ {
+  "text": " kilos.",
+  "startMs": 43840,
+  "endMs": 44550,
+  "timestampMs": 44195,
+  "confidence": null
+ },
+ {
+  "text": " Even",
+  "startMs": 45070,
+  "endMs": 45310,
+  "timestampMs": 45190,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 45310,
+  "endMs": 45360,
+  "timestampMs": 45335,
+  "confidence": null
+ },
+ {
+  "text": " newborn",
+  "startMs": 45360,
+  "endMs": 45800,
+  "timestampMs": 45580,
+  "confidence": null
+ },
+ {
+  "text": " baby",
+  "startMs": 45800,
+  "endMs": 46140,
+  "timestampMs": 45970,
+  "confidence": null
+ },
+ {
+  "text": " weighs",
+  "startMs": 46140,
+  "endMs": 46390,
+  "timestampMs": 46265,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 46390,
+  "endMs": 46630,
+  "timestampMs": 46510,
+  "confidence": null
+ },
+ {
+  "text": " two",
+  "startMs": 46630,
+  "endMs": 46790,
+  "timestampMs": 46710,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 46790,
+  "endMs": 46880,
+  "timestampMs": 46835,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 46880,
+  "endMs": 46910,
+  "timestampMs": 46895,
+  "confidence": null
+ },
+ {
+  "text": " half",
+  "startMs": 46910,
+  "endMs": 47140,
+  "timestampMs": 47025,
+  "confidence": null
+ },
+ {
+  "text": " tonnes.",
+  "startMs": 47140,
+  "endMs": 47760,
+  "timestampMs": 47450,
+  "confidence": null
+ },
+ {
+  "text": " As",
+  "startMs": 48020,
+  "endMs": 48210,
+  "timestampMs": 48115,
+  "confidence": null
+ },
+ {
+  "text": " far",
+  "startMs": 48210,
+  "endMs": 48390,
+  "timestampMs": 48300,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 48390,
+  "endMs": 48490,
+  "timestampMs": 48440,
+  "confidence": null
+ },
+ {
+  "text": " we",
+  "startMs": 48490,
+  "endMs": 48590,
+  "timestampMs": 48540,
+  "confidence": null
+ },
+ {
+  "text": " know,",
+  "startMs": 48590,
+  "endMs": 48910,
+  "timestampMs": 48750,
+  "confidence": null
+ },
+ {
+  "text": " it's",
+  "startMs": 49080,
+  "endMs": 49250,
+  "timestampMs": 49165,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 49250,
+  "endMs": 49330,
+  "timestampMs": 49290,
+  "confidence": null
+ },
+ {
+  "text": " heaviest",
+  "startMs": 49330,
+  "endMs": 49850,
+  "timestampMs": 49590,
+  "confidence": null
+ },
+ {
+  "text": " animal",
+  "startMs": 49850,
+  "endMs": 50230,
+  "timestampMs": 50040,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 50230,
+  "endMs": 50320,
+  "timestampMs": 50275,
+  "confidence": null
+ },
+ {
+  "text": " has",
+  "startMs": 50320,
+  "endMs": 50520,
+  "timestampMs": 50420,
+  "confidence": null
+ },
+ {
+  "text": " ever",
+  "startMs": 50520,
+  "endMs": 50750,
+  "timestampMs": 50635,
+  "confidence": null
+ },
+ {
+  "text": " lived.",
+  "startMs": 50750,
+  "endMs": 51230,
+  "timestampMs": 50990,
+  "confidence": null
+ },
+ {
+  "text": " Heavier",
+  "startMs": 51580,
+  "endMs": 52000,
+  "timestampMs": 51790,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 52000,
+  "endMs": 52210,
+  "timestampMs": 52105,
+  "confidence": null
+ },
+ {
+  "text": " any",
+  "startMs": 52210,
+  "endMs": 52500,
+  "timestampMs": 52355,
+  "confidence": null
+ },
+ {
+  "text": " dinosaur.",
+  "startMs": 52500,
+  "endMs": 53200,
+  "timestampMs": 52850,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 53570,
+  "endMs": 53770,
+  "timestampMs": 53670,
+  "confidence": null
+ },
+ {
+  "text": " how",
+  "startMs": 53770,
+  "endMs": 54020,
+  "timestampMs": 53895,
+  "confidence": null
+ },
+ {
+  "text": " did",
+  "startMs": 54020,
+  "endMs": 54150,
+  "timestampMs": 54085,
+  "confidence": null
+ },
+ {
+  "text": " an",
+  "startMs": 54150,
+  "endMs": 54260,
+  "timestampMs": 54205,
+  "confidence": null
+ },
+ {
+  "text": " animal",
+  "startMs": 54260,
+  "endMs": 54610,
+  "timestampMs": 54435,
+  "confidence": null
+ },
+ {
+  "text": " get",
+  "startMs": 54610,
+  "endMs": 54830,
+  "timestampMs": 54720,
+  "confidence": null
+ },
+ {
+  "text": " this",
+  "startMs": 54830,
+  "endMs": 55020,
+  "timestampMs": 54925,
+  "confidence": null
+ },
+ {
+  "text": " big?",
+  "startMs": 55020,
+  "endMs": 55470,
+  "timestampMs": 55245,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 55790,
+  "endMs": 56000,
+  "timestampMs": 55895,
+  "confidence": null
+ },
+ {
+  "text": " why",
+  "startMs": 56000,
+  "endMs": 56280,
+  "timestampMs": 56140,
+  "confidence": null
+ },
+ {
+  "text": " this",
+  "startMs": 56280,
+  "endMs": 56490,
+  "timestampMs": 56385,
+  "confidence": null
+ },
+ {
+  "text": " one?",
+  "startMs": 56490,
+  "endMs": 56790,
+  "timestampMs": 56640,
+  "confidence": null
+ },
+ {
+  "text": " Coming",
+  "startMs": 57140,
+  "endMs": 57420,
+  "timestampMs": 57280,
+  "confidence": null
+ },
+ {
+  "text": " up,",
+  "startMs": 57420,
+  "endMs": 57660,
+  "timestampMs": 57540,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 57970,
+  "endMs": 58030,
+  "timestampMs": 58000,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 58030,
+  "endMs": 58590,
+  "timestampMs": 58310,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 58900,
+  "endMs": 59050,
+  "timestampMs": 58975,
+  "confidence": null
+ },
+ {
+  "text": " walks",
+  "startMs": 59050,
+  "endMs": 59470,
+  "timestampMs": 59260,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 59470,
+  "endMs": 59620,
+  "timestampMs": 59545,
+  "confidence": null
+ },
+ {
+  "text": " four",
+  "startMs": 59620,
+  "endMs": 59910,
+  "timestampMs": 59765,
+  "confidence": null
+ },
+ {
+  "text": " legs.",
+  "startMs": 59910,
+  "endMs": 60510,
+  "timestampMs": 60210,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 60850,
+  "endMs": 60890,
+  "timestampMs": 60870,
+  "confidence": null
+ },
+ {
+  "text": " fossil",
+  "startMs": 60890,
+  "endMs": 61290,
+  "timestampMs": 61090,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 61290,
+  "endMs": 61440,
+  "timestampMs": 61365,
+  "confidence": null
+ },
+ {
+  "text": " was",
+  "startMs": 61440,
+  "endMs": 61550,
+  "timestampMs": 61495,
+  "confidence": null
+ },
+ {
+  "text": " supposed",
+  "startMs": 61550,
+  "endMs": 61980,
+  "timestampMs": 61765,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 61980,
+  "endMs": 62050,
+  "timestampMs": 62015,
+  "confidence": null
+ },
+ {
+  "text": " beat",
+  "startMs": 62050,
+  "endMs": 62340,
+  "timestampMs": 62195,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 62340,
+  "endMs": 62420,
+  "timestampMs": 62380,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 62420,
+  "endMs": 62640,
+  "timestampMs": 62530,
+  "confidence": null
+ },
+ {
+  "text": " whale,",
+  "startMs": 62640,
+  "endMs": 63020,
+  "timestampMs": 62830,
+  "confidence": null
+ },
+ {
+  "text": " until",
+  "startMs": 63200,
+  "endMs": 63470,
+  "timestampMs": 63335,
+  "confidence": null
+ },
+ {
+  "text": " someone",
+  "startMs": 63470,
+  "endMs": 63780,
+  "timestampMs": 63625,
+  "confidence": null
+ },
+ {
+  "text": " checked",
+  "startMs": 63780,
+  "endMs": 64030,
+  "timestampMs": 63905,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 64030,
+  "endMs": 64090,
+  "timestampMs": 64060,
+  "confidence": null
+ },
+ {
+  "text": " math.",
+  "startMs": 64090,
+  "endMs": 64560,
+  "timestampMs": 64325,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 64730,
+  "endMs": 64790,
+  "timestampMs": 64760,
+  "confidence": null
+ },
+ {
+  "text": " mouthful",
+  "startMs": 64790,
+  "endMs": 65370,
+  "timestampMs": 65080,
+  "confidence": null
+ },
+ {
+  "text": " worth",
+  "startMs": 65370,
+  "endMs": 65660,
+  "timestampMs": 65515,
+  "confidence": null
+ },
+ {
+  "text": " half",
+  "startMs": 65660,
+  "endMs": 66000,
+  "timestampMs": 65830,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 66000,
+  "endMs": 66040,
+  "timestampMs": 66020,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 66040,
+  "endMs": 66380,
+  "timestampMs": 66210,
+  "confidence": null
+ },
+ {
+  "text": " calories.",
+  "startMs": 66380,
+  "endMs": 67020,
+  "timestampMs": 66700,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 67180,
+  "endMs": 67310,
+  "timestampMs": 67245,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 67310,
+  "endMs": 67370,
+  "timestampMs": 67340,
+  "confidence": null
+ },
+ {
+  "text": " hunters",
+  "startMs": 67370,
+  "endMs": 67890,
+  "timestampMs": 67630,
+  "confidence": null
+ },
+ {
+  "text": " who",
+  "startMs": 67890,
+  "endMs": 68080,
+  "timestampMs": 67985,
+  "confidence": null
+ },
+ {
+  "text": " almost",
+  "startMs": 68080,
+  "endMs": 68430,
+  "timestampMs": 68255,
+  "confidence": null
+ },
+ {
+  "text": " wiped",
+  "startMs": 68430,
+  "endMs": 68790,
+  "timestampMs": 68610,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 68790,
+  "endMs": 68870,
+  "timestampMs": 68830,
+  "confidence": null
+ },
+ {
+  "text": " giants",
+  "startMs": 68870,
+  "endMs": 69320,
+  "timestampMs": 69095,
+  "confidence": null
+ },
+ {
+  "text": " out.",
+  "startMs": 69320,
+  "endMs": 69660,
+  "timestampMs": 69490,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 69880,
+  "endMs": 70010,
+  "timestampMs": 69945,
+  "confidence": null
+ },
+ {
+  "text": " first,",
+  "startMs": 70010,
+  "endMs": 70540,
+  "timestampMs": 70275,
+  "confidence": null
+ },
+ {
+  "text": " we",
+  "startMs": 70810,
+  "endMs": 70940,
+  "timestampMs": 70875,
+  "confidence": null
+ },
+ {
+  "text": " go",
+  "startMs": 70940,
+  "endMs": 71100,
+  "timestampMs": 71020,
+  "confidence": null
+ },
+ {
+  "text": " back",
+  "startMs": 71100,
+  "endMs": 71430,
+  "timestampMs": 71265,
+  "confidence": null
+ },
+ {
+  "text": " fifty",
+  "startMs": 71430,
+  "endMs": 71870,
+  "timestampMs": 71650,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 71870,
+  "endMs": 72260,
+  "timestampMs": 72065,
+  "confidence": null
+ },
+ {
+  "text": " years,",
+  "startMs": 72260,
+  "endMs": 72790,
+  "timestampMs": 72525,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 72970,
+  "endMs": 73120,
+  "timestampMs": 73045,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 73120,
+  "endMs": 73150,
+  "timestampMs": 73135,
+  "confidence": null
+ },
+ {
+  "text": " riverbank",
+  "startMs": 73150,
+  "endMs": 73820,
+  "timestampMs": 73485,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 73820,
+  "endMs": 73950,
+  "timestampMs": 73885,
+  "confidence": null
+ },
+ {
+  "text": " what",
+  "startMs": 73950,
+  "endMs": 74120,
+  "timestampMs": 74035,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 74120,
+  "endMs": 74230,
+  "timestampMs": 74175,
+  "confidence": null
+ },
+ {
+  "text": " now",
+  "startMs": 74230,
+  "endMs": 74410,
+  "timestampMs": 74320,
+  "confidence": null
+ },
+ {
+  "text": " Pakistan.",
+  "startMs": 74410,
+  "endMs": 75180,
+  "timestampMs": 74795,
+  "confidence": null
+ },
+ {
+  "text": " Meet",
+  "startMs": 75740,
+  "endMs": 76170,
+  "timestampMs": 75955,
+  "confidence": null
+ },
+ {
+  "text": " Pakicetus.",
+  "startMs": 76170,
+  "endMs": 77070,
+  "timestampMs": 76620,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 77350,
+  "endMs": 77490,
+  "timestampMs": 77420,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 77490,
+  "endMs": 77710,
+  "timestampMs": 77600,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 77710,
+  "endMs": 77780,
+  "timestampMs": 77745,
+  "confidence": null
+ },
+ {
+  "text": " size",
+  "startMs": 77780,
+  "endMs": 78100,
+  "timestampMs": 77940,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 78100,
+  "endMs": 78170,
+  "timestampMs": 78135,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 78170,
+  "endMs": 78230,
+  "timestampMs": 78200,
+  "confidence": null
+ },
+ {
+  "text": " wolf.",
+  "startMs": 78230,
+  "endMs": 78770,
+  "timestampMs": 78500,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 79060,
+  "endMs": 79140,
+  "timestampMs": 79100,
+  "confidence": null
+ },
+ {
+  "text": " has",
+  "startMs": 79140,
+  "endMs": 79390,
+  "timestampMs": 79265,
+  "confidence": null
+ },
+ {
+  "text": " four",
+  "startMs": 79390,
+  "endMs": 79640,
+  "timestampMs": 79515,
+  "confidence": null
+ },
+ {
+  "text": " legs,",
+  "startMs": 79640,
+  "endMs": 80170,
+  "timestampMs": 79905,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 80220,
+  "endMs": 80270,
+  "timestampMs": 80245,
+  "confidence": null
+ },
+ {
+  "text": " long",
+  "startMs": 80270,
+  "endMs": 80600,
+  "timestampMs": 80435,
+  "confidence": null
+ },
+ {
+  "text": " tail,",
+  "startMs": 80600,
+  "endMs": 80980,
+  "timestampMs": 80790,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 80980,
+  "endMs": 81100,
+  "timestampMs": 81040,
+  "confidence": null
+ },
+ {
+  "text": " sharp",
+  "startMs": 81100,
+  "endMs": 81420,
+  "timestampMs": 81260,
+  "confidence": null
+ },
+ {
+  "text": " teeth.",
+  "startMs": 81420,
+  "endMs": 81870,
+  "timestampMs": 81645,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 82160,
+  "endMs": 82270,
+  "timestampMs": 82215,
+  "confidence": null
+ },
+ {
+  "text": " hunts",
+  "startMs": 82270,
+  "endMs": 82570,
+  "timestampMs": 82420,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 82570,
+  "endMs": 82690,
+  "timestampMs": 82630,
+  "confidence": null
+ },
+ {
+  "text": " land,",
+  "startMs": 82690,
+  "endMs": 83090,
+  "timestampMs": 82890,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 83280,
+  "endMs": 83430,
+  "timestampMs": 83355,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 83430,
+  "endMs": 83490,
+  "timestampMs": 83460,
+  "confidence": null
+ },
+ {
+  "text": " hangs",
+  "startMs": 83490,
+  "endMs": 83800,
+  "timestampMs": 83645,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 83800,
+  "endMs": 84110,
+  "timestampMs": 83955,
+  "confidence": null
+ },
+ {
+  "text": " near",
+  "startMs": 84110,
+  "endMs": 84290,
+  "timestampMs": 84200,
+  "confidence": null
+ },
+ {
+  "text": " water.",
+  "startMs": 84290,
+  "endMs": 84770,
+  "timestampMs": 84530,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 85160,
+  "endMs": 85220,
+  "timestampMs": 85190,
+  "confidence": null
+ },
+ {
+  "text": " doesn't",
+  "startMs": 85220,
+  "endMs": 85440,
+  "timestampMs": 85330,
+  "confidence": null
+ },
+ {
+  "text": " look",
+  "startMs": 85440,
+  "endMs": 85630,
+  "timestampMs": 85535,
+  "confidence": null
+ },
+ {
+  "text": " anything",
+  "startMs": 85630,
+  "endMs": 86000,
+  "timestampMs": 85815,
+  "confidence": null
+ },
+ {
+  "text": " like",
+  "startMs": 86000,
+  "endMs": 86140,
+  "timestampMs": 86070,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 86140,
+  "endMs": 86170,
+  "timestampMs": 86155,
+  "confidence": null
+ },
+ {
+  "text": " whale.",
+  "startMs": 86170,
+  "endMs": 86600,
+  "timestampMs": 86385,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 87220,
+  "endMs": 87490,
+  "timestampMs": 87355,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 87690,
+  "endMs": 87810,
+  "timestampMs": 87750,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 87810,
+  "endMs": 87990,
+  "timestampMs": 87900,
+  "confidence": null
+ },
+ {
+  "text": " one.",
+  "startMs": 87990,
+  "endMs": 88300,
+  "timestampMs": 88145,
+  "confidence": null
+ },
+ {
+  "text": " How",
+  "startMs": 88690,
+  "endMs": 88790,
+  "timestampMs": 88740,
+  "confidence": null
+ },
+ {
+  "text": " do",
+  "startMs": 88790,
+  "endMs": 88870,
+  "timestampMs": 88830,
+  "confidence": null
+ },
+ {
+  "text": " we",
+  "startMs": 88870,
+  "endMs": 88970,
+  "timestampMs": 88920,
+  "confidence": null
+ },
+ {
+  "text": " know?",
+  "startMs": 88970,
+  "endMs": 89320,
+  "timestampMs": 89145,
+  "confidence": null
+ },
+ {
+  "text": " Its",
+  "startMs": 89690,
+  "endMs": 89840,
+  "timestampMs": 89765,
+  "confidence": null
+ },
+ {
+  "text": " ear",
+  "startMs": 89840,
+  "endMs": 90100,
+  "timestampMs": 89970,
+  "confidence": null
+ },
+ {
+  "text": " bones",
+  "startMs": 90100,
+  "endMs": 90500,
+  "timestampMs": 90300,
+  "confidence": null
+ },
+ {
+  "text": " have",
+  "startMs": 90500,
+  "endMs": 90670,
+  "timestampMs": 90585,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 90670,
+  "endMs": 90700,
+  "timestampMs": 90685,
+  "confidence": null
+ },
+ {
+  "text": " special",
+  "startMs": 90700,
+  "endMs": 91100,
+  "timestampMs": 90900,
+  "confidence": null
+ },
+ {
+  "text": " shape",
+  "startMs": 91100,
+  "endMs": 91540,
+  "timestampMs": 91320,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 91540,
+  "endMs": 91710,
+  "timestampMs": 91625,
+  "confidence": null
+ },
+ {
+  "text": " only",
+  "startMs": 91710,
+  "endMs": 92030,
+  "timestampMs": 91870,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 92030,
+  "endMs": 92460,
+  "timestampMs": 92245,
+  "confidence": null
+ },
+ {
+  "text": " have.",
+  "startMs": 92460,
+  "endMs": 92830,
+  "timestampMs": 92645,
+  "confidence": null
+ },
+ {
+  "text": " Pakicetus",
+  "startMs": 93170,
+  "endMs": 93890,
+  "timestampMs": 93530,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 93890,
+  "endMs": 94040,
+  "timestampMs": 93965,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 94040,
+  "endMs": 94160,
+  "timestampMs": 94100,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 94160,
+  "endMs": 94230,
+  "timestampMs": 94195,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 94230,
+  "endMs": 94370,
+  "timestampMs": 94300,
+  "confidence": null
+ },
+ {
+  "text": " earliest",
+  "startMs": 94370,
+  "endMs": 94780,
+  "timestampMs": 94575,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 94780,
+  "endMs": 95110,
+  "timestampMs": 94945,
+  "confidence": null
+ },
+ {
+  "text": " we",
+  "startMs": 95110,
+  "endMs": 95220,
+  "timestampMs": 95165,
+  "confidence": null
+ },
+ {
+  "text": " know",
+  "startMs": 95220,
+  "endMs": 95520,
+  "timestampMs": 95370,
+  "confidence": null
+ },
+ {
+  "text": " of.",
+  "startMs": 95520,
+  "endMs": 95670,
+  "timestampMs": 95595,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 96000,
+  "endMs": 96100,
+  "timestampMs": 96050,
+  "confidence": null
+ },
+ {
+  "text": " great-grandfather",
+  "startMs": 96100,
+  "endMs": 97110,
+  "timestampMs": 96605,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 97110,
+  "endMs": 97180,
+  "timestampMs": 97145,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 97180,
+  "endMs": 97260,
+  "timestampMs": 97220,
+  "confidence": null
+ },
+ {
+  "text": " giants.",
+  "startMs": 97260,
+  "endMs": 97910,
+  "timestampMs": 97585,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 98160,
+  "endMs": 98300,
+  "timestampMs": 98230,
+  "confidence": null
+ },
+ {
+  "text": " here's",
+  "startMs": 98300,
+  "endMs": 98480,
+  "timestampMs": 98390,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 98480,
+  "endMs": 98520,
+  "timestampMs": 98500,
+  "confidence": null
+ },
+ {
+  "text": " fun",
+  "startMs": 98520,
+  "endMs": 98740,
+  "timestampMs": 98630,
+  "confidence": null
+ },
+ {
+  "text": " fact.",
+  "startMs": 98740,
+  "endMs": 99190,
+  "timestampMs": 98965,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 99460,
+  "endMs": 99580,
+  "timestampMs": 99520,
+  "confidence": null
+ },
+ {
+  "text": " closest",
+  "startMs": 99580,
+  "endMs": 100010,
+  "timestampMs": 99795,
+  "confidence": null
+ },
+ {
+  "text": " living",
+  "startMs": 100010,
+  "endMs": 100250,
+  "timestampMs": 100130,
+  "confidence": null
+ },
+ {
+  "text": " cousin",
+  "startMs": 100250,
+  "endMs": 100570,
+  "timestampMs": 100410,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 100570,
+  "endMs": 100670,
+  "timestampMs": 100620,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 100670,
+  "endMs": 101000,
+  "timestampMs": 100835,
+  "confidence": null
+ },
+ {
+  "text": " today?",
+  "startMs": 101000,
+  "endMs": 101500,
+  "timestampMs": 101250,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 101860,
+  "endMs": 102020,
+  "timestampMs": 101940,
+  "confidence": null
+ },
+ {
+  "text": " hippo.",
+  "startMs": 102020,
+  "endMs": 102600,
+  "timestampMs": 102310,
+  "confidence": null
+ },
+ {
+  "text": " Over",
+  "startMs": 103180,
+  "endMs": 103400,
+  "timestampMs": 103290,
+  "confidence": null
+ },
+ {
+  "text": " millions",
+  "startMs": 103400,
+  "endMs": 103910,
+  "timestampMs": 103655,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 103910,
+  "endMs": 104010,
+  "timestampMs": 103960,
+  "confidence": null
+ },
+ {
+  "text": " years,",
+  "startMs": 104010,
+  "endMs": 104510,
+  "timestampMs": 104260,
+  "confidence": null
+ },
+ {
+  "text": " Pakicetus's",
+  "startMs": 104510,
+  "endMs": 105440,
+  "timestampMs": 104975,
+  "confidence": null
+ },
+ {
+  "text": " family",
+  "startMs": 105440,
+  "endMs": 105790,
+  "timestampMs": 105615,
+  "confidence": null
+ },
+ {
+  "text": " moves",
+  "startMs": 105790,
+  "endMs": 106110,
+  "timestampMs": 105950,
+  "confidence": null
+ },
+ {
+  "text": " deeper",
+  "startMs": 106110,
+  "endMs": 106480,
+  "timestampMs": 106295,
+  "confidence": null
+ },
+ {
+  "text": " into",
+  "startMs": 106480,
+  "endMs": 106660,
+  "timestampMs": 106570,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 106660,
+  "endMs": 106740,
+  "timestampMs": 106700,
+  "confidence": null
+ },
+ {
+  "text": " water.",
+  "startMs": 106740,
+  "endMs": 107230,
+  "timestampMs": 106985,
+  "confidence": null
+ },
+ {
+  "text": " Their",
+  "startMs": 107440,
+  "endMs": 107600,
+  "timestampMs": 107520,
+  "confidence": null
+ },
+ {
+  "text": " legs",
+  "startMs": 107600,
+  "endMs": 107970,
+  "timestampMs": 107785,
+  "confidence": null
+ },
+ {
+  "text": " shrink.",
+  "startMs": 107970,
+  "endMs": 108460,
+  "timestampMs": 108215,
+  "confidence": null
+ },
+ {
+  "text": " Their",
+  "startMs": 108550,
+  "endMs": 108670,
+  "timestampMs": 108610,
+  "confidence": null
+ },
+ {
+  "text": " bodies",
+  "startMs": 108670,
+  "endMs": 109130,
+  "timestampMs": 108900,
+  "confidence": null
+ },
+ {
+  "text": " get",
+  "startMs": 109130,
+  "endMs": 109290,
+  "timestampMs": 109210,
+  "confidence": null
+ },
+ {
+  "text": " longer.",
+  "startMs": 109290,
+  "endMs": 109830,
+  "timestampMs": 109560,
+  "confidence": null
+ },
+ {
+  "text": " Their",
+  "startMs": 110070,
+  "endMs": 110170,
+  "timestampMs": 110120,
+  "confidence": null
+ },
+ {
+  "text": " nostrils",
+  "startMs": 110170,
+  "endMs": 110760,
+  "timestampMs": 110465,
+  "confidence": null
+ },
+ {
+  "text": " move",
+  "startMs": 110760,
+  "endMs": 110980,
+  "timestampMs": 110870,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 110980,
+  "endMs": 111080,
+  "timestampMs": 111030,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 111080,
+  "endMs": 111170,
+  "timestampMs": 111125,
+  "confidence": null
+ },
+ {
+  "text": " top",
+  "startMs": 111170,
+  "endMs": 111450,
+  "timestampMs": 111310,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 111450,
+  "endMs": 111550,
+  "timestampMs": 111500,
+  "confidence": null
+ },
+ {
+  "text": " their",
+  "startMs": 111550,
+  "endMs": 111690,
+  "timestampMs": 111620,
+  "confidence": null
+ },
+ {
+  "text": " heads",
+  "startMs": 111690,
+  "endMs": 112120,
+  "timestampMs": 111905,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 112120,
+  "endMs": 112230,
+  "timestampMs": 112175,
+  "confidence": null
+ },
+ {
+  "text": " become",
+  "startMs": 112230,
+  "endMs": 112540,
+  "timestampMs": 112385,
+  "confidence": null
+ },
+ {
+  "text": " blowholes.",
+  "startMs": 112540,
+  "endMs": 113240,
+  "timestampMs": 112890,
+  "confidence": null
+ },
+ {
+  "text": " By",
+  "startMs": 113450,
+  "endMs": 113640,
+  "timestampMs": 113545,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 113640,
+  "endMs": 113850,
+  "timestampMs": 113745,
+  "confidence": null
+ },
+ {
+  "text": " forty",
+  "startMs": 113850,
+  "endMs": 114160,
+  "timestampMs": 114005,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 114160,
+  "endMs": 114520,
+  "timestampMs": 114340,
+  "confidence": null
+ },
+ {
+  "text": " years",
+  "startMs": 114520,
+  "endMs": 114830,
+  "timestampMs": 114675,
+  "confidence": null
+ },
+ {
+  "text": " ago,",
+  "startMs": 114830,
+  "endMs": 115190,
+  "timestampMs": 115010,
+  "confidence": null
+ },
+ {
+  "text": " some",
+  "startMs": 115520,
+  "endMs": 115800,
+  "timestampMs": 115660,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 115800,
+  "endMs": 116180,
+  "timestampMs": 115990,
+  "confidence": null
+ },
+ {
+  "text": " live",
+  "startMs": 116180,
+  "endMs": 116380,
+  "timestampMs": 116280,
+  "confidence": null
+ },
+ {
+  "text": " only",
+  "startMs": 116380,
+  "endMs": 116730,
+  "timestampMs": 116555,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 116730,
+  "endMs": 116840,
+  "timestampMs": 116785,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 116840,
+  "endMs": 116910,
+  "timestampMs": 116875,
+  "confidence": null
+ },
+ {
+  "text": " sea.",
+  "startMs": 116910,
+  "endMs": 117320,
+  "timestampMs": 117115,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 117700,
+  "endMs": 117870,
+  "timestampMs": 117785,
+  "confidence": null
+ },
+ {
+  "text": " some",
+  "startMs": 117870,
+  "endMs": 118140,
+  "timestampMs": 118005,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 118140,
+  "endMs": 118250,
+  "timestampMs": 118195,
+  "confidence": null
+ },
+ {
+  "text": " them",
+  "startMs": 118250,
+  "endMs": 118490,
+  "timestampMs": 118370,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 118490,
+  "endMs": 118710,
+  "timestampMs": 118600,
+  "confidence": null
+ },
+ {
+  "text": " big.",
+  "startMs": 118710,
+  "endMs": 119280,
+  "timestampMs": 118995,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 119600,
+  "endMs": 119750,
+  "timestampMs": 119675,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 119750,
+  "endMs": 120020,
+  "timestampMs": 119885,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 120020,
+  "endMs": 120240,
+  "timestampMs": 120130,
+  "confidence": null
+ },
+ {
+  "text": " three,",
+  "startMs": 120240,
+  "endMs": 120650,
+  "timestampMs": 120445,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 120910,
+  "endMs": 121510,
+  "timestampMs": 121210,
+  "confidence": null
+ },
+ {
+  "text": " announced",
+  "startMs": 121510,
+  "endMs": 121970,
+  "timestampMs": 121740,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 121970,
+  "endMs": 122120,
+  "timestampMs": 122045,
+  "confidence": null
+ },
+ {
+  "text": " thirty",
+  "startMs": 122120,
+  "endMs": 122480,
+  "timestampMs": 122300,
+  "confidence": null
+ },
+ {
+  "text": " nine",
+  "startMs": 122480,
+  "endMs": 122750,
+  "timestampMs": 122615,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 122750,
+  "endMs": 123190,
+  "timestampMs": 122970,
+  "confidence": null
+ },
+ {
+  "text": " year",
+  "startMs": 123190,
+  "endMs": 123420,
+  "timestampMs": 123305,
+  "confidence": null
+ },
+ {
+  "text": " old",
+  "startMs": 123420,
+  "endMs": 123620,
+  "timestampMs": 123520,
+  "confidence": null
+ },
+ {
+  "text": " fossil",
+  "startMs": 123620,
+  "endMs": 124080,
+  "timestampMs": 123850,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 124080,
+  "endMs": 124390,
+  "timestampMs": 124235,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 124390,
+  "endMs": 124700,
+  "timestampMs": 124545,
+  "confidence": null
+ },
+ {
+  "text": " Peru,",
+  "startMs": 124700,
+  "endMs": 125240,
+  "timestampMs": 124970,
+  "confidence": null
+ },
+ {
+  "text": " called",
+  "startMs": 125470,
+  "endMs": 125770,
+  "timestampMs": 125620,
+  "confidence": null
+ },
+ {
+  "text": " Perucetus.",
+  "startMs": 125770,
+  "endMs": 126650,
+  "timestampMs": 126210,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 126940,
+  "endMs": 127080,
+  "timestampMs": 127010,
+  "confidence": null
+ },
+ {
+  "text": " said",
+  "startMs": 127080,
+  "endMs": 127280,
+  "timestampMs": 127180,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 127280,
+  "endMs": 127360,
+  "timestampMs": 127320,
+  "confidence": null
+ },
+ {
+  "text": " might",
+  "startMs": 127360,
+  "endMs": 127550,
+  "timestampMs": 127455,
+  "confidence": null
+ },
+ {
+  "text": " have",
+  "startMs": 127550,
+  "endMs": 127670,
+  "timestampMs": 127610,
+  "confidence": null
+ },
+ {
+  "text": " been",
+  "startMs": 127670,
+  "endMs": 127830,
+  "timestampMs": 127750,
+  "confidence": null
+ },
+ {
+  "text": " even",
+  "startMs": 127830,
+  "endMs": 128110,
+  "timestampMs": 127970,
+  "confidence": null
+ },
+ {
+  "text": " heavier",
+  "startMs": 128110,
+  "endMs": 128560,
+  "timestampMs": 128335,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 128560,
+  "endMs": 128690,
+  "timestampMs": 128625,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 128690,
+  "endMs": 128730,
+  "timestampMs": 128710,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 128730,
+  "endMs": 128960,
+  "timestampMs": 128845,
+  "confidence": null
+ },
+ {
+  "text": " whale.",
+  "startMs": 128960,
+  "endMs": 129320,
+  "timestampMs": 129140,
+  "confidence": null
+ },
+ {
+  "text": " Headlines",
+  "startMs": 129910,
+  "endMs": 130370,
+  "timestampMs": 130140,
+  "confidence": null
+ },
+ {
+  "text": " everywhere",
+  "startMs": 130370,
+  "endMs": 130910,
+  "timestampMs": 130640,
+  "confidence": null
+ },
+ {
+  "text": " said",
+  "startMs": 130910,
+  "endMs": 131130,
+  "timestampMs": 131020,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 131130,
+  "endMs": 131190,
+  "timestampMs": 131160,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 131190,
+  "endMs": 131420,
+  "timestampMs": 131305,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 131420,
+  "endMs": 131770,
+  "timestampMs": 131595,
+  "confidence": null
+ },
+ {
+  "text": " had",
+  "startMs": 131770,
+  "endMs": 131950,
+  "timestampMs": 131860,
+  "confidence": null
+ },
+ {
+  "text": " lost",
+  "startMs": 131950,
+  "endMs": 132350,
+  "timestampMs": 132150,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 132350,
+  "endMs": 132480,
+  "timestampMs": 132415,
+  "confidence": null
+ },
+ {
+  "text": " crown.",
+  "startMs": 132480,
+  "endMs": 132980,
+  "timestampMs": 132730,
+  "confidence": null
+ },
+ {
+  "text": " Then,",
+  "startMs": 133410,
+  "endMs": 133790,
+  "timestampMs": 133600,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 133940,
+  "endMs": 134030,
+  "timestampMs": 133985,
+  "confidence": null
+ },
+ {
+  "text": " year",
+  "startMs": 134030,
+  "endMs": 134290,
+  "timestampMs": 134160,
+  "confidence": null
+ },
+ {
+  "text": " later,",
+  "startMs": 134290,
+  "endMs": 134790,
+  "timestampMs": 134540,
+  "confidence": null
+ },
+ {
+  "text": " two",
+  "startMs": 135030,
+  "endMs": 135320,
+  "timestampMs": 135175,
+  "confidence": null
+ },
+ {
+  "text": " other",
+  "startMs": 135320,
+  "endMs": 135550,
+  "timestampMs": 135435,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 135550,
+  "endMs": 136280,
+  "timestampMs": 135915,
+  "confidence": null
+ },
+ {
+  "text": " checked",
+  "startMs": 136280,
+  "endMs": 136560,
+  "timestampMs": 136420,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 136560,
+  "endMs": 136640,
+  "timestampMs": 136600,
+  "confidence": null
+ },
+ {
+  "text": " math.",
+  "startMs": 136640,
+  "endMs": 137130,
+  "timestampMs": 136885,
+  "confidence": null
+ },
+ {
+  "text": " Their",
+  "startMs": 137490,
+  "endMs": 137730,
+  "timestampMs": 137610,
+  "confidence": null
+ },
+ {
+  "text": " answer?",
+  "startMs": 137730,
+  "endMs": 138190,
+  "timestampMs": 137960,
+  "confidence": null
+ },
+ {
+  "text": " Perucetus",
+  "startMs": 138510,
+  "endMs": 139160,
+  "timestampMs": 138835,
+  "confidence": null
+ },
+ {
+  "text": " probably",
+  "startMs": 139160,
+  "endMs": 139650,
+  "timestampMs": 139405,
+  "confidence": null
+ },
+ {
+  "text": " weighed",
+  "startMs": 139650,
+  "endMs": 139900,
+  "timestampMs": 139775,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 139900,
+  "endMs": 140170,
+  "timestampMs": 140035,
+  "confidence": null
+ },
+ {
+  "text": " sixty",
+  "startMs": 140170,
+  "endMs": 140650,
+  "timestampMs": 140410,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 140650,
+  "endMs": 140760,
+  "timestampMs": 140705,
+  "confidence": null
+ },
+ {
+  "text": " seventy",
+  "startMs": 140760,
+  "endMs": 141190,
+  "timestampMs": 140975,
+  "confidence": null
+ },
+ {
+  "text": " tonnes.",
+  "startMs": 141190,
+  "endMs": 141780,
+  "timestampMs": 141485,
+  "confidence": null
+ },
+ {
+  "text": " Big,",
+  "startMs": 142050,
+  "endMs": 142440,
+  "timestampMs": 142245,
+  "confidence": null
+ },
+ {
+  "text": " but",
+  "startMs": 142770,
+  "endMs": 142900,
+  "timestampMs": 142835,
+  "confidence": null
+ },
+ {
+  "text": " nowhere",
+  "startMs": 142900,
+  "endMs": 143280,
+  "timestampMs": 143090,
+  "confidence": null
+ },
+ {
+  "text": " near",
+  "startMs": 143280,
+  "endMs": 143500,
+  "timestampMs": 143390,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 143500,
+  "endMs": 143540,
+  "timestampMs": 143520,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 143540,
+  "endMs": 143780,
+  "timestampMs": 143660,
+  "confidence": null
+ },
+ {
+  "text": " whale.",
+  "startMs": 143780,
+  "endMs": 144190,
+  "timestampMs": 143985,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 144440,
+  "endMs": 144520,
+  "timestampMs": 144480,
+  "confidence": null
+ },
+ {
+  "text": " crown",
+  "startMs": 144520,
+  "endMs": 144890,
+  "timestampMs": 144705,
+  "confidence": null
+ },
+ {
+  "text": " stays",
+  "startMs": 144890,
+  "endMs": 145290,
+  "timestampMs": 145090,
+  "confidence": null
+ },
+ {
+  "text": " where",
+  "startMs": 145290,
+  "endMs": 145480,
+  "timestampMs": 145385,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 145480,
+  "endMs": 145540,
+  "timestampMs": 145510,
+  "confidence": null
+ },
+ {
+  "text": " is.",
+  "startMs": 145540,
+  "endMs": 145940,
+  "timestampMs": 145740,
+  "confidence": null
+ },
+ {
+  "text": " Around",
+  "startMs": 146620,
+  "endMs": 146960,
+  "timestampMs": 146790,
+  "confidence": null
+ },
+ {
+  "text": " thirty",
+  "startMs": 146960,
+  "endMs": 147270,
+  "timestampMs": 147115,
+  "confidence": null
+ },
+ {
+  "text": " four",
+  "startMs": 147270,
+  "endMs": 147500,
+  "timestampMs": 147385,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 147500,
+  "endMs": 147880,
+  "timestampMs": 147690,
+  "confidence": null
+ },
+ {
+  "text": " years",
+  "startMs": 147880,
+  "endMs": 148130,
+  "timestampMs": 148005,
+  "confidence": null
+ },
+ {
+  "text": " ago,",
+  "startMs": 148130,
+  "endMs": 148440,
+  "timestampMs": 148285,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 148620,
+  "endMs": 148700,
+  "timestampMs": 148660,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 148700,
+  "endMs": 148980,
+  "timestampMs": 148840,
+  "confidence": null
+ },
+ {
+  "text": " family",
+  "startMs": 148980,
+  "endMs": 149380,
+  "timestampMs": 149180,
+  "confidence": null
+ },
+ {
+  "text": " splits",
+  "startMs": 149380,
+  "endMs": 149820,
+  "timestampMs": 149600,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 149820,
+  "endMs": 149990,
+  "timestampMs": 149905,
+  "confidence": null
+ },
+ {
+  "text": " two.",
+  "startMs": 149990,
+  "endMs": 150430,
+  "timestampMs": 150210,
+  "confidence": null
+ },
+ {
+  "text": " On",
+  "startMs": 150750,
+  "endMs": 150910,
+  "timestampMs": 150830,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 150910,
+  "endMs": 151140,
+  "timestampMs": 151025,
+  "confidence": null
+ },
+ {
+  "text": " side",
+  "startMs": 151140,
+  "endMs": 151540,
+  "timestampMs": 151340,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 151540,
+  "endMs": 151650,
+  "timestampMs": 151595,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 151650,
+  "endMs": 151760,
+  "timestampMs": 151705,
+  "confidence": null
+ },
+ {
+  "text": " toothed",
+  "startMs": 151760,
+  "endMs": 152160,
+  "timestampMs": 151960,
+  "confidence": null
+ },
+ {
+  "text": " whales,",
+  "startMs": 152160,
+  "endMs": 152650,
+  "timestampMs": 152405,
+  "confidence": null
+ },
+ {
+  "text": " like",
+  "startMs": 152840,
+  "endMs": 153040,
+  "timestampMs": 152940,
+  "confidence": null
+ },
+ {
+  "text": " dolphins",
+  "startMs": 153040,
+  "endMs": 153530,
+  "timestampMs": 153285,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 153530,
+  "endMs": 153650,
+  "timestampMs": 153590,
+  "confidence": null
+ },
+ {
+  "text": " sperm",
+  "startMs": 153650,
+  "endMs": 154000,
+  "timestampMs": 153825,
+  "confidence": null
+ },
+ {
+  "text": " whales.",
+  "startMs": 154000,
+  "endMs": 154440,
+  "timestampMs": 154220,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 154690,
+  "endMs": 154790,
+  "timestampMs": 154740,
+  "confidence": null
+ },
+ {
+  "text": " hunt",
+  "startMs": 154790,
+  "endMs": 155100,
+  "timestampMs": 154945,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 155100,
+  "endMs": 155330,
+  "timestampMs": 155215,
+  "confidence": null
+ },
+ {
+  "text": " animal",
+  "startMs": 155330,
+  "endMs": 155760,
+  "timestampMs": 155545,
+  "confidence": null
+ },
+ {
+  "text": " at",
+  "startMs": 155760,
+  "endMs": 155840,
+  "timestampMs": 155800,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 155840,
+  "endMs": 155880,
+  "timestampMs": 155860,
+  "confidence": null
+ },
+ {
+  "text": " time.",
+  "startMs": 155880,
+  "endMs": 156370,
+  "timestampMs": 156125,
+  "confidence": null
+ },
+ {
+  "text": " On",
+  "startMs": 156630,
+  "endMs": 156770,
+  "timestampMs": 156700,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 156770,
+  "endMs": 156890,
+  "timestampMs": 156830,
+  "confidence": null
+ },
+ {
+  "text": " other",
+  "startMs": 156890,
+  "endMs": 157070,
+  "timestampMs": 156980,
+  "confidence": null
+ },
+ {
+  "text": " side",
+  "startMs": 157070,
+  "endMs": 157510,
+  "timestampMs": 157290,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 157750,
+  "endMs": 157850,
+  "timestampMs": 157800,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 157850,
+  "endMs": 158160,
+  "timestampMs": 158005,
+  "confidence": null
+ },
+ {
+  "text": " baleen",
+  "startMs": 158160,
+  "endMs": 158480,
+  "timestampMs": 158320,
+  "confidence": null
+ },
+ {
+  "text": " whales.",
+  "startMs": 158480,
+  "endMs": 158980,
+  "timestampMs": 158730,
+  "confidence": null
+ },
+ {
+  "text": " Instead",
+  "startMs": 159590,
+  "endMs": 159930,
+  "timestampMs": 159760,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 159930,
+  "endMs": 160040,
+  "timestampMs": 159985,
+  "confidence": null
+ },
+ {
+  "text": " teeth,",
+  "startMs": 160040,
+  "endMs": 160450,
+  "timestampMs": 160245,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 160740,
+  "endMs": 160870,
+  "timestampMs": 160805,
+  "confidence": null
+ },
+ {
+  "text": " grow",
+  "startMs": 160870,
+  "endMs": 161120,
+  "timestampMs": 160995,
+  "confidence": null
+ },
+ {
+  "text": " plates",
+  "startMs": 161120,
+  "endMs": 161500,
+  "timestampMs": 161310,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 161500,
+  "endMs": 161690,
+  "timestampMs": 161595,
+  "confidence": null
+ },
+ {
+  "text": " baleen.",
+  "startMs": 161690,
+  "endMs": 162310,
+  "timestampMs": 162000,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 162630,
+  "endMs": 162800,
+  "timestampMs": 162715,
+  "confidence": null
+ },
+ {
+  "text": " made",
+  "startMs": 162800,
+  "endMs": 162970,
+  "timestampMs": 162885,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 162970,
+  "endMs": 163060,
+  "timestampMs": 163015,
+  "confidence": null
+ },
+ {
+  "text": " keratin,",
+  "startMs": 163060,
+  "endMs": 163620,
+  "timestampMs": 163340,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 163910,
+  "endMs": 163990,
+  "timestampMs": 163950,
+  "confidence": null
+ },
+ {
+  "text": " same",
+  "startMs": 163990,
+  "endMs": 164290,
+  "timestampMs": 164140,
+  "confidence": null
+ },
+ {
+  "text": " stuff",
+  "startMs": 164290,
+  "endMs": 164610,
+  "timestampMs": 164450,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 164610,
+  "endMs": 164710,
+  "timestampMs": 164660,
+  "confidence": null
+ },
+ {
+  "text": " your",
+  "startMs": 164710,
+  "endMs": 164800,
+  "timestampMs": 164755,
+  "confidence": null
+ },
+ {
+  "text": " fingernails.",
+  "startMs": 164800,
+  "endMs": 165520,
+  "timestampMs": 165160,
+  "confidence": null
+ },
+ {
+  "text": " Baleen",
+  "startMs": 165740,
+  "endMs": 166160,
+  "timestampMs": 165950,
+  "confidence": null
+ },
+ {
+  "text": " works",
+  "startMs": 166160,
+  "endMs": 166450,
+  "timestampMs": 166305,
+  "confidence": null
+ },
+ {
+  "text": " like",
+  "startMs": 166450,
+  "endMs": 166640,
+  "timestampMs": 166545,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 166640,
+  "endMs": 166700,
+  "timestampMs": 166670,
+  "confidence": null
+ },
+ {
+  "text": " giant",
+  "startMs": 166700,
+  "endMs": 167100,
+  "timestampMs": 166900,
+  "confidence": null
+ },
+ {
+  "text": " sieve.",
+  "startMs": 167100,
+  "endMs": 167610,
+  "timestampMs": 167355,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 167890,
+  "endMs": 167970,
+  "timestampMs": 167930,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 167970,
+  "endMs": 168280,
+  "timestampMs": 168125,
+  "confidence": null
+ },
+ {
+  "text": " takes",
+  "startMs": 168280,
+  "endMs": 168550,
+  "timestampMs": 168415,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 168550,
+  "endMs": 168620,
+  "timestampMs": 168585,
+  "confidence": null
+ },
+ {
+  "text": " water",
+  "startMs": 168620,
+  "endMs": 168920,
+  "timestampMs": 168770,
+  "confidence": null
+ },
+ {
+  "text": " full",
+  "startMs": 168920,
+  "endMs": 169170,
+  "timestampMs": 169045,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 169170,
+  "endMs": 169260,
+  "timestampMs": 169215,
+  "confidence": null
+ },
+ {
+  "text": " food,",
+  "startMs": 169260,
+  "endMs": 169630,
+  "timestampMs": 169445,
+  "confidence": null
+ },
+ {
+  "text": " pushes",
+  "startMs": 169860,
+  "endMs": 170200,
+  "timestampMs": 170030,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 170200,
+  "endMs": 170270,
+  "timestampMs": 170235,
+  "confidence": null
+ },
+ {
+  "text": " water",
+  "startMs": 170270,
+  "endMs": 170590,
+  "timestampMs": 170430,
+  "confidence": null
+ },
+ {
+  "text": " out,",
+  "startMs": 170590,
+  "endMs": 170930,
+  "timestampMs": 170760,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 171180,
+  "endMs": 171340,
+  "timestampMs": 171260,
+  "confidence": null
+ },
+ {
+  "text": " keeps",
+  "startMs": 171340,
+  "endMs": 171650,
+  "timestampMs": 171495,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 171650,
+  "endMs": 171740,
+  "timestampMs": 171695,
+  "confidence": null
+ },
+ {
+  "text": " food.",
+  "startMs": 171740,
+  "endMs": 172140,
+  "timestampMs": 171940,
+  "confidence": null
+ },
+ {
+  "text": " Now",
+  "startMs": 172790,
+  "endMs": 172910,
+  "timestampMs": 172850,
+  "confidence": null
+ },
+ {
+  "text": " here's",
+  "startMs": 172910,
+  "endMs": 173290,
+  "timestampMs": 173100,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 173290,
+  "endMs": 173360,
+  "timestampMs": 173325,
+  "confidence": null
+ },
+ {
+  "text": " strange",
+  "startMs": 173360,
+  "endMs": 173760,
+  "timestampMs": 173560,
+  "confidence": null
+ },
+ {
+  "text": " part.",
+  "startMs": 173760,
+  "endMs": 174070,
+  "timestampMs": 173915,
+  "confidence": null
+ },
+ {
+  "text": " Baleen",
+  "startMs": 174490,
+  "endMs": 174880,
+  "timestampMs": 174685,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 174880,
+  "endMs": 175240,
+  "timestampMs": 175060,
+  "confidence": null
+ },
+ {
+  "text": " have",
+  "startMs": 175240,
+  "endMs": 175380,
+  "timestampMs": 175310,
+  "confidence": null
+ },
+ {
+  "text": " been",
+  "startMs": 175380,
+  "endMs": 175520,
+  "timestampMs": 175450,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 175520,
+  "endMs": 175870,
+  "timestampMs": 175695,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 175870,
+  "endMs": 176000,
+  "timestampMs": 175935,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 176000,
+  "endMs": 176220,
+  "timestampMs": 176110,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 176220,
+  "endMs": 176400,
+  "timestampMs": 176310,
+  "confidence": null
+ },
+ {
+  "text": " thirty",
+  "startMs": 176400,
+  "endMs": 176860,
+  "timestampMs": 176630,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 176860,
+  "endMs": 177360,
+  "timestampMs": 177110,
+  "confidence": null
+ },
+ {
+  "text": " years.",
+  "startMs": 177360,
+  "endMs": 177870,
+  "timestampMs": 177615,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 178120,
+  "endMs": 178340,
+  "timestampMs": 178230,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 178340,
+  "endMs": 178480,
+  "timestampMs": 178410,
+  "confidence": null
+ },
+ {
+  "text": " most",
+  "startMs": 178480,
+  "endMs": 178750,
+  "timestampMs": 178615,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 178750,
+  "endMs": 178830,
+  "timestampMs": 178790,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 178830,
+  "endMs": 179030,
+  "timestampMs": 178930,
+  "confidence": null
+ },
+ {
+  "text": " time,",
+  "startMs": 179030,
+  "endMs": 179420,
+  "timestampMs": 179225,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 179640,
+  "endMs": 179800,
+  "timestampMs": 179720,
+  "confidence": null
+ },
+ {
+  "text": " aren't",
+  "startMs": 179800,
+  "endMs": 180220,
+  "timestampMs": 180010,
+  "confidence": null
+ },
+ {
+  "text": " giants.",
+  "startMs": 180250,
+  "endMs": 180930,
+  "timestampMs": 180590,
+  "confidence": null
+ },
+ {
+  "text": " Most",
+  "startMs": 181250,
+  "endMs": 181490,
+  "timestampMs": 181370,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 181490,
+  "endMs": 181580,
+  "timestampMs": 181535,
+  "confidence": null
+ },
+ {
+  "text": " them",
+  "startMs": 181580,
+  "endMs": 181750,
+  "timestampMs": 181665,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 181750,
+  "endMs": 181900,
+  "timestampMs": 181825,
+  "confidence": null
+ },
+ {
+  "text": " much",
+  "startMs": 181900,
+  "endMs": 182210,
+  "timestampMs": 182055,
+  "confidence": null
+ },
+ {
+  "text": " smaller",
+  "startMs": 182210,
+  "endMs": 182700,
+  "timestampMs": 182455,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 182700,
+  "endMs": 182860,
+  "timestampMs": 182780,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 182860,
+  "endMs": 182930,
+  "timestampMs": 182895,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 182930,
+  "endMs": 183260,
+  "timestampMs": 183095,
+  "confidence": null
+ },
+ {
+  "text": " we",
+  "startMs": 183260,
+  "endMs": 183360,
+  "timestampMs": 183310,
+  "confidence": null
+ },
+ {
+  "text": " see",
+  "startMs": 183360,
+  "endMs": 183570,
+  "timestampMs": 183465,
+  "confidence": null
+ },
+ {
+  "text": " today.",
+  "startMs": 183570,
+  "endMs": 184040,
+  "timestampMs": 183805,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 184440,
+  "endMs": 184660,
+  "timestampMs": 184550,
+  "confidence": null
+ },
+ {
+  "text": " when",
+  "startMs": 184660,
+  "endMs": 184980,
+  "timestampMs": 184820,
+  "confidence": null
+ },
+ {
+  "text": " did",
+  "startMs": 184980,
+  "endMs": 185110,
+  "timestampMs": 185045,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 185110,
+  "endMs": 185240,
+  "timestampMs": 185175,
+  "confidence": null
+ },
+ {
+  "text": " become",
+  "startMs": 185240,
+  "endMs": 185590,
+  "timestampMs": 185415,
+  "confidence": null
+ },
+ {
+  "text": " huge?",
+  "startMs": 185590,
+  "endMs": 186120,
+  "timestampMs": 185855,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 186680,
+  "endMs": 186810,
+  "timestampMs": 186745,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 186810,
+  "endMs": 187100,
+  "timestampMs": 186955,
+  "confidence": null
+ },
+ {
+  "text": " seventeen,",
+  "startMs": 187100,
+  "endMs": 187770,
+  "timestampMs": 187435,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 187990,
+  "endMs": 188080,
+  "timestampMs": 188035,
+  "confidence": null
+ },
+ {
+  "text": " team",
+  "startMs": 188080,
+  "endMs": 188320,
+  "timestampMs": 188200,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 188320,
+  "endMs": 188410,
+  "timestampMs": 188365,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 188410,
+  "endMs": 189050,
+  "timestampMs": 188730,
+  "confidence": null
+ },
+ {
+  "text": " measured",
+  "startMs": 189050,
+  "endMs": 189420,
+  "timestampMs": 189235,
+  "confidence": null
+ },
+ {
+  "text": " fossil",
+  "startMs": 189420,
+  "endMs": 189910,
+  "timestampMs": 189665,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 189910,
+  "endMs": 190190,
+  "timestampMs": 190050,
+  "confidence": null
+ },
+ {
+  "text": " skulls",
+  "startMs": 190190,
+  "endMs": 190660,
+  "timestampMs": 190425,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 190660,
+  "endMs": 190750,
+  "timestampMs": 190705,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 190750,
+  "endMs": 190800,
+  "timestampMs": 190775,
+  "confidence": null
+ },
+ {
+  "text": " museum",
+  "startMs": 190800,
+  "endMs": 191280,
+  "timestampMs": 191040,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 191280,
+  "endMs": 191340,
+  "timestampMs": 191310,
+  "confidence": null
+ },
+ {
+  "text": " Washington.",
+  "startMs": 191340,
+  "endMs": 192040,
+  "timestampMs": 191690,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 192670,
+  "endMs": 192740,
+  "timestampMs": 192705,
+  "confidence": null
+ },
+ {
+  "text": " width",
+  "startMs": 192740,
+  "endMs": 193050,
+  "timestampMs": 192895,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 193050,
+  "endMs": 193170,
+  "timestampMs": 193110,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 193170,
+  "endMs": 193210,
+  "timestampMs": 193190,
+  "confidence": null
+ },
+ {
+  "text": " whale's",
+  "startMs": 193210,
+  "endMs": 193570,
+  "timestampMs": 193390,
+  "confidence": null
+ },
+ {
+  "text": " skull",
+  "startMs": 193570,
+  "endMs": 194100,
+  "timestampMs": 193835,
+  "confidence": null
+ },
+ {
+  "text": " tells",
+  "startMs": 194280,
+  "endMs": 194550,
+  "timestampMs": 194415,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 194550,
+  "endMs": 194660,
+  "timestampMs": 194605,
+  "confidence": null
+ },
+ {
+  "text": " roughly",
+  "startMs": 194660,
+  "endMs": 195010,
+  "timestampMs": 194835,
+  "confidence": null
+ },
+ {
+  "text": " how",
+  "startMs": 195010,
+  "endMs": 195240,
+  "timestampMs": 195125,
+  "confidence": null
+ },
+ {
+  "text": " long",
+  "startMs": 195240,
+  "endMs": 195590,
+  "timestampMs": 195415,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 195590,
+  "endMs": 195650,
+  "timestampMs": 195620,
+  "confidence": null
+ },
+ {
+  "text": " whole",
+  "startMs": 195650,
+  "endMs": 195990,
+  "timestampMs": 195820,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 195990,
+  "endMs": 196270,
+  "timestampMs": 196130,
+  "confidence": null
+ },
+ {
+  "text": " was.",
+  "startMs": 196270,
+  "endMs": 196810,
+  "timestampMs": 196540,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 197210,
+  "endMs": 197330,
+  "timestampMs": 197270,
+  "confidence": null
+ },
+ {
+  "text": " what",
+  "startMs": 197330,
+  "endMs": 197510,
+  "timestampMs": 197420,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 197510,
+  "endMs": 197640,
+  "timestampMs": 197575,
+  "confidence": null
+ },
+ {
+  "text": " found",
+  "startMs": 197640,
+  "endMs": 198000,
+  "timestampMs": 197820,
+  "confidence": null
+ },
+ {
+  "text": " surprised",
+  "startMs": 198000,
+  "endMs": 198530,
+  "timestampMs": 198265,
+  "confidence": null
+ },
+ {
+  "text": " them.",
+  "startMs": 198530,
+  "endMs": 198770,
+  "timestampMs": 198650,
+  "confidence": null
+ },
+ {
+  "text": " Whales",
+  "startMs": 199380,
+  "endMs": 199760,
+  "timestampMs": 199570,
+  "confidence": null
+ },
+ {
+  "text": " longer",
+  "startMs": 199760,
+  "endMs": 200170,
+  "timestampMs": 199965,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 200170,
+  "endMs": 200310,
+  "timestampMs": 200240,
+  "confidence": null
+ },
+ {
+  "text": " ten",
+  "startMs": 200310,
+  "endMs": 200550,
+  "timestampMs": 200430,
+  "confidence": null
+ },
+ {
+  "text": " meters",
+  "startMs": 200550,
+  "endMs": 200870,
+  "timestampMs": 200710,
+  "confidence": null
+ },
+ {
+  "text": " only",
+  "startMs": 200870,
+  "endMs": 201220,
+  "timestampMs": 201045,
+  "confidence": null
+ },
+ {
+  "text": " start",
+  "startMs": 201220,
+  "endMs": 201510,
+  "timestampMs": 201365,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 201510,
+  "endMs": 201630,
+  "timestampMs": 201570,
+  "confidence": null
+ },
+ {
+  "text": " appear",
+  "startMs": 201630,
+  "endMs": 202050,
+  "timestampMs": 201840,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 202050,
+  "endMs": 202330,
+  "timestampMs": 202190,
+  "confidence": null
+ },
+ {
+  "text": " four",
+  "startMs": 202330,
+  "endMs": 202610,
+  "timestampMs": 202470,
+  "confidence": null
+ },
+ {
+  "text": " point",
+  "startMs": 202610,
+  "endMs": 202900,
+  "timestampMs": 202755,
+  "confidence": null
+ },
+ {
+  "text": " five",
+  "startMs": 202900,
+  "endMs": 203300,
+  "timestampMs": 203100,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 203300,
+  "endMs": 203680,
+  "timestampMs": 203490,
+  "confidence": null
+ },
+ {
+  "text": " years",
+  "startMs": 203680,
+  "endMs": 203930,
+  "timestampMs": 203805,
+  "confidence": null
+ },
+ {
+  "text": " ago.",
+  "startMs": 203930,
+  "endMs": 204280,
+  "timestampMs": 204105,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 204630,
+  "endMs": 204710,
+  "timestampMs": 204670,
+  "confidence": null
+ },
+ {
+  "text": " true",
+  "startMs": 204710,
+  "endMs": 204980,
+  "timestampMs": 204845,
+  "confidence": null
+ },
+ {
+  "text": " giants",
+  "startMs": 204980,
+  "endMs": 205400,
+  "timestampMs": 205190,
+  "confidence": null
+ },
+ {
+  "text": " arrive",
+  "startMs": 205400,
+  "endMs": 205800,
+  "timestampMs": 205600,
+  "confidence": null
+ },
+ {
+  "text": " even",
+  "startMs": 205800,
+  "endMs": 206090,
+  "timestampMs": 205945,
+  "confidence": null
+ },
+ {
+  "text": " later,",
+  "startMs": 206090,
+  "endMs": 206510,
+  "timestampMs": 206300,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 206800,
+  "endMs": 207160,
+  "timestampMs": 206980,
+  "confidence": null
+ },
+ {
+  "text": " two",
+  "startMs": 207160,
+  "endMs": 207400,
+  "timestampMs": 207280,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 207400,
+  "endMs": 207470,
+  "timestampMs": 207435,
+  "confidence": null
+ },
+ {
+  "text": " three",
+  "startMs": 207470,
+  "endMs": 207740,
+  "timestampMs": 207605,
+  "confidence": null
+ },
+ {
+  "text": " million",
+  "startMs": 207740,
+  "endMs": 208050,
+  "timestampMs": 207895,
+  "confidence": null
+ },
+ {
+  "text": " years",
+  "startMs": 208050,
+  "endMs": 208270,
+  "timestampMs": 208160,
+  "confidence": null
+ },
+ {
+  "text": " ago.",
+  "startMs": 208270,
+  "endMs": 208580,
+  "timestampMs": 208425,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 208950,
+  "endMs": 209080,
+  "timestampMs": 209015,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 209080,
+  "endMs": 209420,
+  "timestampMs": 209250,
+  "confidence": null
+ },
+ {
+  "text": " history,",
+  "startMs": 209420,
+  "endMs": 210010,
+  "timestampMs": 209715,
+  "confidence": null
+ },
+ {
+  "text": " that's",
+  "startMs": 210230,
+  "endMs": 210490,
+  "timestampMs": 210360,
+  "confidence": null
+ },
+ {
+  "text": " yesterday.",
+  "startMs": 210490,
+  "endMs": 211190,
+  "timestampMs": 210840,
+  "confidence": null
+ },
+ {
+  "text": " As",
+  "startMs": 211440,
+  "endMs": 211640,
+  "timestampMs": 211540,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 211640,
+  "endMs": 211760,
+  "timestampMs": 211700,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 211760,
+  "endMs": 211820,
+  "timestampMs": 211790,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 211820,
+  "endMs": 211890,
+  "timestampMs": 211855,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 211890,
+  "endMs": 212480,
+  "timestampMs": 212185,
+  "confidence": null
+ },
+ {
+  "text": " put",
+  "startMs": 212480,
+  "endMs": 212690,
+  "timestampMs": 212585,
+  "confidence": null
+ },
+ {
+  "text": " it,",
+  "startMs": 212690,
+  "endMs": 212840,
+  "timestampMs": 212765,
+  "confidence": null
+ },
+ {
+  "text": " \"We",
+  "startMs": 213260,
+  "endMs": 213420,
+  "timestampMs": 213340,
+  "confidence": null
+ },
+ {
+  "text": " live",
+  "startMs": 213420,
+  "endMs": 213830,
+  "timestampMs": 213625,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 213830,
+  "endMs": 214010,
+  "timestampMs": 213920,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 214010,
+  "endMs": 214080,
+  "timestampMs": 214045,
+  "confidence": null
+ },
+ {
+  "text": " time",
+  "startMs": 214080,
+  "endMs": 214650,
+  "timestampMs": 214365,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 214650,
+  "endMs": 214780,
+  "timestampMs": 214715,
+  "confidence": null
+ },
+ {
+  "text": " giants.\"",
+  "startMs": 214780,
+  "endMs": 215500,
+  "timestampMs": 215140,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 216120,
+  "endMs": 216260,
+  "timestampMs": 216190,
+  "confidence": null
+ },
+ {
+  "text": " what",
+  "startMs": 216260,
+  "endMs": 216430,
+  "timestampMs": 216345,
+  "confidence": null
+ },
+ {
+  "text": " changed?",
+  "startMs": 216430,
+  "endMs": 216960,
+  "timestampMs": 216695,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 217340,
+  "endMs": 217490,
+  "timestampMs": 217415,
+  "confidence": null
+ },
+ {
+  "text": " Ice",
+  "startMs": 217490,
+  "endMs": 217730,
+  "timestampMs": 217610,
+  "confidence": null
+ },
+ {
+  "text": " Ages.",
+  "startMs": 217730,
+  "endMs": 218190,
+  "timestampMs": 217960,
+  "confidence": null
+ },
+ {
+  "text": " As",
+  "startMs": 218480,
+  "endMs": 218710,
+  "timestampMs": 218595,
+  "confidence": null
+ },
+ {
+  "text": " giant",
+  "startMs": 218710,
+  "endMs": 219050,
+  "timestampMs": 218880,
+  "confidence": null
+ },
+ {
+  "text": " ice",
+  "startMs": 219050,
+  "endMs": 219240,
+  "timestampMs": 219145,
+  "confidence": null
+ },
+ {
+  "text": " sheets",
+  "startMs": 219240,
+  "endMs": 219590,
+  "timestampMs": 219415,
+  "confidence": null
+ },
+ {
+  "text": " grow",
+  "startMs": 219590,
+  "endMs": 219880,
+  "timestampMs": 219735,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 219880,
+  "endMs": 219940,
+  "timestampMs": 219910,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 219940,
+  "endMs": 220010,
+  "timestampMs": 219975,
+  "confidence": null
+ },
+ {
+  "text": " north,",
+  "startMs": 220010,
+  "endMs": 220480,
+  "timestampMs": 220245,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 220730,
+  "endMs": 220880,
+  "timestampMs": 220805,
+  "confidence": null
+ },
+ {
+  "text": " oceans",
+  "startMs": 220880,
+  "endMs": 221310,
+  "timestampMs": 221095,
+  "confidence": null
+ },
+ {
+  "text": " change.",
+  "startMs": 221310,
+  "endMs": 221780,
+  "timestampMs": 221545,
+  "confidence": null
+ },
+ {
+  "text": " Before,",
+  "startMs": 222100,
+  "endMs": 222720,
+  "timestampMs": 222410,
+  "confidence": null
+ },
+ {
+  "text": " food",
+  "startMs": 222940,
+  "endMs": 223170,
+  "timestampMs": 223055,
+  "confidence": null
+ },
+ {
+  "text": " was",
+  "startMs": 223170,
+  "endMs": 223310,
+  "timestampMs": 223240,
+  "confidence": null
+ },
+ {
+  "text": " spread",
+  "startMs": 223310,
+  "endMs": 223620,
+  "timestampMs": 223465,
+  "confidence": null
+ },
+ {
+  "text": " out",
+  "startMs": 223620,
+  "endMs": 223820,
+  "timestampMs": 223720,
+  "confidence": null
+ },
+ {
+  "text": " fairly",
+  "startMs": 223820,
+  "endMs": 224280,
+  "timestampMs": 224050,
+  "confidence": null
+ },
+ {
+  "text": " evenly",
+  "startMs": 224280,
+  "endMs": 224700,
+  "timestampMs": 224490,
+  "confidence": null
+ },
+ {
+  "text": " across",
+  "startMs": 224700,
+  "endMs": 225080,
+  "timestampMs": 224890,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 225080,
+  "endMs": 225160,
+  "timestampMs": 225120,
+  "confidence": null
+ },
+ {
+  "text": " sea.",
+  "startMs": 225160,
+  "endMs": 225560,
+  "timestampMs": 225360,
+  "confidence": null
+ },
+ {
+  "text": " Now,",
+  "startMs": 226190,
+  "endMs": 226540,
+  "timestampMs": 226365,
+  "confidence": null
+ },
+ {
+  "text": " melting",
+  "startMs": 226780,
+  "endMs": 227160,
+  "timestampMs": 226970,
+  "confidence": null
+ },
+ {
+  "text": " ice",
+  "startMs": 227160,
+  "endMs": 227560,
+  "timestampMs": 227360,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 227560,
+  "endMs": 227760,
+  "timestampMs": 227660,
+  "confidence": null
+ },
+ {
+  "text": " strong",
+  "startMs": 227760,
+  "endMs": 228170,
+  "timestampMs": 227965,
+  "confidence": null
+ },
+ {
+  "text": " winds",
+  "startMs": 228170,
+  "endMs": 228630,
+  "timestampMs": 228400,
+  "confidence": null
+ },
+ {
+  "text": " bring",
+  "startMs": 228770,
+  "endMs": 229050,
+  "timestampMs": 228910,
+  "confidence": null
+ },
+ {
+  "text": " nutrients",
+  "startMs": 229050,
+  "endMs": 229520,
+  "timestampMs": 229285,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 229520,
+  "endMs": 229760,
+  "timestampMs": 229640,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 229760,
+  "endMs": 229850,
+  "timestampMs": 229805,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 229850,
+  "endMs": 229930,
+  "timestampMs": 229890,
+  "confidence": null
+ },
+ {
+  "text": " surface.",
+  "startMs": 229930,
+  "endMs": 230560,
+  "timestampMs": 230245,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 230900,
+  "endMs": 231000,
+  "timestampMs": 230950,
+  "confidence": null
+ },
+ {
+  "text": " happens",
+  "startMs": 231000,
+  "endMs": 231410,
+  "timestampMs": 231205,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 231410,
+  "endMs": 231510,
+  "timestampMs": 231460,
+  "confidence": null
+ },
+ {
+  "text": " certain",
+  "startMs": 231510,
+  "endMs": 231810,
+  "timestampMs": 231660,
+  "confidence": null
+ },
+ {
+  "text": " places,",
+  "startMs": 231810,
+  "endMs": 232420,
+  "timestampMs": 232115,
+  "confidence": null
+ },
+ {
+  "text": " at",
+  "startMs": 232610,
+  "endMs": 232780,
+  "timestampMs": 232695,
+  "confidence": null
+ },
+ {
+  "text": " certain",
+  "startMs": 232780,
+  "endMs": 233060,
+  "timestampMs": 232920,
+  "confidence": null
+ },
+ {
+  "text": " times",
+  "startMs": 233060,
+  "endMs": 233360,
+  "timestampMs": 233210,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 233360,
+  "endMs": 233450,
+  "timestampMs": 233405,
+  "confidence": null
+ },
+ {
+  "text": " year.",
+  "startMs": 233450,
+  "endMs": 233790,
+  "timestampMs": 233620,
+  "confidence": null
+ },
+ {
+  "text": " Tiny",
+  "startMs": 234360,
+  "endMs": 234730,
+  "timestampMs": 234545,
+  "confidence": null
+ },
+ {
+  "text": " plants",
+  "startMs": 234730,
+  "endMs": 235090,
+  "timestampMs": 234910,
+  "confidence": null
+ },
+ {
+  "text": " bloom.",
+  "startMs": 235090,
+  "endMs": 235530,
+  "timestampMs": 235310,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 235770,
+  "endMs": 235910,
+  "timestampMs": 235840,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 235910,
+  "endMs": 236040,
+  "timestampMs": 235975,
+  "confidence": null
+ },
+ {
+  "text": " animals",
+  "startMs": 236040,
+  "endMs": 236340,
+  "timestampMs": 236190,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 236340,
+  "endMs": 236460,
+  "timestampMs": 236400,
+  "confidence": null
+ },
+ {
+  "text": " eat",
+  "startMs": 236460,
+  "endMs": 236620,
+  "timestampMs": 236540,
+  "confidence": null
+ },
+ {
+  "text": " them",
+  "startMs": 236620,
+  "endMs": 236830,
+  "timestampMs": 236725,
+  "confidence": null
+ },
+ {
+  "text": " gather",
+  "startMs": 236830,
+  "endMs": 237240,
+  "timestampMs": 237035,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 237240,
+  "endMs": 237320,
+  "timestampMs": 237280,
+  "confidence": null
+ },
+ {
+  "text": " enormous,",
+  "startMs": 237320,
+  "endMs": 238050,
+  "timestampMs": 237685,
+  "confidence": null
+ },
+ {
+  "text": " crowded",
+  "startMs": 238250,
+  "endMs": 238710,
+  "timestampMs": 238480,
+  "confidence": null
+ },
+ {
+  "text": " swarms.",
+  "startMs": 238710,
+  "endMs": 239420,
+  "timestampMs": 239065,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 239690,
+  "endMs": 239870,
+  "timestampMs": 239780,
+  "confidence": null
+ },
+ {
+  "text": " this",
+  "startMs": 239870,
+  "endMs": 240070,
+  "timestampMs": 239970,
+  "confidence": null
+ },
+ {
+  "text": " brings",
+  "startMs": 240070,
+  "endMs": 240390,
+  "timestampMs": 240230,
+  "confidence": null
+ },
+ {
+  "text": " us",
+  "startMs": 240390,
+  "endMs": 240590,
+  "timestampMs": 240490,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 240590,
+  "endMs": 240700,
+  "timestampMs": 240645,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 240700,
+  "endMs": 240790,
+  "timestampMs": 240745,
+  "confidence": null
+ },
+ {
+  "text": " rule",
+  "startMs": 240790,
+  "endMs": 241350,
+  "timestampMs": 241070,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 241600,
+  "endMs": 241770,
+  "timestampMs": 241685,
+  "confidence": null
+ },
+ {
+  "text": " made",
+  "startMs": 241770,
+  "endMs": 242030,
+  "timestampMs": 241900,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 242030,
+  "endMs": 242090,
+  "timestampMs": 242060,
+  "confidence": null
+ },
+ {
+  "text": " giants.",
+  "startMs": 242090,
+  "endMs": 242810,
+  "timestampMs": 242450,
+  "confidence": null
+ },
+ {
+  "text": " For",
+  "startMs": 243020,
+  "endMs": 243180,
+  "timestampMs": 243100,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 243180,
+  "endMs": 243210,
+  "timestampMs": 243195,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 243210,
+  "endMs": 243540,
+  "timestampMs": 243375,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 243540,
+  "endMs": 243660,
+  "timestampMs": 243600,
+  "confidence": null
+ },
+ {
+  "text": " eats",
+  "startMs": 243660,
+  "endMs": 243840,
+  "timestampMs": 243750,
+  "confidence": null
+ },
+ {
+  "text": " by",
+  "startMs": 243840,
+  "endMs": 243970,
+  "timestampMs": 243905,
+  "confidence": null
+ },
+ {
+  "text": " filtering,",
+  "startMs": 243970,
+  "endMs": 244620,
+  "timestampMs": 244295,
+  "confidence": null
+ },
+ {
+  "text": " size",
+  "startMs": 245020,
+  "endMs": 245430,
+  "timestampMs": 245225,
+  "confidence": null
+ },
+ {
+  "text": " pays.",
+  "startMs": 245430,
+  "endMs": 246090,
+  "timestampMs": 245760,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 246510,
+  "endMs": 246600,
+  "timestampMs": 246555,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 246600,
+  "endMs": 246860,
+  "timestampMs": 246730,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 246860,
+  "endMs": 247030,
+  "timestampMs": 246945,
+  "confidence": null
+ },
+ {
+  "text": " are,",
+  "startMs": 247030,
+  "endMs": 247370,
+  "timestampMs": 247200,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 247570,
+  "endMs": 247630,
+  "timestampMs": 247600,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 247630,
+  "endMs": 247830,
+  "timestampMs": 247730,
+  "confidence": null
+ },
+ {
+  "text": " food",
+  "startMs": 247830,
+  "endMs": 248150,
+  "timestampMs": 247990,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 248150,
+  "endMs": 248260,
+  "timestampMs": 248205,
+  "confidence": null
+ },
+ {
+  "text": " get",
+  "startMs": 248260,
+  "endMs": 248470,
+  "timestampMs": 248365,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 248470,
+  "endMs": 248670,
+  "timestampMs": 248570,
+  "confidence": null
+ },
+ {
+  "text": " every",
+  "startMs": 248670,
+  "endMs": 248940,
+  "timestampMs": 248805,
+  "confidence": null
+ },
+ {
+  "text": " mouthful.",
+  "startMs": 248940,
+  "endMs": 249640,
+  "timestampMs": 249290,
+  "confidence": null
+ },
+ {
+  "text": " Remember",
+  "startMs": 250070,
+  "endMs": 250400,
+  "timestampMs": 250235,
+  "confidence": null
+ },
+ {
+  "text": " this",
+  "startMs": 250400,
+  "endMs": 250600,
+  "timestampMs": 250500,
+  "confidence": null
+ },
+ {
+  "text": " rule.",
+  "startMs": 250600,
+  "endMs": 251020,
+  "timestampMs": 250810,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 251500,
+  "endMs": 251560,
+  "timestampMs": 251530,
+  "confidence": null
+ },
+ {
+  "text": " explains",
+  "startMs": 251560,
+  "endMs": 252070,
+  "timestampMs": 251815,
+  "confidence": null
+ },
+ {
+  "text": " almost",
+  "startMs": 252070,
+  "endMs": 252640,
+  "timestampMs": 252355,
+  "confidence": null
+ },
+ {
+  "text": " everything",
+  "startMs": 252640,
+  "endMs": 253300,
+  "timestampMs": 252970,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 253300,
+  "endMs": 253660,
+  "timestampMs": 253480,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 253660,
+  "endMs": 253740,
+  "timestampMs": 253700,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 253740,
+  "endMs": 254010,
+  "timestampMs": 253875,
+  "confidence": null
+ },
+ {
+  "text": " whale.",
+  "startMs": 254010,
+  "endMs": 254510,
+  "timestampMs": 254260,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 255080,
+  "endMs": 255150,
+  "timestampMs": 255115,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 255150,
+  "endMs": 255380,
+  "timestampMs": 255265,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 255380,
+  "endMs": 255760,
+  "timestampMs": 255570,
+  "confidence": null
+ },
+ {
+  "text": " belongs",
+  "startMs": 255760,
+  "endMs": 256170,
+  "timestampMs": 255965,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 256170,
+  "endMs": 256320,
+  "timestampMs": 256245,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 256320,
+  "endMs": 256350,
+  "timestampMs": 256335,
+  "confidence": null
+ },
+ {
+  "text": " group",
+  "startMs": 256350,
+  "endMs": 256610,
+  "timestampMs": 256480,
+  "confidence": null
+ },
+ {
+  "text": " called",
+  "startMs": 256610,
+  "endMs": 257040,
+  "timestampMs": 256825,
+  "confidence": null
+ },
+ {
+  "text": " rorquals.",
+  "startMs": 257130,
+  "endMs": 258000,
+  "timestampMs": 257565,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 258280,
+  "endMs": 258420,
+  "timestampMs": 258350,
+  "confidence": null
+ },
+ {
+  "text": " feed",
+  "startMs": 258420,
+  "endMs": 258670,
+  "timestampMs": 258545,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 258670,
+  "endMs": 258770,
+  "timestampMs": 258720,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 258770,
+  "endMs": 258800,
+  "timestampMs": 258785,
+  "confidence": null
+ },
+ {
+  "text": " way",
+  "startMs": 258800,
+  "endMs": 259110,
+  "timestampMs": 258955,
+  "confidence": null
+ },
+ {
+  "text": " called",
+  "startMs": 259110,
+  "endMs": 259600,
+  "timestampMs": 259355,
+  "confidence": null
+ },
+ {
+  "text": " lunge",
+  "startMs": 259760,
+  "endMs": 260200,
+  "timestampMs": 259980,
+  "confidence": null
+ },
+ {
+  "text": " feeding.",
+  "startMs": 260200,
+  "endMs": 260640,
+  "timestampMs": 260420,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 261000,
+  "endMs": 261080,
+  "timestampMs": 261040,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 261080,
+  "endMs": 261370,
+  "timestampMs": 261225,
+  "confidence": null
+ },
+ {
+  "text": " speeds",
+  "startMs": 261370,
+  "endMs": 261860,
+  "timestampMs": 261615,
+  "confidence": null
+ },
+ {
+  "text": " toward",
+  "startMs": 261860,
+  "endMs": 262240,
+  "timestampMs": 262050,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 262240,
+  "endMs": 262270,
+  "timestampMs": 262255,
+  "confidence": null
+ },
+ {
+  "text": " cloud",
+  "startMs": 262270,
+  "endMs": 262640,
+  "timestampMs": 262455,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 262640,
+  "endMs": 262710,
+  "timestampMs": 262675,
+  "confidence": null
+ },
+ {
+  "text": " food",
+  "startMs": 262710,
+  "endMs": 263160,
+  "timestampMs": 262935,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 263280,
+  "endMs": 263430,
+  "timestampMs": 263355,
+  "confidence": null
+ },
+ {
+  "text": " opens",
+  "startMs": 263430,
+  "endMs": 263770,
+  "timestampMs": 263600,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 263770,
+  "endMs": 263910,
+  "timestampMs": 263840,
+  "confidence": null
+ },
+ {
+  "text": " mouth",
+  "startMs": 263910,
+  "endMs": 264200,
+  "timestampMs": 264055,
+  "confidence": null
+ },
+ {
+  "text": " wide.",
+  "startMs": 264200,
+  "endMs": 264650,
+  "timestampMs": 264425,
+  "confidence": null
+ },
+ {
+  "text": " Its",
+  "startMs": 265220,
+  "endMs": 265390,
+  "timestampMs": 265305,
+  "confidence": null
+ },
+ {
+  "text": " lower",
+  "startMs": 265390,
+  "endMs": 265720,
+  "timestampMs": 265555,
+  "confidence": null
+ },
+ {
+  "text": " jaw",
+  "startMs": 265720,
+  "endMs": 266030,
+  "timestampMs": 265875,
+  "confidence": null
+ },
+ {
+  "text": " swings",
+  "startMs": 266030,
+  "endMs": 266450,
+  "timestampMs": 266240,
+  "confidence": null
+ },
+ {
+  "text": " open,",
+  "startMs": 266450,
+  "endMs": 266790,
+  "timestampMs": 266620,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 267010,
+  "endMs": 267150,
+  "timestampMs": 267080,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 267150,
+  "endMs": 267290,
+  "timestampMs": 267220,
+  "confidence": null
+ },
+ {
+  "text": " throat",
+  "startMs": 267290,
+  "endMs": 267590,
+  "timestampMs": 267440,
+  "confidence": null
+ },
+ {
+  "text": " has",
+  "startMs": 267590,
+  "endMs": 267830,
+  "timestampMs": 267710,
+  "confidence": null
+ },
+ {
+  "text": " long",
+  "startMs": 267830,
+  "endMs": 268180,
+  "timestampMs": 268005,
+  "confidence": null
+ },
+ {
+  "text": " folds",
+  "startMs": 268180,
+  "endMs": 268740,
+  "timestampMs": 268460,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 268740,
+  "endMs": 268910,
+  "timestampMs": 268825,
+  "confidence": null
+ },
+ {
+  "text": " stretch",
+  "startMs": 268910,
+  "endMs": 269320,
+  "timestampMs": 269115,
+  "confidence": null
+ },
+ {
+  "text": " like",
+  "startMs": 269320,
+  "endMs": 269490,
+  "timestampMs": 269405,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 269490,
+  "endMs": 269540,
+  "timestampMs": 269515,
+  "confidence": null
+ },
+ {
+  "text": " balloon.",
+  "startMs": 269540,
+  "endMs": 270010,
+  "timestampMs": 269775,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 270350,
+  "endMs": 270470,
+  "timestampMs": 270410,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 270470,
+  "endMs": 270790,
+  "timestampMs": 270630,
+  "confidence": null
+ },
+ {
+  "text": " gulp,",
+  "startMs": 270790,
+  "endMs": 271130,
+  "timestampMs": 270960,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 271350,
+  "endMs": 271460,
+  "timestampMs": 271405,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 271460,
+  "endMs": 271590,
+  "timestampMs": 271525,
+  "confidence": null
+ },
+ {
+  "text": " take",
+  "startMs": 271590,
+  "endMs": 271860,
+  "timestampMs": 271725,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 271860,
+  "endMs": 271960,
+  "timestampMs": 271910,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 271960,
+  "endMs": 272000,
+  "timestampMs": 271980,
+  "confidence": null
+ },
+ {
+  "text": " volume",
+  "startMs": 272000,
+  "endMs": 272440,
+  "timestampMs": 272220,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 272440,
+  "endMs": 272560,
+  "timestampMs": 272500,
+  "confidence": null
+ },
+ {
+  "text": " water",
+  "startMs": 272560,
+  "endMs": 272990,
+  "timestampMs": 272775,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 273170,
+  "endMs": 273420,
+  "timestampMs": 273295,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 273420,
+  "endMs": 273580,
+  "timestampMs": 273500,
+  "confidence": null
+ },
+ {
+  "text": " big",
+  "startMs": 273580,
+  "endMs": 273780,
+  "timestampMs": 273680,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 273780,
+  "endMs": 273900,
+  "timestampMs": 273840,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 273900,
+  "endMs": 274040,
+  "timestampMs": 273970,
+  "confidence": null
+ },
+ {
+  "text": " own",
+  "startMs": 274040,
+  "endMs": 274210,
+  "timestampMs": 274125,
+  "confidence": null
+ },
+ {
+  "text": " body.",
+  "startMs": 274210,
+  "endMs": 274610,
+  "timestampMs": 274410,
+  "confidence": null
+ },
+ {
+  "text": " Then",
+  "startMs": 274920,
+  "endMs": 275040,
+  "timestampMs": 274980,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 275040,
+  "endMs": 275110,
+  "timestampMs": 275075,
+  "confidence": null
+ },
+ {
+  "text": " closes",
+  "startMs": 275110,
+  "endMs": 275540,
+  "timestampMs": 275325,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 275540,
+  "endMs": 275680,
+  "timestampMs": 275610,
+  "confidence": null
+ },
+ {
+  "text": " mouth,",
+  "startMs": 275680,
+  "endMs": 276020,
+  "timestampMs": 275850,
+  "confidence": null
+ },
+ {
+  "text": " pushes",
+  "startMs": 276020,
+  "endMs": 276610,
+  "timestampMs": 276315,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 276610,
+  "endMs": 276680,
+  "timestampMs": 276645,
+  "confidence": null
+ },
+ {
+  "text": " water",
+  "startMs": 276680,
+  "endMs": 277000,
+  "timestampMs": 276840,
+  "confidence": null
+ },
+ {
+  "text": " out",
+  "startMs": 277000,
+  "endMs": 277140,
+  "timestampMs": 277070,
+  "confidence": null
+ },
+ {
+  "text": " through",
+  "startMs": 277140,
+  "endMs": 277290,
+  "timestampMs": 277215,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 277290,
+  "endMs": 277420,
+  "timestampMs": 277355,
+  "confidence": null
+ },
+ {
+  "text": " baleen,",
+  "startMs": 277420,
+  "endMs": 277900,
+  "timestampMs": 277660,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 278030,
+  "endMs": 278170,
+  "timestampMs": 278100,
+  "confidence": null
+ },
+ {
+  "text": " swallows",
+  "startMs": 278170,
+  "endMs": 278600,
+  "timestampMs": 278385,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 278600,
+  "endMs": 278680,
+  "timestampMs": 278640,
+  "confidence": null
+ },
+ {
+  "text": " food.",
+  "startMs": 278680,
+  "endMs": 279100,
+  "timestampMs": 278890,
+  "confidence": null
+ },
+ {
+  "text": " Each",
+  "startMs": 279720,
+  "endMs": 279960,
+  "timestampMs": 279840,
+  "confidence": null
+ },
+ {
+  "text": " lunge",
+  "startMs": 279960,
+  "endMs": 280360,
+  "timestampMs": 280160,
+  "confidence": null
+ },
+ {
+  "text": " costs",
+  "startMs": 280360,
+  "endMs": 280760,
+  "timestampMs": 280560,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 280760,
+  "endMs": 280820,
+  "timestampMs": 280790,
+  "confidence": null
+ },
+ {
+  "text": " lot",
+  "startMs": 280820,
+  "endMs": 281180,
+  "timestampMs": 281000,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 281180,
+  "endMs": 281260,
+  "timestampMs": 281220,
+  "confidence": null
+ },
+ {
+  "text": " energy.",
+  "startMs": 281260,
+  "endMs": 281750,
+  "timestampMs": 281505,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 282120,
+  "endMs": 282280,
+  "timestampMs": 282200,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 282280,
+  "endMs": 282730,
+  "timestampMs": 282505,
+  "confidence": null
+ },
+ {
+  "text": " worked",
+  "startMs": 282730,
+  "endMs": 283000,
+  "timestampMs": 282865,
+  "confidence": null
+ },
+ {
+  "text": " out",
+  "startMs": 283000,
+  "endMs": 283170,
+  "timestampMs": 283085,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 283170,
+  "endMs": 283340,
+  "timestampMs": 283255,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 283340,
+  "endMs": 283370,
+  "timestampMs": 283355,
+  "confidence": null
+ },
+ {
+  "text": " single",
+  "startMs": 283370,
+  "endMs": 283860,
+  "timestampMs": 283615,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 283860,
+  "endMs": 284130,
+  "timestampMs": 283995,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 284130,
+  "endMs": 284420,
+  "timestampMs": 284275,
+  "confidence": null
+ },
+ {
+  "text": " mouthful",
+  "startMs": 284420,
+  "endMs": 285080,
+  "timestampMs": 284750,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 285280,
+  "endMs": 285420,
+  "timestampMs": 285350,
+  "confidence": null
+ },
+ {
+  "text": " hold",
+  "startMs": 285420,
+  "endMs": 285640,
+  "timestampMs": 285530,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 285640,
+  "endMs": 285760,
+  "timestampMs": 285700,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 285760,
+  "endMs": 285900,
+  "timestampMs": 285830,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 285900,
+  "endMs": 286160,
+  "timestampMs": 286030,
+  "confidence": null
+ },
+ {
+  "text": " four",
+  "startMs": 286160,
+  "endMs": 286550,
+  "timestampMs": 286355,
+  "confidence": null
+ },
+ {
+  "text": " lakhs",
+  "startMs": 286550,
+  "endMs": 286940,
+  "timestampMs": 286745,
+  "confidence": null
+ },
+ {
+  "text": " forty",
+  "startMs": 286940,
+  "endMs": 287320,
+  "timestampMs": 287130,
+  "confidence": null
+ },
+ {
+  "text": " three",
+  "startMs": 287320,
+  "endMs": 287610,
+  "timestampMs": 287465,
+  "confidence": null
+ },
+ {
+  "text": " thousand",
+  "startMs": 287610,
+  "endMs": 288100,
+  "timestampMs": 287855,
+  "confidence": null
+ },
+ {
+  "text": " calories.",
+  "startMs": 288100,
+  "endMs": 288820,
+  "timestampMs": 288460,
+  "confidence": null
+ },
+ {
+  "text": " That's",
+  "startMs": 289360,
+  "endMs": 289560,
+  "timestampMs": 289460,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 289560,
+  "endMs": 289810,
+  "timestampMs": 289685,
+  "confidence": null
+ },
+ {
+  "text": " two",
+  "startMs": 289810,
+  "endMs": 290020,
+  "timestampMs": 289915,
+  "confidence": null
+ },
+ {
+  "text": " forty",
+  "startMs": 290020,
+  "endMs": 290310,
+  "timestampMs": 290165,
+  "confidence": null
+ },
+ {
+  "text": " times",
+  "startMs": 290310,
+  "endMs": 290700,
+  "timestampMs": 290505,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 290700,
+  "endMs": 290920,
+  "timestampMs": 290810,
+  "confidence": null
+ },
+ {
+  "text": " energy",
+  "startMs": 290920,
+  "endMs": 291340,
+  "timestampMs": 291130,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 291340,
+  "endMs": 291460,
+  "timestampMs": 291400,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 291460,
+  "endMs": 291520,
+  "timestampMs": 291490,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 291520,
+  "endMs": 291780,
+  "timestampMs": 291650,
+  "confidence": null
+ },
+ {
+  "text": " spends",
+  "startMs": 291780,
+  "endMs": 292120,
+  "timestampMs": 291950,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 292120,
+  "endMs": 292220,
+  "timestampMs": 292170,
+  "confidence": null
+ },
+ {
+  "text": " take",
+  "startMs": 292220,
+  "endMs": 292490,
+  "timestampMs": 292355,
+  "confidence": null
+ },
+ {
+  "text": " it.",
+  "startMs": 292490,
+  "endMs": 292680,
+  "timestampMs": 292585,
+  "confidence": null
+ },
+ {
+  "text": " Or,",
+  "startMs": 292960,
+  "endMs": 293330,
+  "timestampMs": 293145,
+  "confidence": null
+ },
+ {
+  "text": " if",
+  "startMs": 293480,
+  "endMs": 293600,
+  "timestampMs": 293540,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 293600,
+  "endMs": 293740,
+  "timestampMs": 293670,
+  "confidence": null
+ },
+ {
+  "text": " like,",
+  "startMs": 293740,
+  "endMs": 294100,
+  "timestampMs": 293920,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 294350,
+  "endMs": 294430,
+  "timestampMs": 294390,
+  "confidence": null
+ },
+ {
+  "text": " same",
+  "startMs": 294430,
+  "endMs": 294690,
+  "timestampMs": 294560,
+  "confidence": null
+ },
+ {
+  "text": " energy",
+  "startMs": 294690,
+  "endMs": 295110,
+  "timestampMs": 294900,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 295110,
+  "endMs": 295230,
+  "timestampMs": 295170,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 295230,
+  "endMs": 295530,
+  "timestampMs": 295380,
+  "confidence": null
+ },
+ {
+  "text": " eight",
+  "startMs": 295750,
+  "endMs": 295920,
+  "timestampMs": 295835,
+  "confidence": null
+ },
+ {
+  "text": " hundred",
+  "startMs": 295920,
+  "endMs": 296310,
+  "timestampMs": 296115,
+  "confidence": null
+ },
+ {
+  "text": " burgers.",
+  "startMs": 296310,
+  "endMs": 296820,
+  "timestampMs": 296565,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 297060,
+  "endMs": 297180,
+  "timestampMs": 297120,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 297180,
+  "endMs": 297380,
+  "timestampMs": 297280,
+  "confidence": null
+ },
+ {
+  "text": " bite.",
+  "startMs": 297380,
+  "endMs": 297710,
+  "timestampMs": 297545,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 297980,
+  "endMs": 298140,
+  "timestampMs": 298060,
+  "confidence": null
+ },
+ {
+  "text": " what's",
+  "startMs": 298140,
+  "endMs": 298380,
+  "timestampMs": 298260,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 298380,
+  "endMs": 298480,
+  "timestampMs": 298430,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 298480,
+  "endMs": 298660,
+  "timestampMs": 298570,
+  "confidence": null
+ },
+ {
+  "text": " bite?",
+  "startMs": 298660,
+  "endMs": 299010,
+  "timestampMs": 298835,
+  "confidence": null
+ },
+ {
+  "text": " Krill.",
+  "startMs": 299360,
+  "endMs": 299850,
+  "timestampMs": 299605,
+  "confidence": null
+ },
+ {
+  "text": " Blue",
+  "startMs": 300060,
+  "endMs": 300250,
+  "timestampMs": 300155,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 300250,
+  "endMs": 300640,
+  "timestampMs": 300445,
+  "confidence": null
+ },
+ {
+  "text": " eat",
+  "startMs": 300640,
+  "endMs": 300820,
+  "timestampMs": 300730,
+  "confidence": null
+ },
+ {
+  "text": " almost",
+  "startMs": 300820,
+  "endMs": 301160,
+  "timestampMs": 300990,
+  "confidence": null
+ },
+ {
+  "text": " nothing",
+  "startMs": 301160,
+  "endMs": 301450,
+  "timestampMs": 301305,
+  "confidence": null
+ },
+ {
+  "text": " else.",
+  "startMs": 301450,
+  "endMs": 301790,
+  "timestampMs": 301620,
+  "confidence": null
+ },
+ {
+  "text": " Krill",
+  "startMs": 302060,
+  "endMs": 302370,
+  "timestampMs": 302215,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 302370,
+  "endMs": 302530,
+  "timestampMs": 302450,
+  "confidence": null
+ },
+ {
+  "text": " small,",
+  "startMs": 302530,
+  "endMs": 303110,
+  "timestampMs": 302820,
+  "confidence": null
+ },
+ {
+  "text": " shrimp-like",
+  "startMs": 303250,
+  "endMs": 303870,
+  "timestampMs": 303560,
+  "confidence": null
+ },
+ {
+  "text": " animals,",
+  "startMs": 303870,
+  "endMs": 304420,
+  "timestampMs": 304145,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 304660,
+  "endMs": 304900,
+  "timestampMs": 304780,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 304900,
+  "endMs": 304970,
+  "timestampMs": 304935,
+  "confidence": null
+ },
+ {
+  "text": " size",
+  "startMs": 304970,
+  "endMs": 305380,
+  "timestampMs": 305175,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 305380,
+  "endMs": 305500,
+  "timestampMs": 305440,
+  "confidence": null
+ },
+ {
+  "text": " your",
+  "startMs": 305500,
+  "endMs": 305750,
+  "timestampMs": 305625,
+  "confidence": null
+ },
+ {
+  "text": " little",
+  "startMs": 305750,
+  "endMs": 305980,
+  "timestampMs": 305865,
+  "confidence": null
+ },
+ {
+  "text": " finger.",
+  "startMs": 305980,
+  "endMs": 306430,
+  "timestampMs": 306205,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 306700,
+  "endMs": 306840,
+  "timestampMs": 306770,
+  "confidence": null
+ },
+ {
+  "text": " here's",
+  "startMs": 306840,
+  "endMs": 307100,
+  "timestampMs": 306970,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 307100,
+  "endMs": 307160,
+  "timestampMs": 307130,
+  "confidence": null
+ },
+ {
+  "text": " funny",
+  "startMs": 307160,
+  "endMs": 307430,
+  "timestampMs": 307295,
+  "confidence": null
+ },
+ {
+  "text": " part.",
+  "startMs": 307430,
+  "endMs": 307740,
+  "timestampMs": 307585,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 307970,
+  "endMs": 308120,
+  "timestampMs": 308045,
+  "confidence": null
+ },
+ {
+  "text": " biggest",
+  "startMs": 308120,
+  "endMs": 308590,
+  "timestampMs": 308355,
+  "confidence": null
+ },
+ {
+  "text": " animal",
+  "startMs": 308590,
+  "endMs": 309010,
+  "timestampMs": 308800,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 309010,
+  "endMs": 309130,
+  "timestampMs": 309070,
+  "confidence": null
+ },
+ {
+  "text": " has",
+  "startMs": 309130,
+  "endMs": 309300,
+  "timestampMs": 309215,
+  "confidence": null
+ },
+ {
+  "text": " ever",
+  "startMs": 309300,
+  "endMs": 309520,
+  "timestampMs": 309410,
+  "confidence": null
+ },
+ {
+  "text": " lived",
+  "startMs": 309520,
+  "endMs": 309890,
+  "timestampMs": 309705,
+  "confidence": null
+ },
+ {
+  "text": " survives",
+  "startMs": 310100,
+  "endMs": 310660,
+  "timestampMs": 310380,
+  "confidence": null
+ },
+ {
+  "text": " by",
+  "startMs": 310660,
+  "endMs": 310800,
+  "timestampMs": 310730,
+  "confidence": null
+ },
+ {
+  "text": " eating",
+  "startMs": 310800,
+  "endMs": 311200,
+  "timestampMs": 311000,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 311200,
+  "endMs": 311500,
+  "timestampMs": 311350,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 311500,
+  "endMs": 311740,
+  "timestampMs": 311620,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 311740,
+  "endMs": 311830,
+  "timestampMs": 311785,
+  "confidence": null
+ },
+ {
+  "text": " smallest.",
+  "startMs": 311830,
+  "endMs": 312550,
+  "timestampMs": 312190,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 313110,
+  "endMs": 313280,
+  "timestampMs": 313195,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 313280,
+  "endMs": 313690,
+  "timestampMs": 313485,
+  "confidence": null
+ },
+ {
+  "text": " come",
+  "startMs": 313690,
+  "endMs": 313940,
+  "timestampMs": 313815,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 313940,
+  "endMs": 314040,
+  "timestampMs": 313990,
+  "confidence": null
+ },
+ {
+  "text": " huge",
+  "startMs": 314040,
+  "endMs": 314510,
+  "timestampMs": 314275,
+  "confidence": null
+ },
+ {
+  "text": " swarms,",
+  "startMs": 314510,
+  "endMs": 315110,
+  "timestampMs": 314810,
+  "confidence": null
+ },
+ {
+  "text": " packed",
+  "startMs": 315300,
+  "endMs": 315710,
+  "timestampMs": 315505,
+  "confidence": null
+ },
+ {
+  "text": " tightly",
+  "startMs": 315710,
+  "endMs": 316100,
+  "timestampMs": 315905,
+  "confidence": null
+ },
+ {
+  "text": " together.",
+  "startMs": 316100,
+  "endMs": 316640,
+  "timestampMs": 316370,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 316830,
+  "endMs": 316980,
+  "timestampMs": 316905,
+  "confidence": null
+ },
+ {
+  "text": " remember",
+  "startMs": 316980,
+  "endMs": 317300,
+  "timestampMs": 317140,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 317300,
+  "endMs": 317390,
+  "timestampMs": 317345,
+  "confidence": null
+ },
+ {
+  "text": " rule?",
+  "startMs": 317390,
+  "endMs": 317840,
+  "timestampMs": 317615,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 318130,
+  "endMs": 318230,
+  "timestampMs": 318180,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 318230,
+  "endMs": 318500,
+  "timestampMs": 318365,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 318500,
+  "endMs": 318590,
+  "timestampMs": 318545,
+  "confidence": null
+ },
+ {
+  "text": " mouth,",
+  "startMs": 318590,
+  "endMs": 319010,
+  "timestampMs": 318800,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 319150,
+  "endMs": 319250,
+  "timestampMs": 319200,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 319250,
+  "endMs": 319500,
+  "timestampMs": 319375,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 319500,
+  "endMs": 319910,
+  "timestampMs": 319705,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 319910,
+  "endMs": 320050,
+  "timestampMs": 319980,
+  "confidence": null
+ },
+ {
+  "text": " every",
+  "startMs": 320050,
+  "endMs": 320460,
+  "timestampMs": 320255,
+  "confidence": null
+ },
+ {
+  "text": " gulp.",
+  "startMs": 320460,
+  "endMs": 320820,
+  "timestampMs": 320640,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 321160,
+  "endMs": 321230,
+  "timestampMs": 321195,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 321230,
+  "endMs": 321530,
+  "timestampMs": 321380,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 321530,
+  "endMs": 321780,
+  "timestampMs": 321655,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 321780,
+  "endMs": 321980,
+  "timestampMs": 321880,
+  "confidence": null
+ },
+ {
+  "text": " study",
+  "startMs": 321980,
+  "endMs": 322310,
+  "timestampMs": 322145,
+  "confidence": null
+ },
+ {
+  "text": " found",
+  "startMs": 322310,
+  "endMs": 322750,
+  "timestampMs": 322530,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 322750,
+  "endMs": 322960,
+  "timestampMs": 322855,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 322960,
+  "endMs": 323000,
+  "timestampMs": 322980,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 323000,
+  "endMs": 323320,
+  "timestampMs": 323160,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 323320,
+  "endMs": 323680,
+  "timestampMs": 323500,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 323680,
+  "endMs": 323850,
+  "timestampMs": 323765,
+  "confidence": null
+ },
+ {
+  "text": " eat",
+  "startMs": 323850,
+  "endMs": 324030,
+  "timestampMs": 323940,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 324030,
+  "endMs": 324200,
+  "timestampMs": 324115,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 324200,
+  "endMs": 324310,
+  "timestampMs": 324255,
+  "confidence": null
+ },
+ {
+  "text": " sixteen",
+  "startMs": 324310,
+  "endMs": 324920,
+  "timestampMs": 324615,
+  "confidence": null
+ },
+ {
+  "text": " tonnes",
+  "startMs": 324920,
+  "endMs": 325340,
+  "timestampMs": 325130,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 325340,
+  "endMs": 325460,
+  "timestampMs": 325400,
+  "confidence": null
+ },
+ {
+  "text": " krill.",
+  "startMs": 325460,
+  "endMs": 325900,
+  "timestampMs": 325680,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 326140,
+  "endMs": 326250,
+  "timestampMs": 326195,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 326250,
+  "endMs": 326290,
+  "timestampMs": 326270,
+  "confidence": null
+ },
+ {
+  "text": " single",
+  "startMs": 326290,
+  "endMs": 326740,
+  "timestampMs": 326515,
+  "confidence": null
+ },
+ {
+  "text": " day.",
+  "startMs": 326740,
+  "endMs": 327130,
+  "timestampMs": 326935,
+  "confidence": null
+ },
+ {
+  "text": " There's",
+  "startMs": 327810,
+  "endMs": 327980,
+  "timestampMs": 327895,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 327980,
+  "endMs": 328020,
+  "timestampMs": 328000,
+  "confidence": null
+ },
+ {
+  "text": " catch,",
+  "startMs": 328020,
+  "endMs": 328390,
+  "timestampMs": 328205,
+  "confidence": null
+ },
+ {
+  "text": " though.",
+  "startMs": 328390,
+  "endMs": 328700,
+  "timestampMs": 328545,
+  "confidence": null
+ },
+ {
+  "text": " Krill",
+  "startMs": 328920,
+  "endMs": 329210,
+  "timestampMs": 329065,
+  "confidence": null
+ },
+ {
+  "text": " don't",
+  "startMs": 329210,
+  "endMs": 329400,
+  "timestampMs": 329305,
+  "confidence": null
+ },
+ {
+  "text": " stay",
+  "startMs": 329400,
+  "endMs": 329640,
+  "timestampMs": 329520,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 329640,
+  "endMs": 329930,
+  "timestampMs": 329785,
+  "confidence": null
+ },
+ {
+  "text": " all",
+  "startMs": 329930,
+  "endMs": 330070,
+  "timestampMs": 330000,
+  "confidence": null
+ },
+ {
+  "text": " year.",
+  "startMs": 330070,
+  "endMs": 330450,
+  "timestampMs": 330260,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 330850,
+  "endMs": 330970,
+  "timestampMs": 330910,
+  "confidence": null
+ },
+ {
+  "text": " summer,",
+  "startMs": 330970,
+  "endMs": 331420,
+  "timestampMs": 331195,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 331420,
+  "endMs": 331610,
+  "timestampMs": 331515,
+  "confidence": null
+ },
+ {
+  "text": " explode",
+  "startMs": 331610,
+  "endMs": 332050,
+  "timestampMs": 331830,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 332050,
+  "endMs": 332150,
+  "timestampMs": 332100,
+  "confidence": null
+ },
+ {
+  "text": " cold",
+  "startMs": 332150,
+  "endMs": 332450,
+  "timestampMs": 332300,
+  "confidence": null
+ },
+ {
+  "text": " waters",
+  "startMs": 332450,
+  "endMs": 332840,
+  "timestampMs": 332645,
+  "confidence": null
+ },
+ {
+  "text": " near",
+  "startMs": 332840,
+  "endMs": 332960,
+  "timestampMs": 332900,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 332960,
+  "endMs": 333040,
+  "timestampMs": 333000,
+  "confidence": null
+ },
+ {
+  "text": " poles.",
+  "startMs": 333040,
+  "endMs": 333610,
+  "timestampMs": 333325,
+  "confidence": null
+ },
+ {
+  "text": " Then",
+  "startMs": 333950,
+  "endMs": 334080,
+  "timestampMs": 334015,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 334080,
+  "endMs": 334190,
+  "timestampMs": 334135,
+  "confidence": null
+ },
+ {
+  "text": " become",
+  "startMs": 334190,
+  "endMs": 334570,
+  "timestampMs": 334380,
+  "confidence": null
+ },
+ {
+  "text": " hard",
+  "startMs": 334570,
+  "endMs": 334810,
+  "timestampMs": 334690,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 334810,
+  "endMs": 334900,
+  "timestampMs": 334855,
+  "confidence": null
+ },
+ {
+  "text": " find.",
+  "startMs": 334900,
+  "endMs": 335400,
+  "timestampMs": 335150,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 335970,
+  "endMs": 336150,
+  "timestampMs": 336060,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 336150,
+  "endMs": 336450,
+  "timestampMs": 336300,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 336450,
+  "endMs": 336870,
+  "timestampMs": 336660,
+  "confidence": null
+ },
+ {
+  "text": " eat",
+  "startMs": 336870,
+  "endMs": 337110,
+  "timestampMs": 336990,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 337110,
+  "endMs": 337260,
+  "timestampMs": 337185,
+  "confidence": null
+ },
+ {
+  "text": " much",
+  "startMs": 337260,
+  "endMs": 337490,
+  "timestampMs": 337375,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 337490,
+  "endMs": 337580,
+  "timestampMs": 337535,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 337580,
+  "endMs": 337690,
+  "timestampMs": 337635,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 337690,
+  "endMs": 338100,
+  "timestampMs": 337895,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 338100,
+  "endMs": 338280,
+  "timestampMs": 338190,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 338280,
+  "endMs": 338310,
+  "timestampMs": 338295,
+  "confidence": null
+ },
+ {
+  "text": " few",
+  "startMs": 338310,
+  "endMs": 338560,
+  "timestampMs": 338435,
+  "confidence": null
+ },
+ {
+  "text": " months.",
+  "startMs": 338560,
+  "endMs": 339110,
+  "timestampMs": 338835,
+  "confidence": null
+ },
+ {
+  "text": " Then",
+  "startMs": 339320,
+  "endMs": 339490,
+  "timestampMs": 339405,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 339490,
+  "endMs": 339620,
+  "timestampMs": 339555,
+  "confidence": null
+ },
+ {
+  "text": " swim",
+  "startMs": 339620,
+  "endMs": 339930,
+  "timestampMs": 339775,
+  "confidence": null
+ },
+ {
+  "text": " thousands",
+  "startMs": 339930,
+  "endMs": 340530,
+  "timestampMs": 340230,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 340530,
+  "endMs": 340610,
+  "timestampMs": 340570,
+  "confidence": null
+ },
+ {
+  "text": " kilometers",
+  "startMs": 340610,
+  "endMs": 341280,
+  "timestampMs": 340945,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 341280,
+  "endMs": 341360,
+  "timestampMs": 341320,
+  "confidence": null
+ },
+ {
+  "text": " warmer",
+  "startMs": 341360,
+  "endMs": 341810,
+  "timestampMs": 341585,
+  "confidence": null
+ },
+ {
+  "text": " waters",
+  "startMs": 341810,
+  "endMs": 342310,
+  "timestampMs": 342060,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 342310,
+  "endMs": 342400,
+  "timestampMs": 342355,
+  "confidence": null
+ },
+ {
+  "text": " give",
+  "startMs": 342400,
+  "endMs": 342660,
+  "timestampMs": 342530,
+  "confidence": null
+ },
+ {
+  "text": " birth.",
+  "startMs": 342660,
+  "endMs": 343130,
+  "timestampMs": 342895,
+  "confidence": null
+ },
+ {
+  "text": " On",
+  "startMs": 343530,
+  "endMs": 343790,
+  "timestampMs": 343660,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 343790,
+  "endMs": 344040,
+  "timestampMs": 343915,
+  "confidence": null
+ },
+ {
+  "text": " trip,",
+  "startMs": 344040,
+  "endMs": 344410,
+  "timestampMs": 344225,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 344730,
+  "endMs": 344840,
+  "timestampMs": 344785,
+  "confidence": null
+ },
+ {
+  "text": " don't",
+  "startMs": 344840,
+  "endMs": 345060,
+  "timestampMs": 344950,
+  "confidence": null
+ },
+ {
+  "text": " eat",
+  "startMs": 345060,
+  "endMs": 345250,
+  "timestampMs": 345155,
+  "confidence": null
+ },
+ {
+  "text": " much.",
+  "startMs": 345250,
+  "endMs": 345650,
+  "timestampMs": 345450,
+  "confidence": null
+ },
+ {
+  "text": " They",
+  "startMs": 345990,
+  "endMs": 346120,
+  "timestampMs": 346055,
+  "confidence": null
+ },
+ {
+  "text": " live",
+  "startMs": 346120,
+  "endMs": 346330,
+  "timestampMs": 346225,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 346330,
+  "endMs": 346450,
+  "timestampMs": 346390,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 346450,
+  "endMs": 346520,
+  "timestampMs": 346485,
+  "confidence": null
+ },
+ {
+  "text": " fat",
+  "startMs": 346520,
+  "endMs": 346860,
+  "timestampMs": 346690,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 346860,
+  "endMs": 346980,
+  "timestampMs": 346920,
+  "confidence": null
+ },
+ {
+  "text": " stored",
+  "startMs": 346980,
+  "endMs": 347330,
+  "timestampMs": 347155,
+  "confidence": null
+ },
+ {
+  "text": " up.",
+  "startMs": 347330,
+  "endMs": 347590,
+  "timestampMs": 347460,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 348160,
+  "endMs": 348350,
+  "timestampMs": 348255,
+  "confidence": null
+ },
+ {
+  "text": " here,",
+  "startMs": 348350,
+  "endMs": 348790,
+  "timestampMs": 348570,
+  "confidence": null
+ },
+ {
+  "text": " being",
+  "startMs": 349010,
+  "endMs": 349360,
+  "timestampMs": 349185,
+  "confidence": null
+ },
+ {
+  "text": " big",
+  "startMs": 349360,
+  "endMs": 349710,
+  "timestampMs": 349535,
+  "confidence": null
+ },
+ {
+  "text": " helps",
+  "startMs": 349710,
+  "endMs": 350100,
+  "timestampMs": 349905,
+  "confidence": null
+ },
+ {
+  "text": " again.",
+  "startMs": 350100,
+  "endMs": 350590,
+  "timestampMs": 350345,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 351040,
+  "endMs": 351110,
+  "timestampMs": 351075,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 351110,
+  "endMs": 351470,
+  "timestampMs": 351290,
+  "confidence": null
+ },
+ {
+  "text": " body",
+  "startMs": 351470,
+  "endMs": 351910,
+  "timestampMs": 351690,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 351910,
+  "endMs": 352050,
+  "timestampMs": 351980,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 352050,
+  "endMs": 352090,
+  "timestampMs": 352070,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 352090,
+  "endMs": 352420,
+  "timestampMs": 352255,
+  "confidence": null
+ },
+ {
+  "text": " fuel",
+  "startMs": 352420,
+  "endMs": 352760,
+  "timestampMs": 352590,
+  "confidence": null
+ },
+ {
+  "text": " tank.",
+  "startMs": 352760,
+  "endMs": 353150,
+  "timestampMs": 352955,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 353510,
+  "endMs": 353590,
+  "timestampMs": 353550,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 353590,
+  "endMs": 353790,
+  "timestampMs": 353690,
+  "confidence": null
+ },
+ {
+  "text": " fat",
+  "startMs": 353790,
+  "endMs": 354110,
+  "timestampMs": 353950,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 354110,
+  "endMs": 354240,
+  "timestampMs": 354175,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 354240,
+  "endMs": 354380,
+  "timestampMs": 354310,
+  "confidence": null
+ },
+ {
+  "text": " carry,",
+  "startMs": 354380,
+  "endMs": 354850,
+  "timestampMs": 354615,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 355130,
+  "endMs": 355210,
+  "timestampMs": 355170,
+  "confidence": null
+ },
+ {
+  "text": " longer",
+  "startMs": 355210,
+  "endMs": 355580,
+  "timestampMs": 355395,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 355580,
+  "endMs": 355710,
+  "timestampMs": 355645,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 355710,
+  "endMs": 355890,
+  "timestampMs": 355800,
+  "confidence": null
+ },
+ {
+  "text": " go",
+  "startMs": 355890,
+  "endMs": 356070,
+  "timestampMs": 355980,
+  "confidence": null
+ },
+ {
+  "text": " without",
+  "startMs": 356070,
+  "endMs": 356380,
+  "timestampMs": 356225,
+  "confidence": null
+ },
+ {
+  "text": " food.",
+  "startMs": 356380,
+  "endMs": 356880,
+  "timestampMs": 356630,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 357260,
+  "endMs": 357390,
+  "timestampMs": 357325,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 357390,
+  "endMs": 357470,
+  "timestampMs": 357430,
+  "confidence": null
+ },
+ {
+  "text": " rule",
+  "startMs": 357470,
+  "endMs": 357790,
+  "timestampMs": 357630,
+  "confidence": null
+ },
+ {
+  "text": " gets",
+  "startMs": 357790,
+  "endMs": 358050,
+  "timestampMs": 357920,
+  "confidence": null
+ },
+ {
+  "text": " even",
+  "startMs": 358050,
+  "endMs": 358340,
+  "timestampMs": 358195,
+  "confidence": null
+ },
+ {
+  "text": " stronger.",
+  "startMs": 358340,
+  "endMs": 358940,
+  "timestampMs": 358640,
+  "confidence": null
+ },
+ {
+  "text": " Bigger",
+  "startMs": 359340,
+  "endMs": 359580,
+  "timestampMs": 359460,
+  "confidence": null
+ },
+ {
+  "text": " mouth,",
+  "startMs": 359580,
+  "endMs": 360030,
+  "timestampMs": 359805,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 360350,
+  "endMs": 360590,
+  "timestampMs": 360470,
+  "confidence": null
+ },
+ {
+  "text": " food.",
+  "startMs": 360590,
+  "endMs": 361060,
+  "timestampMs": 360825,
+  "confidence": null
+ },
+ {
+  "text": " Bigger",
+  "startMs": 361370,
+  "endMs": 361610,
+  "timestampMs": 361490,
+  "confidence": null
+ },
+ {
+  "text": " body,",
+  "startMs": 361610,
+  "endMs": 362050,
+  "timestampMs": 361830,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 362270,
+  "endMs": 362430,
+  "timestampMs": 362350,
+  "confidence": null
+ },
+ {
+  "text": " fuel.",
+  "startMs": 362430,
+  "endMs": 362850,
+  "timestampMs": 362640,
+  "confidence": null
+ },
+ {
+  "text": " That",
+  "startMs": 363250,
+  "endMs": 363470,
+  "timestampMs": 363360,
+  "confidence": null
+ },
+ {
+  "text": " fat",
+  "startMs": 363470,
+  "endMs": 363910,
+  "timestampMs": 363690,
+  "confidence": null
+ },
+ {
+  "text": " also",
+  "startMs": 363910,
+  "endMs": 364340,
+  "timestampMs": 364125,
+  "confidence": null
+ },
+ {
+  "text": " feeds",
+  "startMs": 364340,
+  "endMs": 364730,
+  "timestampMs": 364535,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 364730,
+  "endMs": 364820,
+  "timestampMs": 364775,
+  "confidence": null
+ },
+ {
+  "text": " babies.",
+  "startMs": 364820,
+  "endMs": 365430,
+  "timestampMs": 365125,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 365950,
+  "endMs": 366030,
+  "timestampMs": 365990,
+  "confidence": null
+ },
+ {
+  "text": " newborn",
+  "startMs": 366030,
+  "endMs": 366480,
+  "timestampMs": 366255,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 366480,
+  "endMs": 366710,
+  "timestampMs": 366595,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 366710,
+  "endMs": 367090,
+  "timestampMs": 366900,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 367090,
+  "endMs": 367220,
+  "timestampMs": 367155,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 367220,
+  "endMs": 367430,
+  "timestampMs": 367325,
+  "confidence": null
+ },
+ {
+  "text": " seven",
+  "startMs": 367430,
+  "endMs": 367820,
+  "timestampMs": 367625,
+  "confidence": null
+ },
+ {
+  "text": " meters",
+  "startMs": 367820,
+  "endMs": 368160,
+  "timestampMs": 367990,
+  "confidence": null
+ },
+ {
+  "text": " long.",
+  "startMs": 368160,
+  "endMs": 368570,
+  "timestampMs": 368365,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 368840,
+  "endMs": 368970,
+  "timestampMs": 368905,
+  "confidence": null
+ },
+ {
+  "text": " drinks",
+  "startMs": 368970,
+  "endMs": 369320,
+  "timestampMs": 369145,
+  "confidence": null
+ },
+ {
+  "text": " milk",
+  "startMs": 369320,
+  "endMs": 369660,
+  "timestampMs": 369490,
+  "confidence": null
+ },
+ {
+  "text": " that's",
+  "startMs": 369660,
+  "endMs": 369830,
+  "timestampMs": 369745,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 369830,
+  "endMs": 370070,
+  "timestampMs": 369950,
+  "confidence": null
+ },
+ {
+  "text": " half",
+  "startMs": 370070,
+  "endMs": 370470,
+  "timestampMs": 370270,
+  "confidence": null
+ },
+ {
+  "text": " fat.",
+  "startMs": 370470,
+  "endMs": 370950,
+  "timestampMs": 370710,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 371250,
+  "endMs": 371490,
+  "timestampMs": 371370,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 371490,
+  "endMs": 371610,
+  "timestampMs": 371550,
+  "confidence": null
+ },
+ {
+  "text": " gains",
+  "startMs": 371610,
+  "endMs": 372110,
+  "timestampMs": 371860,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 372110,
+  "endMs": 372390,
+  "timestampMs": 372250,
+  "confidence": null
+ },
+ {
+  "text": " ninety",
+  "startMs": 372390,
+  "endMs": 372810,
+  "timestampMs": 372600,
+  "confidence": null
+ },
+ {
+  "text": " kilos",
+  "startMs": 372810,
+  "endMs": 373460,
+  "timestampMs": 373135,
+  "confidence": null
+ },
+ {
+  "text": " every",
+  "startMs": 373460,
+  "endMs": 373770,
+  "timestampMs": 373615,
+  "confidence": null
+ },
+ {
+  "text": " single",
+  "startMs": 373770,
+  "endMs": 374140,
+  "timestampMs": 373955,
+  "confidence": null
+ },
+ {
+  "text": " day.",
+  "startMs": 374140,
+  "endMs": 374500,
+  "timestampMs": 374320,
+  "confidence": null
+ },
+ {
+  "text": " Now,",
+  "startMs": 375120,
+  "endMs": 375550,
+  "timestampMs": 375335,
+  "confidence": null
+ },
+ {
+  "text": " let's",
+  "startMs": 375690,
+  "endMs": 375890,
+  "timestampMs": 375790,
+  "confidence": null
+ },
+ {
+  "text": " bust",
+  "startMs": 375890,
+  "endMs": 376210,
+  "timestampMs": 376050,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 376210,
+  "endMs": 376250,
+  "timestampMs": 376230,
+  "confidence": null
+ },
+ {
+  "text": " myth.",
+  "startMs": 376250,
+  "endMs": 376620,
+  "timestampMs": 376435,
+  "confidence": null
+ },
+ {
+  "text": " You",
+  "startMs": 376910,
+  "endMs": 377040,
+  "timestampMs": 376975,
+  "confidence": null
+ },
+ {
+  "text": " might",
+  "startMs": 377040,
+  "endMs": 377200,
+  "timestampMs": 377120,
+  "confidence": null
+ },
+ {
+  "text": " have",
+  "startMs": 377200,
+  "endMs": 377320,
+  "timestampMs": 377260,
+  "confidence": null
+ },
+ {
+  "text": " heard",
+  "startMs": 377320,
+  "endMs": 377670,
+  "timestampMs": 377495,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 377670,
+  "endMs": 377810,
+  "timestampMs": 377740,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 377810,
+  "endMs": 377850,
+  "timestampMs": 377830,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 377850,
+  "endMs": 378090,
+  "timestampMs": 377970,
+  "confidence": null
+ },
+ {
+  "text": " whale's",
+  "startMs": 378090,
+  "endMs": 378450,
+  "timestampMs": 378270,
+  "confidence": null
+ },
+ {
+  "text": " heart",
+  "startMs": 378450,
+  "endMs": 378770,
+  "timestampMs": 378610,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 378770,
+  "endMs": 378910,
+  "timestampMs": 378840,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 378910,
+  "endMs": 378990,
+  "timestampMs": 378950,
+  "confidence": null
+ },
+ {
+  "text": " size",
+  "startMs": 378990,
+  "endMs": 379280,
+  "timestampMs": 379135,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 379280,
+  "endMs": 379340,
+  "timestampMs": 379310,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 379340,
+  "endMs": 379370,
+  "timestampMs": 379355,
+  "confidence": null
+ },
+ {
+  "text": " car.",
+  "startMs": 379370,
+  "endMs": 379840,
+  "timestampMs": 379605,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 380160,
+  "endMs": 380430,
+  "timestampMs": 380295,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 380430,
+  "endMs": 380580,
+  "timestampMs": 380505,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 380580,
+  "endMs": 380620,
+  "timestampMs": 380600,
+  "confidence": null
+ },
+ {
+  "text": " child",
+  "startMs": 380620,
+  "endMs": 381100,
+  "timestampMs": 380860,
+  "confidence": null
+ },
+ {
+  "text": " could",
+  "startMs": 381100,
+  "endMs": 381290,
+  "timestampMs": 381195,
+  "confidence": null
+ },
+ {
+  "text": " swim",
+  "startMs": 381290,
+  "endMs": 381630,
+  "timestampMs": 381460,
+  "confidence": null
+ },
+ {
+  "text": " through",
+  "startMs": 381630,
+  "endMs": 381800,
+  "timestampMs": 381715,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 381800,
+  "endMs": 381910,
+  "timestampMs": 381855,
+  "confidence": null
+ },
+ {
+  "text": " arteries.",
+  "startMs": 381910,
+  "endMs": 382530,
+  "timestampMs": 382220,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 383040,
+  "endMs": 383160,
+  "timestampMs": 383100,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 383160,
+  "endMs": 383420,
+  "timestampMs": 383290,
+  "confidence": null
+ },
+ {
+  "text": " fourteen,",
+  "startMs": 383420,
+  "endMs": 384030,
+  "timestampMs": 383725,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 384300,
+  "endMs": 384380,
+  "timestampMs": 384340,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 384380,
+  "endMs": 384660,
+  "timestampMs": 384520,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 384660,
+  "endMs": 385080,
+  "timestampMs": 384870,
+  "confidence": null
+ },
+ {
+  "text": " washed",
+  "startMs": 385080,
+  "endMs": 385450,
+  "timestampMs": 385265,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 385450,
+  "endMs": 385650,
+  "timestampMs": 385550,
+  "confidence": null
+ },
+ {
+  "text": " dead",
+  "startMs": 385650,
+  "endMs": 386000,
+  "timestampMs": 385825,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 386000,
+  "endMs": 386130,
+  "timestampMs": 386065,
+  "confidence": null
+ },
+ {
+  "text": " Canada.",
+  "startMs": 386130,
+  "endMs": 386640,
+  "timestampMs": 386385,
+  "confidence": null
+ },
+ {
+  "text": " For",
+  "startMs": 386940,
+  "endMs": 387020,
+  "timestampMs": 386980,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 387020,
+  "endMs": 387090,
+  "timestampMs": 387055,
+  "confidence": null
+ },
+ {
+  "text": " first",
+  "startMs": 387090,
+  "endMs": 387420,
+  "timestampMs": 387255,
+  "confidence": null
+ },
+ {
+  "text": " time",
+  "startMs": 387420,
+  "endMs": 387660,
+  "timestampMs": 387540,
+  "confidence": null
+ },
+ {
+  "text": " ever,",
+  "startMs": 387660,
+  "endMs": 388130,
+  "timestampMs": 387895,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 388380,
+  "endMs": 389060,
+  "timestampMs": 388720,
+  "confidence": null
+ },
+ {
+  "text": " saved",
+  "startMs": 389060,
+  "endMs": 389380,
+  "timestampMs": 389220,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 389380,
+  "endMs": 389510,
+  "timestampMs": 389445,
+  "confidence": null
+ },
+ {
+  "text": " heart",
+  "startMs": 389510,
+  "endMs": 389860,
+  "timestampMs": 389685,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 389860,
+  "endMs": 390000,
+  "timestampMs": 389930,
+  "confidence": null
+ },
+ {
+  "text": " studied",
+  "startMs": 390000,
+  "endMs": 390400,
+  "timestampMs": 390200,
+  "confidence": null
+ },
+ {
+  "text": " it.",
+  "startMs": 390400,
+  "endMs": 390660,
+  "timestampMs": 390530,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 390920,
+  "endMs": 391070,
+  "timestampMs": 390995,
+  "confidence": null
+ },
+ {
+  "text": " weighed",
+  "startMs": 391070,
+  "endMs": 391480,
+  "timestampMs": 391275,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 391480,
+  "endMs": 391740,
+  "timestampMs": 391610,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 391740,
+  "endMs": 392030,
+  "timestampMs": 391885,
+  "confidence": null
+ },
+ {
+  "text": " hundred",
+  "startMs": 392030,
+  "endMs": 392500,
+  "timestampMs": 392265,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 392500,
+  "endMs": 392630,
+  "timestampMs": 392565,
+  "confidence": null
+ },
+ {
+  "text": " eighty",
+  "startMs": 392630,
+  "endMs": 393020,
+  "timestampMs": 392825,
+  "confidence": null
+ },
+ {
+  "text": " kilos.",
+  "startMs": 393020,
+  "endMs": 393690,
+  "timestampMs": 393355,
+  "confidence": null
+ },
+ {
+  "text": " Big,",
+  "startMs": 393950,
+  "endMs": 394320,
+  "timestampMs": 394135,
+  "confidence": null
+ },
+ {
+  "text": " but",
+  "startMs": 394630,
+  "endMs": 394800,
+  "timestampMs": 394715,
+  "confidence": null
+ },
+ {
+  "text": " smaller",
+  "startMs": 394800,
+  "endMs": 395360,
+  "timestampMs": 395080,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 395360,
+  "endMs": 395520,
+  "timestampMs": 395440,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 395520,
+  "endMs": 395580,
+  "timestampMs": 395550,
+  "confidence": null
+ },
+ {
+  "text": " car.",
+  "startMs": 395580,
+  "endMs": 396070,
+  "timestampMs": 395825,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 396700,
+  "endMs": 396850,
+  "timestampMs": 396775,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 396850,
+  "endMs": 397010,
+  "timestampMs": 396930,
+  "confidence": null
+ },
+ {
+  "text": " biggest",
+  "startMs": 397010,
+  "endMs": 397390,
+  "timestampMs": 397200,
+  "confidence": null
+ },
+ {
+  "text": " artery?",
+  "startMs": 397390,
+  "endMs": 397860,
+  "timestampMs": 397625,
+  "confidence": null
+ },
+ {
+  "text": " Wide",
+  "startMs": 398170,
+  "endMs": 398440,
+  "timestampMs": 398305,
+  "confidence": null
+ },
+ {
+  "text": " enough",
+  "startMs": 398440,
+  "endMs": 398680,
+  "timestampMs": 398560,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 398680,
+  "endMs": 398840,
+  "timestampMs": 398760,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 398840,
+  "endMs": 398880,
+  "timestampMs": 398860,
+  "confidence": null
+ },
+ {
+  "text": " human",
+  "startMs": 398880,
+  "endMs": 399170,
+  "timestampMs": 399025,
+  "confidence": null
+ },
+ {
+  "text": " head,",
+  "startMs": 399170,
+  "endMs": 399550,
+  "timestampMs": 399360,
+  "confidence": null
+ },
+ {
+  "text": " barely.",
+  "startMs": 399840,
+  "endMs": 400380,
+  "timestampMs": 400110,
+  "confidence": null
+ },
+ {
+  "text": " Not",
+  "startMs": 400750,
+  "endMs": 400990,
+  "timestampMs": 400870,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 400990,
+  "endMs": 401160,
+  "timestampMs": 401075,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 401160,
+  "endMs": 401190,
+  "timestampMs": 401175,
+  "confidence": null
+ },
+ {
+  "text": " swimming",
+  "startMs": 401190,
+  "endMs": 401540,
+  "timestampMs": 401365,
+  "confidence": null
+ },
+ {
+  "text": " child.",
+  "startMs": 401540,
+  "endMs": 402020,
+  "timestampMs": 401780,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 402360,
+  "endMs": 402640,
+  "timestampMs": 402500,
+  "confidence": null
+ },
+ {
+  "text": " if",
+  "startMs": 402640,
+  "endMs": 402780,
+  "timestampMs": 402710,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 402780,
+  "endMs": 403060,
+  "timestampMs": 402920,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 403060,
+  "endMs": 403180,
+  "timestampMs": 403120,
+  "confidence": null
+ },
+ {
+  "text": " always",
+  "startMs": 403180,
+  "endMs": 403470,
+  "timestampMs": 403325,
+  "confidence": null
+ },
+ {
+  "text": " better,",
+  "startMs": 403470,
+  "endMs": 403900,
+  "timestampMs": 403685,
+  "confidence": null
+ },
+ {
+  "text": " why",
+  "startMs": 404160,
+  "endMs": 404290,
+  "timestampMs": 404225,
+  "confidence": null
+ },
+ {
+  "text": " don't",
+  "startMs": 404290,
+  "endMs": 404470,
+  "timestampMs": 404380,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 404470,
+  "endMs": 404710,
+  "timestampMs": 404590,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 404710,
+  "endMs": 405100,
+  "timestampMs": 404905,
+  "confidence": null
+ },
+ {
+  "text": " get",
+  "startMs": 405100,
+  "endMs": 405350,
+  "timestampMs": 405225,
+  "confidence": null
+ },
+ {
+  "text": " even",
+  "startMs": 405350,
+  "endMs": 405730,
+  "timestampMs": 405540,
+  "confidence": null
+ },
+ {
+  "text": " bigger?",
+  "startMs": 405730,
+  "endMs": 406160,
+  "timestampMs": 405945,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 406490,
+  "endMs": 406600,
+  "timestampMs": 406545,
+  "confidence": null
+ },
+ {
+  "text": " twenty",
+  "startMs": 406600,
+  "endMs": 406860,
+  "timestampMs": 406730,
+  "confidence": null
+ },
+ {
+  "text": " nineteen,",
+  "startMs": 406860,
+  "endMs": 407520,
+  "timestampMs": 407190,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 407740,
+  "endMs": 408260,
+  "timestampMs": 408000,
+  "confidence": null
+ },
+ {
+  "text": " tagged",
+  "startMs": 408260,
+  "endMs": 408610,
+  "timestampMs": 408435,
+  "confidence": null
+ },
+ {
+  "text": " hundreds",
+  "startMs": 408610,
+  "endMs": 409100,
+  "timestampMs": 408855,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 409100,
+  "endMs": 409240,
+  "timestampMs": 409170,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 409240,
+  "endMs": 409730,
+  "timestampMs": 409485,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 409940,
+  "endMs": 410070,
+  "timestampMs": 410005,
+  "confidence": null
+ },
+ {
+  "text": " studied",
+  "startMs": 410070,
+  "endMs": 410460,
+  "timestampMs": 410265,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 410460,
+  "endMs": 410650,
+  "timestampMs": 410555,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 410650,
+  "endMs": 410830,
+  "timestampMs": 410740,
+  "confidence": null
+ },
+ {
+  "text": " ten",
+  "startMs": 410830,
+  "endMs": 411170,
+  "timestampMs": 411000,
+  "confidence": null
+ },
+ {
+  "text": " thousand",
+  "startMs": 411170,
+  "endMs": 411650,
+  "timestampMs": 411410,
+  "confidence": null
+ },
+ {
+  "text": " feeding",
+  "startMs": 411650,
+  "endMs": 412020,
+  "timestampMs": 411835,
+  "confidence": null
+ },
+ {
+  "text": " events.",
+  "startMs": 412020,
+  "endMs": 412570,
+  "timestampMs": 412295,
+  "confidence": null
+ },
+ {
+  "text": " For",
+  "startMs": 413130,
+  "endMs": 413290,
+  "timestampMs": 413210,
+  "confidence": null
+ },
+ {
+  "text": " toothed",
+  "startMs": 413290,
+  "endMs": 413600,
+  "timestampMs": 413445,
+  "confidence": null
+ },
+ {
+  "text": " whales,",
+  "startMs": 413600,
+  "endMs": 414090,
+  "timestampMs": 413845,
+  "confidence": null
+ },
+ {
+  "text": " like",
+  "startMs": 414090,
+  "endMs": 414370,
+  "timestampMs": 414230,
+  "confidence": null
+ },
+ {
+  "text": " sperm",
+  "startMs": 414370,
+  "endMs": 414690,
+  "timestampMs": 414530,
+  "confidence": null
+ },
+ {
+  "text": " whales,",
+  "startMs": 414690,
+  "endMs": 415070,
+  "timestampMs": 414880,
+  "confidence": null
+ },
+ {
+  "text": " there's",
+  "startMs": 415380,
+  "endMs": 415600,
+  "timestampMs": 415490,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 415600,
+  "endMs": 415630,
+  "timestampMs": 415615,
+  "confidence": null
+ },
+ {
+  "text": " limit.",
+  "startMs": 415630,
+  "endMs": 416070,
+  "timestampMs": 415850,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 416350,
+  "endMs": 416430,
+  "timestampMs": 416390,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 416430,
+  "endMs": 416730,
+  "timestampMs": 416580,
+  "confidence": null
+ },
+ {
+  "text": " sperm",
+  "startMs": 416730,
+  "endMs": 417020,
+  "timestampMs": 416875,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 417020,
+  "endMs": 417250,
+  "timestampMs": 417135,
+  "confidence": null
+ },
+ {
+  "text": " couldn't",
+  "startMs": 417250,
+  "endMs": 417590,
+  "timestampMs": 417420,
+  "confidence": null
+ },
+ {
+  "text": " find",
+  "startMs": 417590,
+  "endMs": 417850,
+  "timestampMs": 417720,
+  "confidence": null
+ },
+ {
+  "text": " enough",
+  "startMs": 417850,
+  "endMs": 418080,
+  "timestampMs": 417965,
+  "confidence": null
+ },
+ {
+  "text": " big",
+  "startMs": 418080,
+  "endMs": 418280,
+  "timestampMs": 418180,
+  "confidence": null
+ },
+ {
+  "text": " squid",
+  "startMs": 418280,
+  "endMs": 418660,
+  "timestampMs": 418470,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 418660,
+  "endMs": 418740,
+  "timestampMs": 418700,
+  "confidence": null
+ },
+ {
+  "text": " stay",
+  "startMs": 418740,
+  "endMs": 418950,
+  "timestampMs": 418845,
+  "confidence": null
+ },
+ {
+  "text": " alive.",
+  "startMs": 418950,
+  "endMs": 419410,
+  "timestampMs": 419180,
+  "confidence": null
+ },
+ {
+  "text": " For",
+  "startMs": 419760,
+  "endMs": 419920,
+  "timestampMs": 419840,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 419920,
+  "endMs": 420180,
+  "timestampMs": 420050,
+  "confidence": null
+ },
+ {
+  "text": " whales,",
+  "startMs": 420180,
+  "endMs": 420650,
+  "timestampMs": 420415,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 420890,
+  "endMs": 421340,
+  "timestampMs": 421115,
+  "confidence": null
+ },
+ {
+  "text": " still",
+  "startMs": 421440,
+  "endMs": 421730,
+  "timestampMs": 421585,
+  "confidence": null
+ },
+ {
+  "text": " pays.",
+  "startMs": 421730,
+  "endMs": 422260,
+  "timestampMs": 421995,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 422490,
+  "endMs": 422600,
+  "timestampMs": 422545,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 422600,
+  "endMs": 423110,
+  "timestampMs": 422855,
+  "confidence": null
+ },
+ {
+  "text": " think",
+  "startMs": 423110,
+  "endMs": 423370,
+  "timestampMs": 423240,
+  "confidence": null
+ },
+ {
+  "text": " what",
+  "startMs": 423370,
+  "endMs": 423510,
+  "timestampMs": 423440,
+  "confidence": null
+ },
+ {
+  "text": " holds",
+  "startMs": 423510,
+  "endMs": 423820,
+  "timestampMs": 423665,
+  "confidence": null
+ },
+ {
+  "text": " them",
+  "startMs": 423820,
+  "endMs": 423970,
+  "timestampMs": 423895,
+  "confidence": null
+ },
+ {
+  "text": " back",
+  "startMs": 423970,
+  "endMs": 424340,
+  "timestampMs": 424155,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 424340,
+  "endMs": 424760,
+  "timestampMs": 424550,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 424760,
+  "endMs": 424860,
+  "timestampMs": 424810,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 424860,
+  "endMs": 425210,
+  "timestampMs": 425035,
+  "confidence": null
+ },
+ {
+  "text": " season.",
+  "startMs": 425210,
+  "endMs": 425720,
+  "timestampMs": 425465,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 425990,
+  "endMs": 426240,
+  "timestampMs": 426115,
+  "confidence": null
+ },
+ {
+  "text": " short,",
+  "startMs": 426240,
+  "endMs": 426800,
+  "timestampMs": 426520,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 427060,
+  "endMs": 427220,
+  "timestampMs": 427140,
+  "confidence": null
+ },
+ {
+  "text": " there's",
+  "startMs": 427220,
+  "endMs": 427420,
+  "timestampMs": 427320,
+  "confidence": null
+ },
+ {
+  "text": " only",
+  "startMs": 427420,
+  "endMs": 427760,
+  "timestampMs": 427590,
+  "confidence": null
+ },
+ {
+  "text": " so",
+  "startMs": 427760,
+  "endMs": 428020,
+  "timestampMs": 427890,
+  "confidence": null
+ },
+ {
+  "text": " much",
+  "startMs": 428020,
+  "endMs": 428340,
+  "timestampMs": 428180,
+  "confidence": null
+ },
+ {
+  "text": " food.",
+  "startMs": 428340,
+  "endMs": 428760,
+  "timestampMs": 428550,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 429020,
+  "endMs": 429180,
+  "timestampMs": 429100,
+  "confidence": null
+ },
+ {
+  "text": " remember",
+  "startMs": 429180,
+  "endMs": 429570,
+  "timestampMs": 429375,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 429570,
+  "endMs": 429750,
+  "timestampMs": 429660,
+  "confidence": null
+ },
+ {
+  "text": " heartbeat",
+  "startMs": 429750,
+  "endMs": 430260,
+  "timestampMs": 430005,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 430260,
+  "endMs": 430420,
+  "timestampMs": 430340,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 430420,
+  "endMs": 430480,
+  "timestampMs": 430450,
+  "confidence": null
+ },
+ {
+  "text": " start?",
+  "startMs": 430480,
+  "endMs": 430970,
+  "timestampMs": 430725,
+  "confidence": null
+ },
+ {
+  "text": " Deep",
+  "startMs": 431220,
+  "endMs": 431480,
+  "timestampMs": 431350,
+  "confidence": null
+ },
+ {
+  "text": " down,",
+  "startMs": 431480,
+  "endMs": 431970,
+  "timestampMs": 431725,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 432130,
+  "endMs": 432310,
+  "timestampMs": 432220,
+  "confidence": null
+ },
+ {
+  "text": " beat",
+  "startMs": 432310,
+  "endMs": 432540,
+  "timestampMs": 432425,
+  "confidence": null
+ },
+ {
+  "text": " just",
+  "startMs": 432540,
+  "endMs": 432850,
+  "timestampMs": 432695,
+  "confidence": null
+ },
+ {
+  "text": " twice",
+  "startMs": 432850,
+  "endMs": 433200,
+  "timestampMs": 433025,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 433200,
+  "endMs": 433260,
+  "timestampMs": 433230,
+  "confidence": null
+ },
+ {
+  "text": " minute.",
+  "startMs": 433260,
+  "endMs": 433660,
+  "timestampMs": 433460,
+  "confidence": null
+ },
+ {
+  "text": " After",
+  "startMs": 433920,
+  "endMs": 434300,
+  "timestampMs": 434110,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 434300,
+  "endMs": 434340,
+  "timestampMs": 434320,
+  "confidence": null
+ },
+ {
+  "text": " dive,",
+  "startMs": 434340,
+  "endMs": 434830,
+  "timestampMs": 434585,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 435060,
+  "endMs": 435200,
+  "timestampMs": 435130,
+  "confidence": null
+ },
+ {
+  "text": " raced",
+  "startMs": 435200,
+  "endMs": 435560,
+  "timestampMs": 435380,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 435560,
+  "endMs": 435690,
+  "timestampMs": 435625,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 435690,
+  "endMs": 435810,
+  "timestampMs": 435750,
+  "confidence": null
+ },
+ {
+  "text": " thirty",
+  "startMs": 435810,
+  "endMs": 436220,
+  "timestampMs": 436015,
+  "confidence": null
+ },
+ {
+  "text": " seven",
+  "startMs": 436220,
+  "endMs": 436610,
+  "timestampMs": 436415,
+  "confidence": null
+ },
+ {
+  "text": " beats",
+  "startMs": 436610,
+  "endMs": 436900,
+  "timestampMs": 436755,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 436900,
+  "endMs": 436940,
+  "timestampMs": 436920,
+  "confidence": null
+ },
+ {
+  "text": " minute.",
+  "startMs": 436940,
+  "endMs": 437350,
+  "timestampMs": 437145,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 437910,
+  "endMs": 438000,
+  "timestampMs": 437955,
+  "confidence": null
+ },
+ {
+  "text": " scientists",
+  "startMs": 438000,
+  "endMs": 438450,
+  "timestampMs": 438225,
+  "confidence": null
+ },
+ {
+  "text": " think",
+  "startMs": 438450,
+  "endMs": 438700,
+  "timestampMs": 438575,
+  "confidence": null
+ },
+ {
+  "text": " that's",
+  "startMs": 438700,
+  "endMs": 439040,
+  "timestampMs": 438870,
+  "confidence": null
+ },
+ {
+  "text": " close",
+  "startMs": 439040,
+  "endMs": 439460,
+  "timestampMs": 439250,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 439460,
+  "endMs": 439550,
+  "timestampMs": 439505,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 439550,
+  "endMs": 439630,
+  "timestampMs": 439590,
+  "confidence": null
+ },
+ {
+  "text": " most",
+  "startMs": 439630,
+  "endMs": 439950,
+  "timestampMs": 439790,
+  "confidence": null
+ },
+ {
+  "text": " its",
+  "startMs": 439950,
+  "endMs": 440060,
+  "timestampMs": 440005,
+  "confidence": null
+ },
+ {
+  "text": " heart",
+  "startMs": 440060,
+  "endMs": 440290,
+  "timestampMs": 440175,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 440290,
+  "endMs": 440440,
+  "timestampMs": 440365,
+  "confidence": null
+ },
+ {
+  "text": " do.",
+  "startMs": 440440,
+  "endMs": 440850,
+  "timestampMs": 440645,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 441200,
+  "endMs": 441550,
+  "timestampMs": 441375,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 441550,
+  "endMs": 441670,
+  "timestampMs": 441610,
+  "confidence": null
+ },
+ {
+  "text": " heart",
+  "startMs": 441670,
+  "endMs": 441970,
+  "timestampMs": 441820,
+  "confidence": null
+ },
+ {
+  "text": " may",
+  "startMs": 441970,
+  "endMs": 442130,
+  "timestampMs": 442050,
+  "confidence": null
+ },
+ {
+  "text": " be",
+  "startMs": 442130,
+  "endMs": 442270,
+  "timestampMs": 442200,
+  "confidence": null
+ },
+ {
+  "text": " another",
+  "startMs": 442270,
+  "endMs": 442600,
+  "timestampMs": 442435,
+  "confidence": null
+ },
+ {
+  "text": " reason",
+  "startMs": 442600,
+  "endMs": 442910,
+  "timestampMs": 442755,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 442910,
+  "endMs": 442980,
+  "timestampMs": 442945,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 442980,
+  "endMs": 443220,
+  "timestampMs": 443100,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 443220,
+  "endMs": 443510,
+  "timestampMs": 443365,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 443510,
+  "endMs": 443650,
+  "timestampMs": 443580,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 443650,
+  "endMs": 443830,
+  "timestampMs": 443740,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 443830,
+  "endMs": 443960,
+  "timestampMs": 443895,
+  "confidence": null
+ },
+ {
+  "text": " big",
+  "startMs": 443960,
+  "endMs": 444160,
+  "timestampMs": 444060,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 444160,
+  "endMs": 444270,
+  "timestampMs": 444215,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 444270,
+  "endMs": 444300,
+  "timestampMs": 444285,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 444300,
+  "endMs": 444590,
+  "timestampMs": 444445,
+  "confidence": null
+ },
+ {
+  "text": " can",
+  "startMs": 444590,
+  "endMs": 444750,
+  "timestampMs": 444670,
+  "confidence": null
+ },
+ {
+  "text": " get.",
+  "startMs": 444750,
+  "endMs": 445170,
+  "timestampMs": 444960,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 445750,
+  "endMs": 445910,
+  "timestampMs": 445830,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 445910,
+  "endMs": 446030,
+  "timestampMs": 445970,
+  "confidence": null
+ },
+ {
+  "text": " millions",
+  "startMs": 446030,
+  "endMs": 446420,
+  "timestampMs": 446225,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 446420,
+  "endMs": 446510,
+  "timestampMs": 446465,
+  "confidence": null
+ },
+ {
+  "text": " years,",
+  "startMs": 446510,
+  "endMs": 446920,
+  "timestampMs": 446715,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 447070,
+  "endMs": 447180,
+  "timestampMs": 447125,
+  "confidence": null
+ },
+ {
+  "text": " system",
+  "startMs": 447180,
+  "endMs": 447770,
+  "timestampMs": 447475,
+  "confidence": null
+ },
+ {
+  "text": " works.",
+  "startMs": 447770,
+  "endMs": 448310,
+  "timestampMs": 448040,
+  "confidence": null
+ },
+ {
+  "text": " Then",
+  "startMs": 448670,
+  "endMs": 449110,
+  "timestampMs": 448890,
+  "confidence": null
+ },
+ {
+  "text": " humans",
+  "startMs": 449340,
+  "endMs": 449850,
+  "timestampMs": 449595,
+  "confidence": null
+ },
+ {
+  "text": " show",
+  "startMs": 449850,
+  "endMs": 450090,
+  "timestampMs": 449970,
+  "confidence": null
+ },
+ {
+  "text": " up.",
+  "startMs": 450090,
+  "endMs": 450320,
+  "timestampMs": 450205,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 450620,
+  "endMs": 450730,
+  "timestampMs": 450675,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 450730,
+  "endMs": 450800,
+  "timestampMs": 450765,
+  "confidence": null
+ },
+ {
+  "text": " twentieth",
+  "startMs": 450800,
+  "endMs": 451200,
+  "timestampMs": 451000,
+  "confidence": null
+ },
+ {
+  "text": " century,",
+  "startMs": 451200,
+  "endMs": 451700,
+  "timestampMs": 451450,
+  "confidence": null
+ },
+ {
+  "text": " whaling",
+  "startMs": 452000,
+  "endMs": 452300,
+  "timestampMs": 452150,
+  "confidence": null
+ },
+ {
+  "text": " ships",
+  "startMs": 452300,
+  "endMs": 452610,
+  "timestampMs": 452455,
+  "confidence": null
+ },
+ {
+  "text": " with",
+  "startMs": 452610,
+  "endMs": 452760,
+  "timestampMs": 452685,
+  "confidence": null
+ },
+ {
+  "text": " harpoon",
+  "startMs": 452760,
+  "endMs": 453220,
+  "timestampMs": 452990,
+  "confidence": null
+ },
+ {
+  "text": " cannons",
+  "startMs": 453220,
+  "endMs": 453730,
+  "timestampMs": 453475,
+  "confidence": null
+ },
+ {
+  "text": " hunt",
+  "startMs": 453990,
+  "endMs": 454210,
+  "timestampMs": 454100,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 454210,
+  "endMs": 454500,
+  "timestampMs": 454355,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 454500,
+  "endMs": 454890,
+  "timestampMs": 454695,
+  "confidence": null
+ },
+ {
+  "text": " across",
+  "startMs": 454890,
+  "endMs": 455270,
+  "timestampMs": 455080,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 455270,
+  "endMs": 455430,
+  "timestampMs": 455350,
+  "confidence": null
+ },
+ {
+  "text": " oceans.",
+  "startMs": 455430,
+  "endMs": 455970,
+  "timestampMs": 455700,
+  "confidence": null
+ },
+ {
+  "text": " Around",
+  "startMs": 456600,
+  "endMs": 456960,
+  "timestampMs": 456780,
+  "confidence": null
+ },
+ {
+  "text": " Antarctica",
+  "startMs": 456960,
+  "endMs": 457670,
+  "timestampMs": 457315,
+  "confidence": null
+ },
+ {
+  "text": " alone,",
+  "startMs": 457670,
+  "endMs": 458270,
+  "timestampMs": 457970,
+  "confidence": null
+ },
+ {
+  "text": " their",
+  "startMs": 458480,
+  "endMs": 458630,
+  "timestampMs": 458555,
+  "confidence": null
+ },
+ {
+  "text": " numbers",
+  "startMs": 458630,
+  "endMs": 459000,
+  "timestampMs": 458815,
+  "confidence": null
+ },
+ {
+  "text": " drop",
+  "startMs": 459000,
+  "endMs": 459270,
+  "timestampMs": 459135,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 459270,
+  "endMs": 459460,
+  "timestampMs": 459365,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 459460,
+  "endMs": 459780,
+  "timestampMs": 459620,
+  "confidence": null
+ },
+ {
+  "text": " two",
+  "startMs": 459780,
+  "endMs": 460050,
+  "timestampMs": 459915,
+  "confidence": null
+ },
+ {
+  "text": " lakhs",
+  "startMs": 460050,
+  "endMs": 460390,
+  "timestampMs": 460220,
+  "confidence": null
+ },
+ {
+  "text": " thirty",
+  "startMs": 460390,
+  "endMs": 460660,
+  "timestampMs": 460525,
+  "confidence": null
+ },
+ {
+  "text": " nine",
+  "startMs": 460660,
+  "endMs": 460910,
+  "timestampMs": 460785,
+  "confidence": null
+ },
+ {
+  "text": " thousand",
+  "startMs": 460910,
+  "endMs": 461430,
+  "timestampMs": 461170,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 461620,
+  "endMs": 461850,
+  "timestampMs": 461735,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 461850,
+  "endMs": 462130,
+  "timestampMs": 461990,
+  "confidence": null
+ },
+ {
+  "text": " three",
+  "startMs": 462130,
+  "endMs": 462450,
+  "timestampMs": 462290,
+  "confidence": null
+ },
+ {
+  "text": " sixty.",
+  "startMs": 462450,
+  "endMs": 463030,
+  "timestampMs": 462740,
+  "confidence": null
+ },
+ {
+  "text": " That's",
+  "startMs": 463280,
+  "endMs": 463500,
+  "timestampMs": 463390,
+  "confidence": null
+ },
+ {
+  "text": " almost",
+  "startMs": 463500,
+  "endMs": 463920,
+  "timestampMs": 463710,
+  "confidence": null
+ },
+ {
+  "text": " all",
+  "startMs": 463920,
+  "endMs": 464150,
+  "timestampMs": 464035,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 464150,
+  "endMs": 464260,
+  "timestampMs": 464205,
+  "confidence": null
+ },
+ {
+  "text": " them,",
+  "startMs": 464260,
+  "endMs": 464540,
+  "timestampMs": 464400,
+  "confidence": null
+ },
+ {
+  "text": " gone.",
+  "startMs": 464960,
+  "endMs": 465420,
+  "timestampMs": 465190,
+  "confidence": null
+ },
+ {
+  "text": " In",
+  "startMs": 466070,
+  "endMs": 466180,
+  "timestampMs": 466125,
+  "confidence": null
+ },
+ {
+  "text": " nineteen",
+  "startMs": 466180,
+  "endMs": 466620,
+  "timestampMs": 466400,
+  "confidence": null
+ },
+ {
+  "text": " sixty,",
+  "startMs": 466620,
+  "endMs": 467170,
+  "timestampMs": 466895,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 467340,
+  "endMs": 467570,
+  "timestampMs": 467455,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 467570,
+  "endMs": 467980,
+  "timestampMs": 467775,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 467980,
+  "endMs": 468070,
+  "timestampMs": 468025,
+  "confidence": null
+ },
+ {
+  "text": " finally",
+  "startMs": 468070,
+  "endMs": 468610,
+  "timestampMs": 468340,
+  "confidence": null
+ },
+ {
+  "text": " protected",
+  "startMs": 468610,
+  "endMs": 469160,
+  "timestampMs": 468885,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 469160,
+  "endMs": 469350,
+  "timestampMs": 469255,
+  "confidence": null
+ },
+ {
+  "text": " commercial",
+  "startMs": 469350,
+  "endMs": 469790,
+  "timestampMs": 469570,
+  "confidence": null
+ },
+ {
+  "text": " hunting.",
+  "startMs": 469790,
+  "endMs": 470230,
+  "timestampMs": 470010,
+  "confidence": null
+ },
+ {
+  "text": " Today,",
+  "startMs": 470600,
+  "endMs": 471040,
+  "timestampMs": 470820,
+  "confidence": null
+ },
+ {
+  "text": " their",
+  "startMs": 471250,
+  "endMs": 471380,
+  "timestampMs": 471315,
+  "confidence": null
+ },
+ {
+  "text": " numbers",
+  "startMs": 471380,
+  "endMs": 471700,
+  "timestampMs": 471540,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 471700,
+  "endMs": 471810,
+  "timestampMs": 471755,
+  "confidence": null
+ },
+ {
+  "text": " growing",
+  "startMs": 471810,
+  "endMs": 472200,
+  "timestampMs": 472005,
+  "confidence": null
+ },
+ {
+  "text": " again.",
+  "startMs": 472200,
+  "endMs": 472620,
+  "timestampMs": 472410,
+  "confidence": null
+ },
+ {
+  "text": " But",
+  "startMs": 472820,
+  "endMs": 472960,
+  "timestampMs": 472890,
+  "confidence": null
+ },
+ {
+  "text": " they're",
+  "startMs": 472960,
+  "endMs": 473070,
+  "timestampMs": 473015,
+  "confidence": null
+ },
+ {
+  "text": " still",
+  "startMs": 473070,
+  "endMs": 473400,
+  "timestampMs": 473235,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 473400,
+  "endMs": 473440,
+  "timestampMs": 473420,
+  "confidence": null
+ },
+ {
+  "text": " small",
+  "startMs": 473440,
+  "endMs": 473820,
+  "timestampMs": 473630,
+  "confidence": null
+ },
+ {
+  "text": " fraction",
+  "startMs": 473820,
+  "endMs": 474370,
+  "timestampMs": 474095,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 474370,
+  "endMs": 474510,
+  "timestampMs": 474440,
+  "confidence": null
+ },
+ {
+  "text": " what",
+  "startMs": 474510,
+  "endMs": 474660,
+  "timestampMs": 474585,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 474660,
+  "endMs": 474750,
+  "timestampMs": 474705,
+  "confidence": null
+ },
+ {
+  "text": " once",
+  "startMs": 474750,
+  "endMs": 475060,
+  "timestampMs": 474905,
+  "confidence": null
+ },
+ {
+  "text": " were.",
+  "startMs": 475060,
+  "endMs": 475380,
+  "timestampMs": 475220,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 475720,
+  "endMs": 475900,
+  "timestampMs": 475810,
+  "confidence": null
+ },
+ {
+  "text": " there's",
+  "startMs": 475900,
+  "endMs": 476090,
+  "timestampMs": 475995,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 476090,
+  "endMs": 476120,
+  "timestampMs": 476105,
+  "confidence": null
+ },
+ {
+  "text": " new",
+  "startMs": 476120,
+  "endMs": 476340,
+  "timestampMs": 476230,
+  "confidence": null
+ },
+ {
+  "text": " problem.",
+  "startMs": 476340,
+  "endMs": 476870,
+  "timestampMs": 476605,
+  "confidence": null
+ },
+ {
+  "text": " Remember",
+  "startMs": 477150,
+  "endMs": 477520,
+  "timestampMs": 477335,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 477520,
+  "endMs": 477610,
+  "timestampMs": 477565,
+  "confidence": null
+ },
+ {
+  "text": " rule?",
+  "startMs": 477610,
+  "endMs": 477990,
+  "timestampMs": 477800,
+  "confidence": null
+ },
+ {
+  "text": " Blue",
+  "startMs": 478340,
+  "endMs": 478530,
+  "timestampMs": 478435,
+  "confidence": null
+ },
+ {
+  "text": " whales",
+  "startMs": 478530,
+  "endMs": 478880,
+  "timestampMs": 478705,
+  "confidence": null
+ },
+ {
+  "text": " bet",
+  "startMs": 478880,
+  "endMs": 479070,
+  "timestampMs": 478975,
+  "confidence": null
+ },
+ {
+  "text": " everything",
+  "startMs": 479070,
+  "endMs": 479490,
+  "timestampMs": 479280,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 479490,
+  "endMs": 479620,
+  "timestampMs": 479555,
+  "confidence": null
+ },
+ {
+  "text": " krill.",
+  "startMs": 479620,
+  "endMs": 480020,
+  "timestampMs": 479820,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 480340,
+  "endMs": 480470,
+  "timestampMs": 480405,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 480470,
+  "endMs": 480540,
+  "timestampMs": 480505,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 480540,
+  "endMs": 480950,
+  "timestampMs": 480745,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 480950,
+  "endMs": 481210,
+  "timestampMs": 481080,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 481210,
+  "endMs": 481310,
+  "timestampMs": 481260,
+  "confidence": null
+ },
+ {
+  "text": " trouble.",
+  "startMs": 481310,
+  "endMs": 481750,
+  "timestampMs": 481530,
+  "confidence": null
+ },
+ {
+  "text": " As",
+  "startMs": 482060,
+  "endMs": 482260,
+  "timestampMs": 482160,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 482260,
+  "endMs": 482350,
+  "timestampMs": 482305,
+  "confidence": null
+ },
+ {
+  "text": " Southern",
+  "startMs": 482350,
+  "endMs": 482690,
+  "timestampMs": 482520,
+  "confidence": null
+ },
+ {
+  "text": " Ocean",
+  "startMs": 482690,
+  "endMs": 482990,
+  "timestampMs": 482840,
+  "confidence": null
+ },
+ {
+  "text": " warms",
+  "startMs": 482990,
+  "endMs": 483450,
+  "timestampMs": 483220,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 483450,
+  "endMs": 483560,
+  "timestampMs": 483505,
+  "confidence": null
+ },
+ {
+  "text": " sea",
+  "startMs": 483560,
+  "endMs": 483840,
+  "timestampMs": 483700,
+  "confidence": null
+ },
+ {
+  "text": " ice",
+  "startMs": 483840,
+  "endMs": 484070,
+  "timestampMs": 483955,
+  "confidence": null
+ },
+ {
+  "text": " shrinks,",
+  "startMs": 484070,
+  "endMs": 484650,
+  "timestampMs": 484360,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 484880,
+  "endMs": 485160,
+  "timestampMs": 485020,
+  "confidence": null
+ },
+ {
+  "text": " around",
+  "startMs": 485160,
+  "endMs": 485390,
+  "timestampMs": 485275,
+  "confidence": null
+ },
+ {
+  "text": " Antarctica",
+  "startMs": 485390,
+  "endMs": 486030,
+  "timestampMs": 485710,
+  "confidence": null
+ },
+ {
+  "text": " have",
+  "startMs": 486030,
+  "endMs": 486200,
+  "timestampMs": 486115,
+  "confidence": null
+ },
+ {
+  "text": " been",
+  "startMs": 486200,
+  "endMs": 486300,
+  "timestampMs": 486250,
+  "confidence": null
+ },
+ {
+  "text": " moving",
+  "startMs": 486300,
+  "endMs": 486620,
+  "timestampMs": 486460,
+  "confidence": null
+ },
+ {
+  "text": " south.",
+  "startMs": 486620,
+  "endMs": 487150,
+  "timestampMs": 486885,
+  "confidence": null
+ },
+ {
+  "text": " Their",
+  "startMs": 487540,
+  "endMs": 487660,
+  "timestampMs": 487600,
+  "confidence": null
+ },
+ {
+  "text": " densest",
+  "startMs": 487660,
+  "endMs": 488090,
+  "timestampMs": 487875,
+  "confidence": null
+ },
+ {
+  "text": " swarms",
+  "startMs": 488090,
+  "endMs": 488580,
+  "timestampMs": 488335,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 488580,
+  "endMs": 488680,
+  "timestampMs": 488630,
+  "confidence": null
+ },
+ {
+  "text": " now",
+  "startMs": 488680,
+  "endMs": 488860,
+  "timestampMs": 488770,
+  "confidence": null
+ },
+ {
+  "text": " about",
+  "startMs": 488860,
+  "endMs": 489090,
+  "timestampMs": 488975,
+  "confidence": null
+ },
+ {
+  "text": " four",
+  "startMs": 489090,
+  "endMs": 489410,
+  "timestampMs": 489250,
+  "confidence": null
+ },
+ {
+  "text": " forty",
+  "startMs": 489410,
+  "endMs": 489710,
+  "timestampMs": 489560,
+  "confidence": null
+ },
+ {
+  "text": " kilometers",
+  "startMs": 489710,
+  "endMs": 490350,
+  "timestampMs": 490030,
+  "confidence": null
+ },
+ {
+  "text": " further",
+  "startMs": 490350,
+  "endMs": 490670,
+  "timestampMs": 490510,
+  "confidence": null
+ },
+ {
+  "text": " south",
+  "startMs": 490670,
+  "endMs": 491050,
+  "timestampMs": 490860,
+  "confidence": null
+ },
+ {
+  "text": " than",
+  "startMs": 491050,
+  "endMs": 491230,
+  "timestampMs": 491140,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 491230,
+  "endMs": 491330,
+  "timestampMs": 491280,
+  "confidence": null
+ },
+ {
+  "text": " were",
+  "startMs": 491330,
+  "endMs": 491590,
+  "timestampMs": 491460,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 491590,
+  "endMs": 491680,
+  "timestampMs": 491635,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 491680,
+  "endMs": 491740,
+  "timestampMs": 491710,
+  "confidence": null
+ },
+ {
+  "text": " nineteen",
+  "startMs": 491740,
+  "endMs": 492130,
+  "timestampMs": 491935,
+  "confidence": null
+ },
+ {
+  "text": " twenties.",
+  "startMs": 492130,
+  "endMs": 492730,
+  "timestampMs": 492430,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 493280,
+  "endMs": 493450,
+  "timestampMs": 493365,
+  "confidence": null
+ },
+ {
+  "text": " here's",
+  "startMs": 493450,
+  "endMs": 493650,
+  "timestampMs": 493550,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 493650,
+  "endMs": 493700,
+  "timestampMs": 493675,
+  "confidence": null
+ },
+ {
+  "text": " twist.",
+  "startMs": 493700,
+  "endMs": 494210,
+  "timestampMs": 493955,
+  "confidence": null
+ },
+ {
+  "text": " Whales",
+  "startMs": 494590,
+  "endMs": 495070,
+  "timestampMs": 494830,
+  "confidence": null
+ },
+ {
+  "text": " help",
+  "startMs": 495070,
+  "endMs": 495370,
+  "timestampMs": 495220,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 495370,
+  "endMs": 495470,
+  "timestampMs": 495420,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 495470,
+  "endMs": 495880,
+  "timestampMs": 495675,
+  "confidence": null
+ },
+ {
+  "text": " too.",
+  "startMs": 495880,
+  "endMs": 496360,
+  "timestampMs": 496120,
+  "confidence": null
+ },
+ {
+  "text": " Krill",
+  "startMs": 496710,
+  "endMs": 497130,
+  "timestampMs": 496920,
+  "confidence": null
+ },
+ {
+  "text": " are",
+  "startMs": 497130,
+  "endMs": 497250,
+  "timestampMs": 497190,
+  "confidence": null
+ },
+ {
+  "text": " full",
+  "startMs": 497250,
+  "endMs": 497490,
+  "timestampMs": 497370,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 497490,
+  "endMs": 497580,
+  "timestampMs": 497535,
+  "confidence": null
+ },
+ {
+  "text": " iron.",
+  "startMs": 497580,
+  "endMs": 498140,
+  "timestampMs": 497860,
+  "confidence": null
+ },
+ {
+  "text": " Whales",
+  "startMs": 498540,
+  "endMs": 498890,
+  "timestampMs": 498715,
+  "confidence": null
+ },
+ {
+  "text": " eat",
+  "startMs": 498890,
+  "endMs": 499130,
+  "timestampMs": 499010,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 499130,
+  "endMs": 499450,
+  "timestampMs": 499290,
+  "confidence": null
+ },
+ {
+  "text": " deep",
+  "startMs": 499450,
+  "endMs": 499690,
+  "timestampMs": 499570,
+  "confidence": null
+ },
+ {
+  "text": " down,",
+  "startMs": 499690,
+  "endMs": 500140,
+  "timestampMs": 499915,
+  "confidence": null
+ },
+ {
+  "text": " then",
+  "startMs": 500340,
+  "endMs": 500510,
+  "timestampMs": 500425,
+  "confidence": null
+ },
+ {
+  "text": " poop",
+  "startMs": 500510,
+  "endMs": 500820,
+  "timestampMs": 500665,
+  "confidence": null
+ },
+ {
+  "text": " near",
+  "startMs": 500820,
+  "endMs": 500990,
+  "timestampMs": 500905,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 500990,
+  "endMs": 501080,
+  "timestampMs": 501035,
+  "confidence": null
+ },
+ {
+  "text": " surface.",
+  "startMs": 501080,
+  "endMs": 501750,
+  "timestampMs": 501415,
+  "confidence": null
+ },
+ {
+  "text": " That",
+  "startMs": 502040,
+  "endMs": 502290,
+  "timestampMs": 502165,
+  "confidence": null
+ },
+ {
+  "text": " puts",
+  "startMs": 502290,
+  "endMs": 502520,
+  "timestampMs": 502405,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 502520,
+  "endMs": 502660,
+  "timestampMs": 502590,
+  "confidence": null
+ },
+ {
+  "text": " iron",
+  "startMs": 502660,
+  "endMs": 502970,
+  "timestampMs": 502815,
+  "confidence": null
+ },
+ {
+  "text": " back",
+  "startMs": 502970,
+  "endMs": 503230,
+  "timestampMs": 503100,
+  "confidence": null
+ },
+ {
+  "text": " into",
+  "startMs": 503230,
+  "endMs": 503380,
+  "timestampMs": 503305,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 503380,
+  "endMs": 503460,
+  "timestampMs": 503420,
+  "confidence": null
+ },
+ {
+  "text": " water.",
+  "startMs": 503460,
+  "endMs": 503910,
+  "timestampMs": 503685,
+  "confidence": null
+ },
+ {
+  "text": " It",
+  "startMs": 504210,
+  "endMs": 504340,
+  "timestampMs": 504275,
+  "confidence": null
+ },
+ {
+  "text": " feeds",
+  "startMs": 504340,
+  "endMs": 504690,
+  "timestampMs": 504515,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 504690,
+  "endMs": 504770,
+  "timestampMs": 504730,
+  "confidence": null
+ },
+ {
+  "text": " tiny",
+  "startMs": 504770,
+  "endMs": 505080,
+  "timestampMs": 504925,
+  "confidence": null
+ },
+ {
+  "text": " plants",
+  "startMs": 505080,
+  "endMs": 505410,
+  "timestampMs": 505245,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 505410,
+  "endMs": 505530,
+  "timestampMs": 505470,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 505530,
+  "endMs": 505820,
+  "timestampMs": 505675,
+  "confidence": null
+ },
+ {
+  "text": " eat.",
+  "startMs": 505820,
+  "endMs": 506170,
+  "timestampMs": 505995,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 506380,
+  "endMs": 506560,
+  "timestampMs": 506470,
+  "confidence": null
+ },
+ {
+  "text": " when",
+  "startMs": 506560,
+  "endMs": 506690,
+  "timestampMs": 506625,
+  "confidence": null
+ },
+ {
+  "text": " whalers",
+  "startMs": 506690,
+  "endMs": 507120,
+  "timestampMs": 506905,
+  "confidence": null
+ },
+ {
+  "text": " killed",
+  "startMs": 507120,
+  "endMs": 507370,
+  "timestampMs": 507245,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 507370,
+  "endMs": 507430,
+  "timestampMs": 507400,
+  "confidence": null
+ },
+ {
+  "text": " whales,",
+  "startMs": 507430,
+  "endMs": 507920,
+  "timestampMs": 507675,
+  "confidence": null
+ },
+ {
+  "text": " they",
+  "startMs": 508100,
+  "endMs": 508220,
+  "timestampMs": 508160,
+  "confidence": null
+ },
+ {
+  "text": " may",
+  "startMs": 508220,
+  "endMs": 508400,
+  "timestampMs": 508310,
+  "confidence": null
+ },
+ {
+  "text": " have",
+  "startMs": 508400,
+  "endMs": 508510,
+  "timestampMs": 508455,
+  "confidence": null
+ },
+ {
+  "text": " hurt",
+  "startMs": 508510,
+  "endMs": 508730,
+  "timestampMs": 508620,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 508730,
+  "endMs": 508790,
+  "timestampMs": 508760,
+  "confidence": null
+ },
+ {
+  "text": " krill",
+  "startMs": 508790,
+  "endMs": 509090,
+  "timestampMs": 508940,
+  "confidence": null
+ },
+ {
+  "text": " as",
+  "startMs": 509090,
+  "endMs": 509200,
+  "timestampMs": 509145,
+  "confidence": null
+ },
+ {
+  "text": " well.",
+  "startMs": 509200,
+  "endMs": 509600,
+  "timestampMs": 509400,
+  "confidence": null
+ },
+ {
+  "text": " So",
+  "startMs": 510230,
+  "endMs": 510460,
+  "timestampMs": 510345,
+  "confidence": null
+ },
+ {
+  "text": " why",
+  "startMs": 510460,
+  "endMs": 510790,
+  "timestampMs": 510625,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 510790,
+  "endMs": 510950,
+  "timestampMs": 510870,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 510950,
+  "endMs": 511040,
+  "timestampMs": 510995,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 511040,
+  "endMs": 511320,
+  "timestampMs": 511180,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 511320,
+  "endMs": 511650,
+  "timestampMs": 511485,
+  "confidence": null
+ },
+ {
+  "text": " so",
+  "startMs": 511650,
+  "endMs": 511890,
+  "timestampMs": 511770,
+  "confidence": null
+ },
+ {
+  "text": " big?",
+  "startMs": 511890,
+  "endMs": 512290,
+  "timestampMs": 512090,
+  "confidence": null
+ },
+ {
+  "text": " Remember",
+  "startMs": 512630,
+  "endMs": 512950,
+  "timestampMs": 512790,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 512950,
+  "endMs": 513030,
+  "timestampMs": 512990,
+  "confidence": null
+ },
+ {
+  "text": " rule?",
+  "startMs": 513030,
+  "endMs": 513490,
+  "timestampMs": 513260,
+  "confidence": null
+ },
+ {
+  "text": " For",
+  "startMs": 513820,
+  "endMs": 513950,
+  "timestampMs": 513885,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 513950,
+  "endMs": 513980,
+  "timestampMs": 513965,
+  "confidence": null
+ },
+ {
+  "text": " filter",
+  "startMs": 513980,
+  "endMs": 514320,
+  "timestampMs": 514150,
+  "confidence": null
+ },
+ {
+  "text": " feeder,",
+  "startMs": 514320,
+  "endMs": 514780,
+  "timestampMs": 514550,
+  "confidence": null
+ },
+ {
+  "text": " bigger",
+  "startMs": 515000,
+  "endMs": 515300,
+  "timestampMs": 515150,
+  "confidence": null
+ },
+ {
+  "text": " means",
+  "startMs": 515300,
+  "endMs": 515580,
+  "timestampMs": 515440,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 515580,
+  "endMs": 515850,
+  "timestampMs": 515715,
+  "confidence": null
+ },
+ {
+  "text": " food",
+  "startMs": 515850,
+  "endMs": 516170,
+  "timestampMs": 516010,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 516170,
+  "endMs": 516270,
+  "timestampMs": 516220,
+  "confidence": null
+ },
+ {
+  "text": " every",
+  "startMs": 516270,
+  "endMs": 516550,
+  "timestampMs": 516410,
+  "confidence": null
+ },
+ {
+  "text": " mouthful",
+  "startMs": 516550,
+  "endMs": 517170,
+  "timestampMs": 516860,
+  "confidence": null
+ },
+ {
+  "text": " and",
+  "startMs": 517320,
+  "endMs": 517460,
+  "timestampMs": 517390,
+  "confidence": null
+ },
+ {
+  "text": " more",
+  "startMs": 517460,
+  "endMs": 517690,
+  "timestampMs": 517575,
+  "confidence": null
+ },
+ {
+  "text": " fuel",
+  "startMs": 517690,
+  "endMs": 518080,
+  "timestampMs": 517885,
+  "confidence": null
+ },
+ {
+  "text": " for",
+  "startMs": 518080,
+  "endMs": 518210,
+  "timestampMs": 518145,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 518210,
+  "endMs": 518290,
+  "timestampMs": 518250,
+  "confidence": null
+ },
+ {
+  "text": " long",
+  "startMs": 518290,
+  "endMs": 518580,
+  "timestampMs": 518435,
+  "confidence": null
+ },
+ {
+  "text": " trips.",
+  "startMs": 518580,
+  "endMs": 519110,
+  "timestampMs": 518845,
+  "confidence": null
+ },
+ {
+  "text": " Then",
+  "startMs": 519450,
+  "endMs": 519660,
+  "timestampMs": 519555,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 519660,
+  "endMs": 519780,
+  "timestampMs": 519720,
+  "confidence": null
+ },
+ {
+  "text": " Ice",
+  "startMs": 519780,
+  "endMs": 520010,
+  "timestampMs": 519895,
+  "confidence": null
+ },
+ {
+  "text": " Ages",
+  "startMs": 520010,
+  "endMs": 520300,
+  "timestampMs": 520155,
+  "confidence": null
+ },
+ {
+  "text": " packed",
+  "startMs": 520300,
+  "endMs": 520630,
+  "timestampMs": 520465,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 520630,
+  "endMs": 520780,
+  "timestampMs": 520705,
+  "confidence": null
+ },
+ {
+  "text": " oceans",
+  "startMs": 520780,
+  "endMs": 521160,
+  "timestampMs": 520970,
+  "confidence": null
+ },
+ {
+  "text": " with",
+  "startMs": 521160,
+  "endMs": 521310,
+  "timestampMs": 521235,
+  "confidence": null
+ },
+ {
+  "text": " dense",
+  "startMs": 521310,
+  "endMs": 521580,
+  "timestampMs": 521445,
+  "confidence": null
+ },
+ {
+  "text": " swarms",
+  "startMs": 521580,
+  "endMs": 521930,
+  "timestampMs": 521755,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 521930,
+  "endMs": 522010,
+  "timestampMs": 521970,
+  "confidence": null
+ },
+ {
+  "text": " krill.",
+  "startMs": 522010,
+  "endMs": 522460,
+  "timestampMs": 522235,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 522740,
+  "endMs": 522840,
+  "timestampMs": 522790,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 522840,
+  "endMs": 522900,
+  "timestampMs": 522870,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 522900,
+  "endMs": 523170,
+  "timestampMs": 523035,
+  "confidence": null
+ },
+ {
+  "text": " whale",
+  "startMs": 523170,
+  "endMs": 523620,
+  "timestampMs": 523395,
+  "confidence": null
+ },
+ {
+  "text": " went",
+  "startMs": 523880,
+  "endMs": 524130,
+  "timestampMs": 524005,
+  "confidence": null
+ },
+ {
+  "text": " all",
+  "startMs": 524130,
+  "endMs": 524450,
+  "timestampMs": 524290,
+  "confidence": null
+ },
+ {
+  "text": " in.",
+  "startMs": 524450,
+  "endMs": 524770,
+  "timestampMs": 524610,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 525400,
+  "endMs": 525520,
+  "timestampMs": 525460,
+  "confidence": null
+ },
+ {
+  "text": " wolf-sized",
+  "startMs": 525520,
+  "endMs": 526220,
+  "timestampMs": 525870,
+  "confidence": null
+ },
+ {
+  "text": " hunter",
+  "startMs": 526220,
+  "endMs": 526690,
+  "timestampMs": 526455,
+  "confidence": null
+ },
+ {
+  "text": " on",
+  "startMs": 526690,
+  "endMs": 526790,
+  "timestampMs": 526740,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 526790,
+  "endMs": 526820,
+  "timestampMs": 526805,
+  "confidence": null
+ },
+ {
+  "text": " riverbank",
+  "startMs": 526820,
+  "endMs": 527360,
+  "timestampMs": 527090,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 527360,
+  "endMs": 527450,
+  "timestampMs": 527405,
+  "confidence": null
+ },
+ {
+  "text": " Pakistan",
+  "startMs": 527450,
+  "endMs": 528110,
+  "timestampMs": 527780,
+  "confidence": null
+ },
+ {
+  "text": " became",
+  "startMs": 528110,
+  "endMs": 528430,
+  "timestampMs": 528270,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 528430,
+  "endMs": 528520,
+  "timestampMs": 528475,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 528520,
+  "endMs": 528870,
+  "timestampMs": 528695,
+  "confidence": null
+ },
+ {
+  "text": " fifty",
+  "startMs": 528870,
+  "endMs": 529280,
+  "timestampMs": 529075,
+  "confidence": null
+ },
+ {
+  "text": " tonne",
+  "startMs": 529280,
+  "endMs": 529600,
+  "timestampMs": 529440,
+  "confidence": null
+ },
+ {
+  "text": " giant.",
+  "startMs": 529600,
+  "endMs": 530140,
+  "timestampMs": 529870,
+  "confidence": null
+ },
+ {
+  "text": " A",
+  "startMs": 530680,
+  "endMs": 530750,
+  "timestampMs": 530715,
+  "confidence": null
+ },
+ {
+  "text": " giant",
+  "startMs": 530750,
+  "endMs": 531140,
+  "timestampMs": 530945,
+  "confidence": null
+ },
+ {
+  "text": " with",
+  "startMs": 531140,
+  "endMs": 531270,
+  "timestampMs": 531205,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 531270,
+  "endMs": 531380,
+  "timestampMs": 531325,
+  "confidence": null
+ },
+ {
+  "text": " heart",
+  "startMs": 531380,
+  "endMs": 531830,
+  "timestampMs": 531605,
+  "confidence": null
+ },
+ {
+  "text": " that",
+  "startMs": 531830,
+  "endMs": 532100,
+  "timestampMs": 531965,
+  "confidence": null
+ },
+ {
+  "text": " beats",
+  "startMs": 532100,
+  "endMs": 532430,
+  "timestampMs": 532265,
+  "confidence": null
+ },
+ {
+  "text": " twice",
+  "startMs": 532430,
+  "endMs": 532810,
+  "timestampMs": 532620,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 532810,
+  "endMs": 532860,
+  "timestampMs": 532835,
+  "confidence": null
+ },
+ {
+  "text": " minute.",
+  "startMs": 532860,
+  "endMs": 533290,
+  "timestampMs": 533075,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 533630,
+  "endMs": 533810,
+  "timestampMs": 533720,
+  "confidence": null
+ },
+ {
+  "text": " age",
+  "startMs": 533810,
+  "endMs": 534060,
+  "timestampMs": 533935,
+  "confidence": null
+ },
+ {
+  "text": " of",
+  "startMs": 534060,
+  "endMs": 534140,
+  "timestampMs": 534100,
+  "confidence": null
+ },
+ {
+  "text": " giants",
+  "startMs": 534140,
+  "endMs": 534740,
+  "timestampMs": 534440,
+  "confidence": null
+ },
+ {
+  "text": " didn't",
+  "startMs": 534920,
+  "endMs": 535250,
+  "timestampMs": 535085,
+  "confidence": null
+ },
+ {
+  "text": " end",
+  "startMs": 535250,
+  "endMs": 535530,
+  "timestampMs": 535390,
+  "confidence": null
+ },
+ {
+  "text": " with",
+  "startMs": 535530,
+  "endMs": 535700,
+  "timestampMs": 535615,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 535700,
+  "endMs": 535760,
+  "timestampMs": 535730,
+  "confidence": null
+ },
+ {
+  "text": " dinosaurs.",
+  "startMs": 535760,
+  "endMs": 536510,
+  "timestampMs": 536135,
+  "confidence": null
+ },
+ {
+  "text": " It's",
+  "startMs": 536830,
+  "endMs": 537000,
+  "timestampMs": 536915,
+  "confidence": null
+ },
+ {
+  "text": " happening",
+  "startMs": 537000,
+  "endMs": 537390,
+  "timestampMs": 537195,
+  "confidence": null
+ },
+ {
+  "text": " right",
+  "startMs": 537390,
+  "endMs": 537570,
+  "timestampMs": 537480,
+  "confidence": null
+ },
+ {
+  "text": " now.",
+  "startMs": 537570,
+  "endMs": 537950,
+  "timestampMs": 537760,
+  "confidence": null
+ },
+ {
+  "text": " And",
+  "startMs": 538240,
+  "endMs": 538390,
+  "timestampMs": 538315,
+  "confidence": null
+ },
+ {
+  "text": " whether",
+  "startMs": 538390,
+  "endMs": 538670,
+  "timestampMs": 538530,
+  "confidence": null
+ },
+ {
+  "text": " it",
+  "startMs": 538670,
+  "endMs": 538740,
+  "timestampMs": 538705,
+  "confidence": null
+ },
+ {
+  "text": " continues",
+  "startMs": 538740,
+  "endMs": 539480,
+  "timestampMs": 539110,
+  "confidence": null
+ },
+ {
+  "text": " is",
+  "startMs": 539570,
+  "endMs": 539730,
+  "timestampMs": 539650,
+  "confidence": null
+ },
+ {
+  "text": " now",
+  "startMs": 539730,
+  "endMs": 539960,
+  "timestampMs": 539845,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 539960,
+  "endMs": 540050,
+  "timestampMs": 540005,
+  "confidence": null
+ },
+ {
+  "text": " to",
+  "startMs": 540050,
+  "endMs": 540220,
+  "timestampMs": 540135,
+  "confidence": null
+ },
+ {
+  "text": " us.",
+  "startMs": 540220,
+  "endMs": 540610,
+  "timestampMs": 540415,
+  "confidence": null
+ },
+ {
+  "text": " So,",
+  "startMs": 540880,
+  "endMs": 541230,
+  "timestampMs": 541055,
+  "confidence": null
+ },
+ {
+  "text": " if",
+  "startMs": 541540,
+  "endMs": 541660,
+  "timestampMs": 541600,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 541660,
+  "endMs": 541810,
+  "timestampMs": 541735,
+  "confidence": null
+ },
+ {
+  "text": " could",
+  "startMs": 541810,
+  "endMs": 541930,
+  "timestampMs": 541870,
+  "confidence": null
+ },
+ {
+  "text": " see",
+  "startMs": 541930,
+  "endMs": 542100,
+  "timestampMs": 542015,
+  "confidence": null
+ },
+ {
+  "text": " one",
+  "startMs": 542100,
+  "endMs": 542460,
+  "timestampMs": 542280,
+  "confidence": null
+ },
+ {
+  "text": " giant",
+  "startMs": 542460,
+  "endMs": 542820,
+  "timestampMs": 542640,
+  "confidence": null
+ },
+ {
+  "text": " from",
+  "startMs": 542820,
+  "endMs": 543000,
+  "timestampMs": 542910,
+  "confidence": null
+ },
+ {
+  "text": " Earth's",
+  "startMs": 543000,
+  "endMs": 543260,
+  "timestampMs": 543130,
+  "confidence": null
+ },
+ {
+  "text": " history",
+  "startMs": 543260,
+  "endMs": 543680,
+  "timestampMs": 543470,
+  "confidence": null
+ },
+ {
+  "text": " up",
+  "startMs": 543680,
+  "endMs": 543850,
+  "timestampMs": 543765,
+  "confidence": null
+ },
+ {
+  "text": " close,",
+  "startMs": 543850,
+  "endMs": 544430,
+  "timestampMs": 544140,
+  "confidence": null
+ },
+ {
+  "text": " which",
+  "startMs": 544640,
+  "endMs": 544830,
+  "timestampMs": 544735,
+  "confidence": null
+ },
+ {
+  "text": " would",
+  "startMs": 544830,
+  "endMs": 544940,
+  "timestampMs": 544885,
+  "confidence": null
+ },
+ {
+  "text": " you",
+  "startMs": 544940,
+  "endMs": 545120,
+  "timestampMs": 545030,
+  "confidence": null
+ },
+ {
+  "text": " pick?",
+  "startMs": 545120,
+  "endMs": 545520,
+  "timestampMs": 545320,
+  "confidence": null
+ },
+ {
+  "text": " The",
+  "startMs": 545780,
+  "endMs": 545860,
+  "timestampMs": 545820,
+  "confidence": null
+ },
+ {
+  "text": " biggest",
+  "startMs": 545860,
+  "endMs": 546150,
+  "timestampMs": 546005,
+  "confidence": null
+ },
+ {
+  "text": " dinosaur,",
+  "startMs": 546150,
+  "endMs": 546770,
+  "timestampMs": 546460,
+  "confidence": null
+ },
+ {
+  "text": " or",
+  "startMs": 547030,
+  "endMs": 547170,
+  "timestampMs": 547100,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "startMs": 547170,
+  "endMs": 547200,
+  "timestampMs": 547185,
+  "confidence": null
+ },
+ {
+  "text": " living",
+  "startMs": 547200,
+  "endMs": 547500,
+  "timestampMs": 547350,
+  "confidence": null
+ },
+ {
+  "text": " blue",
+  "startMs": 547500,
+  "endMs": 547660,
+  "timestampMs": 547580,
+  "confidence": null
+ },
+ {
+  "text": " whale?",
+  "startMs": 547660,
+  "endMs": 548100,
+  "timestampMs": 547880,
+  "confidence": null
+ },
+ {
+  "text": " Tell",
+  "startMs": 548330,
+  "endMs": 548490,
+  "timestampMs": 548410,
+  "confidence": null
+ },
+ {
+  "text": " me",
+  "startMs": 548490,
+  "endMs": 548580,
+  "timestampMs": 548535,
+  "confidence": null
+ },
+ {
+  "text": " in",
+  "startMs": 548580,
+  "endMs": 548650,
+  "timestampMs": 548615,
+  "confidence": null
+ },
+ {
+  "text": " the",
+  "startMs": 548650,
+  "endMs": 548710,
+  "timestampMs": 548680,
+  "confidence": null
+ },
+ {
+  "text": " comments.",
+  "startMs": 548710,
+  "endMs": 549340,
+  "timestampMs": 549025,
+  "confidence": null
+ }
+]

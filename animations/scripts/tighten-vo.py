@@ -13,6 +13,11 @@ Outputs the edited audio (48 kHz WAV) and the captions JSON remapped to it.
 --beat "word=seconds" sets the pause after every caption token equal to `word`
 (match is on the token text, case-insensitive, punctuation included). A beat
 longer than the recorded pause inserts room tone (silence) to reach it.
+--beats-json file.json sets beats by caption index ({"412": 0.6, ...}), for a
+pause after one particular word only.
+--min-sentence / --min-question / --min-paragraph open up rushed pauses that
+are shorter than the given length (inserts silence; use on gated recordings,
+where the pauses are digital silence, so the insert is seamless).
 Needs numpy and ffmpeg.
 """
 import argparse, json, re, subprocess, wave
@@ -31,7 +36,12 @@ def main():
     ap.add_argument("--question", type=float, default=0.40)
     ap.add_argument("--paragraph", type=float, default=0.55)
     ap.add_argument("--refine", type=float, default=None, help="refine each gap from the audio: silence = RMS below this dBFS (e.g. -45)")
+    ap.add_argument("--beats-json", default=None, help='{"caption index": seconds} beats after single words')
+    ap.add_argument("--min-sentence", type=float, default=None)
+    ap.add_argument("--min-question", type=float, default=None)
+    ap.add_argument("--min-paragraph", type=float, default=None)
     a = ap.parse_args()
+    beats_at = {int(k): float(v) for k, v in json.load(open(a.beats_json)).items()} if a.beats_json else {}
 
     raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", a.audio, "-ac", "2", "-ar", str(SR), "-f", "f32le", "-"],
                          check=True, capture_output=True).stdout
@@ -88,7 +98,17 @@ def main():
                 # keep 30 ms of air next to the speech on both sides
                 gap0, gap1 = min(L + 0.03, R), max(R - 0.03, L)
         gap = gap1 - gap0
-        if t in beats:
+        beat = i in beats_at or t in beats
+        minimum = None
+        if is_para_end:
+            minimum = a.min_paragraph
+        elif re.search(r"\?[\"”]?$", t):
+            minimum = a.min_question
+        elif re.search(r"[.!][\"”]?$", t):
+            minimum = a.min_sentence
+        if i in beats_at:
+            target = beats_at[i]
+        elif t in beats:
             target = beats[t]
         elif is_para_end:
             target = a.paragraph
@@ -106,10 +126,14 @@ def main():
             remove = gap - target
             mid = (gap0 + gap1) / 2
             cuts.append((int((mid - remove / 2) * SR), int((mid + remove / 2) * SR)))
-        elif t in beats and gap < target - 0.02:
+        elif beat and gap < target - 0.02:
             # dramatic beat longer than the take: insert silence mid-gap
             mid = (gap0 + gap1) / 2
             cuts.append((int(mid * SR), int(mid * SR) - int((target - gap) * SR)))
+        elif not beat and minimum is not None and gap < minimum - 0.02:
+            # rushed pause: open it up to the minimum
+            mid = (gap0 + gap1) / 2
+            cuts.append((int(mid * SR), int(mid * SR) - int((minimum - gap) * SR)))
 
     # build output with crossfades
     xf = int(0.012 * SR)

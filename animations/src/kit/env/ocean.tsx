@@ -446,9 +446,7 @@ export const PoopCloud: React.FC<XProps & { k?: number; seed?: number; sparkle?:
   return (
     <X {...xf}>
       <Glow rx={R * 1.3} color="#a8502a" alpha={0.25 * Math.min(1, k * 2)} />
-      {blobs.map(([u, v, s], i) => (
-        <Part key={i} shape={circle(R * 0.32 * s)} color={i % 2 ? "#a65a32" : "#8e4a2a"} flat outline={4} opacity={0.85 - k * 0.25} x={u * R * 0.7} y={v * R * 0.5 + Math.sin(frame * 0.05 + i) * 6} z={i * 0.001} />
-      ))}
+      <Puffs puffs={blobs.map(([u, v, s], i) => [u * R * 0.7, v * R * 0.5 + Math.sin(frame * 0.05 + i) * 6, R * 0.34 * s] as [number, number, number])} color="#9a5430" shadow="#7e4224" outline={5} opacity={Math.min(1, 1.1 - k * 0.2)} />
       {sparkle
         ? Array.from({ length: 10 }, (_, i) => (
             <Part key={`s${i}`} shape={circle(5)} color="#ff9a3a" flat outline={0} x={Math.cos(i * 2.4) * R * 0.8} y={Math.sin(i * 2.4) * R * 0.55} opacity={0.5 + 0.5 * Math.sin(frame * 0.2 + i)} z={0.02} />

@@ -768,6 +768,32 @@ AMB.wind = (loop = 24) => {
   return normRms(loopify(s, loop), -25);
 };
 
+/** Underwater: deep muffled rumble with slow swells, a faint high hiss and sparse soft bubble trails. */
+AMB.underwater = (loop = 30) => {
+  const dur = loop + 2;
+  const s = stereo(dur);
+  const r = rng(77);
+  for (const [seed, pan] of [[71, -0.35], [72, 0.35]]) {
+    const deep = filt(brown(dur, seed), "lp", 170);
+    mulEnv(deep, (t) => 0.7 + 0.3 * Math.sin(TAU * 0.045 * t + seed));
+    addMono(s, deep, 0, 1, pan);
+    const swell = sweep(pink(dur, seed + 10), "lp", (t) => 260 + 180 * Math.sin(TAU * 0.06 * t + seed), 0.8);
+    addMono(s, swell, 0, 0.35, -pan);
+  }
+  addMono(s, filt(white(dur, 79), "bp", 5200, 0.6), 0, 0.012);
+  for (let t = 0.8 + r() * 1.5; t < dur - 1; t += 1.6 + r() * 3.2) {
+    const pan = r() * 1.4 - 0.7;
+    const n = 2 + Math.floor(r() * 5);
+    for (let k = 0; k < n; k++) {
+      const bd = 0.03 + r() * 0.035;
+      const f0 = 380 + r() * 520;
+      const bubble = sine(bd, (x) => f0 * (1 + 1.6 * (x / bd)), env.exp(bd * 0.45, 0.002));
+      addMono(s, filt(bubble, "lp", 900), t + k * (0.05 + r() * 0.09), 0.012 + r() * 0.01, pan);
+    }
+  }
+  return normRms(reverb(loopify(s, loop), { room: 0.75, wet: 0.18, damp: 0.6 }), -27);
+};
+
 AMB.rain = (loop = 20) => {
   const dur = loop + 2;
   const s = stereo(dur);

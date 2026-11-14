@@ -11,7 +11,7 @@ export type SfxName =
   | "impact" | "impact2" | "braam" | "riser" | "swell" | "tick" | "tock" | "page_flip" | "page_flip2"
   | "paper" | "thud" | "stamp" | "ding" | "sting" | "whack" | "explosion" | "gunshot" | "clang"
   | "footstep" | "footstep2" | "footstep3" | "footstep4" | "heartbeat" | "scribble" | "camera_flash";
-export type AmbName = "room_tone" | "clock" | "waves" | "jungle_night" | "fire" | "wind" | "rain" | "battle_distant";
+export type AmbName = "room_tone" | "clock" | "waves" | "jungle_night" | "fire" | "wind" | "rain" | "battle_distant" | "underwater";
 export type MusicName = "tension" | "curious" | "somber" | "epic";
 
 export const sfxSrc = (n: SfxName) => staticFile(`audio/lib/sfx/${n}.wav`);

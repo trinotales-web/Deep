@@ -1,9 +1,10 @@
 import React from "react";
-import { AbsoluteFill, interpolate } from "remotion";
-import { X, Part, Line, Glow, Gradient, Wash, roundRect, circle, ellipse, poly, blob } from "../../kit";
+import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
+import { X, Part, Line, Glow, Gradient, Wash, roundRect, circle, ellipse, poly, blob, mixHex } from "../../kit";
 import {
   Sky, Cloud, Mountains, Ground, Stars, Moon, Sun, Sea, Hill, Bush, TropicalIsland, LaunchPad, Falcon1, SpaceBack, Planet, Room, Window, Desk, Monitor, HomeComputer,
   Bookshelf, Jacaranda, House, CampusBuilding, ConcreteStairs, Skyline, MissionControlSet, Rain,
+  Wainscot, Blinds, WallFrame, PottedPlant, Mug, DeskClutter, WallLights, DustMotes, WallClock, ParkTree, type ArtKind,
 } from "../../kit/env";
 
 // Locations for the Elon Musk story. Each set takes `children`, drawn between
@@ -22,6 +23,8 @@ const MOODS: Record<Mood, { top: string; mid: string; bottom: string; sea: strin
 /** Sky gradient with sun / moon / stars / clouds for a mood. */
 export const SkyBack: React.FC<{ mood?: Mood; horizon?: number; clouds?: boolean; sunX?: number }> = ({ mood = "day", horizon = 0, clouds = true, sunX = 600 }) => {
   const m = MOODS[mood];
+  const frame = useCurrentFrame();
+  const drift = frame * 0.35;
   return (
     <X z={-41}>
       <Sky w={6000} h={3600} y={horizon + 1700} top={m.top} mid={m.mid} bottom={m.bottom} />
@@ -30,9 +33,10 @@ export const SkyBack: React.FC<{ mood?: Mood; horizon?: number; clouds?: boolean
       {mood === "dusk" || mood === "dawn" ? <Sun x={sunX} y={horizon + 120} r={120} glow={0.9} /> : null}
       {clouds && mood !== "night" ? (
         <>
-          <Cloud x={-760} y={horizon + 620} w={460} seed={3} color={mood === "storm" ? "#7a8290" : undefined} />
-          <Cloud x={700} y={horizon + 760} w={400} seed={8} color={mood === "storm" ? "#6a7280" : undefined} />
-          {mood === "storm" ? <Cloud x={-60} y={horizon + 900} w={700} seed={5} color="#5a626e" /> : null}
+          <Cloud x={-1500 + drift * 0.6} y={horizon + 520} w={300} seed={11} color={mood === "storm" ? "#7a8290" : undefined} />
+          <Cloud x={-760 + drift} y={horizon + 620} w={460} seed={3} color={mood === "storm" ? "#7a8290" : undefined} />
+          <Cloud x={700 + drift * 0.8} y={horizon + 760} w={400} seed={8} color={mood === "storm" ? "#6a7280" : undefined} />
+          {mood === "storm" ? <Cloud x={-60 + drift * 0.5} y={horizon + 900} w={700} seed={5} color="#5a626e" /> : null}
         </>
       ) : null}
     </X>
@@ -107,10 +111,20 @@ export const SpaceSet: React.FC<{ earth?: boolean; earthY?: number; earthR?: num
   </>
 );
 
+/** Big soft blotches that give diagram paper a painted, tactile surface. */
+const PAPER_BLOTCHES: [number, number, number, number, number][] = [
+  [-1500, 700, 520, 300, 0.09], [-600, 900, 380, 220, 0.06], [400, 760, 600, 260, 0.07], [1400, 500, 460, 320, 0.08],
+  [-1200, -200, 420, 260, 0.06], [-100, -60, 700, 300, 0.05], [1100, -380, 520, 280, 0.07], [-700, -800, 600, 260, 0.08],
+  [700, -900, 480, 240, 0.06], [1700, 1000, 400, 260, 0.06],
+];
+
 /** Warm diagram paper. */
 export const Paper: React.FC<{ color?: string; children?: React.ReactNode }> = ({ color = "#e9dcbc", children }) => (
   <>
     <Gradient w={4400} h={2600} stops={[[0, "#f1e6c8"], [1, color]]} z={-41} />
+    {PAPER_BLOTCHES.map(([x, y, rx, ry, a], i) => (
+      <Part key={i} shape={ellipse(rx, ry)} color="#c9b48a" flat outline={0} opacity={a} x={x} y={y} z={-40.9} />
+    ))}
     {children}
   </>
 );
@@ -125,16 +139,30 @@ export const Office: React.FC<{ era?: "1995" | "2000" | "2008" | "2020"; night?:
   children,
 }) => {
   const w = wall ?? (era === "1995" ? "#d8d0b8" : era === "2000" ? "#c9d4dc" : era === "2008" ? "#bfc6cc" : "#d4d6da");
+  const art: ArtKind = era === "1995" ? "map" : era === "2000" ? "chart" : era === "2008" ? "rocket" : "mars";
+  const rug = era === "1995" ? "#8a4a3a" : era === "2000" ? "#4a6a8a" : "#5a5f6a";
   return (
     <>
-      <Room wall={w} floor={era === "1995" ? "#8a7a6a" : "#7f8288"} y={-420} z={-40} boards={era === "1995"}>
+      <Room wall={w} floor={era === "1995" ? "#8a7a6a" : "#6c727b"} y={-420} z={-40} boards={era === "1995"}>
+        <Wainscot wall={w} h={290} z={0.0005} />
+        <WallLights xs={[-1150, 0, 1150]} y={780} alpha={night ? 0.1 : 0.2} z={0.0006} />
         <Window x={-760} y={960} w={560} h={520} night={night} />
         {era !== "1995" ? <Skyline x={-760} y={720} w={560} n={4} night={night} hmin={120} hmax={360} z={0.0015} s={1} /> : null}
+        {era !== "1995" ? <Blinds x={-760} y={960} w={560} h={520} open={0.55} z={0.0016} /> : null}
+        <WallFrame x={160} y={790} w={330} h={235} art={art} wall={w} recede={0.2} z={0.0012} />
+        <WallFrame x={-1480} y={760} w={250} h={320} art="abstract" wall={w} recede={0.25} seed={3} z={0.0012} />
+        <WallClock x={760} y={830} r={78} z={0.0012} />
+        <Part shape={ellipse(980, 80)} color={rug} flat outline={5} y={-150} z={0.0007} />
+        {!night ? <DustMotes x={-760} y={420} w={520} h={760} n={10} z={0.002} /> : null}
       </Room>
+      <PottedPlant x={-1000} y={-600} h={500} seed={2} z={-14} />
+      <PottedPlant x={1040} y={-600} h={430} pot="#5a6a7a" leaf="#3f7a3a" seed={5} z={-14} />
       {desk ? (
         <X x={deskX} y={-420} z={-10}>
           <Desk w={900} h={300} color={era === "1995" ? "#a0703f" : "#5a5e66"} />
           {era === "1995" ? <HomeComputer x={120} y={300} s={0.55} /> : <Monitor x={120} y={460} w={420} h={260} screen={night ? "#1e3a5a" : "#24405e"} />}
+          <DeskClutter x={-330} y={246} z={0.01} />
+          <Mug x={390} y={246} color={era === "2020" ? "#2a2a30" : "#d8322f"} z={0.01} />
         </X>
       ) : null}
       {children}
@@ -147,13 +175,24 @@ export const Office: React.FC<{ era?: "1995" | "2000" | "2008" | "2020"; night?:
 export const HomeRoom: React.FC<{ night?: boolean; shelf?: boolean; children?: React.ReactNode }> = ({ night = false, shelf = true, children }) => (
   <>
     <Room wall="#e2c79a" floor="#9a6a42" y={-420} z={-40}>
+      {/* striped 1970s wallpaper with a small diamond motif, wood panelling below */}
       {Array.from({ length: 16 }, (_, i) => (
-        <Line key={i} pts={[[-2200 + i * 280, 40], [-2200 + i * 280, 2600]]} width={6} color="#d6b886" z={0.001} />
+        <Part key={i} shape={roundRect(120, 2600, 0)} color="#d9ba86" flat outline={0} x={-2200 + i * 280} y={1300} z={0.0004} />
       ))}
+      {Array.from({ length: 16 }, (_, i) =>
+        [0, 1, 2, 3].map((j) => <Part key={`${i}${j}`} shape={poly([[0, 16], [12, 0], [0, -16], [-12, 0]])} color="#c9a46c" flat outline={0} x={-2060 + i * 280} y={420 + j * 260} z={0.00045} />),
+      )}
+      <Wainscot wall="#a8763e" h={280} step={300} z={0.0005} />
+      <WallLights xs={[-700, 600]} y={760} color="#ffe2a8" alpha={night ? 0.16 : 0.18} z={0.0006} />
       <Window x={700} y={1000} w={520} h={540} night={night} />
       <Jacaranda x={700} y={760} h={380} z={0.0015} />
+      <WallFrame x={-60} y={800} w={250} h={200} art="family" frame="#7a4a2a" wall="#e2c79a" recede={0.15} z={0.0012} />
+      <WallFrame x={-1300} y={820} w={220} h={280} art="landscape" frame="#7a4a2a" wall="#e2c79a" recede={0.2} seed={4} z={0.0012} />
+      <Part shape={ellipse(1000, 90)} color="#b5493a" flat outline={5} y={-160} z={0.0007} />
+      <Part shape={ellipse(860, 66)} color="#d8a24a" flat outline={0} y={-160} z={0.0008} />
     </Room>
     {shelf ? <Bookshelf x={-760} y={-420} w={560} h={820} z={-20} /> : null}
+    <PottedPlant x={1180} y={-600} h={460} pot="#b07a4a" seed={7} z={-14} />
     {children}
     {night ? <Wash width={6000} height={4000} color="#0a1030" alpha={0.3} z={39} /> : null}
   </>
@@ -179,6 +218,11 @@ export const SchoolSet: React.FC<{ horizon?: number; stairs?: boolean; children?
     <SkyBack mood="day" horizon={horizon} />
     <CampusBuilding kind="brick" w={3400} h={1100} y={horizon} z={-38} />
     <Ground w={6000} h={2000} y={horizon} color="#b8b4aa" far="#c4c0b6" pebbles={4} tufts={0} seed={6} z={-30} />
+    {[-1700, -1050].map((x, i) => (
+      <Bush key={x} x={x} y={horizon - 6} w={300} seed={i + 30} z={-29} />
+    ))}
+    <ParkTree x={-1420} y={horizon - 20} h={760} seed={31} z={-28} />
+    <ParkTree x={1650} y={horizon - 20} h={700} seed={32} z={-28} />
     {stairs ? <ConcreteStairs x={600} y={horizon} steps={8} stepW={140} stepH={64} z={-20} /> : null}
     {children}
   </>
@@ -190,9 +234,12 @@ export const CampusSet: React.FC<{ kind?: "brick" | "stone" | "sandstone"; horiz
     <SkyBack mood="day" horizon={horizon} />
     <CampusBuilding kind={kind} w={3600} h={1200} y={horizon} z={-38} />
     <Ground w={6000} h={2000} y={horizon} color="#7fa84a" far="#8ab452" pebbles={4} tufts={16} tuftColor="#5a8a3a" seed={8} z={-30} />
+    <Part shape={roundRect(6000, 120, 0)} color="#d8cdb4" flat outline={5} y={horizon - 120} z={-29.5} />
     {[-1500, -700, 700, 1500].map((x, i) => (
       <Bush key={x} x={x} y={horizon - 10} w={260} seed={i + 3} z={-29} />
     ))}
+    <ParkTree x={-1150} y={horizon - 40} h={820} seed={41} z={-28} />
+    <ParkTree x={1200} y={horizon - 40} h={760} seed={42} z={-28} />
     {children}
   </>
 );
@@ -201,10 +248,21 @@ export const CampusSet: React.FC<{ kind?: "brick" | "stone" | "sandstone"; horiz
 export const RoadSet: React.FC<{ horizon?: number; mood?: Mood; children?: React.ReactNode }> = ({ horizon = -220, mood = "day", children }) => (
   <>
     <SkyBack mood={mood} horizon={horizon} />
+    <Mountains w={6000} y={horizon + 6} color={mixHex(MOODS[mood].hills, MOODS[mood].bottom, 0.45)} outline={3} peaks={[[-2300, 260], [-1500, 380], [-600, 250], [300, 340], [1200, 230], [2100, 360]]} z={-39.5} />
+    {[-2000, -1640, -1300, -380, -60, 260, 980, 1320, 1700, 2100].map((x, i) => (
+      <ParkTree key={x} x={x} y={horizon + 4} h={170 + (i % 3) * 40} seed={i + 20} recede={0.45} toward={MOODS[mood].bottom} z={-38.5} />
+    ))}
     <Hill w={3200} h={420} x={-900} y={horizon} color="#8ab45a" seed={2} z={-38} />
     <Hill w={3000} h={360} x={1100} y={horizon} color="#7aa84a" seed={5} z={-37} />
+    {[-1600, -700, 500, 1500].map((x, i) => (
+      <ParkTree key={x} x={x} y={horizon - 30} h={330 + (i % 2) * 70} seed={i + 50} z={-33} />
+    ))}
     <Ground w={6000} h={2000} y={horizon} color="#9ac062" far="#a6c86a" pebbles={4} tufts={12} tuftColor="#6a8a3a" seed={3} z={-30} />
+    <Part shape={roundRect(6000, 300, 0)} color="#c9b98f" flat outline={5} y={horizon - 300} z={-25.5} />
     <Part shape={roundRect(6000, 260, 0)} color="#5a5a62" flat outline={5} y={horizon - 300} z={-25} />
+    {[-1, 1].map((sd) => (
+      <Part key={sd} shape={roundRect(6000, 10, 0)} color="#e8e2d2" flat outline={0} y={horizon - 300 + sd * 112} z={-24.5} />
+    ))}
     {Array.from({ length: 16 }, (_, i) => (
       <Part key={i} shape={roundRect(140, 12, 4)} color="#f2ece0" flat outline={0} x={-3000 + i * 400} y={horizon - 300} z={-24} />
     ))}
@@ -293,7 +351,14 @@ export const StormRain: React.FC<{ on?: boolean }> = ({ on = true }) => (on ? <R
 export const Outdoors: React.FC<{ mood?: Mood; horizon?: number; ground?: string; children?: React.ReactNode }> = ({ mood = "day", horizon = -300, ground = "#8fb05a", children }) => (
   <>
     <SkyBack mood={mood} horizon={horizon} />
+    <Mountains w={6000} y={horizon + 6} color={mixHex(MOODS[mood].hills, MOODS[mood].bottom, 0.45)} outline={3} peaks={[[-2300, 260], [-1500, 380], [-600, 250], [300, 340], [1200, 230], [2100, 360]]} z={-39.5} />
+    {[-2000, -1640, -1300, -380, -60, 260, 980, 1320, 1700, 2100].map((x, i) => (
+      <ParkTree key={x} x={x} y={horizon + 4} h={170 + (i % 3) * 40} seed={i + 20} recede={0.45} toward={MOODS[mood].bottom} z={-38.5} />
+    ))}
     <Hill w={3400} h={380} x={-800} y={horizon} color="#8ab45a" seed={3} z={-38} />
+    {[-1700, 1550].map((x, i) => (
+      <ParkTree key={x} x={x} y={horizon - 30} h={420} seed={i + 60} z={-33} />
+    ))}
     <Ground w={6000} h={2000} y={horizon} color={ground} far={ground} pebbles={6} tufts={12} tuftColor="#6a8a3a" seed={5} z={-30} />
     {children}
     {MOODS[mood].wash ? <Wash width={6000} height={4000} color={MOODS[mood].wash![0]} alpha={MOODS[mood].wash![1]} z={39} /> : null}

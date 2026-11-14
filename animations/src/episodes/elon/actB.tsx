@@ -7,6 +7,7 @@ import {
   Book, BookRow, Bookshelf, HospitalBed, HeartMonitor, IVStand, HomeComputer, Laptop, Magazine, Cheque, Phone, PostCard, Room, Window, Rain, House, Jacaranda,
   SpaceBack, Planet, StarlinkSat, Sun, Moon, Stars, Desk,
 } from "../../kit/env";
+import { Softbox } from "../../kit/env/decor";
 import { sec, pop, useScr, SpeechBubble } from "../../kit/shot";
 import { HomeRoom, PretoriaStreet, SchoolSet, Paper, Flash, Outdoors } from "./sets";
 import { ELON_KID, ELON_SCHOOL, ELON_TEEN, MAYE, ERROL, BULLY, DOCTOR, NURSE, STAFF, PERSON } from "./cast";
@@ -172,7 +173,13 @@ export const MayeShot: React.FC<ShotProps> = ({ start, dur }) => {
         bgBlur={6}
         bg={
           <>
-            <Room wall="#e8d8e8" floor="#c8b8c8" y={-420} boards={false} z={-40} />
+            <Room wall="#cdb8d0" floor="#b8a8bc" y={-420} boards={false} z={-40} />
+            {/* photo studio: paper backdrop hanging from a roll, two softboxes that fire with the flashes */}
+            <Part shape={roundRect(2300, 1210, 0)} color="#f1e4f1" flat outline={5} y={185} z={-39.5} />
+            <Part shape={ellipse(1150, 120)} color="#f1e4f1" flat outline={0} y={-420} z={-39.4} />
+            <Part shape={roundRect(2420, 70, 34)} color="#7a7a84" shade={0.3} y={790} z={-39} />
+            <Softbox x={-760} y={-520} h={700} flash={flash} z={-30} />
+            <Softbox x={820} y={-520} h={700} flash={flash} flip z={-30} />
             <Glow x={-600} y={300} rx={600} color="#ffffff" alpha={0.5 * flash} additive z={-30} />
           </>
         }

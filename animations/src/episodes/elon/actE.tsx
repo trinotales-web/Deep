@@ -7,6 +7,7 @@ import {
   Falcon1, Falcon9, FalconHeavy, Dragon, SpaceStation, StarlinkSat, Fireball, Exhaust, LandingPad, LaunchPad, Planet, Roadster, SedanEV, OldPhone, Cash, Banknote, MoneyBag,
   LineChart, Bars, Bell, Trophy, XmasTree, Flame, Smoke, Splash, Skyline, Room, Airliner, Globe, globeXY, Dish, WorldMap, CITY, worldXY, Book, StageSet, Cloud, Sun, Stars,
 } from "../../kit/env";
+import { SteeringWheel } from "../../kit/env/decor";
 import { sec, pop, useScr } from "../../kit/shot";
 import { IslandSet, SeaSet, HighSky, SpaceSet, Paper, Office, MCRoom, Flash, DashArrow, Outdoors, StormRain } from "./sets";
 import { ELON_2008, ELON_TEE, ENGINEER, JUSTINE, PERSON, SUIT, STAFF, ASTRONAUT } from "./cast";
@@ -873,19 +874,34 @@ export const DontPanicShot: React.FC<ShotProps> = ({ start, dur }) => {
   const t = absT(start, frame);
   const sc = useScr();
   const zoom = push(frame, dur, 1.0, 1.08);
-  const p = sc(0, 40, zoom, 0, 0);
+  const on = t > 531.0;
+  const boot = ramp(t, 529.5, 531.0);
+  const p = sc(300, -40, zoom, 0, 0);
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom }} light={{ dir: [-0.6, 0.6] }} vignette={0.7}>
-        <Part shape={roundRect(4000, 3000, 0)} color="#2a1e22" flat outline={0} z={-41} />
-        <Part shape={roundRect(3000, 900, 60)} color="#c8262f" shade={0.2} y={-600} z={-30} />
-        <X y={40} z={1}>
-          <Part shape={roundRect(980, 560, 40)} color="#1f1f25" shade={0.15} />
-          <Part shape={roundRect(900, 480, 20)} color={t > 531.0 ? "#0e2030" : "#141a22"} flat outline={0} z={0.001} />
-          {t > 531.0 ? <Glow rx={520} ry={300} color="#4a9adf" alpha={0.3} additive z={0.002} /> : null}
+        {/* space through the windshield */}
+        <Part shape={roundRect(4000, 3000, 0)} color="#070a18" flat outline={0} z={-41} />
+        <Stars w={4000} h={2400} count={90} z={-40} />
+        <Planet kind="earth" r={520} x={-900} y={420} glow={0.4} z={-38} />
+        {/* windshield frame + dashboard of the red roadster */}
+        <Part shape={roundRect(4000, 120, 0)} color="#1f1a1e" flat outline={6} y={560} z={-20} />
+        <Part shape={roundRect(3400, 900, 90)} color="#c8262f" shade={0.2} y={-700} z={-10} />
+        <Part shape={roundRect(3400, 140, 60)} color="#2a2228" shade={0.2} y={-250} z={-9} />
+        <SteeringWheel x={-560} y={-260} r={260} z={2} />
+        <X x={300} y={-40} z={1}>
+          <Part shape={roundRect(720, 440, 34)} color="#1f1f25" shade={0.15} />
+          <Part shape={roundRect(660, 380, 18)} color={on ? "#0e2030" : "#141a22"} flat outline={0} z={0.001} />
+          {!on && boot > 0 ? (
+            <>
+              <Part shape={roundRect(420, 40, 20)} color="#141a22" flat outline={4} outlineColor="#4a9adf" z={0.002} />
+              <Part shape={roundRect(Math.max(20, 400 * boot), 26, 13)} color="#4a9adf" flat outline={0} x={-200 + 200 * boot} z={0.003} />
+            </>
+          ) : null}
+          {on ? <Glow rx={420} ry={260} color="#4a9adf" alpha={0.3} additive z={0.002} /> : null}
         </X>
       </Stage>
-      <Label text="DON'T PANIC" x={p.x} y={p.y} size={0.075} pin color="#7fd0ff" at={sec(start)(531.12)} />
+      <Label text="DON'T PANIC" x={p.x} y={p.y} size={0.07} pin color="#7fd0ff" at={sec(start)(531.12)} />
       <Label text="ON THE CAR'S SCREEN" x={0.1} y={0.1} size={0.05} kind="box" at={sec(start)(529.6)} />
     </AbsoluteFill>
   );

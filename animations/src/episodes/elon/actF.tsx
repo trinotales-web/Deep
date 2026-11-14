@@ -7,9 +7,10 @@ import {
   SedanEV, Cybertruck, Phone, PostCard, Monitor, LineChart, MoneyBag, Gavel, Brain, Implant, Wheelchair, ChessBoard, Laptop, Humanoid, Bird, XMark, Book, Room, Window,
   FactorySet, RobotArm, StageSet, Skyline, Desk, OfficeChair, Box, GoldCoin, Cash, Sea,
 } from "../../kit/env";
+import { CourtroomSet, ServerRack } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
 import { Office, ChipsTable, Paper, RoadSet, Outdoors, Flash, usdFull } from "./sets";
-import { ELON_TEE, ELON_X, DESIGNER, NOLAND, SUIT, STAFF, PERSON, WORKER } from "./cast";
+import { ELON_TEE, ELON_X, DESIGNER, NOLAND, SUIT, STAFF, PERSON, WORKER, JUDGE } from "./cast";
 import { upright } from "./actA";
 import { MarketWall, StockLine, MARKET_GREEN, MARKET_RED } from "../../kit/env/market";
 
@@ -167,25 +168,33 @@ export const FineShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.0, 1.06);
   const fall = ramp(t, 583.6, 584.4, Easing.in(Easing.quad));
+  const bag = (x: number) => sc(x, -60, zoom, 0, -20);
+  const plate = sc(620, -350, zoom, 0, -20);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06) }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
-        <Paper>
-          <MoneyBag x={-620} y={-380} s={1.1 * pop(t, 581.2)} />
-          <MoneyBag x={-160} y={-380} s={1.1 * pop(t, 581.5)} />
-          <X x={520} y={-60 - fall * 600} rot={fall * 0.9} s={pop(t, 583.3)}>
+      <Stage camera={{ zoom, y: -20 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <Office era="2020" desk={false}>
+          <Character {...SUIT(0)} x={-680} y={-600} s={1.3} look={0.5} expression={{ eyes: "open", mouth: "flat", brows: -0.3 }} pose={poses.talk(frame, 1)} talking={t < 581} z={1} />
+          <Character {...ELON_TEE} x={680} y={-600} s={1.3} facing={-1} look={0.5} expression={{ eyes: "open", mouth: "frown", brows: 0.2 }} pose={poses.idle(frame, 3)} z={1} />
+          <Part shape={roundRect(2100, 60, 12)} color="#6e4a2c" shade={0.2} y={-430} z={2} />
+          <Part shape={roundRect(2000, 260, 12)} color="#5a3a20" shade={0.2} y={-580} z={1.9} />
+          <MoneyBag x={-180} y={-400} s={0.95 * pop(t, 581.2)} z={2.5} />
+          <MoneyBag x={180} y={-400} s={0.95 * pop(t, 581.5)} z={2.5} />
+          <X x={620} y={-380 - fall * 600} rot={fall * 0.9} s={0.45 * pop(t, 583.3)} z={2.6}>
             <Part shape={poly([[-300, -60], [300, -60], [260, 90], [-260, 90]])} color="#5a3a20" shade={0.2} />
             <Part shape={roundRect(520, 110, 10)} color="#e9ba41" shade={0.15} y={20} z={0.001} />
           </X>
-        </Paper>
+        </Office>
       </Stage>
       <Label text="NO ADMISSION OF WRONGDOING" x={0.1} y={0.1} size={0.045} kind="box" at={at(578.9)} />
-      <Label text="$20M" x={0.5 - 620 / 1920} y={0.5 + 210 / 1080} size={0.05} pin kind="ink" at={at(581.3)} />
-      <Label text="$20M" x={0.5 - 160 / 1920} y={0.5 + 210 / 1080} size={0.05} pin kind="ink" at={at(581.6)} />
-      <Label text="ELON" x={0.5 - 620 / 1920} y={0.88} size={0.045} kind="box" pin at={at(581.3)} />
-      <Label text="TESLA" x={0.5 - 160 / 1920} y={0.88} size={0.045} kind="box" pin at={at(581.6)} />
-      {fall < 0.05 ? <Label text="CHAIRMAN" x={0.5 + 520 / 1920} y={0.5 + 40 / 1080} size={0.05} pin kind="ink" at={at(583.4)} /> : null}
+      <Label text="$20M" x={bag(-180).x} y={bag(-180).y} size={0.04} pin kind="ink" at={at(581.3)} />
+      <Label text="$20M" x={bag(180).x} y={bag(180).y} size={0.04} pin kind="ink" at={at(581.6)} />
+      <Label text="ELON" x={bag(-180).x} y={0.86} size={0.042} kind="box" pin at={at(581.3)} />
+      <Label text="TESLA" x={bag(180).x} y={0.86} size={0.042} kind="box" pin at={at(581.6)} />
+      {fall < 0.05 ? <Label text="CHAIRMAN" x={plate.x} y={plate.y} size={0.026} pin kind="ink" at={at(583.4)} /> : null}
       <Label text="STEPS DOWN AS CHAIRMAN" x={0.9} y={0.1} size={0.05} kind="box" at={at(583.6)} />
     </AbsoluteFill>
   );
@@ -444,26 +453,26 @@ export const FirstToAdmitShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const StartingCompaniesShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
-  const icons = [
-    <Brain key="b" s={0.5} />,
-    <Humanoid key="h" s={0.3} y={-120} />,
-    <X key="c"><ChatWindow w={260} h={180} n={2} /></X>,
-    <X key="t"><Part shape={ellipse(150, 90)} color="#4a3a32" shade={0.2} /><Part shape={ellipse(110, 60)} color="#1e1a1e" flat outline={0} z={0.001} /></X>,
+  const badges: [string, React.ReactNode][] = [
+    ["#3a7ac9", <Brain key="b" s={0.34} y={-10} />],
+    ["#e9ba41", <Humanoid key="h" s={0.32} y={-150} />],
+    ["#3fa07a", <X key="c"><ChatWindow w={210} h={150} n={2} /></X>],
+    ["#8a5ac9", <X key="t"><Part shape={ellipse(110, 70)} color="#4a3a32" shade={0.2} /><Part shape={ellipse(80, 46)} color="#1e1a1e" flat outline={0} z={0.001} /></X>],
   ];
+  const spots: [number, number][] = [[-640, 260], [640, 260], [-760, -120], [760, -120]];
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 0 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
-        <Paper>
+        <Office era="2020" desk={false}>
           <Character {...ELON_TEE} x={0} y={-640} s={1.7} look={0.2} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} z={2} />
-          {icons.map((ic, i) => {
-            const a = Math.PI * (0.15 + i * 0.23);
-            return (
-              <X key={i} x={Math.cos(a) * 640 * (i % 2 ? -1 : 1)} y={180 + Math.sin(a) * 160} s={pop(t, 626.6 + i * 0.25)} z={3}>
-                {ic}
-              </X>
-            );
-          })}
-        </Paper>
+          {badges.map(([col, ic], i) => (
+            <X key={i} x={spots[i][0]} y={spots[i][1]} s={pop(t, 626.6 + i * 0.25)} z={3}>
+              <Part shape={circle(175)} color="#f4f1ea" shade={0.15} />
+              <Part shape={circle(150)} color={col} flat outline={5} z={0.001} />
+              <X z={0.002}>{ic}</X>
+            </X>
+          ))}
+        </Office>
       </Stage>
       <Label text="MORE COMPANIES" x={0.5} y={0.1} size={0.06} kind="box" at={sec(start)(626.9)} />
     </AbsoluteFill>
@@ -579,8 +588,13 @@ export const XaiShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 0 }} light={{ dir: [-0.6, 0.6] }} vignette={0.7} vignetteColor="#05070e">
         <Part shape={roundRect(4000, 3000, 0)} color="#0e1220" flat outline={0} z={-41} />
-        <Glow x={360} y={120} rx={700} color="#4a6adf" alpha={0.35 * ramp(t, 647.8, 648.6)} additive z={-40} />
-        <XMark x={360} y={140} size={420 * pop(t, 648.44)} color="#f4f4f6" />
+        <Part shape={roundRect(5000, 1000, 0)} color="#161b28" flat outline={5} y={-920} z={-35} />
+        {Array.from({ length: 11 }, (_, i) => (
+          <ServerRack key={i} x={-1650 + i * 330} y={-420} h={1040} seed={i + 1} z={-30} />
+        ))}
+        <Glow x={0} y={-200} rx={1600} ry={500} color="#2a4a9a" alpha={0.25} additive z={-29} />
+        <Glow x={360} y={120} rx={700} color="#4a6adf" alpha={0.35 * ramp(t, 647.8, 648.6)} additive z={-28} />
+        <XMark x={360} y={140} size={420 * pop(t, 648.44)} color="#f4f4f6" z={-27} />
         <Character {...ELON_X(false)} x={interpolate(t, [644.0, 646.0], [-1100, -560], { extrapolateRight: "clamp" })} y={-640} s={1.6} look={0.6} expression={{ eyes: "open", mouth: "smirk" }} pose={t < 646.0 ? poses.walk(frame, 1.0) : poses.idle(frame, 2)} z={2} />
       </Stage>
       <Label text="2023" x={0.1} y={0.1} size={0.06} kind="box" at={at(645.3)} />
@@ -719,15 +733,16 @@ export const BackOutShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -20 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
-        <Paper>
-          <Phone x={360} y={40} w={420} screen="#f4f6f8" glow={0.3}>
-            <Bird s={0.9} y={180} />
-          </Phone>
+        <Office era="2020" desk={false}>
+          <Monitor x={380} y={120} w={980} h={600} screen="#f4f6f8" stand={false} z={-5}>
+            <Part shape={roundRect(940, 60, 6)} color="#3a8adf" flat outline={0} y={240} />
+            <Bird s={0.9} y={20} z={0.001} />
+          </Monitor>
           {Array.from({ length: 8 }, (_, i) => (
-            <BotIcon key={i} x={360 + Math.cos(i * 0.785) * 440} y={40 + Math.sin(i * 0.785) * 360} s={pop(t, 669.4 + i * 0.12) * 0.9} z={2} />
+            <BotIcon key={i} x={380 + Math.cos(i * 0.785) * 600} y={120 + Math.sin(i * 0.785) * 420} s={pop(t, 669.4 + i * 0.12) * 1.25} z={-4} />
           ))}
           <Character {...ELON_X(false)} x={interpolate(t, [667.3, 668.6], [-420, -700], { extrapolateRight: "clamp" })} y={-640} s={1.6} look={0.6} expression={{ eyes: "open", mouth: "frown", brows: 0.4 }} pose={poses.scared(frame)} z={3} />
-        </Paper>
+        </Office>
       </Stage>
       <Label text="HE TRIES TO BACK OUT" x={0.1} y={0.1} size={0.05} kind="box" at={at(667.6)} />
       <Label text="“TOO MANY FAKE ACCOUNTS”" x={0.9} y={0.86} size={0.055} kind="box" at={at(670.4)} />
@@ -741,13 +756,41 @@ export const SuesShot: React.FC<ShotProps> = ({ start, dur }) => {
   const t = absT(start, frame);
   const at = sec(start);
   const swing = -Math.max(0, Math.sin(Math.min(1, Math.max(0, (t - 671.7) / 0.35)) * Math.PI)) * 0.9;
+  const arm: [number, number] = [1.15, 0.6];
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), shake: hitAt(t, 672.0, 0.3) * 8 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
-        <Paper color="#d8c8a8">
-          <Gavel x={-420} y={-160} s={1.6} swing={swing} />
-          <Bird x={460} y={60} s={1.2} />
-        </Paper>
+      <Stage camera={{ zoom: push(frame, dur, 0.95, 1.01), y: 40, shake: hitAt(t, 672.0, 0.3) * 8 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <CourtroomSet y={-420}>
+          <Character {...JUDGE} x={120} y={520} s={1.1} look={0.5} expression={{ eyes: "open", mouth: "flat", brows: -0.4 }} pose={poses.idle(frame, 3)} z={-0.12} />
+          {/* bench front drawn over the judge so only head and shoulders show */}
+          <Part shape={roundRect(1400, 520, 12)} color="#6e4426" shade={0.2} y={520} z={0.25}>
+            {[-450, 0, 450].map((bx) => (
+              <Part key={bx} shape={roundRect(360, 380, 8)} color="#5e3a20" flat outline={4} x={bx} z={0.001} />
+            ))}
+          </Part>
+          <Gavel x={-260} y={800} s={1.1} swing={swing} z={0.32} />
+          <Character
+            {...SUIT(1)}
+            x={560}
+            facing={-1}
+            y={-200}
+            s={1.45}
+            look={0.6}
+            expression={{ eyes: "open", mouth: "smirk", brows: -0.3 }}
+            pose={{ ...poses.idle(frame, 2), armF: arm }}
+            holdF={
+              <X rot={upright(arm)}>
+                <Part shape={roundRect(170, 230, 8)} color="#e8eef6" shade={0.15} y={-40} />
+                <Bird s={0.32} y={-30} z={0.001} />
+              </X>
+            }
+            z={0.3}
+          />
+          <Character {...ELON_X(false)} x={-560} y={-200} s={1.45} look={0.6} expression={{ eyes: "open", mouth: "frown", brows: 0.3 }} pose={poses.idle(frame, 5)} z={0.3} />
+          {[-560, 560].map((tx) => (
+            <Part key={tx} shape={roundRect(760, 210, 12)} color="#6e4426" shade={0.2} x={tx} y={-165} z={0.5} />
+          ))}
+        </CourtroomSet>
       </Stage>
       <Label text="TWITTER SUES" x={0.1} y={0.1} size={0.06} kind="box" at={at(671.9)} />
       <Label text="HE BUYS IT ANYWAY" x={0.85} y={0.86} size={0.065} kind="stamp" at={at(673.8)} />

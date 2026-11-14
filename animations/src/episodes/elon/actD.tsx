@@ -1,15 +1,16 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import { Stage, DepthStage, X, Part, Line, Glow, Wash, roundRect, circle, ellipse, poly, blob, push, hitAt, absT, ramp, type ShotProps } from "../../kit";
+import { Stage, DepthStage, X, Part, Line, Glow, Wash, InkLine, roundRect, circle, ellipse, poly, blob, push, hitAt, absT, ramp, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
 import { Character, poses } from "../../kit/character";
 import {
   Monitor, XMark, WorldMap, CITY, Calendar, HospitalBed, HeartMonitor, IVStand, Cheque, MoneyBag, Mosquito, Acacia, SavannaSet, Candle, Planet, Greenhouse, MoscowSet,
   Pie, Falcon1, Falcon9, Laptop, Gavel, Roadster, BatteryGrid, BatteryCell, Room, Window, Skyline, Sea, PalmTree, Stars, SpaceBack, Mic, SedanEV, Hangar, Doc, Banknote,
 } from "../../kit/env";
+import { CourtroomSet, WallFrame, Blinds, WallClock, PottedPlant } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
 import { Office, ChipsTable, Paper, SkyBack, SeaSet, SpaceSet, DashArrow, Outdoors, RoadSet } from "./sets";
-import { ELON_SUIT, ELON_2008, ELON_ZIP2, JUSTINE, SUIT, STAFF, RUSSIAN, EBERHARD, TARPENNING, THIEL, PERSON } from "./cast";
+import { ELON_SUIT, ELON_2008, ELON_ZIP2, JUSTINE, SUIT, STAFF, RUSSIAN, EBERHARD, TARPENNING, THIEL, PERSON, JUDGE } from "./cast";
 import { upright } from "./actA";
 
 // X.com and PayPal (1999–2002), malaria, the PayPal Mafia, the Mars dream,
@@ -36,6 +37,46 @@ const OperaHouse: React.FC<{ x?: number; y?: number; s?: number; z?: number }> =
     ))}
   </X>
 );
+
+/** Red brick fortress wall with swallow-tail merlons and one spired tower. Origin = ground centre. */
+const KremlinWall: React.FC<{ y?: number; z?: number }> = ({ y = 0, z = 0 }) => (
+  <X y={y} z={z}>
+    <Part shape={roundRect(5200, 340, 0)} color="#b4413a" shade={0.15} y={170} />
+    {Array.from({ length: 34 }, (_, i) => (
+      <Part key={i} shape={poly([[-36, 0], [36, 0], [36, 70], [14, 46], [0, 72], [-14, 46], [-36, 70]])} color="#b4413a" shade={0.15} x={-2580 + i * 156} y={340} z={0.001} />
+    ))}
+    {Array.from({ length: 22 }, (_, i) => (
+      <Line key={`b${i}`} pts={[[-2600, 40 + (i % 5) * 60], [2600, 40 + (i % 5) * 60]]} width={4} color="#9a342e" z={0.0005} />
+    )).slice(0, 5)}
+    <X x={1250} z={0.002}>
+      <Part shape={roundRect(300, 760, 6)} color="#b4413a" shade={0.2} y={380} />
+      <Part shape={roundRect(240, 220, 6)} color="#c4514a" shade={0.2} y={870} z={0.001} />
+      <Part shape={circle(70)} color="#f4f1ea" flat outline={5} y={860} z={0.002} />
+      <Part shape={poly([[-120, 980], [120, 980], [0, 1320]])} color="#3f7a5a" shade={0.25} z={0.003} />
+      <Part shape={poly([[-26, 1320], [26, 1320], [0, 1420]])} color="#d8322f" flat outline={4} z={0.004} />
+    </X>
+  </X>
+);
+
+/** Distant steel arch bridge across a harbour (silhouette, bold strokes). */
+const HarbourBridge: React.FC<{ x?: number; y?: number; z?: number }> = ({ x = 0, y = 0, z = 0 }) => {
+  const arch: [number, number][] = Array.from({ length: 25 }, (_, i) => {
+    const u = i / 24;
+    return [-560 + u * 1120, Math.sin(u * Math.PI) * 330];
+  });
+  return (
+    <X x={x} y={y} z={z}>
+      {[-420, -280, -140, 0, 140, 280, 420].map((hx) => (
+        <Line key={hx} pts={[[hx, 110], [hx, Math.sin(((hx + 560) / 1120) * Math.PI) * 330]]} width={10} color="#7d8a98" />
+      ))}
+      <InkLine pts={arch} width={26} color="#8a96a4" outline={5} smooth />
+      <Part shape={roundRect(1500, 34, 6)} color="#8a96a4" shade={0.15} y={110} z={0.001} />
+      {[-640, 640].map((px) => (
+        <Part key={px} shape={roundRect(110, 260, 8)} color="#c8bca4" shade={0.2} x={px} y={130} z={0.002} />
+      ))}
+    </X>
+  );
+};
 
 /** Teddy bear (sitting). */
 const Teddy: React.FC<{ x?: number; y?: number; s?: number; z?: number }> = ({ x = 0, y = 0, s = 1, z = 0 }) => (
@@ -132,34 +173,48 @@ export const PayPalShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.0, 1.06);
   const k = ramp(t, 270.4, 272.1, Easing.inOut(Easing.cubic));
   const merged = t > 272.1;
+  const coin = ((t - 272.4) * 0.7) % 1;
+  const title = sc(-300, 330, zoom, 0, 0);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06) }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
-        <Paper>
+      <Stage camera={{ zoom }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
+        <Office era="2000" desk={false}>
           {!merged ? (
             <>
-              <X x={interpolate(k, [0, 1], [-560, -10])} z={1}>
+              <X x={interpolate(k, [0, 1], [-560, -10])} y={60} z={1}>
                 <Part shape={roundRect(480, 380, 30)} color="#2a4a9a" shade={0.2} />
                 <XMark size={180} color="#f4f4f6" z={0.01} />
               </X>
-              <X x={interpolate(k, [0, 1], [560, 10])} z={1}>
+              <X x={interpolate(k, [0, 1], [560, 10])} y={60} z={1}>
                 <Part shape={roundRect(480, 380, 30)} color="#3f8a5a" shade={0.2} />
                 <Part shape={circle(90)} color="#f4f4f6" flat outline={5} z={0.01} />
               </X>
             </>
           ) : (
-            <X s={pop(t, 272.1)} z={1}>
-              <Part shape={roundRect(880, 420, 40)} color="#1f5fb0" shade={0.2} />
-              <Glow rx={700} color="#9fd2f0" alpha={0.3} additive z={-0.01} />
+            <X y={40} s={pop(t, 272.1)} z={1}>
+              <Monitor w={1200} h={700} screen="#f4f6fa" stand={false}>
+                <Part shape={roundRect(1150, 90, 6)} color="#1f5fb0" flat outline={0} y={290} />
+                {[-330, 330].map((ax, i) => (
+                  <X key={ax} x={ax} y={-30} z={0.001}>
+                    <Part shape={circle(110)} color={i ? "#cfe0f0" : "#e8d6b0"} flat outline={5} />
+                    <Part shape={circle(46)} color="#f6f5f8" flat outline={4} y={30} z={0.001} />
+                    <Part shape={ellipse(70, 40)} color={i ? "#3a7ac9" : "#3fa07a"} flat outline={4} y={-50} z={0.001} />
+                  </X>
+                ))}
+                <DashArrow from={[-190, -30]} to={[190, -30]} color="#1f5fb0" width={16} z={0.002} />
+                {t > 272.4 ? <X x={-190 + coin * 380} y={40} z={0.003}><Part shape={circle(34)} color="#e9ba41" shade={0.25} /></X> : null}
+              </Monitor>
             </X>
           )}
-        </Paper>
+        </Office>
       </Stage>
       {!merged ? <Label text="X.COM" x={0.5 + interpolate(k, [0, 1], [-560, -10]) / 1920} y={0.75} size={0.05} kind="box" pin at={0} /> : null}
       {!merged ? <Label text="CONFINITY" sub="THE RIVAL" x={0.5 + interpolate(k, [0, 1], [560, 10]) / 1920} y={0.75} size={0.05} kind="box" pin at={at(271.0)} /> : null}
-      <Label text="PAYPAL" x={0.5} y={0.5} size={0.075} pin at={at(272.3)} />
+      {merged ? <Label text="PAYPAL" x={title.x} y={title.y} size={0.05} pin at={at(272.3)} /> : null}
     </AbsoluteFill>
   );
 };
@@ -239,7 +294,13 @@ export const AustraliaShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <SeaSet mood="day" horizon={-120}>
+          <HarbourBridge x={-880} y={-120} z={-26} />
           <OperaHouse x={700} y={-120} s={0.8} z={-25} />
+          <X x={interpolate(frame, [0, dur], [180, 420])} y={-105} z={-24}>
+            <Part shape={roundRect(260, 56, 18)} color="#3f8a5a" shade={0.2} />
+            <Part shape={roundRect(160, 60, 10)} color="#f4f1ea" shade={0.15} y={50} z={0.001} />
+            <Part shape={roundRect(30, 50, 4)} color="#e9ba41" flat outline={4} x={40} y={98} z={0.002} />
+          </X>
           <Part shape={roundRect(6000, 900, 0)} color="#ead39a" flat outline={5} y={-600} z={-20} />
           <Character {...ELON_ZIP2} x={-300} y={-640} s={1.5} look={0.6} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, 2)} z={2} />
           <Character {...JUSTINE} x={60} y={-640} s={1.45} facing={-1} look={0.6} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, 5)} z={2} />
@@ -345,7 +406,19 @@ export const ICUShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 1.1, 1.2), y: -80, x: -40 }} light={{ dir: [0.6, 0.6] }} vignette={0.75} vignetteColor="#0a1018">
-        <Room wall="#a8c4cc" floor="#7f949a" y={-420} boards={false} z={-40} />
+        <Room wall="#a8c4cc" floor="#7f949a" y={-420} boards={false} z={-40}>
+          <Window x={620} y={700} w={440} h={400} sky="#bfe0f0" />
+          <Blinds x={620} y={700} w={440} h={400} open={0.5} z={0.0016} />
+          <WallClock x={-180} y={780} r={70} z={0.0012} />
+          <WallFrame x={150} y={760} w={240} h={170} art="landscape" wall="#a8c4cc" recede={0.25} z={0.0012} />
+        </Room>
+        <X x={-930} y={-420} z={-20}>
+          <Part shape={roundRect(360, 1260, 30)} color="#9ac2d8" shade={0.25} y={630} />
+          {[-110, -10, 90].map((fx) => (
+            <Line key={fx} pts={[[fx, 40], [fx, 1220]]} width={10} color="#86b0c8" z={0.001} />
+          ))}
+          <Part shape={roundRect(520, 26, 10)} color="#b8bcc4" shade={0.2} y={1270} z={0.002} />
+        </X>
         <IVStand x={-600} y={-420} z={-5} />
         <HeartMonitor x={600} y={-40} s={0.95} z={-5} />
         <HospitalBed x={0} y={-460} w={940} blanket="#8ab0c8" z={1} />
@@ -649,6 +722,7 @@ export const RussiaShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.85, 0.92), y: 60 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
         <MoscowSet y={-300}>
+          <KremlinWall y={0} z={-0.05} />
           <Character {...ELON_2008} x={interpolate(frame, [0, dur], [-700, -200])} y={-420} s={1.6} look={0.6} expression={{ eyes: "open", mouth: "flat", brows: -0.2 }} pose={{ ...poses.walk(frame, 0.9), armB: arm }} holdB={<Briefcase rot={upright(arm)} s={1.1} />} z={2} />
         </MoscowSet>
       </Stage>
@@ -773,10 +847,26 @@ export const FirstPrinciplesShot: React.FC<ShotProps> = ({ start, dur }) => {
   const k = t < 371.3 ? ramp(t, 369.2, 370.4, Easing.out(Easing.cubic)) : 1 - ramp(t, 371.3, 372.3, Easing.inOut(Easing.cubic));
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.9, 0.96) }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
-        <Paper>
-          <ExplodedRocket k={k} />
-        </Paper>
+      <Stage camera={{ zoom: push(frame, dur, 0.9, 0.96) }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        {/* blueprint sheet with a soft grid */}
+        <Part shape={roundRect(5000, 3200, 0)} color="#24508e" flat outline={0} z={-41} />
+        {Array.from({ length: 13 }, (_, i) => (
+          <Part key={`v${i}`} shape={roundRect(6, 3200, 0)} color="#2f5f9e" flat outline={0} x={-1800 + i * 300} z={-40} />
+        ))}
+        {Array.from({ length: 8 }, (_, i) => (
+          <Part key={`h${i}`} shape={roundRect(5000, 6, 0)} color="#2f5f9e" flat outline={0} y={-1050 + i * 300} z={-40} />
+        ))}
+        <Part shape={roundRect(3200, 1900, 30)} color="#24508e" flat outline={6} outlineColor="#7fb0e8" z={-39} />
+        <X s={1.35} y={70}>
+        {k > 0.35 ? (
+          <X z={-1}>
+            {[[-360, 60], [360, 40], [0, 330], [0, -270]].map(([dx, dy], i) => (
+              <DashArrow key={i} from={[0, 0]} to={[dx * k * 0.85, dy * k * 0.85]} k={ramp(k, 0.35, 1)} color="#f2f6fb" width={14} z={i * 0.001} />
+            ))}
+          </X>
+        ) : null}
+        <ExplodedRocket k={k} />
+        </X>
       </Stage>
       <Label text="FIRST PRINCIPLES" x={0.5} y={0.1} size={0.07} kind="box" at={at(367.8)} />
       <Label text="BREAK IT DOWN" x={0.1} y={0.86} size={0.05} kind="box" at={at(369.3)} until={at(371.3)} />
@@ -917,22 +1007,34 @@ export const CofounderShot: React.FC<ShotProps> = ({ start, dur }) => {
   const t = absT(start, frame);
   const at = sec(start);
   const sc = useScr();
-  const zoom = push(frame, dur, 1.0, 1.06);
-  const np = sc(460, -40, zoom, 0, 0);
+  const zoom = push(frame, dur, 0.92, 0.98);
   const swing = -Math.max(0, Math.sin(Math.min(1, Math.max(0, (t - 394.7) / 0.35)) * Math.PI)) * 0.9;
+  const np = sc(-560, -446, zoom, 0, 40);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom, shake: hitAt(t, 395.0, 0.3) * 8 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
-        <Paper color="#d8c8a8">
-          <Gavel x={-420} y={-160} s={1.6} swing={swing} />
-          <X x={460} y={-80} s={pop(t, 396.5)}>
+      <Stage camera={{ zoom, y: 40, shake: hitAt(t, 395.0, 0.3) * 8 }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <CourtroomSet y={-420}>
+          <Character {...JUDGE} x={-120} y={520} s={1.1} look={0.5} expression={{ eyes: "open", mouth: "flat", brows: -0.4 }} pose={poses.idle(frame, 2)} z={-0.12} />
+          {/* bench front drawn over the judge so only head and shoulders show */}
+          <Part shape={roundRect(1400, 520, 12)} color="#6e4426" shade={0.2} y={520} z={0.25}>
+            {[-450, 0, 450].map((bx) => (
+              <Part key={bx} shape={roundRect(360, 380, 8)} color="#5e3a20" flat outline={4} x={bx} z={0.001} />
+            ))}
+          </Part>
+          <Gavel x={260} y={800} s={1.1} swing={swing} z={0.32} />
+          <Character {...ELON_SUIT} x={-560} y={-200} s={1.45} look={0.6} expression={{ eyes: "open", mouth: t > 396.5 ? "grin" : "flat", brows: t > 396.5 ? 0 : -0.3 }} pose={poses.idle(frame, 1)} z={0.3} />
+          <Character {...EBERHARD} x={560} y={-200} s={1.45} facing={-1} look={0.6} expression={{ eyes: "open", mouth: "frown", brows: 0.3 }} pose={poses.idle(frame, 4)} z={0.3} />
+          {[-560, 560].map((tx) => (
+            <Part key={tx} shape={roundRect(760, 210, 12)} color="#6e4426" shade={0.2} x={tx} y={-165} z={0.5} />
+          ))}
+          <X x={-560} y={-50} s={0.6 * pop(t, 396.5)} z={0.6}>
             <Part shape={roundPoly3()} color="#5a3a20" shade={0.2} />
             <Part shape={roundRect(560, 120, 10)} color="#e9ba41" shade={0.15} y={40} z={0.001} />
           </X>
-        </Paper>
+        </CourtroomSet>
       </Stage>
       <Label text="A LEGAL FIGHT" x={0.1} y={0.1} size={0.05} kind="box" at={at(394.6)} />
-      <Label text="CO-FOUNDER" x={np.x} y={np.y} size={0.05} pin kind="ink" at={at(396.7)} />
+      <Label text="CO-FOUNDER" x={np.x} y={np.y} size={0.032} pin kind="ink" at={at(396.7)} />
     </AbsoluteFill>
   );
 };

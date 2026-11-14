@@ -291,3 +291,13 @@ export const BACKPACKER = (i = 0): Design => ({
   ...mixTone(i),
   seed: 130 + i,
 });
+
+/** Judge in a black robe (white hair, glasses). */
+export const JUDGE: Design = {
+  ...SUIT(2),
+  outfit: { top: "#1c1a20", shirt: "#f4f4f2", bottom: "#1c1a20", boots: "#2a2228" },
+  hair: "sides",
+  hairColor: "#dcd8d2",
+  glasses: "#2a2228",
+  seed: 77,
+};

@@ -8,9 +8,10 @@ import {
   FactorySet, RobotArm, StageSet, Skyline, Desk, OfficeChair, Box, GoldCoin, Cash, Sea,
 } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
-import { Office, ChipsTable, Paper, RoadSet, Outdoors, Flash } from "./sets";
+import { Office, ChipsTable, Paper, RoadSet, Outdoors, Flash, usdFull } from "./sets";
 import { ELON_TEE, ELON_X, DESIGNER, NOLAND, SUIT, STAFF, PERSON, WORKER } from "./cast";
 import { upright } from "./actA";
+import { MarketWall, StockLine, MARKET_GREEN, MARKET_RED } from "../../kit/env/market";
 
 // 2018–2023: production hell, "funding secured", the Cybertruck, the richest
 // man, SNL, more companies (tunnels, Neuralink, OpenAI, xAI, the robot), Twitter → X.
@@ -278,14 +279,22 @@ export const BackWindowShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const StockClimbShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
+  const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.0, 1.06);
+  const cx = 120;
+  const cy = 110;
+  const title = sc(230, 190 + 240, zoom, cx, cy);
+  const sub = sc(230, 190 + 160, zoom, cx, cy);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06) }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
-        <Paper>
-          <LineChart w={1500} h={760} values={[0.05, 0.07, 0.06, 0.1, 0.18, 0.3, 0.55, 0.9]} k={ramp(t, 599.4, 601.9)} color="#2fa05a" />
-        </Paper>
+      <Stage camera={{ zoom, x: cx, y: cy }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <MarketWall rows={2}>
+          <StockLine w={1180} h={400} y={-10} values={[0.05, 0.07, 0.06, 0.1, 0.18, 0.3, 0.55, 0.9]} k={ramp(t, 599.4, 601.9)} seed={8} />
+        </MarketWall>
       </Stage>
-      <Label text="TESLA'S STOCK KEEPS CLIMBING" x={0.5} y={0.1} size={0.055} kind="box" at={sec(start)(600.1)} />
+      <Label text="TESLA" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={at(600.06)} />
+      <Label text="STOCK PRICE" x={sub.x} y={sub.y} size={0.075} kind="hand" italic pin at={at(600.47)} />
     </AbsoluteFill>
   );
 };
@@ -326,22 +335,25 @@ export const TrillionTeslaShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.1, 1.16);
+  const cx = 200;
+  const cy = 130;
   const k = ramp(t, 607.4, 608.9, Easing.out(Easing.cubic));
-  const v = Math.round(k * 1000);
+  const v = (0.62 + 0.38 * k) * 1e12;
+  const title = sc(230, 190 + 240, zoom, cx, cy);
+  const sub = sc(230, 190 + 160, zoom, cx, cy);
+  const val = sc(470, 10, zoom, cx, cy);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [-0.5, 0.7] }} vignette={0.6}>
-        <Paper>
-          {Array.from({ length: 9 }, (_, i) => (
-            <X key={i} x={-760 + (i % 3) * 120 + Math.floor(i / 3) * 40} y={-460 + Math.floor(i / 3) * 70} z={i * 0.01}>
-              <Cash w={220} n={4} />
-            </X>
-          ))}
-          <SedanEV x={380} y={-460} s={1.3} color="#c8262f" z={1} />
-        </Paper>
+      <Stage camera={{ zoom, x: cx, y: cy }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <MarketWall rows={2}>
+          <StockLine w={1180} h={400} y={-10} values={[0.1, 0.15, 0.13, 0.25, 0.33, 0.45, 0.6, 0.72, 0.86, 0.95]} k={0.7 + ramp(t, 606.6, 609.0) * 0.3} seed={17} />
+        </MarketWall>
       </Stage>
-      <Label text={k >= 0.999 ? "$1,000,000,000,000+" : `$${v},000,000,000`} x={0.5} y={0.14} size={0.08} kind="title" at={at(607.4)} />
-      <Label text="TESLA'S VALUE" x={0.1} y={0.86} size={0.05} kind="box" at={at(607.6)} />
+      <Label text="TESLA" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={at(606.6)} />
+      <Label text="MARKET CAP" x={sub.x} y={sub.y} size={0.075} kind="hand" italic pin at={at(606.9)} />
+      <Label text={k >= 0.999 ? "$1,000,000,000,000+" : usdFull(Math.round(v / 1e9) * 1e9)} x={val.x} y={val.y} size={0.095} kind="hand" color={MARKET_GREEN} pin at={at(607.4)} />
     </AbsoluteFill>
   );
 };

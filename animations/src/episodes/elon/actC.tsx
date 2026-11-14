@@ -11,6 +11,7 @@ import { sec, pop, useScr } from "../../kit/shot";
 import { HomeRoom, CampusSet, Office, RoadSet, ChipsTable, Paper, SkyBack, Outdoors, DashArrow, SeaSet } from "./sets";
 import { ELON_YOUNG, ELON_ZIP2, ELON_SUIT, ERROL, KIMBAL, THIEL, SUIT, BACKPACKER, PERSON, MAYE } from "./cast";
 import { upright } from "./actA";
+import { MarketWall, StockLine, MARKET_GREEN, MARKET_RED } from "../../kit/env/market";
 
 // Emerald myth, emigration (1989), university, Zip2 (1995–99), the McLaren, the rule.
 
@@ -164,16 +165,23 @@ export const PlaneTradeShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const FellApartShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
+  const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.0, 1.06);
+  const cx = 120;
+  const cy = 110;
   const k = ramp(t, 166.3, 167.6);
+  const title = sc(230, 190 + 240, zoom, cx, cy);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06) }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
-        <Paper>
-          <LineChart x={0} y={0} w={1300} h={700} values={[0.8, 0.85, 0.78, 0.7, 0.5, 0.35, 0.18, 0.06]} k={k} color="#d8322f" />
-        </Paper>
+      <Stage camera={{ zoom, x: cx, y: cy }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        {/* 1980s: the "screen" is a chalkboard in a wooden frame */}
+        <MarketWall rows={0} wall="#4a5a4e" screen="#25392d" bezel="#7a5232" glow={MARKET_RED}>
+          <StockLine w={1180} h={400} y={-10} values={[0.8, 0.85, 0.78, 0.7, 0.5, 0.35, 0.18, 0.06]} k={k} color={MARKET_RED} gridColor="#2f4637" seed={9} />
+        </MarketWall>
       </Stage>
-      <Label text="THE EMERALD BUSINESS" x={0.1} y={0.1} size={0.05} kind="box" at={sec(start)(166.2)} />
-      <Label text="FELL APART" x={0.5} y={0.86} size={0.065} kind="stamp" at={sec(start)(167.1)} />
+      <Label text="THE EMERALD BUSINESS" x={title.x} y={title.y} size={0.085} kind="hand" italic pin at={at(166.2)} />
+      <Label text="FELL APART" x={0.5} y={0.86} size={0.065} kind="stamp" at={at(167.1)} />
     </AbsoluteFill>
   );
 };

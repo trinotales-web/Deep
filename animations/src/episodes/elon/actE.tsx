@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import { Stage, DepthStage, X, Part, Line, Glow, Wash, roundRect, circle, ellipse, poly, blob, push, hitAt, absT, ramp, type ShotProps } from "../../kit";
+import { Stage, DepthStage, X, Part, Line, Glow, Wash, InkLine, roundRect, circle, ellipse, poly, blob, push, hitAt, absT, ramp, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
 import { Character, poses } from "../../kit/character";
 import {
@@ -11,6 +11,7 @@ import { sec, pop, useScr } from "../../kit/shot";
 import { IslandSet, SeaSet, HighSky, SpaceSet, Paper, Office, MCRoom, Flash, DashArrow, Outdoors, StormRain } from "./sets";
 import { ELON_2008, ELON_TEE, ENGINEER, JUSTINE, PERSON, SUIT, STAFF, ASTRONAUT } from "./cast";
 import { upright } from "./actA";
+import { MarketWall, StockLine, MARKET_GREEN, MARKET_RED } from "../../kit/env/market";
 
 // 2008: the worst year and the fourth launch; the NASA call; Tesla and SpaceX
 // take off (2010–2022): Model S, Dragon, landings, Falcon Heavy, Starman, crew, Starlink.
@@ -151,14 +152,20 @@ export const EconomyShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.0, 1.06);
+  const cx = 120;
+  const cy = 110;
+  const title = sc(230, 190 + 240, zoom, cx, cy);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), shake: hitAt(t, 414.9, 0.4) * 6 }} light={{ dir: [-0.6, 0.6] }} vignette={0.7} vignetteColor="#0a0e18">
-        <Outdoors mood="storm" horizon={-420} ground="#5a6066" />
-        <Skyline y={-420} z={-30} color="#5a6a80" />
-        <LineChart x={0} y={40} w={1400} h={640} values={[0.9, 0.85, 0.88, 0.8, 0.6, 0.45, 0.25, 0.1]} k={ramp(t, 414.0, 415.4)} color="#d8322f" paper="#f4ecd8" z={5} />
+      <Stage camera={{ zoom, x: cx, y: cy, shake: hitAt(t, 414.9, 0.4) * 6 }} light={{ dir: [-0.6, 0.6] }} vignette={0.7}>
+        <MarketWall rows={2} glow={MARKET_RED}>
+          <StockLine w={1180} h={400} y={-10} values={[0.9, 0.85, 0.88, 0.8, 0.6, 0.45, 0.25, 0.08]} k={ramp(t, 414.0, 415.4)} color={MARKET_RED} seed={5} jag={0.04} />
+        </MarketWall>
       </Stage>
-      <Label text="2008 FINANCIAL CRISIS" x={0.5} y={0.1} size={0.055} kind="box" at={at(414.3)} />
+      <Label text="STOCK MARKET" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={at(413.9)} />
+      <Label text="2008 FINANCIAL CRISIS" x={0.1} y={0.1} size={0.055} kind="box" at={at(414.3)} />
     </AbsoluteFill>
   );
 };
@@ -572,17 +579,17 @@ export const FastShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: 1 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
         <Paper>
-          <Line pts={[[-3000, -40], [3000, -40]]} width={14} color="#4a3a32" />
+          <InkLine pts={[[-3000, -40], [3000, -40]]} width={20} color="#6a5a4a" outline={6} />
           {Array.from({ length: 14 }, (_, i) => (
-            <X key={i} x={-600 + i * 360 - off} y={-40}>
-              <Part shape={circle(26)} color={i === 0 ? "#d8322f" : "#e9ba41"} flat outline={6} />
+            <X key={i} x={-600 + i * 360 - off} y={-40} z={0.01}>
+              <Part shape={circle(38)} color={i === 0 ? "#d8322f" : "#e9ba41"} shade={0.18} outline={8} />
             </X>
           ))}
         </Paper>
       </Stage>
       {Array.from({ length: 14 }, (_, i) => {
         const x = 0.5 + (-600 + i * 360 - off) / 1920;
-        return x > -0.1 && x < 1.1 ? <Label key={i} text={`${2008 + i}`} x={x} y={0.6} size={0.05} pin kind="ink" at={0} /> : null;
+        return x > -0.1 && x < 1.1 ? <Label key={i} text={`${2008 + i}`} x={x} y={0.62} size={0.062} pin kind="ink" at={0} /> : null;
       })}
       <Label text="THINGS MOVE FAST" x={0.5} y={0.14} size={0.075} kind="title" at={sec(start)(478.5)} />
     </AbsoluteFill>
@@ -594,21 +601,28 @@ export const IPOShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 0.92, 0.98);
+  const title = sc(230, 190 + 240, zoom, 0, 60);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 0 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
-        <Part shape={roundRect(4000, 3000, 0)} color="#1a2238" flat outline={0} z={-41} />
-        {Array.from({ length: 3 }, (_, r) => (
-          <Part key={r} shape={roundRect(4000, 80, 0)} color="#0e1420" flat outline={4} y={420 - r * 110} z={-40} />
-        ))}
-        {Array.from({ length: 24 }, (_, i) => (
-          <Part key={`t${i}`} shape={roundRect(110, 26, 4)} color={i % 3 ? "#3fd07a" : "#e2584a"} flat outline={0} x={((i * 170 - frame * 12) % 4000) - 2000} y={420 - (i % 3) * 110} z={-39} />
-        ))}
-        <Bell x={-200} y={-460} s={1.3} ring={t > 481.0 ? 1 : 0} z={1} />
-        <Character {...ELON_TEE} x={420} y={-620} s={1.6} facing={-1} look={0.6} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} z={2} />
+      <Stage camera={{ zoom, y: 60 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
+        <MarketWall
+          rows={0}
+          clockX={-760}
+          front={
+            <>
+              <Bell x={-440} y={-470} s={1.3} ring={t > 481.0 ? 1 : 0} z={1} />
+              <Character {...ELON_TEE} x={40} y={-640} s={1.6} facing={-1} look={0.6} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} z={2} />
+            </>
+          }
+        >
+          <StockLine w={1180} h={380} y={60} values={[0.1, 0.13, 0.11, 0.18, 0.24, 0.3, 0.4, 0.5]} k={ramp(t, 481.1, 482.4) * 0.6} seed={3} />
+        </MarketWall>
       </Stage>
+      <Label text="TESLA" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={at(481.07)} />
       <Label text="2010" x={0.1} y={0.1} size={0.06} kind="box" at={at(479.9)} />
-      <Label text="TESLA GOES PUBLIC" x={0.5} y={0.86} size={0.065} kind="stamp" at={at(481.1)} />
+      <Label text="TESLA GOES PUBLIC" x={0.85} y={0.86} size={0.065} kind="stamp" at={at(481.1)} />
     </AbsoluteFill>
   );
 };
@@ -921,9 +935,9 @@ export const CirclingSunShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 0.95, 1.02) }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
         <Part shape={roundRect(4000, 3000, 0)} color="#0a0e22" flat outline={0} z={-41} />
         <Stars w={4000} h={2400} count={90} z={-40} />
-        <Line pts={orbit(420, 300)} width={4} color="#5a7ad8" opacity={0.7} />
-        <Line pts={orbit(640, 440)} width={4} color="#c8643a" opacity={0.7} />
-        <Line pts={orbit(560, 380).map(([x, y]) => [x + 90, y] as [number, number])} width={5} color="#e9ba41" />
+        <Line pts={orbit(420, 300)} width={9} color="#5a7ad8" opacity={0.85} />
+        <Line pts={orbit(640, 440)} width={9} color="#c8643a" opacity={0.85} />
+        <Line pts={orbit(560, 380).map(([x, y]) => [x + 90, y] as [number, number])} width={10} color="#e9ba41" />
         <Sun r={120} glow={1} z={1} />
         <Planet kind="earth" r={44} x={Math.cos(a * 1.3) * 420} y={Math.sin(a * 1.3) * 300} glow={0} z={2} />
         <Planet kind="mars" r={34} x={Math.cos(a * 0.7 + 2) * 640} y={Math.sin(a * 0.7 + 2) * 440} glow={0} z={2} />
@@ -983,7 +997,7 @@ export const StarlinkShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
-  const n = Math.round(interpolate(t, [550.4, 553.0], [12, 90], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  const n = Math.round(interpolate(t, [550.4, 553.0], [8, 34], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.95, 1.05) }} light={{ dir: [-0.7, 0.5] }} vignette={0.65}>
@@ -998,15 +1012,16 @@ export const StarlinkShot: React.FC<ShotProps> = ({ start, dur }) => {
             const y = Math.sin(a) * rx * 0.35 + Math.cos(a) * rx * tilt * 0.3;
             const front = Math.sin(a) < 0;
             return (
-              <X key={i} x={x} y={y} s={0.12} z={front ? 2 : -1}>
+              <X key={i} x={x} y={y} s={0.26} rot={-0.2} z={front ? 2 : -1}>
                 <StarlinkSat />
               </X>
             );
           })}
           {t > 553.3
-            ? [[-0.5, 0.4], [0.2, 0.3], [0.6, -0.2], [-0.2, -0.5]].map(([lx, ly], i) => (
-                <Line key={i} pts={[[lx * 380, ly * 380], [lx * 560, ly * 560]]} width={6} color="#7fd0ff" opacity={0.5 + 0.5 * Math.sin(frame * 0.3 + i)} z={1.5} />
-              ))
+            ? [[-0.5, 0.4], [0.2, 0.3], [0.6, -0.2], [-0.2, -0.5]].map(([lx, ly], i) => {
+                const ph = ((frame * 0.04 + i * 0.25) % 1);
+                return <Glow key={i} x={lx * 330} y={ly * 330} rx={30 + ph * 90} color="#9fe3ff" alpha={0.55 * (1 - ph)} additive z={1.5} />;
+              })
             : null}
         </SpaceSet>
       </Stage>

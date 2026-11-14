@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import { Stage, DepthStage, X, Part, Line, Glow, Wash, roundRect, circle, ellipse, poly, blob, push, hitAt, absT, ramp, type ShotProps } from "../../kit";
+import { Stage, DepthStage, X, Part, Line, Glow, Wash, InkLine, roundRect, circle, ellipse, poly, blob, push, hitAt, absT, ramp, type ShotProps } from "../../kit";
 import { Label } from "../../kit/captions";
 import { Character, poses } from "../../kit/character";
 import {
@@ -8,10 +8,11 @@ import {
   Starship, SuperHeavy, LaunchTower, LaunchPad, Fireball, Smoke, Planet, Robotaxi, Bell, XMark, Phone, Magazine, GoldCoin, CourtroomSet, OvalOfficeSet, StageSet, Skyline,
   Calendar, Room, Stars, Exhaust, MoneyBag, Bird, LandingPad,
 } from "../../kit/env";
-import { sec, pop, useScr } from "../../kit/shot";
-import { IslandSet, SeaSet, HighSky, SpaceSet, Paper, Office, ChipsTable, SchoolSet, Outdoors, SkyBack, DashArrow, RoadSet, Flash } from "./sets";
+import { sec, pop, useScr, GrowArrow } from "../../kit/shot";
+import { IslandSet, SeaSet, HighSky, SpaceSet, Paper, Office, ChipsTable, SchoolSet, Outdoors, SkyBack, DashArrow, RoadSet, Flash, usdFull } from "./sets";
 import { ELON_X, ELON_2008, ELON_SCHOOL, ELON_FORMAL, TRUMP, SUIT, STAFF, PERSON, ENGINEER, ASTRONAUT, WORKER } from "./cast";
 import { upright } from "./actA";
+import { MarketWall, StockLine, MARKET_GREEN, MARKET_RED } from "../../kit/env/market";
 
 // Politics (2024–2026), Starship and the catch, the trillion-dollar year, the
 // jury, Mars → Moon, and the ending: the rule, the bets, the question.
@@ -245,17 +246,25 @@ export const TwoTrillionShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.0, 1.06);
+  const grow = ramp(t, 731.95, 732.7, Easing.out(Easing.cubic));
   const lower = ramp(t, 734.1, 735.0, Easing.out(Easing.cubic));
-  const h = 820 * (pop(t, 731.9) > 0 ? 1 : 0) * (1 - lower * 0.85);
+  const H = 700;
+  const base = -440;
+  const h = Math.max(8, H * grow * (1 - lower * 0.72));
+  const tag = sc(0, base + H + 70, zoom);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06) }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
+      <Stage camera={{ zoom }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
         <Paper>
-          <Line pts={[[-900, -420], [900, -420]]} width={6} color="#4a3a32" />
-          <Part shape={roundRect(420, Math.max(4, h), 10)} color="#3fa07a" shade={0.18} y={-420 + Math.max(4, h) / 2} />
-          {lower > 0 ? <Line pts={[[-260, -420 + 820], [260, -420 + 820]]} width={8} color="#d8322f" opacity={0.6} /> : null}
+          <InkLine pts={[[-1100, base], [1100, base]]} width={14} color="#6a5a4a" outline={5} z={0.5} />
+          {lower > 0 ? <Part shape={roundRect(460, H, 14)} color="#cfe3d2" flat outline={6} y={base + H / 2} z={0.1} /> : null}
+          <Part shape={roundRect(460, h, 14)} color="#3fa07a" shade={0.18} y={base + h / 2} z={0.2} />
+          {lower > 0 ? <GrowArrow pts={[[330, base + H - 20], [330, base + H * 0.3]]} k={lower} color="#d8322f" width={30} z={0.6} /> : null}
         </Paper>
       </Stage>
+      <Label text="$2,000,000,000,000" x={tag.x} y={tag.y} size={0.085} kind="hand" color="#2a2026" pin at={at(732.2)} />
       <Label text="GOAL: SAVE $2 TRILLION" x={0.1} y={0.1} size={0.055} kind="box" at={at(731.97)} />
       <Label text="LATER: A LOWER GOAL" x={0.9} y={0.86} size={0.055} kind="stamp" at={at(734.2)} />
     </AbsoluteFill>
@@ -403,7 +412,9 @@ export const ProtestShot: React.FC<ShotProps> = ({ start, dur }) => {
           );
         })}
         <X x={620} y={360} s={pop(t, 749.5) * 0.55} z={4}>
-          <LineChart w={900} h={520} values={[0.8, 0.82, 0.7, 0.55, 0.42, 0.3]} k={ramp(t, 749.5, 750.6)} color="#d8322f" />
+          <Part shape={roundRect(944, 564, 20)} color="#2a2b30" shade={0.12} outline={8} />
+          <Part shape={roundRect(900, 520, 8)} color="#141518" flat outline={0} z={0.001} />
+          <StockLine w={760} h={360} values={[0.8, 0.82, 0.7, 0.55, 0.42, 0.3]} k={ramp(t, 749.5, 750.6)} color={MARKET_RED} width={12} seed={6} z={0.002} />
         </X>
       </Stage>
       <Label text="PROTESTS AT TESLA STORES" x={0.1} y={0.1} size={0.05} kind="box" at={at(747.4)} />
@@ -873,18 +884,13 @@ export const MergerShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Stock exchange floor: dark wall with tickers, a bell. */
-const Exchange: React.FC<{ frame: number; ring?: number; children?: React.ReactNode }> = ({ frame, ring = 0, children }) => (
-  <>
-    <Part shape={roundRect(4000, 3000, 0)} color="#1a2238" flat outline={0} z={-41} />
-    {Array.from({ length: 3 }, (_, r) => (
-      <Part key={r} shape={roundRect(4000, 80, 0)} color="#0e1420" flat outline={4} y={420 - r * 110} z={-40} />
-    ))}
-    {Array.from({ length: 24 }, (_, i) => (
-      <Part key={`t${i}`} shape={roundRect(110, 26, 4)} color={i % 4 ? "#3fd07a" : "#e2584a"} flat outline={0} x={((i * 170 - frame * 12) % 4000) - 2000} y={420 - (i % 3) * 110} z={-39} />
-    ))}
-    <Bell x={-200} y={-460} s={1.3} ring={ring} z={1} />
-    {children}
-  </>
+const IPO_LINE = [0.1, 0.14, 0.12, 0.2, 0.26, 0.38, 0.5, 0.66, 0.8, 0.95];
+
+/** Stock exchange: the trading room with the big market screen; Elon and the bell stand on the floor in front. */
+const Exchange: React.FC<{ frame: number; ring?: number; line?: number; children?: React.ReactNode }> = ({ ring = 0, line = 0, children }) => (
+  <MarketWall rows={0} clockX={-760} front={<><Bell x={-440} y={-470} s={1.3} ring={ring} z={1} />{children}</>}>
+    <StockLine w={1180} h={380} y={60} values={IPO_LINE} k={line} seed={21} />
+  </MarketWall>
 );
 
 // 837.21 "Then, on June 12, 2026, SpaceX starts selling shares on the stock market."
@@ -892,13 +898,17 @@ export const SpaceXIPOShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 0.92, 0.98);
+  const title = sc(230, 190 + 240, zoom, 0, 60);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 0 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
-        <Exchange frame={frame} ring={t > 840.1 ? 1 : 0}>
-          <Character {...ELON_X(false)} x={420} y={-620} s={1.6} facing={-1} look={0.6} expression={{ eyes: "happy", mouth: "grin" }} pose={t > 840.1 ? poses.armsUp(frame) : poses.idle(frame, 2)} z={2} />
+      <Stage camera={{ zoom, y: 60 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
+        <Exchange frame={frame} ring={t > 840.1 ? 1 : 0} line={ramp(t, 840.2, 842.6, Easing.inOut(Easing.quad)) * 0.45}>
+          <Character {...ELON_X(false)} x={40} y={-640} s={1.6} facing={-1} look={0.6} expression={{ eyes: "happy", mouth: "grin" }} pose={t > 840.1 ? poses.armsUp(frame) : poses.idle(frame, 2)} z={2} />
         </Exchange>
       </Stage>
+      <Label text="SPACEX" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={at(840.1)} />
       <Label text="JUNE 12, 2026" x={0.1} y={0.1} size={0.06} kind="box" at={at(838.0)} />
       <Label text="SPACEX GOES PUBLIC" x={0.85} y={0.86} size={0.065} kind="stamp" at={at(840.6)} />
     </AbsoluteFill>
@@ -908,17 +918,23 @@ export const SpaceXIPOShot: React.FC<ShotProps> = ({ start, dur }) => {
 // 842.88 "It's the biggest stock market debut in history."
 export const BiggestIPOShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
+  const t = absT(start, frame);
+  const sc = useScr();
+  const zoom = push(frame, dur, 0.86, 0.92);
+  const title = sc(230, 190 + 240, zoom, 0, 40);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 0 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
-        <Exchange frame={frame} ring={1}>
-          {Array.from({ length: 36 }, (_, i) => {
-            const y = 700 - ((frame * (6 + (i % 4))) + i * 83) % 1500;
-            return <Part key={i} shape={roundRect(18, 30, 3)} color={["#fe5649", "#e9ba41", "#3a7ac9", "#3fa07a"][i % 4]} flat outline={0} x={-1000 + i * 58} y={y} rot={frame * 0.1 + i} z={3} />;
-          })}
-        </Exchange>
+      <Stage camera={{ zoom, y: 40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.65}>
+        <MarketWall rows={2}>
+          <StockLine w={1180} h={400} y={-10} values={IPO_LINE} k={0.45 + ramp(t, 842.9, 845.3, Easing.inOut(Easing.quad)) * 0.4} seed={21} />
+        </MarketWall>
+        {Array.from({ length: 26 }, (_, i) => {
+          const y = 760 - ((frame * (7 + (i % 4)) + i * 97) % 1700);
+          return <Part key={i} shape={roundRect(30, 50, 5)} color={["#fe5649", "#e9ba41", "#3a7ac9", "#3fa07a"][i % 4]} shade={0.15} outline={4} x={-1150 + i * 92} y={y} rot={frame * 0.08 + i} z={12} />;
+        })}
       </Stage>
-      <Label text="THE BIGGEST STOCK MARKET DEBUT IN HISTORY" x={0.5} y={0.14} size={0.06} kind="title" at={sec(start)(843.3)} />
+      <Label text="SPACEX" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={0} />
+      <Label text="THE BIGGEST STOCK MARKET DEBUT IN HISTORY" x={0.5} y={0.86} size={0.055} kind="stamp" at={sec(start)(843.3)} />
     </AbsoluteFill>
   );
 };
@@ -928,20 +944,25 @@ export const RaisesShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.1, 1.16);
+  const cx = 200;
+  const cy = 130;
+  const v = 1.77e12 + (2.1e12 - 1.77e12) * ramp(t, 846.4, 850.5, Easing.inOut(Easing.cubic));
+  const title = sc(230, 190 + 240, zoom, cx, cy);
+  const sub = sc(230, 190 + 160, zoom, cx, cy);
+  const val = sc(470, 10, zoom, cx, cy);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: -40 }} light={{ dir: [-0.6, 0.6] }} vignette={0.55}>
-        <Paper>
-          {Array.from({ length: 12 }, (_, i) => (
-            <X key={i} x={-760 + (i % 4) * 140 + Math.floor(i / 4) * 40} y={-480 + Math.floor(i / 4) * 70} s={pop(t, 846.2 + i * 0.04)} z={i * 0.01}>
-              <Cash w={240} n={4} />
-            </X>
-          ))}
-          <Falcon9 x={560} y={-480} h={1000} z={1} />
-        </Paper>
+      <Stage camera={{ zoom, x: cx, y: cy }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <MarketWall rows={2}>
+          <StockLine w={1180} h={400} y={-10} values={IPO_LINE} k={0.85 + ramp(t, 845.6, 850.6, Easing.inOut(Easing.quad)) * 0.15} seed={21} />
+        </MarketWall>
       </Stage>
-      <Label text="$75 BILLION RAISED" x={0.1} y={0.1} size={0.065} kind="box" at={at(846.4)} />
-      <Label text="SPACEX WORTH ~$2.1 TRILLION" x={0.5} y={0.86} size={0.065} kind="stamp" at={at(850.0)} />
+      <Label text="SPACEX" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={0} />
+      <Label text="MARKET CAP" x={sub.x} y={sub.y} size={0.075} kind="hand" italic pin at={at(845.9)} />
+      <Label text={usdFull(Math.round(v / 1e9) * 1e9)} x={val.x} y={val.y} size={0.095} kind="hand" color={MARKET_GREEN} pin at={at(846.2)} />
+      <Label text="$75 BILLION RAISED" x={0.1} y={0.1} size={0.06} kind="box" at={at(846.4)} />
     </AbsoluteFill>
   );
 };
@@ -1135,10 +1156,10 @@ export const BetsChainShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.92, 0.98), y: 0 }} light={{ dir: [-0.6, 0.6] }} vignette={0.5}>
         <Paper>
-          <BetRow y={330} k={ramp(t, 885.6, 886.6)} left={<Cash w={220} n={4} y={-40} />} right={<XMark size={140} color="#2a4a9a" />} />
-          <BetRow y={110} k={ramp(t, 888.0, 889.0)} left={<Cash w={220} n={5} y={-40} />} right={<X><Falcon1 x={-90} y={-90} h={190} /><Part shape={roundRect(150, 50, 16)} color="#c8262f" shade={0.2} x={80} y={-50} /></X>} />
-          <BetRow y={-110} k={ramp(t, 890.85, 891.85)} left={<MoneyBag s={0.42} y={-70} />} right={<Bird s={0.6} />} />
-          <BetRow y={-330} k={ramp(t, 893.17, 894.17)} left={<Cash w={220} n={5} y={-40} />} right={<BallotBox s={0.45} y={-70} />} />
+          <BetRow y={330} k={ramp(t, 885.6, 886.6)} left={<Cash w={260} n={4} y={-40} />} right={<XMark size={170} color="#2a4a9a" />} />
+          <BetRow y={110} k={ramp(t, 888.0, 889.0)} left={<Cash w={260} n={5} y={-40} />} right={<X><Falcon1 x={-90} y={-90} h={190} /><Part shape={roundRect(150, 50, 16)} color="#c8262f" shade={0.2} x={80} y={-50} /></X>} />
+          <BetRow y={-110} k={ramp(t, 890.85, 891.85)} left={<MoneyBag s={0.55} y={-80} />} right={<Bird s={0.8} />} />
+          <BetRow y={-330} k={ramp(t, 893.17, 894.17)} left={<Cash w={260} n={5} y={-40} />} right={<BallotBox s={0.6} y={-80} />} />
         </Paper>
       </Stage>
       {[
@@ -1150,8 +1171,8 @@ export const BetsChainShot: React.FC<ShotProps> = ({ start, dur }) => {
         const [tt, y] = rows[i as number];
         return (
           <React.Fragment key={a as string}>
-            <Label text={a as string} x={0.5 - 520 / 1920 / 1.05} y={0.5 - (y + 0) / 1080 / 1.05 + 0.065} size={0.032} kind="box" pin at={at(tt + 0.1)} />
-            <Label text={b as string} x={0.5 + 520 / 1920 / 1.05} y={0.5 - (y + 0) / 1080 / 1.05 + 0.065} size={0.032} kind="box" pin at={at(tt + 0.6)} />
+            <Label text={a as string} x={0.5 - 520 / 1920 / 1.05} y={0.5 - (y + 0) / 1080 / 1.05 + 0.065} size={0.036} kind="box" pin at={at(tt + 0.1)} />
+            <Label text={b as string} x={0.5 + 520 / 1920 / 1.05} y={0.5 - (y + 0) / 1080 / 1.05 + 0.065} size={0.036} kind="box" pin at={at(tt + 0.6)} />
           </React.Fragment>
         );
       })}

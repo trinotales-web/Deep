@@ -1,6 +1,13 @@
 import React from "react";
-import { AbsoluteFill, interpolate, Easing, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, Easing, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { loadFont } from "@remotion/fonts";
 import { CAPTION_RED } from "../style";
+
+// Hand-lettered face for text written on screens and boards (kind "hand"),
+// e.g. a market screen's title and its big green value.
+export const HAND_FONT = "'Patrick Hand', 'Kalam', cursive";
+loadFont({ family: "Patrick Hand", url: staticFile("fonts/patrick-hand-latin-400-normal.woff2"), weight: "400" });
+loadFont({ family: "Kalam", url: staticFile("fonts/kalam-latin-700-normal.woff2"), weight: "700" });
 
 // On-screen text in the caption font: title cards, place/date tags, stamps,
 // labels on diagrams. Positions are fractions of the frame (0..1).
@@ -17,8 +24,10 @@ export type LabelProps = {
   /** Font size as a fraction of the frame height. */
   size?: number;
   color?: string;
-  /** "tag" (plain), "title" (big, two-tone), "stamp" (red plate, tilted), "box" (dark plate), "ink" (dark text printed on a card / screen). */
-  kind?: "tag" | "title" | "stamp" | "box" | "ink";
+  /** "tag" (plain), "title" (big, two-tone), "stamp" (red plate, tilted), "box" (dark plate), "ink" (dark text printed on a card / screen), "hand" (hand-lettered text on a screen or board; pin it). */
+  kind?: "tag" | "title" | "stamp" | "box" | "ink" | "hand";
+  /** kind "hand": slanted lettering (titles). */
+  italic?: boolean;
   /** Frame (local to the shot) when the label appears. */
   at?: number;
   /** Frame when it leaves (optional). */
@@ -58,11 +67,12 @@ export const Label: React.FC<LabelProps> = ({
   sub,
   font = "Montserrat, 'WenQuanYi Zen Hei', sans-serif",
   pin = false,
+  italic = false,
 }) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   if (frame < at || (until !== undefined && frame >= until)) return null;
-  const slot = !pin && kind !== "tag" && kind !== "ink" ? snap(x, y, kind) : null;
+  const slot = !pin && kind !== "tag" && kind !== "ink" && kind !== "hand" ? snap(x, y, kind) : null;
   const px = slot ? slot.x : x;
   const py = slot ? slot.y : y;
   const align = slot ? slot.align : "center";
@@ -70,7 +80,7 @@ export const Label: React.FC<LabelProps> = ({
   const kIn = interpolate(frame - at, [0, 8], [0, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const kOut = until !== undefined ? interpolate(until - frame, [0, 5], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1;
   const k = Math.min(kIn, kOut);
-  const fs = Math.round(height * Math.min(0.075, size));
+  const fs = Math.round(height * Math.min(kind === "hand" ? 0.15 : 0.075, size));
   const dx = (1 - kIn) * (align === "left" ? -28 : align === "right" ? 28 : 0);
   const dy = (1 - kIn) * (align === "center" ? (py > 0.5 ? 16 : -16) : 0);
   const tx = align === "left" ? "0%" : align === "right" ? "-100%" : "-50%";
@@ -125,6 +135,20 @@ export const Label: React.FC<LabelProps> = ({
   }
   if (kind === "ink") {
     Object.assign(base, { color: color === "#ffffff" ? INK : color, textShadow: "none", WebkitTextStroke: "0px", fontWeight: 800 });
+  }
+  if (kind === "hand") {
+    // written on the screen: no plate, no stroke; a soft glow in its own colour
+    const pop = interpolate(frame - at, [0, 4, 8], [0.9, 1.04, 1], { extrapolateRight: "clamp" });
+    Object.assign(base, {
+      fontFamily: HAND_FONT,
+      fontWeight: 400,
+      textTransform: "none",
+      letterSpacing: "0.03em",
+      WebkitTextStroke: "0px",
+      textShadow: `0 0 ${fs * 0.18}px ${color}55`,
+      transform: `translate(${tx}, -50%) rotate(${rotate}deg) skewX(${italic ? -12 : 0}deg) scale(${pop})`,
+      opacity: kOut * Math.min(1, (frame - at) / 3),
+    });
   }
   if (kind === "title") {
     Object.assign(base, {

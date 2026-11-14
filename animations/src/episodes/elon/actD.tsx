@@ -706,12 +706,12 @@ export const FlightMathShot: React.FC<ShotProps> = ({ start, dur }) => {
         <Cabin frame={frame} />
         <Character {...ELON_2008} x={-380} y={-620} s={1.6} look={0.6} expression={{ eyes: "open", mouth: "flat", brows: -0.4, gaze: [0.6, -0.6] }} pose={{ ...poses.sit(frame), armF: [1.2, 0.5 + Math.sin(frame * 1.1) * 0.06], armB: [1.1, 0.6] }} z={2} />
         <Laptop x={220} y={-360} w={520} z={3}>
-          {[0, 1, 2, 3, 4].map((r) => (
-            <Line key={r} pts={[[-200, 110 - r * 50], [200, 110 - r * 50]]} width={3} color="#9aa0aa" />
-          ))}
-          {[-100, 0, 100].map((c) => (
-            <Line key={c} pts={[[c, -130], [c, 130]]} width={3} color="#9aa0aa" />
-          ))}
+          <Part shape={roundRect(400, 40, 6)} color="#3a7ac9" flat outline={0} y={105} z={0.001} />
+          {[0, 1, 2, 3].map((r) =>
+            [0, 1, 2].map((c) => (
+              <Part key={`${r}${c}`} shape={roundRect(118, 34, 5)} color={c === 2 ? (r === 3 ? "#d8322f" : "#e9ba41") : "#d7dbe2"} flat outline={0} x={-130 + c * 130} y={50 - r * 50} z={0.001} />
+            )),
+          )}
         </Laptop>
       </Stage>
       <Label text="THE FLIGHT HOME" x={0.1} y={0.1} size={0.05} kind="box" at={at(357.9)} />

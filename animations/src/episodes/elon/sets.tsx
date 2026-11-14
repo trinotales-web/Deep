@@ -111,9 +111,6 @@ export const SpaceSet: React.FC<{ earth?: boolean; earthY?: number; earthR?: num
 export const Paper: React.FC<{ color?: string; children?: React.ReactNode }> = ({ color = "#e9dcbc", children }) => (
   <>
     <Gradient w={4400} h={2600} stops={[[0, "#f1e6c8"], [1, color]]} z={-41} />
-    {Array.from({ length: 14 }, (_, i) => (
-      <Line key={i} pts={[[-2200, -1200 + i * 190], [2200, -1200 + i * 190]]} width={2} color="#d8c8a4" z={-40} opacity={0.5} />
-    ))}
     {children}
   </>
 );
@@ -257,23 +254,29 @@ export const Flash: React.FC<{ k: number; color?: string }> = ({ k, color = "#ff
   k > 0.001 ? <AbsoluteFill style={{ backgroundColor: color, opacity: Math.min(1, k) }} /> : null;
 
 /** A dashed red arrow between two points on paper. */
-export const DashArrow: React.FC<{ from: [number, number]; to: [number, number]; k?: number; color?: string; width?: number; z?: number }> = ({ from, to, k = 1, color = "#c8262f", width = 10, z = 0 }) => {
+export const DashArrow: React.FC<{ from: [number, number]; to: [number, number]; k?: number; color?: string; width?: number; z?: number }> = ({ from, to, k = 1, color = "#d8322f", width = 18, z = 0 }) => {
   const kk = Math.max(0, Math.min(1, k));
   if (kk <= 0.01) return null;
   const dx = to[0] - from[0];
   const dy = to[1] - from[1];
   const len = Math.hypot(dx, dy) * kk;
   const ang = Math.atan2(dy, dx);
-  const n = Math.max(1, Math.floor(len / 40));
+  // bold outlined dashes and head (thin dashes read as scratches on screen)
+  const step = 72;
+  const dash = 46;
+  const n = Math.max(1, Math.floor((len - 30) / step));
   return (
     <X x={from[0]} y={from[1]} rot={ang} z={z}>
       {Array.from({ length: n }, (_, i) => (
-        <Line key={i} pts={[[i * 40, 0], [i * 40 + 24, 0]]} width={width} color={color} />
+        <Part key={i} shape={roundRect(dash, width, width / 2)} color={color} flat outline={5} x={i * step + dash / 2} />
       ))}
-      <Part shape={poly([[len + 30, 0], [len - 10, 22], [len - 10, -22]])} color={color} flat outline={3.5} />
+      <Part shape={poly([[len + 44, 0], [len - 14, 36], [len - 14, -36]])} color={color} flat outline={6} z={0.001} />
     </X>
   );
 };
+
+/** Full-digit money for market screens: $2,100,000,000,000. */
+export const usdFull = (v: number) => `$${Math.round(v).toLocaleString("en-US")}`;
 
 /** Money formatting for counters. */
 export const usd = (v: number) => {

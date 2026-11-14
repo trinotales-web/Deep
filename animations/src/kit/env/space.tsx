@@ -428,13 +428,12 @@ export const SpaceStation: React.FC<XProps & { glint?: number }> = ({ glint = 0,
 /** Starlink satellite: flat body with one long solar wing. */
 export const StarlinkSat: React.FC<XProps & { glint?: number }> = ({ glint = 0, ...xf }) => (
   <X {...xf}>
-    <Part shape={roundRect(110, 40, 6)} color="#8e939c" shade={0.2} />
-    <Line pts={[[55, 0], [90, 0]]} width={6} color="#5a5e66" />
-    <Part shape={roundRect(300, 70, 4)} color="#2c3e6a" shade={0.12} x={240} z={-0.001}>
-      {[-90, -30, 30, 90].map((x) => (
-        <Line key={x} pts={[[x, -30], [x, 30]]} width={2.5} color="#6a7fa8" z={0.001} />
-      ))}
-    </Part>
+    <Part shape={roundRect(130, 70, 10)} color="#c9ccd3" shade={0.22} />
+    <Line pts={[[60, 0], [100, 0]]} width={16} color="#5a5e66" z={-0.002} />
+    <Part shape={roundRect(300, 100, 8)} color="#2c3f6e" shade={0.14} x={250} z={-0.001} />
+    {[190, 250, 310].map((x) => (
+      <Line key={x} pts={[[x, -38], [x, 38]]} width={9} color="#1c2a4c" z={0.001} />
+    ))}
     {glint > 0 ? <Glow rx={60} color="#ffffff" alpha={0.5 * glint} additive x={240} z={0.01} /> : null}
   </X>
 );

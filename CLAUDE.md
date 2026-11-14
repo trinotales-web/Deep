@@ -149,7 +149,27 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `ushanka`, `fedora`, `headset`, `beanie`; hair adds `parted`, `swoop`, `curly`,
   `slick`, `wild`. Labels add kind `ink` (dark text printed on a card/screen).
   Pin labels with `useScr()` so they follow the shot camera and punch-ins.
+- Market graphs (`env/market`, matched to the user's reference): `MarketWall`
+  (trading room: slate wall, big dark wall screen — children draw in screen
+  space — bold `WallClock`, 0–2 rows of `TradingDesks` with monitors, `front`
+  slot for characters/bell; `screen`/`bezel` make a chalkboard for old eras) and
+  `StockLine` (one jagged realistic price line through key values, faint grid,
+  glowing tip, `k` draws it on; `MARKET_GREEN` up, `MARKET_RED` down). Write the
+  title and the big value with `Label kind="hand"` (Patrick Hand, `italic` for
+  titles, `color` for the green value), pinned over the screen with `useScr()`;
+  keep the value off the line (empty corner of the plot). Never draw charts as
+  thin lines on paper cards: no spreadsheet axes, no floating ticker dashes.
+- Diagrams stay bold: dashes and arrowheads are outlined shapes (`DashArrow`),
+  small icons get scaled up until they read, plain `Paper` (no ruled lines).
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers.
+
+The `cartoon-audio-short` skill (`.claude/skills/`, installed by the user) is
+used for its process — ideas → script → timing → shot plan, its motion rules
+(nothing static, anticipation/overshoot/settle, secondary motion), the stills
+contact sheet before a long render and the freeze/black QA — but this project's
+stack and house style above always win: its own three.js `kit/` is not
+installed here. Its music bed (50 % of the voice) conflicts with the voice-first
+rule: ask the user before adding music.
 
 Rules: drive every motion from `useCurrentFrame()` (never R3F `useFrame()`),
 keep randomness seeded (`rng`, `noise1`), `<Sequence layout="none">` inside a

@@ -8,7 +8,8 @@ import {
   XMark, Cash, Banknote, Cloud, LaunchPad, Desk, Monitor,
 } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
-import { IslandSet, SeaSet, HighSky, SpaceSet, Paper, Office, MCRoom, ChipsTable, SchoolSet, RoadSet, Flash, usd } from "./sets";
+import { MarketWall, StockLine, MARKET_GREEN, MARKET_RED } from "../../kit/env/market";
+import { IslandSet, SeaSet, HighSky, SpaceSet, Paper, Office, MCRoom, ChipsTable, SchoolSet, RoadSet, Flash, usd, usdFull } from "./sets";
 import { ELON_2008, ELON_SCHOOL, ELON_TEEN, ELON_X, ELON_ZIP2, ENGINEER, BULLY, JUSTINE, ASTRONAUT, PERSON } from "./cast";
 
 // Cold open (the island, 2008) and the "coming up" hook. Times are seconds on
@@ -475,17 +476,24 @@ export const BrokeToTrillionShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const at = sec(start);
+  const sc = useScr();
+  const zoom = push(frame, dur, 1.04, 1.1);
+  const cx = 150;
+  const cy = 120;
   const k = ramp(t, 46.6, 48.4, Easing.in(Easing.cubic));
-  const v = t < 46.6 ? 0 : Math.pow(10, 3 + k * 9) * (k > 0.999 ? 1 : 1);
+  const v = t < 46.6 ? 0 : Math.pow(10, 3 + k * 9);
   const vals = [0.04, 0.03, 0.05, 0.04, 0.08, 0.12, 0.2, 0.35, 0.6, 0.95];
+  const title = sc(230, 190 + 240, zoom, cx, cy);
+  const val = sc(70, 190 - 40, zoom, cx, cy);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 1.0, 1.06) }} light={{ dir: [-0.6, 0.6] }} vignette={0.45}>
-        <Paper>
-          <LineChart y={-40} w={1500} h={760} values={vals} k={ramp(t, 45.6, 48.6, Easing.inOut(Easing.quad))} color="#2fa05a" />
-        </Paper>
+      <Stage camera={{ zoom, x: cx, y: cy }} light={{ dir: [-0.6, 0.6] }} vignette={0.6}>
+        <MarketWall rows={2}>
+          <StockLine w={1180} h={400} y={-10} values={vals} k={ramp(t, 45.6, 48.6, Easing.inOut(Easing.quad))} seed={4} jag={0.02} />
+        </MarketWall>
       </Stage>
-      <Label text={t < 46.6 ? "$0" : k >= 0.999 ? "$1,000,000,000,000" : usd(v)} x={0.5} y={0.1} size={0.07} kind="title" at={at(45.5)} />
+      <Label text="NET WORTH" x={title.x} y={title.y} size={0.1} kind="hand" italic pin at={at(45.4)} />
+      <Label text={k >= 0.999 ? "$1,000,000,000,000" : usdFull(v)} x={val.x} y={val.y} size={0.095} kind="hand" color={MARKET_GREEN} pin at={at(45.5)} />
       <Label text="FIRST TRILLIONAIRE IN HISTORY" x={0.5} y={0.86} size={0.06} kind="stamp" at={at(48.1)} />
     </AbsoluteFill>
   );

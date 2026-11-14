@@ -17,3 +17,4 @@ export * from "./space";
 export * from "./vehicles";
 export * from "./gadgets";
 export * from "./rooms";
+export * from "./market";

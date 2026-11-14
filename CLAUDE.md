@@ -69,6 +69,11 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `python3 scripts/tighten-vo.py <vo.mp3> <captions.json> <script.txt> <out.wav> <out.json> [--beat "out.=0.6"]`
   removes dead air (never speech), keeps natural pauses and chosen dramatic
   beats, and remaps the captions. Process `out.wav` and use `out.json`.
+  Add `--refine -50` (true silences from the audio), `--beats-json` (a beat
+  after one particular word: `{"<caption index>": seconds}`) and
+  `--min-sentence/--min-question/--min-paragraph` to open rushed pauses on
+  gated (digital-silence) recordings. Professional pacing that worked: sentence
+  ≈0.28 s, paragraph ≈0.6 s, 0.5–0.9 s beats before reveals.
 - Layers under the voice: an ambience bed per location (quiet), impacts on key
   words, small foley on visible character actions. No whoosh on cuts and no
   swishes over static shots (user feedback): sound only what happens. Every
@@ -161,7 +166,26 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   thin lines on paper cards: no spreadsheet axes, no floating ticker dashes.
 - Diagrams stay bold: dashes and arrowheads are outlined shapes (`DashArrow`),
   small icons get scaled up until they read, plain `Paper` (no ruled lines).
-- `captions/` — `StyledCaptions`. `audio/` — sound helpers.
+- Ocean and animals (`env/whales`, `env/ocean`, `env/polarmap`): `BlueWhale`
+  (side view: `swim` tail beat, `mouth` 0..1 lunge with dropping jaw and a
+  ballooning pleated throat, `krill`, `blow`, `tag`, `calf`, `eye`), `ProtoWhale`
+  (`k` 0 Pakicetus → 1 Dorudon-like sea whale; `fat` for Perucetus; `walk`/`swim`;
+  `showNostril`), `Hippo`, `Dolphin`, `SpermWhale`, `Squid`, `Sauropod`, `Krill`,
+  `KrillSwarm` (`eaten` 0..1), `AnimalEye`, `Puffs` (merged clouds/spray/foam:
+  outline only on the silhouette), `Blow`; sets `Underwater` (surface from below,
+  light rays, marine snow, seabed), `WaterFront` + `SurfaceFoam` (things breaking
+  the surface); `ResearchBoat` (crew as children), `TagPole`, `WhaleTag`,
+  `WhaleCatcher` (harpoon cannon `fire`), `Harpoon`, `BaleenRow`, `WhaleSkull`,
+  `WhaleHeart`, `HeartTrace` (ECG at `bpm`), `BalanceScale`, `Gauge`,
+  `Thermometer`, `Burger`, `PoopCloud`, `PhytoBloom`, `CrownProp`, `Newspaper`,
+  `Sieve`, `Drops`, `DimArrow`, `CourtSide`, `WhaleTally`; `PolarMap`
+  (azimuthal polar view on Natural Earth 1:50m, `pole` south/north,
+  `seaIceLat`, dashed `circles`, Ice Age `sheets`; `polarXY`). The episode sets
+  in `episodes/whale/sets.tsx` (coast, riverbank, gym, museum with skeleton,
+  lab, press room, beach, rule board, timeline bar) are good starting points.
+- `captions/` — `StyledCaptions`. `audio/` — sound helpers (synth ambiences
+  include a seamless `underwater` bed; keep long beds synthesized — short
+  licensed loops repeat audibly).
 
 The `cartoon-audio-short` skill (`.claude/skills/`, installed by the user) is
 used for its process — ideas → script → timing → shot plan, its motion rules
@@ -181,6 +205,8 @@ shots in act files `actA…actE.tsx` with the cut list in `timeline.ts`;
 `src/episodes/spring1945/` — 16:9, ~5 min, WWII Japan, act files `actA…actD.tsx`;
 `src/episodes/elon/` — 16:9 biography, ~15 min, ~255 shots in `actA…actG.tsx`,
 modern kit, sound sheet calibrated per cue;
+`src/episodes/whale/` — 16:9 science explainer, ~9 min, 188 shots in
+`actA…actH.tsx`, ocean kit, shot cut list generated from word anchors;
 `src/episodes/onoda/` — small demo)
 
 1. `script.ts` — shot list with durations, narration phrases (`*word*` = red),

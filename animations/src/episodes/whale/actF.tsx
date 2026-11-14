@@ -1,0 +1,31 @@
+import React from "react";
+import type { ShotProps } from "../../kit";
+import { StubShot } from "./stub";
+
+// Act F: placeholder shots (to be drawn).
+export const CatchShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="CatchShot" />;
+export const NotAllYearShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="NotAllYearShot" />;
+export const SummerPolesShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="SummerPolesShot" />;
+export const HardToFindShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="HardToFindShot" />;
+export const EatMonthsShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="EatMonthsShot" />;
+export const MigrationShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="MigrationShot" />;
+export const DontEatShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="DontEatShot" />;
+export const FatStoreShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="FatStoreShot" />;
+export const BigHelpsShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="BigHelpsShot" />;
+export const FuelTankShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="FuelTankShot" />;
+export const LongerWithoutShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="LongerWithoutShot" />;
+export const StrongerShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="StrongerShot" />;
+export const RuleTwoLinesShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="RuleTwoLinesShot" />;
+export const FeedsBabiesShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="FeedsBabiesShot" />;
+export const CalfLengthShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="CalfLengthShot" />;
+export const MilkShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="MilkShot" />;
+export const GainsShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="GainsShot" />;
+export const MythShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="MythShot" />;
+export const CarHeartShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="CarHeartShot" />;
+export const ChildSwimShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="ChildSwimShot" />;
+export const CanadaShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="CanadaShot" />;
+export const SavedHeartShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="SavedHeartShot" />;
+export const HeartScaleShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="HeartScaleShot" />;
+export const SmallerThanCarShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="SmallerThanCarShot" />;
+export const ArteryShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="ArteryShot" />;
+export const NotChildShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="NotChildShot" />;

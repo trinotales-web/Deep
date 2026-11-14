@@ -19,3 +19,6 @@ export * from "./gadgets";
 export * from "./rooms";
 export * from "./market";
 export * from "./decor";
+export * from "./whales";
+export * from "./ocean";
+export * from "./polarmap";

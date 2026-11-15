@@ -14,8 +14,11 @@ import { QinKit } from "./dev/QinKit";
 import { MayaKit } from "./dev/MayaKit";
 import { ElonKit } from "./dev/ElonKit";
 import { WhaleKit } from "./dev/WhaleKit";
+import { MoonKit } from "./dev/MoonKit";
 import { Elon, calculateElonMetadata, type ElonProps } from "./episodes/elon/Episode";
 import { Whale, calculateWhaleMetadata, type WhaleProps } from "./episodes/whale/Episode";
+import { Moon, calculateMoonMetadata, type MoonProps } from "./episodes/moon/Episode";
+import { END as MOON_END } from "./episodes/moon/script";
 import { END as WHALE_END } from "./episodes/whale/script";
 import { END as ELON_END } from "./episodes/elon/script";
 import { Maya, calculateMayaMetadata, type MayaProps } from "./episodes/maya/Episode";
@@ -39,6 +42,10 @@ const onodaDefaults: OnodaProps = {
 export const RemotionRoot = () => {
   return (
     <>
+      <Folder name="Moon">
+        <Composition id="MoonVideo" component={Moon} durationInFrames={Math.round(MOON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{} satisfies MoonProps} calculateMetadata={calculateMoonMetadata} />
+        <Composition id="MoonAudioOnly" component={Moon} durationInFrames={Math.round(MOON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{ visuals: false } satisfies MoonProps} calculateMetadata={calculateMoonMetadata} />
+      </Folder>
       <Folder name="Whale">
         <Composition id="WhaleVideo" component={Whale} durationInFrames={Math.round(WHALE_END * 30)} fps={30} width={1920} height={1080} defaultProps={{} satisfies WhaleProps} calculateMetadata={calculateWhaleMetadata} />
         <Composition id="WhaleAudioOnly" component={Whale} durationInFrames={Math.round(WHALE_END * 30)} fps={30} width={1920} height={1080} defaultProps={{ visuals: false } satisfies WhaleProps} calculateMetadata={calculateWhaleMetadata} />
@@ -233,6 +240,7 @@ export const RemotionRoot = () => {
         <Composition id="MayaKit" component={MayaKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="ElonKit" component={ElonKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="WhaleKit" component={WhaleKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
+        <Composition id="MoonKit" component={MoonKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="S45Kit" component={S45Kit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="WW2Test" component={WW2Test} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="AncientTest" component={AncientTest} durationInFrames={90} fps={30} width={1080} height={1920} />

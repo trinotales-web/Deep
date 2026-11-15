@@ -794,6 +794,21 @@ AMB.underwater = (loop = 30) => {
   return normRms(reverb(loopify(s, loop), { room: 0.75, wet: 0.18, damp: 0.6 }), -27);
 };
 
+/** Space / airless Moon: a very low, slow-breathing rumble with a faint airy hiss — no tones, no bubbles. */
+AMB.space = (loop = 30) => {
+  const dur = loop + 2;
+  const s = stereo(dur);
+  for (const [seed, pan] of [[81, -0.4], [82, 0.4]]) {
+    const deep = filt(brown(dur, seed), "lp", 110);
+    mulEnv(deep, (t) => 0.65 + 0.35 * Math.sin(TAU * 0.035 * t + seed));
+    addMono(s, deep, 0, 1, pan);
+    const air = sweep(pink(dur, seed + 10), "lp", (t) => 420 + 220 * Math.sin(TAU * 0.05 * t + seed * 2), 0.7);
+    addMono(s, air, 0, 0.16, -pan);
+  }
+  addMono(s, filt(white(dur, 89), "bp", 3800, 0.5), 0, 0.006);
+  return normRms(reverb(loopify(s, loop), { room: 0.8, wet: 0.2, damp: 0.65 }), -30);
+};
+
 AMB.rain = (loop = 20) => {
   const dur = loop + 2;
   const s = stereo(dur);

@@ -22,3 +22,5 @@ export * from "./decor";
 export * from "./whales";
 export * from "./ocean";
 export * from "./polarmap";
+export * from "./moonworld";
+export * from "./landers";

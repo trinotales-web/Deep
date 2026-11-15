@@ -183,9 +183,34 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `seaIceLat`, dashed `circles`, Ice Age `sheets`; `polarXY`). The episode sets
   in `episodes/whale/sets.tsx` (coast, riverbank, gym, museum with skeleton,
   lab, press room, beach, rule board, timeline bar) are good starting points.
+- The Moon (`env/moonworld`, `env/landers`): `MoonGlobe` (orthographic globe
+  with the real maria and big craters; `view` {lon, lat, roll} turns it to any
+  side — {lat: -90} looks straight down on the south pole, near side up;
+  overlays `basin`/`basinTint` (South Pole-Aitken), `gravity` (GRAIL map),
+  `xray`, `mass`, `ice`, `water`, `he3`, `grid`, `pins`; `moonProj`),
+  `LunarPoleMap` (illustrated polar map, south/north, named craters at their
+  real coordinates in `LUNAR_SITES` incl. landing sites, `psr` dark floors,
+  `ice`, `glowPeaks`, `iceCraters`, `sunAz`; `poleXY`), `LunarSurface`
+  (low-sun polar landscape: black sky, lit/shadowed ridges, craters, boulders
+  with long shadows, optional Sun and Earth; set draws at z −41…−36, put
+  children at z > −36), `GroundCrater`, `MoonRock`, `CraterSection`
+  (cross-section: grazing Sun, computed shadow, `ice`, `peaks`, `rays`, buried
+  `mass` + `dip`), `SpaceRock`, `Comet`, `WaterMolecule`, `IceFlake`,
+  `MetalLump`, `SnowPeak`, `Typhoon`; spacecraft `Vikram` (`thrust`, `dust`),
+  `Luna25`, `NovaC` (Odysseus/`athena`), `GrailProbe`, `Chandrayaan1`
+  (`beam`), `CentaurStage` (LCROSS, `sep`), `ApolloLM`, `ChangELander`
+  (`ascender`, `lift`), `YutuRover`, `Hopper`, `Orion` (crew in windows), `SLS`,
+  `PSLV`; `NationFlag`/`FlagDecal` (india, china, russia, usa), `MoonBase`,
+  `SolarMast`, `FuelPump`, `Tokamak`, `QuantumFridge`, `GasCanister`,
+  `Harvester`, `Bullet`, `ImpactPlume` (`water` drops), `LandingDust`,
+  `DashLink`, `Ring`. Episode sets in `episodes/moon/sets.tsx`: ISRO
+  `ControlRoom` (wall screen children) + `DescentScreen`, `Office`,
+  `MoonPressSet`, `Pluto`, `AxisLine`, `WaterDrop`, `GoldBars`, `IceBlocks`.
+  Kit review sheets: `node scripts/kit-stills.mjs MoonKit out.png 0,1,2 2`.
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers (synth ambiences
-  include a seamless `underwater` bed; keep long beds synthesized — short
-  licensed loops repeat audibly).
+  include a seamless `underwater` bed and a quiet airless `space` bed for space
+  and the lunar surface; keep long beds synthesized — short licensed loops
+  repeat audibly).
 
 The `cartoon-audio-short` skill (`.claude/skills/`, installed by the user) is
 used for its process — ideas → script → timing → shot plan, its motion rules
@@ -207,6 +232,8 @@ shots in act files `actA…actE.tsx` with the cut list in `timeline.ts`;
 modern kit, sound sheet calibrated per cue;
 `src/episodes/whale/` — 16:9 science explainer, ~9 min, 188 shots in
 `actA…actH.tsx`, ocean kit, shot cut list generated from word anchors;
+`src/episodes/moon/` — 16:9 space explainer (Moon's south pole), ~10 min,
+204 shots in `actA…actH.tsx`, Moon kit, beds generated from each shot's set;
 `src/episodes/onoda/` — small demo)
 
 1. `script.ts` — shot list with durations, narration phrases (`*word*` = red),

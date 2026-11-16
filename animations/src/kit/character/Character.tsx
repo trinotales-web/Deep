@@ -83,6 +83,22 @@ export type Outfit = {
   printKind?: "x" | "dot" | "bar";
   /** ID badge on a lanyard: badge colour. */
   badge?: string | null;
+  /** Napoleonic coat front: coloured lapel panel (plastron) with brass buttons. */
+  lapels?: string | null;
+  /** Two crossed shoulder belts (infantry): belt colour. */
+  crossbelts?: string | null;
+  /** Fringed epaulettes on both shoulders: colour (gold = officers). */
+  epaulettes?: string | null;
+  /** Coat tails hanging behind the legs: colour (usually the coat colour). */
+  tails?: string | null;
+  /** Knee-high riding boots (boots colour) over the breeches. */
+  tallBoots?: boolean;
+  /** Cape/cloak from the shoulders, blowing back: colour. */
+  cape?: string | null;
+  /** How strongly the cape blows (0 hangs, 1 flies). */
+  capeWind?: number;
+  /** Lace jabot / cravat at the neck: colour. */
+  cravat?: string | null;
 };
 
 export type Pose = {
@@ -190,7 +206,7 @@ const Hand: React.FC<{ color: string; shape?: HandShape; children?: React.ReactN
   </X>
 );
 
-const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cuffs?: string | null; hold?: React.ReactNode; glove?: string; hand?: HandShape }> = ({
+const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cuffs?: string | null; hold?: React.ReactNode; glove?: string; hand?: HandShape; epaulette?: string | null }> = ({
   angles,
   side,
   sleeve,
@@ -198,9 +214,18 @@ const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cu
   hold,
   glove = GLOVE,
   hand = "open",
+  epaulette = null,
 }) => (
   <X x={SHOULDER[0] * side} y={SHOULDER[1]} rot={angles[0]}>
     <Part shape={limb(UPPER, 36, 32)} color={sleeve} shade={0.24} />
+    {epaulette ? (
+      <X y={4} z={0.03}>
+        <Part shape={ellipse(30, 13)} color={epaulette} shade={0.2} outline={3.5} />
+        {[-22, -13, -4, 5, 14, 23].map((fx) => (
+          <Part key={fx} shape={roundRect(6, 22, 3)} color={epaulette} flat outline={2.5} x={fx} y={-14} z={-0.001} />
+        ))}
+      </X>
+    ) : null}
     <Line pts={[[-9, -UPPER + 22], [2, -UPPER + 16], [9, -UPPER + 19]]} smooth width={3.5} color={shadeHex(sleeve, 0.4)} z={0.001} />
     <X y={-UPPER} rot={angles[1]} z={0.01}>
       <Part shape={limb(FORE, 33, 30)} color={sleeve} shade={0.24} />
@@ -213,15 +238,22 @@ const Arm: React.FC<{ angles: [number, number]; side: 1 | -1; sleeve: string; cu
   </X>
 );
 
-const Leg: React.FC<{ angle: number; side: 1 | -1; pants: string; boots: string; showLeg: boolean }> = ({
+const Leg: React.FC<{ angle: number; side: 1 | -1; pants: string; boots: string; showLeg: boolean; tall?: boolean }> = ({
   angle,
   side,
   pants,
   boots,
   showLeg,
+  tall = false,
 }) => (
   <X x={side * 24} y={HIP_Y} rot={angle}>
     {showLeg ? <Part shape={limb(70, 40, 36)} color={pants} shade={0.24} /> : null}
+    {tall ? (
+      <X y={-26} z={0.005}>
+        <Part shape={roundRect(42, 46, 8)} color={boots} shade={0.26} y={-18} />
+        <Part shape={roundRect(46, 12, 5)} color={shadeHex(boots, -0.25)} flat outline={3.5} y={4} z={0.001} />
+      </X>
+    ) : null}
     <X y={-68} z={0.01}>
       <Part shape={blob([[-19, 6], [17, 6], [20, -6], [36, -10], [42, -18], [36, -24], [-18, -24], [-22, -10]], 6)} color={boots} shade={0.26} />
     </X>
@@ -493,12 +525,53 @@ const Torso: React.FC<{ outfit: Outfit; breathe: number }> = ({ outfit, breathe 
           <Part shape={roundRect(18, 6, 2)} color="#2a2228" flat outline={0} y={128} z={0.002} />
         </X>
       ) : null}
+      {outfit.lapels ? (
+        <X z={0.0046}>
+          <Part shape={roundPoly([[-44, TORSO_TOP - 4], [44, TORSO_TOP - 4], [38, 112], [0, 96], [-38, 112]], [10, 10, 8, 6, 8])} color={outfit.lapels} shade={0.18} />
+          {[204, 178, 152, 126].flatMap((y) => [-1, 1].map((k) => <Part key={`${y}${k}`} shape={circle(5)} color={palette.gold} flat outline={3} x={k * 30} y={y} z={0.001} />))}
+        </X>
+      ) : null}
+      {outfit.crossbelts ? (
+        <X z={0.0059}>
+          <Part shape={roundPoly([[-56, 212], [-40, 220], [56, 70], [40, 62]], 4)} color={outfit.crossbelts} shade={0.15} outline={3.5} />
+          <Part shape={roundPoly([[56, 212], [40, 220], [-56, 70], [-40, 62]], 4)} color={outfit.crossbelts} shade={0.15} outline={3.5} z={0.001} />
+          <Part shape={roundRect(22, 18, 4)} color={palette.gold} flat outline={3} y={141} z={0.002} />
+        </X>
+      ) : null}
+      {outfit.cravat ? (
+        <X y={TORSO_TOP - 10} z={0.0062}>
+          <Part shape={roundRect(70, 26, 12)} color={outfit.cravat} shade={0.18} />
+          <Part shape={blob([[-12, -8], [12, -8], [16, -40], [0, -48], [-16, -40]], 6)} color={outfit.cravat} shade={0.18} y={-4} z={0.001} />
+        </X>
+      ) : null}
       {outfit.belt ? (
         <X y={outfit.robe ? 104 : 74} z={0.006}>
           <Part shape={roundRect(outfit.robe ? 142 : 136, 20, 6)} color={outfit.belt} flat />
           {outfit.buckle ? <Part shape={roundRect(22, 22, 4)} color={outfit.buckle} flat outline={4} x={4} /> : null}
         </X>
       ) : null}
+    </X>
+  );
+};
+
+/** Cape from the shoulders, blowing toward the back (−x); `wind` 0 hangs straight. */
+const Cape: React.FC<{ color: string; wind: number; frame: number; seed: number }> = ({ color, wind, frame, seed }) => {
+  const f1 = Math.sin(frame * 0.32 + seed) * 18 * wind;
+  const f2 = Math.sin(frame * 0.41 + seed + 1.3) * 26 * wind;
+  const pts: [number, number][] = [
+    [56, TORSO_TOP - 2],
+    [-58, TORSO_TOP + 2],
+    [-90 - 190 * wind, TORSO_TOP - 40 - 30 * wind + f1],
+    [-110 - 300 * wind, 120 + 40 * wind + f2],
+    [-70 - 230 * wind, 10 + 70 * wind - f1],
+    [-30 - 90 * wind, -20 + 50 * wind + f2 * 0.5],
+    [60, 20],
+  ];
+  return (
+    <X z={0.005}>
+      <Part shape={blob(pts, 8)} color={color} shade={0.26} />
+      <Line pts={[[-40, TORSO_TOP - 30], [-80 - 170 * wind, 140 + 30 * wind + f1 * 0.6]]} smooth width={4} color={shadeHex(color, 0.35)} z={0.001} />
+      <Line pts={[[-10, TORSO_TOP - 50], [-40 - 120 * wind, 40 + 50 * wind + f2 * 0.4]]} smooth width={4} color={shadeHex(color, 0.35)} z={0.001} />
     </X>
   );
 };
@@ -574,18 +647,26 @@ export const Character: React.FC<CharacterProps> = ({
       {shadow ? <GroundShadow w={sit ? 230 : 190} y={2} z={-0.05} /> : null}
       <X y={bodyY}>
         <X z={0.02}>
-          <Leg angle={legs.b} side={-1} pants={pants} boots={boots} showLeg={!outfit.robe || sit} />
+          <Leg angle={legs.b} side={-1} pants={pants} boots={boots} showLeg={!outfit.robe || sit} tall={outfit.tallBoots} />
         </X>
         <X z={0.03}>
-          <Leg angle={legs.f} side={1} pants={pants} boots={boots} showLeg={!outfit.robe || sit} />
+          <Leg angle={legs.f} side={1} pants={pants} boots={boots} showLeg={!outfit.robe || sit} tall={outfit.tallBoots} />
         </X>
         <X y={HIP_Y} rot={lean}>
           <X y={-HIP_Y}>
             {backArmBehind ? (
               <X z={0.05}>
-                <Arm angles={armB} side={-1} sleeve={shadeHex(sleeve, 0.12)} cuffs={outfit.cuffs} hold={holdB} glove={gloves ?? skin ?? GLOVE} hand={handB} />
+                <Arm angles={armB} side={-1} sleeve={shadeHex(sleeve, 0.12)} cuffs={outfit.cuffs} hold={holdB} glove={gloves ?? skin ?? GLOVE} hand={handB} epaulette={outfit.epaulettes} />
               </X>
             ) : null}
+            {outfit.tails ? (
+              <X z={0.01}>
+                {[-1, 1].map((k) => (
+                  <Part key={k} shape={roundPoly([[k * 18, 96], [k * 70, 96], [k * 64, 10], [k * 40, -6]], [6, 10, 14, 6])} color={shadeHex(outfit.tails!, 0.1)} shade={0.22} />
+                ))}
+              </X>
+            ) : null}
+            {outfit.cape ? <Cape color={outfit.cape} wind={outfit.capeWind ?? 0.3} frame={frame} seed={seed} /> : null}
             <X z={0.1}>
               <Torso outfit={outfit} breathe={breathe} />
             </X>
@@ -609,11 +690,11 @@ export const Character: React.FC<CharacterProps> = ({
             ) : null}
             {!backArmBehind ? (
               <X z={armZ}>
-                <Arm angles={armB} side={-1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdB} glove={gloves ?? skin ?? GLOVE} hand={handB} />
+                <Arm angles={armB} side={-1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdB} glove={gloves ?? skin ?? GLOVE} hand={handB} epaulette={outfit.epaulettes} />
               </X>
             ) : null}
             <X z={armZ + 0.02}>
-              <Arm angles={armF} side={1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdF} glove={gloves ?? skin ?? GLOVE} hand={handF} />
+              <Arm angles={armF} side={1} sleeve={sleeve} cuffs={outfit.cuffs} hold={holdF} glove={gloves ?? skin ?? GLOVE} hand={handF} epaulette={outfit.epaulettes} />
             </X>
             <X y={NECK_Y + headBob * 0.5} rot={headTilt} z={0.3}>
               <X y={HEAD_Y}>

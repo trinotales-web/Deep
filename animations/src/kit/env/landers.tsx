@@ -80,7 +80,7 @@ export const FlagDecal: React.FC<XProps & { kind: FlagKind; w?: number }> = ({ k
   </X>
 );
 
-export type FlagKind = "india" | "china" | "russia" | "usa";
+export type FlagKind = "india" | "china" | "russia" | "usa" | "france" | "uk" | "austria" | "prussia" | "haiti" | "royal";
 
 const starPts = (r: number, rot = 0): [number, number][] =>
   Array.from({ length: 10 }, (_, i) => {
@@ -95,7 +95,48 @@ const FlagCloth: React.FC<{ kind: FlagKind; w: number }> = ({ kind, w }) => {
   const band = (y: number, hh: number, c: string, i: number) => <Part key={i} shape={roundRect(w - 2, hh, 0)} color={c} flat outline={0} y={y} z={0.001} />;
   return (
     <>
-      <Part shape={roundRect(w, h, 4)} color={kind === "china" ? "#de2910" : "#ffffff"} flat outline={Math.max(3, w * 0.03)} />
+      <Part shape={roundRect(w, h, 4)} color={kind === "china" ? "#de2910" : kind === "uk" ? "#1f3a8a" : "#ffffff"} flat outline={Math.max(3, w * 0.03)} />
+      {kind === "france" ? (
+        <>
+          <Part shape={roundRect(w / 3, h - 2, 0)} color="#1f3f9a" flat outline={0} x={-w / 3} z={0.001} />
+          <Part shape={roundRect(w / 3, h - 2, 0)} color="#d52b2b" flat outline={0} x={w / 3} z={0.001} />
+        </>
+      ) : null}
+      {kind === "uk" ? (
+        <>
+          <Line pts={[[-w / 2 + 2, -h / 2 + 2], [w / 2 - 2, h / 2 - 2]]} width={h * 0.2} color="#ffffff" z={0.001} />
+          <Line pts={[[-w / 2 + 2, h / 2 - 2], [w / 2 - 2, -h / 2 + 2]]} width={h * 0.2} color="#ffffff" z={0.001} />
+          <Line pts={[[-w / 2 + 2, -h / 2 + 2], [w / 2 - 2, h / 2 - 2]]} width={h * 0.07} color="#c8262f" z={0.002} />
+          <Line pts={[[-w / 2 + 2, h / 2 - 2], [w / 2 - 2, -h / 2 + 2]]} width={h * 0.07} color="#c8262f" z={0.002} />
+          <Part shape={roundRect(w - 2, h * 0.32, 0)} color="#ffffff" flat outline={0} z={0.003} />
+          <Part shape={roundRect(h * 0.32, h - 2, 0)} color="#ffffff" flat outline={0} z={0.003} />
+          <Part shape={roundRect(w - 2, h * 0.19, 0)} color="#c8262f" flat outline={0} z={0.004} />
+          <Part shape={roundRect(h * 0.19, h - 2, 0)} color="#c8262f" flat outline={0} z={0.004} />
+        </>
+      ) : null}
+      {kind === "austria" ? (
+        <>
+          {band(h / 3, h / 3 - 2, "#d52b2b", 0)}
+          {band(-h / 3, h / 3 - 2, "#d52b2b", 1)}
+        </>
+      ) : null}
+      {kind === "prussia" ? band(h / 4, h / 2 - 2, "#211b20", 0) : null}
+      {kind === "haiti" ? (
+        <>
+          {band(h / 4, h / 2 - 2, "#1f3f9a", 0)}
+          {band(-h / 4, h / 2 - 2, "#d52b2b", 1)}
+        </>
+      ) : null}
+      {kind === "royal"
+        ? [[-0.25, 0.2], [0.25, 0.2], [0, -0.15]].map(([fx, fy], i) => (
+            <X key={i} x={fx * w} y={fy * h} z={0.002}>
+              <Part shape={ellipse(w * 0.035, h * 0.12)} color="#d8a92a" flat outline={0} y={h * 0.04} />
+              <Part shape={ellipse(w * 0.05, h * 0.05)} color="#d8a92a" flat outline={0} x={-w * 0.05} rot={0.6} />
+              <Part shape={ellipse(w * 0.05, h * 0.05)} color="#d8a92a" flat outline={0} x={w * 0.05} rot={-0.6} />
+              <Part shape={roundRect(w * 0.12, h * 0.03, 0)} color="#d8a92a" flat outline={0} y={-h * 0.04} />
+            </X>
+          ))
+        : null}
       {kind === "india" ? (
         <>
           {band(h / 3, h / 3 - 2, "#ff9933", 0)}

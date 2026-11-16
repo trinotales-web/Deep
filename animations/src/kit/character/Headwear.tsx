@@ -15,6 +15,7 @@ export type HatKind =
   | "mian" | "guan" | "wrap" | "maocap"
   | "plume" | "mayaking" | "jaguar" | "morion" | "skull" | "maize" | "cap16"
   | "cap" | "ushanka" | "fedora" | "headset" | "beanie"
+  | "shako" | "bearskin" | "tricorne" | "phrygian" | "papakha" | "foreaft" | "zucchetto" | "mobcap"
   | null;
 export type HairKind = "short" | "bob" | "bun" | "sides" | "long" | "spiky" | "topknot" | "palace" | "sidebun" | "parted" | "swoop" | "curly" | "slick" | "wild" | null;
 
@@ -306,6 +307,123 @@ export const Hat: React.FC<{ kind: HatKind; color?: string; accent?: string; cam
           <Part shape={roundRect(176, 26, 10)} color={accent ?? "#5a3a26"} y={18} z={0.001} />
           <Part shape={blob([[-170, -2], [-120, 14], [0, 20], [120, 14], [170, -2], [110, -16], [0, -18], [-110, -16]], 8)} color={shadeHex(c, 0.05)} shade={0.25} y={2} z={0.002} />
           <Line pts={[[-30, 100], [0, 80], [30, 104]]} smooth width={4} color={shadeHex(c, 0.35)} z={0.003} />
+        </X>
+      );
+    }
+    case "shako": {
+      // Napoleonic infantry shako: flared black felt, brass eagle plate, cockade, pompom, peak
+      const c = color ?? "#211d24";
+      const pom = accent ?? "#c8262f";
+      return (
+        <X y={56}>
+          <Part shape={roundPoly([[-74, 14], [74, 14], [84, 168], [-84, 168]], [8, 8, 10, 10])} color={c} shade={0.22} />
+          <Part shape={roundRect(176, 18, 6)} color={shadeHex(c, -0.3)} flat outline={4} y={160} z={0.001} />
+          <Part shape={roundRect(156, 14, 5)} color={shadeHex(c, -0.3)} flat outline={4} y={26} z={0.001} />
+          <X y={86} z={0.002}>
+            <Part shape={poly([[0, 52], [34, 10], [24, -38], [0, -48], [-24, -38], [-34, 10]])} color={palette.gold} shade={0.25} outline={4} />
+            <Part shape={circle(11)} color={shadeHex(palette.gold, 0.25)} flat outline={3} y={6} z={0.001} />
+          </X>
+          <X y={150} z={0.003}>
+            <Part shape={circle(17)} color="#2f4f9a" flat outline={3.5} />
+            <Part shape={circle(11)} color="#f4f1ea" flat outline={0} z={0.001} />
+            <Part shape={circle(6)} color="#c0362c" flat outline={0} z={0.002} />
+          </X>
+          <Part shape={ellipse(22, 18)} color={pom} shade={0.25} y={190} z={0.004} />
+          <Part shape={blob([[-82, 18], [82, 18], [70, -8], [0, -22], [-70, -8]], 8)} color={shadeHex(c, -0.2)} shade={0.2} y={-2} z={0.005} />
+        </X>
+      );
+    }
+    case "bearskin": {
+      // Imperial Guard grenadier's tall bearskin with brass plate and red plume
+      const c = color ?? "#241c1e";
+      return (
+        <X y={48}>
+          <Part shape={blob([[-96, 10], [-112, 120], [-92, 250], [-40, 300], [30, 304], [88, 256], [110, 130], [96, 10]], 10)} color={c} shade={0.24} />
+          {Array.from({ length: 14 }, (_, i) => {
+            const x = -84 + (i % 7) * 28 + (i > 6 ? 14 : 0);
+            const y = 70 + Math.floor(i / 7) * 110 + (i % 3) * 18;
+            return <Line key={i} pts={[[x, y], [x + 6, y + 30]]} width={3.5} color={shadeHex(c, 0.45)} z={0.001} />;
+          })}
+          <X y={44} z={0.002}>
+            <Part shape={blob([[-62, -20], [62, -20], [52, 26], [0, 46], [-52, 26]], 8)} color={palette.gold} shade={0.25} />
+            <Part shape={circle(14)} color={shadeHex(palette.gold, 0.25)} flat outline={3} y={6} z={0.001} />
+          </X>
+          <X x={-92} y={190} rot={0.12} z={0.003}>
+            <Part shape={blob([[-12, -80], [12, -80], [16, 40], [0, 70], [-16, 40]], 8)} color={accent ?? "#c8262f"} shade={0.22} />
+          </X>
+          <Line pts={[[-90, 120], [-40, 70], [10, 90], [60, 60], [94, 110]]} smooth width={5} color="#f2efe6" z={0.004} />
+        </X>
+      );
+    }
+    case "tricorne": {
+      const c = color ?? "#2a2428";
+      return (
+        <X y={60}>
+          <Part shape={blob([[-150, 10], [-120, 70], [-60, 100], [0, 92], [60, 100], [120, 70], [150, 10], [80, 26], [0, -22], [-80, 26]], 8)} color={c} shade={0.24} />
+          <Line pts={[[-146, 12], [-80, 28], [0, -18], [80, 28], [146, 12]]} smooth width={6} color={accent ?? "#d8c8a0"} z={0.001} />
+        </X>
+      );
+    }
+    case "phrygian": {
+      // red revolutionary cap flopping forward, tricolour cockade
+      const c = color ?? "#c8262f";
+      return (
+        <X y={40}>
+          <Part shape={blob([[-104, 10], [-110, 80], [-70, 140], [10, 158], [86, 132], [124, 92], [110, 64], [104, 10]], 8)} color={c} shade={0.25} />
+          <Part shape={roundRect(214, 30, 14)} color={shadeHex(c, 0.12)} shade={0.2} y={14} z={0.001} />
+          <X x={-60} y={42} z={0.002}>
+            <Part shape={circle(19)} color="#2f4f9a" flat outline={3.5} />
+            <Part shape={circle(12)} color="#f4f1ea" flat outline={0} z={0.001} />
+            <Part shape={circle(6)} color="#c0362c" flat outline={0} z={0.002} />
+          </X>
+        </X>
+      );
+    }
+    case "papakha": {
+      // tall Cossack fur hat with a red cloth top
+      const c = color ?? "#2a2226";
+      return (
+        <X y={50}>
+          <Part shape={roundPoly([[-96, 4], [96, 4], [88, 150], [-88, 150]], [16, 16, 30, 30])} color={c} shade={0.24} />
+          <Part shape={ellipse(80, 16)} color={accent ?? "#c8262f"} shade={0.2} y={150} z={0.001} />
+          {Array.from({ length: 10 }, (_, i) => (
+            <Line key={i} pts={[[-80 + i * 18, 20 + (i % 3) * 30], [-76 + i * 18, 54 + (i % 3) * 30]]} width={3} color={shadeHex(c, 0.45)} z={0.002} />
+          ))}
+        </X>
+      );
+    }
+    case "foreaft": {
+      // bicorne worn front-to-back (British admirals and generals): a tall half-moon
+      const c = color ?? "#211d24";
+      return (
+        <X y={60}>
+          <Part shape={blob([[-120, 4], [-96, 96], [-40, 168], [10, 182], [60, 160], [110, 90], [126, 4], [0, 26]], 10)} color={c} shade={0.24} />
+          <Line pts={[[-116, 8], [-90, 92], [-36, 160], [10, 174], [58, 154], [106, 86], [122, 8]]} smooth width={6} color={accent ?? palette.gold} z={0.001} />
+          <X x={30} y={70} z={0.002}>
+            <Part shape={circle(20)} color="#2a2228" flat outline={3} />
+            <Part shape={roundRect(8, 40, 3)} color={accent ?? palette.gold} flat outline={0} z={0.001} />
+          </X>
+        </X>
+      );
+    }
+    case "zucchetto": {
+      const c = color ?? "#f6f4ee";
+      return (
+        <X y={78}>
+          <Part shape={blob([[-60, 4], [-50, 26], [0, 36], [50, 26], [60, 4], [0, -2]], 8)} color={c} shade={0.2} />
+        </X>
+      );
+    }
+    case "mobcap": {
+      // 18th-century linen cap with a frilled edge
+      const c = color ?? "#f6f2e8";
+      return (
+        <X y={40}>
+          <Part shape={blob([[-112, 0], [-108, 80], [-60, 128], [0, 138], [60, 128], [108, 80], [112, 0], [0, 26]], 8)} color={c} shade={0.22} />
+          {Array.from({ length: 9 }, (_, i) => (
+            <Part key={i} shape={circle(14)} color={c} shade={0.2} x={-96 + i * 24} y={6 + Math.sin(i * 1.3) * 3} z={0.001} />
+          ))}
+          <Part shape={roundRect(200, 10, 4)} color={accent ?? "#c86a7a"} flat outline={2.5} y={30} z={0.002} />
         </X>
       );
     }

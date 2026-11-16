@@ -15,6 +15,7 @@ import { MayaKit } from "./dev/MayaKit";
 import { ElonKit } from "./dev/ElonKit";
 import { WhaleKit } from "./dev/WhaleKit";
 import { MoonKit } from "./dev/MoonKit";
+import { EmpireKit } from "./dev/EmpireKit";
 import { Elon, calculateElonMetadata, type ElonProps } from "./episodes/elon/Episode";
 import { Whale, calculateWhaleMetadata, type WhaleProps } from "./episodes/whale/Episode";
 import { Moon, calculateMoonMetadata, type MoonProps } from "./episodes/moon/Episode";
@@ -241,6 +242,7 @@ export const RemotionRoot = () => {
         <Composition id="ElonKit" component={ElonKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="WhaleKit" component={WhaleKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="MoonKit" component={MoonKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
+        <Composition id="EmpireKit" component={EmpireKit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="S45Kit" component={S45Kit} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="WW2Test" component={WW2Test} durationInFrames={90} fps={30} width={1920} height={1080} defaultProps={{ page: 0 }} />
         <Composition id="AncientTest" component={AncientTest} durationInFrames={90} fps={30} width={1080} height={1920} />

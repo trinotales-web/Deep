@@ -230,10 +230,10 @@ export const CoronationShot: React.FC<ShotProps> = ({ start, dur }) => {
   const walk = ramp(t, 389.2, 392.6, Easing.linear);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.78, 0.86), y: 200 }} light={L} vignette={0.55}>
+      <Stage camera={{ zoom: push(frame, dur, 0.8, 0.86), y: 20 }} light={L} vignette={0.55}>
         <GothicNave floor={-460}>
           <Guests frame={frame} y={-430} />
-          <Character {...NAPOLEON_CROWNED} x={0} y={-700 + walk * 260} s={1.2 - walk * 0.2} facing={1} look={0.1} expression={{ eyes: "open", mouth: "smirk" }} pose={poses.walk(frame, 0.4)} z={-10} />
+          <Character {...NAPOLEON_CROWNED} x={0} y={-640 + walk * 180} s={1.15 - walk * 0.2} facing={1} look={0.1} expression={{ eyes: "open", mouth: "smirk" }} pose={poses.walk(frame, 0.4)} z={-10} />
         </GothicNave>
       </Stage>
       <Label text="1804" x={0.5} y={0.1} size={0.08} kind="title" at={at(389.5)} />
@@ -305,7 +305,7 @@ export const AusterlitzDawnShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.78, 0.84), y: 200 }} light={L} vignette={0.5}>
-        <BattlefieldSet floor={-460} fog={0.8} sun={ramp(t, 401, 406)} dusk>
+        <BattlefieldSet floor={-460} fog={0.45} sun={ramp(t, 401, 406)} dusk>
           <NationFlag kind="france" x={-700} y={-460} w={220} pole={620} z={-12} />
           {Array.from({ length: 5 }, (_, i) => (
             <Character key={i} {...SOLDIER(i)} x={-500 + i * 240} y={-430 - (i % 2) * 40} s={0.9} facing={1} look={0.5} expression={{ eyes: "open", mouth: "flat" }} pose={shoulderPose(frame, i)} holdF={<HeldMusket arm={SHOULDER_ARMS} dir={Math.PI / 2 - 0.12} />} z={-10 - (i % 2) * 0.5} />

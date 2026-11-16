@@ -19,6 +19,8 @@ import { EmpireKit } from "./dev/EmpireKit";
 import { Elon, calculateElonMetadata, type ElonProps } from "./episodes/elon/Episode";
 import { Whale, calculateWhaleMetadata, type WhaleProps } from "./episodes/whale/Episode";
 import { Moon, calculateMoonMetadata, type MoonProps } from "./episodes/moon/Episode";
+import { Napoleon, calculateNapoleonMetadata, type NapoleonProps } from "./episodes/napoleon/Episode";
+import { END as NAPOLEON_END } from "./episodes/napoleon/script";
 import { END as MOON_END } from "./episodes/moon/script";
 import { END as WHALE_END } from "./episodes/whale/script";
 import { END as ELON_END } from "./episodes/elon/script";
@@ -43,6 +45,10 @@ const onodaDefaults: OnodaProps = {
 export const RemotionRoot = () => {
   return (
     <>
+      <Folder name="Napoleon">
+        <Composition id="NapoleonVideo" component={Napoleon} durationInFrames={Math.round(NAPOLEON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{} satisfies NapoleonProps} calculateMetadata={calculateNapoleonMetadata} />
+        <Composition id="NapoleonAudioOnly" component={Napoleon} durationInFrames={Math.round(NAPOLEON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{ visuals: false } satisfies NapoleonProps} calculateMetadata={calculateNapoleonMetadata} />
+      </Folder>
       <Folder name="Moon">
         <Composition id="MoonVideo" component={Moon} durationInFrames={Math.round(MOON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{} satisfies MoonProps} calculateMetadata={calculateMoonMetadata} />
         <Composition id="MoonAudioOnly" component={Moon} durationInFrames={Math.round(MOON_END * 30)} fps={30} width={1920} height={1080} defaultProps={{ visuals: false } satisfies MoonProps} calculateMetadata={calculateMoonMetadata} />

@@ -28,8 +28,8 @@ export const AlpsRoad: React.FC<SetProps & { road?: boolean; dusk?: boolean }> =
       <Sky w={7000} h={4000} y={hz + 600} top={dusk ? "#6a6a9a" : "#86aed8"} bottom={dusk ? "#f2b08a" : "#f3e2c8"} z={-60} />
       <Cloud w={700} x={-900 + frame * 0.3} y={hz + 900} seed={2} z={-58} />
       <Cloud w={520} x={700 + frame * 0.25} y={hz + 1050} seed={5} z={-58} />
-      <Mountains w={7000} y={hz - 40} peaks={pts([[-2900, 700], [-2200, 1150], [-1500, 820], [-900, 1250], [-200, 900], [500, 1350], [1200, 860], [1900, 1180], [2700, 760]])} color="#8fa2c4" snow="#f4f6fb" z={-56} />
-      <Mountains w={7000} y={hz - 80} peaks={pts([[-2600, 380], [-1700, 560], [-800, 420], [0, 600], [900, 400], [1800, 540], [2600, 360]])} color="#6f8a7a" z={-54} />
+      <Mountains w={7000} y={hz - 40} peaks={pts([[-2900, 380], [-2200, 600], [-1500, 430], [-900, 640], [-200, 470], [500, 680], [1200, 450], [1900, 610], [2700, 400]])} color="#8fa2c4" snow="#f4f6fb" z={-56} />
+      <Mountains w={7000} y={hz - 80} peaks={pts([[-2600, 200], [-1700, 300], [-800, 220], [0, 320], [900, 210], [1800, 290], [2600, 190]])} color="#6f8a7a" z={-54} />
       <Hill w={7000} h={260} y={hz - 120} color="#7f9a5a" seed={3} z={-52} />
       <Part shape={roundRect(9000, 3000, 0)} color="#93ad62" flat outline={0} y={hz - 1600} z={-50} />
       {[[-1700, hz - 260, 260], [1500, hz - 300, 300], [-600, hz - 520, 200], [900, hz - 640, 240]].map(([x, y, w], i) => (
@@ -65,7 +65,7 @@ export const CorsicaSet: React.FC<SetProps & { village?: boolean; night?: boolea
       {night ? <Stars w={6000} h={2000} y={hz + 900} z={-59} /> : <Sun x={1300} y={hz + 900} r={110} z={-59} />}
       {night ? <Moon x={-1100} y={hz + 1000} r={80} z={-58.5} /> : null}
       <Sea w={7000} h={500} y={hz - 60} color={night ? "#2a4a7a" : "#3f8fc0"} z={-57} />
-      <Mountains w={7000} y={hz - 30} peaks={pts([[-2800, 300], [-2000, 760], [-1300, 520], [-600, 880], [100, 600], [800, 940], [1500, 560], [2400, 700]])} color={night ? "#3a4a5a" : "#8a8a7a"} z={-55} />
+      <Mountains w={7000} y={hz - 30} peaks={pts([[-2800, 200], [-2000, 420], [-1300, 300], [-600, 480], [100, 340], [800, 500], [1500, 320], [2400, 400]])} color={night ? "#3a4a5a" : "#8a8a7a"} z={-55} />
       <Hill w={7000} h={340} y={hz - 140} color={night ? "#2f4a3a" : "#6f8a4a"} seed={7} z={-53} />
       <Part shape={roundRect(9000, 3000, 0)} color={night ? "#3a5a3a" : "#8a9a5a"} flat outline={0} y={hz - 1650} z={-50} />
       {Array.from({ length: 7 }, (_, i) => (
@@ -75,8 +75,8 @@ export const CorsicaSet: React.FC<SetProps & { village?: boolean; night?: boolea
         <Part key={`r${i}`} shape={blob([[-260, 0], [-200, 160], [-40, 230], [120, 180], [260, 0]], 8)} color={night ? "#5a5a62" : "#a8a49a"} shade={0.25} x={x} y={y} s={s} z={-48} />
       ))}
       {village
-        ? [-700, -380, -60, 260].map((x, i) => (
-            <StoneHouse key={`h${i}`} x={x} y={hz - 200 + (i % 2) * 30} s={0.55} lit={night} wall={["#d9c7a4", "#cdb894", "#e2d2b0", "#d4c09a"][i]} z={-47 - i * 0.01} />
+        ? [-900, -420, 40, 520].map((x, i) => (
+            <StoneHouse key={`h${i}`} x={x} y={hz - 230 + (i % 2) * 40} s={0.8} lit={night} wall={["#d9c7a4", "#cdb894", "#e2d2b0", "#d4c09a"][i]} z={-47 - i * 0.01} />
           ))
         : null}
       {children}
@@ -122,7 +122,7 @@ export const HarborSet: React.FC<SetProps & { ships?: number; fort?: boolean; fi
   return (
     <>
       <Sky w={8000} h={4000} y={hz + 600} top="#6aa8d8" bottom="#f2ead8" z={-60} />
-      <Mountains w={8000} y={hz + 120} peaks={pts([[-3000, 400], [-2000, 700], [-1000, 500], [0, 760], [1100, 520], [2200, 680], [3200, 420]])} color="#9a9a8a" z={-58} />
+      <Mountains w={8000} y={hz + 120} peaks={pts([[-3000, 240], [-2000, 400], [-1000, 300], [0, 430], [1100, 300], [2200, 390], [3200, 250]])} color="#9a9a8a" z={-58} />
       {fort ? <HillFort x={-1800} y={hz + 100} s={0.9} flag="uk" fire={fire} z={-56} /> : null}
       <Sea w={8000} h={600} y={hz + 60} color="#3f8fc0" z={-55} />
       {Array.from({ length: ships }, (_, i) => (
@@ -168,8 +168,8 @@ export const AlpsSnow: React.FC<SetProps & { snow?: number }> = ({ floor = -420,
   return (
     <>
       <Sky w={8000} h={4000} y={hz + 600} top="#7a98c0" bottom="#e8eef6" z={-60} />
-      <Mountains w={8000} y={hz - 200} peaks={pts([[-3000, 900], [-2000, 1500], [-1000, 1000], [0, 1700], [1100, 1100], [2200, 1550], [3200, 900]])} color="#a8b8d0" snow="#ffffff" z={-56} />
-      <Mountains w={8000} y={hz - 260} peaks={pts([[-2600, 500], [-1500, 800], [-500, 560], [600, 900], [1700, 600], [2700, 760]])} color="#dfe6f0" outline={4} z={-54} />
+      <Mountains w={8000} y={hz - 200} peaks={pts([[-3000, 560], [-2000, 900], [-1000, 640], [0, 1000], [1100, 700], [2200, 920], [3200, 560]])} color="#a8b8d0" snow="#ffffff" z={-56} />
+      <Mountains w={8000} y={hz - 260} peaks={pts([[-2600, 300], [-1500, 460], [-500, 340], [600, 500], [1700, 360], [2700, 440]])} color="#dfe6f0" outline={4} z={-54} />
       <Part shape={roundRect(9000, 3000, 0)} color="#f2f5fa" flat outline={0} y={hz - 1760} z={-50} />
       <Part shape={poly([[-2600, floor - 300], [2600, floor + 260], [2600, floor + 120], [-2600, floor - 460]])} color="#d8dee8" flat outline={5} z={-49} />
       {[-1800, 1600].map((x, i) => (
@@ -288,7 +288,7 @@ export const CaribbeanSet: React.FC<SetProps & { smoke?: number }> = ({ floor = 
   return (
     <>
       <Sky w={8000} h={4000} y={hz + 600} top="#4f9ad8" bottom="#f2f0dc" z={-60} />
-      <Mountains w={8000} y={hz - 20} peaks={pts([[-2800, 500], [-1800, 860], [-800, 600], [200, 900], [1300, 620], [2400, 820]])} color="#3f7a4a" z={-56} />
+      <Mountains w={8000} y={hz - 20} peaks={pts([[-2800, 260], [-1800, 460], [-800, 330], [200, 480], [1300, 340], [2400, 440]])} color="#3f7a4a" z={-56} />
       <Sea w={8000} h={200} y={hz - 80} color="#2fa0c0" z={-55} />
       <Part shape={roundRect(9000, 3000, 0)} color="#d8c690" flat outline={0} y={hz - 1680} z={-50} />
       {[-2000, -1300, 1400, 2100].map((x, i) => (
@@ -306,7 +306,7 @@ export const SpainSet: React.FC<SetProps> = ({ floor = -420, children }) => {
   return (
     <>
       <Sky w={8000} h={4000} y={hz + 600} top="#7ab0d8" bottom="#f6e6c4" z={-60} />
-      <Mountains w={8000} y={hz - 40} peaks={pts([[-2800, 560], [-1800, 900], [-900, 640], [100, 980], [1100, 620], [2200, 880], [3000, 500]])} color="#c4946a" z={-56} />
+      <Mountains w={8000} y={hz - 40} peaks={pts([[-2800, 280], [-1800, 460], [-900, 330], [100, 500], [1100, 320], [2200, 450], [3000, 260]])} color="#c4946a" z={-56} />
       <Part shape={roundRect(9000, 3000, 0)} color="#d8b47a" flat outline={0} y={hz - 1640} z={-50} />
       {[[-1500, hz - 200, 1.3], [1600, hz - 160, 1.1], [-300, hz - 120, 0.8]].map(([x, y, s], i) => (
         <Part key={i} shape={blob([[-300, 0], [-240, 220], [-60, 320], [140, 260], [300, 0]], 8)} color="#b08a62" shade={0.28} x={x} y={y} s={s} z={-48 + i * 0.01} />

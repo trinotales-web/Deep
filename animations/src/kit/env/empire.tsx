@@ -677,3 +677,60 @@ export const FogBank: React.FC<XProps & { w?: number; h?: number; k?: number; se
     </X>
   );
 };
+
+/** Closed European coach (berline) pulled by horses, facing +x. Origin = ground under the box. `walk` animates horses and wheels. */
+export const Coach: React.FC<XProps & { color?: string; horses?: number; walk?: number; children?: React.ReactNode }> = ({ color = "#2a3a5a", horses = 2, walk = 0, children, ...xf }) => {
+  const frame = useCurrentFrame();
+  const spin = -frame * 0.25 * walk;
+  return (
+    <X {...xf}>
+      {Array.from({ length: horses }, (_, i) => (
+        <Steed key={i} x={560 + i * 60} y={i * 12} s={0.85} walk={walk} seed={i * 1.7} color={i % 2 ? "#5a3a26" : "#7a4a2e"} z={-0.02 + i * 0.01} />
+      ))}
+      <Line pts={[[160, 150], [520, 200]]} width={10} color="#3a2a20" z={-0.03} />
+      <Part shape={roundPoly([[-210, 120], [210, 120], [240, 330], [170, 420], [-170, 420], [-240, 330]], [20, 20, 40, 30, 30, 40])} color={color} shade={0.22} />
+      <Part shape={roundRect(150, 130, 14)} color="#ffe9b8" flat outline={4} x={20} y={300} z={0.001} />
+      <Line pts={[[20, 236], [20, 364]]} width={4} z={0.002} />
+      <Part shape={roundRect(440, 16, 6)} color={palette.gold} flat outline={3.5} y={420} z={0.002} />
+      <Part shape={roundRect(200, 50, 10)} color={shadeHex(color, -0.2)} shade={0.2} x={170} y={150} z={0.003} />
+      <Wheel r={86} x={-150} y={86} spin={spin} color="#4a2a1a" z={0.01} />
+      <Wheel r={70} x={170} y={70} spin={spin * 1.2} color="#4a2a1a" z={0.01} />
+      {children ? <X y={420} z={0.02}>{children}</X> : null}
+    </X>
+  );
+};
+
+/** Glowing idea light bulb. */
+export const Lightbulb: React.FC<XProps & { on?: number }> = ({ on = 1, ...xf }) => (
+  <X {...xf}>
+    {on > 0 ? <Glow rx={220} color="#ffe27a" alpha={0.6 * on} additive z={-0.01} /> : null}
+    <Part shape={blob([[-50, 10], [-70, 70], [-60, 130], [0, 165], [60, 130], [70, 70], [50, 10]], 8)} color={on > 0.5 ? "#ffe27a" : "#e8e6ee"} shade={0.2} />
+    <Part shape={roundRect(70, 50, 10)} color="#9aa0aa" shade={0.2} y={-14} z={0.001} />
+    <Line pts={[[-30, -6], [30, -6]]} width={4} z={0.002} />
+    <Line pts={[[-24, 60], [-12, 90], [0, 60], [12, 90], [24, 60]]} width={4} color="#c8862a" z={0.002} />
+  </X>
+);
+
+/** Swaddled baby (white bundle with a tiny face), lying along +x. */
+export const BabyBundle: React.FC<XProps & { asleep?: boolean }> = ({ asleep = true, ...xf }) => (
+  <X {...xf}>
+    <Part shape={blob([[-110, -10], [-80, 50], [40, 56], [90, 30], [96, -20], [40, -50], [-90, -44]], 8)} color="#f2eee6" shade={0.24} />
+    <Line pts={[[-40, -40], [-20, 40]]} width={4} color="#c9c0b4" z={0.001} />
+    <Line pts={[[-80, -30], [-60, 40]]} width={4} color="#c9c0b4" z={0.001} />
+    <X x={70} y={6} z={0.002}>
+      <Part shape={circle(46)} color="#f6f5f8" shade={0.22} />
+      {asleep ? (
+        <>
+          <Line pts={[[10, 6], [22, 2], [32, 6]]} smooth width={4} z={0.001} />
+          <Line pts={[[-10, 6], [-20, 2]]} smooth width={4} z={0.001} />
+        </>
+      ) : (
+        <>
+          <Part shape={circle(5)} color="#211b20" flat outline={0} x={18} y={6} z={0.001} />
+          <Part shape={circle(5)} color="#211b20" flat outline={0} x={-6} y={6} z={0.001} />
+        </>
+      )}
+      <Part shape={ellipse(7, 5)} color="#e8a0a0" flat outline={0} x={8} y={-16} z={0.001} />
+    </X>
+  </X>
+);

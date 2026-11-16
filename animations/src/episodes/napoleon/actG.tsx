@@ -1,0 +1,30 @@
+import React from "react";
+import type { ShotProps } from "../../kit";
+import { StubShot } from "./stub";
+
+// Act G: placeholder shots (to be drawn).
+export const EscapeNightShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="EscapeNightShot" />;
+export const LandingShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="LandingShot" />;
+export const RegimentShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="RegimentShot" />;
+export const RememberSoldierShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="RememberSoldierShot" />;
+export const OrderFireShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="OrderFireShot" />;
+export const NobodyFiresShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="NobodyFiresShot" />;
+export const VivaShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="VivaShot" />;
+export const JoinShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="JoinShot" />;
+export const KingFledShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="KingFledShot" />;
+export const DoesntLastShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="DoesntLastShot" />;
+export const WaterlooMapShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="WaterlooMapShot" />;
+export const WellingtonShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="WellingtonShot" />;
+export const PrussiansComingShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="PrussiansComingShot" />;
+export const RainMudShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="RainMudShot" />;
+export const WaitsDryShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="WaitsDryShot" />;
+export const HoursPassShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="HoursPassShot" />;
+export const RuleSlowShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="RuleSlowShot" />;
+export const SlowShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="SlowShot" />;
+export const PrussiansArriveShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="PrussiansArriveShot" />;
+export const BrokenShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="BrokenShot" />;
+export const NearestRunShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="NearestRunShot" />;
+export const NoChancesShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="NoChancesShot" />;
+export const HelenaMapShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="HelenaMapShot" />;
+export const DeathShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="DeathShot" />;
+export const FiftyOneShot: React.FC<ShotProps> = (p) => <StubShot {...p} name="FiftyOneShot" />;

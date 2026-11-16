@@ -389,3 +389,45 @@ export const VIEWER: Design = {
   hairColor: "#3a2a22",
   seed: 170,
 };
+
+/** Corsican rebels (1768–69): rough jackets, caps, muskets. */
+export const CORSICAN = (i = 0): Design => ({
+  outfit: { top: ["#6a4a30", "#4a4a3a", "#5a3a2a", "#3a4a3a"][i % 4], belt: "#3a2a22", strap: "#3a2a22", bottom: ["#4a3a30", "#3a3a42"][i % 2], boots: "#2a2228", patches: i % 2 ? "#8a7a5a" : null },
+  hat: i % 3 === 0 ? "tricorne" : i % 3 === 1 ? "beanie" : null,
+  hatColor: i % 3 === 1 ? "#5a2a2a" : "#2a2228",
+  hair: (["long", "curly", "sides"] as const)[i % 3],
+  hairColor: HAIRS[i % 3],
+  mustache: i % 2 ? "walrus" : null,
+  beard: i % 3 === 2 ? "stubble" : null,
+  seed: 180 + i,
+});
+
+/** French royal infantry before the Revolution: white coats, blue cuffs, tricorne. */
+export const FR_ROYAL = (i = 0): Design => ({
+  outfit: { top: "#f0ece2", cuffs: "#2c4486", crossbelts: "#d8d2c4", tails: "#f0ece2", bottom: "#f0ece2", boots: "#2a2228", collar: "high", collarColor: "#2c4486", buttons: GOLD },
+  hat: "tricorne",
+  hatAccent: FR_WHITE,
+  hair: "short",
+  hairColor: HAIRS[(i + 1) % HAIRS.length],
+  mustache: i % 2 ? "thin" : null,
+  seed: 190 + i,
+});
+
+/** Minim friar teaching at Brienne. */
+export const FRIAR: Design = {
+  outfit: { top: "#5a4a3a", robe: true, rope: "#d8c8a0", collar: "round", boots: "#3a2a22" },
+  hair: "sides",
+  hairColor: "#8a8a92",
+  glasses: "#2a2228",
+  seed: 195,
+};
+
+/** The French governor of Corsica (Marbeuf): white coat with gold, powdered wig. */
+export const GOVERNOR: Design = {
+  outfit: { top: "#f0ece2", lapels: "#2c4486", epaulettes: GOLD, cuffs: "#2c4486", tails: "#f0ece2", bottom: "#f0ece2", boots: "#1f1a1e", tallBoots: true, cravat: FR_WHITE, sash: "#4a7ad0" },
+  hat: "tricorne",
+  hatAccent: GOLD,
+  hair: "curly",
+  hairColor: "#ecebf0",
+  seed: 196,
+};

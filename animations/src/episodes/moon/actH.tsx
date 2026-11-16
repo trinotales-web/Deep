@@ -9,6 +9,7 @@ import {
 import { sec, pop } from "../../kit/shot";
 import { SpaceSet, Office, RuleBoard, WaterDrop, GoldBars } from "./sets";
 import { SCIENTIST, VIEWER } from "./cast";
+import { atHead } from "./frame";
 
 // The answer (water + light, side by side), Vikram's first landing, the
 // mystery mass still waiting, and the question for the viewer.
@@ -238,17 +239,24 @@ export const SomethingElseShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const DontKnowShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
+  const cam = { zoom: 1.0, y: 150 };
+  const a = atHead(cam, 0.14, 0.5, 1.75);
+  const b = atHead(cam, 0.86, 0.5, 1.75);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.82, 0.88), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <Office floor={-420}>
-          <X y={-60} z={-22}>
-            <Monitor w={760} h={460} screen="#0e1a2c">
-              <MoonGlobe r={190} view={{ lon: -169, lat: -53 }} xray={1} mass={1} glow={0} craters={20} />
+          <X x={0} y={-262} z={-24}>
+            <Part shape={roundRect(1380, 40, 10)} color="#8a6a4a" shade={0.2} />
+            <Part shape={roundRect(1320, 400, 10)} color="#6e5236" shade={0.2} y={-220} z={-0.001} />
+          </X>
+          <X x={0} y={120} z={-22}>
+            <Monitor w={900} h={540} screen="#0e1a2c">
+              <MoonGlobe r={225} view={{ lon: -169, lat: -53 }} xray={1} mass={1} glow={0} craters={20} />
             </Monitor>
           </X>
-          <Character {...SCIENTIST(0)} x={-640} y={-420} s={1.05} facing={1} look={0.5} expression={{ eyes: "half", mouth: "wavy", brows: 0.4 }} pose={poses.shrug(t - 595.6)} z={-10} />
-          <Character {...SCIENTIST(1)} x={660} y={-420} s={1.05} facing={-1} look={0.5} expression={{ eyes: "half", mouth: "wavy", brows: 0.4 }} pose={poses.shrug(t - 595.8)} z={-10} />
+          <Character {...SCIENTIST(0)} x={a.x} y={a.y} s={1.75} facing={1} look={0.5} expression={{ eyes: "half", mouth: "wavy", brows: 0.4 }} pose={poses.shrug(t - 595.6)} z={-10} />
+          <Character {...SCIENTIST(1)} x={b.x} y={b.y} s={1.75} facing={-1} look={0.5} expression={{ eyes: "half", mouth: "wavy", brows: 0.4 }} pose={poses.shrug(t - 595.8)} z={-10} />
         </Office>
       </Stage>
     </AbsoluteFill>
@@ -264,11 +272,11 @@ export const BuildFirstShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.82, 0.9), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <SpaceSet>
-          <MoonGlobe r={380} x={380} y={60} view={{ lon: (t - 597) * 12, lat: -30 }} z={-10} />
-          <X x={380} y={480} s={0.18 * pop(t, 598.6)} z={-9}>
+          <MoonGlobe r={380} x={380} y={-20} view={{ lon: (t - 597) * 12, lat: -30 }} z={-10} />
+          <X x={380} y={356} s={0.2 * pop(t, 598.6)} z={-9}>
             <MoonBase lights={1} masts={2} />
           </X>
-          <Character {...VIEWER} x={-560} y={-520} s={1.4} facing={1} look={0.5} expression={{ eyes: "open", mouth: "smile", gaze: [0.7, 0.3] }} pose={t > 599.9 ? poses.think : poses.point(frame)} z={-5} />
+          <Character {...VIEWER} x={-600} y={-560} s={1.85} facing={1} look={0.5} expression={{ eyes: "open", mouth: "smile", gaze: [0.7, 0.3], brows: 0.15 }} pose={t > 599.9 ? poses.think : poses.point(frame)} z={-5} />
         </SpaceSet>
       </Stage>
       <Label text="WHERE WOULD YOU BUILD?" x={0.5} y={0.1} size={0.055} kind="title" at={at(600.1)} />
@@ -310,7 +318,7 @@ export const CommentsShot: React.FC<ShotProps> = ({ start, dur }) => {
             <Part shape={roundRect(860, 320, 60)} color="#f6f5f8" shade={0.2} />
             <Part shape={ellipse(70, 60)} color="#f6f5f8" flat outline={0} x={-300} y={-150} rot={0.6} z={-0.001} />
           </X>
-          <Character {...VIEWER} x={-560} y={-520} s={1.4} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} z={-5} />
+          <Character {...VIEWER} x={-600} y={-640} s={1.85} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "grin", blush: true }} pose={poses.armsUp(frame)} z={-5} />
         </SpaceSet>
       </Stage>
       <Label text="TELL ME IN THE COMMENTS" x={0.63} y={0.35} size={0.045} kind="ink" pin at={at(603.8)} />

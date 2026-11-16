@@ -5,6 +5,7 @@ import {
   SpaceBack, MoonGlobe, LunarPoleMap, LunarSurface, CraterSection, SpaceRock, Comet, WaterMolecule, SnowPeak, Typhoon, IceFlake, MetalLump,
   Vikram, Luna25, NovaC, GrailProbe, Chandrayaan1, CentaurStage, ApolloLM, ChangELander, YutuRover, Hopper, Orion, SLS, PSLV, NationFlag,
   MoonBase, FuelPump, Tokamak, QuantumFridge, GasCanister, Harvester, Bullet, ImpactPlume, SolarMast, Planet,
+  NebulaBack, MoonRover, LaunchPadSet, CraterCone,
 } from "../kit/env";
 
 /** Moon kit review sheets (dev only). */
@@ -83,6 +84,31 @@ export const MoonKit: React.FC<{ page?: number }> = ({ page = 0 }) => {
             <Harvester x={-200} y={-420} s={0.6} heat={1} />
             <Bullet x={300} y={-380} s={0.8} />
             <SolarMast x={-860} y={100} s={0.5} />
+          </>
+        ) : null}
+        {page === 7 ? (
+          <LunarSurface horizon={-60} sun={[-1100, 60]} earth={[620, 340, 70]}>
+            <Vikram x={-380} y={-420} s={1.05} />
+            <Chandrayaan1 x={420} y={250} s={0.55} />
+            <MoonRover x={420} y={-430} s={0.9} />
+          </LunarSurface>
+        ) : null}
+        {page === 8 ? (
+          <LunarSurface horizon={60} sun={null} earth={[600, 380, 80]}>
+            <MoonBase x={100} y={-360} s={0.7} flag="india" />
+          </LunarSurface>
+        ) : null}
+        {page === 9 ? (
+          <LaunchPadSet floor={-460} towerX={-420} smoke={0.8} glow={1}>
+            <PSLV x={60} y={-430} h={1300} thrust={1} z={-20} />
+          </LaunchPadSet>
+        ) : null}
+        {page === 10 ? (
+          <>
+            <NebulaBack z={-1} />
+            <MoonGlobe r={330} x={-300} y={20} />
+            <Planet kind="earth" r={120} x={520} y={180} />
+            <Vikram x={480} y={-400} s={0.5} rot={-0.9} thrust={0.6} />
           </>
         ) : null}
       </Stage>

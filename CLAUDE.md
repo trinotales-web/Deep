@@ -207,6 +207,25 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   `ControlRoom` (wall screen children) + `DescentScreen`, `Office`,
   `MoonPressSet`, `Pluto`, `AxisLine`, `WaterDrop`, `GoldBars`, `IceBlocks`.
   Kit review sheets: `node scripts/kit-stills.mjs MoonKit out.png 0,1,2 2`.
+- Richer look (user feedback on the Moon video, matched to a reference kids'
+  explainer): space shots use `NebulaBack` (violet nebula, bokeh, `Sparkle`s;
+  `hue` violet/indigo/magenta) instead of the plain `SpaceBack`; `LunarSurface`
+  has a violet starry sky, mottled ground and `CraterCone`s (raised cartoon
+  craters with radial streaks); `MoonGlobe` has a luminous halo and a lit rim;
+  Earth in the lunar sky is the real-coastline `Globe`. Spacecraft are drawn in
+  3/4 view with foil seams, sheen and strutted legs with footpads (`Vikram`,
+  `ChangELander`, `YutuRover`, `Luna25`, `NovaC`, `Chandrayaan1`); `MoonBase`
+  has ribbed `HabDome`s with airlocks, `MoonRover`, `GroundPanel` arrays, a comms
+  tower and a tank. Launches use `LaunchPadSet` (teal sky, `LatticeTower`,
+  `SmokeBillow` clouds with swirls, engine glow).
+- Interiors (`env/perspective`): `PerspectiveRoom` (one-point perspective: back
+  wall, side walls, ceiling light panels, tiled floor; `roomPt`/`roomQuad` place
+  things on walls/floor), `ROOM_LAB`/`ROOM_MISSION` palettes, `FramedPoster`
+  (rocket/moon/blueprint/earth/chart), `ClockRow`, `GaugePanel`, `CodeScreen`,
+  `SideWindow`, `ControlConsoleFront`. Characters in rooms are framed as medium
+  close-ups (effective scale ≈1.6–2.4, cut at the waist), placed with
+  `atHead(cam, fx, fy, s)` (`episodes/moon/frame.ts`) so the head lands at a
+  chosen frame position.
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers (synth ambiences
   include a seamless `underwater` bed and a quiet airless `space` bed for space
   and the lunar surface; keep long beds synthesized — short licensed loops

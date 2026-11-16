@@ -4,11 +4,12 @@ import { Stage, DepthStage, X, Part, Line, Glow, roundRect, circle, push, hitAt,
 import { Label } from "../../kit/captions";
 import { Character, poses } from "../../kit/character";
 import {
-  MoonGlobe, moonProj, LunarSurface, CraterSection, GroundCrater, Vikram, Luna25, CentaurStage, ImpactPlume, GasCanister, NationFlag, SpaceRock, Fireball, Clock, Calendar,
+  MoonGlobe, Globe, moonProj, LunarSurface, CraterSection, GroundCrater, Vikram, Luna25, CentaurStage, ImpactPlume, GasCanister, NationFlag, SpaceRock, Fireball, Clock, Calendar,
   GoldCoin, Planet, IceFlake, LandingDust,
 } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
 import { ControlRoom, Console, DescentScreen, SpaceSet, Flash } from "./sets";
+import { atHead } from "./frame";
 import { YOU, ENGINEER } from "./cast";
 
 // Cold open (ISRO mission control, 23 August 2023: Luna-25 crashed four days
@@ -30,19 +31,21 @@ export const ControlRoomShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
+  const cam = { zoom: 0.76, y: 220 };
+  const you = atHead(cam, 0.27, 0.46, 2.4);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.62, 0.68), y: 160 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+      <Stage camera={{ zoom: push(frame, dur, 0.74, 0.8), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
         <ControlRoom floor={-420} screen={<DescentScreen k={0.12} />}>
-          <Station x={-1150} y={-420} s={0.95} i={1} frame={frame} z={-12} />
-          <Station x={850} y={-420} s={0.95} i={3} frame={frame} z={-12} />
-          <Character {...YOU} x={-60} y={-640} s={1.3} facing={1} look={0.55} expression={{ eyes: "open", mouth: t > 1.5 ? "smile" : "flat", gaze: [0.2, 0.3] }} pose={poses.idle(frame, 1)} z={-4} />
-          <NationFlag kind="india" x={1250} y={-640} w={240} pole={760} z={-5} />
+          <Station x={-1300} y={-420} s={0.95} i={1} frame={frame} z={-12} />
+          <Station x={700} y={-420} s={0.95} i={3} frame={frame} z={-12} />
+          <Character {...YOU} x={you.x} y={you.y} s={2.4} facing={1} look={0.55} expression={{ eyes: "open", mouth: t > 1.5 ? "smile" : "flat", gaze: [0.5, 0.4], brows: 0.15 }} pose={poses.idle(frame, 1)} z={-4} />
+          <NationFlag kind="india" x={1380} y={-640} w={240} pole={760} z={-5} />
         </ControlRoom>
       </Stage>
-      <Label text="ISRO MISSION CONTROL" x={0.08} y={0.1} size={0.045} kind="box" at={at(1.4)} />
-      <Label text="BENGALURU, INDIA" x={0.08} y={0.19} size={0.036} kind="box" at={at(2.9)} />
-      <Label text="YOU" x={0.48} y={0.4} size={0.05} kind="tag" pin at={at(0.4)} until={at(2.6)} />
+      <Label text="ISRO MISSION CONTROL" x={0.6} y={0.74} size={0.045} kind="box" at={at(1.4)} />
+      <Label text="BENGALURU, INDIA" x={0.6} y={0.83} size={0.036} kind="box" at={at(2.9)} />
+      <Label text="YOU" x={0.27} y={0.2} size={0.05} kind="tag" pin at={at(0.4)} until={at(2.6)} />
     </AbsoluteFill>
   );
 };
@@ -75,12 +78,15 @@ export const ScreenShot: React.FC<ShotProps> = ({ start, dur }) => {
   const k = interpolate(t, [7.6, 12.3], [0.18, 0.5], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const sc = useScr();
   const zoom = push(frame, dur, 0.82, 0.9);
+  const cam = { zoom: 0.86, y: 380 };
+  const you = atHead(cam, 0.16, 0.6, 1.9);
+  const eng = atHead(cam, 0.85, 0.6, 1.8);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom, y: 380 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+      <Stage camera={{ zoom, y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
         <ControlRoom floor={-420} screen={<DescentScreen k={k} />} consoles={false}>
-          <Character {...YOU} x={-760} y={-300} s={1.15} facing={1} look={0.75} expression={{ eyes: "wide", mouth: "flat", gaze: [0.6, 0.7], brows: 0.4 }} pose={poses.idle(frame, 2)} z={-4} />
-          <Character {...ENGINEER(4)} x={780} y={-300} s={1.05} facing={-1} look={0.75} expression={{ eyes: "open", mouth: "o", gaze: [-0.6, 0.7] }} pose={poses.point(frame)} z={-4} />
+          <Character {...YOU} x={you.x} y={you.y} s={1.9} facing={1} look={0.75} expression={{ eyes: "wide", mouth: "flat", gaze: [0.6, 0.7], brows: 0.4 }} pose={poses.idle(frame, 2)} z={-4} />
+          <Character {...ENGINEER(4)} x={eng.x} y={eng.y} s={1.8} facing={-1} look={0.75} expression={{ eyes: "open", mouth: "o", gaze: [-0.6, 0.7], brows: 0.3 }} pose={poses.point(frame)} z={-4} />
         </ControlRoom>
       </Stage>
       <Label text="VIKRAM" x={sc(-640 + k * 1080, 520 + 260 - 420 * k ** 1.6 + 70, zoom, 0, 380).x} y={sc(0, 520 + 260 - 420 * k ** 1.6 + 90, zoom, 0, 380).y} size={0.045} kind="tag" pin at={at(10.0)} />
@@ -183,7 +189,7 @@ export const QuietShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.7} bgBlur={8} bg={<ControlRoom floor={-700} screen={<DescentScreen k={0.6} />} />}>
         {[0, 2, 5].map((i, n) => (
-          <Character key={i} {...ENGINEER(i)} x={-620 + n * 620} y={-640} s={1.2} facing={n === 2 ? -1 : 1} look={0.7} expression={{ eyes: "wide", mouth: "flat", gaze: [n === 2 ? -0.3 : 0.3, 0.8], brows: 0.6, sweat: n !== 1 }} pose={n === 1 ? poses.pray(frame) : poses.idle(frame, i)} z={-2 - n * 0.1} />
+          <Character key={i} {...ENGINEER(i)} x={-660 + n * 660} y={-700} s={1.4} facing={n === 2 ? -1 : 1} look={0.7} expression={{ eyes: "wide", mouth: "flat", gaze: [n === 2 ? -0.3 : 0.3, 0.8], brows: 0.6, sweat: n !== 1 }} pose={n === 1 ? poses.pray(frame) : poses.idle(frame, i)} z={-2 - n * 0.1} />
         ))}
         <X x={0} y={420} s={0.9} z={-3}>
           <Clock r={120} speed={6} />
@@ -255,15 +261,25 @@ export const CelebrateShot: React.FC<ShotProps> = ({ start, dur }) => {
   const at = sec(start);
   const t = absT(start, frame);
   const cheer = (i: number) => (t > 31.5 + i * 0.12 ? poses.armsUp(frame + i * 7) : poses.idle(frame, i));
+  const cam = { zoom: 0.92, y: 330 };
+  const back = [0.31, 0.69].map((fx, n) => ({ ...atHead(cam, fx, 0.36, 1.15), i: n + 2 }));
+  const front = [
+    { ...atHead(cam, 0.13, 0.64, 1.75), i: 0, f: 1 as const },
+    { ...atHead(cam, 0.87, 0.64, 1.75), i: 1, f: -1 as const },
+  ];
+  const you = atHead(cam, 0.5, 0.6, 2.0);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.68, 0.72), y: 160 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <ControlRoom floor={-420} screen={<DescentScreen k={1} upright={1} done={1} />}>
-          {[0, 1, 2, 3, 4].map((i) => (
-            <Character key={i} {...ENGINEER(i)} x={-1180 + i * 600 + (i % 2) * 40} y={-500 - (i % 2) * 70} s={1.05} facing={i % 2 ? -1 : 1} look={0.4} expression={{ eyes: "happy", mouth: i % 2 ? "grin" : "open" }} pose={cheer(i)} z={-6 + (i % 2) * 0.5} />
+      <Stage camera={{ zoom: push(frame, dur, 0.9, 0.95), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <ControlRoom floor={-420} screen={<DescentScreen k={1} upright={1} done={1} />} consoles={false}>
+          {back.map((p) => (
+            <Character key={p.i} {...ENGINEER(p.i)} x={p.x} y={p.y} s={1.15} facing={p.i % 2 ? -1 : 1} look={0.4} expression={{ eyes: "happy", mouth: "open", blush: true }} pose={cheer(p.i)} z={-8} />
           ))}
-          <Character {...YOU} x={60} y={-760} s={1.3} facing={1} look={0.45} expression={{ eyes: "happy", mouth: "grin", blush: true }} pose={cheer(9)} z={-3} />
-          <NationFlag kind="india" x={1250} y={-640} w={300} pole={800} z={-5} />
+          {front.map((p) => (
+            <Character key={p.i} {...ENGINEER(p.i)} x={p.x} y={p.y} s={1.75} facing={p.f} look={0.4} expression={{ eyes: "happy", mouth: p.i % 2 ? "grin" : "open", blush: true }} pose={cheer(p.i)} z={-5} />
+          ))}
+          <Character {...YOU} x={you.x} y={you.y} s={2.0} facing={1} look={0.3} expression={{ eyes: "happy", mouth: "grin", blush: true }} pose={cheer(9)} z={-3} />
+          <NationFlag kind="india" x={1400} y={-500} w={300} pole={900} z={-9} />
         </ControlRoom>
       </Stage>
       <Label text="FIRST NEAR THE SOUTH POLE" x={0.5} y={0.1} size={0.05} kind="title" at={at(34.6)} />
@@ -463,7 +479,7 @@ export const ApproachShot: React.FC<ShotProps> = ({ start, dur }) => {
         <SpaceSet seed={9}>
           <MoonGlobe r={520} x={-380} y={-140} view={{ lon: 180, lat: -20 }} craters={25} z={-10} />
           <SpaceRock x={interpolate(k, [0, 1], [900, 120])} y={interpolate(k, [0, 1], [500, 60])} size={interpolate(k, [0, 1], [90, 180])} rot={t * 0.6} seed={3} z={-5} />
-          <Planet kind="earth" r={60} x={820} y={-380} glow={0.6} z={-12} />
+          <Globe r={60} x={820} y={-380} lon0={62} lat0={12} glow={1.2} z={-12} />
         </SpaceSet>
       </Stage>
     </AbsoluteFill>

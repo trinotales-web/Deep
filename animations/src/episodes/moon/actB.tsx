@@ -7,7 +7,8 @@ import {
   Lectern, MoonGlobe, LunarSurface, CraterSection, SpaceRock, GrailProbe, DashLink, MetalLump, SnowPeak, Globe, WorldMap, worldXY, DimArrow, Monitor, Fireball, ImpactPlume, Ring,
 } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
-import { SpaceSet, Office, MoonPressSet, Flash } from "./sets";
+import { SpaceSet, Office, MoonPressSet, PressDesk, Flash } from "./sets";
+import { atHead } from "./frame";
 import { SCIENTIST } from "./cast";
 
 // The impact that made the South Pole-Aitken basin, GRAIL's gravity map, the
@@ -194,18 +195,28 @@ export const EverestShot: React.FC<ShotProps> = ({ start, dur }) => {
 };
 
 /** Two scientists at a desk with a Moon globe. */
+const MD_CAM = { zoom: 1.0, y: 150 };
 const MoonDesk: React.FC<{ frame: number; t: number; react?: "shrug" | "wide" | "idle" | "think"; screen?: React.ReactNode }> = ({ frame, t, react = "idle", screen }) => {
   const pose = (i: number) => (react === "shrug" ? poses.shrug((t % 100) - Math.floor(t % 100) + 0.6) : react === "think" ? poses.think : poses.idle(frame, i));
-  const exp = react === "wide" ? { eyes: "wide" as const, mouth: "o" as const, brows: 0.6 } : react === "shrug" ? { eyes: "half" as const, mouth: "wavy" as const, brows: 0.4 } : { eyes: "open" as const, mouth: "flat" as const };
+  const exp = react === "wide" ? { eyes: "wide" as const, mouth: "o" as const, brows: 0.6, sweat: true } : react === "shrug" ? { eyes: "half" as const, mouth: "wavy" as const, brows: 0.4 } : react === "think" ? { eyes: "open" as const, mouth: "flat" as const, brows: -0.2 } : { eyes: "open" as const, mouth: "flat" as const, brows: 0.15 };
+  const a = atHead(MD_CAM, 0.14, 0.5, 1.75);
+  const b = atHead(MD_CAM, 0.86, 0.5, 1.75);
   return (
     <Office floor={-420}>
-      <X x={0} y={-80} z={-22}>
-        <Monitor w={760} h={460} screen="#0e1a2c">
-          {screen}
+      <X x={0} y={-262} z={-24}>
+        <Part shape={roundRect(1380, 40, 10)} color="#8a6a4a" shade={0.2} />
+        <Part shape={roundRect(1320, 400, 10)} color="#6e5236" shade={0.2} y={-220} z={-0.001} />
+        <Part shape={roundRect(260, 70, 10)} color="#3a3e48" flat outline={4} x={-420} y={56} z={0.001} />
+        <Part shape={roundRect(120, 26, 6)} color="#d6d8de" flat outline={3} x={-420} y={100} z={0.002} />
+        <Part shape={roundRect(70, 90, 10)} color="#f2f2f4" shade={0.2} x={430} y={65} z={0.001} />
+      </X>
+      <X x={0} y={120} z={-22}>
+        <Monitor w={900} h={540} screen="#0e1a2c">
+          <X s={1.18}>{screen}</X>
         </Monitor>
       </X>
-      <Character {...SCIENTIST(0)} x={-640} y={-420} s={1.05} facing={1} look={0.5} expression={{ ...exp, gaze: [0.6, 0.3] }} pose={pose(0)} z={-10} />
-      <Character {...SCIENTIST(1)} x={660} y={-420} s={1.05} facing={-1} look={0.5} expression={{ ...exp, gaze: [-0.6, 0.3] }} pose={pose(1)} z={-10} />
+      <Character {...SCIENTIST(0)} x={a.x} y={a.y} s={1.75} facing={1} look={0.5} expression={{ ...exp, gaze: [0.6, 0.3] }} pose={pose(0)} z={-10} />
+      <Character {...SCIENTIST(1)} x={b.x} y={b.y} s={1.75} facing={-1} look={0.5} expression={{ ...exp, gaze: [-0.6, 0.3] }} pose={pose(1)} z={-10} />
     </Office>
   );
 };
@@ -216,7 +227,7 @@ export const AllWeKnewShot: React.FC<ShotProps> = ({ start, dur }) => {
   const t = absT(start, frame);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.78, 0.84), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: MD_CAM.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <MoonDesk frame={frame} t={t} react={t > 91.3 ? "shrug" : "idle"} screen={<MoonGlobe r={190} view={SPA_VIEW} basinTint={1} basin={1} glow={0} craters={30} />} />
       </Stage>
     </AbsoluteFill>
@@ -433,7 +444,7 @@ export const StudyMapShot: React.FC<ShotProps> = ({ start, dur }) => {
   const t = absT(start, frame);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.8, 0.86), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: MD_CAM.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <MoonDesk frame={frame} t={t} react="think" screen={<MoonGlobe r={190} view={{ lon: -100 + t * 6, lat: -20 }} gravity={1} glow={0} craters={20} />} />
       </Stage>
     </AbsoluteFill>
@@ -461,7 +472,7 @@ export const StrangeShot: React.FC<ShotProps> = ({ start, dur }) => {
   const t = absT(start, frame);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.9, 0.96), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: MD_CAM.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <MoonDesk frame={frame} t={t} react="wide" screen={<MoonGlobe r={190} view={SPA_VIEW} gravity={0.6} mass={ramp(t, 124.6, 125.4)} glow={0} craters={20} />} />
         <QuestionMark x={0} y={380} s={0.8 * pop(t, 125.2)} z={-5} />
       </Stage>
@@ -515,12 +526,14 @@ export const PullsFloorShot: React.FC<ShotProps> = ({ start, dur }) => {
 // 134.16 "One scientist described it like this."
 export const QuoteShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
+  const cam = { zoom: 1.0, y: 150 };
+  const p = atHead(cam, 0.6, 0.42, 1.9);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.9, 0.96), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <MoonPressSet floor={-440}>
-          <Lectern x={-60} y={-440} s={0.75} z={-5} />
-          <Character {...SCIENTIST(3)} x={-60} y={-440} s={1.25} facing={1} look={0.1} talking expression={{ eyes: "open", mouth: "smile" }} pose={poses.talk(frame, 2)} z={-6} />
+      <Stage camera={{ zoom: push(frame, dur, 0.97, 1.04), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <MoonPressSet floor={-560}>
+          <Character {...SCIENTIST(3)} x={p.x} y={p.y} s={1.9} facing={1} look={0.15} talking expression={{ eyes: "open", mouth: "smile", brows: 0.2 }} pose={poses.talk(frame, 2)} z={-6} />
+          <PressDesk x={p.x + 60} y={p.y + 150 * 1.9 - 380} z={-4} />
         </MoonPressSet>
       </Stage>
     </AbsoluteFill>
@@ -635,7 +648,10 @@ const MoonCutaway: React.FC<{ lump?: number; magma?: number }> = ({ lump = 1, ma
       <Part shape={circle(400)} color={magma > 0 ? "#e0702a" : "#c0784a"} flat outline={4} z={0.001} />
       <Part shape={circle(150)} color="#e8a43a" flat outline={4} z={0.002} />
       <Glow rx={190} color="#ffd27a" alpha={0.35} additive z={0.003} />
-      <Part shape={circle(150)} color="#0b0f24" flat outline={6} x={-150} y={-540} z={0.004} />
+      <Line pts={Array.from({ length: 13 }, (_, i) => {
+        const a = -Math.PI / 2 - 0.62 + (1.24 * i) / 12;
+        return [Math.round(Math.cos(a) * 452) , Math.round(Math.sin(a) * 452)] as [number, number];
+      })} width={12} color="#fe5649" opacity={0.9} z={0.004} />
       {lump > 0 ? (
         <X x={-110} y={-330} rot={0.27} s={lump} z={0.005}>
           <Glow rx={160} ry={90} color="#ffb04a" alpha={0.5 + 0.1 * Math.sin(frame * 0.2)} additive />
@@ -724,8 +740,8 @@ export const NobodyKnowsShot: React.FC<ShotProps> = ({ start, dur }) => {
   const t = absT(start, frame);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.82, 0.88), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <MoonDesk frame={frame} t={t - 153.9 + 100} react="shrug" screen={<MoonCutaway />} />
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: MD_CAM.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <MoonDesk frame={frame} t={t - 153.9 + 100} react="shrug" screen={<X s={0.42} y={20}><MoonCutaway /></X>} />
       </Stage>
     </AbsoluteFill>
   );

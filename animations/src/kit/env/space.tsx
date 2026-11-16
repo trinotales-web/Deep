@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import { Part, Line } from "../Part";
 import { X, type XProps } from "../context";
-import { Glow } from "../effects";
+import { Glow, Gradient } from "../effects";
 import { blob, circle, ellipse, poly, roundPoly, roundRect } from "../shapes";
 import { shadeHex } from "../style";
 import { noise1, rng } from "../random";
@@ -509,6 +509,64 @@ export const SpaceBack: React.FC<XProps & { w?: number; h?: number; seed?: numbe
       <Glow rx={w * 0.45} ry={h * 0.18} rot={-0.35} color="#3a3a7a" alpha={0.35} additive z={-0.19} />
       {stars.map(([x, y, s, ph], i) => (
         <Part key={i} shape={circle(s)} color="#ffffff" flat outline={0} x={x} y={y} opacity={0.55 + 0.45 * Math.sin(frame * 0.08 + ph)} z={-0.18} />
+      ))}
+    </X>
+  );
+};
+
+/** Four-point twinkle star (soft glow + cross). */
+export const Sparkle: React.FC<XProps & { size?: number; color?: string; alpha?: number }> = ({ size = 30, color = "#ffffff", alpha = 1, ...xf }) => {
+  const s = Math.round(size);
+  const w = Math.max(2, Math.round(size * 0.16));
+  return (
+    <X {...xf}>
+      <Glow rx={size * 1.6} color={color} alpha={0.35 * alpha} additive />
+      <Part shape={poly([[0, s], [w, w], [s, 0], [w, -w], [0, -s], [-w, -w], [-s, 0], [-w, w]])} color={color} flat outline={0} opacity={alpha} z={0.001} />
+    </X>
+  );
+};
+
+export type NebulaHue = "violet" | "indigo" | "magenta";
+
+const NEBULA: Record<NebulaHue, { stops: [number, string][]; c1: string; c2: string; c3: string; bokeh: string }> = {
+  violet: { stops: [[0, "#10082a"], [0.5, "#24104a"], [1, "#3e1258"]], c1: "#c43aa6", c2: "#6a46e6", c3: "#2f6ae0", bokeh: "#ffd6f4" },
+  indigo: { stops: [[0, "#070a24"], [0.55, "#121a4a"], [1, "#24205e"]], c1: "#7a3ad0", c2: "#3a5ae6", c3: "#b03aa0", bokeh: "#d6e4ff" },
+  magenta: { stops: [[0, "#1a0830"], [0.5, "#3a0f52"], [1, "#6a1468"]], c1: "#e04ab4", c2: "#8a46e6", c3: "#ff7ad0", bokeh: "#ffe0f6" },
+};
+
+/**
+ * Colourful deep-space backdrop: a violet gradient with soft nebula clouds,
+ * drifting bokeh discs, twinkling stars and a few four-point sparkles.
+ * Clouds sit inside the 1920×1080 frame around the origin, mirrored by seed.
+ */
+export const NebulaBack: React.FC<XProps & { w?: number; h?: number; seed?: number; hue?: NebulaHue; bokeh?: number }> = ({ w = 6000, h = 3600, seed = 6, hue = "violet", bokeh = 1, ...xf }) => {
+  const frame = useCurrentFrame();
+  const P = NEBULA[hue];
+  const r = rng(seed * 7 + 1);
+  const flip = seed % 2 ? -1 : 1;
+  const stars = Array.from({ length: 190 }, () => [(r() - 0.5) * w * 0.6, (r() - 0.5) * h * 0.6, 1.4 + r() * 2.6, r() * 6.28] as [number, number, number, number]);
+  const bk = Array.from({ length: Math.round(46 * bokeh) }, () => [(r() - 0.5) * 2800, (r() - 0.5) * 1700, 10 + r() ** 2 * 60, 0.08 + r() * 0.2, r() * 6.28] as [number, number, number, number, number]);
+  const sp = Array.from({ length: 9 }, () => [(r() - 0.5) * 2600, (r() - 0.5) * 1500, 16 + r() * 22, r() * 6.28] as [number, number, number, number]);
+  const drift = frame * 0.25;
+  return (
+    <X {...xf}>
+      <Gradient w={w} h={h} stops={P.stops} z={-0.3} />
+      {/* nebula clouds */}
+      <Glow rx={1300} ry={720} x={flip * 640} y={-380} rot={flip * 0.3} color={P.c1} alpha={0.42} power={1.3} additive z={-0.29} />
+      <Glow rx={900} ry={420} x={flip * 260} y={-520} rot={flip * 0.5} color={P.c3} alpha={0.22} additive z={-0.289} />
+      <Glow rx={1200} ry={700} x={-flip * 760} y={360} rot={-flip * 0.25} color={P.c2} alpha={0.36} power={1.3} additive z={-0.288} />
+      <Glow rx={2200} ry={320} rot={flip * -0.35} color="#ffffff" alpha={0.07} additive z={-0.287} />
+      {Array.from({ length: 7 }, (_, i) => (
+        <Glow key={i} rx={240 + (i % 3) * 120} ry={130 + (i % 2) * 70} x={(-1300 + i * 430) * flip} y={(-1300 + i * 430) * 0.36 + Math.sin(i * 2.1) * 120} color={i % 2 ? P.c2 : P.c1} alpha={0.12} additive z={-0.286} />
+      ))}
+      {stars.map(([x, y, s, ph], i) => (
+        <Part key={i} shape={circle(Math.round(s * 2) / 2)} color="#ffffff" flat outline={0} x={x} y={y} opacity={0.45 + 0.45 * Math.sin(frame * 0.08 + ph)} z={-0.28} />
+      ))}
+      {bk.map(([x, y, s, a, ph], i) => (
+        <Glow key={`b${i}`} rx={s} color={P.bokeh} alpha={a * (0.75 + 0.25 * Math.sin(frame * 0.05 + ph))} inner={0.55} power={1} additive x={x + Math.sin(ph) * drift * 0.4} y={y + drift * 0.3 * Math.cos(ph)} z={-0.27} />
+      ))}
+      {sp.map(([x, y, s, ph], i) => (
+        <Sparkle key={`s${i}`} size={s * (0.7 + 0.3 * Math.sin(frame * 0.1 + ph))} alpha={0.65 + 0.35 * Math.sin(frame * 0.1 + ph)} x={x} y={y} z={-0.26} />
       ))}
     </X>
   );

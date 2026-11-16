@@ -271,7 +271,7 @@ export const UnbelievablyShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 0.95, 1.02), y: -220 }} light={{ dir: [-0.9, 0.3] }} vignette={0.65}>
         <LunarSurface horizon={-40} sun={null} seed={83} rocks={5} craters={2}>
           <X x={shiver} z={-6}>
-            <Character {...ASTRONAUT(1)} x={0} y={-560} s={1.35} facing={1} look={0.2} expression={{ eyes: "wide", mouth: "wavy", brows: 0.7 }} pose={poses.scared(frame)} />
+            <Character {...ASTRONAUT(1)} x={0} y={-780} s={1.85} facing={1} look={0.2} expression={{ eyes: "wide", mouth: "wavy", brows: 0.7, sweat: true }} pose={poses.scared(frame)} />
           </X>
           {Array.from({ length: 8 }, (_, i) => (
             <X key={i} x={-600 + i * 170} y={300 + ((frame * 4 + i * 90) % 900) * -1 + 300} rot={frame * 0.05 + i} s={0.9} z={-5}>

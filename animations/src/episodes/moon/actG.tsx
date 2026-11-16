@@ -10,6 +10,7 @@ import {
 import { sec, pop, useScr } from "../../kit/shot";
 import { SpaceSet, ControlRoom, DescentScreen, Office, WaterDrop, Flash } from "./sets";
 import { YOU, ASTRONAUT, TAIKONAUT, OFFICIAL } from "./cast";
+import { atHead } from "./frame";
 
 // Who owns the Moon (the 1967 treaty, bases and safe distances, "first come,
 // first served"), the helium-3 fact check, and the twist: quantum computers.
@@ -58,21 +59,23 @@ export const TreatyShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
+  const cam = { zoom: 1.0, y: 150 };
+  const a = atHead(cam, 0.15, 0.47, 1.7);
+  const b = atHead(cam, 0.85, 0.47, 1.7);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.78, 0.84), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <Office floor={-420} wall="#e2dccc">
-          <Part shape={roundRect(1500, 60, 14)} color="#8a5a32" shade={0.2} y={-180} z={-12} />
-          <Part shape={roundRect(1400, 230, 10)} color="#7a4e2a" shade={0.2} y={-325} z={-12.1} />
-          <X x={0} y={40} rot={-0.04} s={1.25} z={-11}>
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <Office floor={-420}>
+          <Part shape={roundRect(1500, 60, 14)} color="#8a5a32" shade={0.2} y={-200} z={-12} />
+          <Part shape={roundRect(1420, 460, 10)} color="#7a4e2a" shade={0.2} y={-450} z={-12.1} />
+          <X x={0} y={60} rot={-0.04} s={1.3} z={-11}>
             <Doc w={340} lines={8} />
             {[-90, 0, 90].map((x, i) => (
               <Line key={i} pts={[[x - 40, -190], [x - 10, -170], [x + 10, -195], [x + 40, -175]]} smooth width={5} color="#2a3a8a" opacity={ramp(t, 485.3 + i * 0.3, 485.6 + i * 0.3)} z={0.002} />
             ))}
           </X>
-          {[0, 1, 2].map((i) => (
-            <Character key={i} {...OFFICIAL(i)} x={-640 + i * 640 + (i === 1 ? 0 : 0)} y={-420} s={1.0} facing={i === 2 ? -1 : 1} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={poses.idle(frame, i)} z={i === 1 ? -13 : -10} />
-          ))}
+          <Character {...OFFICIAL(0)} x={a.x} y={a.y} s={1.7} facing={1} look={0.5} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={poses.idle(frame, 0)} z={-13} />
+          <Character {...OFFICIAL(2)} x={b.x} y={b.y} s={1.7} facing={-1} look={0.5} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={poses.idle(frame, 2)} z={-13} />
         </Office>
       </Stage>
       <Label text="OUTER SPACE TREATY · 1967" x={0.5} y={0.1} size={0.05} kind="title" at={at(485.5)} />
@@ -141,15 +144,17 @@ export const TakenShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
-  const walk = interpolate(t, [494.0, 495.6], [1500, 700], { extrapolateRight: "clamp" });
+  const walk = interpolate(t, [494.0, 495.6], [1500, 640], { extrapolateRight: "clamp" });
+  const cam = { zoom: 0.8, y: 120 };
+  const a = atHead(cam, 0.8, 0.5, 1.55);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.55, 0.58), y: 160 }} light={{ dir: [-0.9, 0.3] }} vignette={0.55}>
-        <LunarSurface horizon={-140} sun={[-1900, -20]} seed={175} rocks={3} craters={1}>
-          <GroundCrater x={-1350} y={-760} r={520} sq={0.3} shadow={1} ice={1} z={-30} />
-          <MoonBase x={-260} y={-700} s={0.7} lights={0.8} masts={2} flag="usa" z={-6} />
-          <Character {...TAIKONAUT(0)} x={walk} y={-720} s={1.1} facing={-1} look={0.4} expression={t > 495.9 ? { eyes: "half", mouth: "wavy", brows: 0.5 } : { eyes: "open", mouth: "smile" }} pose={t < 495.6 ? poses.walk(frame) : poses.shrug(t - 495.9)} z={-5} />
-          <NationFlag kind="china" x={walk + 160} y={-720} w={160} pole={360} z={-5.1} />
+      <Stage camera={{ zoom: push(frame, dur, 0.78, 0.82), y: cam.y }} light={{ dir: [-0.9, 0.3] }} vignette={0.55}>
+        <LunarSurface horizon={-100} sun={[-1900, 20]} seed={175} rocks={3} craters={1}>
+          <GroundCrater x={-1300} y={-700} r={480} sq={0.3} shadow={1} ice={1} z={-30} />
+          <MoonBase x={-330} y={-430} s={0.82} lights={0.8} masts={2} flag="usa" z={-6} />
+          <Character {...TAIKONAUT(0)} x={walk} y={a.y} s={1.55} facing={-1} look={0.4} expression={t > 495.9 ? { eyes: "half", mouth: "wavy", brows: 0.5, sweat: true } : { eyes: "open", mouth: "smile", brows: 0.1 }} pose={t < 495.6 ? poses.walk(frame) : poses.shrug(t - 495.9)} z={-5} />
+          <NationFlag kind="china" x={walk + 230} y={a.y} w={200} pole={460} z={-5.1} />
         </LunarSurface>
       </Stage>
       <Label text="TAKEN" x={0.3} y={0.2} size={0.08} kind="stamp" at={at(495.3)} />
@@ -492,25 +497,27 @@ export const ContractShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
+  const cam = { zoom: 1.0, y: 150 };
+  const a = atHead(cam, 0.15, 0.47, 1.75);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.85, 0.92), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <Office floor={-420} wall="#dfe4ea">
-          <NationFlag kind="usa" x={-1000} y={-420} w={240} pole={900} z={-20} />
-          <Part shape={roundRect(1300, 60, 14)} color="#8a5a32" shade={0.2} y={-180} z={-12} />
-          <Part shape={roundRect(1200, 230, 10)} color="#7a4e2a" shade={0.2} y={-325} z={-12.1} />
-          <X x={-150} y={40} rot={-0.05} s={1.1} z={-11}>
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.05), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <Office floor={-420}>
+          <NationFlag kind="usa" x={880} y={-300} w={240} pole={900} z={-20} />
+          <Part shape={roundRect(1500, 60, 14)} color="#8a5a32" shade={0.2} y={-200} z={-12} />
+          <Part shape={roundRect(1420, 460, 10)} color="#7a4e2a" shade={0.2} y={-450} z={-12.1} />
+          <X x={-120} y={60} rot={-0.05} s={1.2} z={-11}>
             <Doc w={340} lines={8} />
           </X>
           {[0, 1, 2].map((i) => (
-            <He3Can key={i} x={300 + i * 160} y={-150} s={0.42 * pop(t, 546.4 + i * 0.12)} z={-10.9 + i * 0.01} />
+            <He3Can key={i} x={300 + i * 180} y={-170} s={0.5 * pop(t, 546.4 + i * 0.12)} z={-10.9 + i * 0.01} />
           ))}
-          <Character {...OFFICIAL(1)} x={-620} y={-420} s={1.0} facing={1} look={0.5} expression={{ eyes: "open", mouth: "smile" }} pose={poses.idle(frame, 1)} z={-13} />
+          <Character {...OFFICIAL(1)} x={a.x} y={a.y} s={1.75} facing={1} look={0.5} expression={{ eyes: "open", mouth: "smile", brows: 0.1 }} pose={poses.idle(frame, 1)} z={-13} />
         </Office>
       </Stage>
       <Label text="2025" x={0.5} y={0.1} size={0.08} kind="title" at={at(543.8)} />
       <Label text="US GOVERNMENT" x={0.08} y={0.86} size={0.045} kind="box" at={at(545.0)} />
-      <Label text="3 LITERS" x={0.66} y={0.4} size={0.06} kind="title" color={HE3} at={at(546.4)} />
+      <Label text="3 LITERS" x={0.7} y={0.36} size={0.06} kind="title" color={HE3} at={at(546.4)} />
     </AbsoluteFill>
   );
 };

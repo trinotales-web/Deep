@@ -103,7 +103,7 @@ export const DrinkShot: React.FC<ShotProps> = ({ start, dur }) => {
         <LunarSurface horizon={120} sun={[-1600, 200]} seed={111} rocks={4} craters={1}>
           <GroundCrater x={-380} y={-480} r={560} sq={0.32} shadow={1} ice={1} z={-30} />
           <WaterDrop x={-380} y={-420 + rise * 280} s={0.9 * rise} z={-6} />
-          <Character {...ASTRONAUT(0)} x={420} y={-660} s={1.25} facing={-1} look={0.4} expression={{ eyes: "happy", mouth: "grin", gaze: [-0.6, 0.2] }} pose={t > 327.9 ? poses.armsUp(frame) : poses.idle(frame, 2)} z={-5} />
+          <Character {...ASTRONAUT(0)} x={440} y={-600} s={1.7} facing={-1} look={0.4} expression={{ eyes: "happy", mouth: "grin", gaze: [-0.6, 0.2], brows: 0.1 }} pose={t > 327.9 ? poses.armsUp(frame) : poses.idle(frame, 2)} z={-5} />
         </LunarSurface>
       </Stage>
     </AbsoluteFill>
@@ -154,7 +154,7 @@ export const BreatheShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 0.9, 0.96), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <SpaceSet>
           <GasCanister x={-420} y={-420} s={1.4} color="#e9ecf2" z={-6} />
-          <Character {...ASTRONAUT(1)} x={260} y={-520} s={1.35} facing={-1} look={0.3} expression={{ eyes: "happy", mouth: "o", brows: -0.2 }} pose={poses.idle(frame, 3)} z={-5} />
+          <Character {...ASTRONAUT(1)} x={300} y={-480} s={1.75} facing={-1} look={0.3} expression={{ eyes: "happy", mouth: "o", brows: -0.2 }} pose={poses.idle(frame, 3)} z={-5} />
           {Array.from({ length: 6 }, (_, i) => {
             const ph = (frame * 0.02 + i / 6) % 1;
             return <Part key={i} shape={circle(16 + i * 2)} color="#bfefff" flat outline={3} x={-200 + ph * 300} y={80 + Math.sin(ph * 6 + i) * 30} opacity={1 - ph} z={-4} />;

@@ -24,3 +24,5 @@ export * from "./ocean";
 export * from "./polarmap";
 export * from "./moonworld";
 export * from "./landers";
+export * from "./launch";
+export * from "./perspective";

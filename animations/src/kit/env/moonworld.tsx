@@ -4,9 +4,10 @@ import { Part, Line } from "../Part";
 import { X, type XProps } from "../context";
 import { Glow, Gradient } from "../effects";
 import { blob, circle, ellipse, poly, roundPoly, roundRect } from "../shapes";
-import { INK } from "../style";
+import { INK, shadeHex } from "../style";
 import { noise1, rng } from "../random";
-import { Planet } from "./space";
+import { Sparkle } from "./space";
+import { Globe } from "./mayamap";
 
 // The Moon kit (Moon south pole episode): an orthographic Moon globe with the
 // real maria, big craters and the South Pole-Aitken basin (rotates to any
@@ -16,12 +17,13 @@ import { Planet } from "./space";
 // diagram for shadows, cold traps, ice and the buried mass.
 
 const D2R = Math.PI / 180;
-const HIGHLAND = "#cdc9c1";
-const MARE = "#8d93a1";
-const RIM = "#e2ded6";
-const FLOOR = "#aaa69f";
+const HIGHLAND = "#d8d6dc";
+const MARE = "#9aa0b2";
+const RIM = "#eceaf0";
+const FLOOR = "#b2b0b8";
 const SHADOW = "#262434";
 const ICE = "#8fe3ff";
+const STRATA = ["#7e7974", "#8f8a84", "#76716c", "#86817b", "#6c6762"];
 const r5 = (v: number) => Math.round(v * 2) / 2;
 
 export type MoonView = { lon: number; lat: number; roll?: number };
@@ -226,6 +228,7 @@ export const MoonGlobe: React.FC<
   const la = Math.atan2(sunDir[1], sunDir[0]);
   const shadeShape = crescentPts(r, r * 0.42, la);
   const shadeShape2 = crescentPts(r, r * 0.22, la);
+  const litEdge = crescentPts(r, r * 0.06, la + Math.PI);
 
   // SPA rim: visible runs, dashed
   const rimRuns: [number, number][][] = [];
@@ -319,7 +322,12 @@ export const MoonGlobe: React.FC<
   const xr = Math.min(1, xray);
   return (
     <X {...xf}>
-      {glow > 0 ? <Glow rx={r * 1.35} color={xr > 0.5 ? "#6ab8ff" : "#e8eef8"} alpha={0.28 * glow} additive z={-0.01} /> : null}
+      {glow > 0 ? (
+        <>
+          <Glow rx={r * 1.95} power={2.2} color={xr > 0.5 ? "#6ab8ff" : "#d8d2ff"} alpha={0.34 * glow} additive z={-0.011} />
+          <Glow rx={r * 1.18} inner={0.8} power={1.3} color={xr > 0.5 ? "#8ad0ff" : "#f6f6ff"} alpha={0.62 * glow} additive z={-0.01} />
+        </>
+      ) : null}
       <Part shape={circle(r)} color={HIGHLAND} flat outline={0} />
       {/* maria: merged outline pass, then fills */}
       {maria.map((m, i) => (
@@ -340,6 +348,7 @@ export const MoonGlobe: React.FC<
         <>
           <Part shape={poly(shadeShape2)} color="#4a4466" flat outline={0} opacity={0.16 * shadow} z={0.01} />
           <Part shape={poly(shadeShape)} color="#3a3456" flat outline={0} opacity={0.26 * shadow} z={0.011} />
+          <Part shape={poly(litEdge)} color="#ffffff" flat outline={0} opacity={0.4 * shadow} z={0.012} />
         </>
       ) : null}
       {/* gravity map */}
@@ -649,6 +658,54 @@ export const MoonRock: React.FC<XProps & { size?: number; seed?: number; sunLeft
 };
 
 /**
+ * Raised crater (the classic cartoon Moon crater): a low cone with a flat
+ * rim on top, a dark bowl, radial streaks down the slopes and a lit side.
+ * Only the top profile is outlined so the base melts into the ground.
+ * Origin = ground level at the centre; `r` = rim radius.
+ */
+export const CraterCone: React.FC<XProps & { r?: number; h?: number; sq?: number; seed?: number; sunLeft?: boolean; color?: string }> = ({ r = 140, h, sq = 0.26, seed = 1, sunLeft = true, color = "#b2aebb", ...xf }) => {
+  const H = Math.round(h ?? r * 0.42);
+  const R = r * 2.3;
+  const prof: [number, number][] = [];
+  for (let i = 0; i <= 20; i++) {
+    const x = -R + (2 * R * i) / 20;
+    const ax = Math.abs(x);
+    const y = ax <= r ? H : H * ((R - ax) / (R - r)) ** 1.7;
+    prof.push([Math.round(x), Math.round(y)]);
+  }
+  const body = poly([...prof, [Math.round(R), -2], [Math.round(-R), -2]]);
+  const sd = sunLeft ? -1 : 1;
+  const litPts: [number, number][] = prof.filter(([x]) => x * sd >= -r * 0.2).map(([x, y]) => [x, y] as [number, number]);
+  const lit = poly([...litPts, [litPts[litPts.length - 1][0], -2], [litPts[0][0], -2]]);
+  const rr = rng(seed);
+  const streaks = Array.from({ length: 16 }, (_, i) => {
+    const a = Math.PI + (Math.PI * (i + 0.5)) / 16 + (rr() - 0.5) * 0.12;
+    const x0 = Math.cos(a) * r * 0.98;
+    const y0 = H + Math.sin(a) * r * sq;
+    const x1 = Math.cos(a) * (r + (R - r) * (0.55 + rr() * 0.4)) * 1.02;
+    const y1 = Math.max(4, H * (1 - (Math.abs(x1) - r) / (R - r)) ** 1.7 * 0.5 + Math.sin(a) * r * sq * 0.3);
+    return [[Math.round(x0), Math.round(y0)], [Math.round(x1), Math.round(y1)]] as [number, number][];
+  });
+  const inner = crescentPts(r * 0.8, r * 0.5, sunLeft ? 0 : Math.PI);
+  return (
+    <X {...xf}>
+      <Part shape={ellipse(Math.round(R * 0.95), Math.round(R * 0.16))} color="#1c1a26" flat outline={0} opacity={0.22} x={Math.round(-sd * R * 0.25)} y={-6} z={-0.002} />
+      <Part shape={body} color={shadeHex(color, 0.16)} flat outline={0} />
+      <Part shape={lit} color={color} flat outline={0} z={0.0005} />
+      {streaks.map((pts, i) => (
+        <Line key={i} pts={pts} width={i % 3 ? 3 : 4} color={i % 4 === 1 ? "#e8e6ee" : shadeHex(color, 0.34)} opacity={0.75} z={0.001} />
+      ))}
+      <Line pts={prof.filter(([x]) => Math.abs(x) >= r * 0.98)} width={5} color={INK} opacity={0.85} z={0.0015} />
+      <X y={H} sy={sq} z={0.002}>
+        <Part shape={circle(r)} color="#d6d2dc" flat outline={5} />
+        <Part shape={circle(Math.round(r * 0.8))} color="#4a4660" flat outline={0} z={0.001} />
+        <Part shape={poly(inner)} color="#8a86a0" flat outline={0} z={0.002} />
+      </X>
+    </X>
+  );
+};
+
+/**
  * Low-sun lunar landscape (south pole look): black sky with stars, an
  * optional Sun near the horizon and Earth, ridges with lit and shadowed
  * faces, grey ground with craters and boulders casting long shadows.
@@ -667,9 +724,13 @@ export const LunarSurface: React.FC<
     craters?: number;
     ground?: [string, string];
     stars?: number;
+    /** Raised crater cones with radial streaks in the middle distance. */
+    cones?: number;
+    /** Sky look: violet-indigo night with soft nebula (default) or plain black. */
+    sky?: "violet" | "black";
     children?: React.ReactNode;
   }
-> = ({ w = 4400, horizon = 60, sun = [-1500, 140], earth = null, seed = 3, ridges = 1, rocks = 9, craters = 6, ground = ["#8f8b87", "#c9c4bc"], stars = 70, children, ...xf }) => {
+> = ({ w = 4400, horizon = 60, sun = [-1500, 140], earth = null, seed = 3, ridges = 1, rocks = 9, craters = 6, ground = ["#9a97a4", "#d4d1d8"], stars = 110, cones = 3, sky = "violet", children, ...xf }) => {
   const frame = useCurrentFrame();
   const sunLeft = !sun || sun[0] < 0;
   const r = rng(seed);
@@ -691,13 +752,30 @@ export const LunarSurface: React.FC<
     const depth = rc();
     return { x: (rc() - 0.5) * w * 0.85, y: horizon - 40 - depth * 820, s: 14 + depth * 70 + rc() * 20, seed: Math.floor(rc() * 100) };
   });
+  const rs = rng(seed + 11);
+  const sparks = Array.from({ length: 6 }, () => [(rs() - 0.5) * 2600, horizon + 200 + rs() * 900, 14 + rs() * 18, rs() * 6.28] as [number, number, number, number]);
+  const coneA = Array.from({ length: cones }, (_, i) => {
+    const side = (i + seed) % 2 ? 1 : -1;
+    const depth = 0.15 + rs() * 0.55;
+    return { x: side * (420 + i * 380 + rs() * 420), y: horizon - 30 - depth * 300, r: 60 + depth * 150 + rs() * 30, seed: Math.floor(rs() * 100) };
+  });
+  const mottle = Array.from({ length: 10 }, () => [(rs() - 0.5) * w * 0.7, horizon - 80 - rs() * 900, 160 + rs() * 380, rs()] as [number, number, number, number]);
   return (
     <X {...xf}>
-      <Gradient w={w} h={2400} y={horizon + 1200} stops={[[0, "#03040a"], [0.75, "#0b0d18"], [1, "#171a2a"]]} z={-41} />
+      <Gradient w={w} h={2400} y={horizon + 1200} stops={sky === "violet" ? [[0, "#080822"], [0.6, "#151548"], [1, "#2c2466"]] : [[0, "#03040a"], [0.75, "#0b0d18"], [1, "#171a2a"]]} z={-41} />
+      {sky === "violet" ? (
+        <>
+          <Glow rx={1500} ry={420} x={sunLeft ? 700 : -700} y={horizon + 520} rot={sunLeft ? -0.2 : 0.2} color="#7a46d6" alpha={0.28} additive z={-40.95} />
+          <Glow rx={900} ry={300} x={sunLeft ? 1100 : -1100} y={horizon + 760} rot={sunLeft ? -0.3 : 0.3} color="#c43aa6" alpha={0.16} additive z={-40.94} />
+          {sparks.map(([x, y, s, ph], i) => (
+            <Sparkle key={`sp${i}`} size={s * (0.75 + 0.25 * Math.sin(frame * 0.1 + ph))} alpha={0.7 + 0.3 * Math.sin(frame * 0.1 + ph)} x={x} y={y} z={-40.93} />
+          ))}
+        </>
+      ) : null}
       {starPts.map(([x, y, s, ph], i) => (
-        <Part key={`st${i}`} shape={circle(s)} color="#ffffff" flat outline={0} x={x} y={y} opacity={0.4 + 0.4 * Math.sin(frame * 0.06 + ph)} z={-40.9} />
+        <Part key={`st${i}`} shape={circle(Math.round(s * 2) / 2)} color="#ffffff" flat outline={0} x={x} y={y} opacity={0.45 + 0.4 * Math.sin(frame * 0.06 + ph)} z={-40.9} />
       ))}
-      {earth ? <Planet kind="earth" r={earth[2]} x={earth[0]} y={earth[1]} glow={0.8} z={-40.8} /> : null}
+      {earth ? <Globe r={earth[2]} x={earth[0]} y={earth[1]} lon0={62} lat0={12} glow={1.4} z={-40.8} /> : null}
       {sun ? (
         <X x={sun[0]} y={sun[1]} z={-40.7}>
           <Glow rx={900} ry={520} color="#fff2c6" alpha={0.35} additive />
@@ -724,14 +802,22 @@ export const LunarSurface: React.FC<
             const litFace = poly([[m.x + sideX * m.half * 0.98, horizon - 2], [pk[0] + sideX * m.half * 0.18, pk[1] - m.hgt * 0.14], [pk[0], pk[1] - 6], [m.x + sideX * m.half * 0.12, horizon - 2]].map(([x, y]) => [Math.round(x), Math.round(y)] as [number, number]));
             return (
               <X key={`m${i}`} z={-40 + i * 0.01}>
-                <Part shape={shape} color="#4e4b5a" flat outline={6} />
-                <Part shape={litFace} color="#d9d4ca" flat outline={0} z={0.0005} />
+                <Part shape={shape} color={sky === "violet" ? "#5e587a" : "#4e4b5a"} flat outline={6} />
+                <Part shape={litFace} color={sky === "violet" ? "#dcd8e6" : "#d9d4ca"} flat outline={0} z={0.0005} />
               </X>
             );
           })
         : null}
       <Gradient w={w} h={1600} y={horizon - 800} stops={[[0, ground[0]], [1, ground[1]]]} z={-39} />
       <Line pts={[[-w / 2, horizon], [w / 2, horizon]]} width={6} color={INK} z={-38.9} />
+      {mottle.map(([x, y, s, k], i) => (
+        <Part key={`mo${i}`} shape={ellipse(Math.round(s), Math.round(s * 0.16))} color={k > 0.5 ? "#7e7a8c" : "#f0eef4"} flat outline={0} opacity={0.18} x={x} y={y} z={-38.95 + i * 0.001} />
+      ))}
+      {coneA
+        .sort((a, b) => b.y - a.y)
+        .map((c, i) => (
+          <CraterCone key={`cc${i}`} r={c.r} seed={c.seed} x={c.x} y={c.y} sunLeft={sunLeft} z={-38.6 + i * 0.01} />
+        ))}
       {crs
         .sort((a, b) => b.y - a.y)
         .map((c, i) => (
@@ -818,17 +904,49 @@ export const CraterSection: React.FC<
     }
   }
   const iceLayer = ice > 0 ? poly([...bowl.slice(7, 18), ...bowl.slice(7, 18).map(([x, y]) => [x * 0.98, y + 26 * Math.min(1, ice * 1.3)] as [number, number]).reverse()].map(([x, y]) => [Math.round(x), Math.round(y)] as [number, number])) : null;
+  const surfY = (x: number) => (Math.abs(x) < half ? rimH * (x / half) ** 6 - (depth + dip) * (1 - (x / half) ** 2) : 0);
+  const bottom = -(depth + dip) - 70;
+  const rs = rng(23);
+  const layerYs = [bottom, bottom - 150, bottom - 330, bottom - 560, bottom - 820].filter((y) => y > -blockH + 60);
+  const strata: [number, number][][] = layerYs.map((y0, i) => {
+    const y1 = i + 1 < layerYs.length ? layerYs[i + 1] : -blockH;
+    const top = Array.from({ length: 13 }, (_, k) => [Math.round(-w / 2 + (k * w) / 12), Math.round(y0 + Math.sin(k * 1.3 + i * 2) * 16)] as [number, number]);
+    return [...top, [Math.round(w / 2), Math.round(y1)], [Math.round(-w / 2), Math.round(y1)]];
+  });
+  const pebbles = Array.from({ length: 34 }, () => {
+    const x = (rs() - 0.5) * (w - 120);
+    const y = surfY(x) - 90 - rs() * (blockH - 200);
+    return [Math.round(x), Math.round(Math.max(-blockH + 50, y)), Math.round(12 + rs() * 26), rs() * 6] as [number, number, number, number];
+  });
+  const speck = Array.from({ length: 40 }, () => {
+    const x = (rs() - 0.5) * (w - 60);
+    return [Math.round(x), Math.round(surfY(x) - 12 - rs() * 26)] as [number, number];
+  });
+  const topRocks = Array.from({ length: 6 }, (_, i) => {
+    const sd = i % 2 ? 1 : -1;
+    return [Math.round(sd * (half + rimW + 80 + rs() * (w / 2 - half - rimW - 200))), Math.round(18 + rs() * 30), Math.floor(rs() * 50)] as [number, number, number];
+  });
   const ri = rng(11);
   const flakes = Array.from({ length: 9 }, () => [(-0.5 + ri()) * half * 0.8, ri() * 30, 9 + ri() * 8] as [number, number, number]);
   return (
     <X {...xf}>
       <Part shape={body} color={soil} flat outline={7} />
       <Part shape={band} color="#b8b3ab" flat outline={0} z={0.001} />
-      {[-200, -420, -700, -1000].map((y, i) =>
-        y > -blockH + 40 ? (
-          <Line key={i} pts={Array.from({ length: 9 }, (_, k) => [-w / 2 + 20 + (k * (w - 40)) / 8, y + Math.sin(k * 1.3 + i) * 18] as [number, number])} smooth width={5} color="#6e6964" z={0.0015} />
-        ) : null,
-      )}
+      {strata.map((pts, i) => (
+        <Part key={`sb${i}`} shape={poly(pts)} color={STRATA[i % STRATA.length]} flat outline={0} z={0.0012 + i * 0.00001} />
+      ))}
+      {strata.map((pts, i) => (
+        <Line key={`sl${i}`} pts={pts.slice(0, 13)} smooth width={5} color="#5e5a56" z={0.0013} />
+      ))}
+      {pebbles.map(([x, y, r, k], i) => (
+        <Part key={`pb${i}`} shape={roundPoly(Array.from({ length: 6 }, (_, j) => [Math.round(Math.cos(j * 1.05 + k) * r), Math.round(Math.sin(j * 1.05 + k) * r * 0.75)] as [number, number]), Math.round(r * 0.35))} color={k > 3 ? "#a39e98" : "#6a6560"} flat outline={3} x={x} y={y} z={0.0014} />
+      ))}
+      {speck.map(([x, y], i) => (
+        <Part key={`sk${i}`} shape={circle(4)} color="#8a857f" flat outline={0} x={x} y={y} z={0.0016} />
+      ))}
+      {topRocks.map(([x, sz, sd], i) => (
+        <MoonRock key={`tr${i}`} size={sz} seed={sd} x={x} y={0} sunLeft={!sun || sun[0] < 0} shadowLen={2.5} z={0.0017} />
+      ))}
       {shadowPoly ? <Part shape={poly(shadowPoly)} color={SHADOW} flat outline={0} opacity={0.92 * shadowK} z={0.002} /> : null}
       {iceLayer ? <Part shape={iceLayer} color={ICE} flat outline={4} opacity={Math.min(1, ice * 1.5)} z={0.003} /> : null}
       {ice > 0

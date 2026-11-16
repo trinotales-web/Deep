@@ -21,7 +21,9 @@ export const YOU: Design = {
 /** ISRO mission control engineers. */
 export const ENGINEER = (i = 0): Design => ({
   outfit: {
-    top: ["#f4f4f2", "#c9a0d8", "#e8d27a", "#a8d0b8", "#f2b8a0", "#9ab8e8"][i % 6],
+    top: i % 2 === 0 ? "#f4f4f2" : ["#c9a0d8", "#e8d27a", "#a8d0b8", "#f2b8a0", "#9ab8e8"][i % 5],
+    shirt: i % 2 === 0 ? ["#9ab8e8", "#e8a0a0", "#a8d0b8", "#e8d27a"][(i / 2) % 4] : null,
+    buttons: i % 2 === 0 ? "#c8ccd2" : null,
     bottom: ["#2f3a52", "#3a3a42", "#5a4a3a", "#2a3358"][i % 4],
     boots: "#2a2228",
     collar: (["v", "round", "high"] as const)[i % 3],

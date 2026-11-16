@@ -6,10 +6,12 @@ import { Character, poses } from "../../kit/character";
 import {
   MoonGlobe, moonProj, LunarSurface, LunarPoleMap, poleXY, LUNAR_SITES, GroundCrater, SLS, Orion, Starship, ChangELander, YutuRover, Hopper, MoonBase, NationFlag, FlagDecal, Globe, Calendar,
   Typhoon, WorldMap, worldXY, Smoke, Exhaust, LandingDust, Ring, Chandrayaan1, DashLink,
+  LaunchPadSet,
 } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
 import { SpaceSet, RuleBoard, Flash } from "./sets";
 import { ASTRONAUT, TAIKONAUT } from "./cast";
+import { atHead } from "./frame";
 
 // The new race: Artemis II (April 2026), NASA's landers and 2028 plan,
 // China's far-side landings, Chang'e-7 and its hopper, the 2027 delay, a
@@ -37,30 +39,28 @@ const LongMarch: React.FC<{ x?: number; y?: number; z?: number; h?: number; thru
   );
 };
 
-/** Launch pad scene (green ground, tower, sky) with a rocket child; `lift` raises the rocket. */
-const PadScene: React.FC<{ children?: React.ReactNode; sky?: string }> = ({ children, sky = "#6fa8d8" }) => (
-  <>
-    <Part shape={roundRect(6000, 4000, 0)} color={sky} flat outline={0} y={1400} z={-41} />
-    <Part shape={roundRect(6000, 800, 0)} color="#9ac0e0" flat outline={0} y={0} z={-40.9} />
-    <Part shape={roundRect(6000, 1600, 0)} color="#7a9a5a" flat outline={6} y={-1000} z={-40} />
-    <Part shape={roundRect(420, 1500, 10)} color="#9aa0aa" shade={0.2} x={-420} y={150} z={-30} />
-    <Part shape={roundRect(900, 120, 10)} color="#8a8a90" shade={0.2} y={-260} z={-29} />
+/** Launch pad scene: teal sky, lattice tower, pad, billowing smoke (`smoke` 0..1) and engine glow; rocket as child. */
+const PadScene: React.FC<{ children?: React.ReactNode; sky?: string; smoke?: number; glow?: number }> = ({ children, smoke = 0, glow = 0 }) => (
+  <LaunchPadSet floor={-240} towerX={-560} towerH={2300} smoke={smoke} glow={glow}>
     {children}
-  </>
+  </LaunchPadSet>
 );
 
 // 406.36 "Now, the big players are getting ready."
 export const PlayersShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
+  const cam = { zoom: 0.92, y: 100 };
+  const a = atHead(cam, 0.3, 0.52, 1.75);
+  const b = atHead(cam, 0.7, 0.52, 1.75);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.66, 0.7), y: 100 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
-        <LunarSurface horizon={-200} sun={[-1500, -80]} seed={151} rocks={3} craters={2} earth={[0, 620, 120]}>
-          <NationFlag kind="usa" x={-1050} y={-620} w={260} pole={700} z={-8} />
-          <Character {...ASTRONAUT(0)} x={-500} y={-640} s={1.2} facing={1} look={0.4} expression={{ eyes: "angry", mouth: "smirk" }} pose={poses.idle(frame, 1)} z={-6} />
-          <Character {...TAIKONAUT(0)} x={500} y={-640} s={1.2} facing={-1} look={0.4} expression={{ eyes: "angry", mouth: "smirk" }} pose={poses.idle(frame, 2)} z={-6} />
-          <NationFlag kind="china" x={850} y={-620} w={260} pole={700} z={-8} />
+      <Stage camera={{ zoom: push(frame, dur, 0.9, 0.95), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+        <LunarSurface horizon={0} sun={[-1500, 80]} seed={151} rocks={3} craters={2} earth={[-330, 560, 100]}>
+          <NationFlag kind="usa" x={-960} y={a.y - 20} w={260} pole={900} z={-8} />
+          <Character {...ASTRONAUT(0)} x={a.x} y={a.y} s={1.75} facing={1} look={0.4} expression={{ eyes: "angry", mouth: "smirk" }} pose={poses.idle(frame, 1)} z={-6} />
+          <Character {...TAIKONAUT(0)} x={b.x} y={b.y} s={1.75} facing={-1} look={0.4} expression={{ eyes: "angry", mouth: "smirk" }} pose={poses.idle(frame, 2)} z={-6} />
+          <NationFlag kind="china" x={760} y={b.y - 20} w={260} pole={900} z={-8} />
         </LunarSurface>
       </Stage>
       <Label text="THE BIG PLAYERS" x={0.5} y={0.1} size={0.06} kind="title" at={at(407.0)} />
@@ -76,10 +76,11 @@ export const Artemis2Shot: React.FC<ShotProps> = ({ start, dur }) => {
   const lift = ramp(t, 409.3, 410.9, Easing.in(Easing.quad)) * 600;
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.55, 0.58), y: 360 + lift * 0.4, shake: 4 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <PadScene sky="#3a5a8a">
-          <SLS x={0} y={-200 + lift} h={1400} thrust={1} z={-20} />
-          <Smoke x={0} y={-180} w={1000} h={520} alpha={0.75} seed={6} z={-19} />
+      <Stage camera={{ zoom: push(frame, dur, 0.66, 0.7), y: 360 + lift * 0.4, shake: 4 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <PadScene smoke={0.55 + 0.45 * ramp(t, 409.0, 410.6)} glow={1}>
+          <X x={0} y={-200 + lift} sx={1.25} z={-20}>
+            <SLS h={1400} thrust={1} />
+          </X>
         </PadScene>
       </Stage>
       <Label text="APRIL 2026" x={0.5} y={0.1} size={0.08} kind="title" at={at(409.1)} />
@@ -179,14 +180,17 @@ export const OrbitTestShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const BackOnMoonShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
+  const cam = { zoom: 0.8, y: 200 };
+  const a = atHead(cam, 0.52, 0.5, 1.6);
+  const b = atHead(cam, 0.76, 0.52, 1.5);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.6, 0.64), y: 260 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
-        <LunarSurface horizon={-260} sun={[-1500, -120]} seed={155} rocks={4} craters={2} earth={[1150, 900, 110]}>
-          <Starship x={-700} y={-700} h={1250} tiles={false} z={-9} />
-          <Character {...ASTRONAUT(2)} x={60} y={-720} s={1.2} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} z={-6} />
-          <Character {...ASTRONAUT(3)} x={520} y={-700} s={1.15} facing={-1} look={0.4} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, 3)} z={-6.1} />
-          <NationFlag kind="usa" x={850} y={-700} w={260} pole={600} z={-7} />
+      <Stage camera={{ zoom: push(frame, dur, 0.78, 0.83), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+        <LunarSurface horizon={60} sun={[-1500, 140]} seed={155} rocks={4} craters={2} earth={[880, 690, 100]}>
+          <Starship x={-840} y={-560} h={1300} tiles={false} z={-9} />
+          <Character {...ASTRONAUT(2)} x={a.x} y={a.y} s={1.6} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "grin", blush: true }} pose={poses.armsUp(frame)} z={-6} />
+          <Character {...ASTRONAUT(3)} x={b.x} y={b.y} s={1.5} facing={-1} look={0.4} expression={{ eyes: "happy", mouth: "smile", brows: 0.1 }} pose={poses.idle(frame, 3)} z={-6.1} />
+          <NationFlag kind="usa" x={1060} y={b.y - 10} w={240} pole={700} z={-7} />
         </LunarSurface>
       </Stage>
       <Label text="2028" x={0.5} y={0.1} size={0.08} kind="title" at={at(423.9)} />
@@ -219,10 +223,11 @@ export const ChinaFastShot: React.FC<ShotProps> = ({ start, dur }) => {
   const lift = ramp(t, 430.6, 432.3, Easing.in(Easing.quad)) * 700;
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.58, 0.62), y: 300 + lift * 0.4, shake: 4 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <PadScene>
-          <LongMarch x={0} y={-200 + lift} h={1300} thrust={1} z={-20} />
-          <Smoke x={0} y={-180} w={900} h={480} alpha={0.75} seed={7} z={-19} />
+      <Stage camera={{ zoom: push(frame, dur, 0.68, 0.72), y: 300 + lift * 0.4, shake: 4 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <PadScene smoke={0.5 + 0.5 * ramp(t, 430.4, 432.0)} glow={1}>
+          <X x={0} y={-200 + lift} sx={1.3} z={-20}>
+            <LongMarch h={1300} thrust={1} />
+          </X>
         </PadScene>
       </Stage>
     </AbsoluteFill>
@@ -393,9 +398,11 @@ export const SupposedShot: React.FC<ShotProps> = ({ start, dur }) => {
   const at = sec(start);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.66, 0.7), y: 240 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+      <Stage camera={{ zoom: push(frame, dur, 0.7, 0.74), y: 260 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <PadScene>
-          <LongMarch x={0} y={-200} h={1300} z={-20} />
+          <X x={0} y={-200} sx={1.3} z={-20}>
+            <LongMarch h={1300} />
+          </X>
           <X x={760} y={500} s={1.4} rot={0.05} z={-10}>
             <Calendar circled={10} crossed={9} />
           </X>
@@ -431,13 +438,16 @@ export const TyphoonShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const TaikonautsShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
+  const cam = { zoom: 0.92, y: 150 };
+  const a = atHead(cam, 0.36, 0.52, 1.75);
+  const b = atHead(cam, 0.63, 0.54, 1.65);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.66, 0.7), y: 160 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
-        <LunarSurface horizon={-220} sun={[-1500, -80]} seed={163} rocks={4} craters={2} earth={[-1100, 720, 100]}>
-          <Character {...TAIKONAUT(0)} x={-260} y={-680} s={1.2} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "grin" }} pose={poses.armsUp(frame)} z={-6} />
-          <Character {...TAIKONAUT(1)} x={260} y={-660} s={1.15} facing={-1} look={0.4} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, 2)} z={-6.1} />
-          <NationFlag kind="china" x={600} y={-660} w={280} pole={640} z={-7} />
+      <Stage camera={{ zoom: push(frame, dur, 0.9, 0.95), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+        <LunarSurface horizon={0} sun={[-1500, 80]} seed={163} rocks={4} craters={2} earth={[-820, 560, 90]}>
+          <Character {...TAIKONAUT(0)} x={a.x} y={a.y} s={1.75} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "grin", blush: true }} pose={poses.armsUp(frame)} z={-6} />
+          <Character {...TAIKONAUT(1)} x={b.x} y={b.y} s={1.65} facing={-1} look={0.4} expression={{ eyes: "happy", mouth: "smile", brows: 0.1 }} pose={poses.idle(frame, 2)} z={-6.1} />
+          <NationFlag kind="china" x={780} y={b.y - 10} w={280} pole={820} z={-7} />
         </LunarSurface>
       </Stage>
       <Label text="BEFORE 2030" x={0.5} y={0.1} size={0.07} kind="title" at={at(465.5)} />

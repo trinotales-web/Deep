@@ -5,11 +5,12 @@ import { Label } from "../../kit/captions";
 import { Character, poses } from "../../kit/character";
 import {
   MoonGlobe, LunarSurface, LunarPoleMap, poleXY, LUNAR_SITES, GroundCrater, ApolloLM, Chandrayaan1, CentaurStage, PSLV, ImpactPlume, Bullet, Pie, Monitor, BalanceScale, Box, XMark, Smoke,
-  WaterMolecule, NationFlag, Ring,
+  WaterMolecule, NationFlag, Ring, LaunchPadSet,
 } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
 import { SpaceSet, ControlRoom, DescentScreen, Office, RuleBoard, WaterDrop, GoldBars, IceBlocks, Flash } from "./sets";
 import { YOU, ENGINEER, SCIENTIST, ASTRONAUT } from "./cast";
+import { atHead } from "./frame";
 
 // Apollo's "bone dry" Moon, Chandrayaan-1's water signs (2009), LCROSS at
 // Cabeus, the Mini-SAR ice in northern craters, the 2018 direct proof of
@@ -40,15 +41,17 @@ export const ApolloShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
-  const walk = interpolate(t, [232.9, 235.9], [-120, 260]);
+  const walk = interpolate(t, [232.9, 235.9], [-60, 330]);
+  const cam = { zoom: 0.9, y: 60 };
+  const a = atHead(cam, 0.5, 0.47, 1.6);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.7, 0.75), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
-        <LunarSurface horizon={-40} sun={[-1500, 300]} seed={101} rocks={6} craters={3} earth={[900, 520, 90]}>
-          <ApolloLM x={-620} y={-560} s={1.1} z={-8} />
-          <Character {...ASTRONAUT(0)} x={walk} y={-600} s={1.05} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.walk(frame, 0.8)} z={-5} />
-          <X x={walk + 120} y={-430} z={-4.9}>
-            <Box w={160} h={110} />
+      <Stage camera={{ zoom: push(frame, dur, 0.88, 0.94), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+        <LunarSurface horizon={-40} sun={[-1500, 300]} seed={101} rocks={6} craters={3} earth={[860, 430, 95]}>
+          <ApolloLM x={-640} y={a.y + 40} s={1.35} z={-8} />
+          <Character {...ASTRONAUT(0)} x={walk} y={a.y} s={1.6} facing={1} look={0.4} expression={{ eyes: "happy", mouth: "smile", brows: 0.1 }} pose={poses.walk(frame, 0.8)} z={-5} />
+          <X x={walk + 190} y={a.y + 270} z={-4.9}>
+            <Box w={230} h={160} />
           </X>
         </LunarSurface>
       </Stage>
@@ -72,15 +75,20 @@ const RockSample: React.FC<{ x?: number; y?: number; z?: number; s?: number }> =
 export const BoneDryShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
+  const cam = { zoom: 1.0, y: 150 };
+  const a = atHead(cam, 0.14, 0.47, 1.75);
+  const b = atHead(cam, 0.86, 0.47, 1.75);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.85, 0.9), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <Office floor={-420} wall="#e2dccc">
-          <Part shape={roundRect(1200, 60, 14)} color="#8a5a32" shade={0.2} y={-180} z={-12} />
-          <Part shape={roundRect(1100, 230, 10)} color="#7a4e2a" shade={0.2} y={-325} z={-12.1} />
-          <RockSample x={0} y={-150} z={-11} />
-          <Character {...SCIENTIST(0)} x={-560} y={-420} s={1.05} facing={1} look={0.6} expression={{ eyes: "squint", mouth: "flat", gaze: [0.7, -0.4] }} pose={poses.think} z={-13} />
-          <Character {...SCIENTIST(2)} x={580} y={-420} s={1.05} facing={-1} look={0.6} expression={{ eyes: "open", mouth: "frown", gaze: [-0.7, -0.4] }} pose={poses.idle(frame, 2)} z={-13} />
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <Office floor={-420}>
+          <Part shape={roundRect(1500, 60, 14)} color="#8a5a32" shade={0.2} y={-200} z={-12} />
+          <Part shape={roundRect(1420, 460, 10)} color="#7a4e2a" shade={0.2} y={-450} z={-12.1} />
+          <X x={0} y={-170} s={1.7} z={-11}>
+            <RockSample x={0} y={0} />
+          </X>
+          <Character {...SCIENTIST(0)} x={a.x} y={a.y} s={1.75} facing={1} look={0.6} expression={{ eyes: "squint", mouth: "flat", gaze: [0.7, -0.4], brows: -0.3 }} pose={poses.think} z={-13} />
+          <Character {...SCIENTIST(2)} x={b.x} y={b.y} s={1.75} facing={-1} look={0.6} expression={{ eyes: "open", mouth: "frown", gaze: [-0.7, -0.4], brows: 0.3 }} pose={poses.idle(frame, 2)} z={-13} />
         </Office>
       </Stage>
       <Label text="BONE DRY" x={0.62} y={0.2} size={0.09} kind="stamp" at={at(237.6)} />
@@ -115,14 +123,12 @@ export const PslvShot: React.FC<ShotProps> = ({ start, dur }) => {
   const lift = ramp(t, 242.4, 245.7, Easing.in(Easing.quad)) * 900;
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.6, 0.64), y: 260 + lift * 0.4, shake: t > 242.4 ? 4 : 0 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
-        <Part shape={roundRect(6000, 4000, 0)} color="#6fa8d8" flat outline={0} y={1400} z={-41} />
-        <Part shape={roundRect(6000, 800, 0)} color="#9ac0e0" flat outline={0} y={0} z={-40.9} />
-        <Part shape={roundRect(6000, 1600, 0)} color="#7a9a5a" flat outline={6} y={-1000} z={-40} />
-        <Part shape={roundRect(360, 1500, 10)} color="#b9502f" shade={0.2} x={-560} y={150} z={-30} />
-        <Part shape={roundRect(900, 120, 10)} color="#8a8a90" shade={0.2} y={-260} z={-29} />
-        <PSLV x={0} y={-200 + lift} h={1300} thrust={t > 242.2 ? 1 : 0} z={-20} />
-        {t > 242.2 ? <Smoke x={0} y={-220} w={900} h={360} alpha={0.45 * ramp(t, 242.2, 243.0)} seed={4} z={-21} /> : null}
+      <Stage camera={{ zoom: push(frame, dur, 0.7, 0.74), y: 300 + lift * 0.4, shake: t > 242.4 ? 4 : 0 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+        <LaunchPadSet floor={-240} towerX={-560} towerH={2300} smoke={t > 242.2 ? 0.35 + 0.65 * ramp(t, 242.2, 243.6) : 0} glow={t > 242.2 ? 1 : 0}>
+          <X x={0} y={-200 + lift} sx={1.35} z={-20}>
+            <PSLV h={1300} thrust={t > 242.2 ? 1 : 0} />
+          </X>
+        </LaunchPadSet>
       </Stage>
       <Label text="2008" x={0.5} y={0.1} size={0.08} kind="title" at={at(242.1)} />
       <Label text="INDIA'S FIRST MOON MISSION" x={0.08} y={0.84} size={0.045} kind="box" at={at(244.2)} />
@@ -493,17 +499,24 @@ export const RecheckShot: React.FC<ShotProps> = ({ start, dur }) => {
 export const LookAgainShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
+  const cam = { zoom: 1.0, y: 150 };
+  const a = atHead(cam, 0.14, 0.5, 1.75);
+  const b = atHead(cam, 0.86, 0.5, 1.75);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.82, 0.88), y: 40 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
+      <Stage camera={{ zoom: push(frame, dur, 0.98, 1.04), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <Office floor={-420}>
-          <X y={-60} z={-22}>
-            <Monitor w={760} h={460} screen="#0e1a2c">
-              <MoonGlobe r={190} view={{ lon: 0, lat: -90 }} ice={ramp(t, 296.5, 298.2)} glow={0} craters={20} />
+          <X x={0} y={-262} z={-24}>
+            <Part shape={roundRect(1380, 40, 10)} color="#8a6a4a" shade={0.2} />
+            <Part shape={roundRect(1320, 400, 10)} color="#6e5236" shade={0.2} y={-220} z={-0.001} />
+          </X>
+          <X x={0} y={120} z={-22}>
+            <Monitor w={900} h={540} screen="#0e1a2c">
+              <MoonGlobe r={225} view={{ lon: 0, lat: -90 }} ice={ramp(t, 296.5, 298.2)} glow={0} craters={20} />
             </Monitor>
           </X>
-          <Character {...SCIENTIST(4)} x={-640} y={-420} s={1.05} facing={1} look={0.5} expression={{ eyes: "squint", mouth: "flat", gaze: [0.6, 0.3] }} pose={poses.think} z={-10} />
-          <Character {...SCIENTIST(5)} x={660} y={-420} s={1.05} facing={-1} look={0.5} expression={{ eyes: t > 297.2 ? "wide" : "open", mouth: t > 297.2 ? "o" : "flat", gaze: [-0.6, 0.3] }} pose={poses.point(frame)} z={-10} />
+          <Character {...SCIENTIST(4)} x={a.x} y={a.y} s={1.75} facing={1} look={0.5} expression={{ eyes: "squint", mouth: "flat", gaze: [0.6, 0.3], brows: -0.2 }} pose={poses.think} z={-10} />
+          <Character {...SCIENTIST(5)} x={b.x} y={b.y} s={1.75} facing={-1} look={0.5} expression={{ eyes: t > 297.2 ? "wide" : "open", mouth: t > 297.2 ? "o" : "flat", gaze: [-0.6, 0.3], brows: t > 297.2 ? 0.6 : 0.1 }} pose={poses.point(frame)} z={-10} />
         </Office>
       </Stage>
     </AbsoluteFill>
@@ -588,12 +601,12 @@ export const RememberRuleShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.8, 0.86), y: 0 }} light={{ dir: [-0.6, 0.7] }} vignette={0.5}>
         <SpaceSet>
-          <RuleBoard x={-200} w={1300} h={700} glow={0.5} />
-          <Character {...YOU} x={820} y={-560} s={1.15} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.point(frame)} z={-4} />
+          <RuleBoard x={-260} w={1300} h={700} glow={0.5} />
+          <Character {...YOU} x={830} y={-640} s={1.75} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "smile", brows: 0.15 }} pose={poses.point(frame)} z={-4} />
         </SpaceSet>
       </Stage>
-      <Label text="IN SPACE," x={0.42} y={0.36} size={0.06} kind="ink" pin at={at(314.4)} />
-      <Label text="WATER > GOLD" x={0.42} y={0.52} size={0.09} kind="ink" color="#2f6fd0" pin at={at(314.8)} />
+      <Label text="IN SPACE," x={0.39} y={0.36} size={0.06} kind="ink" pin at={at(314.4)} />
+      <Label text="WATER > GOLD" x={0.39} y={0.52} size={0.09} kind="ink" color="#2f6fd0" pin at={at(314.8)} />
     </AbsoluteFill>
   );
 };

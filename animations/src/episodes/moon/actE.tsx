@@ -8,7 +8,7 @@ import {
   FuelPump, MoonBase, SolarMast, Globe, Banknote, Ring, Orion, IceFlake,
 } from "../../kit/env";
 import { sec, pop, useScr } from "../../kit/shot";
-import { SpaceSet, ControlRoom, DescentScreen, WaterDrop, Flash } from "./sets";
+import { SpaceSet, ControlRoom, DescentScreen, WaterDrop, Flash, Office } from "./sets";
 import { YOU, ASTRONAUT } from "./cast";
 
 // Why water is the prize (drink, breathe, rocket fuel, a gas station in low
@@ -490,8 +490,8 @@ export const ProblemShot: React.FC<ShotProps> = ({ start, dur }) => {
   const at = sec(start);
   return (
     <AbsoluteFill>
-      <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.6} bgBlur={8} bg={<ControlRoom floor={-700} screen={<DescentScreen k={0.5} />} />}>
-        <Character {...YOU} x={-200} y={-470} s={1.6} facing={1} look={0.3} expression={{ eyes: "half", mouth: "wavy", brows: 0.6 }} pose={poses.idle(frame, 4)} z={-2} />
+      <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.05), x: -110, y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55} bgBlur={3} bg={<Office floor={-420} logo="isro" />}>
+        <Character {...YOU} x={-560} y={-470} s={1.6} facing={1} look={0.3} expression={{ eyes: "half", mouth: "wavy", brows: 0.6 }} pose={poses.idle(frame, 4)} z={-2} />
       </DepthStage>
       <Label text="ONE PROBLEM" x={0.62} y={0.2} size={0.08} kind="stamp" at={at(376.4)} />
     </AbsoluteFill>

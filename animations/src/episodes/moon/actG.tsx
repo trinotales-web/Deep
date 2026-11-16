@@ -461,8 +461,8 @@ export const TwistShot: React.FC<ShotProps> = ({ start, dur }) => {
   const at = sec(start);
   return (
     <AbsoluteFill>
-      <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.6} bgBlur={8} bg={<ControlRoom floor={-700} screen={<DescentScreen k={1} upright={1} />} />}>
-        <Character {...YOU} x={-200} y={-470} s={1.6} facing={1} look={0.3} expression={{ eyes: "wide", mouth: "smirk", brows: 0.3 }} pose={poses.point(frame)} z={-2} />
+      <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.05), x: -110, y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55} bgBlur={3} bg={<Office floor={-420} logo="isro" />}>
+        <Character {...YOU} x={-560} y={-470} s={1.6} facing={1} look={0.3} expression={{ eyes: "wide", mouth: "smirk", brows: 0.3 }} pose={poses.point(frame)} z={-2} />
       </DepthStage>
       <Label text="A TWIST" x={0.62} y={0.2} size={0.08} kind="stamp" at={at(536.6)} />
     </AbsoluteFill>

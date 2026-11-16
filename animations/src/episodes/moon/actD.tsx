@@ -29,8 +29,8 @@ export const FunnyPartShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.6} bgBlur={8} bg={<ControlRoom floor={-700} screen={<DescentScreen k={1} upright={1} />} />}>
-        <Character {...YOU} x={0} y={-480} s={1.65} facing={1} look={0.2} expression={{ eyes: "happy", mouth: "smirk", brows: -0.2 }} pose={poses.talk(frame, 3)} talking z={-2} />
+      <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.05), x: -110, y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55} bgBlur={3} bg={<Office floor={-420} logo="isro" />}>
+        <Character {...YOU} x={-560} y={-480} s={1.65} facing={1} look={0.2} expression={{ eyes: "happy", mouth: "smirk", brows: -0.2 }} pose={poses.talk(frame, 3)} talking z={-2} />
       </DepthStage>
     </AbsoluteFill>
   );

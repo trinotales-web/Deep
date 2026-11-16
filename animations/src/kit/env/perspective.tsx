@@ -120,7 +120,7 @@ export const PerspectiveRoom: React.FC<{ geo: RoomGeo; colors?: RoomColors; ligh
 };
 
 /** Framed poster: rocket launch, Moon, blueprint, Earth or a chart. Origin = centre. */
-export const FramedPoster: React.FC<XProps & { w?: number; h?: number; kind?: "rocket" | "moon" | "blueprint" | "earth" | "chart" | "mission"; frame?: string }> = ({ w = 420, h = 300, kind = "rocket", frame: fc = "#2a2c36", ...xf }) => {
+export const FramedPoster: React.FC<XProps & { w?: number; h?: number; kind?: "rocket" | "space" | "moon" | "blueprint" | "earth" | "chart" | "mission"; frame?: string }> = ({ w = 420, h = 300, kind = "rocket", frame: fc = "#2a2c36", ...xf }) => {
   const iw = w - 36;
   const ih = h - 36;
   return (
@@ -149,7 +149,28 @@ export const FramedPoster: React.FC<XProps & { w?: number; h?: number; kind?: "r
       ) : (
         <X z={0.001}>
           <Gradient w={iw} h={ih} stops={kind === "earth" ? [[0, "#0e1438"], [1, "#24306a"]] : [[0, "#14123a"], [1, "#3a2a7a"]]} />
-          {kind === "rocket" ? (
+          {kind === "space" ? (
+            <>
+              <Part shape={circle(ri(ih * 0.2))} color="#9aa0c8" shade={0.35} x={ri(iw * 0.3)} y={ri(ih * 0.28)} z={0.001} />
+              {[[0.24, 0.32, 0.05], [0.34, 0.2, 0.035]].map(([a, b, c], i) => (
+                <Part key={i} shape={circle(ri(ih * c))} color="#7a80aa" flat outline={2} x={ri(iw * a)} y={ri(ih * b)} z={0.002} />
+              ))}
+              <Part shape={poly(Array.from({ length: 33 }, (_, i) => {
+                const a = (i / 32) * Math.PI * 2;
+                const x = Math.min(iw / 2, Math.max(-iw / 2, iw * 0.42 + Math.cos(a) * ih * 0.5));
+                const y = Math.min(ih / 2, Math.max(-ih / 2, -ih * 0.62 + Math.sin(a) * ih * 0.5));
+                return [ri(x), ri(y)] as P2;
+              }))} color="#6a9a8a" flat outline={0} z={0.001} />
+              <X x={ri(-iw * 0.05)} y={ri(ih * 0.02)} rot={0.55} s={ih / 260} z={0.003}>
+                <Part shape={roundRect(34, 120, 16)} color="#f2f2f4" shade={0.3} />
+                <Part shape={poly([[-17, -40], [-56, -70], [-17, -10]])} color="#f2f2f4" shade={0.3} z={-0.001} />
+                <Part shape={poly([[17, -40], [56, -70], [17, -10]])} color="#f2f2f4" shade={0.3} z={-0.001} />
+                <Part shape={roundRect(40, 90, 18)} color="#e8822a" shade={0.3} x={0} y={-6} z={-0.002} />
+                <Part shape={poly([[-8, -60], [8, -60], [0, -86]])} color="#ffb04a" flat outline={2} z={-0.003} />
+                <Part shape={roundRect(18, 12, 4)} color="#2a2a30" flat outline={2} y={40} z={0.001} />
+              </X>
+            </>
+          ) : kind === "rocket" ? (
             <>
               <Part shape={circle(ri(ih * 0.3))} color="#cdd0d8" shade={0.3} x={ri(iw * 0.22)} y={ri(ih * 0.12)} z={0.001} />
               <Part shape={circle(ri(ih * 0.05))} color="#9aa0aa" flat outline={2} x={ri(iw * 0.18)} y={ri(ih * 0.2)} z={0.002} />
@@ -251,7 +272,7 @@ export const CodeScreen: React.FC<XProps & { w?: number; h?: number; seed?: numb
 };
 
 /** Window set into a side wall (perspective quad) with a night sky and the Moon. */
-export const SideWindow: React.FC<{ geo: RoomGeo; side: "left" | "right"; t0: number; t1: number; h0: number; h1: number; moon?: boolean; day?: boolean; z?: number }> = ({ geo, side, t0, t1, h0, h1, moon = true, day = false, z = -39.3 }) => {
+export const SideWindow: React.FC<{ geo: RoomGeo; side: "left" | "right"; t0: number; t1: number; h0: number; h1: number; moon?: boolean; day?: boolean; blinds?: boolean; frameColor?: string; z?: number }> = ({ geo, side, t0, t1, h0, h1, moon = true, day = false, blinds = false, frameColor = "#e8ecf2", z = -39.3 }) => {
   const q = roomQuad(geo, side, t0, t1, h0, h1);
   const mid = (a: P2, b: P2): P2 => [ri((a[0] + b[0]) / 2), ri((a[1] + b[1]) / 2)];
   const inset = (k: number): P2[] => {
@@ -263,7 +284,7 @@ export const SideWindow: React.FC<{ geo: RoomGeo; side: "left" | "right"; t0: nu
   const span = Math.abs(g[1][0] - g[0][0]);
   return (
     <X z={z}>
-      <Part shape={poly(q)} color="#e8ecf2" flat outline={6} />
+      <Part shape={poly(q)} color={frameColor} flat outline={6} />
       <Part shape={poly(g)} color={day ? "#8ad0f0" : "#1c2250"} flat outline={4} z={0.001} />
       {!day ? <Part shape={poly([g[0], g[1], mid(g[1], g[2]), mid(g[0], g[3])])} color="#3a3a7a" flat outline={0} opacity={0.6} z={0.0015} /> : null}
       {moon && !day ? (
@@ -273,9 +294,15 @@ export const SideWindow: React.FC<{ geo: RoomGeo; side: "left" | "right"; t0: nu
         </>
       ) : null}
       {[0.33, 0.66].map((k) => (
-        <Line key={k} pts={[[ri(g[0][0] + (g[1][0] - g[0][0]) * k), ri(g[0][1] + (g[1][1] - g[0][1]) * k)], [ri(g[3][0] + (g[2][0] - g[3][0]) * k), ri(g[3][1] + (g[2][1] - g[3][1]) * k)]]} width={8} color="#e8ecf2" z={0.004} />
+        <Line key={k} pts={[[ri(g[0][0] + (g[1][0] - g[0][0]) * k), ri(g[0][1] + (g[1][1] - g[0][1]) * k)], [ri(g[3][0] + (g[2][0] - g[3][0]) * k), ri(g[3][1] + (g[2][1] - g[3][1]) * k)]]} width={8} color={frameColor} z={0.004} />
       ))}
-      <Line pts={[mid(g[0], g[3]), mid(g[1], g[2])]} width={8} color="#e8ecf2" z={0.004} />
+      <Line pts={[mid(g[0], g[3]), mid(g[1], g[2])]} width={8} color={frameColor} z={0.004} />
+      {blinds
+        ? [0.0, 0.3, 0.6].map((k, i) => {
+            const at = (a: P2, b: P2, u: number): P2 => [ri(a[0] + (b[0] - a[0]) * Math.min(1, Math.max(0, u))), ri(a[1] + (b[1] - a[1]) * Math.min(1, Math.max(0, u)))];
+            return <Part key={`bl${i}`} shape={poly([at(g[3], g[2], k), at(g[3], g[2], k + 0.14), at(g[0], g[1], k + 0.42), at(g[0], g[1], k + 0.28)])} color="#ffffff" flat outline={0} opacity={0.16} z={0.0045} />;
+          })
+        : null}
       <Part shape={poly([g[0], [ri(g[0][0] + (g[1][0] - g[0][0]) * 0.25), ri(g[0][1] + (g[1][1] - g[0][1]) * 0.25)], [ri(g[3][0] + (g[2][0] - g[3][0]) * 0.1), ri(g[3][1] + (g[2][1] - g[3][1]) * 0.1)], g[3]])} color="#ffffff" flat outline={0} opacity={0.12} z={0.005} />
     </X>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { X, Part, Line, Glow, Gradient, LightCone, roundRect, circle, ellipse, poly, rng } from "../../kit";
-import { Monitor, SpaceBack, NebulaBack, type NebulaHue, MoonGlobe, Vikram, Globe, Floorboards, PottedPlant, Desk, Calendar, PerspectiveRoom, ROOM_LAB, ROOM_MISSION, roomQuad, roomPt, FramedPoster, ClockRow, CodeScreen, SideWindow, IsroEmblem } from "../../kit/env";
+import { Monitor, SpaceBack, NebulaBack, type NebulaHue, MoonGlobe, Vikram, Globe, Floorboards, PottedPlant, Desk, Calendar, PerspectiveRoom, ROOM_LAB, ROOM_MISSION, roomQuad, roomPt, FramedPoster, ClockRow, CodeScreen, SideWindow, IsroEmblem, TextShape, type RoomColors } from "../../kit/env";
 
 export { Flash, Paper, RuleBoard, TimeBar, LabSet, PressSet, PressLectern, spark } from "../whale/sets";
 
@@ -192,52 +192,129 @@ export const MiniMoon: React.FC<{ x?: number; y?: number; z?: number; r?: number
   <MoonGlobe x={x} y={y} z={z} r={r} craters={30} view={view} glow={0.4} />
 );
 
+const AGENCY: RoomColors = { wall: "#e9ecf1", wallLow: "#dfe4ec", side: "#5f7090", ceiling: "#c5cbd8", floor: "#e9eef3", tile: "#c3cbd6", light: "#ffffff" };
+
+/** Small monitor scene: Earth rising over the lunar horizon. */
+const EarthriseScreen: React.FC = () => (
+  <X>
+    <Gradient w={150} h={84} stops={[[0, "#2a1a5a"], [1, "#6a3aa0"]]} />
+    <Globe r={22} x={8} y={6} lon0={62} lat0={12} glow={0.6} z={0.001} />
+    <Part shape={ellipse(90, 26)} color="#8a8a9a" flat outline={0} y={-40} z={0.002} />
+  </X>
+);
+/** Small monitor scene: a lander on the Moon. */
+const LanderScreen: React.FC = () => (
+  <X>
+    <Gradient w={150} h={84} stops={[[0, "#3a4a7a"], [1, "#8a9ab8"]]} />
+    <Part shape={roundRect(150, 34, 0)} color="#a8a8b4" flat outline={0} y={-25} z={0.001} />
+    <Vikram s={0.1} y={-34} flag={false} z={0.002} />
+  </X>
+);
+
 /**
- * Lab / office in perspective (reference look): pale back wall with a blue
- * band, framed posters, wall clocks, desks with monitors, a night window on
- * the left wall with the Moon, a gauge panel on the right wall, ceiling light
- * panels and a tiled floor. Characters stand on the floor at y = floor.
+ * Space-agency room (matched to the user's reference): slate-blue side walls
+ * with a darker dado, a pale back wall with a blue chair-rail band, two big
+ * recessed ceiling lights, a space poster, three wall clocks over a framed
+ * logo (ISRO emblem + "Indian Space Research Organisation" caption when
+ * `logo="isro"`, else a framed Moon picture), a blueprint, two dark cabinets
+ * with monitors and tablets, a night window with blinds on the left wall and
+ * a gauge panel on the right wall, tiled floor. Characters stand at y=floor.
+ * Composed for cameras around zoom 1, x ≈ −110…0.
  */
-export const Office: React.FC<{ floor?: number; wall?: string; night?: boolean; posters?: boolean; children?: React.ReactNode }> = ({ floor = -420, night = true, posters = true, children }) => {
-  const geo = { bw: 2600, floor: floor + 250, ceil: floor + 1500, vy: floor + 650 };
-  const bf = geo.floor;
+export const Office: React.FC<{ floor?: number; wall?: string; night?: boolean; posters?: boolean; logo?: "isro" | "moon"; children?: React.ReactNode }> = ({ floor = -420, posters = true, logo = "moon", children }) => {
+  const frame = useCurrentFrame();
+  const o = floor + 420;
+  const bf = floor + 120;
+  const geo = { bw: 1240, floor: bf, ceil: floor + 880, vy: floor + 410 };
+  const T = 3200 / 620;
+  const ceilLight = (sd: number) => {
+    const outer = roomQuad(geo, "ceil", 1.08, 2.8, sd * 1240 * 0.04, sd * 1240 * 0.46);
+    const inner = roomQuad(geo, "ceil", 1.14, 2.7, sd * 1240 * 0.07, sd * 1240 * 0.43);
+    return (
+      <X key={sd} z={-40.6}>
+        <Part shape={poly(outer)} color="#56668a" flat outline={5} />
+        <Part shape={poly(inner)} color="#ffffff" flat outline={4} z={0.001} />
+        <Glow rx={420} ry={140} x={sd * 330} y={geo.ceil + 110} color="#eef6ff" alpha={0.3 * (0.96 + 0.04 * Math.sin(frame * 0.2 + sd))} additive z={0.002} />
+      </X>
+    );
+  };
+  const panel = roomQuad(geo, "right", 1.04, 1.36, o - 90, o + 270);
+  const rp = (t: number, h: number) => roomPt(geo, "right", t, h + o);
   return (
-    <PerspectiveRoom geo={geo} colors={ROOM_LAB} lights={2}>
-      <SideWindow geo={geo} side="left" t0={1.08} t1={1.75} h0={bf + 330} h1={bf + 1050} day={!night} />
-      <X z={-39.2}>
-        <Part shape={poly(roomQuad(geo, "left", 2.0, 2.5, bf + 380, bf + 900))} color="#f2efe6" flat outline={5} />
-      </X>
-      <X z={-39.2}>
-        <Part shape={poly(roomQuad(geo, "right", 1.1, 1.55, bf + 380, bf + 900))} color="#5a6070" flat outline={5} />
-        {[0.25, 0.6].map((k, i) => {
-          const p = roomPt(geo, "right", 1.1 + 0.45 * k + 0.08, bf + 760);
-          return <Part key={i} shape={ellipse(26, 34)} color="#f2f2f4" flat outline={4} x={p[0]} y={p[1]} z={0.001} />;
-        })}
-        {[0, 1, 2].map((i) => {
-          const p = roomPt(geo, "right", 1.16 + i * 0.12, bf + 520);
-          return <Part key={`b${i}`} shape={ellipse(10, 14)} color={["#4ad28a", "#ffd84a", "#ff5a4a"][i]} flat outline={3} x={p[0]} y={p[1]} z={0.001} />;
-        })}
-      </X>
-      {posters ? (
-        <>
-          <FramedPoster kind="rocket" x={-700} y={bf + 690} w={460} h={330} z={-39.3} />
-          <FramedPoster kind="blueprint" x={700} y={bf + 690} w={460} h={330} z={-39.3} />
-          <FramedPoster kind="moon" x={0} y={bf + 640} w={380} h={260} frame="#8a6a3a" z={-39.3} />
-          <ClockRow x={0} y={bf + 960} n={3} gap={200} r={70} z={-39.3} />
-        </>
-      ) : null}
-      {[-760, 760].map((x, i) => (
-        <X key={x} x={x} y={bf} z={-39}>
-          <Part shape={roundRect(560, 230, 8)} color="#2e323c" flat outline={5} y={115} />
-          {[-140, 0, 140].map((dx) => (
-            <Line key={dx} pts={[[dx, 10], [dx, 220]]} width={4} color="#1e2128" z={0.001} />
-          ))}
-          <Part shape={roundRect(600, 30, 8)} color="#4a505c" flat outline={5} y={240} z={0.001} />
-          <Monitor w={200} h={130} x={i ? -120 : 120} y={350} stand screen={i ? "#24604a" : "#1d4a6a"} z={0.002} />
-          <Part shape={roundRect(90, 70, 8)} color="#3a6ab0" flat outline={4} x={i ? 140 : -140} y={290} z={0.002} />
+    <PerspectiveRoom geo={geo} colors={AGENCY} lights={0}>
+      {/* side-wall dado + chair rail */}
+      {(["left", "right"] as const).map((sd) => (
+        <X key={sd} z={-40.75}>
+          <Part shape={poly(roomQuad(geo, sd, 1, T, bf, bf + 170))} color="#4c5b7a" flat outline={0} />
+          <Line pts={[roomPt(geo, sd, 1, bf + 170), roomPt(geo, sd, T, bf + 170)]} width={9} color="#8ea0c2" z={0.001} />
         </X>
       ))}
-      <PottedPlant x={-1150} y={floor + 40} h={440} z={-34} />
+      {/* back wall: ceiling beam, dado band */}
+      <Part shape={roundRect(1240, 24, 0)} color="#a9b2c4" flat outline={0} y={geo.ceil - 12} z={-40.98} />
+      <Part shape={roundRect(1240, 26, 0)} color="#8d9ab0" flat outline={0} y={o - 128} z={-40.98} />
+      <Part shape={roundRect(1240, 6, 0)} color="#6a7690" flat outline={0} y={o - 144} z={-40.97} />
+      {[-1, 1].map(ceilLight)}
+      {/* left wall: window with blinds, framed sketch, notice board */}
+      <SideWindow geo={geo} side="left" t0={1.2} t1={1.56} h0={o - 95} h1={o + 260} blinds frameColor="#2e3a58" />
+      <X z={-39.2}>
+        <Part shape={poly(roomQuad(geo, "left", 1.64, 1.8, o + 150, o + 300))} color="#a07a4a" flat outline={5} />
+        <Part shape={poly(roomQuad(geo, "left", 1.66, 1.78, o + 165, o + 285))} color="#efe2c8" flat outline={0} z={0.001} />
+        <Part shape={poly(roomQuad(geo, "left", 1.62, 1.8, o - 70, o + 60))} color="#f4f6fa" flat outline={5} />
+        <Part shape={poly(roomQuad(geo, "left", 1.66, 1.72, o - 30, o + 10))} color="#9ab8e8" flat outline={0} z={0.001} />
+      </X>
+      {/* right wall: gauge panel */}
+      <X z={-39.2}>
+        <Part shape={poly(panel)} color="#666c7c" flat outline={6} />
+        {[[1.1, 150], [1.2, 150], [1.12, 40]].map(([t, h], i) => {
+          const p = rp(t, h);
+          return (
+            <X key={i} x={p[0]} y={p[1]} z={0.001}>
+              <Part shape={ellipse(i === 2 ? 34 : 22, i === 2 ? 42 : 28)} color="#f2f2f4" flat outline={4} />
+              <Line pts={[[0, 0], [Math.round(Math.sin(frame * 0.05 + i) * 12), 14]]} width={3} color="#d9473a" z={0.001} />
+            </X>
+          );
+        })}
+        <Part shape={poly([rp(1.24, 60), rp(1.32, 60), rp(1.32, -50), rp(1.24, -50)])} color="#4a4e5a" flat outline={4} z={0.001} />
+        <Part shape={poly([rp(1.27, 40), rp(1.29, 40), rp(1.29, -10), rp(1.27, -10)])} color="#d9473a" flat outline={2} z={0.002} />
+        {[0, 1, 2].map((i) => {
+          const p = rp(1.08 + i * 0.03, 205);
+          return <Part key={`l${i}`} shape={ellipse(7, 9)} color={["#4ad28a", "#ffd84a", "#ff5a4a"][i]} flat outline={2} x={p[0]} y={p[1]} z={0.002} />;
+        })}
+      </X>
+      {/* back wall dressing */}
+      {posters ? (
+        <>
+          <FramedPoster kind="space" x={-394} y={o + 160} w={374} h={278} frame="#25304a" z={-39.3} />
+          <FramedPoster kind="blueprint" x={417} y={o + 160} w={376} h={278} frame="#25304a" z={-39.3} />
+          <ClockRow x={20} y={o + 300} n={3} gap={136} r={46} z={-39.3} />
+          {logo === "isro" ? (
+            <X x={15} y={o + 140} z={-39.3}>
+              <Part shape={roundRect(381, 147, 6)} color="#b8803a" flat outline={6} />
+              <Part shape={roundRect(349, 117, 4)} color="#f4e2b8" flat outline={0} z={0.001} />
+              <IsroEmblem s={0.34} y={-38} z={0.002} />
+              <X y={-98} z={0.003}>
+                <Part shape={roundRect(404, 34, 4)} color="#fbfbfb" flat outline={4} />
+                <TextShape k="isro_org" size={19.4} color="#3a2a18" y={-6} z={0.001} />
+              </X>
+            </X>
+          ) : (
+            <FramedPoster kind="moon" x={15} y={o + 140} w={330} h={170} frame="#8a6a3a" z={-39.3} />
+          )}
+        </>
+      ) : null}
+      {[-311, 402].map((x, i) => (
+        <X key={x} x={x} y={bf} z={-39}>
+          <Part shape={roundRect(384, 150, 6)} color="#2c2f38" flat outline={5} y={75} />
+          {[-144, -48, 48, 144].map((dx) => (
+            <Part key={dx} shape={roundRect(84, 118, 4)} color="#1f2129" flat outline={3} x={dx} y={68} z={0.001} />
+          ))}
+          <Part shape={roundRect(400, 22, 6)} color="#40444f" flat outline={5} y={158} z={0.001} />
+          <Monitor w={160} h={92} stand screen="#101828" x={i ? -15 : 42} y={226} z={0.002}>
+            {i ? <LanderScreen /> : <EarthriseScreen />}
+          </Monitor>
+          <Monitor w={50} h={38} stand={false} screen="#2a4a8a" x={i ? 120 : -100} y={194} z={0.002} />
+        </X>
+      ))}
       {children}
     </PerspectiveRoom>
   );

@@ -16,7 +16,7 @@ import { HeldMusket, HeldSabre, SHOULDER_ARMS, PORT_ARMS, shoulderPose, openArms
 const L = { dir: [-0.6, 0.7] as [number, number] };
 
 /** The regiment's line across the road: soldiers at shoulder arms, seen from the side. */
-const SoldierLine: React.FC<{ n?: number; x0?: number; dx?: number; y?: number; s?: number; z?: number; facing?: 1 | -1; aim?: number; lower?: number; cheer?: number }> = ({ n = 5, x0 = -600, dx = 240, y = -420, s = 1, z = -10, facing = 1, aim = 0, lower = 0, cheer = 0 }) => {
+export const SoldierLine: React.FC<{ n?: number; x0?: number; dx?: number; y?: number; s?: number; z?: number; facing?: 1 | -1; aim?: number; lower?: number; cheer?: number }> = ({ n = 5, x0 = -600, dx = 240, y = -420, s = 1, z = -10, facing = 1, aim = 0, lower = 0, cheer = 0 }) => {
   const frame = useCurrentFrame();
   return (
     <>

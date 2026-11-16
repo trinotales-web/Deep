@@ -145,7 +145,7 @@ export const PyramidsShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
-  const charge = (t - 275) * 260;
+  const charge = 260 * Math.min(t - 275, 1.9) - Math.max(0, t - 276.9) * 220;
   const volley = Math.max(0, Math.min(1, (t - 276.3) / 0.8));
   const broken = t > 276.9;
   return (
@@ -153,7 +153,7 @@ export const PyramidsShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 0.72, 0.77), y: 200, shake: hitAt(t, 276.35) * 10 }} light={L} vignette={0.5}>
         <DesertSet floor={-460}>
           {[0, 1, 2].map((i) => (
-            <Steed key={i} x={1400 - charge * (broken ? -0.4 : 1) + i * 300} y={-380 - (i % 2) * 60} s={0.75} walk={broken ? -1.4 : 1.6} rear={broken && i === 1 ? 0.6 : 0} color={["#8a5a3a", "#f2efe9", "#5a3a26"][i]} cloth={["#c8462f", "#2f8a6a", "#d8a93a"][i]} z={-20 - (i % 2) * 0.5}>
+            <Steed key={i} x={1400 - charge + i * 300} y={-380 - (i % 2) * 60} s={0.75} walk={broken ? -1.4 : 1.6} rear={broken && i === 1 ? 0.6 : 0} color={["#8a5a3a", "#f2efe9", "#5a3a26"][i]} cloth={["#c8462f", "#2f8a6a", "#d8a93a"][i]} z={-20 - (i % 2) * 0.5}>
               <Character {...MAMLUK(i)} s={0.62} facing={-1} look={0.6} expression={{ eyes: broken ? "wide" : "angry", mouth: broken ? "o" : "shout" }} pose={{ ...poses.sit(frame), armF: SABRE_UP }} holdF={<HeldSabre arm={SABRE_UP} dir={Math.PI / 2 + 0.4} />} />
             </Steed>
           ))}
@@ -327,7 +327,7 @@ export const DigShot: React.FC<ShotProps> = ({ start, dur }) => {
       <Stage camera={{ zoom: push(frame, dur, 0.92, 0.98), y: 60 }} light={L} vignette={0.5}>
         <DesertSet floor={-460} pyramids={false} nile>
           {[0, 1].map((i) => (
-            <Character key={i} {...SOLDIER(i + 6)} hat={null} x={-560 + i * 600} y={-470} s={1.15} facing={i ? -1 : 1} look={0.6} expression={{ eyes: "squint", mouth: "flat" }} pose={{ armF: [0.9 + dig, 0.6], armB: [0.6 + dig, 0.9] }} holdF={<Shovel rot={0.2 - dig} s={0.6} />} z={-10 - i * 0.01} />
+            <Character key={i} {...SOLDIER(i + 6)} hat={null} x={-560 + i * 600} y={-470} s={1.15} facing={i ? -1 : 1} look={0.6} expression={{ eyes: "squint", mouth: "flat" }} pose={{ armF: [0.9 + dig, 0.6], armB: [0.6 + dig, 0.9] }} holdF={<Shovel rot={-(0.9 + dig) - 0.6 + 0.25} s={0.6} />} z={-10 - i * 0.01} />
           ))}
           <Character {...SAVANT(0)} x={600} y={-480} s={1.15} facing={-1} look={0.6} expression={{ eyes: t > 299 ? "wide" : "open", mouth: t > 299 ? "o" : "flat" }} pose={t > 299 ? poses.armsUp(frame) : poses.think} z={-11} />
           <Part shape={ellipse(360, 60)} color="#c9a86a" flat outline={5} y={-500} z={-12} />
@@ -673,8 +673,8 @@ export const PainterShot: React.FC<ShotProps> = ({ start, dur }) => {
         <StudySet floor={-560} map={false}>
           <Character {...CARTOONIST} hat="beanie" hatColor="#2a2228" x={p.x} y={p.y} s={1.5} facing={1} look={0.6} expression={{ eyes: "happy", mouth: "smile", gaze: [0.6, 0] }} pose={{ armF: [1.3, 0.4 + Math.sin(frame * 0.7) * 0.15], armB: [-0.2, 0.6] }} z={-12} />
           <Easel x={360} y={-560} s={1.0} z={-11}>
-            <X s={0.45 + paint * 0.15}>
-              <X x={-20} y={-300} s={0.6}>
+            <X s={0.85 + paint * 0.1}>
+              <X x={-20} y={-230} s={0.55}>
                 <Steed color="#f2efe9" mane="#c9c4cc" rear={paint} cloth="#9a1f35">
                   <Character {...NAPOLEON} outfit={{ ...NAPOLEON.outfit, cape: "#c8262f", capeWind: paint }} s={0.62} facing={1} look={0.4} expression={{ eyes: "open", mouth: "flat" }} pose={{ ...poses.sit(frame), armF: [2.5 * paint + 0.3, 0.3], handF: "point" }} />
                 </Steed>
@@ -744,18 +744,19 @@ export const EqualShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
-  const tilt = keys(t, [[351.8, 0.25], [352.9, 0]]);
+  const tilt = keys(t, [[351.8, -0.6], [352.9, 0]]);
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.95, 1.0), y: 60 }} light={L} vignette={0.5}>
         <PalaceRoom floor={-520} throne={false}>
-          <BalanceScale x={0} y={-520} s={1.4} tilt={tilt} z={-20} />
-          <Character {...ROYALIST(1)} hat="tricorne" x={-640} y={-520} s={1.2} facing={1} look={0.5} expression={{ eyes: "open", mouth: "flat" }} pose={poses.idle(frame, 1)} z={-12} />
-          <Character {...CORSICAN(0)} hat={null} x={640} y={-520} s={1.2} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, 2)} z={-12} />
+          <BalanceScale x={0} y={-240} s={1.0} tilt={tilt} z={-20}
+            left={<Character {...ROYALIST(1)} hat="tricorne" s={0.5} facing={1} look={0.5} expression={{ eyes: "open", mouth: "flat" }} pose={poses.handsOnHips} shadow={false} />}
+            right={<Character {...CORSICAN(0)} hat={null} s={0.5} facing={-1} look={0.5} expression={{ eyes: "happy", mouth: "smile" }} pose={poses.idle(frame, 2)} shadow={false} />}
+          />
         </PalaceRoom>
       </Stage>
-      <Label text="NOBLE" x={0.2} y={0.85} size={0.045} kind="box" at={at(352.4)} pin />
-      <Label text="COMMONER" x={0.8} y={0.85} size={0.045} kind="box" at={at(352.4)} pin />
+      <Label text="NOBLE" x={0.21} y={0.85} size={0.045} kind="box" at={at(352.4)} pin />
+      <Label text="COMMONER" x={0.79} y={0.85} size={0.045} kind="box" at={at(352.4)} pin />
       <Label text="EQUAL BEFORE THE LAW" x={0.5} y={0.1} size={0.07} kind="title" at={at(352.9)} />
     </AbsoluteFill>
   );
@@ -807,13 +808,14 @@ export const WivesShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.95, 1.0), y: 60 }} light={L} vignette={0.5}>
         <PalaceRoom floor={-520} throne={false}>
-          <BalanceScale x={0} y={-520} s={1.3} tilt={ramp(t, 362.4, 363.4) * -0.3} z={-20} />
-          <Character {...CARLO} hat={null} x={-640} y={-520} s={1.2} facing={1} look={0.5} expression={{ eyes: "open", mouth: "smirk" }} pose={poses.point(frame)} z={-12} />
-          <Character {...LETIZIA} x={640} y={-520} s={1.2} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "frown", brows: -0.5 }} pose={poses.handsOnHips} z={-12} />
+          <BalanceScale x={0} y={-240} s={1.0} tilt={ramp(t, 362.4, 363.4) * -0.6} z={-20}
+            left={<Character {...ROYALIST(2)} hat={null} mustache="handlebar" s={0.5} facing={1} look={0.5} expression={{ eyes: "open", mouth: "smirk" }} pose={poses.point(frame)} shadow={false} />}
+            right={<Character {...LETIZIA} s={0.5} facing={-1} look={0.5} expression={{ eyes: "angry", mouth: "frown", brows: -0.5 }} pose={poses.handsOnHips} shadow={false} />}
+          />
         </PalaceRoom>
       </Stage>
-      <Label text="HUSBAND" x={0.2} y={0.85} size={0.045} kind="box" at={at(363.9)} pin />
-      <Label text="WIFE MUST OBEY" x={0.8} y={0.85} size={0.045} kind="box" at={at(363.4)} pin />
+      <Label text="HUSBAND" x={0.21} y={0.85} size={0.045} kind="box" at={at(362.6)} pin />
+      <Label text="WIFE MUST OBEY" x={0.79} y={0.85} size={0.045} kind="box" at={at(363.4)} pin />
     </AbsoluteFill>
   );
 };

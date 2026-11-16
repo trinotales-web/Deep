@@ -692,15 +692,15 @@ export const SplitMapShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, cam.zoom, cam.zoom * 1.04), x: cam.x, y: cam.y }} light={L} vignette={0.45}>
         <MapBack islands={["corsica"]} routes={[
-          { pts: [[8.45, 44.25], [8.6, 44.6]], k: ramp(t, 222.9, 223.8), width: 22 },
-          { pts: [[8.6, 44.6], [7.95, 44.55]], k: ramp(t, 224.3, 224.7), width: 18 },
-          { pts: [[8.6, 44.6], [9.35, 44.75]], k: ramp(t, 224.9, 225.3), width: 18 },
+          { pts: [[8.45, 44.25], [8.6, 44.6]], k: ramp(t, 222.9, 223.8), width: 12 },
+          { pts: [[8.6, 44.6], [8.05, 44.56]], k: ramp(t, 224.3, 224.7), width: 10 },
+          { pts: [[8.6, 44.6], [9.28, 44.73]], k: ramp(t, 224.9, 225.3), width: 10 },
         ]} />
         <X x={austr[0]} y={austr[1]} z={0.3}>
-          <Part shape={circle(60)} color={hit2 ? "#9a9aa2" : "#f0ece2"} shade={0.2} outline={6} />
+          <Part shape={circle(26)} color={hit2 ? "#9a9aa2" : "#f0ece2"} shade={0.2} outline={5} />
         </X>
         <X x={sard[0]} y={sard[1]} z={0.3}>
-          <Part shape={circle(56)} color={hit1 ? "#9a9aa2" : "#5a8ad0"} shade={0.2} outline={6} />
+          <Part shape={circle(26)} color={hit1 ? "#9a9aa2" : "#5a8ad0"} shade={0.2} outline={5} />
         </X>
       </Stage>
       <Label text="AUSTRIA" x={0.66} y={0.36} size={0.045} kind="box" at={at(223.4)} pin />
@@ -959,7 +959,7 @@ export const PeaceShot: React.FC<ShotProps> = ({ start, dur }) => {
         {battles.map(([lon, lat, bt], i) => {
           const p = eu([lon, lat]);
           return (
-            <X key={i} x={p[0]} y={p[1]} s={0.55 * pop(t, bt)} z={0.3}>
+            <X key={i} x={p[0]} y={p[1]} s={0.9 * pop(t, bt)} z={0.3}>
               <BattleIcon />
             </X>
           );

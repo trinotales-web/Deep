@@ -232,6 +232,26 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   stacks letters (INDIA on the PSLV booster, NASA on the SLS boosters),
   `IsroEmblem` (arrow + panels, इसरो / isro; `plate`, `round`, `text`). PSLV
   is the red-and-white PSLV-XL with the ISRO badge; SLS carries NASA lettering.
+- Napoleonic era (`env/empire`, `env/europe1800`, `env/europemap`): `Musket`
+  (Charleville + bayonet, `fire`), `FieldGun` (Gribeauval, `fire`), `Cannonballs`,
+  `Sabre`, `BattleIcon` (`lost`), `Steed` (horse/`mule`, two-joint legs, `walk`,
+  `rear`, saddle `cloth`, rider as children at the seat), `Coach`, `ShipOfLine`
+  (`navy` uk/fr, `sail`, broadside `fire`, `burn`, `explode`, `sink`), `Sloop`,
+  `Painting` (gilded frame, children on the canvas), `Guillotine`, `RosettaStone`
+  (`hi` band), `LaurelCrown`, `Louse`, `Microscope`, `Lightbulb`, `BabyBundle`,
+  `Snowfall`, `FogBank`; buildings `ParisHouse`, `ChurchFacade`, `Palace`
+  (Tuileries), `HillFort`, `OnionChurch`, `KremlinWall`, `GothicNave`
+  (Notre-Dame), `IslandRock` (helena/elba), `LogHut`, `DeadTree`, `StoneHouse`;
+  `EuropeMap` (Natural Earth 1:50m countries, coastlines only, `tint`, `snow`,
+  `routes` as bold `ArmyArrow`s with `taper` for a Minard band, `islands` for
+  1:10m Corsica/Elba/Sardinia/Saint Helena; `euroXY`, `EURO` places,
+  `EMPIRE_1812`; data built by `scripts/europe-geo.mjs`). `NationFlag` adds
+  france, uk (1801 Union Jack), austria, prussia, haiti, royal (Bourbon lilies).
+  Outfits add `lapels` (plastron), `crossbelts`, `epaulettes`, `tails`,
+  `tallBoots`, `cape` (+`capeWind`), `cravat`; hats add `shako`, `bearskin`,
+  `tricorne`, `phrygian`, `papakha`, `foreaft` (bicorne worn front-to-back),
+  `zucchetto`, `mobcap`. Hold a musket with `heldRot`-style correction (see
+  `episodes/napoleon/util.tsx`: `HeldMusket`, `SHOULDER_ARMS`, `AIM`).
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers (synth ambiences
   include a seamless `underwater` bed and a quiet airless `space` bed for space
   and the lunar surface; keep long beds synthesized — short licensed loops
@@ -257,6 +277,8 @@ shots in act files `actA…actE.tsx` with the cut list in `timeline.ts`;
 modern kit, sound sheet calibrated per cue;
 `src/episodes/whale/` — 16:9 science explainer, ~9 min, 188 shots in
 `actA…actH.tsx`, ocean kit, shot cut list generated from word anchors;
+`src/episodes/napoleon/` — 16:9 history biography, ~10 min, 223 shots in
+`actA…actH.tsx`, Napoleonic kit, beds generated from each shot's set;
 `src/episodes/moon/` — 16:9 space explainer (Moon's south pole), ~10 min,
 204 shots in `actA…actH.tsx`, Moon kit, beds generated from each shot's set;
 `src/episodes/onoda/` — small demo)
@@ -272,6 +294,13 @@ modern kit, sound sheet calibrated per cue;
    transcription and needs no model download:
    `pip install pocketsphinx && python3 scripts/align-captions.py public/vo/<name>.mp3 <script.txt> public/captions/<name>.json [--merge "four eighty four=484"]`.
    Otherwise `node scripts/transcribe.mjs public/vo/<name>.mp3` (whisper.cpp).
+   If model hosts are blocked (only npm/PyPI reachable), Whisper small in
+   CTranslate2 format ships on npm as `@skillninja/shortmovie-telop-model-p0…p3`
+   (download the tarballs, join `model.bin.part*`, check `model.sha256`) and runs
+   with `pip install faster-whisper` (pass decoded 16 kHz PCM, not a path). Turn
+   the transcript into the display script, then force-align paragraph by
+   paragraph (Whisper times locate each paragraph) so one mismatch can't sink
+   the whole alignment.
    Then cut shots in the breaths between phrases (print word times from the
    JSON) and put hits on the key words.
 8. Review with contact sheets: `node scripts/stills.mjs <compId> out.png <f1,f2,…> [cols]`

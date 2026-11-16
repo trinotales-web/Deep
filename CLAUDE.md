@@ -226,6 +226,12 @@ Measured values live in `animations/src/kit/style.ts`; keep to them.
   close-ups (effective scale ≈1.6–2.4, cut at the waist), placed with
   `atHead(cam, fx, fy, s)` (`episodes/moon/frame.ts`) so the head lands at a
   chosen frame position.
+- Lettering and emblems (`env/emblems`): `TextShape` draws pre-shaped text
+  outlines from `geo/textpaths.json` (Montserrat / Noto Sans Devanagari shaped
+  with HarfBuzz; add strings with `scripts/textpaths.mjs`), `VerticalText`
+  stacks letters (INDIA on the PSLV booster, NASA on the SLS boosters),
+  `IsroEmblem` (arrow + panels, इसरो / isro; `plate`, `round`, `text`). PSLV
+  is the red-and-white PSLV-XL with the ISRO badge; SLS carries NASA lettering.
 - `captions/` — `StyledCaptions`. `audio/` — sound helpers (synth ambiences
   include a seamless `underwater` bed and a quiet airless `space` bed for space
   and the lunar surface; keep long beds synthesized — short licensed loops

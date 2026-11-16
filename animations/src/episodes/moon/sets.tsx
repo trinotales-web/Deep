@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { X, Part, Line, Glow, Gradient, LightCone, roundRect, circle, ellipse, poly, rng } from "../../kit";
-import { Monitor, SpaceBack, NebulaBack, type NebulaHue, MoonGlobe, Vikram, Globe, Floorboards, PottedPlant, Desk, Calendar, PerspectiveRoom, ROOM_LAB, ROOM_MISSION, roomQuad, roomPt, FramedPoster, ClockRow, CodeScreen, SideWindow } from "../../kit/env";
+import { Monitor, SpaceBack, NebulaBack, type NebulaHue, MoonGlobe, Vikram, Globe, Floorboards, PottedPlant, Desk, Calendar, PerspectiveRoom, ROOM_LAB, ROOM_MISSION, roomQuad, roomPt, FramedPoster, ClockRow, CodeScreen, SideWindow, IsroEmblem } from "../../kit/env";
 
 export { Flash, Paper, RuleBoard, TimeBar, LabSet, PressSet, PressLectern, spark } from "../whale/sets";
 
@@ -66,8 +66,9 @@ export const ControlRoom: React.FC<{ floor?: number; screenY?: number; consoles?
           <Part key={x} shape={circle(8)} color={["#ff5a4a", "#ffd84a", "#4ad28a"][i]} flat outline={2} x={x} y={-410} opacity={0.6 + 0.4 * Math.round((Math.sin(frame * 0.2 + i * 2) + 1) / 2)} z={0.021} />
         ))}
       </X>
-      <CodeScreen x={-1160} y={screenY + 40} w={520} h={380} seed={3} z={-39} />
-      <X x={1160} y={screenY + 40} z={-39}>
+      <CodeScreen x={-1110} y={screenY - 140} w={440} h={300} seed={3} z={-39} />
+      <IsroEmblem plate s={0.48} x={-1022} y={screenY + 220} z={-39} />
+      <X x={1160} y={screenY - 20} z={-39}>
         <Part shape={roundRect(520, 380, 10)} color="#2a2c34" flat outline={6} />
         <Part shape={roundRect(490, 350, 6)} color="#0f2236" flat outline={0} z={0.001} />
         {bars.map((b, i) => {
@@ -75,7 +76,6 @@ export const ControlRoom: React.FC<{ floor?: number; screenY?: number; consoles?
           return <Part key={i} shape={roundRect(44, hb, 6)} color={i % 3 === 0 ? "#4ad28a" : "#3a9adf"} flat outline={0} x={-195 + i * 65} y={-140 + hb / 2} z={0.002} />;
         })}
       </X>
-      <ClockRow x={-1160} y={screenY + 380} n={2} gap={200} r={66} z={-39} />
       <ClockRow x={1160} y={screenY + 380} n={2} gap={200} r={66} z={-39} />
       <X z={-39.2}>
         <Part shape={poly(roomQuad(geo, "right", 1.12, 1.5, floor + 520, floor + 1060))} color="#4a5468" flat outline={5} />

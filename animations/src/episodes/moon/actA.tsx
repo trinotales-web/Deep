@@ -31,16 +31,16 @@ export const ControlRoomShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
-  const cam = { zoom: 0.76, y: 220 };
+  const cam = { zoom: 0.76, x: -70, y: 220 };
   const you = atHead(cam, 0.27, 0.46, 2.4);
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.74, 0.8), y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+      <Stage camera={{ zoom: push(frame, dur, 0.74, 0.8), x: cam.x, y: cam.y }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
         <ControlRoom floor={-420} screen={<DescentScreen k={0.12} />}>
           <Station x={-1300} y={-420} s={0.95} i={1} frame={frame} z={-12} />
           <Station x={700} y={-420} s={0.95} i={3} frame={frame} z={-12} />
           <Character {...YOU} x={you.x} y={you.y} s={2.4} facing={1} look={0.55} expression={{ eyes: "open", mouth: t > 1.5 ? "smile" : "flat", gaze: [0.5, 0.4], brows: 0.15 }} pose={poses.idle(frame, 1)} z={-4} />
-          <NationFlag kind="india" x={1380} y={-640} w={240} pole={760} z={-5} />
+          <NationFlag kind="india" x={1060} y={-640} w={240} pole={760} z={-5} />
         </ControlRoom>
       </Stage>
       <Label text="ISRO MISSION CONTROL" x={0.6} y={0.74} size={0.045} kind="box" at={at(1.4)} />
@@ -176,7 +176,7 @@ export const IndiaTurnShot: React.FC<ShotProps> = ({ start, dur }) => {
     <AbsoluteFill>
       <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.08), y: 80 }} light={{ dir: [-0.6, 0.7] }} vignette={0.6} bgBlur={8} bg={<ControlRoom floor={-700} screen={<DescentScreen k={0.55} />} />}>
         <NationFlag kind="india" x={420} y={-560} w={420} pole={1050} z={-6} />
-        <Character {...YOU} x={-300} y={-560} s={1.55} facing={1} look={0.5} expression={{ eyes: "open", mouth: t > 22.0 ? "flat" : "smile", gaze: [0.4, 0.4], brows: 0.5, sweat: t > 22.1 }} pose={poses.idle(frame, 1)} z={-2} />
+        <Character {...YOU} x={-300} y={-470} s={1.6} facing={1} look={0.5} expression={{ eyes: "open", mouth: t > 22.0 ? "flat" : "smile", gaze: [0.4, 0.4], brows: 0.5, sweat: t > 22.1 }} pose={poses.idle(frame, 1)} z={-2} />
       </DepthStage>
     </AbsoluteFill>
   );

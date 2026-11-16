@@ -491,7 +491,7 @@ export const ProblemShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.6} bgBlur={8} bg={<ControlRoom floor={-700} screen={<DescentScreen k={0.5} />} />}>
-        <Character {...YOU} x={-200} y={-640} s={1.55} facing={1} look={0.3} expression={{ eyes: "half", mouth: "wavy", brows: 0.6 }} pose={poses.idle(frame, 4)} z={-2} />
+        <Character {...YOU} x={-200} y={-470} s={1.6} facing={1} look={0.3} expression={{ eyes: "half", mouth: "wavy", brows: 0.6 }} pose={poses.idle(frame, 4)} z={-2} />
       </DepthStage>
       <Label text="ONE PROBLEM" x={0.62} y={0.2} size={0.08} kind="stamp" at={at(376.4)} />
     </AbsoluteFill>

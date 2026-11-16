@@ -1,11 +1,11 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { Stage } from "../kit";
+import { Stage, X } from "../kit";
 import {
   SpaceBack, MoonGlobe, LunarPoleMap, LunarSurface, CraterSection, SpaceRock, Comet, WaterMolecule, SnowPeak, Typhoon, IceFlake, MetalLump,
   Vikram, Luna25, NovaC, GrailProbe, Chandrayaan1, CentaurStage, ApolloLM, ChangELander, YutuRover, Hopper, Orion, SLS, PSLV, NationFlag,
   MoonBase, FuelPump, Tokamak, QuantumFridge, GasCanister, Harvester, Bullet, ImpactPlume, SolarMast, Planet,
-  NebulaBack, MoonRover, LaunchPadSet, CraterCone,
+  NebulaBack, MoonRover, LaunchPadSet, CraterCone, IsroEmblem,
 } from "../kit/env";
 
 /** Moon kit review sheets (dev only). */
@@ -110,6 +110,25 @@ export const MoonKit: React.FC<{ page?: number }> = ({ page = 0 }) => {
             <Planet kind="earth" r={120} x={520} y={180} />
             <Vikram x={480} y={-400} s={0.5} rot={-0.9} thrust={0.6} />
           </>
+        ) : null}
+        {page === 11 ? (
+          <LaunchPadSet floor={-500} towerX={-760} smoke={0} glow={0}>
+            <IsroEmblem plate x={-150} y={250} s={0.7} z={-5} />
+            <X x={380} y={-480} sx={1.35} z={-20}>
+              <PSLV h={1000} />
+            </X>
+            <X x={720} y={-480} sx={1.2} z={-20}>
+              <SLS h={1000} />
+            </X>
+          </LaunchPadSet>
+        ) : null}
+        {page === 12 ? (
+          <LunarSurface horizon={-40} sun={[-1100, 60]}>
+            <ChangELander x={-620} y={-420} s={0.8} ascender />
+            <YutuRover x={-80} y={-470} s={1.3} />
+            <Luna25 x={330} y={-420} s={0.7} />
+            <NovaC x={760} y={-420} s={0.75} />
+          </LunarSurface>
         ) : null}
       </Stage>
     </AbsoluteFill>

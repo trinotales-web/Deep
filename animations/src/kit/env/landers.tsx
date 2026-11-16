@@ -8,6 +8,7 @@ import { INK } from "../style";
 import { noise1, rng } from "../random";
 import { Exhaust } from "./space";
 import { Puffs } from "./whales";
+import { IsroEmblem, VerticalText } from "./emblems";
 
 // Moon missions kit: ISRO's Vikram lander, Russia's Luna-25, Intuitive
 // Machines' Nova-C (Odysseus / Athena), NASA's GRAIL twins, Chandrayaan-1,
@@ -594,73 +595,129 @@ export const Orion: React.FC<XProps & { thrust?: number; crew?: boolean; flag?: 
   </X>
 );
 
-/** NASA's SLS rocket (orange core, two white boosters, Orion with escape tower). Origin = base centre. */
+/**
+ * NASA's SLS (Block 1) with Orion: orange foam core with ribs and the white
+ * LVSA, white solid boosters with black segment bands and red NASA lettering,
+ * the ICPS, Orion's service module, capsule and launch-abort tower.
+ * Origin = base centre.
+ */
 export const SLS: React.FC<XProps & { h?: number; thrust?: number; seed?: number }> = ({ h = 1400, thrust = 0, seed = 2, ...xf }) => {
-  const core = h * 0.62;
+  const core = h * 0.6;
+  const y = (k: number) => ri(h * k);
   return (
     <X {...xf}>
       {thrust > 0.02 ? (
         <>
           <Exhaust y={0} len={700 * thrust} w={130} seed={seed} z={-0.02} />
           {[-1, 1].map((sd) => (
-            <Exhaust key={sd} x={sd * 92} y={4} len={760 * thrust} w={90} seed={seed + sd + 3} glow={0} z={-0.021} />
+            <Exhaust key={sd} x={sd * 96} y={4} len={760 * thrust} w={90} seed={seed + sd + 3} glow={0} z={-0.021} />
           ))}
         </>
       ) : null}
-      <Part shape={roundRect(116, ri(core), 10)} color="#e07a2a" shade={0.3} y={ri(h * 0.04 + core / 2)}>
+      <Part shape={roundRect(124, ri(core), 10)} color="#e8822a" shade={0.3} y={ri(h * 0.04 + core / 2)}>
+        {[-0.36, -0.12, 0.12, 0.36].map((k) => (
+          <Line key={`v${k}`} pts={[[ri(124 * k), ri(-core / 2 + 20)], [ri(124 * k), ri(core / 2 - 20)]]} width={2.5} color="#c8661c" opacity={0.6} z={0.001} />
+        ))}
         {[0.3, 0.1, -0.15, -0.38].map((k) => (
-          <Line key={k} pts={[[-54, ri(core * k)], [54, ri(core * k)]]} width={4} color="#a85a1e" z={0.001} />
+          <Line key={k} pts={[[-58, ri(core * k)], [58, ri(core * k)]]} width={4} color="#a85a1e" z={0.0015} />
         ))}
       </Part>
+      {/* LVSA + ICPS */}
+      <Part shape={poly([[-62, y(0.64)], [62, y(0.64)], [44, y(0.7)], [-44, y(0.7)]])} color="#f2f2f4" shade={0.3} z={0.002} />
+      <Part shape={roundRect(88, y(0.05), 6)} color="#d9dce2" shade={0.3} y={y(0.725)} z={0.002} />
+      {/* Orion: service module, capsule, abort tower */}
+      <Part shape={roundRect(92, y(0.045), 6)} color="#e6e8ec" shade={0.3} y={y(0.772)} z={0.003}>
+        <Part shape={roundRect(94, 10, 0)} color="#2a2a30" flat outline={0} y={-y(0.012)} z={0.001} />
+      </Part>
+      <Part shape={poly([[-48, y(0.795)], [48, y(0.795)], [18, y(0.86)], [-18, y(0.86)]])} color="#f2f2f4" shade={0.3} z={0.004} />
+      <Part shape={roundRect(14, y(0.07), 4)} color="#f2f2f4" flat outline={4} y={y(0.895)} z={0.004} />
+      <Part shape={poly([[-12, y(0.93)], [12, y(0.93)], [0, y(0.955)]])} color="#2a2a30" flat outline={4} z={0.004} />
+      {/* boosters */}
       {[-1, 1].map((sd) => (
-        <X key={sd} x={sd * 92} z={0.005}>
-          <Part shape={roundRect(64, ri(h * 0.54), 8)} color={WHITE} shade={0.3} y={ri(h * 0.04 + h * 0.27)}>
-            {[0.18, -0.05, -0.28].map((k) => (
-              <Part key={k} shape={roundRect(66, 14, 0)} color="#2a2a30" flat outline={0} y={ri(h * 0.54 * k)} z={0.001} />
+        <X key={sd} x={sd * 96} z={0.005}>
+          <Part shape={roundRect(66, y(0.54), 8)} color="#f6f6f8" shade={0.3} y={y(0.04 + 0.27)}>
+            {[0.2, -0.02, -0.24].map((k) => (
+              <Part key={k} shape={roundRect(68, 14, 0)} color="#2a2a30" flat outline={0} y={ri(h * 0.54 * k)} z={0.001} />
             ))}
           </Part>
-          <Part shape={poly([[-32, ri(h * 0.58)], [32, ri(h * 0.58)], [0, ri(h * 0.64)]])} color={WHITE} flat outline={5} z={0.001} />
-          <Part shape={poly([[-26, ri(h * 0.04)], [26, ri(h * 0.04)], [34, 0], [-34, 0]])} color="#5a5a64" flat outline={4} z={0.001} />
+          <VerticalText letters={["N", "A", "S", "A"]} size={46} color="#d8322a" y={y(0.52)} z={0.002} />
+          <Part shape={poly([[-33, y(0.58)], [33, y(0.58)], [12, y(0.635)], [-12, y(0.635)]])} color="#f6f6f8" flat outline={5} z={0.001} />
+          <Part shape={poly([[-26, y(0.04)], [26, y(0.04)], [34, 0], [-34, 0]])} color="#5a5a64" flat outline={4} z={0.001} />
         </X>
       ))}
-      <Part shape={poly([[-58, ri(h * 0.66)], [58, ri(h * 0.66)], [44, ri(h * 0.72)], [-44, ri(h * 0.72)]])} color={WHITE} flat outline={5} z={0.002} />
-      <Part shape={roundRect(88, ri(h * 0.08), 6)} color={WHITE} shade={0.3} y={ri(h * 0.76)} z={0.002} />
-      <Part shape={poly([[-50, ri(h * 0.8)], [50, ri(h * 0.8)], [20, ri(h * 0.88)], [-20, ri(h * 0.88)]])} color="#e6e8ec" shade={0.3} z={0.003} />
-      <Part shape={roundRect(10, ri(h * 0.08), 4)} color="#c9cdd3" flat outline={4} y={ri(h * 0.92)} z={0.003} />
       {[-1, 0, 1].map((k) => (
-        <Part key={k} shape={poly([[k * 32 - 12, ri(h * 0.045)], [k * 32 + 12, ri(h * 0.045)], [k * 32 + 16, 6], [k * 32 - 16, 6]])} color="#3a3a44" flat outline={4} z={0.001} />
+        <Part key={k} shape={poly([[k * 34 - 12, y(0.045)], [k * 34 + 12, y(0.045)], [k * 34 + 16, 6], [k * 34 - 16, 6]])} color="#3a3a44" flat outline={4} z={0.001} />
       ))}
     </X>
   );
 };
 
-/** ISRO's PSLV: slim white core with six strap-on boosters (three visible), payload fairing. Origin = base centre. */
-export const PSLV: React.FC<XProps & { h?: number; thrust?: number; seed?: number }> = ({ h = 1200, thrust = 0, seed = 5, ...xf }) => (
-  <X {...xf}>
-    {thrust > 0.02 ? <Exhaust y={0} len={620 * thrust} w={110} seed={seed} z={-0.03} /> : null}
-    {[-1, 1].map((sd) => (
-      <X key={sd} x={sd * 58} z={-0.01}>
-        <Part shape={roundRect(40, ri(h * 0.3), 8)} color="#e9e8e2" shade={0.3} y={ri(h * 0.02 + h * 0.15)} />
-        <Part shape={poly([[-20, ri(h * 0.32)], [20, ri(h * 0.32)], [0, ri(h * 0.37)]])} color="#4a4a52" flat outline={4} z={0.001} />
-      </X>
-    ))}
-    <Part shape={roundRect(84, ri(h * 0.44), 8)} color="#f0efe9" shade={0.3} y={ri(h * 0.02 + h * 0.22)}>
-      {[0.3, 0, -0.3].map((k) => (
-        <Line key={k} pts={[[-40, ri(h * 0.44 * k)], [40, ri(h * 0.44 * k)]]} width={4} color="#b9b6ac" z={0.001} />
+/**
+ * ISRO's PSLV-XL in the reference livery: red-and-white core, six strap-on
+ * boosters (three visible; red bands and noses, INDIA lettering on the front
+ * one), white upper stages with the ISRO emblem badge, dark interstages and a
+ * bulbous payload fairing with the flag. Origin = base centre.
+ */
+export const PSLV: React.FC<XProps & { h?: number; thrust?: number; seed?: number }> = ({ h = 1200, thrust = 0, seed = 5, ...xf }) => {
+  const y = (k: number) => ri(h * k);
+  const RED = "#d8322a";
+  const WH = "#f2f1ec";
+  const cw = 100;
+  const fw = 136;
+  const fairing: [number, number][] = [
+    [-cw / 2, y(0.785)], [-fw / 2, y(0.81)], [-fw / 2, y(0.9)], [-fw * 0.4, y(0.945)], [-fw * 0.18, y(0.975)], [0, y(0.985)],
+    [fw * 0.18, y(0.975)], [fw * 0.4, y(0.945)], [fw / 2, y(0.9)], [fw / 2, y(0.81)], [cw / 2, y(0.785)],
+  ];
+  return (
+    <X {...xf}>
+      {thrust > 0.02 ? (
+        <>
+          <Exhaust y={0} len={620 * thrust} w={110} seed={seed} z={-0.03} />
+          {[-1, 1].map((sd) => (
+            <Exhaust key={sd} x={sd * 72} y={2} len={560 * thrust} w={70} seed={seed + sd + 2} glow={0} z={-0.031} />
+          ))}
+        </>
+      ) : null}
+      {/* side strap-ons */}
+      {[-1, 1].map((sd) => (
+        <X key={sd} x={sd * 74} z={-0.01}>
+          <Part shape={roundRect(56, y(0.3), 10)} color={WH} shade={0.3} y={y(0.03 + 0.15)} />
+          <Part shape={roundRect(58, y(0.03), 0)} color={RED} flat outline={0} y={y(0.24)} z={0.001} />
+          <Part shape={roundRect(58, y(0.012), 0)} color="#2a2a30" flat outline={0} y={y(0.06)} z={0.001} />
+          <Part shape={poly([[-28, y(0.33)], [28, y(0.33)], [10, y(0.375)], [-10, y(0.375)]])} color={RED} flat outline={5} z={0.001} />
+          <Part shape={poly([[-18, y(0.03)], [18, y(0.03)], [24, 0], [-24, 0]])} color="#3a3a44" flat outline={4} z={0.001} />
+        </X>
       ))}
-      <FlagDecal kind="india" w={52} y={ri(h * 0.08)} z={0.002} />
-    </Part>
-    <X z={0.01}>
-      <Part shape={roundRect(42, ri(h * 0.26), 8)} color="#e9e8e2" shade={0.3} y={ri(h * 0.02 + h * 0.13)} />
-      <Part shape={poly([[-21, ri(h * 0.28)], [21, ri(h * 0.28)], [0, ri(h * 0.33)]])} color="#4a4a52" flat outline={4} z={0.001} />
+      {/* core first stage (red with white bands) */}
+      <Part shape={roundRect(cw, y(0.43), 8)} color={RED} shade={0.3} y={y(0.025 + 0.215)}>
+        {[0.12, -0.08].map((k) => (
+          <Part key={k} shape={roundRect(cw + 2, y(0.025), 0)} color={WH} flat outline={0} y={ri(h * 0.43 * k)} z={0.001} />
+        ))}
+      </Part>
+      <Part shape={roundRect(cw + 6, y(0.02), 4)} color="#2a2a30" flat outline={4} y={y(0.455)} z={0.001} />
+      {/* second stage with the ISRO badge */}
+      <Part shape={roundRect(cw, y(0.2), 8)} color={WH} shade={0.3} y={y(0.465 + 0.1)} z={0.001}>
+        <IsroEmblem round text={false} s={0.2} y={-30} z={0.002} />
+        <Part shape={roundRect(cw + 2, 10, 0)} color={RED} flat outline={0} y={y(-0.085)} z={0.001} />
+      </Part>
+      <Part shape={roundRect(cw + 4, y(0.016), 4)} color="#2a2a30" flat outline={4} y={y(0.673)} z={0.002} />
+      <Part shape={roundRect(cw - 12, y(0.07), 6)} color="#dcd9d0" shade={0.3} y={y(0.68 + 0.035)} z={0.002} />
+      <Part shape={roundRect(cw - 20, y(0.04), 6)} color="#b9b6ac" shade={0.3} y={y(0.75 + 0.02)} z={0.002} />
+      {/* fairing */}
+      <Part shape={poly(fairing)} color="#f6f5f0" shade={0.3} z={0.003} />
+      <Part shape={roundRect(fw, 14, 0)} color={RED} flat outline={0} y={y(0.83)} z={0.004} />
+      <FlagDecal kind="india" w={50} y={y(0.89)} z={0.004} />
+      {/* front strap-on with INDIA lettering */}
+      <X z={0.02}>
+        <Part shape={roundRect(60, y(0.27), 10)} color={WH} shade={0.3} y={y(0.03 + 0.135)} />
+        <Part shape={roundRect(62, y(0.012), 0)} color="#2a2a30" flat outline={0} y={y(0.06)} z={0.001} />
+        <Part shape={poly([[-30, y(0.3)], [30, y(0.3)], [10, y(0.345)], [-10, y(0.345)]])} color={RED} flat outline={5} z={0.001} />
+        <Part shape={poly([[-20, y(0.03)], [20, y(0.03)], [26, 0], [-26, 0]])} color="#3a3a44" flat outline={4} z={0.001} />
+        <VerticalText letters={["I", "N", "D", "I", "A"]} size={Math.min(58, ri(h * 0.045))} color="#1a2a6a" y={y(0.285)} z={0.002} />
+      </X>
     </X>
-    <Part shape={roundRect(84, ri(h * 0.18), 6)} color="#c9c6bc" shade={0.3} y={ri(h * 0.46 + h * 0.09)} z={0.002} />
-    <Part shape={roundRect(84, ri(h * 0.1), 6)} color="#f0efe9" shade={0.3} y={ri(h * 0.64 + h * 0.05)} z={0.002} />
-    <Part shape={roundRect(116, ri(h * 0.15), 20)} color="#f6f5f0" shade={0.3} y={ri(h * 0.74 + h * 0.075)} z={0.003} />
-    <Part shape={blob([[-58, ri(h * 0.885)], [58, ri(h * 0.885)], [40, ri(h * 0.94)], [0, ri(h * 0.98)], [-40, ri(h * 0.94)]], 8)} color="#f6f5f0" shade={0.3} z={0.003} />
-    <Part shape={poly([[-30, ri(h * 0.02)], [30, ri(h * 0.02)], [40, 0], [-40, 0]])} color="#3a3a44" flat outline={4} z={0.004} />
-  </X>
-);
+  );
+};
 
 // ───────────────────────── base, fuel, helium-3 ─────────────────────────
 

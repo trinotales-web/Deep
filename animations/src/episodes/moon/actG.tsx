@@ -403,18 +403,32 @@ export const SunlitSoilShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const t = absT(start, frame);
   const r = rng(41);
+  const SUN: [number, number] = [-1020, 560];
   return (
     <AbsoluteFill>
-      <Stage camera={{ zoom: push(frame, dur, 0.66, 0.7), y: 180 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
-        <LunarSurface horizon={-200} sun={[-1300, 700]} seed={179} rocks={4} craters={2}>
-          {Array.from({ length: 34 }, (_, i) => {
+      <Stage camera={{ zoom: push(frame, dur, 0.8, 0.85), y: 150 }} light={{ dir: [-0.6, 0.7] }} vignette={0.55}>
+        <LunarSurface horizon={-160} sun={SUN} seed={179} rocks={4} craters={2}>
+          <Glow rx={700} ry={500} x={SUN[0]} y={SUN[1]} color="#ffe9a0" alpha={0.35} additive z={-7} />
+          {Array.from({ length: 7 }, (_, i) => {
+            const a = -0.25 - i * 0.12;
+            return <Line key={`w${i}`} pts={[[SUN[0] + Math.cos(a) * 140, SUN[1] + Math.sin(a) * 140], [SUN[0] + Math.cos(a) * 2600, SUN[1] + Math.sin(a) * 2600]]} width={5} color="#ffe27a" opacity={0.25} z={-6.5} />;
+          })}
+          {Array.from({ length: 30 }, (_, i) => {
             const ph = (r() + frame * 0.015) % 1;
-            const sx = -1300 + r() * 200;
-            const tx = -900 + r() * 2200;
-            return <Part key={i} shape={circle(8)} color={HE3} flat outline={2.5} x={sx + (tx - sx) * ph} y={700 + (-560 - 700) * ph} opacity={0.9} z={-6} />;
+            const sx = SUN[0] + r() * 160;
+            const tx = -800 + r() * 2000;
+            return (
+              <X key={i} x={sx + (tx - sx) * ph} y={SUN[1] + (-560 - SUN[1]) * ph} z={-6}>
+                <Glow rx={34} color={HE3} alpha={0.5} additive />
+                <Part shape={circle(14)} color={HE3} flat outline={3} z={0.001} />
+              </X>
+            );
           })}
           {Array.from({ length: 16 }, (_, i) => (
-            <Part key={`g${i}`} shape={circle(9)} color={HE3} flat outline={2.5} x={-900 + i * 140} y={-600 - (i % 3) * 40} opacity={ramp(t, 530.6 + i * 0.08, 531.0 + i * 0.08)} z={-5} />
+            <X key={`g${i}`} x={-900 + i * 140} y={-560 - (i % 3) * 50} z={-5}>
+              <Glow rx={30} color={HE3} alpha={0.45 * ramp(t, 530.6 + i * 0.08, 531.0 + i * 0.08)} additive />
+              <Part shape={circle(14)} color={HE3} flat outline={3} opacity={ramp(t, 530.6 + i * 0.08, 531.0 + i * 0.08)} z={0.001} />
+            </X>
           ))}
         </LunarSurface>
       </Stage>
@@ -448,7 +462,7 @@ export const TwistShot: React.FC<ShotProps> = ({ start, dur }) => {
   return (
     <AbsoluteFill>
       <DepthStage camera={{ zoom: push(frame, dur, 1.0, 1.06), y: 60 }} light={{ dir: [-0.6, 0.7] }} vignette={0.6} bgBlur={8} bg={<ControlRoom floor={-700} screen={<DescentScreen k={1} upright={1} />} />}>
-        <Character {...YOU} x={-200} y={-640} s={1.55} facing={1} look={0.3} expression={{ eyes: "wide", mouth: "smirk", brows: 0.3 }} pose={poses.point(frame)} z={-2} />
+        <Character {...YOU} x={-200} y={-470} s={1.6} facing={1} look={0.3} expression={{ eyes: "wide", mouth: "smirk", brows: 0.3 }} pose={poses.point(frame)} z={-2} />
       </DepthStage>
       <Label text="A TWIST" x={0.62} y={0.2} size={0.08} kind="stamp" at={at(536.6)} />
     </AbsoluteFill>

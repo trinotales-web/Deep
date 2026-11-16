@@ -176,12 +176,12 @@ export const KingFledShot: React.FC<ShotProps> = ({ start, dur }) => {
   const frame = useCurrentFrame();
   const at = sec(start);
   const t = absT(start, frame);
-  const flee = (t - 518.0) * 300;
+  const flee = (t - 518.0) * 170;
   return (
     <AbsoluteFill>
       <Stage camera={{ zoom: push(frame, dur, 0.75, 0.8), y: 200 }} light={L} vignette={0.5}>
         <ParisStreet floor={-460} palace>
-          <Coach x={-600 - flee} y={-480} s={0.85} walk={1.5} color="#2a3a6a" sx={-1} z={-12}>
+          <Coach x={-150 - flee} y={-480} s={0.85} walk={1.5} color="#2a3a6a" sx={-1} z={-12}>
             <X y={-60} x={20} s={1}>
               <Character {...KING_OLD} s={0.35} facing={-1} look={0.5} expression={{ eyes: "wide", mouth: "o", sweat: true }} pose={poses.scared(frame)} shadow={false} />
             </X>
